@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mecânica dos Materiais II — Engenharia Mecânica</title>
+<meta name="description" content="Estado plano de tensões, círculo de Mohr, flambagem, vasos de pressão e critérios de falha: teoria, simuladores e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">6º período · Engenharia Mecânica</p>
+    <h1>Mecânica dos Materiais II</h1>
+    <p class="lead">Onde a tensão deixa de ser um número e vira um estado. A disciplina responde três perguntas que a primeira parte não alcança: qual é a tensão máxima em qualquer direção, quando a peça falha por instabilidade em vez de resistência, e como combinar tensões para prever a falha.</p>
+    <div class="btn-row">
+      <span class="tag accent">10 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">5 simuladores</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Em Mecânica dos Materiais I calcula-se σ e τ em um plano específico. Aqui a pergunta muda: dado esse estado, <em>qual é a pior tensão em qualquer plano possível</em>, e o material resiste a essa combinação?</p>
+        <div class="grid cols-3">
+          <div class="card">
+            <h3 style="margin-top:0">Transformação</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">Como σ e τ mudam ao girar o plano de corte. O círculo de Mohr resolve isso graficamente.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Instabilidade</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">Colunas esbeltas falham por flambagem muito antes de a tensão atingir o escoamento. É um problema de rigidez, não de resistência.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Critérios de falha</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">Um ensaio de tração dá um número. Como usá-lo para prever a falha sob um estado biaxial ou triaxial?</p>
+          </div>
+        </div>
+        <div class="callout note">
+          <strong>O fio condutor</strong>
+          Estado de tensão → tensões principais → critério de falha → coeficiente de segurança. O círculo de Mohr é a ferramenta do segundo passo; von Mises e Tresca, a do terceiro.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teorico">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Estado plano de tensões</summary>
+          <div class="topic-body">
+            <p>Um ponto de uma peça carregada tem, em geral, três tensões normais e três de cisalhamento. Quando uma das faces está livre (superfície de uma peça, chapa fina), o estado se reduz ao plano — e é esse o caso da maioria dos problemas de projeto.</p>
+            <div class="formula"><span data-tex="\sigma_{x'} = \frac{\sigma_x + \sigma_y}{2} + \frac{\sigma_x - \sigma_y}{2}\cos 2\theta + \tau_{\text{xy}}\sin 2\theta"></span><span class="where">tensão normal em um plano girado de θ</span></div>
+            <div class="formula"><span data-tex="\tau_{x'y'} = -\frac{\sigma_x - \sigma_y}{2}\sin 2\theta + \tau_{\text{xy}}\cos 2\theta"></span></div>
+            <div class="callout warn">
+              <strong>O ângulo dobra</strong>
+              As equações de transformação dependem de 2θ, não de θ. Por isso, girar o elemento 90° no mundo físico corresponde a 180° no círculo de Mohr, e os planos principais estão a 90° entre si, mas a 180° no círculo.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Tensões principais e círculo de Mohr</summary>
+          <div class="topic-body">
+            <p>Existe sempre uma orientação em que o cisalhamento se anula e as tensões normais atingem seus valores extremos. São as <strong>tensões principais</strong>.</p>
+            <div class="formula"><span data-tex="\sigma_{1,2} = \frac{\sigma_x + \sigma_y}{2} \pm \sqrt{\left(\frac{\sigma_x - \sigma_y}{2}\right)^2 + \tau_{\text{xy}}^2}"></span><span class="where">centro ± raio do círculo de Mohr</span></div>
+            <div class="formula"><span data-tex="\tau_{\text{max}} = R = \sqrt{\left(\frac{\sigma_x - \sigma_y}{2}\right)^2 + \tau_{\text{xy}}^2} \qquad \tan 2\theta_p = \frac{2\tau_{\text{xy}}}{\sigma_x - \sigma_y}"></span></div>
+            <div class="callout tip">
+              <strong>Como ler o círculo</strong>
+              Centro em (σ<sub>x</sub>+σ<sub>y</sub>)/2, raio R. Os cruzamentos com o eixo horizontal são σ₁ e σ₂ (cisalhamento nulo); o topo e a base dão τ<sub>máx</sub>. Os planos de cisalhamento máximo estão a 45° dos planos principais.
+            </div>
+            <div class="callout warn">
+              <strong>A terceira tensão principal existe</strong>
+              No estado plano, σ₃ = 0 — e ela conta. Se σ₁ e σ₂ forem ambas positivas, o maior cisalhamento não é (σ₁−σ₂)/2, mas σ₁/2, envolvendo o plano fora do papel. É o erro clássico do círculo de Mohr plano.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2-bis. Rosetas de extensômetros — medindo o estado de deformação</summary>
+          <div class="topic-body">
+            <p>Todo o círculo de Mohr até aqui partiu de tensões conhecidas. No laboratório e em campo é o contrário: não se mede tensão, mede-se <strong>deformação</strong>. Um extensômetro elétrico é um fio fino colado à peça; quando a superfície estica, o fio estica junto, fica mais longo e mais fino, e sua resistência muda. Essa variação é a única grandeza que o instrumento realmente enxerga.</p>
+            <div class="formula"><span data-tex="GF = \frac{\Delta R/R}{\varepsilon}"></span><span class="where">fator do extensômetro; vale cerca de 2,1 nas grades de constantan</span></div>
+            <div class="callout warn">
+              <strong>A variação é minúscula</strong>
+              Uma deformação de 500 µε num extensômetro de 350 Ω com GF = 2,1 muda a resistência em 0,37 Ω — cerca de 0,1 %. É por isso que a leitura passa por uma ponte de Wheatstone e por compensação de temperatura: sem elas, a dilatação térmica do próprio fio afogaria o sinal mecânico.
+            </div>
+
+            <h4>Por que três grades, e não uma</h4>
+            <p>Um extensômetro lê a deformação normal em <em>uma única direção</em>. Mas o estado plano tem três incógnitas independentes — ε<sub>x</sub>, ε<sub>y</sub> e γ<sub>xy</sub> — e uma leitura só dá uma equação. Daí a <strong>roseta</strong>: três grades em direções diferentes, três equações, sistema fechado.</p>
+            <div class="formula"><span data-tex="\varepsilon_\theta = \varepsilon_x\cos^2\theta + \varepsilon_y\sin^2\theta + \gamma_{\text{xy}}\sin\theta\cos\theta"></span><span class="where">transformação de deformação: a equação que cada grade escreve</span></div>
+
+            <h4>Os dois arranjos padrão</h4>
+            <div class="grid cols-2">
+              <div class="card">
+                <h4 style="margin-top:0">Retangular · 0° / 45° / 90°</h4>
+                <div class="formula"><span data-tex="\varepsilon_x = \varepsilon_a \qquad \varepsilon_y = \varepsilon_c"></span></div>
+                <div class="formula"><span data-tex="\gamma_{\text{xy}} = 2\varepsilon_b - \varepsilon_a - \varepsilon_c"></span></div>
+                <p>É a mais usada. Como duas grades já apontam nos próprios eixos, ε<sub>x</sub> e ε<sub>y</sub> saem lidos e só a distorção exige conta.</p>
+              </div>
+              <div class="card">
+                <h4 style="margin-top:0">Delta · 0° / 60° / 120°</h4>
+                <div class="formula"><span data-tex="\varepsilon_x = \varepsilon_a \qquad \varepsilon_y = \frac{2\varepsilon_b + 2\varepsilon_c - \varepsilon_a}{3}"></span></div>
+                <div class="formula"><span data-tex="\gamma_{\text{xy}} = \frac{2(\varepsilon_b - \varepsilon_c)}{\sqrt{3}}"></span></div>
+                <p>Ângulos iguais entre si: a incerteza do resultado é a mesma qualquer que seja a orientação real do campo. Preferida quando não se faz ideia de onde estão as direções principais.</p>
+              </div>
+            </div>
+            <div class="callout tip">
+              <strong>Quando você já sabe as direções</strong>
+              Se a geometria e o carregamento garantem onde estão os eixos principais — um vaso cilíndrico sob pressão interna, uma barra sob tração pura — bastam <em>duas</em> grades alinhadas com eles, porque γ<sub>xy</sub> é nulo por simetria. A roseta de três só é necessária quando a direção é desconhecida.
+            </div>
+
+            <h4>De volta ao círculo de Mohr</h4>
+            <p>Com ε<sub>x</sub>, ε<sub>y</sub> e γ<sub>xy</sub> em mãos, vale exatamente a mesma construção do tópico anterior — trocando σ por ε e τ por <strong>γ/2</strong>:</p>
+            <div class="formula"><span data-tex="\varepsilon_{1,2} = \frac{\varepsilon_x+\varepsilon_y}{2} \pm \sqrt{\left(\frac{\varepsilon_x-\varepsilon_y}{2}\right)^2 + \left(\frac{\gamma_{\text{xy}}}{2}\right)^2} \qquad \tan 2\theta_p = \frac{\gamma_{\text{xy}}}{\varepsilon_x - \varepsilon_y}"></span></div>
+            <div class="callout warn">
+              <strong>O fator 2 do eixo vertical</strong>
+              No círculo de Mohr das deformações o eixo vertical é γ/2, não γ. Quem esquece isso obtém a direção principal certa mas o valor de γ<sub>máx</sub> pela metade. Mnemônico: γ/2 ocupa o lugar de τ porque é γ/2 que aparece no tensor de deformação.
+            </div>
+
+            <h4>Da deformação para a tensão</h4>
+            <p>A roseta está colada na <strong>superfície</strong>, que é livre de carregamento. Logo σ₃ = 0 e vale o estado plano de tensão — é essa hipótese, e não a geometria da peça, que autoriza usar a lei de Hooke na forma abaixo:</p>
+            <div class="formula"><span data-tex="\sigma_1 = \frac{E}{1-\nu^2}\left(\varepsilon_1 + \nu\,\varepsilon_2\right) \qquad \sigma_2 = \frac{E}{1-\nu^2}\left(\varepsilon_2 + \nu\,\varepsilon_1\right)"></span></div>
+            <div class="callout warn">
+              <strong>σ₃ = 0 não é ε₃ = 0</strong>
+              A peça se contrai na espessura por efeito de Poisson, mesmo sem tensão nessa direção. A deformação fora do plano vale ε₃ = −ν(ε<sub>x</sub>+ε<sub>y</sub>)/(1−ν), e ignorá-la é confundir estado plano de <em>tensão</em> com estado plano de <em>deformação</em>, que são hipóteses opostas.
+            </div>
+            <p>Fechado o percurso: mediu-se variação de resistência elétrica e chegou-se a uma tensão de von Mises comparável ao limite de escoamento — sem jamais medir tensão diretamente.</p>
+            <div class="callout tip">
+              <strong>Onde isso aparece na prática</strong>
+              Ensaio de protótipo antes da certificação, verificação de tensão residual pelo método do furo cego (ASTM E837), monitoramento de tensão em risers e vasos em operação, e calibração de células de carga — que nada mais são que um corpo elástico com extensômetros colados nos pontos certos.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Critérios de falha para materiais dúcteis</summary>
+          <div class="topic-body">
+            <p>O ensaio de tração fornece um número, S<sub>y</sub>. Os critérios traduzem esse número para estados multiaxiais.</p>
+            <div class="formula"><span data-tex="\sigma' = \sqrt{\sigma_1^2 - \sigma_1\sigma_2 + \sigma_2^2} \le \frac{S_y}{n}"></span><span class="where">von Mises (energia de distorção), estado plano</span></div>
+            <div class="formula"><span data-tex="\sigma_1 - \sigma_3 \le \frac{S_y}{n}"></span><span class="where">Tresca (máxima tensão cisalhante)</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Estado</th><th>von Mises</th><th>Tresca</th><th>Diferença</th></tr></thead>
+              <tbody>
+                <tr><td>Tração pura</td><td>σ₁</td><td>σ₁</td><td>Coincidem</td></tr>
+                <tr><td>Cisalhamento puro</td><td>√3·τ</td><td>2τ</td><td>Tresca é 15 % conservador</td></tr>
+                <tr><td>Biaxial igual (σ₁=σ₂)</td><td>σ₁</td><td>σ₁</td><td>Coincidem</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Geometricamente</strong>
+              A elipse de von Mises circunscreve o hexágono de Tresca, tocando-o em seis pontos. Por isso Tresca nunca é menos conservador, e a diferença máxima é de 15,5 %, no cisalhamento puro.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Critérios para materiais frágeis</summary>
+          <div class="topic-body">
+            <p>Materiais frágeis rompem sem escoar, e têm resistência à compressão muito maior que à tração — o ferro fundido cinzento chega a 3 ou 4 vezes. Von Mises e Tresca, que pressupõem simetria, não servem.</p>
+            <div class="formula"><span data-tex="\frac{\sigma_1}{S_{\text{ut}}} - \frac{\sigma_3}{S_{\text{uc}}} \le \frac{1}{n}"></span><span class="where">Mohr-Coulomb, com S<sub>uc</sub> tomado positivo</span></div>
+            <div class="callout warn">
+              <strong>Tensão normal máxima é perigoso</strong>
+              O critério σ₁ ≤ S<sub>ut</sub> ignora completamente a compressão e é <em>não conservador</em> no quarto quadrante (tração + compressão). Use Mohr-Coulomb modificado.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Flambagem de colunas — Euler</summary>
+          <div class="topic-body">
+            <p>Coluna esbelta sob compressão não falha por esmagamento: ela perde a estabilidade e flete lateralmente com tensão muito abaixo do escoamento. É um problema de <strong>rigidez</strong>, e o material entra apenas por E.</p>
+            <div class="formula"><span data-tex="P_{\text{cr}} = \frac{\pi^2 E I}{L_e^2} \qquad \sigma_{\text{cr}} = \frac{\pi^2 E}{(L_e/r)^2}"></span><span class="where">L<sub>e</sub> = comprimento efetivo; r = √(I/A) = raio de giração</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Vinculação</th><th>K</th><th>L<sub>e</sub> = K·L</th><th>P<sub>cr</sub> relativo</th></tr></thead>
+              <tbody>
+                <tr><td>Engastada-livre</td><td>2,0</td><td>2L</td><td>0,25×</td></tr>
+                <tr><td>Biarticulada (rotulada)</td><td>1,0</td><td>L</td><td>1× (referência)</td></tr>
+                <tr><td>Engastada-articulada</td><td>0,7</td><td>0,7L</td><td>2,05×</td></tr>
+                <tr><td>Biengastada</td><td>0,5</td><td>0,5L</td><td>4×</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Euler só vale para colunas esbeltas</strong>
+              A fórmula prevê σ<sub>cr</sub> → ∞ quando a coluna encurta, o que é absurdo. Ela só é válida acima da esbeltez limite, onde σ<sub>cr</sub> ainda é menor que o escoamento.
+            </div>
+            <div class="formula"><span data-tex="\left(\frac{L_e}{r}\right)_{\text{lim}} = \sqrt{\frac{2\pi^2 E}{S_y}}"></span><span class="where">E = módulo de elasticidade do material [MPa] · S<sub>y</sub> = limite de escoamento [MPa] · para aço com S<sub>y</sub> = 250 MPa e E = 200 GPa dá λ ≈ 126</span></div>
+            <div class="callout note">
+              <strong>Índice de esbeltez, termo a termo</strong>
+              <span data-tex-inline="\lambda = L_e/r"></span> é adimensional: diz quantos raios de giração cabem no comprimento efetivo. <strong>L</strong> é o comprimento real do pilar. <strong>K</strong> é o fator de vinculação — quanto mais impedida a rotação nas extremidades, menor. <strong>L<sub>e</sub> = K·L</strong> é o comprimento da meia-onda de flambagem, isto é, o trecho da coluna deformada que "vale" por uma coluna biarticulada equivalente. <strong>r = √(I<sub>mín</sub>/A)</strong> é o raio de giração: mede quão espalhada está a área em torno do eixo mais fraco. Duas seções de mesma área podem ter r muito diferente, e é r que decide se a coluna é esbelta.
+            </div>
+            <div class="callout tip">
+              <strong>Como a esbeltez classifica o pilar</strong>
+              λ &lt; 30 é <em>pilar curto</em>: falha por esmagamento, σ = P/A, sem efeito de flambagem. Entre 30 e λ<sub>lim</sub> é <em>intermediário</em>: falha inelástica, vale Johnson. Acima de λ<sub>lim</sub> é <em>esbelto</em>: instabilidade elástica pura, vale Euler. A NBR 8800 limita λ a 200 em elementos comprimidos, e não por resistência: acima disso o pilar fica frágil demais a imperfeições de montagem.
+            </div>
+            <p>Abaixo dessa esbeltez usa-se a parábola de <strong>Johnson</strong>, que faz a transição suave até o escoamento:</p>
+            <div class="formula"><span data-tex="\sigma_{\text{cr}} = S_y - \frac{1}{E}\left(\frac{S_y}{2\pi}\cdot\frac{L_e}{r}\right)^2"></span></div>
+            <div class="callout tip">
+              <strong>A flambagem usa o MENOR momento de inércia</strong>
+              A coluna flamba no eixo de menor rigidez. Um perfil I comprimido flamba em torno do eixo fraco, não do forte — e é por isso que se contraventa nessa direção.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5-bis. Pilares reais: flexão composta e efeito de segunda ordem</summary>
+          <div class="topic-body">
+            <p>Euler supõe uma coluna perfeitamente reta, com a carga exatamente no centroide. Nenhum pilar é assim. Há desaprumo de montagem, curvatura inicial de laminação, carga fora do centro por causa da ligação com a viga — e qualquer uma dessas coisas transforma compressão pura em <strong>flexão composta</strong>.</p>
+
+            <h4>Compressão excêntrica: a tensão soma dois efeitos</h4>
+            <div class="formula"><span data-tex="\sigma = \frac{P}{A} + \frac{M\,c}{I} = \frac{P}{A}\left(1 + \frac{e\,c}{r^{2}}\right)"></span><span class="where">e = excentricidade da carga · c = distância da linha neutra à fibra extrema · r = raio de giração</span></div>
+            <p>O termo <span data-tex-inline="e\,c/r^{2}"></span> chama-se <strong>razão de excentricidade</strong> e é o que amplifica a tensão. Repare que ele não depende do tamanho absoluto da seção, só da forma e de quão fora do centro está a carga: uma excentricidade de 10 % da altura já acrescenta cerca de 60 % à tensão em um perfil I.</p>
+
+            <h4>Efeito de segunda ordem: a deflexão realimenta o momento</h4>
+            <p>A conta acima ainda é de primeira ordem. Na coluna real, a carga P desloca-se junto com o pilar que fletiu, e passa a atuar com um braço maior — o que aumenta a deflexão, que aumenta o braço, e assim por diante. Esse efeito P-δ é resolvido pela <strong>fórmula da secante</strong>:</p>
+            <div class="formula"><span data-tex="\sigma_{\text{máx}} = \frac{P}{A}\left[1 + \frac{e\,c}{r^{2}}\sec\!\left(\frac{L_e}{2r}\sqrt{\frac{P}{EA}}\right)\right]"></span><span class="where">a secante é o fator de amplificação: vale 1 para P pequeno e tende a infinito quando P → P_cr</span></div>
+            <div class="callout note">
+              <strong>Por que a secante explode</strong>
+              O argumento da secante vale <span data-tex-inline="\frac{\pi}{2}\sqrt{P/P_{\text{cr}}}"></span>. Quando P se aproxima de P<sub>cr</sub>, o argumento tende a π/2 e a secante tende a infinito. Ou seja: a carga crítica de Euler continua sendo o limite, mas agora a falha é gradual — o pilar vai fletindo cada vez mais em vez de "estalar" de repente.
+            </div>
+            <div class="formula"><span data-tex="\delta_{\text{máx}} = e\left[\sec\!\left(\frac{\pi}{2}\sqrt{\frac{P}{P_{\text{cr}}}}\right) - 1\right]"></span><span class="where">flecha no meio do vão do pilar</span></div>
+
+            <h4>Fator de amplificação, na forma usada em norma</h4>
+            <p>Como a secante é incômoda de calcular à mão, as normas usam um amplificador aproximado, que é excelente até cerca de 60 % da carga crítica:</p>
+            <div class="formula"><span data-tex="M_{\text{total}} = \frac{M_{1}}{1 - P/P_{\text{cr}}} \qquad B_{1} = \frac{C_{m}}{1 - P/P_{\text{cr}}} \ge 1"></span><span class="where">M₁ = momento de primeira ordem · C_m ≈ 0,6 a 1,0 conforme a forma do diagrama de momento</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>P/P<sub>cr</sub></th><th>Amplificação 1/(1−P/P<sub>cr</sub>)</th><th>Leitura</th></tr></thead>
+              <tbody>
+                <tr><td>0,10</td><td>1,11</td><td>segunda ordem desprezível</td></tr>
+                <tr><td>0,25</td><td>1,33</td><td>começa a pesar</td></tr>
+                <tr><td>0,50</td><td>2,00</td><td>o momento DOBRA</td></tr>
+                <tr><td>0,75</td><td>4,00</td><td>faixa proibida em projeto</td></tr>
+                <tr><td>0,90</td><td>10,0</td><td>colapso iminente</td></tr>
+              </tbody>
+            </table>
+            </div>
+
+            <h4>Verificação combinada</h4>
+            <p>Com compressão e flexão atuando juntas, nenhuma das duas verificações isoladas basta. A forma usada em norma soma as duas utilizações:</p>
+            <div class="formula"><span data-tex="\frac{P}{P_{\text{adm}}} + \frac{M_{x}}{M_{x,\text{adm}}} + \frac{M_{y}}{M_{y,\text{adm}}} \le 1{,}0"></span><span class="where">equação de interação: cada parcela é a fração do esgotamento consumida por aquele esforço</span></div>
+            <div class="callout warn">
+              <strong>O erro que mais aparece em prova</strong>
+              Verificar a compressão pela curva de flambagem, verificar a flexão pela tensão admissível, achar que as duas passaram e concluir que o pilar está bom. Não está: a interação pode ultrapassar 1,0 mesmo com cada parcela abaixo de 100 %. E o momento que entra na conta é o <strong>amplificado</strong>, não o de primeira ordem.
+            </div>
+            <div class="callout tip">
+              <strong>Ordem de grandeza para não se perder</strong>
+              Em um pilar de galpão típico, o desaprumo construtivo permitido é da ordem de L/500 e a curvatura inicial de laminação, L/1000. Só isso já cria uma excentricidade equivalente de alguns milímetros — razão pela qual as curvas de norma (NBR 8800, AISC 360) ficam sempre <em>abaixo</em> das curvas teóricas de Euler e Johnson deste capítulo.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Vasos de pressão de parede fina</summary>
+          <div class="topic-body">
+            <p>Quando a parede é fina em relação ao raio, a tensão pode ser considerada uniforme na espessura, e o equilíbrio de meia casca dá o resultado direto.</p>
+            <div class="formula"><span data-tex="\sigma_{\text{circ}} = \frac{p\,r}{t} = \frac{p\,D}{2t} \qquad \sigma_{\text{long}} = \frac{p\,r}{2t} = \frac{p\,D}{4t}"></span><span class="where">cilindro; r = raio interno, t = espessura da parede</span></div>
+            <div class="callout tip">
+              <strong>A circunferencial é o dobro da longitudinal</strong>
+              Por isso um cano que estoura rasga <em>ao longo</em> do comprimento, e não em anel. E é por isso que a solda longitudinal de um vaso é a mais crítica.
+            </div>
+            <div class="formula"><span data-tex="\sigma_{\text{esfera}} = \frac{p\,r}{2t}"></span><span class="where">esfera: as duas direções são iguais, e valem metade da circunferencial do cilindro</span></div>
+            <p>Critério de aplicabilidade: <strong>D/t &gt; 20</strong>, ou t &lt; r/10. Acima disso o erro passa de 5 %.</p>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Vasos de parede espessa — Lamé</summary>
+          <div class="topic-body">
+            <p>Com parede espessa a tensão deixa de ser uniforme: é máxima na superfície interna e cai em direção à externa.</p>
+            <div class="formula"><span data-tex="\sigma_\theta(r) = \frac{p_i r_i^2}{r_e^2 - r_i^2}\left(1 + \frac{r_e^2}{r^2}\right) \qquad \sigma_r(r) = \frac{p_i r_i^2}{r_e^2 - r_i^2}\left(1 - \frac{r_e^2}{r^2}\right)"></span></div>
+            <div class="callout warn">
+              <strong>A tensão radial não é desprezível</strong>
+              Na superfície interna, σ<sub>r</sub> = −p<sub>i</sub> exatamente. Em vaso de alta pressão isso é uma compressão significativa, e precisa entrar no critério de falha junto com a circunferencial.
+            </div>
+            <div class="callout tip">
+              <strong>Aumentar a espessura tem retorno decrescente</strong>
+              A tensão máxima tende a um limite quando r<sub>e</sub> → ∞. Por isso vasos de altíssima pressão usam autofretagem ou cilindros compostos, em vez de simplesmente engrossar a parede.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Energia de deformação</summary>
+          <div class="topic-body">
+            <p>O trabalho das cargas fica armazenado como energia elástica, o que dá um caminho alternativo — e muitas vezes mais curto — para calcular deslocamentos.</p>
+            <div class="formula"><span data-tex="U = \int \frac{N^2}{2EA}\mathrm{d}x + \int \frac{M^2}{2EI}\mathrm{d}x + \int \frac{T^2}{2GJ}\mathrm{d}x"></span><span class="where">parcelas axial, de flexão e de torção</span></div>
+            <div class="formula"><span data-tex="\delta_i = \frac{\partial U}{\partial P_i}"></span><span class="where">2º teorema de Castigliano: o deslocamento no ponto de aplicação de P, na direção de P</span></div>
+            <div class="callout tip">
+              <strong>Quando Castigliano compensa</strong>
+              Em estruturas curvas, pórticos e sistemas hiperestáticos, integrar a energia costuma ser bem mais rápido do que montar e integrar a linha elástica.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Cinco modelos interativos, com fórmulas e resolução passo a passo.</p>
+
+        <div id="sim-mohr"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Ponha σ<sub>x</sub> = −σ<sub>y</sub> e τ = 0: o círculo fica centrado na origem, e o cisalhamento máximo iguala σ<sub>x</sub>. É o estado de cisalhamento puro visto de outro ângulo — exatamente o que acontece em um eixo sob torção.
+        </div>
+
+        <div id="sim-flambagem"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Reduza o comprimento e acompanhe a curva de Euler subir até cruzar a esbeltez limite. À esquerda dela, Euler prevê tensões acima do escoamento — fisicamente impossível — e é a parábola de Johnson que passa a valer.
+        </div>
+
+        <div id="sim-vaso"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Aumente a espessura e compare a solução de parede fina com a de Lamé. Enquanto D/t &gt; 20 as duas quase coincidem; abaixo disso a parede fina passa a subestimar a tensão interna.
+        </div>
+
+        <div id="sim-criterios"></div>
+
+        <div id="sim-roseta"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o exemplo 2 (cisalhamento puro, leituras 0 / 400 / 0 µε): as duas grades dos eixos não registram nada, e ainda assim ε₁ = +400 e ε₂ = −400 a exatamente ±45°. É a assinatura da torção — e a razão pela qual uma trinca de torção em material frágil sempre nasce em hélice a 45°. Compare com o exemplo 6, o mesmo estado físico com a roseta girada de 45°: as leituras mudam por completo, as tensões principais não.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Transformação de tensões</h4>
+            <div class="formula"><span data-tex="\sigma_{1,2} = \frac{\sigma_x+\sigma_y}{2} \pm R"></span></div>
+            <div class="formula"><span data-tex="R = \sqrt{\left(\frac{\sigma_x-\sigma_y}{2}\right)^2 + \tau_{\text{xy}}^2}"></span></div>
+            <div class="formula"><span data-tex="\tan 2\theta_p = \frac{2\tau_{\text{xy}}}{\sigma_x-\sigma_y}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Critérios de falha</h4>
+            <div class="formula"><span data-tex="\sigma' = \sqrt{\sigma_1^2 - \sigma_1\sigma_2 + \sigma_2^2}"></span></div>
+            <div class="formula"><span data-tex="\sigma_1 - \sigma_3 \le S_y/n"></span></div>
+            <div class="formula"><span data-tex="\frac{\sigma_1}{S_{\text{ut}}} - \frac{\sigma_3}{S_{\text{uc}}} \le \frac{1}{n}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Flambagem</h4>
+            <div class="formula"><span data-tex="P_{\text{cr}} = \frac{\pi^2 EI}{(KL)^2}"></span></div>
+            <div class="formula"><span data-tex="\lambda = \frac{KL}{r} \qquad r = \sqrt{I/A}"></span></div>
+            <div class="formula"><span data-tex="\lambda_{\text{lim}} = \sqrt{\frac{2\pi^2 E}{S_y}}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Vasos de pressão</h4>
+            <div class="formula"><span data-tex="\sigma_{\text{circ}} = \frac{pD}{2t} \qquad \sigma_{\text{long}} = \frac{pD}{4t}"></span></div>
+            <div class="formula"><span data-tex="\sigma_{\text{esfera}} = \frac{pD}{4t}"></span></div>
+            <div class="formula"><span data-tex="D/t > 20 \Rightarrow \text{parede fina}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra no projeto</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>ASME BPVC Seção VIII, Div. 1</strong></td>
+              <td>Rules for Construction of Pressure Vessels</td>
+              <td>Espessura mínima de casco e tampos, eficiência de junta soldada E, tensão admissível S.</td>
+              <td>t = pR/(SE − 0,6p) é a forma normativa da equação de parede fina.</td>
+            </tr>
+            <tr>
+              <td><strong>ASME BPVC Seção VIII, Div. 2</strong></td>
+              <td>Alternative Rules</td>
+              <td>Projeto por análise, com classificação de tensões (primária, secundária, de pico).</td>
+              <td>Permite paredes mais finas ao custo de análise mais rigorosa, tipicamente por elementos finitos.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 8800</strong></td>
+              <td>Projeto de estruturas de aço e mistas de edifícios</td>
+              <td>Curvas de flambagem, fator de redução χ e comprimento efetivo por tipo de vinculação.</td>
+              <td>Substitui Euler puro pela curva normativa, que já embute imperfeições iniciais.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 16239</strong></td>
+              <td>Projeto de estruturas de aço com perfis tubulares</td>
+              <td>Flambagem local e global de seções tubulares.</td>
+              <td>Trata a instabilidade local da parede, que Euler não cobre.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 13223</strong></td>
+              <td>Vasos de pressão — inspeção de segurança em serviço</td>
+              <td>Periodicidade e escopo de inspeção de vasos em operação.</td>
+              <td>Garante que a espessura calculada continue existindo depois da corrosão.</td>
+            </tr>
+            <tr>
+              <td><strong>ASTM E837</strong></td>
+              <td>Determining Residual Stresses by the Hole-Drilling Strain-Gage Method</td>
+              <td>Medição de tensões residuais por furo instrumentado.</td>
+              <td>Fornece o estado de tensão inicial que se soma ao de serviço no círculo de Mohr.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Sobre as revisões</strong>
+          Designações sem o ano por conta das revisões periódicas. O texto integral de ASME, ABNT e ASTM é obra protegida, adquirida junto às respectivas entidades.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre transformação de tensões, círculo de Mohr, critérios de falha, flambagem e vasos de pressão — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
+        <div id="quiz" data-quiz="mecanica-dos-materiais-2"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>HIBBELER, R. C.</strong> <em>Resistência dos Materiais.</em> 7ª ed. Pearson. — Caps. 9 (transformação de tensões), 10 (deformação), 13 (flambagem). O PDF está na pasta do curso.</li>
+          <li><strong>BEER, F. P.; JOHNSTON, E. R.</strong> <em>Mecânica dos Materiais.</em> McGraw-Hill. — Caps. 7 (transformação), 8 (critérios), 10 (colunas), 11 (energia).</li>
+          <li><strong>GERE, J. M.; GOODNO, B. J.</strong> <em>Mecânica dos Materiais.</em> Cengage. — Bom no tratamento de vasos de pressão.</li>
+          <li><strong>BUDYNAS, R. G.; NISBETT, J. K. (SHIGLEY)</strong> <em>Elementos de Máquinas.</em> — Cap. 3, para Lamé e cilindros compostos; Cap. 5, para os critérios de falha.</li>
+          <li><strong>TIMOSHENKO, S.; GERE, J.</strong> <em>Theory of Elastic Stability.</em> — Referência definitiva em flambagem.</li>
+          <li>Notas de aula e listas de exercícios da disciplina.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/mecanica-dos-materiais-2.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  σ: ['Tensão normal', 'MPa', 'σ₁ e σ₂ são as principais; σ_θ circunferencial, σ_r radial'],
+  τ: ['Tensão de cisalhamento', 'MPa', 'τ_máx = raio do círculo de Mohr'],
+  θ: ['Ângulo do plano', '°', 'atenção: as equações usam 2θ, não θ'],
+  R: ['Raio do círculo de Mohr', 'MPa', 'R = τ_máx no plano'],
+  P: ['Carga de compressão', 'N', 'P_cr é a carga crítica de flambagem'],
+  E: ['Módulo de elasticidade', 'GPa', 'na flambagem é a ÚNICA propriedade do material que entra'],
+  I: ['Momento de inércia de área', 'm⁴', 'na flambagem usa-se sempre o MENOR'],
+  L: ['Comprimento', 'm', 'L_e = K·L é o comprimento efetivo'],
+  K: ['Fator de comprimento efetivo', '—', '2,0 engastada-livre · 1,0 biarticulada · 0,5 biengastada'],
+  r: ['Raio de giração', 'm', 'r = √(I/A)'],
+  λ: ['Índice de esbeltez', '—', 'λ = KL/r; acima do limite vale Euler'],
+  p: ['Pressão interna', 'MPa'],
+  t: ['Espessura da parede', 'mm'],
+  D: ['Diâmetro', 'mm', 'parede fina exige D/t > 20'],
+  S: ['Resistência do material', 'MPa', 'S_y escoamento · S_ut tração · S_uc compressão'],
+  n: ['Coeficiente de segurança', '—'],
+  U: ['Energia de deformação', 'J']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

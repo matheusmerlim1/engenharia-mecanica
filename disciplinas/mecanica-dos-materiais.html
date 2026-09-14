@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mecânica dos Materiais — Engenharia Mecânica</title>
+<meta name="description" content="Resumo teórico, simuladores de viga e diagramas de esforços, e simulado de Mecânica dos Materiais.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">5º período · Engenharia Mecânica</p>
+    <h1>Mecânica dos Materiais</h1>
+    <p class="lead">Dada uma peça e o carregamento que ela sofre, descobrir onde a tensão é máxima, quanto ela deforma e se isso é aceitável. É a disciplina que transforma um esforço externo em uma decisão de dimensionamento.</p>
+    <div class="btn-row">
+      <span class="tag accent">8 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">4 simuladores</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>A Estática para no cálculo das reações. A Mecânica dos Materiais continua de onde ela parou: corta a peça, olha o que acontece <em>dentro</em> dela e responde a duas perguntas de projeto.</p>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3 style="margin-top:0">Resistência</h3>
+            <p style="color:var(--text-muted);font-size:.92rem">A tensão atuante fica abaixo da admissível? Envolve identificar a seção crítica, o tipo de solicitação e a fibra mais carregada dessa seção.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Rigidez</h3>
+            <p style="color:var(--text-muted);font-size:.92rem">A peça deforma pouco o bastante para funcionar? Um eixo pode estar longe de romper e mesmo assim ser inútil por fletir demais.</p>
+          </div>
+        </div>
+        <div class="callout note">
+          <strong>O roteiro que resolve quase toda questão</strong>
+          1) equilíbrio externo → reações · 2) corte na seção de interesse → esforços internos N, V, M, T ·
+          3) fórmula da solicitação → distribuição de tensão · 4) ponto crítico → comparação com o critério de falha.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teorico">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Tensão e deformação</summary>
+          <div class="topic-body">
+            <p>Tensão é esforço interno distribuído por unidade de área. A distinção que importa é a direção em relação ao plano de corte: <strong>normal</strong> (σ, perpendicular) ou <strong>de cisalhamento</strong> (τ, no plano).</p>
+            <div class="formula"><span data-tex="\sigma =\frac{N}{A} \quad \tau_{\text{méd}} =\frac{V}{A}"></span><span class="where">N = força normal [N]; V = força cortante [N]; A = área da seção [m²]. 1 Pa = 1 N/m², 1 MPa = 1 N/mm²</span></div>
+            <p>Deformação normal é adimensional, definida como variação relativa de comprimento:</p>
+            <div class="formula"><span data-tex="\varepsilon =\frac{\Delta L}{L_{0}} \quad \gamma = \text{deformação angular }[\text{rad}]"></span></div>
+            <div class="callout tip">
+              <strong>1 MPa = 1 N/mm²</strong>
+              Trabalhar em N e mm evita metade dos erros de potência de dez. Uma força de 20 kN sobre 400 mm² dá direto 50 MPa.
+            </div>
+            <p>No regime elástico linear vale a Lei de Hooke, e o alongamento de uma barra sai por integração direta:</p>
+            <div class="formula"><span data-tex="\sigma = E\cdot \varepsilon \quad \delta =\frac{N\cdot L}{A\cdot E} \quad \tau = G\cdot \gamma"></span><span class="where">E = módulo de elasticidade [GPa]; G = módulo de cisalhamento; δ = alongamento [m]</span></div>
+            <p>Os três módulos elásticos de um material isotrópico não são independentes:</p>
+            <div class="formula"><span data-tex="G =\frac{E}{2(1 + \nu )}"></span><span class="where">ν = coeficiente de Poisson (0,25–0,35 para metais; 0,5 no incompressível)</span></div>
+            <div class="callout warn">
+              <strong>Pegadinha clássica</strong>
+              Tensão admissível não é o limite de resistência. σ<sub>adm</sub> = σ<sub>e</sub>/n (ou σ<sub>u</sub>/n, conforme o critério do enunciado) — leia qual dos dois a questão manda usar antes de dividir.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Propriedades do ensaio de tração</summary>
+          <div class="topic-body">
+            <p>A curva σ×ε de engenharia (calculada sempre com a área inicial A₀) concentra quase todas as propriedades mecânicas que se usa em projeto.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Propriedade</th><th>Onde está na curva</th><th>Significado em projeto</th></tr></thead>
+              <tbody>
+                <tr><td>Módulo E</td><td>Inclinação do trecho reto</td><td>Rigidez — controla deflexão, não resistência</td></tr>
+                <tr><td>Limite de escoamento σ<sub>e</sub></td><td>Fim da linearidade (ou <em>offset</em> de 0,2 %)</td><td>Início da deformação permanente; base do coeficiente de segurança</td></tr>
+                <tr><td>Limite de resistência σ<sub>u</sub></td><td>Ponto mais alto</td><td>Início da estricção; carga máxima suportada</td></tr>
+                <tr><td>Alongamento total</td><td>Deformação na ruptura</td><td>Ductilidade — capacidade de avisar antes de romper</td></tr>
+                <tr><td>Resiliência U<sub>r</sub></td><td>Área até σ<sub>e</sub></td><td>Energia absorvida sem dano permanente (molas)</td></tr>
+                <tr><td>Tenacidade</td><td>Área total sob a curva</td><td>Energia até a ruptura (impacto, absorção de choque)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="U_{r} =\frac{\sigma_{e}^{2}}{2E}"></span><span class="where">resiliência por unidade de volume [MJ/m³ = MPa]</span></div>
+            <div class="callout warn">
+              <strong>Rígido ≠ resistente ≠ tenaz</strong>
+              Aço e alumínio de mesma resistência têm E bem diferente. O ferro fundido é rígido e frágil; o cobre recozido é mole e muito tenaz. Confundir esses três eixos é o erro conceitual mais cobrado.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Torção de eixos circulares</summary>
+          <div class="topic-body">
+            <p>Em eixo circular, seções planas permanecem planas e a deformação angular cresce linearmente com o raio. Daí a distribuição de tensão também é linear, nula no centro e máxima na superfície.</p>
+            <div class="formula"><span data-tex="\tau =\frac{T\cdot \rho }{J} \quad \tau_{\text{máx}} =\frac{T\cdot c}{J} \quad \phi =\frac{T\cdot L}{G\cdot J}"></span><span class="where">T = torque [N·m]; ρ = raio genérico; c = raio externo; J = momento polar de inércia [m⁴]; φ = ângulo de torção [rad]</span></div>
+            <div class="formula"><span data-tex="J_{\text{maciço}} = \frac{\pi d^{4}}{32} \quad J_{\text{vazado}} = \pi \frac{d_{e}^{4} - d_{i}^{4}}{32}"></span></div>
+            <p>Como J cresce com a quarta potência do raio e a massa só com o quadrado, o material próximo ao centro contribui muito pouco. Um eixo vazado com d<sub>i</sub>/d<sub>e</sub> = 0,7 perde só 24 % da rigidez e quase metade da massa.</p>
+            <p>Potência transmitida por um eixo em rotação:</p>
+            <div class="formula"><span data-tex="P = T\cdot \omega \quad \omega = \frac{2\pi n}{60}"></span><span class="where">P [W]; T [N·m]; ω [rad/s]; n [rpm]</span></div>
+            <div class="callout warn">
+              <strong>Só vale para seção circular</strong>
+              Seções quadradas, retangulares ou abertas empenam sob torção. τ = T·ρ/J não se aplica e o τ máximo passa a ocorrer no <em>meio do lado maior</em>, não no canto — que é o ponto de tensão nula.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Esforços internos: N, V e M</summary>
+          <div class="topic-body">
+            <p>Antes de qualquer tensão de flexão vem o diagrama. As relações diferenciais entre carga, cortante e momento economizam muito tempo:</p>
+            <div class="formula"><span data-tex="\frac{\mathrm{d}V}{\mathrm{d}x} = - q(x) \quad \frac{\mathrm{d}M}{\mathrm{d}x} = V(x)"></span><span class="where">q = carga distribuída (positiva para baixo)</span></div>
+            <p>Consequências que valem como regra de traçado:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>No trecho</th><th>Diagrama de V</th><th>Diagrama de M</th></tr></thead>
+              <tbody>
+                <tr><td>Sem carga</td><td>Constante</td><td>Reta inclinada</td></tr>
+                <tr><td>Carga uniforme q</td><td>Reta inclinada</td><td>Parábola (concavidade para baixo se q é para baixo)</td></tr>
+                <tr><td>Carga concentrada P</td><td>Salto de valor P</td><td>Bico (mudança brusca de inclinação)</td></tr>
+                <tr><td>Momento concentrado M₀</td><td>Sem alteração</td><td>Salto de valor M₀</td></tr>
+                <tr><td>Onde V = 0</td><td>—</td><td><strong>M é máximo ou mínimo</strong></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Atalho de área</strong>
+              A variação de M entre duas seções é a área do diagrama de V entre elas. Em prova, isso quase sempre é mais rápido do que montar as equações por trecho.
+            </div>
+            <div class="callout warn">
+              <strong>Hiperestático não sai só por equilíbrio</strong>
+              Viga biengastada tem 6 reações e apenas 3 equações. É preciso uma condição de compatibilidade (deflexão ou rotação nula no apoio redundante). O simulador abaixo resolve esses casos por elementos finitos.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Flexão: tensão normal e cisalhante</summary>
+          <div class="topic-body">
+            <p>Na flexão, a seção gira em torno da <strong>linha neutra</strong>, que passa pelo centroide da seção. Fibras de um lado tracionam, do outro comprimem, e a tensão varia linearmente com a distância à LN.</p>
+            <div class="formula"><span data-tex="\sigma =\frac{M\cdot y}{I} \quad \sigma_{\text{máx}} =\frac{M\cdot c}{I}=\frac{M}{W}"></span><span class="where">I = momento de inércia da seção [m⁴]; c = distância da LN à fibra extrema; W = I/c = módulo resistente [m³]</span></div>
+            <p>O cisalhamento transversal não é uniforme: é nulo nas bordas e máximo na linha neutra.</p>
+            <div class="formula"><span data-tex="\tau =\frac{V\cdot Q}{I\cdot t}"></span><span class="where">Q = momento estático da área acima da fibra analisada; t = largura da seção nessa fibra</span></div>
+
+            <h4>Como se calcula o momento estático Q</h4>
+            <p>Q é o momento de primeira ordem, em relação à linha neutra, da parte da seção que fica <strong>de um lado só</strong> da fibra onde se quer a tensão. Ele mede quanta área existe além daquele corte e a que distância — é essa área que "quer escorregar" e que o cisalhamento longitudinal precisa segurar.</p>
+            <div class="formula"><span data-tex="Q = \int_{A'} y\,\mathrm{d}A = A'\,\bar{y}'"></span><span class="where">A′ = área acima (ou abaixo) da fibra · ȳ′ = distância do centroide DESSA área até a linha neutra</span></div>
+            <div class="callout note">
+              <strong>O procedimento, em quatro passos</strong>
+              1) achar a linha neutra da seção inteira (passa pelo centroide) · 2) cortar a seção na fibra onde se quer τ · 3) tomar <strong>uma</strong> das duas partes, calcular sua área A′ e a distância ȳ′ do centroide dela até a LN · 4) Q = A′·ȳ′. Se a parte for composta, some A<sub>i</sub>·ȳ<sub>i</sub> pedaço a pedaço.
+            </div>
+            <p>Vale calcular pelo lado que der menos trabalho: as duas partes dão o <strong>mesmo</strong> Q em módulo, porque o momento estático da seção inteira em relação ao próprio centroide é zero — logo o de cima é o simétrico do de baixo.</p>
+
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Onde</th><th>Q</th><th>t</th><th>τ resultante</th></tr></thead>
+              <tbody>
+                <tr><td>Retângulo b×h, na LN</td><td><span data-tex-inline="\frac{bh^{2}}{8}"></span></td><td>b</td><td><span data-tex-inline="1{,}5\,V/A"></span></td></tr>
+                <tr><td>Retângulo b×h, a uma altura y</td><td><span data-tex-inline="\frac{b}{2}\left(\frac{h^{2}}{4}-y^{2}\right)"></span></td><td>b</td><td>parábola, nula nas bordas</td></tr>
+                <tr><td>Círculo maciço de raio R, na LN</td><td><span data-tex-inline="\frac{2R^{3}}{3}"></span></td><td>2R</td><td><span data-tex-inline="1{,}33\,V/A"></span></td></tr>
+                <tr><td>Perfil I, na LN</td><td><span data-tex-inline="A_{\text{mesa}}\bar{y}_{\text{mesa}} + \frac{t_w h_w^{2}}{8}"></span></td><td>t<sub>w</sub> (alma)</td><td>≈ V/A<sub>alma</sub></td></tr>
+                <tr><td>Perfil I, na junção mesa–alma</td><td><span data-tex-inline="A_{\text{mesa}}\,\bar{y}_{\text{mesa}}"></span></td><td>t<sub>w</sub></td><td>salto: τ dá um pulo ao mudar t</td></tr>
+              </tbody>
+            </table>
+            </div>
+
+            <div class="callout warn">
+              <strong>Os três erros clássicos com Q</strong>
+              Usar a área <em>inteira</em> da seção em vez de só a parte acima do corte · medir ȳ′ a partir da borda em vez da <strong>linha neutra</strong> · esquecer que t é a largura da seção <em>na fibra analisada</em>, e não a largura máxima — é justamente essa troca de t que faz τ saltar na junção entre a mesa e a alma de um perfil I.
+            </div>
+
+            <h4>Seção com dois materiais: a seção homogeneizada</h4>
+            <p>Quando a seção tem dois materiais com módulos diferentes — concreto e aço, madeira e aço, um sanduíche —, nem σ = My/I nem τ = VQ/(It) valem diretamente, porque I e Q supõem material único. A saída é o <strong>método da seção transformada</strong>: converte-se um material no outro pela razão de módulos.</p>
+            <div class="formula"><span data-tex="n = \frac{E_{2}}{E_{1}}"></span><span class="where">razão modular: quantas vezes o material 2 é mais rígido que o material de referência</span></div>
+            <p>Multiplica-se a <strong>largura</strong> da parte feita do material 2 por n, mantendo a altura. A seção fictícia resultante é toda do material 1, e nela se calculam normalmente o centroide, I e Q. Só a leitura da tensão muda:</p>
+            <div class="formula"><span data-tex="\sigma_{1} = \frac{M y}{I_{t}} \qquad \sigma_{2} = n\,\frac{M y}{I_{t}}"></span><span class="where">I_t = inércia da seção transformada · a tensão no material transformado é multiplicada de volta por n</span></div>
+            <div class="formula"><span data-tex="\tau = \frac{V\,Q_{t}}{I_{t}\,t}"></span><span class="where">Q_t e I_t também vêm da seção transformada; t é a largura REAL naquela fibra, não a transformada</span></div>
+            <div class="callout note">
+              <strong>Por que a largura, e não a altura</strong>
+              A rigidez à flexão de uma faixa horizontal é proporcional a E·b·dy·y². Multiplicando b por n = E₂/E₁, a faixa passa a ter a mesma contribuição com o módulo E₁. Mexer na altura mudaria a distância y à linha neutra e falsearia a distribuição de deformação — que, por hipótese de seções planas, precisa continuar linear.
+            </div>
+            <div class="callout tip">
+              <strong>No concreto armado a conta ganha um detalhe a mais</strong>
+              O concreto praticamente não resiste à tração: despreza-se toda a área tracionada e só a parte comprimida entra na seção transformada, junto com a área de aço multiplicada por n = E<sub>aço</sub>/E<sub>concreto</sub> ≈ 200/25 ≈ 8 a 10. A posição da linha neutra passa a ser incógnita e sai de uma equação de segundo grau, porque a área que conta depende de onde a LN está. Este caso completo é tratado em Estruturas de Concreto; aqui interessa reconhecer que o mecanismo é o mesmo da seção transformada.
+            </div>
+            <p>Para as seções mais comuns o valor máximo tem forma fechada:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Seção</th><th class="num">I</th><th class="num">τ<sub>máx</sub></th></tr></thead>
+              <tbody>
+                <tr><td>Retangular b×h</td><td class="num"><span data-tex-inline="\frac{bh^{3}}{12}"></span></td><td class="num"><span data-tex-inline="1,5\cdot \frac{V}{A}"></span></td></tr>
+                <tr><td>Circular maciça</td><td class="num"><span data-tex-inline="\frac{\pi d^{4}}{64}"></span></td><td class="num"><span data-tex-inline="1,33\cdot \frac{V}{A}"></span></td></tr>
+                <tr><td>Perfil I</td><td class="num"><span data-tex-inline="\approx \frac{BH^{3} - bh^{3}}{12}"></span></td><td class="num">≈ V/A<sub>alma</sub></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Por que o perfil I existe</strong>
+              I depende de h³ e da distância do material à LN. Colocar massa longe do centro é muito mais eficiente do que aumentar a área. A mesa resiste à flexão, a alma resiste ao cortante.
+            </div>
+            <div class="callout warn">
+              <strong>Viga deitada</strong>
+              Girar uma seção retangular 90° troca b por h no termo cúbico. Uma seção 50×100 deitada perde 75 % do momento de inércia (I cai 4×) e metade do módulo resistente — mesmo material, mesma área, o dobro da tensão e quatro vezes a flecha.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Deflexão e linha elástica</summary>
+          <div class="topic-body">
+            <p>A curvatura da viga se relaciona ao momento fletor pela equação da linha elástica. Integrando duas vezes chega-se à flecha:</p>
+            <div class="formula"><span data-tex="EI \cdot \frac{\mathrm{d}^{2}v}{\mathrm{d}x^{2}} = M(x)"></span><span class="where">v = deflexão [m]; as constantes de integração saem das condições de contorno dos apoios</span></div>
+            <p>Tabela completa dos casos fundamentais. É a que resolve a maior parte das questões de prova — e é a mesma que o simulador exibe, já avaliada com os seus números.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr>
+                <th>Viga</th><th>Carregamento</th>
+                <th class="num">Reações</th>
+                <th class="num">V<sub>máx</sub></th>
+                <th class="num">M<sub>máx</sub></th>
+                <th class="num">δ<sub>máx</sub></th>
+                <th>Onde ocorre δ<sub>máx</sub></th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td rowspan="3">Balanço<br><span style="color:var(--text-faint);font-size:.85em">isostática</span></td>
+                  <td>P na ponta</td>
+                  <td class="num">R = P<br>M<sub>r</sub> = PL</td>
+                  <td class="num">P</td><td class="num">PL <em>(engaste)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{PL^{3}}{3EI}"></span></td><td>ponta livre</td>
+                </tr>
+                <tr>
+                  <td>P a uma distância <em>a</em></td>
+                  <td class="num">R = P<br>M<sub>r</sub> = Pa</td>
+                  <td class="num">P</td><td class="num">Pa <em>(engaste)</em></td>
+                  <td class="num"><span data-tex-inline="Pa^{2}\frac{3L- a}{6EI}"></span></td><td>ponta livre</td>
+                </tr>
+                <tr>
+                  <td>q uniforme</td>
+                  <td class="num">R = qL<br>M<sub>r</sub> = qL²/2</td>
+                  <td class="num">qL</td><td class="num">qL²/2 <em>(engaste)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{qL^{4}}{8EI}"></span></td><td>ponta livre</td>
+                </tr>
+
+                <tr>
+                  <td rowspan="3">Biapoiada<br><span style="color:var(--text-faint);font-size:.85em">isostática</span></td>
+                  <td>P no meio</td>
+                  <td class="num"><span data-tex-inline="R_{A} = R_{B} = \frac{P}{2}"></span></td>
+                  <td class="num"><span data-tex-inline="\frac{P}{2}"></span></td><td class="num">PL/4 <em>(meio)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{PL^{3}}{48EI}"></span></td><td>meio do vão</td>
+                </tr>
+                <tr>
+                  <td>P a distâncias <em>a</em> e <em>b</em></td>
+                  <td class="num">R<sub>A</sub> = Pb/L<br>R<sub>B</sub> = Pa/L</td>
+                  <td class="num"><span data-tex-inline="\frac{P\cdot \text{máx}(a,b)}{L}"></span></td><td class="num">Pab/L <em>(sob P)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{Pb\,(L^{2}- b^{2})^{3/2}}{9\sqrt{3}\cdot L\cdot EI}"></span></td>
+                  <td><span data-tex-inline="x = \sqrt{\frac{L^{2}- b^{2}}{3}}"></span></td>
+                </tr>
+                <tr>
+                  <td>q uniforme</td>
+                  <td class="num"><span data-tex-inline="R_{A} = R_{B} = \frac{qL}{2}"></span></td>
+                  <td class="num"><span data-tex-inline="\frac{qL}{2}"></span></td><td class="num">qL²/8 <em>(meio)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{5qL^{4}}{384EI}"></span></td><td>meio do vão</td>
+                </tr>
+
+                <tr>
+                  <td rowspan="2">Engastada-<br>apoiada<br><span style="color:var(--text-faint);font-size:.85em">1× hiperestática</span></td>
+                  <td>q uniforme</td>
+                  <td class="num">R<sub>apoio</sub> = 3qL/8<br>R<sub>eng</sub> = 5qL/8</td>
+                  <td class="num"><span data-tex-inline="\frac{5qL}{8}"></span></td>
+                  <td class="num">qL²/8 <em>(engaste)</em><br>9qL²/128 <em>(vão)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{qL^{4}}{185EI}"></span></td><td><span data-tex-inline="x \approx 0,4215\cdot L"></span></td>
+                </tr>
+                <tr>
+                  <td>P no meio</td>
+                  <td class="num">R<sub>apoio</sub> = 5P/16<br>R<sub>eng</sub> = 11P/16</td>
+                  <td class="num"><span data-tex-inline="\frac{11P}{16}"></span></td>
+                  <td class="num">3PL/16 <em>(engaste)</em><br>5PL/32 <em>(vão)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{PL^{3}}{48\sqrt{5}\cdot EI}"></span></td><td>x = L/√5 do apoio</td>
+                </tr>
+
+                <tr>
+                  <td rowspan="2">Biengastada<br><span style="color:var(--text-faint);font-size:.85em">3× hiperestática</span></td>
+                  <td>P no meio</td>
+                  <td class="num"><span data-tex-inline="R_{A} = R_{B} = \frac{P}{2} \\ M_{r} = \frac{PL}{8}"></span></td>
+                  <td class="num"><span data-tex-inline="\frac{P}{2}"></span></td>
+                  <td class="num">PL/8 <em>(engastes)</em><br>PL/8 <em>(vão)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{PL^{3}}{192EI}"></span></td><td>meio do vão</td>
+                </tr>
+                <tr>
+                  <td>q uniforme</td>
+                  <td class="num"><span data-tex-inline="R_{A} = R_{B} = \frac{qL}{2} \\ M_{r} = \frac{qL^{2}}{12}"></span></td>
+                  <td class="num"><span data-tex-inline="\frac{qL}{2}"></span></td>
+                  <td class="num">qL²/12 <em>(engastes)</em><br>qL²/24 <em>(vão)</em></td>
+                  <td class="num"><span data-tex-inline="\frac{qL^{4}}{384EI}"></span></td><td>meio do vão</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            <p style="font-size:.82rem;color:var(--text-faint)">M<sub>r</sub> = momento de reação no engaste. Nos casos hiperestáticos, o momento no engaste é negativo (traciona a fibra superior) e o do vão é positivo — por isso o diagrama cruza o zero em dois pontos de inflexão.</p>
+            <div class="callout tip">
+              <strong>Leia a tabela como projeto</strong>
+              Engastar as duas pontas reduz a flecha da viga com carga uniforme por um fator 5 (de 5qL⁴/384 para qL⁴/384) e o momento máximo por 1,5. É a razão de se engastar sempre que a vinculação permitir.
+            </div>
+            <p>A dependência de L⁴ é o que domina o dimensionamento por rigidez: dobrar o vão multiplica a flecha por 16. Critérios usuais de serviço limitam a flecha a L/250 a L/500.</p>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Superposição e vigas hiperestáticas</summary>
+          <div class="topic-body">
+            <p>Enquanto o material é elástico linear e as deflexões são pequenas, os efeitos se somam. Isso permite resolver carregamentos compostos por partes tabeladas e, mais importante, destravar os casos hiperestáticos.</p>
+            <p><strong>Método da superposição para hiperestáticos:</strong></p>
+            <ol>
+              <li>Remova o apoio redundante → estrutura isostática (sistema primário).</li>
+              <li>Calcule a deflexão nesse ponto sob a carga real: δ<sub>carga</sub>.</li>
+              <li>Calcule a deflexão causada pela reação redundante desconhecida R: δ<sub>R</sub>.</li>
+              <li>Imponha a compatibilidade: δ<sub>carga</sub> + δ<sub>R</sub> = 0 → resolve R.</li>
+            </ol>
+            <div class="callout note">
+              <strong>Exemplo</strong>
+              Viga engastada-apoiada com q uniforme: removendo o rolete sobra um balanço. Sob a carga a ponta desce δ<sub>carga</sub> = qL⁴/(8EI); a reação incógnita R levanta δ<sub>R</sub> = RL³/(3EI). Compatibilidade δ<sub>carga</sub> = δ<sub>R</sub> → qL⁴/(8EI) = RL³/(3EI) → R = 3qL/8, exatamente o valor que o simulador devolve.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Carregamento combinado e tensão admissível</summary>
+          <div class="topic-body">
+            <p>Peças reais raramente sofrem uma solicitação só. Um eixo de transmissão tem torção, flexão e às vezes carga axial ao mesmo tempo. As tensões normais se somam algebricamente; as de cisalhamento também — mas cada uma no seu plano.</p>
+            <div class="formula"><span data-tex="\sigma = \frac{N}{A} \pm M\cdot \frac{y}{I} \quad \tau = T\cdot \frac{\rho }{J} + V\cdot \frac{Q}{I\cdot t}"></span></div>
+            <div class="callout tip">
+              <strong>Onde procurar o ponto crítico</strong>
+              Superfície da peça, na seção de maior M ou T. Em geral o ponto crítico é onde σ de flexão é máxima <em>e</em> o τ de torção também é — normalmente a fibra extrema.
+            </div>
+            <p>Com σ e τ no mesmo ponto, o passo seguinte (visto em Mecânica dos Materiais II) é combiná-los pelo círculo de Mohr e aplicar um critério de falha. Para dimensionamento rápido em material dúctil usa-se a tensão equivalente:</p>
+            <div class="formula"><span data-tex="\sigma_{\text{eq}} = \sqrt{\sigma^{2} + 3\tau^{2}} \le \frac{\sigma_{e}}{n}"></span><span class="where">critério da energia de distorção (von Mises) no estado plano com σ e τ</span></div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Quatro modelos interativos. Todos recalculam ao vivo — mexa nos controles e observe o que muda de comportamento, não só de valor.</p>
+
+        <div id="sim-viga"></div>
+        <div class="callout note">
+          <strong>Como ler o coeficiente de segurança deste simulador</strong>
+          Ele é <code>n = f<sub>y</sub> / σ</code>, com <code>σ = M<sub>máx</sub>·c/I = M<sub>máx</sub>/W</code> — ou seja, depende diretamente da <strong>seção</strong> e do <strong>material</strong> escolhidos no fim do painel de controles. Trocar de W 150×13 para W 310×28 muda o W de 85,8 para 355,8 cm³ e o <em>n</em> mais que quadruplica, sem mexer em nenhuma carga.
+          É uma verificação de <em>escoamento por flexão</em> apenas: não cobre cisalhamento na alma, flambagem lateral com torção, instabilidade local nem fadiga. Por isso a NBR 8800 trabalha com φ = 0,90 sobre o momento resistente, e não com um <em>n</em> global.
+        </div>
+        <div class="callout tip">
+          <strong>O que testar na viga</strong>
+          Comece pelos <strong>exemplos resolvidos</strong> no topo do painel — cada um carrega um caso clássico e a resolução passo a passo aparece no fim do simulador.
+          Carregue o exemplo 2 (biapoiada, q = 15 kN/m) e depois o exemplo 4 (mesma carga, biengastada): o momento cai de qL²/8 = 67,5 para qL²/12 = 45 kN·m e a flecha despenca de 23,0 para 4,6 mm — os mesmos 5× da tabela acima.
+          Depois abra o exemplo 6 e veja o que acontece quando a seção é pequena demais: n = 0,18 e flecha L/13.
+        </div>
+
+        <div id="sim-tensao"></div>
+        <div id="sim-torcao"></div>
+        <div class="callout tip">
+          <strong>O que testar na torção</strong>
+          Aumente a razão d<sub>i</sub>/d<sub>e</sub> e acompanhe a curva de rigidez específica: ela cresce continuamente, mas a massa despenca — é o argumento a favor do eixo vazado. Passe de 0,9 e veja τ disparar.
+        </div>
+
+        <div id="sim-flexao"></div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Solicitações simples</h4>
+            <div class="formula"><span data-tex="\sigma = \frac{N}{A} \quad \delta = \frac{NL}{AE}"></span></div>
+            <div class="formula"><span data-tex="\tau = T\cdot \frac{\rho }{J} \quad \phi = \frac{TL}{GJ}"></span></div>
+            <div class="formula"><span data-tex="\sigma = \frac{My}{I} \quad \tau = \frac{VQ}{It}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Propriedades de seção</h4>
+            <div class="formula"><span data-tex="\text{Retângulo}: I = \frac{bh^{3}}{12} \quad W = \frac{bh^{2}}{6}"></span></div>
+            <div class="formula"><span data-tex="\text{Círculo}: I = \frac{\pi d^{4}}{64} \quad J = \frac{\pi d^{4}}{32}"></span></div>
+            <div class="formula"><span data-tex="\text{Steiner}: I = I_{c} + A\cdot d^{2}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Relações elásticas</h4>
+            <div class="formula"><span data-tex="\sigma = E\varepsilon \quad \tau = G\gamma \quad G = \frac{E}{2(1+\nu )}"></span></div>
+            <div class="formula"><span data-tex="\varepsilon_{\text{lat}} = - \nu \cdot \varepsilon_{\text{long}}"></span></div>
+            <div class="formula"><span data-tex="\delta_{\text{térmico}} = \alpha \cdot \Delta T\cdot L"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Diagramas</h4>
+            <div class="formula"><span data-tex="\frac{\mathrm{d}V}{\mathrm{d}x} = - q \quad \frac{\mathrm{d}M}{\mathrm{d}x} = V"></span></div>
+            <div class="formula"><span data-tex="EI\cdot v'' = M(x)"></span></div>
+            <div class="formula"><span data-tex="V = 0 \;\to\; M\ \text{extremo}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <p>A disciplina é teórica, mas os valores de propriedade e os procedimentos de ensaio que alimentam as contas vêm de norma. Vale saber de onde sai cada número.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra na conta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>ABNT NBR ISO 6892-1</strong></td>
+              <td>Materiais metálicos — Ensaio de tração à temperatura ambiente</td>
+              <td>Geometria do corpo de prova, velocidade de ensaio e o método do <em>offset</em> de 0,2 % para o escoamento.</td>
+              <td>Origem de σ<sub>e</sub>, σ<sub>u</sub>, E e do alongamento usados em todo dimensionamento.</td>
+            </tr>
+            <tr>
+              <td><strong>ASTM E8/E8M</strong></td>
+              <td>Standard Test Methods for Tension Testing of Metallic Materials</td>
+              <td>Equivalente norte-americano do ensaio de tração; dimensões de CP proporcionais e não proporcionais.</td>
+              <td>Comparabilidade dos valores de catálogo entre fornecedores.</td>
+            </tr>
+            <tr>
+              <td><strong>ASTM E9</strong></td>
+              <td>Compression Testing of Metallic Materials</td>
+              <td>Ensaio de compressão e restrição de esbeltez do CP para evitar flambagem no ensaio.</td>
+              <td>Justifica por que materiais frágeis têm σ<sub>u</sub> em compressão muito maior que em tração.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 8800</strong></td>
+              <td>Projeto de estruturas de aço e mistas de edifícios</td>
+              <td>Coeficientes de ponderação, estados-limite e <strong>limites de deslocamento</strong> (flecha) por tipo de uso.</td>
+              <td>É a origem dos critérios L/250, L/350 e L/500 usados no simulador de viga.</td>
+            </tr>
+            <tr>
+              <td><strong>ASME BPVC Seção II, Parte D</strong></td>
+              <td>Properties (Materials)</td>
+              <td>Tabelas de tensão admissível em função da temperatura para materiais de equipamentos de pressão.</td>
+              <td>Fonte de σ<sub>adm</sub> quando o projeto é de vaso, tubulação ou caldeira.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 6152</strong></td>
+              <td>Materiais metálicos — Ensaio de tração (versão nacional histórica)</td>
+              <td>Procedimento de tração; substituída pela NBR ISO 6892, ainda muito citada na bibliografia.</td>
+              <td>Aparece em enunciados e catálogos mais antigos.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Sobre as revisões</strong>
+          As designações estão sem o ano porque as normas são revisadas periodicamente. Ao usar em projeto real, confirme a edição vigente — e note que o texto completo dessas normas é obra protegida, adquirida junto à ABNT, ASTM ou ASME.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões cobrindo os oito tópicos, entre conceituais e de cálculo (estas abrem espaço para desenvolver a conta). Escolha o recorte e a dificuldade.</p>
+        <div id="quiz" data-quiz="mecanica-dos-materiais"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>HIBBELER, R. C.</strong> <em>Resistência dos Materiais.</em> 7ª ed. Pearson. — Caps. 1 a 12. Bibliografia principal da disciplina; o PDF e o manual de soluções estão na pasta do curso.</li>
+          <li><strong>BEER, F. P.; JOHNSTON, E. R.</strong> <em>Mecânica dos Materiais.</em> McGraw-Hill. — Caps. 1–9. Excelente no cisalhamento em seção transversal e em carregamento combinado.</li>
+          <li><strong>GERE, J. M.; GOODNO, B. J.</strong> <em>Mecânica dos Materiais.</em> Cengage. — Tabelas de deflexão do apêndice, usadas no tópico 6.</li>
+          <li><strong>TIMOSHENKO, S.</strong> <em>Resistência dos Materiais.</em> — Referência clássica para a dedução da linha elástica.</li>
+          <li>Notas de aula da disciplina (Aulas 1, 2, 4, 5 e 6 — MecMat I) e material do Capítulo 6 (Flexão).</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/mecanica-dos-materiais.js"></script>
+<script>
+/* glossário específico desta disciplina — sobrepõe o significado
+   padrão dos símbolos que mudam de sentido conforme a matéria */
+if (window.Glossario) Glossario.definir({
+  σ: ['Tensão normal', 'MPa', '1 MPa = 1 N/mm²'],
+  τ: ['Tensão de cisalhamento', 'MPa'],
+  ε: ['Deformação normal', '—', 'ΔL/L₀, adimensional'],
+  ν: ['Coeficiente de Poisson', '—', '0,25 a 0,35 para metais'],
+  I: ['Momento de inércia de área', 'm⁴', 'retângulo bh³/12 · círculo πd⁴/64'],
+  J: ['Momento polar de inércia', 'm⁴', 'maciço πd⁴/32'],
+  W: ['Módulo de resistência', 'm³', 'W = I/c — é o que se procura no catálogo de perfis'],
+  M: ['Momento fletor', 'N·m'],
+  V: ['Esforço cortante', 'N'],
+  Q: ['Momento estático de área', 'm³', 'usado em τ = VQ/(It)'],
+  c: ['Distância da linha neutra à fibra extrema', 'm'],
+  E: ['Módulo de elasticidade', 'GPa', 'aço 200 · alumínio 70 · madeira 11'],
+  G: ['Módulo de cisalhamento', 'GPa', 'G = E/[2(1+ν)]; aço ≈ 77'],
+  T: ['Torque', 'N·m'],
+  n: ['Coeficiente de segurança', '—', 'n = f_y/σ neste simulador'],
+  q: ['Carga distribuída', 'N/m'],
+  P: ['Carga concentrada', 'N'],
+  v: ['Deflexão da viga', 'mm', 'nesta disciplina v é o deslocamento transversal, não velocidade'],
+  y: ['Distância à linha neutra', 'mm', 'medida a partir do centroide da seção'],
+  A: ['Área da seção', 'mm²'],
+  L: ['Comprimento / vão', 'm'],
+  b: ['Largura da seção', 'mm'],
+  h: ['Altura da seção', 'mm'],
+  t: ['Largura da seção na fibra analisada', 'mm', 'é o t de τ = VQ/(It) — muda ao longo da altura'],
+  r: ['Raio', 'mm'],
+  'σ_máx': ['Tensão normal máxima', 'MPa', 'na fibra mais afastada da linha neutra'],
+  'τ_máx': ['Tensão de cisalhamento máxima', 'MPa', 'na linha neutra, em seção cheia'],
+  'σ_adm': ['Tensão admissível', 'MPa', 'σ_e dividida pelo coeficiente de segurança'],
+  'δ_máx': ['Flecha máxima', 'mm', 'maior deflexão da viga'],
+  'M_máx': ['Momento fletor máximo', 'kN·m'],
+  'V_máx': ['Esforço cortante máximo', 'kN'],
+  'Q_t': ['Momento estático da seção transformada', 'mm³'],
+  'I_t': ['Momento de inércia da seção transformada', 'mm⁴'],
+  'E_1': ['Módulo do material de referência', 'GPa'],
+  'E_2': ['Módulo do material transformado', 'GPa']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

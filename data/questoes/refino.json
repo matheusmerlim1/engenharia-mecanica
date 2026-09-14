@@ -1,0 +1,544 @@
+{
+ "disciplina": "Refino de Petróleo",
+ "slug": "refino",
+ "topicos": [
+  {
+   "id": "petroleo",
+   "nome": "Composição e classificação do petróleo"
+  },
+  {
+   "id": "avaliacao",
+   "nome": "Curva PEV e cortes"
+  },
+  {
+   "id": "esquemas",
+   "nome": "Processos e esquemas de refino"
+  },
+  {
+   "id": "destilacao",
+   "nome": "Destilação atmosférica"
+  },
+  {
+   "id": "vacuo",
+   "nome": "Destilação a vácuo"
+  },
+  {
+   "id": "fcc",
+   "nome": "Craqueamento catalítico (FCC)"
+  },
+  {
+   "id": "conversao",
+   "nome": "Outros processos de conversão"
+  },
+  {
+   "id": "hdt",
+   "nome": "Hidrotratamento"
+  },
+  {
+   "id": "derivados",
+   "nome": "Derivados e especificações"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "rf-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "petroleo",
+   "enunciado": "<p>Um petróleo de 20 °API, pela classificação da ANP, é:</p>",
+   "alternativas": [
+    "Leve",
+    "Médio",
+    "Pesado",
+    "Extrapesado"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Pesado vai de 10 a 22,3 °API. Médio fica entre 22,3 e 31,1, leve acima de 31,1 e extrapesado abaixo de 10 — este último é mais denso que a água e afunda. Marlim, com cerca de 20 °API, é o exemplo brasileiro clássico de cru pesado.</p>"
+  },
+  {
+   "id": "rf-002",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "petroleo",
+   "enunciado": "<p>Um petróleo tem densidade relativa <span class=\"dado\">d<sub>60/60</sub> = 0,876</span>. Qual o seu grau API?</p>",
+   "alternativas": [
+    "36,0 °API",
+    "30,0 °API",
+    "24,6 °API",
+    "46,4 °API"
+   ],
+   "correta": 1,
+   "formulas": [
+    "°API = 141,5/d − 131,5"
+   ],
+   "explicacao": "<div class=\"passo\">141,5 ÷ 0,876 = 161,53</div><div class=\"passo\">°API = 161,53 − 131,5 = <strong>30,0 °API</strong></div><p>Fica praticamente na fronteira entre médio e leve (31,1). Note a escala invertida: densidade maior dá °API menor.</p>"
+  },
+  {
+   "id": "rf-003",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "petroleo",
+   "enunciado": "<p>Uma fração tem temperatura média de ebulição <span class=\"dado\">300 °C</span> e densidade <span class=\"dado\">0,85</span>. Calcule o fator de caracterização K<sub>UOP</sub>.</p>",
+   "alternativas": [
+    "8,51",
+    "13,6",
+    "10,1",
+    "11,9"
+   ],
+   "correta": 3,
+   "formulas": [
+    "K = (T_B)^(1/3) / d",
+    "T_B em rankine: °R = (°C + 273,15) × 1,8"
+   ],
+   "explicacao": "<div class=\"passo\">T_B = (300 + 273,15) × 1,8 = 1031,7 °R</div><div class=\"passo\">∛1031,7 = 10,10</div><div class=\"passo\">K = 10,10 ÷ 0,85 = <strong>11,9</strong></div><p>Entre 11,8 e 12,5: base parafínico-naftênica. O erro mais comum é usar a temperatura em °C ou K — a correlação foi feita em rankine, e o 10,1 é justamente a raiz cúbica esquecida de dividir pela densidade.</p>"
+  },
+  {
+   "id": "rf-004",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "petroleo",
+   "enunciado": "<p>Por que o petróleo precisa ser dessalgado antes de ir ao forno da destilação?</p>",
+   "alternativas": [
+    "Porque o sal aumenta o ponto de ebulição e reduz o rendimento de destilados.",
+    "Porque cloretos de magnésio e cálcio hidrolisam com o calor e liberam HCl, que corrói o sistema de topo da torre.",
+    "Porque a água salgada congela nos trocadores da bateria de preaquecimento.",
+    "Porque o sal é exigido como catalisador pela unidade de FCC e precisa ser recuperado."
+   ],
+   "correta": 1,
+   "explicacao": "<p>A partir de ~120 °C, MgCl₂ + 2H₂O → Mg(OH)₂ + 2HCl. O HCl sobe com o vapor e, no topo, dissolve-se na água condensada formando ácido clorídrico — a principal causa de corrosão do sistema de topo da destilação. Além disso, sais incrustam trocadores e o sódio envenena o catalisador do FCC.</p>"
+  },
+  {
+   "id": "rf-005",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "petroleo",
+   "enunciado": "<p>Um petróleo tem índice de acidez total (TAN) de 1,5 mg KOH/g. O principal risco para a unidade de destilação é:</p>",
+   "alternativas": [
+    "Corrosão naftênica nas regiões entre ~220 e 400 °C, como forno, linha de transferência e retiradas de diesel e gasóleo.",
+    "Formação de goma no GLP por oxidação de olefinas.",
+    "Corrosão por HCl apenas no condensador de topo.",
+    "Envenenamento do catalisador da reforma catalítica por nitrogênio."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Ácidos naftênicos atacam o aço justamente na faixa em que fervem e condensam, de ~220 a 400 °C, e a corrosão cresce muito com a velocidade (linhas de transferência, cotovelos). Acima de TAN ~0,5 a refinaria precisa de metalurgia com molibdênio (aço 317L) ou misturar o cru com outro de baixa acidez. O HCl é problema do topo, não da faixa quente.</p>"
+  },
+  {
+   "id": "rf-006",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "avaliacao",
+   "enunciado": "<p>O que a curva PEV (ponto de ebulição verdadeiro) de um petróleo informa diretamente?</p>",
+   "alternativas": [
+    "A composição química de cada molécula presente.",
+    "O teor de enxofre de cada fração.",
+    "A fração em volume do cru que destila até cada temperatura, e portanto o rendimento potencial de cada corte.",
+    "A viscosidade do petróleo em função da temperatura."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Destila-se o cru numa coluna de alta eficiência anotando a temperatura contra o volume recolhido. O rendimento de um corte é a diferença entre o volume acumulado no fim e no início da sua faixa. Enxofre e densidade de cada corte exigem análises adicionais nas frações recolhidas.</p>"
+  },
+  {
+   "id": "rf-007",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "avaliacao",
+   "enunciado": "<p>Na curva PEV de um cru, destilam <span class=\"dado\">35 %</span> do volume até 235 °C e <span class=\"dado\">55 %</span> até 370 °C. Numa refinaria que processa <span class=\"dado\">20 000 m³/d</span>, qual o volume potencial de diesel (235–370 °C)?</p>",
+   "alternativas": [
+    "4 000 m³/d",
+    "7 000 m³/d",
+    "11 000 m³/d",
+    "2 000 m³/d"
+   ],
+   "correta": 0,
+   "formulas": [
+    "R = x(T_fim) − x(T_início)"
+   ],
+   "explicacao": "<div class=\"passo\">R = 55 − 35 = 20 % vol</div><div class=\"passo\">Volume = 0,20 × 20 000 = <strong>4 000 m³/d</strong></div><p>É um potencial: a torre industrial separa pior que a coluna PEV e parte do diesel pode ir para o querosene ou descer com o resíduo se o forno estiver frio.</p>"
+  },
+  {
+   "id": "rf-008",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "avaliacao",
+   "enunciado": "<p>Um corte representa <span class=\"dado\">20 % em volume</span> de um petróleo de densidade <span class=\"dado\">0,833</span>. A densidade do corte é <span class=\"dado\">0,85</span>. Qual a sua fração em massa?</p>",
+   "alternativas": [
+    "19,6 %",
+    "17,0 %",
+    "23,5 %",
+    "20,4 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "w = V_corte × d_corte / d_cru"
+   ],
+   "explicacao": "<div class=\"passo\">massa do corte ∝ 20 × 0,85 = 17,0</div><div class=\"passo\">massa do cru ∝ 100 × 0,833 = 83,3</div><div class=\"passo\">w = 17,0 ÷ 83,3 = <strong>20,4 %</strong></div><p>Cortes mais densos que o cru pesam mais do que ocupam. Resíduos têm % em massa maior que em volume; naftas, o contrário. Os 19,6 % saem de inverter a razão das densidades.</p>"
+  },
+  {
+   "id": "rf-009",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "avaliacao",
+   "enunciado": "<p>Um petróleo tem 0,5 % de enxofre. Sobre a distribuição desse enxofre nos cortes, é correto afirmar:</p>",
+   "alternativas": [
+    "Todos os cortes têm 0,5 % de enxofre, porque a destilação não altera composição.",
+    "O enxofre se concentra na nafta leve, porque as mercaptanas são voláteis.",
+    "O enxofre se distribui igualmente em massa entre destilados e resíduo.",
+    "O enxofre se concentra nas frações pesadas: a nafta leve tem muito pouco e o resíduo de vácuo pode ter 2 a 4 vezes o teor do cru."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Os compostos sulfurados pesados — benzotiofenos e dibenzotiofenos — fervem alto e acompanham as frações de fundo. A média ponderada em massa de todos os cortes tem de dar os 0,5 % do cru, mas a distribuição é muito desigual. É por isso que o óleo combustível de resíduo precisa de tratamento para atender ao limite de 0,5 % do IMO 2020 mesmo quando o cru é doce.</p>"
+  },
+  {
+   "id": "rf-010",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "avaliacao",
+   "enunciado": "<p>Por que, acima de cerca de 350 °C, a destilação PEV de laboratório passa a ser feita sob vácuo?</p>",
+   "alternativas": [
+    "Porque o vácuo aumenta a eficiência de separação da coluna.",
+    "Porque as frações pesadas craqueiam termicamente antes de ferver a 1 atm; sob vácuo elas fervem mais frias e a temperatura é convertida para a atmosférica equivalente.",
+    "Porque a norma proíbe temperaturas acima de 350 °C em laboratório.",
+    "Porque os vapores pesados condensariam no termômetro e falseariam a leitura."
+   ],
+   "correta": 1,
+   "explicacao": "<p>A partir de ~350–400 °C as moléculas grandes começam a se quebrar. Se isso acontecesse durante a análise, a curva registraria produtos de craqueamento, não o petróleo. A norma ASTM D5236 continua a destilação sob vácuo e converte as temperaturas lidas para AET com correlações do tipo Maxwell-Bonnell.</p>"
+  },
+  {
+   "id": "rf-011",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "esquemas",
+   "enunciado": "<p>Qual processo pertence ao grupo dos processos de SEPARAÇÃO?</p>",
+   "alternativas": [
+    "Craqueamento catalítico fluido",
+    "Destilação a vácuo",
+    "Hidrocraqueamento",
+    "Alquilação"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Processos de separação são físicos: não alteram as moléculas, e misturar todos os produtos reconstitui a carga. Destilação atmosférica e a vácuo, desasfaltação a propano e extração de aromáticos são exemplos. FCC, hidrocraqueamento e alquilação criam moléculas novas — são conversão.</p>"
+  },
+  {
+   "id": "rf-012",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "esquemas",
+   "enunciado": "<p>Uma refinaria tem, relativo à destilação atmosférica (fator 1): vácuo com <span class=\"dado\">50 %</span> da capacidade (fator 2), FCC com <span class=\"dado\">30 %</span> (fator 6), reforma com <span class=\"dado\">15 %</span> (fator 5) e hidrotratamento com <span class=\"dado\">40 %</span> (fator 2,5). Qual o índice de complexidade de Nelson?</p>",
+   "alternativas": [
+    "4,55",
+    "16,5",
+    "5,55",
+    "6,55"
+   ],
+   "correta": 2,
+   "formulas": [
+    "N = Σ (C_i / C_destilação) × F_i, incluindo a própria destilação"
+   ],
+   "explicacao": "<div class=\"passo\">destilação: 1,00 × 1 = 1,00</div><div class=\"passo\">vácuo: 0,50 × 2 = 1,00</div><div class=\"passo\">FCC: 0,30 × 6 = 1,80</div><div class=\"passo\">reforma: 0,15 × 5 = 0,75</div><div class=\"passo\">HDT: 0,40 × 2,5 = 1,00</div><div class=\"passo\">N = 1,00 + 1,00 + 1,80 + 0,75 + 1,00 = <strong>5,55</strong></div><p>Refinaria de conversão média, com FCC. O 4,55 esquece de somar a própria destilação; o 16,5 soma os fatores sem ponderar pela capacidade.</p>"
+  },
+  {
+   "id": "rf-013",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "esquemas",
+   "enunciado": "<p>Numa refinaria de “topping” (hydroskimming), o que acontece com o resíduo atmosférico?</p>",
+   "alternativas": [
+    "É vendido como óleo combustível, porque não há unidades para convertê-lo.",
+    "É enviado ao FCC para virar gasolina.",
+    "É coqueado e o coque é vendido.",
+    "É hidrocraqueado a diesel."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O esquema topping tem apenas destilação atmosférica, reforma e hidrotratamento. Tudo o que não destila vira óleo combustível — de baixo valor. É o esquema mais sensível ao tipo de petróleo: com cru pesado, mais da metade do barril sai como fundo. Com a queda da demanda por óleo combustível, esse esquema perdeu viabilidade.</p>"
+  },
+  {
+   "id": "rf-014",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "destilacao",
+   "enunciado": "<p>Qual o limite que impede de simplesmente aumentar a temperatura do forno da destilação atmosférica para vaporizar mais cru?</p>",
+   "alternativas": [
+    "O ponto de fulgor do querosene.",
+    "A pressão de vapor do GLP.",
+    "O craqueamento térmico do resíduo, que forma coque nos tubos do forno acima de ~370–385 °C.",
+    "A temperatura de autoignição do vapor d’água."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Acima dessa faixa, as moléculas pesadas começam a se quebrar no forno e na linha de transferência. Os produtos de craqueamento são instáveis, o coque depositado reduz a troca de calor e superaquece os tubos, e a campanha do forno termina antecipadamente. Por isso a recuperação de destilados usa também vapor e pressão.</p>"
+  },
+  {
+   "id": "rf-015",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "destilacao",
+   "enunciado": "<p>Na zona de flash de uma torre atmosférica a pressão é <span class=\"dado\">1,95 bar</span>. Vaporizam <span class=\"dado\">1 800 kmol/h</span> de hidrocarbonetos e injetam-se <span class=\"dado\">300 kmol/h</span> de vapor d’água. Qual a pressão parcial dos hidrocarbonetos?</p>",
+   "alternativas": [
+    "1,95 bar",
+    "1,67 bar",
+    "0,279 bar",
+    "2,28 bar"
+   ],
+   "correta": 1,
+   "formulas": [
+    "p_HC = P × n_HC / (n_HC + n_vapor)"
+   ],
+   "explicacao": "<div class=\"passo\">y_HC = 1 800 ÷ (1 800 + 300) = 0,857</div><div class=\"passo\">p_HC = 1,95 × 0,857 = <strong>1,67 bar</strong></div><p>O cru “sente” uma pressão 14 % menor, o que equivale a vaporizar mais sem esquentar o forno. Os 0,279 bar são a pressão parcial do vapor d’água, não dos hidrocarbonetos.</p>"
+  },
+  {
+   "id": "rf-016",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "destilacao",
+   "enunciado": "<p>Um forno aquece <span class=\"dado\">700 t/h</span> de cru de 270 a 365 °C (<span class=\"dado\">c<sub>p</sub> = 2,5 kJ/kg·K</span>) e vaporiza <span class=\"dado\">330 t/h</span> com calor latente de <span class=\"dado\">270 kJ/kg</span>. Qual a carga térmica?</p>",
+   "alternativas": [
+    "70,9 MW",
+    "46,2 MW",
+    "24,8 MW",
+    "255 MW"
+   ],
+   "correta": 0,
+   "formulas": [
+    "Q = ṁ c_p ΔT + ṁ_vap λ",
+    "1 MW = 3 600 000 kJ/h"
+   ],
+   "explicacao": "<div class=\"passo\">sensível: 700 000 × 2,5 × 95 = 166,3 × 10⁶ kJ/h</div><div class=\"passo\">latente: 330 000 × 270 = 89,1 × 10⁶ kJ/h</div><div class=\"passo\">Q = 255,4 × 10⁶ kJ/h ÷ 3,6 × 10⁶ = <strong>70,9 MW</strong></div><p>Dois terços do calor são sensíveis — é por isso que cada grau a mais obtido na bateria de preaquecimento vale tanto. 46,2 MW é só o sensível; 255 é o valor em GJ/h esquecendo a conversão.</p>"
+  },
+  {
+   "id": "rf-017",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "destilacao",
+   "enunciado": "<p>Um forno com carga térmica de <span class=\"dado\">70,9 MW</span> e eficiência de <span class=\"dado\">88 %</span> queima óleo combustível de PCI <span class=\"dado\">40 MJ/kg</span>. Quantas toneladas por hora de combustível ele consome?</p>",
+   "alternativas": [
+    "6,38 t/h",
+    "1,77 t/h",
+    "2,01 t/h",
+    "7,25 t/h"
+   ],
+   "correta": 3,
+   "formulas": [
+    "ṁ = Q / (η × PCI)"
+   ],
+   "explicacao": "<div class=\"passo\">Q = 70,9 MW = 70,9 MJ/s</div><div class=\"passo\">η × PCI = 0,88 × 40 = 35,2 MJ/kg</div><div class=\"passo\">ṁ = 70,9 ÷ 35,2 = 2,014 kg/s</div><div class=\"passo\">2,014 × 3,6 = <strong>7,25 t/h</strong></div><p>Os 2,01 são kg/s sem converter; os 6,38 ignoram a eficiência ao contrário (multiplicam por 0,88). Numa unidade de 700 t/h de cru, isso é 1 % do petróleo queimado só neste forno.</p>"
+  },
+  {
+   "id": "rf-018",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "destilacao",
+   "enunciado": "<p>O resíduo atmosférico está arrastando diesel. Qual ação recupera esse diesel SEM aumentar o risco de craqueamento no forno?</p>",
+   "alternativas": [
+    "Aumentar a pressão de topo da torre.",
+    "Aumentar a vazão de vapor de retificação no fundo da torre.",
+    "Reduzir a vazão de refluxo de topo.",
+    "Aumentar o ponto final da nafta."
+   ],
+   "correta": 1,
+   "explicacao": "<p>O vapor d’água dilui os hidrocarbonetos e baixa sua pressão parcial na zona de flash, vaporizando mais na mesma temperatura. Aumentar a pressão de topo faria o contrário — esquentaria a torre e reduziria a vaporização. O custo do vapor aparece como mais água ácida e mais carga no condensador.</p>"
+  },
+  {
+   "id": "rf-019",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "vacuo",
+   "enunciado": "<p>Uma fração ferve a <span class=\"dado\">600 K</span> a 1 atm, com calor latente molar <span class=\"dado\">ΔH<sub>v</sub> = 60 kJ/mol</span>. Estime, por Clausius-Clapeyron, a temperatura de ebulição a <span class=\"dado\">20 mmHg</span>.</p>",
+   "alternativas": [
+    "327 °C",
+    "15,8 °C",
+    "188 °C",
+    "587 °C"
+   ],
+   "correta": 2,
+   "formulas": [
+    "ln(P₂/P₁) = −(ΔH_v/R)(1/T₂ − 1/T₁)",
+    "R = 8,314 J/(mol·K)"
+   ],
+   "explicacao": "<div class=\"passo\">ln(760/20) = ln 38 = 3,638</div><div class=\"passo\">(R/ΔH) × 3,638 = (8,314/60 000) × 3,638 = 5,041 × 10⁻⁴ K⁻¹</div><div class=\"passo\">1/T₂ = 1/600 + 5,041 × 10⁻⁴ = 2,1707 × 10⁻³</div><div class=\"passo\">T₂ = 460,7 K = <strong>188 °C</strong></div><p>A fração de 327 °C a 1 atm ferve a menos de 190 °C sob 20 mmHg — 140 °C de ganho sem aquecer nada. É exatamente o que a torre de vácuo explora. Trocar o sinal do termo logarítmico dá 587 °C — mais quente que a 1 atm, o que é absurdo para um vácuo e serve de conferência.</p>"
+  },
+  {
+   "id": "rf-020",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "vacuo",
+   "enunciado": "<p>Por que as torres de vácuo usam recheio estruturado em vez de pratos e têm diâmetro muito maior que a torre atmosférica?</p>",
+   "alternativas": [
+    "Porque o recheio é mais barato e o diâmetro maior facilita a manutenção.",
+    "Porque o gasóleo de vácuo é mais viscoso e precisa de mais área para escoar.",
+    "Porque o vácuo exige paredes finas, compensadas por maior diâmetro.",
+    "Porque a baixa pressão multiplica o volume do vapor, e cada mmHg de perda de carga nos internos é vácuo perdido na zona de flash."
+   ],
+   "correta": 3,
+   "explicacao": "<p>O volume de vapor é inversamente proporcional à pressão: a 25 mmHg ele ocupa ~30 vezes mais que a 1 atm, daí o diâmetro. E os pratos perdem alguns mmHg cada — numa torre que opera a 25 mmHg isso anularia o vácuo. O recheio estruturado tem perda de carga muito menor.</p>"
+  },
+  {
+   "id": "rf-021",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "vacuo",
+   "enunciado": "<p>Com o forno de vácuo inalterado, a pressão na zona de flash sobe de 25 para 80 mmHg por falha de um ejetor. O corte gasóleo/resíduo cai de 554 para 515 °C de PEV. Na curva PEV do cru, x(515) = 70 %, x(554) = 76 % e x(370) = 55 %. Quanto gasóleo de vácuo, em % do cru, deixa de ser produzido?</p>",
+   "alternativas": [
+    "6 %",
+    "15 %",
+    "21 %",
+    "24 %"
+   ],
+   "correta": 0,
+   "formulas": [
+    "GOV = x(T_corte) − x(370)"
+   ],
+   "explicacao": "<div class=\"passo\">antes: GOV = 76 − 55 = 21 %</div><div class=\"passo\">depois: GOV = 70 − 55 = 15 %</div><div class=\"passo\">perda = 21 − 15 = <strong>6 % do cru</strong></div><p>Esse gasóleo desce com o resíduo de vácuo e perde a maior parte do valor. Numa refinaria de 20 000 m³/d são 1 200 m³/d — o motivo de a manutenção dos ejetores ser tratada como crítica.</p>"
+  },
+  {
+   "id": "rf-022",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "fcc",
+   "enunciado": "<p>No riser de um FCC, cada kg de carga pede <span class=\"dado\">1 450 kJ</span>. O catalisador (<span class=\"dado\">c<sub>p</sub> = 1,1 kJ/kg·K</span>) chega do regenerador a <span class=\"dado\">700 °C</span> e sai do riser a <span class=\"dado\">525 °C</span>. Qual a relação catalisador/óleo?</p>",
+   "alternativas": [
+    "2,51",
+    "12,4",
+    "1,88",
+    "7,53"
+   ],
+   "correta": 3,
+   "formulas": [
+    "C/O = Q_riser / [c_p,cat × (T_reg − T_rx)]"
+   ],
+   "explicacao": "<div class=\"passo\">ΔT = 700 − 525 = 175 K</div><div class=\"passo\">calor por kg de catalisador = 1,1 × 175 = 192,5 kJ</div><div class=\"passo\">C/O = 1 450 ÷ 192,5 = <strong>7,53</strong></div><p>Circulam 7,53 kg de catalisador por kg de gasóleo. Os 2,51 e 1,88 usam a temperatura do riser ou a do regenerador isoladamente em vez da diferença entre elas.</p>"
+  },
+  {
+   "id": "rf-023",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "fcc",
+   "enunciado": "<p>Num FCC em operação, a carga passa a conter resíduo atmosférico e o resíduo de carbono Conradson sobe de 0,5 para 4 %. Mantidas as demais variáveis, o que acontece?</p>",
+   "alternativas": [
+    "Mais coque é queimado, a temperatura do regenerador sobe, a relação catalisador/óleo necessária cai e a conversão diminui.",
+    "A conversão aumenta, porque há mais coque disponível para queimar e gerar calor.",
+    "A temperatura do regenerador cai, porque o coque de resíduo é menos combustível.",
+    "Nada muda, porque a temperatura do regenerador é controlada diretamente pelo operador."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O FCC é termicamente balanceado: o coque queimado tem de pagar exatamente o calor que o riser consome. Mais coque gera mais calor, o regenerador esquenta e cada kg de catalisador passa a levar mais calor — logo circula-se menos catalisador para manter o riser na temperatura, e a conversão cai. Acima de ~760 °C é necessário resfriador de catalisador.</p>"
+  },
+  {
+   "id": "rf-024",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "fcc",
+   "enunciado": "<p>O rendimento de gasolina de um FCC segue <span class=\"dado\">y = 1,30X − 0,86X²</span>, com X a conversão em fração. Qual o rendimento máximo de gasolina e a conversão em que ocorre?</p>",
+   "alternativas": [
+    "65,0 % de gasolina a 100 % de conversão",
+    "49,1 % de gasolina a 75,6 % de conversão",
+    "44,0 % de gasolina a 100 % de conversão",
+    "37,8 % de gasolina a 50,0 % de conversão"
+   ],
+   "correta": 1,
+   "formulas": [
+    "dy/dX = 1,30 − 1,72X = 0"
+   ],
+   "explicacao": "<div class=\"passo\">X* = 1,30 ÷ 1,72 = 0,756</div><div class=\"passo\">y* = 1,30 × 0,756 − 0,86 × 0,756² = <strong>0,491</strong></div><p>Além desse ponto, aumentar a severidade faz a gasolina já formada craquear de novo em GLP e gás seco — o sobrecraqueamento. Operar acima só compensa quando o objetivo é propeno.</p>"
+  },
+  {
+   "id": "rf-025",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "fcc",
+   "enunciado": "<p>Os produtos de um FCC são, em % massa: gás seco 3,5; GLP 17; gasolina 49; <span class=\"dado\">LCO 15</span>; <span class=\"dado\">óleo decantado 10</span>; coque 5,5. Qual a conversão?</p>",
+   "alternativas": [
+    "75 %",
+    "49 %",
+    "85 %",
+    "90 %"
+   ],
+   "correta": 0,
+   "formulas": [
+    "X = 100 − LCO − óleo decantado"
+   ],
+   "explicacao": "<div class=\"passo\">X = 100 − 15 − 10 = <strong>75 %</strong></div><p>Conversão mede o que foi transformado em produtos mais leves que a faixa da carga, incluindo o coque. LCO e óleo decantado fervem na mesma faixa do gasóleo de carga e por isso contam como não convertidos.</p>"
+  },
+  {
+   "id": "rf-026",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "conversao",
+   "enunciado": "<p>Qual processo tem como principal subproduto o hidrogênio usado nas unidades de hidrotratamento?</p>",
+   "alternativas": [
+    "Coqueamento retardado",
+    "Alquilação",
+    "Reforma catalítica",
+    "Desasfaltação a propano"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A reforma catalítica desidrogena naftênicos a aromáticos sobre platina: C₆H₁₂ → C₆H₆ + 3H₂. Ela produz gasolina de alta octanagem e é a principal fonte interna de hidrogênio da refinaria. Quando isso não basta, instala-se uma unidade de geração de hidrogênio por reforma a vapor de gás natural.</p>"
+  },
+  {
+   "id": "rf-027",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "conversao",
+   "enunciado": "<p>Comparando coqueamento retardado e hidrocraqueamento como rotas para converter frações pesadas:</p>",
+   "alternativas": [
+    "Ambos adicionam hidrogênio, mas o coqueamento opera em pressão mais alta.",
+    "O coqueamento rejeita carbono na forma de coque e é mais barato; o hidrocraqueamento adiciona hidrogênio, rende mais de 100 % em volume e dá produtos sem enxofre, mas exige alta pressão e H₂.",
+    "O hidrocraqueamento produz coque sólido como principal produto.",
+    "O coqueamento produz diesel com menos enxofre que o hidrocraqueamento."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Converter pesado em leve exige aumentar a razão H/C. Ou se retira carbono (coque) ou se adiciona hidrogênio. O coqueamento é térmico, barato e robusto a contaminantes, mas seus destilados são instáveis e sulfurados. O hidrocraqueamento, a 100–180 bar, entrega diesel e QAV de altíssima qualidade — e como hidrogena, o volume dos produtos passa o da carga.</p>"
+  },
+  {
+   "id": "rf-028",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "hdt",
+   "enunciado": "<p>Um diesel com <span class=\"dado\">12 000 ppm</span> de enxofre é hidrotratado com <span class=\"dado\">k = 0,146 ppm<sup>−0,5</sup>h<sup>−1</sup></span> e <span class=\"dado\">LHSV = 1,5 h<sup>−1</sup></span>, cinética de ordem 1,5. Qual o enxofre no produto?</p>",
+   "alternativas": [
+    "10 ppm",
+    "1 200 ppm",
+    "47 ppm",
+    "300 ppm"
+   ],
+   "correta": 3,
+   "formulas": [
+    "S_sai = [S_e^(1−n) + (n−1)k/LHSV]^(1/(1−n))",
+    "n = 1,5"
+   ],
+   "explicacao": "<div class=\"passo\">S_e^−0,5 = 12 000^−0,5 = 0,00913</div><div class=\"passo\">0,5 × 0,146 ÷ 1,5 = 0,0486</div><div class=\"passo\">soma = 0,0577</div><div class=\"passo\">S_sai = 0,0577^−2 = <strong>300 ppm</strong></div><p>Atende S-500, não S-10. Repare que o termo da carga (0,009) é pequeno perto de k/LHSV (0,049): o resultado depende muito mais do catalisador e do tamanho do reator do que do enxofre de entrada.</p>"
+  },
+  {
+   "id": "rf-029",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "hdt",
+   "enunciado": "<p>A energia de ativação aparente da HDS é <span class=\"dado\">110 kJ/mol</span>. Por qual fator a constante cinética é multiplicada ao subir a temperatura do reator de <span class=\"dado\">340 para 360 °C</span>?</p>",
+   "alternativas": [
+    "1,06",
+    "3,91",
+    "1,98",
+    "1,33"
+   ],
+   "correta": 2,
+   "formulas": [
+    "k₂/k₁ = exp[(E_a/R)(1/T₁ − 1/T₂)]",
+    "T em kelvin"
+   ],
+   "explicacao": "<div class=\"passo\">T₁ = 613,15 K; T₂ = 633,15 K</div><div class=\"passo\">1/T₁ − 1/T₂ = 5,152 × 10⁻⁵ K⁻¹</div><div class=\"passo\">E_a/R = 110 000 ÷ 8,314 = 13 231 K</div><div class=\"passo\">k₂/k₁ = e^0,682 = <strong>1,98</strong></div><p>Vinte graus dobram a velocidade. O 1,06 é só a razão 360/340 entre as temperaturas, que não é como a cinética responde; os 3,91 são o quadrado do fator. Mesmo assim, só temperatura não leva a S-10: acima de ~380 °C o catalisador coqueia depressa.</p>"
+  },
+  {
+   "id": "rf-030",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "derivados",
+   "enunciado": "<p>Por que a propriedade desejada na gasolina (octanagem) é oposta à desejada no diesel (número de cetano)?</p>",
+   "alternativas": [
+    "Porque a gasolina é mais densa que o diesel.",
+    "Porque a gasolina tem mais enxofre que o diesel.",
+    "Porque ambas medem o poder calorífico, mas em escalas invertidas.",
+    "Porque o motor a gasolina precisa que o combustível resista à autoignição, e o motor diesel precisa que ele autoignite rapidamente por compressão."
+   ],
+   "correta": 3,
+   "explicacao": "<p>No motor de centelha a mistura não pode detonar antes da vela: moléculas ramificadas e aromáticas, de alta octanagem. No motor diesel a ignição é pela compressão: parafinas lineares, que autoignitam fácil, dão alto cetano. Por isso a reforma catalítica, que produz aromáticos, serve só à gasolina.</p>"
+  }
+ ]
+}

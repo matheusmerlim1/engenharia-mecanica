@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mecânica dos Fluidos — Engenharia Mecânica</title>
+<meta name="description" content="Hidrostática, Bernoulli, perda de carga e diagrama de Moody: teoria, simuladores interativos e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">6º período · Engenharia Mecânica</p>
+    <h1>Mecânica dos Fluidos</h1>
+    <p class="lead">Do empuxo de um casco à perda de carga de uma adutora: a disciplina que responde qual pressão o fluido exerce, quanta energia ele perde no caminho e que bomba é preciso para vencê-la.</p>
+    <div class="btn-row">
+      <span class="tag accent">9 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">4 simuladores</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>A disciplina se organiza em dois blocos. No primeiro o fluido está parado e só a pressão importa. No segundo ele escoa, e aí aparecem a energia, o atrito e a viscosidade.</p>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3 style="margin-top:0">Estática</h3>
+            <p style="color:var(--text-muted);font-size:.92rem">Pressão cresce linearmente com a profundidade. Resolve manômetros, força em comportas e barragens, empuxo e estabilidade de corpos flutuantes.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Dinâmica</h3>
+            <p style="color:var(--text-muted);font-size:.92rem">Conservação de massa, energia e quantidade de movimento em volume de controle. Culmina no dimensionamento de tubulações e na seleção de bombas.</p>
+          </div>
+        </div>
+        <div class="callout note">
+          <strong>A pergunta que organiza tudo</strong>
+          Praticamente todo exercício se resolve escolhendo o volume de controle certo e aplicando uma das três conservações. Se a resposta pedida é força, use quantidade de movimento; se é pressão ou velocidade, use energia; se é vazão, use continuidade.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teorico">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Propriedades dos fluidos</summary>
+          <div class="topic-body">
+            <p>A propriedade que define a disciplina é a viscosidade: a resistência do fluido ao cisalhamento. É ela que gera o atrito e, portanto, a perda de carga.</p>
+            <div class="formula"><span data-tex="\tau = \mu \cdot (\frac{\mathrm{d}u}{\mathrm{d}y})"></span><span class="where">Lei de Newton da viscosidade; μ = viscosidade dinâmica [Pa·s]; du/dy = taxa de deformação</span></div>
+            <div class="formula"><span data-tex="\nu = \frac{\mu }{\rho }"></span><span class="where">viscosidade cinemática [m²/s] — é ela que aparece no Reynolds</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Fluido (20 °C)</th><th class="num">ρ (kg/m³)</th><th class="num">ν (m²/s)</th></tr></thead>
+              <tbody>
+                <tr><td>Água</td><td class="num">998</td><td class="num"><span data-tex-inline="1,00\times 10^{-6}"></span></td></tr>
+                <tr><td>Água a 60 °C</td><td class="num">983</td><td class="num"><span data-tex-inline="4,75\times 10^{-7}"></span></td></tr>
+                <tr><td>Ar (1 atm)</td><td class="num">1,204</td><td class="num"><span data-tex-inline="1,51\times 10^{-5}"></span></td></tr>
+                <tr><td>Gasolina</td><td class="num">680</td><td class="num"><span data-tex-inline="4,60\times 10^{-7}"></span></td></tr>
+                <tr><td>Óleo SAE 30</td><td class="num">891</td><td class="num"><span data-tex-inline="2,40\times 10^{-4}"></span></td></tr>
+                <tr><td>Glicerina</td><td class="num">1 260</td><td class="num"><span data-tex-inline="1,18\times 10^{-3}"></span></td></tr>
+                <tr><td>Mercúrio</td><td class="num">13 600</td><td class="num"><span data-tex-inline="1,15\times 10^{-7}"></span></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Ar é menos viscoso que água? Depende de qual viscosidade</strong>
+              A viscosidade <em>dinâmica</em> do ar é 55 vezes menor que a da água. Mas a <em>cinemática</em> do ar é 15 vezes <strong>maior</strong>, porque a densidade é mil vezes menor. Como é ν que entra no Reynolds, o ar escoa em regime laminar mais facilmente do que a intuição sugere.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Estática dos fluidos</summary>
+          <div class="topic-body">
+            <p>Em fluido em repouso não existe tensão de cisalhamento, então a pressão em um ponto é a mesma em todas as direções e varia apenas com a profundidade.</p>
+            <div class="formula"><span data-tex="\frac{\mathrm{d}p}{\mathrm{d}z} = - \rho \cdot g \quad \to \quad p = p_{0} + \rho \cdot g\cdot h"></span><span class="where">h medido para baixo a partir da superfície livre; γ = ρg = peso específico</span></div>
+            <div class="callout tip">
+              <strong>Regra do manômetro</strong>
+              Descendo na coluna, some ρgh; subindo, subtraia. Pontos na mesma cota e no mesmo fluido contínuo têm a mesma pressão — é o que permite "pular" o trecho horizontal.
+            </div>
+            <p>Pressão absoluta e manométrica diferem pela atmosférica; confundir as duas é o erro mais comum em cavitação e em NPSH.</p>
+            <div class="formula"><span data-tex="p_{\text{abs}} = p_{\text{man}} + p_{\text{atm}} \quad p_{\text{atm}} = 101,3 \text{kPa} = 10,33 m.c.a."></span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Força sobre superfícies submersas</summary>
+          <div class="topic-body">
+            <p>Como a pressão cresce com a profundidade, a resultante não passa pelo centroide da área: ela desce para o <strong>centro de pressão</strong>.</p>
+            <div class="formula"><span data-tex="F = p_{c}\cdot A = \rho \cdot g\cdot h_{c}\cdot A"></span><span class="where">h<sub>c</sub> = profundidade do CENTROIDE da área; A = área da superfície</span></div>
+            <div class="formula"><span data-tex="y_{\text{cp}} = y_{c} + \frac{I_{\text{xc}}}{y_{c}\cdot A}"></span><span class="where">y medido ao longo da placa desde a superfície livre; I<sub>xc</sub> = momento de inércia próprio</span></div>
+            <div class="callout warn">
+              <strong>Os dois erros clássicos</strong>
+              Usar a pressão máxima (do fundo) em vez da pressão no centroide para calcular F — e aplicar F no centroide em vez do centro de pressão. O primeiro superestima a força; o segundo subestima o momento na dobradiça.
+            </div>
+            <p>Para retângulo vertical com o topo na superfície livre, o resultado se simplifica muito:</p>
+            <div class="formula"><span data-tex="F = \rho \cdot g\cdot (\frac{h}{2})\cdot (h\cdot b) \quad y_{\text{cp}} = \frac{2h}{3}"></span></div>
+            <p>Empuxo, por sua vez, é o peso do volume deslocado, aplicado no centro de carena:</p>
+            <div class="formula"><span data-tex="E = \rho_{\text{fluido}}\cdot g\cdot V_{\text{deslocado}} (\text{Arquimedes})"></span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Cinemática e conservação de massa</summary>
+          <div class="topic-body">
+            <p>A equação da continuidade em regime permanente e fluido incompressível é a mais simples e a mais usada da disciplina:</p>
+            <div class="formula"><span data-tex="Q = A_{1}\cdot v_{1} = A_{2}\cdot v_{2} \quad \dot{m} = \rho \cdot Q"></span><span class="where">Q = vazão volumétrica [m³/s]; ṁ = vazão mássica [kg/s]</span></div>
+            <div class="callout tip">
+              <strong>A velocidade varia com o quadrado do diâmetro</strong>
+              Como A ∝ D², reduzir o diâmetro pela metade quadruplica a velocidade. E como a perda de carga vai com v², ela sobe 16 vezes — mais o efeito do próprio D no termo L/D, chegando a 32 vezes.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Equação de Bernoulli e linhas de energia</summary>
+          <div class="topic-body">
+            <p>Para escoamento incompressível, permanente, sem atrito e ao longo de uma linha de corrente, a soma das três cargas é constante:</p>
+            <div class="formula"><span data-tex="\frac{p}{\gamma } + \frac{v^{2}}{2g} + z = \text{constante}"></span><span class="where">carga de pressão + carga cinética + carga de posição, todas em metros de coluna de fluido</span></div>
+            <p>Na versão real, com máquinas e atrito, vira a equação da energia:</p>
+            <div class="formula"><span data-tex="\frac{p_{1}}{\gamma } + \frac{v_{1}^{2}}{2g} + z_{1} + H_{\text{bomba}} = \frac{p_{2}}{\gamma } + \frac{v_{2}^{2}}{2g} + z_{2} + H_{\text{turbina}} + h_{\text{perdas}}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Linha</th><th>Definição</th><th>Comportamento</th></tr></thead>
+              <tbody>
+                <tr><td>Linha de energia (LE)</td><td><span data-tex-inline="\frac{p}{\gamma } + \frac{v^{2}}{2g} + z"></span></td><td>Só desce, e apenas por perda. Sobe unicamente numa bomba.</td></tr>
+                <tr><td>Linha piezométrica (LP)</td><td><span data-tex-inline="\frac{p}{\gamma } + z"></span></td><td>Sobe e desce conforme a velocidade diminui ou aumenta.</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Quando Bernoulli não vale</strong>
+              Escoamento com atrito relevante, com bomba ou turbina no trecho, transitório, compressível (Mach &gt; 0,3) ou entre linhas de corrente diferentes. Aplicar Bernoulli através de uma expansão brusca é erro clássico: ali há perda concentrada.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Escoamento viscoso e regimes</summary>
+          <div class="topic-body">
+            <p>O número de Reynolds compara as forças de inércia com as viscosas e decide tudo o que vem depois.</p>
+            <div class="formula"><span data-tex="Re = \rho \cdot v\cdot \frac{D}{\mu } = v\cdot \frac{D}{\nu }"></span><span class="where">em tubo, o comprimento característico é o diâmetro interno</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Faixa (tubo)</th><th>Regime</th><th>Característica</th></tr></thead>
+              <tbody>
+                <tr><td>Re &lt; 2 300</td><td>Laminar</td><td>Camadas paralelas; perfil parabólico; f = 64/Re</td></tr>
+                <tr><td>2 300 a 4 000</td><td>Crítico</td><td>Instável, imprevisível — evite projetar aqui</td></tr>
+                <tr><td>Re &gt; 4 000</td><td>Turbulento</td><td>Perfil achatado; f depende de Re e de ε/D</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Cada geometria tem seu limiar</strong>
+              Em tubo a transição é Re ≈ 2 300; em placa plana, Re ≈ 5×10⁵; em torno de cilindro, ≈ 2×10⁵. Usar o limiar errado leva à correlação errada e a um erro de ordem de grandeza em h.
+            </div>
+            <p>Para seção não circular usa-se o diâmetro hidráulico:</p>
+            <div class="formula"><span data-tex="D_{h} = 4\cdot \frac{A}{P_{\text{molhado}}}"></span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Perda de carga distribuída e o diagrama de Moody</summary>
+          <div class="topic-body">
+            <p>A equação universal da perda de carga em tubo é Darcy-Weisbach. Toda a dificuldade está em achar f.</p>
+            <div class="formula"><span data-tex="h_{f} = f\cdot (\frac{L}{D})\cdot \frac{v^{2}}{2g}"></span><span class="where">f = fator de atrito de Darcy (adimensional). Cuidado: o fator de Fanning é f/4</span></div>
+            <div class="formula"><span data-tex="\text{Laminar}: f = \frac{64}{Re} (\text{não} \text{depende da rugosidade})"></span></div>
+            <div class="formula"><span data-tex="\text{Turbulento} (\text{Colebrook-White}): \\ \frac{1}{\sqrt{f}} = - 2\cdot \log_{10}[ \frac{\varepsilon }{3,7D} + \frac{2,51}{Re\cdot \sqrt{f}} ]"></span><span class="where">implícita em f — resolve-se por iteração ou pelo diagrama de Moody</span></div>
+            <div class="formula"><span data-tex="\text{Swamee-Jain} (\text{explícita}, \text{erro} &lt; 1 %): \\ f =\frac{0,25}{\log_{10}(\varepsilon /(3,7D) + 5,74/Re^{0,9})}^{2}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Material do tubo</th><th class="num">ε (mm)</th></tr></thead>
+              <tbody>
+                <tr><td>PVC, plástico, vidro</td><td class="num">0,0015</td></tr>
+                <tr><td>Aço comercial</td><td class="num">0,046</td></tr>
+                <tr><td>Aço galvanizado</td><td class="num">0,15</td></tr>
+                <tr><td>Ferro fundido</td><td class="num">0,26</td></tr>
+                <tr><td>Concreto</td><td class="num">0,3 a 3,0</td></tr>
+                <tr><td>Aço muito enferrujado</td><td class="num">1,0 a 3,0</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>As quatro zonas do Moody</strong>
+              Laminar (reta descendente, sem rugosidade) · crítica (vazio, instável) · transição (f depende de Re e de ε/D) · turbulência plena (curvas horizontais: f só depende de ε/D). No projeto de adutoras costuma-se cair na última.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Perdas localizadas</summary>
+          <div class="topic-body">
+            <p>Cada acessório provoca uma perda proporcional à carga cinética:</p>
+            <div class="formula"><span data-tex="h_{m} = K\cdot \frac{v^{2}}{2g} \quad L_{\text{eq}} = K\cdot \frac{D}{f}"></span><span class="where">K = coeficiente de perda localizada, tabelado por tipo de peça</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Acessório</th><th class="num">K típico</th></tr></thead>
+              <tbody>
+                <tr><td>Entrada de borda viva</td><td class="num">0,50</td></tr>
+                <tr><td>Entrada arredondada</td><td class="num">0,04</td></tr>
+                <tr><td>Saída para reservatório</td><td class="num">1,00</td></tr>
+                <tr><td>Cotovelo 90° raio longo</td><td class="num">0,30</td></tr>
+                <tr><td>Cotovelo 90° raio curto</td><td class="num">0,90</td></tr>
+                <tr><td>Cotovelo 45°</td><td class="num">0,20</td></tr>
+                <tr><td>Tê, passagem direta</td><td class="num">0,20</td></tr>
+                <tr><td>Tê, saída lateral</td><td class="num">1,00</td></tr>
+                <tr><td>Válvula gaveta aberta</td><td class="num">0,15</td></tr>
+                <tr><td>Válvula globo aberta</td><td class="num">6,00</td></tr>
+                <tr><td>Válvula de retenção</td><td class="num">2,00</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Uma válvula globo vale dezenas de metros de tubo</strong>
+              Com K = 6 em tubo de 50 mm e f = 0,021, o comprimento equivalente é 14 m. É por isso que se especifica válvula gaveta (K = 0,15) onde a função é apenas bloquear.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Quantidade de movimento e curva do sistema</summary>
+          <div class="topic-body">
+            <p>Quando o que se pede é <em>força</em> — empuxo de jato, reação em curva de tubulação, tração no suporte — a ferramenta é a equação da quantidade de movimento no volume de controle:</p>
+            <div class="formula"><span data-tex="\Sigma F = \dot{m}\cdot (v_{\text{saída}} - v_{\text{entrada}})"></span><span class="where">equação vetorial: aplique em x e y separadamente, com os sinais das direções</span></div>
+            <p>Já o dimensionamento da bomba parte da curva do sistema, que é a altura manométrica em função da vazão:</p>
+            <div class="formula"><span data-tex="H_{\text{sistema}} = \Delta z + \Delta (\frac{p}{\gamma }) + (f\cdot \frac{L}{D} + \Sigma K)\cdot \frac{v^{2}}{2g} \approx \Delta z + k\cdot Q^{2}"></span></div>
+            <div class="formula"><span data-tex="P_{\text{hidráulica}} = \rho \cdot g\cdot Q\cdot H \quad P_{\text{eixo}} = \frac{P_{\text{hid}}}{\eta }"></span></div>
+            <div class="callout tip">
+              <strong>Ponto de operação</strong>
+              É o cruzamento da curva do sistema com a curva da bomba. Fechar uma válvula aumenta ΣK, levanta a curva do sistema e desloca o ponto para a esquerda — menos vazão e mais pressão.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Quatro modelos interativos, todos com fórmulas e resolução passo a passo.</p>
+
+        <div id="sim-perda-carga"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o exemplo 2 (adutora em aço) e depois o 3 (mesmo traçado com tubo enferrujado): só a rugosidade muda, e a perda de carga sobe quase 60 %. Depois abra o exemplo 6 e veja o que acontece ao reduzir o diâmetro pela metade.
+        </div>
+
+        <div id="sim-moody"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Fixe ε/D e arraste o Reynolds para a direita: a curva desce e depois fica horizontal. A partir daí, aumentar a vazão não muda mais o f — o campo "Zona do diagrama" avisa quando isso acontece.
+        </div>
+
+        <div id="sim-bernoulli"></div>
+        <div id="sim-hidrostatica"></div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Estática</h4>
+            <div class="formula"><span data-tex="p = p_{0} + \rho gh \gamma = \rho g"></span></div>
+            <div class="formula"><span data-tex="F = \rho \cdot g\cdot h_{c}\cdot A"></span></div>
+            <div class="formula"><span data-tex="y_{\text{cp}} = y_{c} + \frac{I_{\text{xc}}}{y_{c}A}"></span></div>
+            <div class="formula"><span data-tex="E = \rho \cdot g\cdot V_{\text{desl}}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Conservação</h4>
+            <div class="formula"><span data-tex="Q = A_{1}v_{1} = A_{2}v_{2} \dot{m} = \rho Q"></span></div>
+            <div class="formula"><span data-tex="\frac{p}{\gamma } + \frac{v^{2}}{2g} + z = \text{cte}"></span></div>
+            <div class="formula"><span data-tex="\Sigma F = \dot{m}(v_{s} - v_{e})"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Perdas</h4>
+            <div class="formula"><span data-tex="Re = \frac{vD}{\nu }"></span></div>
+            <div class="formula"><span data-tex="h_{f} = f(\frac{L}{D})\frac{v^{2}}{2g}"></span></div>
+            <div class="formula"><span data-tex="h_{m} = \Sigma K\cdot \frac{v^{2}}{2g}"></span></div>
+            <div class="formula"><span data-tex="f = \frac{64}{Re} (\text{laminar})"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Bombeamento</h4>
+            <div class="formula"><span data-tex="H = \Delta z + h_{f} + h_{m}"></span></div>
+            <div class="formula"><span data-tex="P = \frac{\rho \text{gQH}}{\eta }"></span></div>
+            <div class="formula"><span data-tex="Q = C_{d}A_{2}\sqrt{\frac{2\Delta p}{\rho (1- \beta^{4})}}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra no projeto</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>ABNT NBR 5626</strong></td>
+              <td>Sistemas prediais de água fria e água quente</td>
+              <td>Velocidades máximas, pressões mínimas e método de dimensionamento de ramais.</td>
+              <td>Limita v e fixa a pressão mínima no ponto mais desfavorável.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 12218</strong></td>
+              <td>Projeto de rede de distribuição de água para abastecimento público</td>
+              <td>Pressões estática e dinâmica admissíveis e critérios de traçado.</td>
+              <td>Define a faixa de pressão que a curva do sistema deve respeitar.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 10156 / ISO 5167</strong></td>
+              <td>Medição de vazão por dispositivos de pressão diferencial</td>
+              <td>Geometria e coeficiente de descarga de placas de orifício, bocais e Venturis.</td>
+              <td>Fornece C<sub>d</sub> e as condições de instalação do medidor.</td>
+            </tr>
+            <tr>
+              <td><strong>ASME B31.3</strong></td>
+              <td>Process Piping</td>
+              <td>Espessura de parede, materiais, suportação e teste de tubulação de processo.</td>
+              <td>Traduz o diâmetro hidráulico calculado em um tubo especificável.</td>
+            </tr>
+            <tr>
+              <td><strong>ANSI/HI 9.6.x</strong></td>
+              <td>Hydraulic Institute — Rotodynamic Pumps</td>
+              <td>Ensaios, NPSH requerido, faixa de operação preferencial e tolerâncias.</td>
+              <td>Define a margem de NPSH e a região onde a bomba pode operar.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO 4185 / ISO 8316</strong></td>
+              <td>Medição de vazão de líquidos em condutos fechados</td>
+              <td>Métodos gravimétrico e volumétrico de calibração.</td>
+              <td>Rastreabilidade dos medidores usados em bancada.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Sobre as revisões</strong>
+          Designações sem o ano por conta das revisões periódicas. O texto integral de ABNT, ASME, ISO e ANSI/HI é obra protegida, adquirida junto às respectivas entidades.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões cobrindo propriedades, estática, Bernoulli, regimes, perda de carga e quantidade de movimento — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
+        <div id="quiz" data-quiz="mecanica-dos-fluidos"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>FOX, R. W.; McDONALD, A. T.; PRITCHARD, P. J.</strong> <em>Introdução à Mecânica dos Fluidos.</em> LTC. — Bibliografia principal. Caps. 3 (estática), 4 (volume de controle), 6 (Bernoulli), 8 (escoamento interno).</li>
+          <li><strong>ÇENGEL, Y. A.; CIMBALA, J. M.</strong> <em>Mecânica dos Fluidos: Fundamentos e Aplicações.</em> McGraw-Hill. — Muito claro no diagrama de Moody e nas perdas localizadas.</li>
+          <li><strong>WHITE, F. M.</strong> <em>Mecânica dos Fluidos.</em> McGraw-Hill. — Tratamento rigoroso de camada limite e escoamento viscoso.</li>
+          <li><strong>MUNSON, B. R.; YOUNG, D. F.; OKIISHI, T. H.</strong> <em>Fundamentos da Mecânica dos Fluidos.</em> Blucher.</li>
+          <li><strong>PORTO, R. M.</strong> <em>Hidráulica Básica.</em> EESC-USP. — Referência nacional para tubulações e curva do sistema.</li>
+          <li>Notas de aula e listas de exercícios da disciplina.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/mecanica-dos-fluidos.js"></script>
+<script>
+/* glossário específico desta disciplina — sobrepõe o significado
+   padrão dos símbolos que mudam de sentido conforme a matéria */
+if (window.Glossario) Glossario.definir({
+  ν: ['Viscosidade cinemática', 'm²/s', 'ν = μ/ρ — é ela que entra no Reynolds'],
+  ε: ['Rugosidade absoluta', 'mm', 'aço comercial 0,046 · PVC 0,0015 · ferro fundido 0,26'],
+  h: ['Perda de carga', 'm', 'de coluna de fluido; h_f distribuída, h_m localizada'],
+  H: ['Altura manométrica', 'm', 'o que a bomba precisa fornecer: Δz + h_f + h_m'],
+  C: ['Coeficiente', '—', 'C_d = coeficiente de descarga do medidor'],
+  K: ['Coeficiente de perda localizada', '—', 'válvula globo 6,0 · gaveta 0,15 · cotovelo 90° 0,30'],
+  f: ['Fator de atrito de Darcy', '—', 'laminar 64/Re; turbulento por Colebrook. Não confundir com o de Fanning (f/4)'],
+  Q: ['Vazão volumétrica', 'm³/s', '1 L/s = 10⁻³ m³/s'],
+  v: ['Velocidade média', 'm/s', 'faixa econômica para água: 1 a 3 m/s'],
+  p: ['Pressão', 'Pa', 'manométrica salvo indicação; 1 atm = 101,3 kPa'],
+  y: ['Distância ao longo da placa', 'm', 'medida desde a superfície livre'],
+  A: ['Área', 'm²', 'da seção transversal ou da superfície submersa'],
+  z: ['Cota', 'm', 'altura em relação ao referencial adotado'],
+  D: ['Diâmetro interno', 'm', 'em seção não circular use D_h = 4A/P']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

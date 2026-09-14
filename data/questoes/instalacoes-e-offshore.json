@@ -1,0 +1,528 @@
+{
+ "disciplina": "Instalações e Offshore",
+ "slug": "instalacoes-e-offshore",
+ "topicos": [
+  {
+   "id": "operacoes",
+   "nome": "Operações offshore e desenvolvimento"
+  },
+  {
+   "id": "historico",
+   "nome": "Desenvolvimento histórico"
+  },
+  {
+   "id": "componentes",
+   "nome": "Componentes e tipos de plataforma"
+  },
+  {
+   "id": "ambiente",
+   "nome": "Ambiente oceânico"
+  },
+  {
+   "id": "cargas",
+   "nome": "Forças ambientais e cargas"
+  },
+  {
+   "id": "ancoragem",
+   "nome": "Ancoragem e fundações"
+  },
+  {
+   "id": "topside",
+   "nome": "Topsides e processamento"
+  },
+  {
+   "id": "submarina",
+   "nome": "Engenharia submarina"
+  },
+  {
+   "id": "desenvolvimento",
+   "nome": "Desenvolvimento e seleção de conceito"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "of-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "operacoes",
+   "enunciado": "<p>Em qual etapa do ciclo de vida de um campo marítimo se define o conceito da plataforma de produção e o tamanho da planta?</p>",
+   "alternativas": [
+    "Exploração",
+    "Descomissionamento",
+    "Produção",
+    "Desenvolvimento"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Na exploração só se descobre se há petróleo; na avaliação se delimita o reservatório. É no desenvolvimento que, com o reservatório conhecido, se escolhe o conceito (FPSO, semi, TLP…), a capacidade da planta, o número de poços e a forma de escoamento.</p>"
+  },
+  {
+   "id": "of-002",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "operacoes",
+   "enunciado": "<p>Um campo está a 250 milhas náuticas da costa, sobre a plataforma continental estendida reconhecida do país. Quanto aos recursos do subsolo:</p>",
+   "alternativas": [
+    "O país não tem nenhum direito, pois está fora da zona econômica exclusiva.",
+    "Os recursos são de uso comum de todos os países.",
+    "O país costeiro mantém direitos sobre os recursos do solo e do subsolo marinho.",
+    "Só vale a legislação do país da bandeira da plataforma."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Pela Convenção da ONU sobre o Direito do Mar, a ZEE vai até 200 milhas, mas a plataforma continental pode ser estendida até 350 milhas quando a margem geológica continua. Nessa faixa o país mantém direitos soberanos sobre os recursos do solo e subsolo — é o caso de parte do pré-sal brasileiro.</p>"
+  },
+  {
+   "id": "of-003",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "historico",
+   "enunciado": "<p>O chamado “triângulo de ouro” da produção em águas profundas é formado por:</p>",
+   "alternativas": [
+    "Golfo do México, costa do Brasil e oeste da África",
+    "Mar do Norte, Golfo Pérsico e Golfo do México",
+    "Costa do Brasil, Mar Cáspio e Sudeste Asiático",
+    "Oeste da África, Mar do Norte e Austrália"
+   ],
+   "correta": 0,
+   "explicacao": "<p>As três regiões concentram os grandes desenvolvimentos em águas profundas e ultraprofundas. Brasil e oeste da África têm bacias formadas na mesma abertura do Atlântico, com geologia semelhante.</p>"
+  },
+  {
+   "id": "of-004",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "historico",
+   "enunciado": "<p>Qual foi a principal motivação para o surgimento de conceitos como TLP, spar e FPSO de produção?</p>",
+   "alternativas": [
+    "A necessidade de reduzir o número de trabalhadores embarcados.",
+    "A proibição de estruturas de aço em águas brasileiras.",
+    "A migração da produção para águas profundas, onde as estruturas fixas se tornam técnica e economicamente inviáveis.",
+    "A substituição do petróleo pelo gás natural."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Com a lâmina d’água, a jaqueta fica mais alta, mais flexível (período natural subindo em direção ao das ondas) e o peso de aço cresce muito depressa. Instalações em águas profundas nasceram da criação de novas tecnologias: flutuantes que cedem às cargas em vez de resistir.</p>"
+  },
+  {
+   "id": "of-005",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "componentes",
+   "enunciado": "<p>A sigla MODU significa:</p>",
+   "alternativas": [
+    "Mobile Offshore Drilling Unit",
+    "Mobile Offload Drilling Unit",
+    "Moored Offshore Development Unit",
+    "Marine Oil Discharge Unit"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Unidade móvel de perfuração marítima: jack-up, semissubmersível de perfuração e navio-sonda. Não confundir com FPSO (Floating Production, Storage and Offloading), que é unidade de produção.</p>"
+  },
+  {
+   "id": "of-006",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "componentes",
+   "enunciado": "<p>Qual das unidades abaixo NÃO é considerada MODU?</p>",
+   "alternativas": [
+    "Autoelevatória (jack-up)",
+    "Navio-sonda",
+    "Semissubmersível de perfuração",
+    "Mini-TLP de produção"
+   ],
+   "correta": 3,
+   "explicacao": "<p>MODUs são unidades móveis de perfuração que vão de locação em locação. Uma TLP ou mini-TLP é instalada permanentemente para produzir, presa por tendões a fundações no fundo — não é móvel nem é, em essência, uma unidade de perfuração.</p>"
+  },
+  {
+   "id": "of-007",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "componentes",
+   "enunciado": "<p>Numa plataforma semissubmersível, a principal função dos pontões é:</p>",
+   "alternativas": [
+    "Armazenar óleo produzido para alívio por navio.",
+    "Ancorar a plataforma diretamente no fundo.",
+    "Servir de heliponto e alojamento.",
+    "Prover empuxo abaixo da zona de maior ação das ondas, mantendo pequena a área de linha d’água."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Os pontões ficam submersos a ~20 m, onde a pressão dinâmica da onda é bem menor, e dão a maior parte do empuxo. As colunas finas que atravessam a superfície dão pequena área de linha d’água, pequena rigidez hidrostática e, portanto, período natural em heave longo (~20 s), acima das ondas. Lastro e combustível podem estar nos pontões, mas essa não é a razão de existirem.</p>"
+  },
+  {
+   "id": "of-008",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "componentes",
+   "enunciado": "<p>Sobre os seis graus de liberdade de uma plataforma flutuante ancorada, é correto afirmar:</p>",
+   "alternativas": [
+    "A ancoragem restringe principalmente os movimentos horizontais lentos (surge, sway e yaw); heave, roll e pitch continuam governados pela hidrostática.",
+    "A ancoragem convencional elimina os seis graus de liberdade.",
+    "Heave é a rotação em torno do eixo vertical.",
+    "Uma semissubmersível não precisa de ancoragem porque flutua."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Linhas de ancoragem são quase horizontais em relação às forças que resistem: limitam a deriva e a guinada. O movimento vertical e as rotações de jogo e arfagem dependem da área de linha d’água e da altura metacêntrica. Só a TLP, com tendões verticais, restringe fortemente heave, roll e pitch. Heave é translação vertical; guinada (yaw) é a rotação em torno do eixo vertical.</p>"
+  },
+  {
+   "id": "of-009",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "componentes",
+   "enunciado": "<p>Uma plataforma autoelevatória (jack-up):</p>",
+   "alternativas": [
+    "Precisa de ancoragem em catenária para operar.",
+    "É uma estrutura de concreto apoiada por gravidade.",
+    "É usada em lâminas d’água acima de 1 000 m.",
+    "Apoia as pernas no fundo e eleva o casco acima das ondas, dispensando ancoragem durante a operação."
+   ],
+   "correta": 3,
+   "explicacao": "<p>O casco flutua até a locação, as pernas descem até o fundo e o casco é içado por elas até ficar fora do alcance das ondas. Como se apoia no solo, não precisa de linhas de ancoragem. A limitação é a lâmina d’água: ~150 m no máximo.</p>"
+  },
+  {
+   "id": "of-010",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "ambiente",
+   "enunciado": "<p>Estime o comprimento de uma onda de período <span class=\"dado\">10 s</span> em águas profundas.</p>",
+   "alternativas": [
+    "15,6 m",
+    "99,0 m",
+    "62,8 m",
+    "156 m"
+   ],
+   "correta": 3,
+   "formulas": [
+    "L₀ = gT²/(2π)"
+   ],
+   "explicacao": "<div class=\"passo\">L₀ = 9,81 × 10² ÷ (2π)</div><div class=\"passo\">L₀ = 981 ÷ 6,283 = <strong>156 m</strong></div><p>Regra prática: L₀ ≈ 1,56 T². Os 15,6 m esquecem de elevar o período ao quadrado; 62,8 m é 2π × 10.</p>"
+  },
+  {
+   "id": "of-011",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ambiente",
+   "enunciado": "<p>Na arrebentação, com <span class=\"dado\">3 m</span> de profundidade, com que velocidade aproximada se propaga uma onda de período <span class=\"dado\">10 s</span>?</p>",
+   "alternativas": [
+    "5,42 m/s",
+    "15,6 m/s",
+    "29,4 m/s",
+    "1,73 m/s"
+   ],
+   "correta": 0,
+   "formulas": [
+    "Águas rasas (d/L < 1/20): c = √(gd)"
+   ],
+   "explicacao": "<div class=\"passo\">c = √(9,81 × 3) = √29,4 = <strong>5,42 m/s</strong></div><div class=\"passo\">L ≈ c × T = 54,2 m → d/L ≈ 0,055, na fronteira das águas rasas (1/20)</div><p>Em águas rasas a celeridade só depende da profundidade: todas as ondas andam igual. A relação de dispersão completa dá 5,32 m/s — a aproximação erra poucos por cento. 15,6 m/s seria a celeridade em águas profundas (gT/2π).</p>"
+  },
+  {
+   "id": "of-012",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ambiente",
+   "enunciado": "<p>Qual a energia por metro quadrado de superfície de uma onda de <span class=\"dado\">6 m</span> de altura (ρ = 1 025 kg/m³)?</p>",
+   "alternativas": [
+    "7,54 kJ/m²",
+    "45,2 kJ/m²",
+    "362 kJ/m²",
+    "15,1 kJ/m²"
+   ],
+   "correta": 1,
+   "formulas": [
+    "E = ρgH²/8"
+   ],
+   "explicacao": "<div class=\"passo\">E = 1 025 × 9,81 × 6² ÷ 8</div><div class=\"passo\">E = 1 025 × 9,81 × 36 ÷ 8 = <strong>45,2 kJ/m²</strong></div><p>A energia cresce com o quadrado da altura: uma onda de 12 m tem quatro vezes esta energia. 7,54 kJ/m² usa H em vez de H²; 362 esquece de dividir por 8.</p>"
+  },
+  {
+   "id": "of-013",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "ambiente",
+   "enunciado": "<p>Uma plataforma é projetada para a onda centenária (período de retorno de 100 anos) e terá vida útil de <span class=\"dado\">25 anos</span>. Qual a probabilidade de essa onda ocorrer pelo menos uma vez durante a vida útil?</p>",
+   "alternativas": [
+    "1,0 %",
+    "22 %",
+    "25 %",
+    "4,0 %"
+   ],
+   "correta": 1,
+   "formulas": [
+    "P = 1 − (1 − 1/T_R)ⁿ"
+   ],
+   "explicacao": "<div class=\"passo\">chance de não ocorrer num ano = 0,99</div><div class=\"passo\">chance de não ocorrer em 25 anos = 0,99²⁵ = 0,778</div><div class=\"passo\">P = 1 − 0,778 = <strong>22 %</strong></div><p>Período de retorno não é intervalo garantido entre eventos. A soma simples (25 × 1 % = 25 %) superestima porque conta duas vezes os anos com mais de um evento; 1 % é a chance em um único ano.</p>"
+  },
+  {
+   "id": "of-014",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ambiente",
+   "enunciado": "<p>Sobre o crescimento marinho em estruturas offshore, a afirmação correta é:</p>",
+   "alternativas": [
+    "Ele aumenta muito o peso submerso, porque os organismos são bem mais densos que a água.",
+    "Ele reduz as cargas de onda por suavizar a superfície.",
+    "Ele aumenta diâmetro e rugosidade dos membros e, portanto, as cargas hidrodinâmicas; o peso submerso extra é pequeno porque a densidade dos organismos é próxima à da água.",
+    "Só ocorre abaixo de 500 m de profundidade."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Cracas, mexilhões e algas engrossam o membro e aumentam C_D (de ~0,65 para ~1,05). A força de Morison cresce com D e com C_D. Como a gravidade específica dos organismos é só ligeiramente maior que a da água do mar, o efeito no peso submerso é secundário; já a massa (para a dinâmica) aumenta.</p>"
+  },
+  {
+   "id": "of-015",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ambiente",
+   "enunciado": "<p>Um registro mostra a porcentagem de ocorrência de cada velocidade de vento num local, com ventos de 25 m/s raros. Qual conclusão é válida?</p>",
+   "alternativas": [
+    "Há pequena probabilidade de ventos de 25 m/s, e o vento, por variar aleatoriamente, deve ser tratado estatisticamente.",
+    "O vento é determinístico e pode ser previsto instante a instante.",
+    "Ventos raros podem ser ignorados no projeto.",
+    "Não é possível atribuir natureza probabilística ao vento."
+   ],
+   "correta": 0,
+   "explicacao": "<p>As componentes do vento variam aleatoriamente com a turbulência, por isso ele é descrito por distribuições de probabilidade (tipicamente Weibull). Justamente os eventos raros — de baixa probabilidade e alta velocidade — é que definem as cargas extremas de projeto.</p>"
+  },
+  {
+   "id": "of-016",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "cargas",
+   "enunciado": "<p>Uma perna de jaqueta de <span class=\"dado\">D = 1,5 m</span> em <span class=\"dado\">80 m</span> de lâmina d’água recebe uma onda de <span class=\"dado\">H = 12 m, T = 12 s</span> (tanh kd = 0,979). Com <span class=\"dado\">C<sub>M</sub> = 2,0</span>, qual a força de inércia máxima total, integrada do fundo ao nível médio?</p>",
+   "alternativas": [
+    "209 kN",
+    "104 kN",
+    "417 kN",
+    "26,6 kN"
+   ],
+   "correta": 0,
+   "formulas": [
+    "F_I,máx = ρ C_M (πD²/4) g (H/2) tanh(kd)"
+   ],
+   "explicacao": "<div class=\"passo\">πD²/4 = π × 1,5² ÷ 4 = 1,767 m²</div><div class=\"passo\">ρ C_M A = 1 025 × 2,0 × 1,767 = 3 623 kg/m</div><div class=\"passo\">g H/2 tanh(kd) = 9,81 × 6 × 0,979 = 57,6 m²/s²</div><div class=\"passo\">F_I = 3 623 × 57,6 = <strong>209 kN</strong></div><p>A integral da aceleração de Airy ao longo da profundidade fecha em g(H/2)tanh(kd). O 104 kN usa C_M = 1; o 417 kN usa H em vez de H/2.</p>"
+  },
+  {
+   "id": "of-017",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "cargas",
+   "enunciado": "<p>Na superfície, a velocidade orbital máxima é <span class=\"dado\">3,2 m/s</span> para uma onda de período <span class=\"dado\">12 s</span>, atuando num membro de <span class=\"dado\">1,5 m</span> de diâmetro. Qual o número de Keulegan-Carpenter e que parcela domina?</p>",
+   "alternativas": [
+    "25,6 — inércia domina",
+    "2,13 — inércia domina",
+    "25,6 — arrasto domina",
+    "5,76 — as duas contam"
+   ],
+   "correta": 2,
+   "formulas": [
+    "KC = u_máx T / D",
+    "KC < 5: inércia · KC > 25: arrasto"
+   ],
+   "explicacao": "<div class=\"passo\">KC = 3,2 × 12 ÷ 1,5 = <strong>25,6</strong></div><div class=\"passo\">KC > 25 → o arrasto domina</div><p>A água percorre, em meio ciclo, uma distância muitas vezes o diâmetro: forma esteira e vórtices, e a força segue o quadrado da velocidade. Cuidado com a armadilha: o número está certo em “25,6 — inércia”, mas a interpretação não.</p>"
+  },
+  {
+   "id": "of-018",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "cargas",
+   "enunciado": "<p>O convés de uma plataforma tem área projetada de <span class=\"dado\">1 500 m²</span>, com coeficiente de forma <span class=\"dado\">C<sub>s</sub> = 1,0</span>. Qual a força de um vento de <span class=\"dado\">40 m/s</span> (ρ<sub>ar</sub> = 1,225 kg/m³)?</p>",
+   "alternativas": [
+    "1,47 MN",
+    "36,8 kN",
+    "2,94 MN",
+    "1 230 MN"
+   ],
+   "correta": 0,
+   "formulas": [
+    "F = ½ ρ C_s A V²"
+   ],
+   "explicacao": "<div class=\"passo\">F = 0,5 × 1,225 × 1,0 × 1 500 × 40²</div><div class=\"passo\">F = 0,5 × 1,225 × 1 500 × 1 600 = 1,47 × 10⁶ N = <strong>1,47 MN</strong></div><p>A força cresce com V²: uma rajada 20 % mais forte aumenta a carga em 44 %. 2,94 MN esquece o ½; 36,8 kN usa V em vez de V².</p>"
+  },
+  {
+   "id": "of-019",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "cargas",
+   "enunciado": "<p>As forças de <em>load-out</em> ocorrem quando:</p>",
+   "alternativas": [
+    "A plataforma recebe o impacto de um navio de apoio.",
+    "A estrutura é transferida do cais do estaleiro para a balsa de transporte.",
+    "A jaqueta é lançada da balsa ao mar.",
+    "Os tanques de óleo do FPSO são esvaziados."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Load-out é o carregamento da estrutura pronta do estaleiro para a balsa — por deslizamento sobre skids, por veículos modulares ou por guindaste. A estrutura, projetada para trabalhar apoiada no fundo, fica apoiada em poucos pontos e sujeita ao desnível entre cais e balsa com a maré. Lançamento, transporte e upending são outras cargas de instalação.</p>"
+  },
+  {
+   "id": "of-020",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "cargas",
+   "enunciado": "<p>Qual estado limite verifica se as juntas tubulares soldadas de uma jaqueta resistem aos milhões de ciclos de onda ao longo da vida útil?</p>",
+   "alternativas": [
+    "Estado limite último (ULS)",
+    "Estado limite de serviço (SLS)",
+    "Estado limite de fadiga (FLS)",
+    "Estado limite acidental (ALS)"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Uma plataforma recebe milhões de ciclos de onda por ano, e as juntas soldadas concentram tensão. O ULS verifica a carga extrema única; o SLS, deformações e vibrações que atrapalham a operação; o ALS, a resistência após um dano. A fadiga é verificada à parte, com curvas S-N e a regra de Miner.</p>"
+  },
+  {
+   "id": "of-021",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ancoragem",
+   "enunciado": "<p>Uma linha de amarra com peso submerso <span class=\"dado\">2,44 kN/m</span> ancora uma plataforma em <span class=\"dado\">300 m</span> de lâmina d’água. A componente horizontal da tração é <span class=\"dado\">800 kN</span>. Qual a tração no fairlead?</p>",
+   "alternativas": [
+    "800 kN",
+    "732 kN",
+    "1 070 kN",
+    "1532 kN"
+   ],
+   "correta": 3,
+   "formulas": [
+    "Catenária: T = H + w h"
+   ],
+   "explicacao": "<div class=\"passo\">w h = 2,44 × 300 = 732 kN</div><div class=\"passo\">T = 800 + 732 = <strong>1532 kN</strong></div><p>Numa catenária a tração no topo é a horizontal mais o peso de uma “coluna” de linha com a altura da lâmina d’água. Em 1 500 m, a mesma amarra somaria 3 660 kN só de peso — por isso não se usa amarra pura em águas profundas.</p>"
+  },
+  {
+   "id": "of-022",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "ancoragem",
+   "enunciado": "<p>Para a mesma linha da questão anterior (w = 2,44 kN/m, h = 300 m, H = 800 kN), qual o comprimento suspenso, do fairlead ao ponto de toque no fundo?</p>",
+   "alternativas": [
+    "300 m",
+    "535 m",
+    "328 m",
+    "809 m"
+   ],
+   "correta": 1,
+   "formulas": [
+    "s = √(h² + 2h·H/w)"
+   ],
+   "explicacao": "<div class=\"passo\">a = H/w = 800 ÷ 2,44 = 327,9 m</div><div class=\"passo\">s = √(300² + 2 × 300 × 327,9)</div><div class=\"passo\">s = √(90 000 + 196 700) = <strong>535 m</strong></div><p>O restante do comprimento fica apoiado no fundo — é esse trecho que garante que a âncora de arrasto só receba força horizontal. Se a plataforma se afastar demais, o trecho apoiado some e a âncora é arrancada. 328 m é o parâmetro a = H/w, não o comprimento.</p>"
+  },
+  {
+   "id": "of-023",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ancoragem",
+   "enunciado": "<p>Comparando a ancoragem em catenária com a taut-leg de poliéster em águas profundas:</p>",
+   "alternativas": [
+    "A taut-leg tem raio de ancoragem ~3 vezes a lâmina d’água e usa âncoras de arrasto.",
+    "A catenária resiste a esforço vertical na âncora e por isso usa estacas de sucção.",
+    "A taut-leg tem raio de ancoragem da ordem da lâmina d’água, maior rigidez e menor offset, mas exige âncoras que resistam a esforço vertical.",
+    "As duas têm a mesma rigidez, mudando só o material."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Na taut-leg a linha chega inclinada à âncora (35 a 45°), e a restauração vem da elasticidade: raio ≈ 1 × LDA, offset pequeno e menos ocupação do fundo. Por isso a âncora precisa ser estaca de sucção, torpedo ou VLA. Na catenária o trecho apoiado garante esforço horizontal na âncora, e o raio chega a 2–3 × LDA.</p>"
+  },
+  {
+   "id": "of-024",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ancoragem",
+   "enunciado": "<p>O sistema DICAS, desenvolvido no Brasil para FPSOs, é:</p>",
+   "alternativas": [
+    "Um sistema de ancoragem de ponto único por turret interno.",
+    "Um spread mooring com complacência diferenciada entre proa e popa, que permite algum alinhamento do navio com o carregamento ambiental.",
+    "Um sistema de posicionamento dinâmico com propulsores.",
+    "Um tipo de âncora de arrasto de alta capacidade."
+   ],
+   "correta": 1,
+   "explicacao": "<p>DICAS (Differentiated Compliance Anchoring System) usa linhas taut-leg distribuídas, com rigidezes diferentes na proa e na popa. O FPSO não gira 360° como num turret, mas consegue se alinhar parcialmente ao mar, reduzindo cargas — com custo menor que o de um turret.</p>"
+  },
+  {
+   "id": "of-025",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "topside",
+   "enunciado": "<p>No processamento primário de uma plataforma, a água que sai do separador trifásico:</p>",
+   "alternativas": [
+    "É devolvida diretamente ao mar.",
+    "É enviada aos tanques de óleo.",
+    "Passa por hidrociclones e flotação até atingir o teor de óleo permitido antes do descarte, ou é reinjetada.",
+    "É usada como água potável do alojamento."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Ao sair do separador a água ainda carrega centenas a milhares de mg/L de óleo. A Resolução CONAMA 393/2007 limita a média mensal de óleos e graxas no descarte a 29 mg/L; para chegar lá usam-se hidrociclones e flotadores. A alternativa ao descarte é a reinjeção no reservatório.</p>"
+  },
+  {
+   "id": "of-026",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "topside",
+   "enunciado": "<p>A água produzida sai do separador com <span class=\"dado\">1 200 mg/L</span> de óleo, passa por hidrociclones com eficiência de <span class=\"dado\">92 %</span> e por um flotador com <span class=\"dado\">70 %</span>. Qual o TOG final e ele atende ao limite de 29 mg/L?</p>",
+   "alternativas": [
+    "28,8 mg/L — atende",
+    "28,8 mg/L — não atende",
+    "336 mg/L — não atende",
+    "1,10 mg/L — atende"
+   ],
+   "correta": 0,
+   "formulas": [
+    "TOG = TOG₀ (1 − η_h)(1 − η_f)"
+   ],
+   "explicacao": "<div class=\"passo\">após hidrociclone: 1 200 × 0,08 = 96 mg/L</div><div class=\"passo\">após flotador: 96 × 0,30 = <strong>28,8 mg/L</strong></div><div class=\"passo\">28,8 ≤ 29 → atende, mas sem nenhuma folga</div><p>As eficiências multiplicam as frações que <em>passam</em>, não se somam. Com folga tão pequena, qualquer queda de desempenho dos hidrociclones leva o descarte para fora da especificação.</p>"
+  },
+  {
+   "id": "of-027",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "topside",
+   "enunciado": "<p>Pela correlação de Souders-Brown com <span class=\"dado\">K = 0,12 m/s</span>, qual a velocidade máxima do gás num separador com líquido de <span class=\"dado\">850 kg/m³</span> e gás de <span class=\"dado\">8 kg/m³</span>?</p>",
+   "alternativas": [
+    "12,6 m/s",
+    "0,0130 m/s",
+    "0,718 m/s",
+    "1,23 m/s"
+   ],
+   "correta": 3,
+   "formulas": [
+    "v_máx = K √[(ρ_L − ρ_G)/ρ_G]"
+   ],
+   "explicacao": "<div class=\"passo\">(850 − 8) ÷ 8 = 105,3</div><div class=\"passo\">√105,3 = 10,26</div><div class=\"passo\">v_máx = 0,12 × 10,26 = <strong>1,23 m/s</strong></div><p>Acima dessa velocidade o gás arrasta gotas de líquido para os compressores. 12,6 m/s esquece a raiz; 0,718 m/s usa K = 0,07, valor de vaso vertical. Aumentar a pressão do separador aumenta ρ_G e reduz v_máx, mas reduz muito mais o volume de gás.</p>"
+  },
+  {
+   "id": "of-028",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "topside",
+   "enunciado": "<p>Sobre o arranjo do convés de uma plataforma de produção:</p>",
+   "alternativas": [
+    "O alojamento deve ficar junto aos poços para agilizar as intervenções.",
+    "O alojamento, a sala de controle e as baleeiras ficam na área segura, afastados das áreas de maior risco de explosão, como poços, planta de gás e queimador.",
+    "O queimador fica sobre o alojamento para aproveitar o calor.",
+    "Não há separação de áreas de risco em plataformas modernas."
+   ],
+   "correta": 1,
+   "explicacao": "<p>O convés é dividido por risco. Piper Alpha (1988) mostrou o que acontece quando uma explosão no módulo de gás atinge o alojamento. Desde então, áreas habitadas ficam do lado seguro, protegidas por paredes corta-fogo e antiexplosão, com rotas de fuga até as baleeiras.</p>"
+  },
+  {
+   "id": "of-029",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "submarina",
+   "enunciado": "<p>O equipamento submarino que junta a produção de vários poços e a encaminha a uma linha comum até a plataforma é o:</p>",
+   "alternativas": [
+    "PLET",
+    "Umbilical",
+    "Manifold",
+    "Jumper"
+   ],
+   "correta": 2,
+   "explicacao": "<p>O manifold é o coletor submarino: recebe a produção de vários poços (por jumpers), distribui injeção e permite reduzir o número de risers. O PLET é a terminação de um duto; o umbilical leva controle, energia e químicos; o jumper é o trecho curto de ligação entre equipamentos.</p>"
+  },
+  {
+   "id": "of-030",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "desenvolvimento",
+   "enunciado": "<p>Um campo tem lâmina d’água de 800 m, produção média, mar severo e fica muito afastado da costa, sem oleodutos na região. Qual conceito é mais indicado e por quê?</p>",
+   "alternativas": [
+    "Jaqueta, porque é a mais barata.",
+    "Jack-up, porque se apoia no fundo.",
+    "FPSO, porque produz e estoca o óleo, que é escoado por navio aliviador sem depender de oleoduto.",
+    "TLP, porque dispensa qualquer forma de escoamento."
+   ],
+   "correta": 2,
+   "explicacao": "<p>A 800 m a jaqueta está fora da faixa usual e o jack-up não alcança o fundo. Sem oleoduto, a unidade precisa estocar: FPSO (ou uma semi ligada a um FSO). A TLP não estoca óleo e precisaria de oleoduto ou de uma unidade de estocagem separada.</p>"
+  }
+ ]
+}

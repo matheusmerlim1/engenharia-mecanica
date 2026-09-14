@@ -1,0 +1,554 @@
+{
+  "disciplina": "Mecânica dos Materiais",
+  "slug": "mecanica-dos-materiais",
+  "topicos": [
+    {
+      "id": "tensao",
+      "nome": "Tensão e deformação"
+    },
+    {
+      "id": "ensaio",
+      "nome": "Ensaio de tração"
+    },
+    {
+      "id": "torcao",
+      "nome": "Torção"
+    },
+    {
+      "id": "esforcos",
+      "nome": "Diagramas V e M"
+    },
+    {
+      "id": "flexao",
+      "nome": "Flexão"
+    },
+    {
+      "id": "deflexao",
+      "nome": "Deflexão"
+    },
+    {
+      "id": "superposicao",
+      "nome": "Hiperestáticos"
+    },
+    {
+      "id": "combinado",
+      "nome": "Carregamento combinado"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "mm-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "tensao",
+      "enunciado": "<p>Duas barras do mesmo material e mesmo comprimento são tracionadas pela mesma força. A barra B tem o dobro da área da seção transversal da barra A. Comparando as duas:</p>",
+      "alternativas": [
+        "A tensão em B é metade da de A, mas o alongamento é o mesmo.",
+        "A tensão é a mesma nas duas, pois o material é o mesmo.",
+        "A tensão em B é o dobro da tensão em A e o alongamento é igual.",
+        "A tensão e o alongamento em B são metade dos de A."
+      ],
+      "correta": 3,
+      "explicacao": "<p>σ = N/A: dobrando a área com a mesma força, a tensão cai pela metade. Como δ = NL/(AE) e apenas A mudou, o alongamento também cai pela metade. Tensão depende da geometria da seção, não do material; o material entra só na relação entre tensão e deformação.</p>"
+    },
+    {
+      "id": "mm-002",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "tensao",
+      "enunciado": "<p>Uma barra de aço (E = 200 GPa) de seção retangular <span class=\"dado\">25 mm × 12 mm</span> e comprimento <span class=\"dado\">2,0 m</span> é tracionada por <span class=\"dado\">45 kN</span>. Determine a tensão normal e o alongamento.</p>",
+      "alternativas": [
+        "300 MPa e 3,0 mm",
+        "75 MPa e 0,75 mm",
+        "150 MPa e 1,5 mm",
+        "150 MPa e 0,75 mm"
+      ],
+      "correta": 2,
+      "formulas": [
+        "σ = N / A",
+        "δ = N·L / (A·E)",
+        "1 MPa = 1 N/mm²"
+      ],
+      "explicacao": "<div class=\"passo\">A = 25 × 12 = 300 mm²</div><div class=\"passo\">σ = 45 000 / 300 = 150 MPa</div><div class=\"passo\">δ = 45 000 × 2000 / (300 × 200 000) = 1,5 mm</div><p>Trabalhando em N e mm, E = 200 000 MPa e o resultado sai direto, sem conversão de potências.</p>"
+    },
+    {
+      "id": "mm-003",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "tensao",
+      "enunciado": "<p>O coeficiente de Poisson de um material relaciona:</p>",
+      "alternativas": [
+        "A tensão normal com a deformação normal na mesma direção.",
+        "A tensão de cisalhamento com a deformação angular.",
+        "A deformação transversal com a deformação longitudinal, com sinal negativo.",
+        "O limite de escoamento com o limite de resistência."
+      ],
+      "correta": 2,
+      "explicacao": "<p>ν = −ε<sub>lat</sub>/ε<sub>long</sub>. O sinal negativo existe porque, ao alongar, a barra estreita. A primeira alternativa descreve o módulo E; a segunda, o módulo G. Para metais ν fica entre 0,25 e 0,35.</p>"
+    },
+    {
+      "id": "mm-004",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "tensao",
+      "enunciado": "<p>Um material tem <span class=\"dado\">E = 210 GPa</span> e <span class=\"dado\">ν = 0,30</span>. Qual o módulo de cisalhamento G?</p>",
+      "alternativas": [
+        "80,8 GPa",
+        "105 GPa",
+        "161 GPa",
+        "70,0 GPa"
+      ],
+      "correta": 0,
+      "formulas": [
+        "G = E / [2(1 + ν)]"
+      ],
+      "explicacao": "<div class=\"passo\">G = 210 / [2 × (1 + 0,30)] = 210 / 2,60</div><div class=\"passo\">G = 80,8 GPa</div><p>Para aços em geral G ≈ 77–81 GPa, cerca de 0,4·E. Se a sua conta der algo muito longe disso, provavelmente você somou ν sem o fator 2.</p>"
+    },
+    {
+      "id": "mm-005",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "tensao",
+      "enunciado": "<p>Uma barra de aço (E = 200 GPa, α = 12×10⁻⁶ /°C) está engastada nas duas extremidades, sem folga e sem tensão inicial. A temperatura sobe <span class=\"dado\">40 °C</span>. Qual a tensão que surge na barra?</p>",
+      "alternativas": [
+        "96 MPa de compressão",
+        "9,6 MPa de compressão",
+        "Nenhuma, pois a barra é livre para dilatar",
+        "96 MPa de tração"
+      ],
+      "correta": 0,
+      "formulas": [
+        "δ_térmico = α·ΔT·L",
+        "δ_mecânico = N·L/(A·E)",
+        "compatibilidade: δ_total = 0"
+      ],
+      "explicacao": "<div class=\"passo\">A barra quer dilatar α·ΔT·L, mas os engastes impedem: δ_total = 0</div><div class=\"passo\">α·ΔT·L − σL/E = 0 → σ = E·α·ΔT</div><div class=\"passo\">σ = 200 000 × 12×10⁻⁶ × 40 = 96 MPa</div><p>Como o movimento impedido é de expansão, a barra fica <strong>comprimida</strong>. Note que a tensão não depende do comprimento nem da área — só do material e do ΔT.</p>"
+    },
+    {
+      "id": "mm-006",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "tensao",
+      "enunciado": "<p>Sobre a diferença entre tensão normal média e tensão em um ponto, e sobre o uso de σ = N/A perto de um furo, assinale a alternativa correta:</p>",
+      "alternativas": [
+        "São a mesma coisa: σ = N/A vale ponto a ponto em qualquer seção.",
+        "σ = N/A é uma média sobre a seção; perto de um furo ou de uma mudança brusca a tensão local chega a K_t vezes esse valor, e é esse pico — não a média — que governa a falha em material frágil ou por fadiga.",
+        "A tensão em um ponto é sempre menor que a média, porque o material redistribui a carga.",
+        "A concentração de tensão altera a tensão média na seção, que por isso precisa ser corrigida por K_t antes de qualquer verificação."
+      ],
+      "correta": 1,
+      "explicacao": "<p>σ = N/A fornece a tensão <em>média</em> na seção, resultado de admitir que a força se distribui uniformemente. A tensão em um ponto é o limite da força por área quando a área tende a zero, e só coincide com a média quando a distribuição é realmente uniforme.</p><p>Perto de furos, entalhes, raios de concordância ou mudanças bruscas de seção, as linhas de força se desviam e se concentram, produzindo um pico local muito maior que a média. Esse efeito é descrito pelo fator de concentração de tensão K<sub>t</sub>, com σ<sub>máx</sub> = K<sub>t</sub>·σ<sub>nominal</sub>; um furo circular em chapa larga dá K<sub>t</sub> ≈ 3.</p><p>Pelo princípio de Saint-Venant, a perturbação é local: a distâncias da ordem da maior dimensão da seção, a distribuição volta a ser praticamente uniforme. Por isso σ = N/A continua válida longe da descontinuidade, mas subestima gravemente a tensão junto a ela — e é justamente ali que a trinca nasce, sobretudo em fadiga e em materiais frágeis.</p>"
+    },
+    {
+      "id": "mm-007",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "ensaio",
+      "enunciado": "<p>Dois materiais têm o mesmo limite de escoamento, mas o material A tem módulo de elasticidade três vezes maior que o do material B. Sobre uma peça idêntica feita de cada um:</p>",
+      "alternativas": [
+        "A peça de A escoa com carga três vezes maior.",
+        "A peça de A deforma três vezes menos até atingir o escoamento.",
+        "A peça de A é três vezes mais tenaz.",
+        "As duas peças têm a mesma rigidez, pois o escoamento é igual."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A carga de escoamento depende só de σ<sub>e</sub>·A, que é igual nos dois. O que muda é ε<sub>e</sub> = σ<sub>e</sub>/E: com E três vezes maior, o material A chega ao escoamento com um terço da deformação. Rigidez (E) e resistência (σ<sub>e</sub>) são propriedades independentes, e tenacidade é a área sob a curva, que aqui não foi informada.</p>"
+    },
+    {
+      "id": "mm-008",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "ensaio",
+      "enunciado": "<p>No ensaio de tração, após o ponto de tensão máxima a curva de engenharia desce até a ruptura. Isso significa que:</p>",
+      "alternativas": [
+        "O material amoleceu e passou a suportar menos tensão real.",
+        "Começou a estricção; a área real diminui rápido e a tensão verdadeira continua subindo.",
+        "O corpo de prova entrou em regime elástico novamente.",
+        "A máquina de ensaio perdeu carga por escorregamento das garras."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A tensão de engenharia usa a área <em>inicial</em> A₀. Após σ<sub>u</sub> a deformação deixa de ser uniforme e se localiza no pescoço: a área real cai mais rápido do que a força, então a razão F/A₀ diminui mesmo com a tensão verdadeira F/A<sub>real</sub> ainda crescendo. O material continua encruando até a fratura.</p>"
+    },
+    {
+      "id": "mm-009",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "ensaio",
+      "enunciado": "<p>Um aço tem <span class=\"dado\">σ<sub>e</sub> = 250 MPa</span> e <span class=\"dado\">E = 200 GPa</span>. Qual o módulo de resiliência, isto é, a energia elástica armazenada por unidade de volume até o escoamento?</p>",
+      "alternativas": [
+        "0,156 MJ/m³",
+        "0,313 MJ/m³",
+        "1,25 MJ/m³",
+        "31,3 MJ/m³"
+      ],
+      "correta": 0,
+      "formulas": [
+        "U_r = área triangular sob o trecho elástico",
+        "U_r = σe·εe/2 = σe²/(2E)"
+      ],
+      "explicacao": "<div class=\"passo\">ε<sub>e</sub> = 250/200 000 = 1,25×10⁻³</div><div class=\"passo\">U<sub>r</sub> = σ<sub>e</sub>·ε<sub>e</sub>/2 = 250×10⁶ × 1,25×10⁻³ / 2</div><div class=\"passo\">U<sub>r</sub> = 1,5625×10⁵ J/m³ = <strong>0,156 MJ/m³</strong></div><p>É por isso que aço de mola tem σ<sub>e</sub> muito alto: a resiliência cresce com o <em>quadrado</em> do limite de escoamento, mas só linearmente com a redução de E.</p>"
+    },
+    {
+      "id": "mm-010",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "ensaio",
+      "enunciado": "<p>Para uma estrutura sujeita a sobrecargas acidentais, entre um aço de alta resistência e frágil e outro de menor resistência e muito dúctil, o projetista deve escolher:</p>",
+      "alternativas": [
+        "O frágil, pois a maior resistência garante maior coeficiente de segurança em qualquer situação.",
+        "O frágil, desde que se aumente a seção proporcionalmente.",
+        "É indiferente: o que importa é apenas a tensão admissível adotada.",
+        "O dúctil, porque avisa antes de romper com deformação visível, redistribui tensões ao plastificar localmente, absorve muito mais energia em impacto e é bem menos sensível a entalhes e trincas."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Para estrutura sujeita a sobrecarga acidental, o material dúctil é normalmente preferível, mesmo com menor resistência nominal.</p><p>O motivo é o comportamento após o escoamento. O material dúctil apresenta grande deformação plástica antes de romper: a peça flete, empena e dá sinal visível de que está sobrecarregada, permitindo evacuação e reparo. Além disso, a plasticidade redistribui tensões nos pontos de concentração — o pico local escoa e transfere carga para as regiões vizinhas, o que reduz a sensibilidade a entalhes e a defeitos de fabricação. A área sob a curva (tenacidade) é maior, então a estrutura absorve muito mais energia antes de colapsar, o que importa em impacto.</p><p>O material frágil rompe praticamente sem aviso, com pouca energia absorvida, e é muito sensível a trincas e concentradores. Sua alta resistência só se aproveita com controle rigoroso de defeitos e carregamento bem conhecido — o oposto do cenário descrito.</p>"
+    },
+    {
+      "id": "mm-011",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "torcao",
+      "enunciado": "<p>Em um eixo circular maciço sob torção pura, a tensão de cisalhamento:</p>",
+      "alternativas": [
+        "É constante em toda a seção.",
+        "É máxima no centro e nula na superfície.",
+        "Cresce linearmente do centro até a superfície.",
+        "Varia com o quadrado do raio."
+      ],
+      "correta": 2,
+      "explicacao": "<p>τ = T·ρ/J é linear em ρ: vale zero no eixo e é máxima na superfície. É essa distribuição que torna o material central quase inútil sob torção e justifica o eixo vazado. Quem varia com a quarta potência do raio é J, não τ.</p>"
+    },
+    {
+      "id": "mm-012",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "torcao",
+      "enunciado": "<p>Um eixo maciço de aço (G = 77 GPa) com <span class=\"dado\">d = 40 mm</span> e <span class=\"dado\">L = 1,5 m</span> transmite torque de <span class=\"dado\">1,2 kN·m</span>. Determine a tensão máxima de cisalhamento e o ângulo de torção.</p>",
+      "alternativas": [
+        "95,5 MPa e 0,093°",
+        "191 MPa e 5,33°",
+        "47,7 MPa e 2,66°",
+        "95,5 MPa e 5,33°"
+      ],
+      "correta": 3,
+      "formulas": [
+        "J = π·d⁴/32",
+        "τ_máx = T·c/J,  c = d/2",
+        "φ = T·L/(G·J)   [rad]",
+        "1 rad = 57,3°"
+      ],
+      "explicacao": "<div class=\"passo\">J = π(0,040)⁴/32 = 2,513×10⁻⁷ m⁴ = 251 327 mm⁴</div><div class=\"passo\">τ = 1200 × 0,020 / 2,513×10⁻⁷ = 95,5 MPa</div><div class=\"passo\">φ = 1200 × 1,5 / (77×10⁹ × 2,513×10⁻⁷) = 0,0930 rad</div><div class=\"passo\">φ = 0,0930 × 57,3 = <strong>5,33°</strong></div><p>O distrator de 0,093 é o ângulo em radianos — sempre confira a unidade pedida. O de 47,7 MPa vem de usar o raio no lugar do diâmetro em J.</p>"
+    },
+    {
+      "id": "mm-013",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "torcao",
+      "enunciado": "<p>Um eixo vazado tem <span class=\"dado\">d<sub>e</sub> = 50 mm</span> e <span class=\"dado\">d<sub>i</sub> = 40 mm</span> e transmite <span class=\"dado\">2,0 kN·m</span>. Qual a tensão máxima de cisalhamento, e qual a economia de massa em relação a um eixo maciço de mesmo diâmetro externo?</p>",
+      "alternativas": [
+        "138 MPa e 36 % de economia",
+        "138 MPa e 64 % de economia",
+        "81,5 MPa e 64 % de economia",
+        "204 MPa e 20 % de economia"
+      ],
+      "correta": 1,
+      "formulas": [
+        "J = π(de⁴ − di⁴)/32",
+        "τ_máx = T·(de/2)/J",
+        "m ∝ A = π(de² − di²)/4"
+      ],
+      "explicacao": "<div class=\"passo\">J = π(0,050⁴ − 0,040⁴)/32 = 3,623×10⁻⁷ m⁴</div><div class=\"passo\">τ = 2000 × 0,025 / 3,623×10⁻⁷ = 138 MPa</div><div class=\"passo\">A<sub>vazado</sub>/A<sub>maciço</sub> = (50² − 40²)/50² = 900/2500 = 0,36</div><div class=\"passo\">A massa é 36 % da do maciço → <strong>economia de 64 %</strong></div><p>Compare: o J do maciço seria 6,136×10⁻⁷ m⁴, ou seja, o furo removeu 41 % da rigidez e 64 % da massa. Essa é a assimetria que faz o eixo vazado valer a pena.</p>"
+    },
+    {
+      "id": "mm-014",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "torcao",
+      "enunciado": "<p>Um motor entrega <span class=\"dado\">15 kW</span> a <span class=\"dado\">1750 rpm</span>. Qual o torque no eixo?</p>",
+      "alternativas": [
+        "1 430 N·m",
+        "8,57 N·m",
+        "81,9 N·m",
+        "514 N·m"
+      ],
+      "correta": 2,
+      "formulas": [
+        "ω = 2πn/60   [rad/s]",
+        "P = T·ω  →  T = P/ω"
+      ],
+      "explicacao": "<div class=\"passo\">ω = 2π × 1750/60 = 183,3 rad/s</div><div class=\"passo\">T = 15 000 / 183,3 = <strong>81,9 N·m</strong></div><p>O erro clássico é usar n em rpm direto na fórmula, sem converter para rad/s — isso dá o distrator de 8,57.</p>"
+    },
+    {
+      "id": "mm-015",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "torcao",
+      "enunciado": "<p>Sobre a preferência por eixos vazados quando o peso importa, e sobre o limite dessa estratégia, assinale a alternativa correta:</p>",
+      "alternativas": [
+        "O miolo contribui pouco porque a tensão de torção é proporcional ao raio e quase nula no centro; como J cresce com r⁴ e a massa apenas com r², retirar o núcleo custa pouca rigidez e muito peso — até o limite em que a parede fina flamba localmente ou a fabricação encarece.",
+        "O eixo vazado é mais resistente porque concentra a tensão no centro, onde o material é mais íntegro.",
+        "O ganho vem de J e massa crescerem ambos com r², de modo que a relação resistência/peso é sempre igual e a escolha é apenas de custo.",
+        "Não há limite prático: quanto mais fina a parede, melhor o desempenho do eixo."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Sob torção, τ = T·ρ/J cresce linearmente com o raio: o material próximo ao centro está submetido a tensão baixíssima e praticamente não contribui para resistir ao torque. Retirá-lo custa pouca capacidade.</p><p>Quantitativamente, J depende da <em>quarta</em> potência do raio, enquanto a área (e portanto a massa) depende do quadrado. Ao abrir um furo de raio r<sub>i</sub>, perde-se J proporcional a r<sub>i</sub>⁴, mas elimina-se massa proporcional a r<sub>i</sub>². Como r<sub>i</sub>/r<sub>e</sub> &lt; 1, a quarta potência é sempre menor que a segunda: a perda de rigidez é sistematicamente menor que o ganho de leveza. Com d<sub>i</sub>/d<sub>e</sub> = 0,7, por exemplo, restam 76 % da rigidez com apenas 51 % da massa.</p><p>O limite é a estabilidade e a fabricação. Com a parede muito fina, o eixo deixa de falhar por escoamento e passa a falhar por <strong>flambagem local</strong> da parede (enrugamento sob torção), fenômeno não previsto por τ = Tρ/J. Somam-se a dificuldade de furação profunda e concentricidade, o custo e a redução de área para chavetas e ajustes. Na prática d<sub>i</sub>/d<sub>e</sub> raramente ultrapassa 0,8–0,9.</p>"
+    },
+    {
+      "id": "mm-016",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "esforcos",
+      "enunciado": "<p>Em um trecho de viga onde atua carga uniformemente distribuída, os diagramas de esforço cortante e de momento fletor são, respectivamente:</p>",
+      "alternativas": [
+        "Reta inclinada e parábola.",
+        "Parábola e cúbica.",
+        "Salto e bico.",
+        "Constante e reta inclinada."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Como dV/dx = −q, uma carga constante produz V linear. Como dM/dx = V, o momento é a integral de uma reta, ou seja, uma parábola. Cada integração aumenta em um o grau do diagrama. Salto em V e bico em M correspondem a carga concentrada.</p>"
+    },
+    {
+      "id": "mm-017",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "esforcos",
+      "enunciado": "<p>Ao percorrer uma viga, o ponto em que o esforço cortante cruza o zero é importante porque nele:</p>",
+      "alternativas": [
+        "A deflexão é sempre máxima.",
+        "O momento fletor atinge um máximo ou mínimo local.",
+        "A tensão de cisalhamento é máxima.",
+        "A viga necessariamente tem um apoio."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Sendo dM/dx = V, o momento tem derivada nula onde V = 0 — logo, um extremo. A deflexão máxima ocorre onde a <em>rotação</em> é nula, que em geral é outro ponto. A tensão de cisalhamento máxima ocorre onde |V| é máximo, não onde ele se anula.</p>"
+    },
+    {
+      "id": "mm-018",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "esforcos",
+      "enunciado": "<p>Uma viga biapoiada de vão <span class=\"dado\">L = 6 m</span> recebe carga concentrada de <span class=\"dado\">20 kN</span> no meio do vão. Qual o momento fletor máximo e onde ele ocorre?</p>",
+      "alternativas": [
+        "60 kN·m no meio do vão",
+        "120 kN·m no meio do vão",
+        "15 kN·m nos apoios",
+        "30 kN·m no meio do vão"
+      ],
+      "correta": 3,
+      "formulas": [
+        "Biapoiada com P central: R = P/2 e M_máx = P·L/4"
+      ],
+      "explicacao": "<div class=\"passo\">R<sub>A</sub> = R<sub>B</sub> = 20/2 = 10 kN</div><div class=\"passo\">M no meio = R<sub>A</sub> × L/2 = 10 × 3 = 30 kN·m</div><div class=\"passo\">Equivale a P·L/4 = 20 × 6/4 = <strong>30 kN·m</strong></div><p>Nos apoios de uma viga biapoiada o momento é sempre nulo — é a definição do apoio articulado.</p>"
+    },
+    {
+      "id": "mm-019",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "esforcos",
+      "enunciado": "<p>Um momento concentrado M₀ é aplicado no meio do vão de uma viga biapoiada de comprimento L. Sobre os diagramas resultantes:</p>",
+      "alternativas": [
+        "O cortante sofre um salto de M₀ e o momento fica constante.",
+        "Ambos os diagramas ficam nulos, porque o momento aplicado se autoequilibra.",
+        "As reações formam um binário de valor M₀/L, o cortante é constante e sem salto em todo o vão, e o diagrama de momento é feito de duas retas de mesma inclinação com um salto de M₀ na seção de aplicação.",
+        "O cortante varia linearmente e o momento sofre um bico, como em uma carga concentrada."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Um binário aplicado não introduz força vertical resultante. O equilíbrio de momentos exige, porém, um par de reações verticais iguais e opostas: R<sub>A</sub> = M₀/L para cima em um apoio e R<sub>B</sub> = M₀/L para baixo no outro.</p><p>No diagrama de <strong>cortante</strong>, isso produz um valor constante e não nulo igual a M₀/L ao longo de toda a viga, sem qualquer salto na seção do binário — momento concentrado não altera V.</p><p>No diagrama de <strong>momento fletor</strong>, como dM/dx = V é constante, o diagrama é formado por duas retas de mesma inclinação, com um <strong>salto</strong> de magnitude M₀ exatamente na seção de aplicação. O momento parte de zero no apoio, cresce linearmente, salta M₀ e volta a zero no outro apoio. O momento máximo em módulo ocorre imediatamente antes ou depois do ponto de aplicação, dependendo do sentido do binário.</p>"
+    },
+    {
+      "id": "mm-020",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "flexao",
+      "enunciado": "<p>Na flexão pura de uma viga de seção simétrica e material homogêneo, a linha neutra:</p>",
+      "alternativas": [
+        "Depende do valor do momento aplicado.",
+        "Passa pela fibra mais tracionada.",
+        "Passa pelo centroide da seção transversal.",
+        "Fica sempre no meio da altura, qualquer que seja a seção."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A ausência de força normal resultante impõe ∫σ dA = 0. Como σ = −E·y/ρ, isso equivale a ∫y dA = 0, condição que define o centroide. Só em seções simétricas em relação ao eixo de flexão é que o centroide coincide com o meio da altura — em um perfil T, por exemplo, não coincide. E a posição não depende do valor de M.</p>"
+    },
+    {
+      "id": "mm-021",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "flexao",
+      "enunciado": "<p>Uma viga de seção retangular <span class=\"dado\">50 mm × 150 mm</span> (altura 150 mm) está sujeita a momento fletor de <span class=\"dado\">12 kN·m</span>. Qual a tensão normal máxima?</p>",
+      "alternativas": [
+        "32,0 MPa",
+        "64,0 MPa",
+        "96,0 MPa",
+        "192 MPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "I = b·h³/12",
+        "W = I/c = b·h²/6",
+        "σ_máx = M/W"
+      ],
+      "explicacao": "<div class=\"passo\">W = b·h²/6 = 50 × 150²/6 = 187 500 mm³</div><div class=\"passo\">σ = M/W = 12×10⁶ N·mm / 187 500 mm³</div><div class=\"passo\">σ = <strong>64,0 MPa</strong></div><p>Usar W = bh²/6 em vez de calcular I e depois dividir por c poupa um passo e evita erro de unidade. O distrator de 32 MPa vem de trocar b por h.</p>"
+    },
+    {
+      "id": "mm-022",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "flexao",
+      "enunciado": "<p>A mesma seção retangular <span class=\"dado\">50 mm × 150 mm</span> é montada deitada, isto é, com 150 mm de largura e 50 mm de altura. Por qual fator a tensão máxima de flexão aumenta, para o mesmo momento?</p>",
+      "alternativas": [
+        "3 vezes",
+        "9 vezes",
+        "27 vezes",
+        "Não muda, a área é a mesma"
+      ],
+      "correta": 0,
+      "formulas": [
+        "W = b·h²/6",
+        "σ = M/W"
+      ],
+      "explicacao": "<div class=\"passo\">Em pé: W = 50 × 150²/6 = 187 500 mm³</div><div class=\"passo\">Deitada: W = 150 × 50²/6 = 62 500 mm³</div><div class=\"passo\">σ ∝ 1/W → razão = 187 500/62 500 = <strong>3 vezes</strong></div><p>Cuidado com a confusão frequente: o <em>momento de inércia</em> cai 9 vezes (I ∝ h³, razão 3² = 9 aqui porque b e h trocam), mas a <em>tensão</em> depende de W ∝ h², então o fator é 3. A flecha, essa sim, aumenta 9 vezes.</p>"
+    },
+    {
+      "id": "mm-023",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "flexao",
+      "enunciado": "<p>Uma viga de seção retangular <span class=\"dado\">50 mm × 150 mm</span> transmite esforço cortante de <span class=\"dado\">60 kN</span>. Qual a tensão de cisalhamento máxima na seção?</p>",
+      "alternativas": [
+        "24,0 MPa",
+        "8,0 MPa",
+        "12,0 MPa",
+        "16,0 MPa"
+      ],
+      "correta": 2,
+      "formulas": [
+        "τ = V·Q/(I·t)",
+        "Seção retangular: τ_máx = 1,5·V/A (na linha neutra)"
+      ],
+      "explicacao": "<div class=\"passo\">A = 50 × 150 = 7 500 mm²</div><div class=\"passo\">τ<sub>méd</sub> = V/A = 60 000/7 500 = 8,0 MPa</div><div class=\"passo\">τ<sub>máx</sub> = 1,5 × 8,0 = <strong>12,0 MPa</strong></div><p>O fator 1,5 vem da distribuição parabólica: a tensão é nula nas bordas superior e inferior e máxima na linha neutra. Responder 8,0 MPa é confundir a média com o pico.</p>"
+    },
+    {
+      "id": "mm-024",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "flexao",
+      "enunciado": "<p>Em um perfil I sob flexão com cortante, a divisão de trabalho entre os elementos da seção é:</p>",
+      "alternativas": [
+        "Mesas e alma dividem igualmente ambos os esforços.",
+        "As mesas resistem a tudo; a alma só serve para manter o espaçamento.",
+        "A alma resiste ao momento e as mesas ao cortante.",
+        "As mesas resistem à maior parte do momento e a alma à maior parte do cortante."
+      ],
+      "correta": 3,
+      "explicacao": "<p>As mesas estão longe da linha neutra, onde σ = My/I é máxima, e concentram a contribuição para I — daí resistirem à flexão. A alma está na região de σ baixo, mas é onde τ = VQ/(It) é máximo e onde a espessura t é mínima; por isso ela absorve tipicamente 90–95 % do cortante. A alma não é dispensável: sem ela, as mesas escorregariam uma sobre a outra e a seção perderia quase toda a rigidez.</p>"
+    },
+    {
+      "id": "mm-025",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "deflexao",
+      "enunciado": "<p>Uma viga de aço biapoiada (E = 200 GPa, I = 1,94×10⁻⁵ m⁴) de vão <span class=\"dado\">L = 6 m</span> recebe carga uniformemente distribuída de <span class=\"dado\">15 kN/m</span>. Qual a flecha máxima?</p>",
+      "alternativas": [
+        "16,3 mm",
+        "32,6 mm",
+        "65,2 mm",
+        "130 mm"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Biapoiada com q uniforme:",
+        "v_máx = 5·q·L⁴ / (384·E·I)",
+        "M_máx = q·L²/8"
+      ],
+      "explicacao": "<div class=\"passo\">L⁴ = 6⁴ = 1296 m⁴</div><div class=\"passo\">v = 5 × 15 000 × 1296 / (384 × 200×10⁹ × 1,94×10⁻⁵)</div><div class=\"passo\">v = 9,72×10⁷ / 1,4899×10⁹ = 0,0652 m = <strong>65,2 mm</strong></div><p>Isso corresponde a L/92, muito acima do limite usual de L/250 — a viga passaria por resistência e reprovaria por rigidez. É o tipo de resultado que decide a bitola do perfil.</p>"
+    },
+    {
+      "id": "mm-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "deflexao",
+      "enunciado": "<p>Dobrando o vão de uma viga biapoiada e mantendo a mesma carga distribuída por metro, a flecha máxima:</p>",
+      "alternativas": [
+        "Dobra.",
+        "Quadruplica.",
+        "Aumenta 8 vezes.",
+        "Aumenta 16 vezes."
+      ],
+      "correta": 3,
+      "explicacao": "<p>v = 5qL⁴/(384EI) depende da <strong>quarta potência</strong> do vão. Dobrando L: 2⁴ = 16. É por isso que o critério de rigidez costuma governar vãos longos, muito antes do critério de resistência — que cresce só com L² pelo momento qL²/8.</p>"
+    },
+    {
+      "id": "mm-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "superposicao",
+      "enunciado": "<p>Comparando duas vigas idênticas com a mesma carga uniformemente distribuída, uma biapoiada e outra biengastada, a flecha máxima da biengastada é:</p>",
+      "alternativas": [
+        "Igual, pois a carga é a mesma.",
+        "Metade da flecha da biapoiada.",
+        "Um quinto da flecha da biapoiada.",
+        "Um oitavo da flecha da biapoiada."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Biapoiada: v = 5qL⁴/(384EI). Biengastada: v = qL⁴/(384EI). A razão é exatamente 5. O momento máximo também melhora, caindo de qL²/8 para qL²/12 (fator 1,5), mas agora localizado nos engastes, e não no meio do vão. É o ganho que justifica engastar sempre que a ligação permitir.</p>"
+    },
+    {
+      "id": "mm-028",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "superposicao",
+      "enunciado": "<p>Uma viga engastada em uma extremidade e apoiada sobre rolete na outra, de vão <span class=\"dado\">L = 4 m</span>, recebe carga uniforme de <span class=\"dado\">10 kN/m</span>. Determine a reação no rolete e o momento no engaste.</p>",
+      "alternativas": [
+        "R = 15 kN e M = 20 kN·m",
+        "R = 15 kN e M = 13,3 kN·m",
+        "R = 25 kN e M = 20 kN·m",
+        "R = 20 kN e M = 20 kN·m"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Sistema primário: balanço com q, flecha na ponta = q·L⁴/(8EI)",
+        "Reação redundante R levanta: R·L³/(3EI)",
+        "Compatibilidade: deflexão no rolete = 0",
+        "Resultado tabelado: R = 3qL/8 e M_engaste = q·L²/8"
+      ],
+      "explicacao": "<div class=\"passo\">Compatibilidade: qL⁴/(8EI) = R·L³/(3EI) → R = 3qL/8</div><div class=\"passo\">R = 3 × 10 × 4/8 = <strong>15 kN</strong></div><div class=\"passo\">Equilíbrio de momentos no engaste: M = qL²/2 − R·L = 10×16/2 − 15×4</div><div class=\"passo\">M = 80 − 60 = <strong>20 kN·m</strong>, que confere com qL²/8</div><p>Repare que R = 15 kN é menor que a metade da carga total (40/2 = 20 kN): o engaste, por ser mais rígido que o rolete, atrai mais carga. Você pode conferir esses dois valores no simulador de viga escolhendo a vinculação engastada-apoiada.</p>"
+    },
+    {
+      "id": "mm-029",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "combinado",
+      "enunciado": "<p>Em um ponto crítico da superfície de um eixo, atuam simultaneamente tensão normal de flexão <span class=\"dado\">σ = 80 MPa</span> e tensão de cisalhamento por torção <span class=\"dado\">τ = 45 MPa</span>. Pelo critério da energia de distorção (von Mises), qual a tensão equivalente e o coeficiente de segurança para um aço com σ<sub>e</sub> = 250 MPa?</p>",
+      "alternativas": [
+        "σ_eq = 92,2 MPa e n = 2,71",
+        "σ_eq = 111,7 MPa e n = 2,24",
+        "σ_eq = 125,0 MPa e n = 2,00",
+        "σ_eq = 145,0 MPa e n = 1,72"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Estado plano com σx = σ, σy = 0, τxy = τ",
+        "σ_eq = √(σ² + 3τ²)",
+        "n = σe / σ_eq"
+      ],
+      "explicacao": "<div class=\"passo\">σ² = 80² = 6 400</div><div class=\"passo\">3τ² = 3 × 45² = 6 075</div><div class=\"passo\">σ_eq = √(6 400 + 6 075) = √12 475 = <strong>111,7 MPa</strong></div><div class=\"passo\">n = 250/111,7 = <strong>2,24</strong></div><p>Esquecer o fator 3 no termo de cisalhamento dá 92,2 MPa — é o distrator mais escolhido. Esse fator vem de a energia de distorção ser mais sensível ao cisalhamento do que à tração pura.</p>"
+    },
+    {
+      "id": "mm-030",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "combinado",
+      "enunciado": "<p>Um eixo apoiado em dois mancais recebe uma polia em balanço na extremidade. Sobre os esforços, a seção crítica e o ponto crítico:</p>",
+      "alternativas": [
+        "O eixo sofre apenas torção, e o ponto crítico está no centro da seção.",
+        "Atuam flexão e torção simultâneas; a seção crítica é o mancal vizinho ao balanço, onde o momento fletor é máximo enquanto o torque é constante no trecho; o ponto crítico está na superfície, onde σ = Mc/I e τ = Tc/J são máximos, e a combinação se faz por von Mises ou Mohr.",
+        "A seção crítica é a da polia, porque ali a carga é aplicada.",
+        "Como o momento fletor e o torque atuam em planos diferentes, cada um deve ser verificado separadamente, sem combinação."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A polia em balanço aplica ao eixo uma força transversal (resultante das trações dos ramos da correia) e um torque. O eixo passa então a sofrer, simultaneamente, <strong>flexão</strong> — produzida pela força transversal atuando com braço até os mancais — e <strong>torção</strong> — do torque transmitido. Pode haver ainda força normal, em geral pequena, e o cortante associado à flexão.</p><p>A seção crítica é aquela onde o momento fletor é máximo, tipicamente <em>no mancal adjacente ao balanço</em>, e onde frequentemente há também um concentrador de tensão (rasgo de chaveta, mudança de diâmetro, alojamento do rolamento). O torque, ao contrário do momento, é constante no trecho entre a polia e o elemento que consome a potência, então a seção crítica é decidida pela flexão somada ao concentrador presente.</p><p>Dentro da seção, o ponto crítico está na <strong>superfície</strong>, porque tanto σ = M·c/I quanto τ = T·c/J são máximos no raio externo — e o cisalhamento por cortante, que é máximo na linha neutra, é desprezível nesse tipo de eixo. Escolhe-se a fibra mais tracionada pela flexão. Combinando σ e τ nesse ponto pelo círculo de Mohr ou diretamente por σ_eq = √(σ² + 3τ²), compara-se com σ<sub>e</sub>/n. Como o eixo gira, a tensão de flexão é alternada e o dimensionamento definitivo é por fadiga.</p>"
+    }
+  ]
+}

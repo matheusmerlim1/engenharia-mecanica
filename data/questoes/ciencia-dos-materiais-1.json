@@ -1,0 +1,535 @@
+{
+  "disciplina": "Ciência dos Materiais I",
+  "slug": "ciencia-dos-materiais-1",
+  "topicos": [
+    {
+      "id": "solucoes",
+      "nome": "Soluções sólidas"
+    },
+    {
+      "id": "diagramas",
+      "nome": "Diagramas de fases"
+    },
+    {
+      "id": "fec",
+      "nome": "Diagrama ferro-carbono"
+    },
+    {
+      "id": "alavanca",
+      "nome": "Regra da alavanca"
+    },
+    {
+      "id": "resfriamento",
+      "nome": "Resfriamento de equilíbrio"
+    },
+    {
+      "id": "discordancias",
+      "nome": "Discordâncias"
+    },
+    {
+      "id": "endurecimento",
+      "nome": "Mecanismos de endurecimento"
+    },
+    {
+      "id": "difusao",
+      "nome": "Difusão"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "c1-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "solucoes",
+      "enunciado": "<p>O carbono forma com o ferro uma solução sólida:</p>",
+      "alternativas": [
+        "Substitucional, ocupando posições da rede do ferro.",
+        "Substitucional ordenada, formando superrede.",
+        "Nenhuma: carbono e ferro são imiscíveis.",
+        "Intersticial, ocupando os vazios entre os átomos de ferro."
+      ],
+      "correta": 3,
+      "explicacao": "<p>O raio do carbono (0,071 nm) é muito menor que o do ferro (0,124 nm), então ele não substitui um átomo de ferro: encaixa-se nos <strong>interstícios</strong> — especificamente nos octaédricos. Isso explica dois fatos importantes: a solubilidade é sempre baixa (no máximo 2,14 % na austenita) e a difusão é rápida, porque o átomo pula de vazio em vazio sem precisar de lacuna.</p>"
+    },
+    {
+      "id": "c1-002",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "solucoes",
+      "enunciado": "<p>A austenita (CFC, fator de empacotamento 0,74) dissolve muito mais carbono que a ferrita (CCC, 0,68). A explicação é:</p>",
+      "alternativas": [
+        "A austenita tem mais espaço vazio total.",
+        "O carbono se liga quimicamente ao ferro na austenita e apenas fisicamente na ferrita.",
+        "A austenita é estável em temperatura mais alta, e temperatura dissolve mais.",
+        "O que importa é o tamanho do maior vazio individual, e o CFC concentra o vazio em poucos interstícios grandes, enquanto o CCC o espalha em muitos buracos pequenos."
+      ],
+      "correta": 3,
+      "explicacao": "<p>É um resultado contraintuitivo: a estrutura <em>mais compacta</em> dissolve <em>mais</em> soluto intersticial. O CCC tem mais volume vazio total (32 % contra 26 %), mas distribuído em muitos interstícios pequenos e distorcidos — o octaédrico do CCC comporta uma esfera de raio 0,019 nm. O CFC concentra o vazio: seu interstício octaédrico comporta 0,052 nm, quase três vezes maior. Como o carbono precisa caber em <em>um</em> vazio, o que conta é o maior individual. Este é o fato que torna a têmpera possível.</p>"
+    },
+    {
+      "id": "c1-003",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "solucoes",
+      "enunciado": "<p>Cobre e níquel formam solução sólida em qualquer proporção. Isso acontece porque satisfazem as regras de Hume-Rothery, entre as quais:</p>",
+      "alternativas": [
+        "Raios atômicos diferindo menos de 15 %, mesma estrutura cristalina, valências e eletronegatividades próximas.",
+        "Apenas terem pontos de fusão próximos.",
+        "Serem ambos metais de transição.",
+        "Terem massas atômicas próximas."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Cu e Ni cumprem as quatro: raios de 0,128 e 0,125 nm (diferença de 2,3 %), ambos CFC, valências 1 e 2 (próximas) e eletronegatividades 1,9 e 1,8. Falhando qualquer uma delas, a solubilidade fica limitada e o diagrama passa a ter eutético ou compostos intermetálicos. O critério de tamanho é o mais restritivo: acima de 15 % a distorção elástica da rede fica alta demais.</p>"
+    },
+    {
+      "id": "c1-004",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "diagramas",
+      "enunciado": "<p>Em uma liga binária (dois componentes) a pressão constante, quantos graus de liberdade existem numa região de <span class=\"dado\">duas fases</span>?</p>",
+      "alternativas": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "correta": 1,
+      "formulas": [
+        "P + F = C + 1   (forma condensada, pressão constante)",
+        "P = número de fases · C = número de componentes"
+      ],
+      "explicacao": "<div class=\"passo\">C = 2 (binária), P = 2 (duas fases)</div><div class=\"passo\">F = C + 1 − P = 2 + 1 − 2 = <strong>1</strong></div><p>Um grau de liberdade significa que, escolhida a temperatura, tudo o mais fica determinado: as composições das duas fases saem das fronteiras. É exatamente isso que dá sentido à conodal. Com três fases, F = 0 e o sistema é invariante — só existe naquela temperatura, que é o caso do eutetoide a 727 °C.</p>"
+    },
+    {
+      "id": "c1-005",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "diagramas",
+      "enunciado": "<p>Na regra da alavanca, para calcular a fração de uma fase usa-se:</p>",
+      "alternativas": [
+        "O braço da conodal do mesmo lado da fase.",
+        "A razão entre as composições das duas fases.",
+        "A média dos dois braços.",
+        "O braço OPOSTO à fase, dividido pelo comprimento total da conodal."
+      ],
+      "correta": 3,
+      "explicacao": "<p>É o braço oposto, e a razão é física: se a composição global está próxima da fronteira da fase α, existe <em>muito</em> α — e o braço que vai do ponto até α é curto. A analogia da gangorra ajuda: a massa maior fica do lado do braço curto. Usar o braço do mesmo lado é o erro mais frequente desta parte da matéria, e o teste é imediato: as duas frações têm que somar 1.</p>"
+    },
+    {
+      "id": "c1-006",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "fec",
+      "enunciado": "<p>A reação eutetoide do diagrama ferro-carbono é:</p>",
+      "alternativas": [
+        "L → γ + Fe₃C, a 1147 °C e 4,30 %C.",
+        "L + δ → γ, a 1493 °C e 0,17 %C.",
+        "γ → α + Fe₃C, a 727 °C e 0,76 %C.",
+        "α → γ + Fe₃C, a 912 °C e 0,022 %C."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Eutetoide: um <strong>sólido</strong> se decompõe em dois sólidos. A austenita com 0,76 %C se transforma, a 727 °C, em ferrita (0,022 %C) e cementita (6,67 %C), formando lamelas alternadas — a perlita. A alternativa com L → γ + Fe₃C é a reação <em>eutética</em>, a 1147 °C, que parte de líquido. O sufixo “-oide” é justamente o que marca a diferença: mesma forma de reação, mas inteiramente no estado sólido.</p>"
+    },
+    {
+      "id": "c1-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fec",
+      "enunciado": "<p>A fronteira entre aço e ferro fundido está em 2,14 %C porque:</p>",
+      "alternativas": [
+        "É uma convenção histórica sem base física.",
+        "Acima disso o material fica magnético.",
+        "É a máxima solubilidade de carbono na austenita: abaixo dela a liga pode ser inteiramente austenitizada e conformada; acima, sempre passa pelo eutético.",
+        "É o teor em que a cementita começa a se formar."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Não é arbitrário. Com menos de 2,14 %C, ao aquecer a liga vira austenita homogênea e pode ser forjada, laminada e tratada termicamente. Com mais, sempre sobra líquido para a reação eutética, a liga passa pela ledeburita e fica frágil demais para conformação mecânica — resta fundir. É por isso que a palavra “fundido” está no nome.</p>"
+    },
+    {
+      "id": "c1-008",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fec",
+      "enunciado": "<p>Sobre perlita e cementita, é correto afirmar:</p>",
+      "alternativas": [
+        "Ambas são fases do diagrama ferro-carbono.",
+        "Ambas são microconstituintes, e as fases são apenas ferrita e austenita.",
+        "A perlita é uma fase e a cementita é um microconstituinte.",
+        "A cementita é uma fase (Fe₃C, 6,67 %C); a perlita NÃO é fase, é um microconstituinte formado por lamelas alternadas de ferrita e cementita."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Abaixo de 727 °C todo aço tem exatamente <strong>duas fases</strong>: ferrita e cementita. O que se enxerga ao microscópio são <em>microconstituintes</em> — arranjos daquelas fases. A perlita é o arranjo lamelar produzido pela reação eutetoide, e sua composição é fixa: 88,9 % de ferrita e 11,1 % de cementita, para qualquer aço. Confundir fase com microconstituinte é o erro mais frequente da disciplina.</p>"
+    },
+    {
+      "id": "c1-009",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "alavanca",
+      "enunciado": "<p>Um aço com <span class=\"dado\">0,40 %C</span> resfriado lentamente até a temperatura ambiente. Quais as frações de ferrita proeutetoide e de perlita?</p>",
+      "alternativas": [
+        "48,8 % de ferrita proeutetoide e 51,2 % de perlita",
+        "51,2 % de ferrita proeutetoide e 48,8 % de perlita",
+        "94,3 % de ferrita proeutetoide e 5,7 % de perlita",
+        "40,0 % de ferrita proeutetoide e 60,0 % de perlita"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Wα' = (0,76 − C₀)/(0,76 − 0,022)",
+        "W_perlita = (C₀ − 0,022)/(0,76 − 0,022)",
+        "Conodal de 0,022 a 0,76, logo ACIMA de 727 °C"
+      ],
+      "explicacao": "<div class=\"passo\">A conodal vai de 0,022 (ferrita) a 0,76 (austenita prestes a virar perlita), com comprimento 0,738</div><div class=\"passo\">W<sub>α'</sub> = (0,76 − 0,40)/0,738 = 0,36/0,738 = <strong>0,488</strong></div><div class=\"passo\">W<sub>perlita</sub> = (0,40 − 0,022)/0,738 = 0,378/0,738 = <strong>0,512</strong></div><p>Conferência: 0,488 + 0,512 = 1,000. Cuidado para não confundir com as frações de <em>fases</em>: a ferrita TOTAL (proeutetoide mais a que está dentro da perlita) seria (6,67 − 0,40)/6,648 = 94,3 %.</p>"
+    },
+    {
+      "id": "c1-010",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "alavanca",
+      "enunciado": "<p>Para o mesmo aço de <span class=\"dado\">0,40 %C</span>, quais as frações das duas FASES à temperatura ambiente?</p>",
+      "alternativas": [
+        "48,8 % ferrita e 51,2 % cementita",
+        "88,9 % ferrita e 11,1 % cementita",
+        "94,3 % ferrita e 5,7 % cementita",
+        "60,0 % ferrita e 40,0 % cementita"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Wα = (6,67 − C₀)/(6,67 − 0,022)",
+        "W_Fe3C = (C₀ − 0,022)/(6,67 − 0,022)",
+        "Agora a conodal vai de 0,022 até 6,67"
+      ],
+      "explicacao": "<div class=\"passo\">Conodal completa: de 0,022 a 6,67, comprimento 6,648</div><div class=\"passo\">W<sub>α</sub> = (6,67 − 0,40)/6,648 = 6,27/6,648 = <strong>0,943</strong></div><div class=\"passo\">W<sub>Fe₃C</sub> = (0,40 − 0,022)/6,648 = <strong>0,057</strong></div><p>A diferença para a questão anterior é <strong>qual conodal</strong> se usa. Para microconstituintes, ela para em 0,76 (a austenita que vira perlita). Para fases, vai até 6,67 (a cementita). Note que 88,9 %/11,1 % é a composição da <em>perlita</em>, não deste aço.</p>"
+    },
+    {
+      "id": "c1-011",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "alavanca",
+      "enunciado": "<p>Um aço hipereutetoide com <span class=\"dado\">1,20 %C</span>. Quais as frações de cementita proeutetoide e de perlita à temperatura ambiente?</p>",
+      "alternativas": [
+        "7,4 % de cementita proeutetoide e 92,6 % de perlita",
+        "17,7 % de cementita proeutetoide e 82,3 % de perlita",
+        "44,0 % de cementita proeutetoide e 56,0 % de perlita",
+        "1,2 % de cementita proeutetoide e 98,8 % de perlita"
+      ],
+      "correta": 0,
+      "formulas": [
+        "W_Fe3C' = (C₀ − 0,76)/(6,67 − 0,76)",
+        "W_perlita = (6,67 − C₀)/(6,67 − 0,76)",
+        "No hipereutetoide a conodal vai de 0,76 a 6,67"
+      ],
+      "explicacao": "<div class=\"passo\">Conodal de 0,76 (austenita que vira perlita) a 6,67 (cementita), comprimento 5,91</div><div class=\"passo\">W<sub>Fe₃C'</sub> = (1,20 − 0,76)/5,91 = 0,44/5,91 = <strong>0,074</strong></div><div class=\"passo\">W<sub>perlita</sub> = (6,67 − 1,20)/5,91 = 5,47/5,91 = <strong>0,926</strong></div><p>Apenas 7,4 % de cementita proeutetoide — e mesmo assim ela fragiliza o aço, porque se distribui como uma <strong>rede contínua</strong> nos contornos de grão. A fração é pequena, a consequência é enorme: é a distribuição, não a quantidade, que importa. Daí a esferoidização, que quebra a rede em partículas isoladas.</p>"
+    },
+    {
+      "id": "c1-012",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "alavanca",
+      "enunciado": "<p>Qual a composição da perlita, em fases?</p>",
+      "alternativas": [
+        "76 % ferrita e 24 % cementita",
+        "97,3 % ferrita e 2,7 % cementita",
+        "50 % ferrita e 50 % cementita",
+        "88,9 % ferrita e 11,1 % cementita"
+      ],
+      "correta": 3,
+      "formulas": [
+        "A perlita vem da austenita com 0,76 %C",
+        "Wα = (6,67 − 0,76)/(6,67 − 0,022)",
+        "W_Fe3C = (0,76 − 0,022)/(6,67 − 0,022)"
+      ],
+      "explicacao": "<div class=\"passo\">W<sub>α</sub> = (6,67 − 0,76)/6,648 = 5,91/6,648 = <strong>0,889</strong></div><div class=\"passo\">W<sub>Fe₃C</sub> = (0,76 − 0,022)/6,648 = 0,738/6,648 = <strong>0,111</strong></div><p>Esse par 88,9 / 11,1 vale para a perlita de <em>qualquer</em> aço, porque a perlita sempre nasce de austenita com exatamente 0,76 %C. Por isso as lamelas de ferrita são muito mais espessas que as de cementita — na proporção de aproximadamente 8 para 1.</p>"
+    },
+    {
+      "id": "c1-013",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "resfriamento",
+      "enunciado": "<p>Ao resfriar lentamente um aço hipoeutetoide, ao cruzar a linha A₃ a austenita restante:</p>",
+      "alternativas": [
+        "Empobrece em carbono, porque o carbono vai para a ferrita.",
+        "Mantém a composição inalterada.",
+        "Enriquece em carbono, porque a ferrita que se forma quase não aceita carbono e o expulsa para a austenita vizinha.",
+        "Se decompõe imediatamente em perlita."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A ferrita comporta no máximo 0,022 %C. Ao se formar, ela <strong>expulsa</strong> praticamente todo o carbono daquele volume para a austenita ao lado. Como a ferrita cresce e a austenita encolhe, a mesma quantidade de carbono passa a ocupar um volume cada vez menor — a concentração sobe. Quando a austenita restante chega exatamente a 0,76 %, a temperatura chegou a 727 °C e a reação eutetoide dispara: tudo que sobrou vira perlita de uma vez.</p>"
+    },
+    {
+      "id": "c1-014",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "resfriamento",
+      "enunciado": "<p>Em uma liga isomorfa como Cu-Ni resfriada rapidamente, o interior de cada grão fica mais rico no metal de maior ponto de fusão. Esse fenômeno:</p>",
+      "alternativas": [
+        "Chama-se segregação (coring) e ocorre porque a difusão no sólido não acompanha o resfriamento.",
+        "Chama-se recristalização e é desejável.",
+        "É impossível: o grão é sempre homogêneo.",
+        "Chama-se encruamento e some com o tempo."
+      ],
+      "correta": 0,
+      "explicacao": "<p>O primeiro sólido a se formar é rico no metal refratário (níquel, no caso). Em equilíbrio verdadeiro, a difusão no sólido reajustaria a composição continuamente durante o resfriamento. Como ela é lenta demais, o miolo rico fica <em>preso</em> e o grão sai em camadas de composição diferente. A consequência prática é séria: a casca do grão, pobre em Ni, funde a temperatura mais baixa que o solidus previsto — o que causa trincas em soldagem. A correção é o <strong>recozimento de homogeneização</strong>.</p>"
+    },
+    {
+      "id": "c1-015",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "resfriamento",
+      "enunciado": "<p>Sobre o intervalo de solidificação (T_liquidus − T_solidus) de uma liga:</p>",
+      "alternativas": [
+        "É sempre zero em qualquer liga.",
+        "Depende apenas da velocidade de resfriamento.",
+        "Quanto maior, melhor a fundibilidade.",
+        "É nulo apenas em metais puros e em composições eutéticas; quanto maior o intervalo, mais dendrítica a estrutura e pior a fundibilidade."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Metal puro e liga eutética solidificam a temperatura <em>constante</em>, o que dá excelente fluidez e alimentação da peça — é por isso que ligas de fundição são quase sempre próximas ao eutético. Um intervalo largo produz uma zona pastosa extensa, com dendritas crescendo dentro do líquido, o que dificulta a alimentação e favorece porosidade interdendrítica.</p>"
+    },
+    {
+      "id": "c1-016",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "discordancias",
+      "enunciado": "<p>A tensão de escoamento real dos metais é cerca de mil vezes menor que a prevista para romper todas as ligações de um plano ao mesmo tempo. Isso se explica por:</p>",
+      "alternativas": [
+        "Existência de discordâncias, que permitem a deformação uma ligação de cada vez.",
+        "Erro de medição nos ensaios de tração.",
+        "Impurezas químicas nos metais.",
+        "Efeito da temperatura ambiente."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A discrepância entre τ ≈ G/10 previsto e τ ≈ G/10⁴ medido foi o que levou à previsão teórica das discordâncias em 1934, quase vinte anos antes de serem observadas em microscópio eletrônico. A analogia do tapete é exata: arrastar o tapete inteiro de uma vez é dificílimo, mas fazer uma ruga e empurrá-la de ponta a ponta move o tapete com esforço mínimo — e o resultado final é idêntico.</p>"
+    },
+    {
+      "id": "c1-017",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "discordancias",
+      "enunciado": "<p>Numa discordância em cunha, o vetor de Burgers é:</p>",
+      "alternativas": [
+        "Paralelo à linha da discordância.",
+        "Nulo.",
+        "Perpendicular à linha da discordância.",
+        "Sempre a 45° da linha."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Na cunha, b é perpendicular à linha, e a discordância escorrega na direção de b — o defeito é o semiplano extra de átomos. Na discordância em <strong>hélice</strong>, b é paralelo à linha e o movimento é perpendicular a b. Discordâncias reais são <em>mistas</em>: a linha é curva e tem caráter de cunha em uns trechos e de hélice em outros. A hélice tem uma propriedade que a cunha não tem: pode mudar de plano de escorregamento (deslizamento cruzado).</p>"
+    },
+    {
+      "id": "c1-018",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "discordancias",
+      "enunciado": "<p>O aço-carbono comum fica frágil em baixa temperatura, mas o aço inoxidável austenítico permanece dúctil até temperaturas criogênicas. A explicação está:</p>",
+      "alternativas": [
+        "No cromo, que impede a formação de trincas.",
+        "No teor de carbono, sempre menor no inox.",
+        "Na maior resistência do inox, que compensa a fragilidade.",
+        "Na estrutura cristalina: o ferro α é CCC e seus sistemas de escorregamento dependem de ativação térmica, travando no frio; o inox austenítico é CFC, com 12 sistemas compactos que funcionam a qualquer temperatura."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Metais CFC têm 12 sistemas de escorregamento em planos verdadeiramente compactos, e escorregam sem precisar de ajuda térmica. O CCC tem 48 sistemas, mas nenhum plano é totalmente compacto: abaixo de uma temperatura de transição eles travam e o material passa a romper por clivagem, sem aviso. É por isso que tanques criogênicos de gás liquefeito são feitos de inox austenítico. Foi essa transição dúctil-frágil que partiu ao meio dezenas de navios Liberty na Segunda Guerra, em águas frias.</p>"
+    },
+    {
+      "id": "c1-019",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "endurecimento",
+      "enunciado": "<p>Um aço tem σ₀ = 70 MPa e k_y = 23,4 MPa·mm^½. Qual o limite de escoamento com grão de <span class=\"dado\">50 µm</span> e com grão de <span class=\"dado\">10 µm</span>?</p>",
+      "alternativas": [
+        "175 MPa e 304 MPa",
+        "93 MPa e 140 MPa",
+        "175 MPa e 234 MPa",
+        "105 MPa e 234 MPa"
+      ],
+      "correta": 0,
+      "formulas": [
+        "σy = σ₀ + k_y · d^(−1/2)",
+        "d precisa estar em mm: 50 µm = 0,050 mm"
+      ],
+      "explicacao": "<div class=\"passo\">d = 50 µm = 0,050 mm → d^(−1/2) = 1/√0,050 = 4,472</div><div class=\"passo\">σy = 70 + 23,4 × 4,472 = 70 + 104,6 = <strong>175 MPa</strong></div><div class=\"passo\">d = 10 µm = 0,010 mm → d^(−1/2) = 10,0</div><div class=\"passo\">σy = 70 + 23,4 × 10,0 = 70 + 234 = <strong>304 MPa</strong></div><p>Reduzir o grão de 50 para 10 µm quase dobrou o limite de escoamento — e, ao contrário de todos os outros mecanismos, <em>sem</em> perder tenacidade. Atenção à unidade: se d entrar em metros, k_y vale 0,74 e não 23,4 (a razão entre os dois é √1000).</p>"
+    },
+    {
+      "id": "c1-020",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "endurecimento",
+      "enunciado": "<p>Entre os quatro mecanismos de endurecimento, o único que aumenta simultaneamente resistência e tenacidade é:</p>",
+      "alternativas": [
+        "Encruamento por trabalho a frio.",
+        "Endurecimento por solução sólida.",
+        "Refino de grão.",
+        "Endurecimento por precipitação."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Todos os mecanismos endurecem colocando obstáculos no caminho das discordâncias, e todos cobram ductilidade — com uma exceção. O contorno de grão bloqueia discordâncias <em>e</em> desvia trincas, obrigando-as a mudar de direção a cada grão. O resultado é resistência e tenacidade subindo juntas. É por essa razão que o controle de tamanho de grão — por laminação controlada, microligantes de Nb, V e Ti, ou normalização — é o recurso mais buscado nos aços estruturais modernos.</p>"
+    },
+    {
+      "id": "c1-021",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "endurecimento",
+      "enunciado": "<p>Um metal segue σ = 600·ε^0,22 MPa. Qual a tensão de escoamento após <span class=\"dado\">30 % de deformação a frio</span>?</p>",
+      "alternativas": [
+        "180 MPa",
+        "440 MPa",
+        "600 MPa",
+        "132 MPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "σ = K · εⁿ   (lei de Hollomon)",
+        "ε = 0,30 (deformação verdadeira, aqui em fração)"
+      ],
+      "explicacao": "<div class=\"passo\">σ = 600 × 0,30^0,22</div><div class=\"passo\">0,30^0,22 = e^(0,22 × ln0,30) = e^(0,22 × (−1,204)) = e^(−0,265) = 0,767</div><div class=\"passo\">σ = 600 × 0,767 = <strong>460 MPa</strong> (≈ 440 MPa com arredondamentos)</div><p>Deformando a frio, a densidade de discordâncias sobe de cerca de 10¹⁰ para até 10¹⁶ linhas por m², e elas se travam mutuamente. O preço é a ductilidade: o alongamento remanescente cai drasticamente. Aquecer acima da temperatura de recristalização — cerca de 0,4·T_fusão em kelvin — apaga tudo e devolve o material ao estado recozido.</p>"
+    },
+    {
+      "id": "c1-022",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "endurecimento",
+      "enunciado": "<p>No endurecimento por precipitação, superenvelhecer a liga (deixar tempo demais no tratamento) provoca:</p>",
+      "alternativas": [
+        "Aumento contínuo da dureza.",
+        "Queda da dureza, porque as partículas crescem e se afastam, aumentando o espaçamento L.",
+        "Nenhum efeito depois de atingido o pico.",
+        "Dissolução completa dos precipitados."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Pelo mecanismo de Orowan, Δτ = Gb/L: o que endurece é o espaçamento <strong>pequeno</strong> entre partículas, que obriga a discordância a se curvar apertado. Com tempo em excesso, as partículas grandes crescem à custa das pequenas (coalescimento de Ostwald), a quantidade total de precipitado não muda mas o espaçamento aumenta — e a liga amolece. Existe portanto um tempo <em>ótimo</em> de envelhecimento, e passar dele piora.</p>"
+    },
+    {
+      "id": "c1-023",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "endurecimento",
+      "enunciado": "<p>Ao aquecer um metal encruado, a sequência correta de fenômenos é:</p>",
+      "alternativas": [
+        "Recristalização → recuperação → crescimento de grão.",
+        "Recuperação → recristalização → crescimento de grão.",
+        "Crescimento de grão → recuperação → recristalização.",
+        "Recuperação → crescimento de grão → recristalização."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Primeiro a <strong>recuperação</strong>: as discordâncias se rearranjam e aniquilam parcialmente, aliviando tensões residuais sem mudar muito a dureza. Depois a <strong>recristalização</strong>: nucleiam grãos inteiramente novos, livres de deformação, e a dureza despenca enquanto a ductilidade volta. Por último o <strong>crescimento de grão</strong>, em que os grãos grandes consomem os pequenos — e este é indesejável, porque piora resistência e tenacidade ao mesmo tempo. Por isso o recozimento tem tempo e temperatura controlados: quer-se parar na recristalização.</p>"
+    },
+    {
+      "id": "c1-024",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "difusao",
+      "enunciado": "<p>Uma cementação a 925 °C produz camada de <span class=\"dado\">0,70 mm</span> em 5 horas. Quanto tempo levaria para produzir <span class=\"dado\">1,40 mm</span> na mesma temperatura?</p>",
+      "alternativas": [
+        "10 horas",
+        "15 horas",
+        "20 horas",
+        "40 horas"
+      ],
+      "correta": 2,
+      "formulas": [
+        "x ∝ √(D·t)",
+        "Com D constante: t₂/t₁ = (x₂/x₁)²"
+      ],
+      "explicacao": "<div class=\"passo\">t₂/t₁ = (x₂/x₁)² = (1,40/0,70)² = 2² = 4</div><div class=\"passo\">t₂ = 4 × 5 = <strong>20 horas</strong></div><p>É a consequência prática mais cara desta disciplina: a camada cresce com a <strong>raiz</strong> do tempo, então dobrá-la exige quadruplicar o tempo de forno. Por isso a saída econômica é quase sempre subir a temperatura, e não esperar mais — a temperatura entra no expoente de Arrhenius, o tempo entra na raiz.</p>"
+    },
+    {
+      "id": "c1-025",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "difusao",
+      "enunciado": "<p>Para carbono em ferro γ, D₀ = 2,3×10⁻⁵ m²/s e Q = 148 kJ/mol. Qual o coeficiente de difusão a <span class=\"dado\">925 °C</span>?</p>",
+      "alternativas": [
+        "8,1 × 10⁻¹² m²/s",
+        "2,3 × 10⁻⁵ m²/s",
+        "1,9 × 10⁻¹¹ m²/s",
+        "8,1 × 10⁻⁹ m²/s"
+      ],
+      "correta": 0,
+      "formulas": [
+        "D = D₀ · exp(−Q/RT)",
+        "R = 8,314 J/mol·K · T em KELVIN"
+      ],
+      "explicacao": "<div class=\"passo\">T = 925 + 273 = 1198 K</div><div class=\"passo\">Q/(RT) = 148 000/(8,314 × 1198) = 148 000/9960 = 14,86</div><div class=\"passo\">D = 2,3×10⁻⁵ × e^(−14,86) = 2,3×10⁻⁵ × 3,53×10⁻⁷ = <strong>8,1×10⁻¹² m²/s</strong></div><p>Os dois erros que aparecem aqui: usar a temperatura em graus Celsius (daria um resultado sem sentido) e esquecer de converter Q de kJ para J. A 1000 °C esse mesmo D subiria para 1,9×10⁻¹¹ — mais que o dobro, com apenas 75 °C a mais.</p>"
+    },
+    {
+      "id": "c1-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "difusao",
+      "enunciado": "<p>A energia de ativação para autodifusão do ferro (284 kJ/mol) é muito maior que a do carbono em ferro γ (148 kJ/mol) porque:</p>",
+      "alternativas": [
+        "O átomo de ferro é mais pesado.",
+        "A difusão substitucional exige que exista uma lacuna vizinha — e criar lacuna custa energia — além de vencer a barreira do salto; a intersticial só precisa do salto.",
+        "O ferro se liga quimicamente a si mesmo.",
+        "O carbono tem mais elétrons livres."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A energia de ativação substitucional soma duas parcelas: a de <strong>formação</strong> da lacuna e a de <strong>movimento</strong> do átomo para dentro dela. O átomo intersticial não precisa de lacuna nenhuma: pula de um vazio para o vazio vizinho, que já está lá. Como resultado, a difusão intersticial é ordens de grandeza mais rápida — e é isso que torna possível cementar em horas, mas homogeneizar uma segregação substitucional exigir dias.</p>"
+    },
+    {
+      "id": "c1-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "difusao",
+      "enunciado": "<p>A cementação é feita entre 900 e 950 °C e a nitretação entre 500 e 550 °C. A razão da diferença é:</p>",
+      "alternativas": [
+        "O nitrogênio difunde mais rápido que o carbono.",
+        "A cementação precisa de austenita, que é a fase que dissolve carbono, e ela só existe acima de A₁; a nitretação ocorre na ferrita, abaixo de A₁, e por isso a peça não sofre transformação de fase nem deformação.",
+        "O forno de nitretação não alcança temperaturas maiores.",
+        "O nitrogênio se decompõe acima de 600 °C."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Carbono praticamente não se dissolve na ferrita (0,022 % no máximo), então cementar exige austenitizar — daí os 900 a 950 °C. A consequência é que a peça muda de fase duas vezes, o que provoca variação dimensional e exige têmpera depois. A nitretação trabalha abaixo de A₁, na ferrita: não há mudança de fase, a peça sai praticamente sem deformar e não precisa de têmpera posterior. O preço é a lentidão — nitretar leva dezenas de horas para camadas finas.</p>"
+    },
+    {
+      "id": "c1-028",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "fec",
+      "enunciado": "<p>Por que aço hipereutetoide é austenitizado entre A₁ e A_cm, e não acima de A_cm?</p>",
+      "alternativas": [
+        "Porque acima de A_cm o aço funde.",
+        "Porque dissolver toda a cementita exigiria temperatura muito alta, que engrossaria o grão — e porque a cementita não dissolvida, em partículas, é desejável para resistência ao desgaste.",
+        "Porque acima de A_cm o carbono evapora.",
+        "Porque A_cm não existe em aço hipereutetoide."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Duas razões, ambas práticas. Primeira: a A_cm sobe rapidamente com o teor de carbono, e austenitizar acima dela levaria a temperaturas que causam crescimento excessivo de grão e maior risco de trinca na têmpera. Segunda: a cementita <em>em partículas</em> é benéfica — é ela que dá resistência ao desgaste em aços de ferramenta. O que se combate não é a cementita em si, mas a cementita em <strong>rede contínua</strong> nos contornos, e para isso basta a esferoidização.</p>"
+    },
+    {
+      "id": "c1-029",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "diagramas",
+      "enunciado": "<p>O contorno de grão fortalece o metal à temperatura ambiente, mas o enfraquece em alta temperatura. A explicação é:</p>",
+      "alternativas": [
+        "O contorno de grão desaparece em alta temperatura.",
+        "À temperatura ambiente ele bloqueia discordâncias; em alta temperatura torna-se caminho preferencial de difusão e permite deslizamento entre grãos, que é o mecanismo da fluência.",
+        "Em alta temperatura o contorno de grão vira uma fase líquida.",
+        "O efeito é o mesmo nas duas temperaturas; o que muda é a medição."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O contorno é uma região desordenada: à temperatura ambiente essa desordem interrompe os planos de escorregamento e trava discordâncias (Hall-Petch). Em alta temperatura, a mesma desordem se torna um atalho para a difusão e permite que grãos deslizem uns sobre os outros — que é a fluência. Daí as pás de turbina serem fabricadas com grãos colunares alinhados ou, no limite, como <strong>monocristal</strong>: eliminam-se justamente os contornos transversais, que naquela temperatura são o ponto fraco.</p>"
+    },
+    {
+      "id": "c1-030",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "difusao",
+      "enunciado": "<p>Numa cementação com C_s = 1,2 %, C₀ = 0,2 % e camada definida até 0,4 %C, qual o valor de z = x/(2√Dt) que se deve procurar na tabela da função erro?</p>",
+      "alternativas": [
+        "erf(z) = 0,20, logo z ≈ 0,18",
+        "erf(z) = 0,80, logo z ≈ 0,91",
+        "erf(z) = 0,33, logo z ≈ 0,30",
+        "erf(z) = 0,50, logo z ≈ 0,48"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Cx = Cs − (Cs − C0)·erf(z)",
+        "erf(z) = (Cs − Cx)/(Cs − C0)",
+        "Tabela: erf(0,90) = 0,7970 · erf(0,95) = 0,8209"
+      ],
+      "explicacao": "<div class=\"passo\">erf(z) = (C_s − C_x)/(C_s − C₀) = (1,2 − 0,4)/(1,2 − 0,2) = 0,8/1,0 = <strong>0,80</strong></div><div class=\"passo\">Na tabela: erf(0,90) = 0,797 e erf(0,95) = 0,821 → interpolando, z ≈ <strong>0,906</strong></div><p>Repare que z depende <strong>apenas dos teores</strong> — não da temperatura, nem do tempo, nem do material. Temperatura e tempo entram só depois, em x = z·2√(Dt). Essa separação é o que torna o problema tratável: acha-se z uma vez e usa-se para qualquer combinação de forno.</p>"
+    }
+  ]
+}

@@ -1,0 +1,556 @@
+{
+  "disciplina": "Termodinâmica",
+  "slug": "termodinamica",
+  "topicos": [
+    {
+      "id": "conceitos",
+      "nome": "Conceitos e definições"
+    },
+    {
+      "id": "substancia",
+      "nome": "Substância pura"
+    },
+    {
+      "id": "gas-ideal",
+      "nome": "Gás ideal"
+    },
+    {
+      "id": "trabalho",
+      "nome": "Trabalho e processos"
+    },
+    {
+      "id": "primeira",
+      "nome": "1ª lei — sistema fechado"
+    },
+    {
+      "id": "vc",
+      "nome": "1ª lei — volume de controle"
+    },
+    {
+      "id": "segunda",
+      "nome": "2ª lei e Carnot"
+    },
+    {
+      "id": "entropia",
+      "nome": "Entropia"
+    },
+    {
+      "id": "exergia",
+      "nome": "Exergia"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "td-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "conceitos",
+      "enunciado": "<p>São propriedades intensivas de um sistema termodinâmico:</p>",
+      "alternativas": [
+        "Volume, energia interna e entropia.",
+        "Energia interna, entalpia e entropia.",
+        "Massa, entalpia e volume.",
+        "Temperatura, pressão e volume específico."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Propriedades intensivas não dependem da massa do sistema: se você dividir o sistema ao meio, elas não mudam. É o caso de T, P, v, u, h e s (as específicas). Volume, energia interna total U, entalpia total H, entropia total S e massa são <strong>extensivas</strong>. Dividir uma extensiva pela massa gera a intensiva correspondente.</p>"
+    },
+    {
+      "id": "td-002",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "conceitos",
+      "enunciado": "<p>Um sistema fechado se distingue de um volume de controle porque:</p>",
+      "alternativas": [
+        "Não troca calor com a vizinhança.",
+        "Não troca energia de nenhuma forma.",
+        "Tem sempre volume constante.",
+        "Não permite fluxo de massa através da fronteira, embora troque energia."
+      ],
+      "correta": 3,
+      "explicacao": "<p>No sistema fechado (massa de controle) a massa é fixa, mas calor e trabalho atravessam livremente a fronteira. Um cilindro-pistão é o exemplo canônico: a massa de gás é a mesma, mas o volume muda e há troca de energia. Sistema que não troca energia alguma é <em>isolado</em>; fronteira que não conduz calor é <em>adiabática</em>; volume constante é processo <em>isocórico</em>.</p>"
+    },
+    {
+      "id": "td-003",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "substancia",
+      "enunciado": "<p>Em uma panela de pressão fechada, com água em ebulição a 120 °C, a pressão interna e a temperatura:</p>",
+      "alternativas": [
+        "São independentes: dá para variar uma mantendo a outra.",
+        "Podem ser usadas juntas para determinar o estado da mistura.",
+        "São ambas constantes e iguais às do ambiente.",
+        "Estão amarradas pela curva de saturação — a cada T corresponde uma única P."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Dentro do domo de saturação, líquido e vapor coexistem em equilíbrio, e a regra das fases dá apenas um grau de liberdade: P = P<sub>sat</sub>(T). Por isso a panela mantém 120 °C exatamente enquanto a válvula segura a pressão correspondente. Como consequência, T e P <em>não</em> determinam o estado ali — é preciso uma terceira propriedade, normalmente o título.</p>"
+    },
+    {
+      "id": "td-004",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "substancia",
+      "enunciado": "<p>Água a <span class=\"dado\">200 °C</span> tem v<sub>f</sub> = 0,001157 m³/kg e v<sub>g</sub> = 0,12721 m³/kg. Qual o título de uma mistura com <span class=\"dado\">v = 0,060 m³/kg</span>?</p>",
+      "alternativas": [
+        "0,236",
+        "0,467",
+        "0,472",
+        "0,533"
+      ],
+      "correta": 1,
+      "formulas": [
+        "v = v_f + x·v_fg",
+        "v_fg = v_g − v_f",
+        "x = (v − v_f)/v_fg"
+      ],
+      "explicacao": "<div class=\"passo\">v<sub>fg</sub> = 0,12721 − 0,001157 = 0,12605 m³/kg</div><div class=\"passo\">x = (0,060 − 0,001157)/0,12605</div><div class=\"passo\">x = 0,058843/0,12605 = <strong>0,467</strong></div><p>Ou seja, 46,7 % da massa é vapor — mas esse vapor ocupa quase todo o volume. Desprezar v<sub>f</sub> no numerador daria 0,476: aceitável como estimativa, mas não é o valor exato.</p>"
+    },
+    {
+      "id": "td-005",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "substancia",
+      "enunciado": "<p>Para a mesma mistura (200 °C, x = 0,467), com h<sub>f</sub> = 852,3 kJ/kg e h<sub>fg</sub> = 1 939,8 kJ/kg, qual a entalpia específica?</p>",
+      "alternativas": [
+        "906 kJ/kg",
+        "1 396 kJ/kg",
+        "2 792 kJ/kg",
+        "1 758 kJ/kg"
+      ],
+      "correta": 3,
+      "formulas": [
+        "h = h_f + x·h_fg",
+        "A mesma combinação linear vale para v, u, h e s"
+      ],
+      "explicacao": "<div class=\"passo\">h = 852,3 + 0,467 × 1 939,8</div><div class=\"passo\">h = 852,3 + 905,9 = <strong>1 758 kJ/kg</strong></div><p>O distrator de 906 kJ/kg é esquecer de somar h<sub>f</sub>; o de 2 792 é usar x = 1 (vapor saturado seco). Note que quase metade da entalpia da mistura veio só do calor latente.</p>"
+    },
+    {
+      "id": "td-006",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "substancia",
+      "enunciado": "<p>O calor latente de vaporização da água diminui com o aumento da pressão e se anula no ponto crítico porque:</p>",
+      "alternativas": [
+        "A água deixa de ferver acima de determinada pressão, e por isso h_fg perde sentido.",
+        "h_fg cresce com a pressão até o ponto crítico, onde muda de sinal.",
+        "h_fg paga a separação das moléculas e o trabalho de expansão de v_f até v_g. Com o aumento da pressão os dois volumes específicos se aproximam — os ramos do domo convergem — e no ponto crítico se igualam: sem distinção entre líquido e vapor não há transição de fase a pagar. A equação de Clapeyron mostra isso diretamente, com h_fg proporcional a v_fg.",
+        "A diminuição é apenas aparente, causada pela mudança da temperatura de saturação."
+      ],
+      "correta": 2,
+      "explicacao": "<p>O calor latente é a energia necessária para vencer as forças intermoleculares que mantêm o líquido coeso e para realizar o trabalho de expansão contra a pressão do ambiente, ao passar de v<sub>f</sub> para v<sub>g</sub>.</p><p>Conforme a pressão de saturação sobe, dois efeitos atuam no mesmo sentido. O vapor fica muito mais denso, de modo que v<sub>g</sub> cai drasticamente — de 1,67 m³/kg a 100 °C para 0,0217 m³/kg a 300 °C. Ao mesmo tempo, o líquido se expande um pouco com a temperatura, e v<sub>f</sub> cresce de 0,001043 para 0,001404 m³/kg. As duas fases vão se tornando fisicamente parecidas: a diferença v<sub>fg</sub> encolhe, e com ela o trabalho de expansão e a diferença de energia interna entre as fases.</p><p>No <strong>ponto crítico</strong> (373,95 °C e 22,06 MPa para a água), v<sub>f</sub> e v<sub>g</sub> se igualam em v<sub>c</sub> = 0,003106 m³/kg. Líquido e vapor deixam de ser distinguíveis: não há mais interface, nem menisco, nem transição de fase — logo não há energia a ser fornecida para a mudança, e h<sub>fg</sub> = 0.</p><p>A equação de Clapeyron formaliza isso: h<sub>fg</sub> = T·v<sub>fg</sub>·(dP/dT). Como v<sub>fg</sub> → 0 no ponto crítico, h<sub>fg</sub> também se anula. É o fechamento do domo de saturação no diagrama T-v, que se pode observar no simulador.</p>"
+    },
+    {
+      "id": "td-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "gas-ideal",
+      "enunciado": "<p>Para um gás ideal, a relação Δu = c<sub>v</sub>·ΔT é válida:</p>",
+      "alternativas": [
+        "Somente em processos a volume constante.",
+        "Somente em processos adiabáticos.",
+        "Em qualquer processo, pois u é função apenas da temperatura.",
+        "Somente quando a pressão também é constante."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Para gás ideal, a energia interna depende exclusivamente da temperatura — consequência da ausência de forças intermoleculares. Logo Δu = c<sub>v</sub>·ΔT vale em qualquer processo: isobárico, isotérmico, adiabático ou politrópico. O índice <em>v</em> registra apenas como c<sub>v</sub> foi <em>definido</em> (a volume constante o calor trocado é exatamente ΔU), não uma restrição de uso. O mesmo vale para Δh = c<sub>p</sub>·ΔT.</p>"
+    },
+    {
+      "id": "td-008",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "gas-ideal",
+      "enunciado": "<p>Quanto calor é necessário para aquecer <span class=\"dado\">2 kg de ar</span> em <span class=\"dado\">100 K</span>, em um recipiente rígido? (c<sub>v</sub> = 0,718 kJ/kg·K)</p>",
+      "alternativas": [
+        "71,8 kJ",
+        "143,6 kJ",
+        "201 kJ",
+        "287 kJ"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Recipiente rígido → V constante → W = 0",
+        "Q − W = ΔU  →  Q = ΔU",
+        "ΔU = m·c_v·ΔT"
+      ],
+      "explicacao": "<div class=\"passo\">Volume constante → W = 0</div><div class=\"passo\">Q = ΔU = m·c<sub>v</sub>·ΔT = 2 × 0,718 × 100</div><div class=\"passo\">Q = <strong>143,6 kJ</strong></div><p>Se o processo fosse a pressão constante, seria necessário usar c<sub>p</sub> = 1,005 e o calor subiria para 201 kJ — a diferença de 57,4 kJ é exatamente o trabalho de expansão realizado, igual a m·R·ΔT.</p>"
+    },
+    {
+      "id": "td-009",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "trabalho",
+      "enunciado": "<p>Um kg de ar (R = 0,287 kJ/kg·K) se expande isotermicamente a <span class=\"dado\">350 K</span>, triplicando o volume. Qual o trabalho realizado e o calor trocado?</p>",
+      "alternativas": [
+        "W = 110 kJ e Q = 0",
+        "W = 201 kJ e Q = 110 kJ",
+        "W = 0 e Q = 110 kJ",
+        "W = 110 kJ e Q = 110 kJ"
+      ],
+      "correta": 3,
+      "formulas": [
+        "Isotérmico: W = m·R·T·ln(V₂/V₁)",
+        "Gás ideal isotérmico: ΔU = m·c_v·ΔT = 0",
+        "Q − W = ΔU"
+      ],
+      "explicacao": "<div class=\"passo\">W = 1 × 0,287 × 350 × ln(3) = 100,45 × 1,0986</div><div class=\"passo\">W = <strong>110,4 kJ</strong></div><div class=\"passo\">Como T é constante e o gás é ideal, ΔU = 0</div><div class=\"passo\">Q = ΔU + W = 0 + 110,4 = <strong>110,4 kJ</strong></div><p>Todo o calor recebido é convertido em trabalho — mas isso não viola Kelvin-Planck, porque não é um <em>ciclo</em>: o estado final difere do inicial.</p>"
+    },
+    {
+      "id": "td-010",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "trabalho",
+      "enunciado": "<p>Ar a <span class=\"dado\">290 K</span> é comprimido adiabática e reversivelmente com razão de compressão <span class=\"dado\">10:1</span> (k = 1,4). Qual a temperatura final?</p>",
+      "alternativas": [
+        "437 K",
+        "728 K",
+        "1 122 K",
+        "2 900 K"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Adiabático reversível: P·V^k = cte",
+        "T₂/T₁ = (V₁/V₂)^(k−1)",
+        "T₂/T₁ = (P₂/P₁)^((k−1)/k)"
+      ],
+      "explicacao": "<div class=\"passo\">T₂ = T₁·(V₁/V₂)^(k−1) = 290 × 10^0,4</div><div class=\"passo\">10^0,4 = 2,512</div><div class=\"passo\">T₂ = 290 × 2,512 = <strong>728 K</strong> (455 °C)</div><p>É esse aquecimento que faz o motor Diesel funcionar: o ar comprimido passa da temperatura de autoignição do combustível sem precisar de vela. Com hélio (k = 1,667), a mesma compressão levaria a 1 347 K.</p>"
+    },
+    {
+      "id": "td-011",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "trabalho",
+      "enunciado": "<p>No diagrama P-v, o trabalho de fronteira realizado em um processo quase-estático corresponde:</p>",
+      "alternativas": [
+        "À área sob a curva do processo.",
+        "À inclinação da curva no ponto médio.",
+        "À área sob a curva no diagrama T-s.",
+        "À diferença entre as pressões inicial e final."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Como W = ∫P dV, o trabalho é geometricamente a área entre a curva e o eixo do volume. Por isso o diagrama P-v é a ferramenta de leitura de trabalho. O análogo para calor é o diagrama T-s, onde Q = ∫T dS é a área sob a curva — e é por isso que os dois diagramas aparecem sempre juntos na análise de ciclos.</p>"
+    },
+    {
+      "id": "td-012",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "primeira",
+      "enunciado": "<p>A primeira lei da termodinâmica para um sistema fechado estabelece que:</p>",
+      "alternativas": [
+        "O calor sempre flui do corpo mais quente para o mais frio.",
+        "A energia do sistema aumenta pelo calor recebido e diminui pelo trabalho realizado.",
+        "É impossível converter todo o calor em trabalho.",
+        "A entropia do universo nunca diminui."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Q − W = ΔU: é a conservação da energia aplicada a sistemas térmicos. As alternativas A, C e D são enunciados da <strong>segunda</strong> lei — respectivamente Clausius, Kelvin-Planck e o princípio do aumento de entropia. A primeira lei é um balanço contábil e nada diz sobre a direção ou a viabilidade do processo.</p>"
+    },
+    {
+      "id": "td-013",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "primeira",
+      "enunciado": "<p>Ar (R = 0,287; c<sub>v</sub> = 0,718 kJ/kg·K) a <span class=\"dado\">100 kPa</span>, <span class=\"dado\">300 K</span> e <span class=\"dado\">0,5 m³</span> é comprimido politropicamente com <span class=\"dado\">n = 1,3</span> até um quinto do volume. Determine o trabalho e o calor.</p>",
+      "alternativas": [
+        "W = −103 kJ e Q = −26 kJ",
+        "W = −103 kJ e Q = +78 kJ",
+        "W = +103 kJ e Q = +26 kJ",
+        "W = −78 kJ e Q = −103 kJ"
+      ],
+      "correta": 0,
+      "formulas": [
+        "m = P₁V₁/(R·T₁)",
+        "P₂ = P₁·(V₁/V₂)^n     T₂ = P₂V₂/(m·R)",
+        "W = (P₂V₂ − P₁V₁)/(1 − n)",
+        "ΔU = m·c_v·(T₂ − T₁)      Q = ΔU + W"
+      ],
+      "explicacao": "<div class=\"passo\">m = 100 × 0,5/(0,287 × 300) = 0,5807 kg</div><div class=\"passo\">P₂ = 100 × 5^1,3 = 810,3 kPa; V₂ = 0,1 m³</div><div class=\"passo\">T₂ = 810,3 × 0,1/(0,5807 × 0,287) = 486,2 K</div><div class=\"passo\">W = (810,3×0,1 − 100×0,5)/(1 − 1,3) = 31,03/(−0,3) = <strong>−103,4 kJ</strong></div><div class=\"passo\">ΔU = 0,5807 × 0,718 × 186,2 = +77,6 kJ</div><div class=\"passo\">Q = 77,6 − 103,4 = <strong>−25,8 kJ</strong></div><p>Interpretação: gastou-se 103 kJ comprimindo; 78 kJ ficaram como energia interna (o gás esquentou) e 26 kJ escaparam como calor. É o comportamento real de um compressor com resfriamento parcial.</p>"
+    },
+    {
+      "id": "td-014",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "vc",
+      "enunciado": "<p>Em uma válvula de estrangulamento adiabática, a propriedade que se conserva é:</p>",
+      "alternativas": [
+        "A entropia.",
+        "A entalpia.",
+        "A temperatura.",
+        "A energia interna."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Sem trabalho, sem troca de calor e com variação desprezível de energia cinética e potencial, a equação da energia se reduz a h₁ = h₂: o processo é <strong>isentálpico</strong>. A entropia sempre <em>aumenta</em>, pois o processo é altamente irreversível. A temperatura em geral cai (efeito Joule-Thomson), embora se mantenha constante no modelo de gás ideal — e é exatamente essa queda de temperatura que faz o ciclo de refrigeração funcionar.</p>"
+    },
+    {
+      "id": "td-015",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "vc",
+      "enunciado": "<p>Vapor entra em uma turbina adiabática com h₁ = <span class=\"dado\">3 200 kJ/kg</span> e sai com h₂ = <span class=\"dado\">2 400 kJ/kg</span>, a uma vazão de <span class=\"dado\">5 kg/s</span>. Qual a potência produzida?</p>",
+      "alternativas": [
+        "800 kW",
+        "2 400 kW",
+        "4 000 kW",
+        "16 000 kW"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Turbina adiabática, ΔEC e ΔEP desprezíveis:",
+        "Ẇ = ṁ·(h₁ − h₂)"
+      ],
+      "explicacao": "<div class=\"passo\">Ẇ = 5 × (3 200 − 2 400)</div><div class=\"passo\">Ẇ = 5 × 800 = <strong>4 000 kW = 4 MW</strong></div><p>Usa-se entalpia, e não energia interna, porque h = u + Pv já incorpora o trabalho de escoamento necessário para empurrar a massa através do volume de controle.</p>"
+    },
+    {
+      "id": "td-016",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "vc",
+      "enunciado": "<p>Em um bocal adiabático, o vapor entra praticamente em repouso e sofre queda de entalpia de <span class=\"dado\">50 kJ/kg</span>. Qual a velocidade na saída?</p>",
+      "alternativas": [
+        "100 m/s",
+        "224 m/s",
+        "316 m/s",
+        "1 000 m/s"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Bocal adiabático sem trabalho:",
+        "h₁ + v₁²/2 = h₂ + v₂²/2",
+        "v₂ = √(2·Δh)   [Δh em J/kg]"
+      ],
+      "explicacao": "<div class=\"passo\">v₂ = √(2 × 50 000 J/kg)</div><div class=\"passo\">v₂ = √100 000 = <strong>316 m/s</strong></div><p>Atenção às unidades: Δh precisa estar em J/kg, não kJ/kg. Usar 50 direto daria 10 m/s, absurdo para um bocal. O bocal converte entalpia em energia cinética — é o coração da turbina de ação.</p>"
+    },
+    {
+      "id": "td-017",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "vc",
+      "enunciado": "<p>Por que a equação da energia para volume de controle usa entalpia, enquanto a de sistema fechado usa energia interna?</p>",
+      "alternativas": [
+        "Porque em volume de controle a energia interna não pode ser medida.",
+        "Porque entalpia é uma forma de energia distinta, que só existe em escoamento.",
+        "Porque a entalpia inclui a energia cinética do escoamento.",
+        "Porque no volume de controle a massa que entra e sai carrega, além da sua energia interna, o trabalho de escoamento P·v que o fluido a montante realiza para empurrá-la. Como esses dois termos sempre aparecem juntos, agrupam-se em h = u + Pv — é conveniência algébrica, não uma nova forma de energia. No sistema fechado não há fluxo de massa, e portanto não há trabalho de escoamento."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Em um sistema fechado a massa não atravessa a fronteira. A energia que entra ou sai o faz apenas como calor e como trabalho de fronteira móvel, e o balanço se fecha com a energia interna: Q − W = ΔU.</p><p>Em um volume de controle, além do calor e do trabalho de eixo, existe massa cruzando as seções de entrada e de saída. E empurrar essa massa para dentro contra a pressão local exige trabalho: para introduzir um volume V a uma pressão P, gasta-se P·V. Esse é o <strong>trabalho de escoamento</strong> (ou trabalho de fluxo), P·v por unidade de massa.</p><p>Cada porção de massa que entra carrega, portanto, sua energia interna u <em>mais</em> o trabalho de escoamento Pv que foi necessário para empurrá-la. Como esses dois termos aparecem sempre somados nas fronteiras de entrada e saída, define-se a entalpia h = u + P·v justamente para agrupá-los. Assim a equação da energia fica compacta:</p><p>Q̇ − Ẇ<sub>eixo</sub> = ṁ·[(h₂ − h₁) + (v₂² − v₁²)/2 + g(z₂ − z₁)]</p><p>Ou seja, a entalpia não é uma forma diferente de energia: é uma conveniência algébrica que já embute o trabalho de escoamento. Usar u no lugar de h em uma turbina esqueceria o trabalho de fluxo e daria potência errada. Inversamente, usar h em um sistema fechado rígido introduziria um termo Pv que não existe ali.</p>"
+    },
+    {
+      "id": "td-018",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "segunda",
+      "enunciado": "<p>O enunciado de Kelvin-Planck da segunda lei afirma que é impossível:</p>",
+      "alternativas": [
+        "Transferir calor de um corpo frio para um quente.",
+        "Construir uma máquina cíclica que converta integralmente em trabalho o calor de uma única fonte.",
+        "Atingir o zero absoluto.",
+        "Criar ou destruir energia."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Kelvin-Planck proíbe a máquina térmica de rendimento 100 %: sempre é preciso rejeitar calor para uma fonte fria. A alternativa A é o enunciado de <em>Clausius</em>, e é imprecisa como está — transferir calor do frio para o quente é possível <em>desde que</em> se consuma trabalho, que é o que a geladeira faz. A alternativa C é a terceira lei e a D, a primeira.</p>"
+    },
+    {
+      "id": "td-019",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "segunda",
+      "enunciado": "<p>Uma máquina térmica opera entre <span class=\"dado\">550 °C</span> e <span class=\"dado\">25 °C</span>. Qual o rendimento máximo teórico e o trabalho máximo para Q<sub>H</sub> = 1 000 kJ?</p>",
+      "alternativas": [
+        "η = 63,8 % e W = 638 kJ",
+        "η = 95,5 % e W = 955 kJ",
+        "η = 36,2 % e W = 362 kJ",
+        "η = 63,8 % e W = 362 kJ"
+      ],
+      "correta": 0,
+      "formulas": [
+        "η_Carnot = 1 − T_C/T_H   [T em KELVIN]",
+        "T(K) = T(°C) + 273,15",
+        "W = η·Q_H"
+      ],
+      "explicacao": "<div class=\"passo\">T<sub>H</sub> = 550 + 273,15 = 823,15 K; T<sub>C</sub> = 25 + 273,15 = 298,15 K</div><div class=\"passo\">η = 1 − 298,15/823,15 = 1 − 0,3622</div><div class=\"passo\">η = 0,6378 = <strong>63,8 %</strong></div><div class=\"passo\">W = 0,6378 × 1 000 = <strong>638 kJ</strong></div><p>Usar °C direto daria 1 − 25/550 = 95,5 %, o distrator — e um resultado fisicamente impossível para essas temperaturas. Kelvin é obrigatório.</p>"
+    },
+    {
+      "id": "td-020",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "segunda",
+      "enunciado": "<p>Um refrigerador mantém o interior a <span class=\"dado\">−5 °C</span> rejeitando calor ao ambiente a <span class=\"dado\">35 °C</span>. Qual o COP máximo e o trabalho mínimo para retirar 300 kJ?</p>",
+      "alternativas": [
+        "COP = 6,70 e W = 44,8 kJ",
+        "COP = 7,70 e W = 39,0 kJ",
+        "COP = 0,13 e W = 2 310 kJ",
+        "COP = 6,70 e W = 2 010 kJ"
+      ],
+      "correta": 0,
+      "formulas": [
+        "COP_R,Carnot = T_C/(T_H − T_C)",
+        "COP_R = Q_C/W  →  W = Q_C/COP_R"
+      ],
+      "explicacao": "<div class=\"passo\">T<sub>C</sub> = 268,15 K; T<sub>H</sub> = 308,15 K; ΔT = 40 K</div><div class=\"passo\">COP = 268,15/40 = <strong>6,70</strong></div><div class=\"passo\">W = 300/6,70 = <strong>44,8 kJ</strong></div><p>COP maior que 1 não viola nada: ele compara calor <em>movido</em> com trabalho <em>gasto</em>. O COP da bomba de calor nas mesmas condições seria 7,70, exatamente uma unidade maior.</p>"
+    },
+    {
+      "id": "td-021",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "segunda",
+      "enunciado": "<p>Aquecer uma casa com bomba de calor (COP = 4) em vez de resistência elétrica é vantajoso porque:</p>",
+      "alternativas": [
+        "A resistência elétrica tem rendimento muito baixo.",
+        "A bomba de calor cria energia a partir do ambiente externo.",
+        "A bomba move calor do exterior para dentro, entregando 4 kJ por kJ de eletricidade consumido.",
+        "A bomba de calor não consome energia elétrica em regime permanente."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A resistência elétrica converte praticamente 100 % da eletricidade em calor — o seu rendimento de primeira lei é excelente. O ponto é que a bomba de calor não <em>converte</em>: ela <strong>transporta</strong> calor de fora para dentro, usando o trabalho apenas para vencer a diferença de temperatura. Com COP 4, cada kJ de eletricidade entrega 4 kJ de calor à casa, sendo 3 kJ retirados do ar externo. Nada é criado, e a segunda lei é respeitada porque o COP máximo é limitado por T<sub>H</sub>/(T<sub>H</sub> − T<sub>C</sub>).</p>"
+    },
+    {
+      "id": "td-022",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "entropia",
+      "enunciado": "<p>Um gás é resfriado e sua entropia diminui. Isso:</p>",
+      "alternativas": [
+        "Viola a segunda lei da termodinâmica.",
+        "Só é possível em processo reversível.",
+        "É perfeitamente possível: a segunda lei restringe a entropia do universo, não a do sistema.",
+        "Indica erro de cálculo, pois entropia nunca diminui."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A segunda lei exige ΔS<sub>universo</sub> = ΔS<sub>sistema</sub> + ΔS<sub>vizinhança</sub> ≥ 0. Ao ceder calor, o gás perde entropia, mas a vizinhança que recebe esse calor ganha uma quantidade igual ou maior — e é a soma que precisa ser não negativa. Qualquer geladeira funcionando é um exemplo cotidiano de sistema com entropia decrescente.</p>"
+    },
+    {
+      "id": "td-023",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "entropia",
+      "enunciado": "<p>Transferem-se <span class=\"dado\">100 kJ</span> de um reservatório a <span class=\"dado\">500 K</span> para outro a <span class=\"dado\">300 K</span>. Qual a entropia gerada?</p>",
+      "alternativas": [
+        "0,067 kJ/K",
+        "0,133 kJ/K",
+        "0,200 kJ/K",
+        "0,333 kJ/K"
+      ],
+      "correta": 1,
+      "formulas": [
+        "ΔS_quente = −Q/T_H     ΔS_frio = +Q/T_C",
+        "S_ger = Q·(1/T_C − 1/T_H)"
+      ],
+      "explicacao": "<div class=\"passo\">ΔS<sub>quente</sub> = −100/500 = −0,200 kJ/K</div><div class=\"passo\">ΔS<sub>frio</sub> = +100/300 = +0,333 kJ/K</div><div class=\"passo\">S<sub>ger</sub> = −0,200 + 0,333 = <strong>0,133 kJ/K</strong></div><p>Positiva, como exige a segunda lei para um processo irreversível. Com T₀ = 298 K, o trabalho destruído seria T₀·S<sub>ger</sub> = 39,7 kJ — quase 40 % do calor transferido perdeu a capacidade de virar trabalho.</p>"
+    },
+    {
+      "id": "td-024",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "entropia",
+      "enunciado": "<p>Um processo adiabático e reversível é necessariamente:</p>",
+      "alternativas": [
+        "Isotérmico.",
+        "Isobárico.",
+        "Isentrópico.",
+        "Isocórico."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Adiabático significa δQ = 0, e reversível significa que não há geração de entropia. Como dS = δQ/T + δS<sub>ger</sub>, os dois termos se anulam e ΔS = 0: o processo é isentrópico. Atenção à recíproca — nem todo processo isentrópico é adiabático: é possível ter geração de entropia compensada exatamente por remoção de calor.</p>"
+    },
+    {
+      "id": "td-025",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "entropia",
+      "enunciado": "<p>Uma turbina real tem eficiência isentrópica de <span class=\"dado\">85 %</span>. O vapor entra com h₁ = 3 200 kJ/kg e a saída isentrópica seria h₂s = <span class=\"dado\">2 300 kJ/kg</span>, com vazão de <span class=\"dado\">5 kg/s</span>. Qual a potência real?</p>",
+      "alternativas": [
+        "3 825 kW",
+        "4 500 kW",
+        "5 294 kW",
+        "765 kW"
+      ],
+      "correta": 0,
+      "formulas": [
+        "η_turbina = W_real / W_isentrópico",
+        "W_isentrópico = ṁ·(h₁ − h₂s)",
+        "W_real = η·W_isentrópico"
+      ],
+      "explicacao": "<div class=\"passo\">W<sub>s</sub> = 5 × (3 200 − 2 300) = 4 500 kW</div><div class=\"passo\">W<sub>real</sub> = 0,85 × 4 500 = <strong>3 825 kW</strong></div><p>Cuidado com o sentido da razão: em <strong>turbina</strong> o real é menor que o ideal, então multiplica-se. Em <strong>compressor</strong> o real é maior que o ideal, e a definição se inverte — divide-se por η. Trocar os dois é o erro clássico.</p>"
+    },
+    {
+      "id": "td-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "entropia",
+      "enunciado": "<p>Duas turbinas operam entre os mesmos estados de entrada e a mesma pressão de saída, uma com eficiência isentrópica de 90 % e outra de 70 %. Comparando os estados de saída:</p>",
+      "alternativas": [
+        "Ambas saem no mesmo estado; muda apenas o trabalho entregue.",
+        "A de 70 % sai com menor entalpia, por ter dissipado mais energia.",
+        "Os dois estados de saída ficam sobre a mesma isobárica, mas a de 90 % entrega mais trabalho e sai com entalpia menor; a de 70 % sai mais quente (ou com título maior) e com entropia bem maior, porque gerou mais entropia — e pelo teorema de Gouy-Stodola o trabalho perdido é proporcional a essa geração.",
+        "A de 70 % gera menos entropia, porque converte menos energia."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Ambas partem do mesmo estado 1 e terminam na mesma pressão P₂, mas em pontos diferentes dessa isobárica.</p><p>A turbina de 90 % extrai mais trabalho: W = η·(h₁ − h₂s), portanto a queda real de entalpia é maior e o estado de saída fica mais <em>baixo</em> no diagrama h-s, mais próximo do ponto isentrópico 2s. A de 70 % extrai menos trabalho, e sua saída fica mais alta — o vapor sai com mais entalpia residual.</p><p>Como as duas terminam na mesma isobárica e a entalpia de saída da turbina menos eficiente é maior, sua <strong>temperatura de saída também é maior</strong> (ou, se estiver no domo, o título de saída é maior). A energia que não virou trabalho reaparece como aquecimento do próprio fluido.</p><p>Quanto à entropia, ambas geram mais que zero, mas a de 70 % gera consideravelmente mais: caminhando ao longo da isobárica, entalpia maior corresponde a entropia maior. Pelo teorema de Gouy-Stodola, W<sub>perdido</sub> = T₀·S<sub>ger</sub>, e essa diferença de entropia gerada é exatamente a medida do trabalho que a turbina pior deixou de produzir.</p><p>Há um efeito prático relevante: se a expansão terminar dentro do domo de saturação, a turbina mais eficiente produz vapor com título menor, isto é, mais úmido — o que agrava a erosão das pás. É por isso que se limita o título de saída a cerca de 0,88 a 0,90 em turbinas a vapor.</p>"
+    },
+    {
+      "id": "td-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "exergia",
+      "enunciado": "<p>Comparando 1 000 kJ de calor disponível a 1 000 K com os mesmos 1 000 kJ a 350 K, com ambiente a 298 K:</p>",
+      "alternativas": [
+        "Têm o mesmo valor, pois a energia é a mesma.",
+        "O calor a 1 000 K tem exergia muito maior, cerca de 70 % contra 15 %.",
+        "O calor a 350 K tem mais exergia, por estar mais perto do ambiente.",
+        "Exergia não se aplica a calor, apenas a trabalho."
+      ],
+      "correta": 1,
+      "explicacao": "<p>X = Q·(1 − T₀/T). A 1 000 K: 1 000 × (1 − 298/1 000) = 702 kJ. A 350 K: 1 000 × (1 − 298/350) = 149 kJ. A primeira lei os trata como equivalentes; a análise exergética mostra que o calor de alta temperatura tem quase cinco vezes mais capacidade de gerar trabalho. É a razão de se considerar desperdício usar calor de alta temperatura para aquecer água a 60 °C.</p>"
+    },
+    {
+      "id": "td-028",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "exergia",
+      "enunciado": "<p>No processo da questão 23 (100 kJ de 500 K para 300 K, S<sub>ger</sub> = 0,133 kJ/K), com ambiente a <span class=\"dado\">298 K</span>, qual o trabalho perdido e a eficiência de segunda lei?</p>",
+      "alternativas": [
+        "W_perd = 39,7 kJ e η_II = 1,7 %",
+        "W_perd = 39,7 kJ e η_II = 40,4 %",
+        "W_perd = 13,3 kJ e η_II = 66,7 %",
+        "W_perd = 66,7 kJ e η_II = 33,3 %"
+      ],
+      "correta": 0,
+      "formulas": [
+        "W_perdido = T₀·S_ger      (Gouy-Stodola)",
+        "X = Q·(1 − T₀/T)",
+        "η_II = X_saída / X_entrada"
+      ],
+      "explicacao": "<div class=\"passo\">W<sub>perd</sub> = 298 × 0,133 = <strong>39,7 kJ</strong></div><div class=\"passo\">X<sub>entrada</sub> = 100 × (1 − 298/500) = 40,4 kJ</div><div class=\"passo\">X<sub>saída</sub> = 100 × (1 − 298/300) = 0,667 kJ</div><div class=\"passo\">η<sub>II</sub> = 0,667/40,4 = <strong>1,7 %</strong></div><p>Praticamente toda a capacidade de gerar trabalho foi destruída, embora a primeira lei registre 100 kJ entrando e 100 kJ saindo, sem perda alguma. É a diferença entre quantidade e qualidade da energia. Confira: X<sub>entrada</sub> − X<sub>saída</sub> = 40,4 − 0,7 = 39,7 kJ, exatamente o trabalho perdido.</p>"
+    },
+    {
+      "id": "td-029",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "exergia",
+      "enunciado": "<p>Uma indústria usa vapor a 300 °C para aquecer água de banho a 45 °C. Pela primeira lei o processo é quase 100 % eficiente. A crítica correta a essa avaliação é:</p>",
+      "alternativas": [
+        "Não há crítica a fazer: se a energia foi toda aproveitada, o processo é ótimo.",
+        "A primeira lei conta apenas a QUANTIDADE de energia, e de fato quase toda ela chegou ao destino. Mas a qualidade despencou: o fator de Carnot do calor a 300 °C é da ordem de 0,48, contra cerca de 0,06 a 45 °C, o que dá eficiência de segunda lei em torno de 10 a 15 %. O enorme ΔT destrói exergia e gera entropia. O correto é cascatear — gerar trabalho primeiro em cogeração e usar o calor rejeitado no banho, ou aquecer com bomba de calor.",
+        "O erro é de medição: nenhum trocador atinge 100 % pela primeira lei.",
+        "A crítica é que o vapor deveria estar mais quente ainda, para acelerar a troca."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Pela primeira lei o processo é de fato excelente: praticamente todo o calor cedido pelo vapor é recebido pela água, e a eficiência energética beira os 100 %. Mas a primeira lei só contabiliza <em>quantidade</em> de energia e é cega à <em>qualidade</em>.</p><p>Com ambiente a 298 K, o calor disponível a 573 K tem exergia X = Q·(1 − 298/573) = 0,48·Q — quase metade dele poderia virar trabalho. Já o calor entregue a 318 K tem exergia de apenas Q·(1 − 298/318) = 0,063·Q. Portanto a eficiência de segunda lei desse processo é da ordem de 13 %: cerca de 87 % do potencial de trabalho foi destruído na transferência através de um ΔT de 255 K.</p><p>Esse desperdício aparece como entropia gerada: S<sub>ger</sub> = Q·(1/318 − 1/573), e pelo teorema de Gouy-Stodola corresponde a W<sub>perdido</sub> = T₀·S<sub>ger</sub>. A energia não sumiu — sumiu a capacidade de realizar trabalho.</p><p>A crítica prática é que se está usando um insumo caro e nobre para uma tarefa que exigiria um insumo barato. Alternativas melhores: usar o vapor de alta temperatura primeiro em uma turbina ou em um processo que realmente precise daquela temperatura, e só depois aproveitar o calor rejeitado, já degradado, para aquecer a água — que é o princípio da <strong>cogeração</strong>. Outra opção é usar rejeito térmico de outro processo, energia solar térmica ou uma bomba de calor, que entregaria os mesmos 45 °C com uma fração do trabalho.</p>"
+    },
+    {
+      "id": "td-030",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "conceitos",
+      "enunciado": "<p>Dois corpos em contato térmico atingem o equilíbrio quando:</p>",
+      "alternativas": [
+        "Têm a mesma energia interna.",
+        "Têm a mesma capacidade térmica.",
+        "Têm a mesma temperatura.",
+        "Têm a mesma entropia."
+      ],
+      "correta": 2,
+      "explicacao": "<p>É a lei zero da termodinâmica: o equilíbrio térmico é definido pela igualdade de <strong>temperaturas</strong>, e é justamente isso que permite construir termômetros. Dois corpos de massas ou materiais diferentes em equilíbrio térmico terão energias internas, capacidades térmicas e entropias completamente distintas — mas a mesma temperatura.</p>"
+    }
+  ]
+}

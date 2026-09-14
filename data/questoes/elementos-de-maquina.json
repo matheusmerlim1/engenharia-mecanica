@@ -1,0 +1,547 @@
+{
+  "disciplina": "Elementos de Máquina I",
+  "slug": "elementos-de-maquina",
+  "topicos": [
+    {
+      "id": "estatica",
+      "nome": "Falha estática"
+    },
+    {
+      "id": "fadiga",
+      "nome": "Fadiga e curva S-N"
+    },
+    {
+      "id": "marin",
+      "nome": "Fatores de Marin"
+    },
+    {
+      "id": "media",
+      "nome": "Tensão média"
+    },
+    {
+      "id": "parafusos",
+      "nome": "Parafusos"
+    },
+    {
+      "id": "soldas",
+      "nome": "Soldas"
+    },
+    {
+      "id": "molas",
+      "nome": "Molas"
+    },
+    {
+      "id": "eixos",
+      "nome": "Eixos"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "em-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "estatica",
+      "enunciado": "<p>Para um material dúctil sob estado plano de tensões, o critério da máxima tensão cisalhante (Tresca), comparado ao da energia de distorção (von Mises), é:</p>",
+      "alternativas": [
+        "Menos conservador, pois admite tensões maiores.",
+        "Idêntico em qualquer estado de tensão.",
+        "Aplicável apenas a materiais frágeis.",
+        "Mais conservador, prevendo a falha com tensões um pouco menores."
+      ],
+      "correta": 3,
+      "explicacao": "<p>A elipse de von Mises circunscreve o hexágono de Tresca: para o mesmo carregamento, Tresca prevê a falha antes. A maior diferença ocorre em cisalhamento puro, onde Tresca dá τ<sub>escoamento</sub> = 0,50·S<sub>y</sub> e von Mises dá 0,577·S<sub>y</sub> — cerca de 15 % de diferença. Tresca é mais simples e fica do lado seguro; von Mises reproduz melhor os dados experimentais.</p>"
+    },
+    {
+      "id": "em-002",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "estatica",
+      "enunciado": "<p>Um eixo maciço de <span class=\"dado\">d = 35 mm</span> transmite momento fletor <span class=\"dado\">M = 250 N·m</span> e torque <span class=\"dado\">T = 180 N·m</span>. Qual a tensão equivalente de von Mises na superfície?</p>",
+      "alternativas": [
+        "59,4 MPa",
+        "70,0 MPa",
+        "80,8 MPa",
+        "102,8 MPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "σ = 32M/(π·d³)",
+        "τ = 16T/(π·d³)",
+        "σ' = √(σ² + 3τ²)"
+      ],
+      "explicacao": "<div class=\"passo\">σ = 32 × 250 000 / (π × 35³) = 59,4 MPa</div><div class=\"passo\">τ = 16 × 180 000 / (π × 35³) = 21,4 MPa</div><div class=\"passo\">σ' = √(59,4² + 3 × 21,4²) = √(3528 + 1373)</div><div class=\"passo\">σ' = √4901 = <strong>70,0 MPa</strong></div><p>O distrator de 59,4 MPa é esquecer a torção. Note que a torção contribui pouco aqui porque entra pela raiz e com o torque menor que o momento.</p>"
+    },
+    {
+      "id": "em-003",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "estatica",
+      "enunciado": "<p>Para ferro fundido cinzento, que tem resistência à compressão cerca de três vezes maior que à tração, o critério de falha estática mais adequado é:</p>",
+      "alternativas": [
+        "Mohr-Coulomb, que trata S_ut e S_uc separadamente.",
+        "Energia de distorção (von Mises).",
+        "Soderberg.",
+        "Máxima tensão cisalhante (Tresca)."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Von Mises e Tresca pressupõem material dúctil e mesma resistência em tração e compressão. O ferro fundido é frágil e assimétrico, o que exige um critério que use os dois limites: Mohr-Coulomb ou sua versão modificada. Soderberg não é critério estático — é critério de fadiga com tensão média.</p>"
+    },
+    {
+      "id": "em-004",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "fadiga",
+      "enunciado": "<p>A superfície de fratura por fadiga apresenta caracteristicamente:</p>",
+      "alternativas": [
+        "Aspecto uniformemente fibroso, com grande redução de área.",
+        "Empescoçamento acentuado próximo à origem da trinca.",
+        "Somente uma região cristalina brilhante.",
+        "Uma região lisa com marcas de praia e outra rugosa de ruptura final."
+      ],
+      "correta": 3,
+      "explicacao": "<p>A fadiga deixa duas zonas distintas: a de propagação estável, lisa e com marcas de praia concêntricas em torno do ponto de nucleação, e a de ruptura final, rugosa, que ocorre quando a seção remanescente não suporta mais a carga. Não há empescoçamento apreciável — macroscopicamente a peça parece ter rompido de forma frágil, mesmo sendo de material dúctil.</p>"
+    },
+    {
+      "id": "em-005",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fadiga",
+      "enunciado": "<p>Ao contrário dos aços, ligas de alumínio não apresentam limite de fadiga verdadeiro. A consequência prática é que:</p>",
+      "alternativas": [
+        "Alumínio não pode ser usado em peças cíclicas.",
+        "A curva S-N do alumínio é horizontal desde 10³ ciclos.",
+        "Especifica-se a resistência à fadiga para uma vida definida, tipicamente 5×10⁸ ciclos.",
+        "O critério de Goodman não se aplica ao alumínio."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Sem patamar, a curva S-N continua caindo indefinidamente: não existe tensão abaixo da qual a vida seja infinita. O projeto passa então a ser por <em>vida finita</em>, adotando-se a resistência correspondente a um número de ciclos de referência (5×10⁸ é o valor usual). Goodman continua válido — o que muda é o valor de S<sub>e</sub> que se coloca nele.</p>"
+    },
+    {
+      "id": "em-006",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "fadiga",
+      "enunciado": "<p>Um aço tem <span class=\"dado\">S<sub>ut</sub> = 700 MPa</span>. Qual a estimativa do limite de fadiga do corpo de prova padrão em flexão rotativa?</p>",
+      "alternativas": [
+        "210 MPa",
+        "280 MPa",
+        "350 MPa",
+        "700 MPa"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Aços com Sut ≤ 1400 MPa:  Se′ = 0,5·Sut",
+        "Aços com Sut > 1400 MPa:  Se′ = 700 MPa"
+      ],
+      "explicacao": "<div class=\"passo\">S<sub>ut</sub> = 700 MPa &lt; 1400 MPa → vale a regra proporcional</div><div class=\"passo\">S<sub>e</sub>′ = 0,5 × 700 = <strong>350 MPa</strong></div><p>Atenção: esse é o valor do <em>corpo de prova</em>, polido e de 7,6 mm. A peça real terá um limite bem menor, após os fatores de Marin.</p>"
+    },
+    {
+      "id": "em-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fadiga",
+      "enunciado": "<p>Sobre a nucleação de trincas de fadiga na superfície e as medidas de projeto que exploram esse fato:</p>",
+      "alternativas": [
+        "A fadiga nucleia no interior da peça, onde há mais defeitos metalúrgicos, e o acabamento superficial é irrelevante.",
+        "Tensões residuais, sejam de tração ou de compressão, sempre reduzem a vida em fadiga.",
+        "Como a nucleação é superficial, aumentar o diâmetro da peça resolve o problema independentemente do acabamento.",
+        "Flexão e torção têm tensão máxima justamente na superfície, e os grãos superficiais escorregam com mais facilidade por terem menos restrição; por isso o acabamento e os concentradores entram no cálculo pelo fator k_a, e processos como jateamento com granalha ou roleteamento, que deixam tensão residual de compressão, aumentam muito a vida — enquanto tensão residual de tração é prejudicial."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Três razões concentram a nucleação na superfície. Primeira: nas solicitações mais comuns — flexão e torção — a tensão é máxima exatamente na fibra externa. Segunda: os grãos da superfície têm menos vizinhos que os restringem, de modo que o escorregamento plástico cíclico e a formação de intrusões e extrusões ocorrem preferencialmente ali. Terceira: é na superfície que estão as marcas de usinagem, riscos, poros, descarbonetação e demais concentradores geométricos, que elevam localmente a tensão.</p><p>O projeto explora isso de duas formas. Melhorando o acabamento — retificar ou polir em vez de deixar como usinado, o que aumenta k<sub>a</sub> — e eliminando concentradores, com raios de concordância generosos e transições suaves de diâmetro.</p><p>A fabricação atua introduzindo <strong>tensões residuais de compressão</strong> na superfície: jateamento com granalha (<em>shot peening</em>), roleteamento, cementação, nitretação e têmpera por indução. A compressão residual precisa ser vencida antes que a tensão de tração aplicada abra a trinca, o que atrasa muito a nucleação e pode elevar o limite de fadiga em 20 a 50 %. Por isso o fator k<sub>f</sub> de Marin pode ser maior que 1 nesses casos.</p><p>O inverso também vale: processos que deixam tração residual, como soldagem sem alívio e retífica agressiva, reduzem a vida em fadiga.</p>"
+    },
+    {
+      "id": "em-008",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "marin",
+      "enunciado": "<p>Uma peça de aço com <span class=\"dado\">S<sub>ut</sub> = 700 MPa</span>, superfície <span class=\"dado\">usinada</span> (a = 4,51; b = −0,265) e diâmetro <span class=\"dado\">d = 30 mm</span> trabalha em flexão rotativa, à temperatura ambiente, com confiabilidade de 50 %. Determine o limite de fadiga corrigido S<sub>e</sub>.</p>",
+      "alternativas": [
+        "350 MPa",
+        "302 MPa",
+        "278 MPa",
+        "240 MPa"
+      ],
+      "correta": 3,
+      "formulas": [
+        "Se′ = 0,5·Sut",
+        "ka = a·Sut^b",
+        "kb = 1,24·d^(−0,107)   [2,79 ≤ d ≤ 51 mm]",
+        "kc = 1 (flexão), kd = 1, ke = 1 (50 %)",
+        "Se = ka·kb·kc·kd·ke·Se′"
+      ],
+      "explicacao": "<div class=\"passo\">S<sub>e</sub>′ = 0,5 × 700 = 350 MPa</div><div class=\"passo\">k<sub>a</sub> = 4,51 × 700<sup>−0,265</sup> = 0,795</div><div class=\"passo\">k<sub>b</sub> = 1,24 × 30<sup>−0,107</sup> = 0,862</div><div class=\"passo\">S<sub>e</sub> = 0,795 × 0,862 × 1 × 1 × 1 × 350 = <strong>240 MPa</strong></div><p>Os fatores de superfície e tamanho, sozinhos, retiraram 31 % do limite de fadiga. Responder 350 MPa é o erro de usar o valor do corpo de prova como se fosse o da peça.</p>"
+    },
+    {
+      "id": "em-009",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "marin",
+      "enunciado": "<p>Sobre o fator de tamanho k<sub>b</sub> na estimativa do limite de fadiga:</p>",
+      "alternativas": [
+        "Aumenta com o diâmetro, pois peças maiores são mais resistentes.",
+        "Vale sempre 1 para qualquer tipo de carregamento.",
+        "Diminui com o diâmetro, e é tomado igual a 1 no carregamento axial.",
+        "Depende apenas do acabamento superficial."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Peça maior tem maior volume de material submetido a tensão elevada, logo maior probabilidade de conter um defeito crítico — daí k<sub>b</sub> cair com o diâmetro. Em carregamento <strong>axial</strong> a tensão é uniforme na seção, e não existe o gradiente que dá origem ao efeito de tamanho: adota-se k<sub>b</sub> = 1 (e compensa-se com k<sub>c</sub> = 0,85).</p>"
+    },
+    {
+      "id": "em-010",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "marin",
+      "enunciado": "<p>Um entalhe tem fator de concentração de tensão teórico <span class=\"dado\">K<sub>t</sub> = 2,5</span> e o material tem sensibilidade ao entalhe <span class=\"dado\">q = 0,8</span>. Qual o fator de concentração em fadiga K<sub>f</sub>?</p>",
+      "alternativas": [
+        "1,50",
+        "2,00",
+        "2,20",
+        "2,50"
+      ],
+      "correta": 2,
+      "formulas": [
+        "K_f = 1 + q·(K_t − 1)"
+      ],
+      "explicacao": "<div class=\"passo\">K<sub>f</sub> = 1 + 0,8 × (2,5 − 1)</div><div class=\"passo\">K<sub>f</sub> = 1 + 1,2 = <strong>2,20</strong></div><p>K<sub>f</sub> está sempre entre 1 e K<sub>t</sub>. Com q = 0 (material totalmente insensível, como o ferro fundido cinzento, que já é cheio de entalhes internos de grafita) tem-se K<sub>f</sub> = 1; com q = 1 (aço de alta resistência), K<sub>f</sub> = K<sub>t</sub>.</p>"
+    },
+    {
+      "id": "em-011",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "media",
+      "enunciado": "<p>Uma tensão média de tração, somada a uma amplitude alternada constante, tem qual efeito sobre a vida em fadiga?</p>",
+      "alternativas": [
+        "Reduz a vida, pois favorece a abertura e a propagação da trinca.",
+        "Não altera a vida, que depende apenas da amplitude.",
+        "Aumenta a vida, pois eleva a tensão máxima suportável.",
+        "Só importa se ultrapassar o limite de escoamento."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A tensão média de tração mantém a trinca aberta durante todo o ciclo, facilitando a propagação — por isso todos os critérios (Goodman, Soderberg, Gerber) reduzem a amplitude admissível à medida que σ<sub>m</sub> cresce. Já a tensão média de <em>compressão</em> é benéfica: fecha a trinca, e por isso é usualmente tratada como não prejudicial (σ<sub>m</sub> ≤ 0 → usa-se σ<sub>a</sub> = S<sub>e</sub>).</p>"
+    },
+    {
+      "id": "em-012",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "media",
+      "enunciado": "<p>Uma peça sofre tensão que varia entre <span class=\"dado\">σ<sub>mín</sub> = 40 MPa</span> e <span class=\"dado\">σ<sub>máx</sub> = 200 MPa</span>. Determine a tensão média, a amplitude e a razão de tensões R.</p>",
+      "alternativas": [
+        "σm = 120, σa = 80, R = 0,20",
+        "σm = 80, σa = 120, R = 0,20",
+        "σm = 120, σa = 160, R = 5,00",
+        "σm = 100, σa = 100, R = 0,50"
+      ],
+      "correta": 0,
+      "formulas": [
+        "σm = (σmáx + σmín)/2",
+        "σa = (σmáx − σmín)/2",
+        "R = σmín/σmáx"
+      ],
+      "explicacao": "<div class=\"passo\">σ<sub>m</sub> = (200 + 40)/2 = <strong>120 MPa</strong></div><div class=\"passo\">σ<sub>a</sub> = (200 − 40)/2 = <strong>80 MPa</strong></div><div class=\"passo\">R = 40/200 = <strong>0,20</strong></div><p>Vale memorizar: R = −1 é o carregamento totalmente alternado (o do corpo de prova) e R = 0 é o repetido, que parte de zero.</p>"
+    },
+    {
+      "id": "em-013",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "media",
+      "enunciado": "<p>Uma peça com <span class=\"dado\">S<sub>e</sub> = 250 MPa</span>, <span class=\"dado\">S<sub>ut</sub> = 600 MPa</span> e <span class=\"dado\">S<sub>y</sub> = 400 MPa</span> trabalha com σ<sub>a</sub> = 80 MPa e σ<sub>m</sub> = 120 MPa. Qual o coeficiente de segurança pelo critério de Goodman modificado?</p>",
+      "alternativas": [
+        "1,61",
+        "1,92",
+        "2,40",
+        "3,13"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Goodman:   1/n = σa/Se + σm/Sut",
+        "Soderberg: 1/n = σa/Se + σm/Sy",
+        "Escoamento: ny = Sy/(σa + σm)"
+      ],
+      "explicacao": "<div class=\"passo\">1/n = 80/250 + 120/600</div><div class=\"passo\">1/n = 0,320 + 0,200 = 0,520</div><div class=\"passo\">n = 1/0,520 = <strong>1,92</strong></div><p>Por Soderberg (com S<sub>y</sub> no lugar de S<sub>ut</sub>) daria 1,61 — mais conservador, que é o distrator. Por Gerber daria 2,40. Verifique ainda o escoamento no primeiro ciclo: n<sub>y</sub> = 400/(80 + 120) = 2,0, que é maior que 1,92, então a fadiga governa.</p>"
+    },
+    {
+      "id": "em-014",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "media",
+      "enunciado": "<p>Sobre os critérios de Goodman, Soderberg e Gerber e a necessidade de verificar o escoamento no primeiro ciclo:</p>",
+      "alternativas": [
+        "Os três são equivalentes, e a verificação de escoamento é redundante.",
+        "Gerber é o mais conservador dos três, e por isso o adotado como padrão de projeto.",
+        "Soderberg é o mais conservador (termina em S_y), Goodman é intermediário e adotado como padrão, e Gerber, parabólico, é o que melhor ajusta os dados experimentais; como Goodman e Gerber terminam em S_ut, eles não impedem que σ_máx ultrapasse S_y, e por isso ainda é preciso verificar n_y = S_y/(σ_a + σ_m) e adotar o menor coeficiente.",
+        "A verificação de escoamento só é necessária quando se usa Soderberg."
+      ],
+      "correta": 2,
+      "explicacao": "<p>No plano σ<sub>m</sub>–σ<sub>a</sub>, os três critérios partem do mesmo ponto no eixo vertical (σ<sub>a</sub> = S<sub>e</sub>, carregamento totalmente alternado) e diferem no percurso até o eixo horizontal.</p><p><strong>Soderberg</strong> é uma reta até S<sub>y</sub>. É o mais conservador dos três, porque limita a tensão média pelo escoamento e não pela ruptura; em compensação, garante simultaneamente contra a fadiga e contra o escoamento. <strong>Goodman modificado</strong> é uma reta até S<sub>ut</sub>: fica sempre acima de Soderberg, é ligeiramente conservador em relação aos dados experimentais, tem álgebra simples e por isso é o padrão de projeto. <strong>Gerber</strong> é uma parábola até S<sub>ut</sub>, passando acima da reta de Goodman; é o que melhor ajusta a nuvem de pontos experimentais de materiais dúcteis, mas, por passar pelo meio dos dados, cerca de metade dos resultados de ensaio cai abaixo dele — o que exige um coeficiente de segurança maior.</p><p>A ordem de conservadorismo é, portanto, Soderberg &gt; Goodman &gt; Gerber.</p><p>A verificação do escoamento no primeiro ciclo continua necessária porque Goodman e Gerber usam S<sub>ut</sub> como limite no eixo das médias, e nada neles impede que a combinação σ<sub>a</sub> + σ<sub>m</sub> = σ<sub>máx</sub> ultrapasse S<sub>y</sub>. Nesse caso a peça escoaria e se deformaria permanentemente logo na primeira aplicação da carga, muito antes de qualquer processo de fadiga — falha que o critério de fadiga não enxerga. Checa-se então n<sub>y</sub> = S<sub>y</sub>/(σ<sub>a</sub> + σ<sub>m</sub>) e adota-se o menor dos coeficientes. Soderberg é a exceção parcial, pois já embute essa proteção.</p>"
+    },
+    {
+      "id": "em-015",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "parafusos",
+      "enunciado": "<p>Em uma junta parafusada corretamente pré-carregada, a constante de rigidez C vale tipicamente 0,2. Isso significa que, ao se aplicar uma carga externa P (abaixo da separação):</p>",
+      "alternativas": [
+        "O parafuso recebe 80 % de P e os membros 20 %.",
+        "Apenas 20 % de P aumenta a força no parafuso; os 80 % restantes aliviam a compressão dos membros.",
+        "O parafuso recebe 100 % de P, pois é o elemento mais fraco.",
+        "A carga se divide igualmente entre parafuso e membros."
+      ],
+      "correta": 1,
+      "explicacao": "<p>C = k<sub>b</sub>/(k<sub>b</sub> + k<sub>m</sub>) é a fração da carga externa que vai para o parafuso: F<sub>b</sub> = C·P + F<sub>i</sub>. Como os membros são muito mais rígidos que o parafuso, C é pequeno e a maior parte de P apenas descomprime a junta. Essa é a razão de a junta pré-carregada ser tão eficiente em fadiga: a amplitude de força no parafuso é só C·P/2.</p>"
+    },
+    {
+      "id": "em-016",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "parafusos",
+      "enunciado": "<p>Um parafuso <span class=\"dado\">M12 classe 8.8</span> (A<sub>t</sub> = 84,3 mm², S<sub>p</sub> = 600 MPa) será usado em junta reutilizável. Determine a pré-carga recomendada e o torque de aperto (K = 0,20).</p>",
+      "alternativas": [
+        "F_i = 50,6 kN e T = 121 N·m",
+        "F_i = 37,9 kN e T = 91 N·m",
+        "F_i = 37,9 kN e T = 455 N·m",
+        "F_i = 25,3 kN e T = 61 N·m"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Junta reutilizável:  Fi = 0,75·At·Sp",
+        "Junta permanente:    Fi = 0,90·At·Sp",
+        "T = K·Fi·d,  K ≈ 0,20"
+      ],
+      "explicacao": "<div class=\"passo\">F<sub>i</sub> = 0,75 × 84,3 × 600 = 37 935 N = <strong>37,9 kN</strong></div><div class=\"passo\">T = 0,20 × 37 935 × 0,012 m = <strong>91 N·m</strong></div><p>O distrator de 50,6 kN vem de usar o coeficiente 0,90 da junta permanente. O de 455 N·m vem de esquecer de converter o diâmetro de mm para m.</p>"
+    },
+    {
+      "id": "em-017",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "parafusos",
+      "enunciado": "<p>Uma junta tem <span class=\"dado\">C = 0,20</span> e pré-carga <span class=\"dado\">F<sub>i</sub> = 25 kN</span> por parafuso. Qual a carga externa por parafuso que provoca a separação da junta?</p>",
+      "alternativas": [
+        "20,0 kN",
+        "25,0 kN",
+        "31,25 kN",
+        "125 kN"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Fm = (1 − C)·P − Fi",
+        "Separação quando Fm = 0",
+        "P0 = Fi/(1 − C)"
+      ],
+      "explicacao": "<div class=\"passo\">A separação ocorre quando a força nos membros chega a zero</div><div class=\"passo\">(1 − 0,20)·P₀ = 25 → 0,80·P₀ = 25</div><div class=\"passo\">P₀ = 25/0,80 = <strong>31,25 kN</strong></div><p>Acima de P₀ a junta abre e o parafuso passa a receber 100 % da carga externa — a amplitude de tensão nele dispara e a falha por fadiga vem rápido. Dimensiona-se sempre com folga em relação a P₀.</p>"
+    },
+    {
+      "id": "em-018",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "parafusos",
+      "enunciado": "<p>Na designação de um parafuso classe <code>10.9</code> conforme a ISO 898-1, os números indicam:</p>",
+      "alternativas": [
+        "O diâmetro nominal e o passo da rosca.",
+        "S_ut = 1000 MPa e S_y = 900 MPa.",
+        "S_ut = 1000 MPa e S_y = 0,9 × S_ut = 900 MPa.",
+        "A dureza Rockwell e o número de fios por polegada."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Na classe <em>x.y</em>: S<sub>ut</sub> = x × 100 MPa e S<sub>y</sub> = x × y × 10 MPa, o que equivale a dizer que a razão S<sub>y</sub>/S<sub>ut</sub> é y/10. Para a 10.9: S<sub>ut</sub> = 1000 MPa e S<sub>y</sub> = 900 MPa, isto é, 90 % de S<sub>ut</sub>. As alternativas B e C dão o mesmo valor numérico, mas só C enuncia corretamente a regra de formação.</p>"
+    },
+    {
+      "id": "em-019",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "parafusos",
+      "enunciado": "<p>Uma junta parafusada com pré-carga adequada resiste muito melhor à fadiga do que a mesma junta apenas encostada porque:</p>",
+      "alternativas": [
+        "Com pré-carga, apenas a fração C da carga externa chega ao parafuso, e C costuma valer entre 0,2 e 0,3 — a amplitude de tensão despenca, e o aumento da tensão média compensa largamente essa redução; sem pré-carga o parafuso recebe a carga inteira e ainda sofre movimento relativo, fretting e afrouxamento.",
+        "A pré-carga aumenta a área resistente do parafuso.",
+        "A pré-carga reduz a tensão média no parafuso, e é a tensão média que governa a fadiga.",
+        "A pré-carga não influi na fadiga: serve apenas para evitar vazamento na junta."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Com pré-carga adequada e carga externa abaixo da separação, a força no parafuso é F<sub>b</sub> = F<sub>i</sub> + C·P. Quando P oscila entre 0 e P<sub>máx</sub>, a força no parafuso oscila apenas de C·P<sub>máx</sub>, e como C é tipicamente 0,1 a 0,3, mais de 70 % da variação de carga é absorvida pela descompressão dos membros. A amplitude de tensão no parafuso, que é o que governa a fadiga, fica pequena. A pré-carga eleva a tensão <em>média</em>, é verdade, mas o critério de Goodman mostra que trocar amplitude alta por média alta é um excelente negócio: a amplitude pesa por S<sub>e</sub>, que é bem menor que S<sub>ut</sub>.</p><p>Sem pré-carga efetiva, a junta está separada desde o início. Toda a carga externa passa integralmente pelo parafuso: F<sub>b</sub> = P, e a amplitude de força vira P<sub>máx</sub>/2 em vez de C·P<sub>máx</sub>/2 — um aumento de várias vezes na tensão alternada. Some-se a isso que a junta frouxa permite movimento relativo entre as peças, o que gera carga de flexão parasita no parafuso, desgaste por fretting e afrouxamento progressivo.</p><p>Daí a regra prática: em junta sujeita a carga variável, o aperto não é acabamento nem detalhe de montagem, é parte do dimensionamento, e deve ser controlado por torquímetro, ângulo de giro ou medição de alongamento.</p>"
+    },
+    {
+      "id": "em-020",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "soldas",
+      "enunciado": "<p>No dimensionamento de uma solda de filete, a área resistente é calculada com base na garganta porque:</p>",
+      "alternativas": [
+        "É a seção de menor área, onde ocorre o cisalhamento crítico.",
+        "É a região de maior aporte térmico.",
+        "É onde o metal de base tem menor resistência.",
+        "É a maior dimensão do cordão, o que resulta em projeto seguro."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A garganta é o menor plano que atravessa o cordão, a 45° das pernas para o filete de pernas iguais: t<sub>g</sub> = 0,707·h. Sendo a menor seção, é onde a tensão de cisalhamento é máxima e onde a ruptura de fato ocorre. Por convenção de norma, calcula-se sempre por cisalhamento na garganta, mesmo com carga normal ao cordão — uma simplificação do lado seguro.</p>"
+    },
+    {
+      "id": "em-021",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "soldas",
+      "enunciado": "<p>Duas chapas são unidas por dois cordões de filete de perna <span class=\"dado\">h = 8 mm</span>, cada um com <span class=\"dado\">100 mm</span> de comprimento, sob carga de tração centrada de <span class=\"dado\">60 kN</span>. Qual a tensão de cisalhamento na garganta?</p>",
+      "alternativas": [
+        "37,5 MPa",
+        "53,0 MPa",
+        "75,0 MPa",
+        "106 MPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "t_g = 0,707·h",
+        "A = t_g · L_total",
+        "τ = F / A"
+      ],
+      "explicacao": "<div class=\"passo\">t<sub>g</sub> = 0,707 × 8 = 5,66 mm</div><div class=\"passo\">L<sub>total</sub> = 2 × 100 = 200 mm</div><div class=\"passo\">A = 5,66 × 200 = 1 131 mm²</div><div class=\"passo\">τ = 60 000/1 131 = <strong>53,0 MPa</strong></div><p>Usar a perna em vez da garganta dá 37,5 MPa — resultado contra a segurança e o erro mais comum nessa conta. Esquecer que são dois cordões dobra o valor para 106 MPa.</p>"
+    },
+    {
+      "id": "em-022",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "soldas",
+      "enunciado": "<p>Em um grupo de soldas submetido a carga excêntrica, o ponto crítico do cordão é:</p>",
+      "alternativas": [
+        "O centroide do grupo de soldas.",
+        "O ponto mais próximo do ponto de aplicação da carga.",
+        "O meio de cada cordão, onde a garganta é mais uniforme.",
+        "O ponto mais distante do centroide em que os cisalhamentos primário e secundário se somam."
+      ],
+      "correta": 3,
+      "explicacao": "<p>A excentricidade produz cisalhamento primário τ′ = V/A, igual em todo o cordão, e cisalhamento secundário τ″ = M·r/J<sub>u</sub>, proporcional à distância r ao centroide e perpendicular ao raio. A resultante é a soma <em>vetorial</em> dos dois: é máxima onde r é máximo e onde os dois vetores apontam no mesmo sentido. No centroide τ″ é nulo, então ali a solicitação é mínima, não máxima.</p>"
+    },
+    {
+      "id": "em-023",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "molas",
+      "enunciado": "<p>O fator de Wahl K<sub>W</sub>, usado no cálculo de molas helicoidais, corrige a tensão para levar em conta:</p>",
+      "alternativas": [
+        "A curvatura do arame e o cisalhamento direto, que elevam a tensão no lado interno da espira.",
+        "A flambagem lateral da mola comprimida.",
+        "O número de espiras inativas nas extremidades.",
+        "A variação do módulo G com a temperatura."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A fórmula simples τ = 8FD/(πd³) trata o arame como se estivesse em torção pura e reto. Na mola real, a curvatura concentra a tensão no lado interno da espira e ainda existe o cisalhamento transversal direto. K<sub>W</sub> = (4C−1)/(4C−4) + 0,615/C corrige os dois efeitos de uma vez, e é tanto maior quanto menor o índice C = D/d — daí evitar C &lt; 4.</p>"
+    },
+    {
+      "id": "em-024",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "molas",
+      "enunciado": "<p>Uma mola helicoidal de compressão tem arame de <span class=\"dado\">d = 5 mm</span>, diâmetro médio <span class=\"dado\">D = 40 mm</span> e <span class=\"dado\">N<sub>a</sub> = 10</span> espiras ativas, em aço com G = 79,3 GPa. Qual a constante da mola?</p>",
+      "alternativas": [
+        "4,84 N/mm",
+        "9,68 N/mm",
+        "19,4 N/mm",
+        "77,4 N/mm"
+      ],
+      "correta": 1,
+      "formulas": [
+        "C = D/d  (índice da mola)",
+        "k = G·d⁴ / (8·D³·Na)"
+      ],
+      "explicacao": "<div class=\"passo\">d⁴ = 5⁴ = 625 mm⁴</div><div class=\"passo\">D³ = 40³ = 64 000 mm³</div><div class=\"passo\">k = 79 300 × 625 / (8 × 64 000 × 10)</div><div class=\"passo\">k = 4,956×10⁷ / 5,12×10⁶ = <strong>9,68 N/mm</strong></div><p>Note a sensibilidade: k ∝ d⁴, então trocar o arame de 5 para 5,5 mm (10 % maior) elevaria k em 46 %. E k ∝ 1/N<sub>a</sub>: cortar a mola pela metade dobra a rigidez.</p>"
+    },
+    {
+      "id": "em-025",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "molas",
+      "enunciado": "<p>Para a mesma mola (d = 5 mm, D = 40 mm) sob força de <span class=\"dado\">F = 200 N</span>, calcule a tensão de cisalhamento máxima incluindo o fator de Wahl.</p>",
+      "alternativas": [
+        "163 MPa",
+        "193 MPa",
+        "212 MPa",
+        "245 MPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "C = D/d",
+        "K_W = (4C − 1)/(4C − 4) + 0,615/C",
+        "τ = K_W · 8·F·D/(π·d³)"
+      ],
+      "explicacao": "<div class=\"passo\">C = 40/5 = 8</div><div class=\"passo\">K<sub>W</sub> = (32 − 1)/(32 − 4) + 0,615/8 = 31/28 + 0,0769 = 1,184</div><div class=\"passo\">τ<sub>sem Wahl</sub> = 8 × 200 × 40/(π × 125) = 163 MPa</div><div class=\"passo\">τ = 1,184 × 163 = <strong>193 MPa</strong></div><p>Ignorar K<sub>W</sub> subestima a tensão em 18 % — é o distrator de 163 MPa. Com C = 4, o fator subiria para 1,40, e o erro seria de 40 %.</p>"
+    },
+    {
+      "id": "em-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "eixos",
+      "enunciado": "<p>Um eixo gira sob momento fletor constante em módulo e direção. A tensão de flexão em um ponto da superfície é:</p>",
+      "alternativas": [
+        "Constante, pois o momento não varia.",
+        "Repetida, variando de zero ao máximo.",
+        "Totalmente alternada, com σ_m = 0.",
+        "Nula, pois o ponto gira junto com o carregamento."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A cada volta, o ponto passa da fibra mais tracionada para a mais comprimida e volta. A tensão nele varia senoidalmente entre +σ e −σ: é o carregamento totalmente alternado, com σ<sub>m</sub> = 0 e R = −1 — exatamente a condição do ensaio de flexão rotativa que define S<sub>e</sub>′. Por isso eixos rotativos são o caso clássico de projeto por fadiga.</p>"
+    },
+    {
+      "id": "em-027",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "eixos",
+      "enunciado": "<p>Ao dimensionar um eixo por fadiga, a seção crítica deve ser procurada:</p>",
+      "alternativas": [
+        "Sempre no meio do vão entre mancais, onde o momento é máximo.",
+        "Sempre onde o diâmetro é menor.",
+        "Onde a combinação de momento fletor e concentrador de tensão for mais severa.",
+        "Junto ao acoplamento, onde o torque é aplicado."
+      ],
+      "correta": 2,
+      "explicacao": "<p>O momento máximo importa, mas um ressalto de rolamento, rasgo de chaveta ou ranhura de anel elástico pode ter K<sub>f</sub> = 2 a 3 e tornar crítica uma seção com momento bem menor. O procedimento correto é verificar <em>cada</em> mudança de seção, multiplicando o momento local pelo K<sub>f</sub> daquele detalhe. Não existe atalho: a seção crítica é a de maior K<sub>f</sub>·M/d³, não a de maior M.</p>"
+    },
+    {
+      "id": "em-028",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "eixos",
+      "enunciado": "<p>Um eixo rotativo tem momento fletor alternado <span class=\"dado\">M<sub>a</sub> = 200 N·m</span> e torque médio constante <span class=\"dado\">T<sub>m</sub> = 150 N·m</span>. Com <span class=\"dado\">S<sub>e</sub> = 200 MPa</span>, <span class=\"dado\">S<sub>y</sub> = 400 MPa</span>, K<sub>f</sub> = K<sub>fs</sub> = 1 e coeficiente de segurança n = 2, qual o diâmetro mínimo pelo critério ASME elíptico?</p>",
+      "alternativas": [
+        "28,4 mm",
+        "31,9 mm",
+        "35,6 mm",
+        "40,2 mm"
+      ],
+      "correta": 1,
+      "formulas": [
+        "d = { (16n/π)·[ 4(Kf·Ma/Se)² + 3(Kfs·Tm/Sy)² ]^(1/2) }^(1/3)",
+        "Unidades coerentes: N e mm  →  Se e Sy em MPa"
+      ],
+      "explicacao": "<div class=\"passo\">M<sub>a</sub> = 200 000 N·mm; T<sub>m</sub> = 150 000 N·mm</div><div class=\"passo\">4(200 000/200)² = 4 × (1000)² = 4,00×10⁶</div><div class=\"passo\">3(150 000/400)² = 3 × (375)² = 4,219×10⁵</div><div class=\"passo\">√(4,00×10⁶ + 4,219×10⁵) = √4,422×10⁶ = 2 103</div><div class=\"passo\">d³ = (16 × 2/π) × 2 103 = 10,186 × 2 103 = 21 419 mm³</div><div class=\"passo\">d = ∛21 419 = <strong>31,9 mm</strong> → adotar 32 mm</div><p>Repare que o termo de flexão domina, apesar de M<sub>a</sub> e T<sub>m</sub> serem da mesma ordem: é porque a flexão é alternada e entra dividida por S<sub>e</sub>, que é metade de S<sub>y</sub>.</p>"
+    },
+    {
+      "id": "em-029",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "eixos",
+      "enunciado": "<p>Um raio de concordância generoso em um ressalto de eixo é preferível a um canto vivo porque:</p>",
+      "alternativas": [
+        "Reduz o custo de usinagem.",
+        "Diminui o fator de concentração de tensão, elevando a vida em fadiga.",
+        "Aumenta o momento de inércia da seção.",
+        "Permite usar rolamento de maior capacidade."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O canto vivo é uma singularidade geométrica: K<sub>t</sub> tende a valores muito altos e a trinca de fadiga nucleia ali. Aumentar o raio suaviza o desvio das linhas de força e derruba K<sub>t</sub> — passar de r/d = 0,02 para 0,10 pode reduzir K<sub>t</sub> de cerca de 2,5 para 1,5. O ganho de seção resistente é irrelevante perto do ganho em fadiga. O conflito prático é com o raio do rolamento, que exige um canto pequeno; resolve-se com rebaixo de alívio.</p>"
+    },
+    {
+      "id": "em-030",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "eixos",
+      "enunciado": "<p>Um eixo dimensionado com coeficiente de segurança adequado por fadiga falhou em campo, com fratura iniciando no rasgo de chaveta. A investigação técnica deve:</p>",
+      "alternativas": [
+        "Concluir de imediato que o cálculo estava errado e redimensionar com coeficiente maior.",
+        "Descartar o rasgo de chaveta, já que ele foi considerado no cálculo.",
+        "Trocar o material por um de maior resistência, sem outras verificações.",
+        "Separar hipóteses de projeto, fabricação e operação: rever o K_f adotado para o rasgo, conferir raio de fundo, rugosidade, material e tratamento térmico executados, investigar sobrecarga, corrosão, fretting e número real de ciclos — e ler a superfície de fratura, cujas marcas de praia indicam origem, direção de propagação e nível de tensão."
+      ],
+      "correta": 3,
+      "explicacao": "<p><strong>Projeto.</strong> A primeira hipótese é o fator de concentração no rasgo ter sido subestimado ou simplesmente não aplicado: rasgo de chaveta de topo tem K<sub>f</sub> tipicamente entre 1,6 e 2,2 em flexão. Verifica-se recalculando a seção com o K<sub>f</sub> correto do detalhe e conferindo se o raio do fundo do rasgo especificado em desenho é compatível com a DIN 6885. Segunda hipótese: carregamento real maior que o previsto — partidas com choque, desbalanceamento do rotor, desalinhamento entre mancais introduzindo momento adicional. Confirma-se com extensometria ou medição de torque em operação.</p><p><strong>Fabricação.</strong> Rasgo executado com fundo em canto vivo em vez do raio de projeto; acabamento superficial pior que o considerado em k<sub>a</sub>; material fora de especificação, com S<sub>ut</sub> abaixo do nominal; tratamento térmico incorreto ou descarbonetação superficial. Confirma-se por inspeção dimensional do raio, medição de rugosidade, ensaio de dureza e análise química, além de metalografia junto à origem da trinca.</p><p><strong>Operação.</strong> Sobrecarga acima da nominal, número de partidas e paradas muito superior ao previsto, corrosão em ambiente agressivo (que anula qualquer limite de fadiga), temperatura acima da faixa de k<sub>d</sub>, ou aperto insuficiente do cubo permitindo micromovimento e fretting no rasgo. Confirma-se com histórico operacional, registro de carga e inspeção de marcas de fretting.</p><p>A análise fractográfica orienta tudo: a posição do ponto de nucleação, o espaçamento das marcas de praia e o tamanho relativo da zona de ruptura final indicam se a tensão era alta ou baixa e se houve uma ou várias origens.</p>"
+    }
+  ]
+}

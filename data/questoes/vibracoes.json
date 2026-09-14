@@ -1,0 +1,542 @@
+{
+  "disciplina": "Vibrações",
+  "slug": "vibracoes",
+  "topicos": [
+    {
+      "id": "modelagem",
+      "nome": "Modelagem e GDL"
+    },
+    {
+      "id": "livre",
+      "nome": "Vibração livre"
+    },
+    {
+      "id": "amortecimento",
+      "nome": "Amortecimento"
+    },
+    {
+      "id": "forcada",
+      "nome": "Vibração forçada"
+    },
+    {
+      "id": "ressonancia",
+      "nome": "Ressonância"
+    },
+    {
+      "id": "desbalanceamento",
+      "nome": "Desbalanceamento"
+    },
+    {
+      "id": "isolamento",
+      "nome": "Isolamento"
+    },
+    {
+      "id": "2gdl",
+      "nome": "Dois graus de liberdade"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "vb-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "modelagem",
+      "enunciado": "<p>O número de graus de liberdade de um sistema vibratório corresponde:</p>",
+      "alternativas": [
+        "Ao número de molas presentes.",
+        "Ao número de amortecedores.",
+        "Ao número de massas do sistema.",
+        "Ao número de coordenadas independentes necessárias para descrever o movimento."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Grau de liberdade é uma contagem de <em>coordenadas independentes</em>, não de componentes. Um pêndulo simples tem uma massa e nenhuma mola, mas 1 GDL; um corpo rígido livre no espaço tem 6 GDL sem mola alguma. A consequência prática é direta: um sistema com n GDL tem exatamente n frequências naturais e n modos de vibrar.</p>"
+    },
+    {
+      "id": "vb-002",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "livre",
+      "enunciado": "<p>Um sistema massa-mola tem <span class=\"dado\">m = 200 kg</span> e <span class=\"dado\">k = 500 kN/m</span>. Determine a frequência natural em rad/s e em Hz.</p>",
+      "alternativas": [
+        "ωn = 2500 rad/s e fn = 398 Hz",
+        "ωn = 50 rad/s e fn = 50 Hz",
+        "ωn = 50 rad/s e fn = 7,96 Hz",
+        "ωn = 1,58 rad/s e fn = 0,25 Hz"
+      ],
+      "correta": 2,
+      "formulas": [
+        "ωn = √(k/m)   [rad/s]",
+        "fn = ωn/(2π)   [Hz]",
+        "Tn = 1/fn"
+      ],
+      "explicacao": "<div class=\"passo\">ω<sub>n</sub> = √(500 000/200) = √2 500 = 50 rad/s</div><div class=\"passo\">f<sub>n</sub> = 50/(2π) = <strong>7,96 Hz</strong></div><p>Confundir rad/s com Hz é o erro mais frequente da disciplina — a razão entre eles é 2π ≈ 6,28.</p>"
+    },
+    {
+      "id": "vb-003",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "livre",
+      "enunciado": "<p>Para o mesmo sistema (m = 200 kg, k = 500 kN/m), qual a deflexão estática sob o peso próprio, e a frequência natural obtida a partir dela?</p>",
+      "alternativas": [
+        "δ = 39,2 mm e fn = 2,52 Hz",
+        "δ = 0,40 mm e fn = 24,9 Hz",
+        "δ = 3,92 mm e fn = 7,96 Hz",
+        "δ = 3,92 mm e fn = 50 Hz"
+      ],
+      "correta": 2,
+      "formulas": [
+        "δ_est = m·g/k",
+        "ωn = √(g/δ_est)",
+        "Regra prática: fn ≈ 15,76/√(δ em mm)"
+      ],
+      "explicacao": "<div class=\"passo\">δ = 200 × 9,81/500 000 = 3,924×10⁻³ m = 3,92 mm</div><div class=\"passo\">f<sub>n</sub> = 15,76/√3,924 = 15,76/1,981 = <strong>7,96 Hz</strong></div><p>Confere com o valor obtido por √(k/m). É o atalho de campo: basta medir quanto a estrutura afunda sob o próprio peso, sem precisar conhecer k nem m separadamente.</p>"
+    },
+    {
+      "id": "vb-004",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "modelagem",
+      "enunciado": "<p>Duas molas de 1 000 N/m e 2 000 N/m são associadas. As rigidezes equivalentes em paralelo e em série valem, respectivamente:</p>",
+      "alternativas": [
+        "667 N/m e 3 000 N/m",
+        "3 000 N/m e 667 N/m",
+        "3 000 N/m e 1 500 N/m",
+        "1 500 N/m e 667 N/m"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Em <strong>paralelo</strong> as molas sofrem o mesmo deslocamento e as forças somam: k<sub>eq</sub> = 1 000 + 2 000 = 3 000 N/m. Em <strong>série</strong> a força é a mesma e os deslocamentos somam: 1/k<sub>eq</sub> = 1/1000 + 1/2000 → k<sub>eq</sub> = 667 N/m. Note que a regra é o inverso da dos resistores elétricos, e que em série a mola mais mole domina.</p>"
+    },
+    {
+      "id": "vb-005",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "amortecimento",
+      "enunciado": "<p>Para m = 200 kg e k = 500 kN/m, com amortecimento <span class=\"dado\">c = 3 000 N·s/m</span>, determine o amortecimento crítico, o fator ζ e a frequência amortecida.</p>",
+      "alternativas": [
+        "cc = 20 000; ζ = 0,15; ωd = 49,4 rad/s",
+        "cc = 10 000; ζ = 0,30; ωd = 47,7 rad/s",
+        "cc = 20 000; ζ = 0,15; ωd = 50,0 rad/s",
+        "cc = 20 000; ζ = 6,67; ωd = 0"
+      ],
+      "correta": 0,
+      "formulas": [
+        "c_c = 2√(k·m) = 2·m·ωn",
+        "ζ = c/c_c",
+        "ωd = ωn·√(1 − ζ²)"
+      ],
+      "explicacao": "<div class=\"passo\">c<sub>c</sub> = 2√(500 000 × 200) = 2 × 10 000 = 20 000 N·s/m</div><div class=\"passo\">ζ = 3 000/20 000 = 0,15 → subamortecido</div><div class=\"passo\">ω<sub>d</sub> = 50 × √(1 − 0,0225) = 50 × 0,9887 = <strong>49,4 rad/s</strong></div><p>A frequência amortecida é sempre <em>menor</em> que a natural, mas para ζ pequeno a diferença é mínima — aqui, apenas 1,1 %.</p>"
+    },
+    {
+      "id": "vb-006",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "amortecimento",
+      "enunciado": "<p>Um sistema criticamente amortecido (ζ = 1) caracteriza-se por:</p>",
+      "alternativas": [
+        "Oscilar com amplitude constante.",
+        "Retornar ao equilíbrio mais lentamente que qualquer outro caso.",
+        "Não retornar ao equilíbrio.",
+        "Retornar ao equilíbrio no menor tempo possível, sem oscilar."
+      ],
+      "correta": 3,
+      "explicacao": "<p>ζ = 1 é a fronteira entre oscilar e não oscilar, e é o retorno mais rápido sem ultrapassagem. Abaixo dele o sistema cruza o zero e oscila; acima (superamortecido) ele volta mais devagar, porque o amortecimento excessivo freia o movimento. É o alvo de projeto de instrumentos de medida, portas automáticas e amortecedores de recuo.</p>"
+    },
+    {
+      "id": "vb-007",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "amortecimento",
+      "enunciado": "<p>Em um ensaio de vibração livre, dois picos consecutivos medem 12,0 mm e 4,63 mm. Determine o decremento logarítmico e o fator de amortecimento.</p>",
+      "alternativas": [
+        "δ = 0,953 e ζ = 0,15",
+        "δ = 0,386 e ζ = 0,061",
+        "δ = 2,59 e ζ = 0,38",
+        "δ = 0,953 e ζ = 0,95"
+      ],
+      "correta": 0,
+      "formulas": [
+        "δ = ln(x_i / x_{i+1})",
+        "δ = 2πζ/√(1 − ζ²)",
+        "ζ ≈ δ/(2π)   para ζ pequeno"
+      ],
+      "explicacao": "<div class=\"passo\">δ = ln(12,0/4,63) = ln(2,592) = 0,953</div><div class=\"passo\">Pela aproximação: ζ ≈ 0,953/6,283 = 0,152</div><div class=\"passo\">Exato: ζ = 0,953/√(0,953² + 4π²) = <strong>0,150</strong></div><p>É assim que ζ é medido na bancada: registra-se a resposta livre e comparam-se dois picos. Para maior precisão usa-se n ciclos: δ = (1/n)·ln(x<sub>i</sub>/x<sub>i+n</sub>).</p>"
+    },
+    {
+      "id": "vb-008",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "amortecimento",
+      "enunciado": "<p>Sobre a frequência natural amortecida ω_d ser sempre menor que ω_n, e sobre a relevância prática dessa diferença:</p>",
+      "alternativas": [
+        "ω_d = ω_n√(1 − ζ²), sempre menor porque parte da energia é dissipada a cada ciclo e o retorno à posição de equilíbrio é retardado. Como o efeito é de segunda ordem em ζ, com ζ = 0,05 típico de estrutura a redução é de apenas 0,125 % — desprezível na frequência, ao contrário do efeito do amortecimento sobre a amplitude na ressonância, que é enorme.",
+        "ω_d é maior que ω_n, porque o amortecimento acelera o retorno ao equilíbrio.",
+        "A diferença é sempre significativa e precisa ser considerada em qualquer projeto.",
+        "ω_d e ω_n são iguais; a distinção é apenas de notação."
+      ],
+      "correta": 0,
+      "explicacao": "<p>O amortecimento retira energia do sistema a cada ciclo, e essa dissipação retarda o movimento. Matematicamente, a solução da equação característica com amortecimento viscoso dá raízes complexas cuja parte imaginária é ω<sub>d</sub> = ω<sub>n</sub>√(1 − ζ²). Como √(1 − ζ²) &lt; 1 para qualquer ζ &gt; 0, resulta ω<sub>d</sub> &lt; ω<sub>n</sub> sempre.</p><p>Na prática, porém, a diferença é quase sempre irrelevante porque estruturas e máquinas reais têm ζ muito pequeno — tipicamente entre 0,005 e 0,10. Como o fator depende de ζ², o efeito é de segunda ordem: com ζ = 0,05, √(1 − 0,0025) = 0,99875, ou seja, ω<sub>d</sub> é apenas 0,125 % menor que ω<sub>n</sub>. Mesmo com ζ = 0,15, a redução é de só 1,1 %.</p><p>Por isso, em análise modal e em projeto corrente, adota-se ω<sub>d</sub> ≈ ω<sub>n</sub> sem prejuízo. A diferença só passa a importar quando ζ se aproxima de 1 — e nesse ponto o sistema já quase não oscila, de modo que falar em frequência perde sentido prático.</p><p>Vale notar o contraste: o amortecimento afeta pouco a <em>frequência</em>, mas afeta enormemente a <em>amplitude</em> na ressonância, onde M = 1/(2ζ). É por isso que se investe em amortecimento pensando em amplitude, não em frequência.</p>"
+    },
+    {
+      "id": "vb-009",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "ressonancia",
+      "enunciado": "<p>A ressonância em um sistema de 1 GDL ocorre quando:</p>",
+      "alternativas": [
+        "A frequência de excitação se aproxima da frequência natural.",
+        "O amortecimento é nulo.",
+        "A força aplicada é máxima.",
+        "A massa é igual à rigidez."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Ressonância é uma coincidência de frequências, não uma questão de intensidade de força. Em r = ω/ω<sub>n</sub> = 1 o termo (1 − r²) do denominador se anula e resta M = 1/(2ζ): a amplitude passa a ser limitada <em>apenas</em> pelo amortecimento. Uma força pequena numa frequência ressonante causa muito mais dano que uma força grande fora dela.</p>"
+    },
+    {
+      "id": "vb-010",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "ressonancia",
+      "enunciado": "<p>Um sistema com <span class=\"dado\">ζ = 0,05</span> é excitado exatamente na ressonância. Qual o fator de amplificação?</p>",
+      "alternativas": [
+        "2",
+        "5",
+        "10",
+        "20"
+      ],
+      "correta": 2,
+      "formulas": [
+        "M = 1/√[(1 − r²)² + (2ζr)²]",
+        "Em r = 1:  M = 1/(2ζ)"
+      ],
+      "explicacao": "<div class=\"passo\">Em r = 1, o termo (1 − r²) se anula</div><div class=\"passo\">M = 1/(2 × 0,05) = 1/0,10 = <strong>10</strong></div><p>A amplitude é dez vezes a deflexão estática que a mesma força causaria aplicada lentamente. Com ζ = 0,01 (estrutura muito pouco amortecida), o fator saltaria para 50 — e é assim que estruturas se rompem por ressonância.</p>"
+    },
+    {
+      "id": "vb-011",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "ressonancia",
+      "enunciado": "<p>Para <span class=\"dado\">ζ = 0,20</span>, em que razão de frequências ocorre o pico verdadeiro da curva de amplificação, e qual o valor de M nesse ponto?</p>",
+      "alternativas": [
+        "r = 1,000 e M = 2,50",
+        "r = 0,894 e M = 2,79",
+        "r = 1,041 e M = 2,55",
+        "r = 0,959 e M = 2,55"
+      ],
+      "correta": 3,
+      "formulas": [
+        "r_pico = √(1 − 2ζ²)",
+        "M_máx = 1/(2ζ√(1 − ζ²))",
+        "Só existe pico se ζ < 0,707"
+      ],
+      "explicacao": "<div class=\"passo\">r<sub>pico</sub> = √(1 − 2 × 0,04) = √0,92 = <strong>0,959</strong></div><div class=\"passo\">M<sub>máx</sub> = 1/(2 × 0,20 × √0,96) = 1/(0,40 × 0,9798)</div><div class=\"passo\">M<sub>máx</sub> = <strong>2,55</strong></div><p>O pico ocorre <em>antes</em> de r = 1. Em r = 1 exato o valor seria 1/(2ζ) = 2,50, ligeiramente menor. Para ζ pequeno os dois praticamente coincidem, e por isso se costuma dizer que a ressonância está em r = 1.</p>"
+    },
+    {
+      "id": "vb-012",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "ressonancia",
+      "enunciado": "<p>A forma mais confiável de identificar experimentalmente a ressonância de uma estrutura é observar:</p>",
+      "alternativas": [
+        "O pico de amplitude da resposta.",
+        "A frequência em que o ruído é máximo.",
+        "O ponto em que a amplitude começa a crescer.",
+        "O ponto em que a fase entre força e resposta atinge 90°."
+      ],
+      "correta": 3,
+      "explicacao": "<p>O critério da fase é exato: em r = 1 o atraso é 90° <em>qualquer que seja ζ</em>. Já o pico de amplitude se desloca para r = √(1 − 2ζ²), ou seja, depende do amortecimento — e em sistemas muito amortecidos pode nem existir. Por isso a análise modal experimental identifica frequências naturais pelo cruzamento de 90° na fase, não pelo máximo da amplitude.</p>"
+    },
+    {
+      "id": "vb-013",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "forcada",
+      "enunciado": "<p>Em uma excitação harmônica com r ≫ 1 (frequência muito acima da natural), a resposta do sistema:</p>",
+      "alternativas": [
+        "Tende à deflexão estática F₀/k.",
+        "Tende a zero, e a fase tende a 180°.",
+        "Cresce indefinidamente.",
+        "Fica em fase com a força."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Nessa região a inércia domina: a massa simplesmente não consegue acompanhar uma excitação tão rápida, e M → 0. A fase tende a 180°, ou seja, a resposta fica em oposição à força. É exatamente essa zona que se explora no isolamento de vibração — e o motivo de o coxim precisar ser <em>macio</em>, para baixar ω<sub>n</sub> e jogar r para bem acima de 1. A deflexão estática é o limite oposto, r ≪ 1.</p>"
+    },
+    {
+      "id": "vb-014",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "forcada",
+      "enunciado": "<p>Uma máquina precisa operar acima da sua frequência natural. Sobre a partida e a parada:</p>",
+      "alternativas": [
+        "Não há problema: acima da frequência natural a máquina está sempre isolada.",
+        "A máquina deve partir devagar, para atravessar a região crítica com segurança.",
+        "A ressonância só ocorreria se a máquina operasse exatamente na frequência natural em regime.",
+        "Ela cruza r = 1 na partida e na parada. A amplitude ressonante, porém, não é instantânea: precisa de algo como 1/ζ ciclos para se estabelecer. Por isso a medida de projeto é acelerar RÁPIDO pela faixa crítica, somada a amortecimento suficiente na passagem e à margem de separação exigida por norma."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Se a rotação de operação corresponde a r &gt; 1, a máquina necessariamente atravessa r = 1 ao acelerar do repouso até o regime — e atravessa de novo ao desacelerar. Nessa passagem ela cruza a ressonância, onde a amplificação vale M = 1/(2ζ) e pode ser destrutiva.</p><p>O que salva o equipamento é o fato de a passagem ser <strong>transitória</strong>. A amplitude ressonante não se estabelece instantaneamente: ela cresce ao longo de vários ciclos, e o número de ciclos necessário é da ordem de 1/ζ. Se a máquina atravessa a faixa crítica rapidamente, a amplitude não tem tempo de atingir o valor de regime permanente.</p><p>O projeto lida com isso de várias formas. Primeiro, <strong>acelerando rápido</strong> na faixa crítica — daí a recomendação de nunca deixar a máquina estacionada numa rotação próxima da crítica. Segundo, garantindo <strong>amortecimento suficiente</strong>: é justamente na partida que o amortecedor justifica sua existência, embora ele piore o isolamento em regime. Terceiro, afastando a frequência natural da faixa de rotação, com margem de separação — a API 610 e a API 617 exigem tipicamente 15 a 20 % de margem entre a rotação de operação e as velocidades críticas.</p><p>Há ainda o caso das máquinas de rotor flexível, que operam acima da primeira crítica: nelas o balanceamento fino é obrigatório, porque a excitação por desbalanceamento cresce com ω² e a passagem pela crítica é inevitável a cada partida.</p>"
+    },
+    {
+      "id": "vb-015",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "desbalanceamento",
+      "enunciado": "<p>Em uma máquina com desbalanceamento rotativo, a força de excitação:</p>",
+      "alternativas": [
+        "É constante, independente da rotação.",
+        "Cresce linearmente com a rotação.",
+        "Cresce com o quadrado da rotação.",
+        "Diminui com o aumento da rotação."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A excitação é a força centrífuga F₀ = m<sub>e</sub>·e·ω². Essa dependência quadrática tem uma consequência importante: em alta rotação a amplitude não tende a zero como no caso de força constante, mas a um patamar m<sub>e</sub>e/M. Ou seja, apenas fugir da ressonância não resolve — em rotores rápidos o balanceamento é obrigatório, e é isso que a ISO 1940-1 normaliza.</p>"
+    },
+    {
+      "id": "vb-016",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "isolamento",
+      "enunciado": "<p>Para que um isolador realmente reduza a força transmitida à fundação, é necessário que:</p>",
+      "alternativas": [
+        "r > √2, ou seja, ω > √2·ωn",
+        "r < 1, ou seja, o isolador seja bem rígido",
+        "ζ seja o maior possível",
+        "r = 1, na ressonância"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A transmissibilidade vale exatamente 1 em r = √2 ≈ 1,414, <em>para qualquer ζ</em>. Abaixo desse valor TR &gt; 1: o isolador <strong>amplifica</strong> a transmissão, ficando pior do que parafusar a máquina diretamente na base. Só acima de √2 há isolamento. Para conseguir isso baixa-se ω<sub>n</sub>, ou seja, usa-se coxim mais <em>macio</em> — o oposto da intuição.</p>"
+    },
+    {
+      "id": "vb-017",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "isolamento",
+      "enunciado": "<p>Um isolador opera com <span class=\"dado\">r = 3</span> e <span class=\"dado\">ζ = 0,05</span>. Qual a transmissibilidade e a eficiência de isolamento?</p>",
+      "alternativas": [
+        "TR = 0,130 e isolamento de 87,0 %",
+        "TR = 0,125 e isolamento de 12,5 %",
+        "TR = 0,870 e isolamento de 13,0 %",
+        "TR = 8,00 e isolamento nulo"
+      ],
+      "correta": 0,
+      "formulas": [
+        "TR = √[1 + (2ζr)²] / √[(1 − r²)² + (2ζr)²]",
+        "Isolamento (%) = (1 − TR)·100"
+      ],
+      "explicacao": "<div class=\"passo\">2ζr = 2 × 0,05 × 3 = 0,30</div><div class=\"passo\">Numerador: √(1 + 0,09) = 1,044</div><div class=\"passo\">Denominador: √[(1 − 9)² + 0,09] = √64,09 = 8,006</div><div class=\"passo\">TR = 1,044/8,006 = <strong>0,130</strong> → isolamento de <strong>87,0 %</strong></div><p>É por isso que a regra prática de projeto é buscar r ≥ 3.</p>"
+    },
+    {
+      "id": "vb-018",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "isolamento",
+      "enunciado": "<p>Uma máquina gira a <span class=\"dado\">1 800 rpm</span> e deve ter 80 % de isolamento (TR = 0,20). Desprezando o amortecimento, qual a deflexão estática necessária no coxim?</p>",
+      "alternativas": [
+        "0,68 mm",
+        "1,66 mm",
+        "4,15 mm",
+        "16,6 mm"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Sem amortecimento: TR = 1/(r² − 1)  →  r = √(1 + 1/TR)",
+        "fn = f/r",
+        "δ_est = (15,76/fn)²   [δ em mm, fn em Hz]"
+      ],
+      "explicacao": "<div class=\"passo\">f = 1 800/60 = 30 Hz</div><div class=\"passo\">r = √(1 + 1/0,20) = √6 = 2,449</div><div class=\"passo\">f<sub>n</sub> = 30/2,449 = 12,25 Hz</div><div class=\"passo\">δ = (15,76/12,25)² = 1,29² = <strong>1,66 mm</strong></div><p>Ou seja, o coxim precisa afundar 1,66 mm sob o peso da máquina. Note o padrão: quanto mais isolamento se quer, mais macio o apoio precisa ser — e maior o deslocamento em operação.</p>"
+    },
+    {
+      "id": "vb-019",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "isolamento",
+      "enunciado": "<p>Aumentar o amortecimento de um isolador que já opera com r = 4:</p>",
+      "alternativas": [
+        "Melhora o isolamento, reduzindo a transmissibilidade.",
+        "Piora o isolamento, aumentando a transmissibilidade.",
+        "Não altera a transmissibilidade.",
+        "Faz a transmissibilidade cair a zero."
+      ],
+      "correta": 1,
+      "explicacao": "<p>É o paradoxo do amortecimento em isolamento. Na região r &gt; √2 o termo (2ζr)² aparece no <em>numerador</em> da transmissibilidade, e cresce mais rápido do que ajuda no denominador: o amortecedor cria um caminho adicional para transmitir força, proporcional à velocidade relativa. Mesmo assim ele é indispensável, porque a máquina atravessa r = 1 na partida — daí o compromisso usual de ζ entre 0,03 e 0,10.</p>"
+    },
+    {
+      "id": "vb-020",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "isolamento",
+      "enunciado": "<p>Um técnico instalou coxins de borracha muito rígidos sob um compressor e a vibração no piso piorou. O que aconteceu?</p>",
+      "alternativas": [
+        "O coxim rígido elevou ω_n e derrubou r = ω/ω_n para baixo de √2, faixa em que a transmissibilidade é MAIOR que 1 e o isolador amplifica em vez de isolar — podendo inclusive ter caído perto da ressonância. A correção é usar coxins mais MACIOS, que baixam ω_n e levam r para 3 ou mais, verificando a deflexão estática correspondente.",
+        "A borracha era rígida demais para suportar o peso e entrou em fluência.",
+        "Coxins rígidos transmitem menos vibração; o problema deve estar no desbalanceamento do compressor.",
+        "A rigidez do coxim não influi na transmissibilidade, apenas o amortecimento."
+      ],
+      "correta": 0,
+      "explicacao": "<p>O coxim rígido tem k alto, logo ω<sub>n</sub> alta e deflexão estática pequena. Se ω<sub>n</sub> ficou próxima ou acima da frequência de operação do compressor, o sistema passou a trabalhar com r &lt; √2, região em que a transmissibilidade é <strong>maior que 1</strong>. Nessa faixa o isolador amplifica: transmite ao piso mais força do que a máquina parafusada diretamente na base transmitiria.</p><p>No pior caso, se r ficou próximo de 1, o conjunto entrou em ressonância e a amplificação passou a valer 1/(2ζ), o que explica uma piora dramática, e não apenas marginal.</p><p>A correção é <strong>contraintuitiva mas direta: usar coxins mais macios</strong>. Reduzindo k, cai ω<sub>n</sub> e sobe r, levando o sistema para a zona r &gt; √2 onde há isolamento de fato. O dimensionamento parte da deflexão estática desejada: com f de operação conhecida, escolhe-se r ≥ 3, calcula-se f<sub>n</sub> = f/r e daí δ<sub>est</sub> = (15,76/f<sub>n</sub>)², que é o parâmetro que os catálogos de coxim fornecem.</p><p>Cuidados adicionais: um apoio muito macio aumenta o deslocamento da máquina em operação e na partida, o que pode exigir batentes e conexões flexíveis nas tubulações; e é preciso verificar a estabilidade do conjunto, para a máquina não balançar excessivamente.</p>"
+    },
+    {
+      "id": "vb-021",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "2gdl",
+      "enunciado": "<p>Um sistema com dois graus de liberdade possui:</p>",
+      "alternativas": [
+        "Uma frequência natural e dois modos.",
+        "Duas frequências naturais e dois modos de vibrar.",
+        "Duas frequências naturais e um único modo.",
+        "Infinitas frequências naturais."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A regra é geral: n graus de liberdade → n frequências naturais e n modos. Cada modo é uma forma característica de deformação, com uma relação fixa entre as amplitudes das massas. Sistemas <em>contínuos</em> (uma viga, um cabo) têm infinitos GDL e, portanto, infinitas frequências naturais — mas na prática só as primeiras importam.</p>"
+    },
+    {
+      "id": "vb-022",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "2gdl",
+      "enunciado": "<p>Em um sistema de 2 GDL com massas iguais (m) e molas iguais (k) em cadeia, qual a razão entre a segunda e a primeira frequência natural?</p>",
+      "alternativas": [
+        "1,414",
+        "1,618",
+        "2,000",
+        "2,618"
+      ],
+      "correta": 3,
+      "formulas": [
+        "det([K] − ω²[M]) = 0",
+        "ω₁ = 0,618·√(k/m)",
+        "ω₂ = 1,618·√(k/m)"
+      ],
+      "explicacao": "<div class=\"passo\">A equação característica dá ω₁ = 0,618√(k/m) e ω₂ = 1,618√(k/m)</div><div class=\"passo\">ω₂/ω₁ = 1,618/0,618 = <strong>2,618</strong></div><p>Curiosidade elegante: 1,618 é a razão áurea φ, e 2,618 = φ². É um resultado exato deste sistema particular. No 1º modo as massas se movem em fase; no 2º, em oposição, com um nó entre elas.</p>"
+    },
+    {
+      "id": "vb-023",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "2gdl",
+      "enunciado": "<p>Um absorvedor dinâmico de vibração funciona porque:</p>",
+      "alternativas": [
+        "Adiciona amortecimento ao sistema principal.",
+        "Aumenta a rigidez do sistema principal.",
+        "Uma segunda massa sintonizada absorve a vibração, anulando o movimento da massa principal.",
+        "Reduz a massa do sistema principal."
+      ],
+      "correta": 2,
+      "explicacao": "<p>O absorvedor clássico é <em>não amortecido</em>: acopla-se um sistema massa-mola secundário cuja frequência natural √(k₂/m₂) é igual à frequência da excitação. Nessa condição a força que o absorvedor exerce sobre a massa principal cancela exatamente a excitação, e X₁ = 0 — a massa principal fica parada enquanto o absorvedor vibra. Não há adição de amortecimento; o mecanismo é de cancelamento de forças.</p>"
+    },
+    {
+      "id": "vb-024",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "2gdl",
+      "enunciado": "<p>A principal limitação prática do absorvedor dinâmico não amortecido é que:</p>",
+      "alternativas": [
+        "Ele só funciona em uma frequência específica, e cria duas novas ressonâncias ao redor.",
+        "Ele exige uma massa maior que a do sistema principal.",
+        "Ele aumenta a amplitude do sistema principal em todas as frequências.",
+        "Ele só funciona em sistemas amortecidos."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A ressonância original desaparece, mas o sistema passa a ter 2 GDL e, portanto, duas frequências naturais — uma abaixo e outra acima da frequência sintonizada. Se a rotação da máquina variar, o ponto de operação pode cair em uma delas, com resultado pior que o original. Aumentar a razão de massas μ afasta as duas novas ressonâncias, ampliando a banda útil, ao custo de mais massa — absorvedores reais usam de 5 a 20 % da massa principal.</p>"
+    },
+    {
+      "id": "vb-025",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "modelagem",
+      "enunciado": "<p>Duplicar a massa de um sistema massa-mola, mantendo a rigidez, faz a frequência natural:</p>",
+      "alternativas": [
+        "Dobrar.",
+        "Cair pela metade.",
+        "Cair por um fator √2.",
+        "Permanecer a mesma."
+      ],
+      "correta": 2,
+      "explicacao": "<p>ω<sub>n</sub> = √(k/m): a dependência é com a raiz quadrada. Dobrando m, a frequência cai por √2 ≈ 1,414, isto é, para 70,7 % do valor original. Pelo mesmo motivo, para <em>dobrar</em> a frequência natural seria preciso quadruplicar a rigidez ou reduzir a massa a um quarto.</p>"
+    },
+    {
+      "id": "vb-026",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "forcada",
+      "enunciado": "<p>Um sistema com k = 200 kN/m e ζ = 0,10 é excitado por uma força de amplitude <span class=\"dado\">F₀ = 500 N</span> na ressonância. Qual a amplitude de vibração?</p>",
+      "alternativas": [
+        "2,5 mm",
+        "12,5 mm",
+        "25,0 mm",
+        "0,25 mm"
+      ],
+      "correta": 1,
+      "formulas": [
+        "x_est = F₀/k",
+        "Em r = 1:  M = 1/(2ζ)",
+        "X = M · x_est"
+      ],
+      "explicacao": "<div class=\"passo\">x<sub>est</sub> = 500/200 000 = 2,5×10⁻³ m = 2,5 mm</div><div class=\"passo\">M = 1/(2 × 0,10) = 5</div><div class=\"passo\">X = 5 × 2,5 = <strong>12,5 mm</strong></div><p>Responder 2,5 mm é esquecer a amplificação dinâmica — seria a resposta se a força fosse aplicada estaticamente.</p>"
+    },
+    {
+      "id": "vb-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "livre",
+      "enunciado": "<p>A frequência natural de um sistema vibratório depende:</p>",
+      "alternativas": [
+        "Da amplitude inicial do deslocamento.",
+        "Apenas da rigidez e da massa do sistema.",
+        "Da força de excitação aplicada.",
+        "Da velocidade inicial imposta."
+      ],
+      "correta": 1,
+      "explicacao": "<p>ω<sub>n</sub> = √(k/m) é uma propriedade intrínseca do sistema. Condições iniciais (x₀, v₀) determinam a <em>amplitude</em> e a fase da resposta livre, não a frequência. E a força de excitação determina a frequência da resposta <em>forçada</em>, que é outra coisa. Essa independência é o que permite tratar a frequência natural como característica do equipamento.</p>"
+    },
+    {
+      "id": "vb-028",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "amortecimento",
+      "enunciado": "<p>Em um ensaio, o decremento logarítmico medido foi <span class=\"dado\">δ = 0,40</span>. Qual o fator de amortecimento aproximado?</p>",
+      "alternativas": [
+        "0,0637",
+        "0,127",
+        "0,400",
+        "2,51"
+      ],
+      "correta": 0,
+      "formulas": [
+        "δ = 2πζ/√(1 − ζ²)",
+        "Para ζ pequeno:  ζ ≈ δ/(2π)"
+      ],
+      "explicacao": "<div class=\"passo\">ζ ≈ 0,40/(2π) = 0,40/6,283 = <strong>0,0637</strong></div><div class=\"passo\">Conferindo pela expressão exata: ζ = 0,40/√(0,16 + 39,48) = 0,0636</div><p>A aproximação é excelente para ζ abaixo de 0,2, que cobre praticamente todas as estruturas reais.</p>"
+    },
+    {
+      "id": "vb-029",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "ressonancia",
+      "enunciado": "<p>Para ζ maior que 0,707, a curva de amplificação em função de r:</p>",
+      "alternativas": [
+        "Apresenta pico ainda mais acentuado.",
+        "Não apresenta pico algum: decresce monotonicamente desde r = 0.",
+        "Apresenta dois picos.",
+        "Torna-se constante e igual a 1."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O pico existe em r = √(1 − 2ζ²), expressão que só tem solução real enquanto 1 − 2ζ² &gt; 0, ou seja, ζ &lt; 1/√2 = 0,707. Acima disso a curva parte de M = 1 em r = 0 e só decresce. É exatamente esse o critério de projeto de <strong>acelerômetros e sismógrafos</strong>: usar ζ próximo de 0,7 para garantir resposta plana em uma faixa larga de frequências, sem distorção por ressonância.</p>"
+    },
+    {
+      "id": "vb-030",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "modelagem",
+      "enunciado": "<p>Uma passarela começou a oscilar perigosamente quando um grupo passou a caminhar em passo sincronizado. O fenômeno e as soluções são:</p>",
+      "alternativas": [
+        "Sobrecarga estática: o grupo excedeu a carga de projeto, e a solução é limitar o número de pedestres.",
+        "Ressonância entre a frequência do passo (1,6 a 2,4 Hz) e a frequência natural da passarela, agravada pelo baixíssimo amortecimento estrutural e pela realimentação em que o próprio balanço induz as pessoas a sincronizar o passo (lock-in). As soluções são enrijecer a estrutura para tirar f_n dessa faixa e instalar amortecedores, tipicamente de massa sintonizada.",
+        "Flambagem dos montantes sob carga dinâmica, corrigida com contraventamento.",
+        "Fadiga acelerada das ligações, resolvida com inspeção periódica."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O caminhar humano aplica à estrutura uma força periódica com frequência entre cerca de 1,6 e 2,4 Hz. Se a frequência natural da passarela cai nessa faixa, a excitação entra em <strong>ressonância</strong> com o primeiro modo de flexão vertical, e a amplitude passa a ser limitada apenas pelo amortecimento — que em passarelas esbeltas de aço é baixíssimo, tipicamente ζ entre 0,005 e 0,02, o que dá amplificações de 25 a 100 vezes.</p><p>O agravante da sincronização é duplo. Primeiro, pessoas em passo sincronizado somam suas forças em fase, em vez de se cancelarem estatisticamente. Segundo, existe realimentação: quando a passarela começa a balançar lateralmente, os pedestres ajustam involuntariamente o passo para manter o equilíbrio, sincronizando-se ainda mais com o movimento da estrutura. É o fenômeno de <em>lock-in</em>, observado na Millennium Bridge em Londres em 2000.</p><p><strong>Primeira solução: afastar a frequência natural da faixa de excitação.</strong> Aumentando a rigidez (maior altura de viga, cabos adicionais, contraventamento) eleva-se f<sub>n</sub> acima de 5 Hz, fora do alcance do passo e do seu segundo harmônico. É o que a NBR 8800 e o Eurocode recomendam.</p><p><strong>Segunda solução: aumentar o amortecimento.</strong> Instalam-se amortecedores de massa sintonizada (TMD) — absorvedores dinâmicos com amortecimento — ou amortecedores viscosos. Foi a solução adotada na Millennium Bridge, com 37 amortecedores viscosos e 4 de massa sintonizada. Como M = 1/(2ζ) na ressonância, elevar ζ de 0,005 para 0,05 reduz a amplitude por um fator dez.</p><p>Na prática moderna, verifica-se o conforto pela ISO 2631 e limita-se a aceleração máxima, e não apenas a frequência.</p>"
+    }
+  ]
+}

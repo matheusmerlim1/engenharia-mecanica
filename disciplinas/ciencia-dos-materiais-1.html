@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ciência dos Materiais I — Engenharia Mecânica</title>
+<meta name="description" content="Diagrama ferro-carbono animado, regra da alavanca, discordâncias, mecanismos de endurecimento e difusão: teoria, simuladores interativos e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">4º período · Engenharia Mecânica</p>
+    <h1>Ciência dos Materiais I</h1>
+    <p class="lead">A disciplina que explica <em>por que</em> o aço tem as propriedades que tem. Tudo se resume a duas perguntas: quais fases existem em cada composição e temperatura, e o que impede as discordâncias de escorregarem.</p>
+    <div class="btn-row">
+      <span class="tag accent">11 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">6 simuladores animados</span>
+      <span class="tag">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Propriedade mecânica não é uma constante do elemento químico: é consequência da <strong>microestrutura</strong>. O mesmo ferro com o mesmo 0,4 % de carbono pode ter 170 HB ou 600 HB, dependendo apenas de como foi resfriado. Esta disciplina monta o vocabulário para entender isso.</p>
+        <div class="formula"><span data-tex="\text{composição} + \text{processamento} \;\Rightarrow\; \text{microestrutura} \;\Rightarrow\; \text{propriedades}"></span><span class="where">a cadeia que organiza toda a ciência dos materiais</span></div>
+        <div class="callout note">
+          <strong>As duas metades da disciplina</strong>
+          A primeira é <strong>termodinâmica de fases</strong>: dado (composição, temperatura), quais fases existem e em que proporção. A resposta está no diagrama de equilíbrio e sai da regra da alavanca. A segunda é <strong>mecânica dos defeitos</strong>: por que um metal escoa muito abaixo da resistência teórica, e o que se pode fazer para dificultar isso. A resposta são as discordâncias.
+        </div>
+        <div class="callout warn">
+          <strong>Fase não é microconstituinte</strong>
+          Abaixo de 727 °C, todo aço tem exatamente <strong>duas fases</strong>: ferrita e cementita. Mas ao microscópio se enxergam <strong>microconstituintes</strong> — ferrita proeutetoide, perlita, ledeburita — que são arranjos daquelas mesmas duas fases. Perlita não é uma fase: é um arranjo lamelar de ferrita com cementita. Confundir os dois é o erro mais frequente da prova.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Estruturas cristalinas e o fator de empacotamento</summary>
+          <div class="topic-body">
+            <p>Metal é sólido cristalino: os átomos ocupam posições que se repetem no espaço. A menor porção que, repetida, gera o cristal inteiro é a <strong>célula unitária</strong>. Quatro arranjos cobrem praticamente todos os metais.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Estrutura</th><th>Átomos por célula</th><th>Coordenação</th><th>Relação a–R</th><th>FEA</th><th>Exemplos</th></tr></thead>
+              <tbody>
+                <tr><td>Cúbica simples (CS)</td><td>1</td><td>6</td><td>a = 2R</td><td>0,524</td><td>Polônio — praticamente nenhum metal</td></tr>
+                <tr><td>Cúbica de corpo centrado (CCC)</td><td>2</td><td>8</td><td>a = 4R/√3</td><td>0,680</td><td>Fe α, Cr, W, Mo, V</td></tr>
+                <tr><td>Cúbica de faces centradas (CFC)</td><td>4</td><td>12</td><td>a = 2R√2</td><td><strong>0,740</strong></td><td>Fe γ, Al, Cu, Ni, Ag, Au, Pb</td></tr>
+                <tr><td><strong>Hexagonal compacta (HC)</strong></td><td><strong>6</strong></td><td><strong>12</strong></td><td>a = 2R, c/a = 1,633</td><td><strong>0,740</strong></td><td>Mg, Zn, Ti α, Cd, Co, Zr</td></tr>
+              </tbody>
+            </table>
+            </div>
+
+            <h4>Como se calcula o fator de empacotamento</h4>
+            <p>O FEA é a fração do volume da célula que está de fato ocupada por matéria, tratando cada átomo como esfera rígida de raio R:</p>
+            <div class="formula"><span data-tex="FEA = \frac{n \cdot \frac{4}{3}\pi R^3}{V_{\text{célula}}}"></span><span class="where">n = número de átomos que pertencem à célula</span></div>
+            <div class="callout note">
+              <strong>Passo 1 — contar os átomos da célula</strong>
+              Cada átomo é dividido entre as células que o compartilham: <strong>vértice cúbico</strong> vale 1/8 · <strong>vértice hexagonal</strong> vale 1/6 · <strong>aresta</strong> vale 1/4 · <strong>face</strong> vale 1/2 · <strong>interior</strong> vale 1.<br>
+              CS: 8 × 1/8 = <strong>1</strong> · CCC: 8 × 1/8 + 1 = <strong>2</strong> · CFC: 8 × 1/8 + 6 × 1/2 = <strong>4</strong> · HC: 12 × 1/6 + 2 × 1/2 + 3 = <strong>6</strong>
+            </div>
+            <div class="callout note">
+              <strong>Passo 2 — achar a relação entre a aresta e o raio</strong>
+              Procure a direção em que os átomos <em>se tocam</em>. É a única geometria de que se precisa.<br>
+              <strong>CS</strong>: tocam na aresta → a = 2R · <strong>CCC</strong>: tocam na diagonal do cubo, que mede a√3 e contém 4R → a√3 = 4R · <strong>CFC</strong>: tocam na diagonal da face, que mede a√2 e contém 4R → a√2 = 4R · <strong>HC</strong>: tocam na aresta da base → a = 2R, com c/a = √(8/3) = 1,633.
+            </div>
+            <div class="callout note">
+              <strong>Passo 3 — volume da célula e a conta final</strong>
+              Substitui-se a em função de R e divide. O R se cancela, e o FEA sai como número puro.
+            </div>
+            <div class="formula"><span data-tex="FEA_{CS} = \frac{1\cdot\frac{4}{3}\pi R^3}{(2R)^3} = \frac{\pi}{6} = 0{,}524"></span></div>
+            <div class="formula"><span data-tex="FEA_{CCC} = \frac{2\cdot\frac{4}{3}\pi R^3}{\left(\frac{4R}{\sqrt{3}}\right)^3} = \frac{\pi\sqrt{3}}{8} = 0{,}680"></span></div>
+            <div class="formula"><span data-tex="FEA_{CFC} = \frac{4\cdot\frac{4}{3}\pi R^3}{(2R\sqrt{2})^3} = \frac{\pi}{3\sqrt{2}} = 0{,}740"></span></div>
+            <div class="formula"><span data-tex="FEA_{HC} = \frac{6\cdot\frac{4}{3}\pi R^3}{\frac{3\sqrt{3}}{2}a^2c} = \frac{\pi}{3\sqrt{2}} = 0{,}740"></span><span class="where">com a = 2R e c = 1,633a — o mesmo valor do CFC</span></div>
+
+            <h4>A hexagonal compacta em detalhe</h4>
+            <p>A célula hexagonal completa é um prisma de base hexagonal regular. Sua área de base vale <span data-tex-inline="\frac{3\sqrt{3}}{2}a^2"></span> e a altura é c. Com a = 2R e c = 1,633a:</p>
+            <div class="formula"><span data-tex="V = \frac{3\sqrt{3}}{2}(2R)^2 \cdot 1{,}633(2R) = 33{,}94\,R^3 \qquad V_{\text{átomos}} = 6\cdot\frac{4}{3}\pi R^3 = 25{,}13\,R^3"></span></div>
+            <div class="formula"><span data-tex="FEA = \frac{25{,}13}{33{,}94} = 0{,}740"></span></div>
+            <div class="callout tip">
+              <strong>CFC e HC têm o mesmo empacotamento e comportamentos opostos</strong>
+              As duas são estruturas <em>compactas</em>: 0,740 é o máximo matematicamente possível para esferas iguais. A diferença está apenas na <strong>sequência de empilhamento</strong> dos planos compactos — <strong>ABCABC</strong> no CFC e <strong>ABABAB</strong> no HC. Essa diferença aparentemente sutil muda tudo na deformação: o CFC tem <strong>12 sistemas de escorregamento</strong> ({111}〈110〉) e é muito dúctil; o HC tem apenas <strong>3</strong>, no plano basal, e é difícil de conformar a frio. É por isso que se estampa alumínio à vontade e o magnésio precisa ser conformado a quente.
+            </div>
+            <div class="callout warn">
+              <strong>A razão c/a real quase nunca é 1,633</strong>
+              O valor 1,633 = √(8/3) é o <em>ideal</em>, para esferas rígidas. Metais reais desviam: zinco tem 1,856 (célula alongada) e titânio 1,587 (achatada). O desvio importa porque muda quais planos são de fato os mais compactos — e, com isso, quais sistemas de escorregamento operam. Titânio, com c/a abaixo do ideal, ativa também planos prismáticos e por isso é bem mais dúctil que o zinco.
+            </div>
+
+            <h4>Densidade teórica</h4>
+            <div class="formula"><span data-tex="\rho = \frac{n\,A}{V_c\,N_A}"></span><span class="where">n = átomos por célula · A = massa atômica [g/mol] · V_c em cm³ · N_A = 6,022 × 10²³</span></div>
+            <p>Comparar a densidade calculada com a medida é a forma clássica de confirmar qual estrutura o metal tem: uma diferença de mais de poucos por cento indica que a estrutura suposta está errada.</p>
+
+            <h4>Polimorfismo e o interstício</h4>
+            <p>O ferro é <strong>polimórfico</strong>: CCC até 912 °C (ferrita α), CFC entre 912 e 1394 °C (austenita γ), e CCC de novo acima disso (delta δ). Toda a metalurgia do aço nasce dessa transformação — sem ela não haveria tratamento térmico.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Fase</th><th>Estrutura</th><th>FEA</th><th>Vazio total</th><th>Interstício octaédrico</th><th>C máximo</th></tr></thead>
+              <tbody>
+                <tr><td>Ferrita α</td><td>CCC</td><td>0,680</td><td>32 %</td><td>r = 0,155 R = 0,019 nm</td><td>0,022 %</td></tr>
+                <tr><td>Austenita γ</td><td>CFC</td><td>0,740</td><td>26 %</td><td>r = 0,414 R = <strong>0,052 nm</strong></td><td><strong>2,14 %</strong></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Mais vazio total não significa vazio individual maior</strong>
+              O CCC tem <em>mais</em> espaço vazio (32 % contra 26 %) e dissolve <em>cem vezes menos</em> carbono. A razão: o CCC espalha o vazio em muitos interstícios pequenos e distorcidos, enquanto o CFC o concentra em poucos buracos grandes e simétricos. Como o átomo de carbono precisa caber em <strong>um</strong> vazio, o que conta é o maior individual. Este é o fato que torna a têmpera possível: ao resfriar rápido, o carbono que estava confortável na austenita fica preso numa ferrita que não o comporta — e o resultado é a martensita.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Soluções sólidas e as regras de Hume-Rothery</summary>
+          <div class="topic-body">
+            <p>Quando um elemento se dissolve em outro mantendo a estrutura cristalina do hospedeiro, tem-se uma <strong>solução sólida</strong>. Há dois modos de o soluto entrar:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th></th><th>Substitucional</th><th>Intersticial</th></tr></thead>
+              <tbody>
+                <tr><td>Como entra</td><td>Toma o lugar de um átomo do solvente</td><td>Ocupa um vazio entre os átomos</td></tr>
+                <tr><td>Tamanho do soluto</td><td>Parecido com o solvente</td><td>Muito menor</td></tr>
+                <tr><td>Exemplos</td><td>Ni em Cu, Cr em Fe, Zn em Cu</td><td>C, N, H, B, O em Fe</td></tr>
+                <tr><td>Solubilidade</td><td>Pode chegar a 100 %</td><td>Sempre baixa: poucos por cento</td></tr>
+                <tr><td>Difusão</td><td>Lenta: precisa de lacuna</td><td>Rápida: pula de interstício em interstício</td></tr>
+                <tr><td>Endurece</td><td>Moderadamente</td><td>Muito, por átomo</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Regras de Hume-Rothery para solubilidade total</strong>
+              Para dois metais se dissolverem em qualquer proporção — como Cu e Ni — precisam satisfazer as quatro: raios atômicos diferindo menos de 15 %, <strong>mesma estrutura cristalina</strong>, valências iguais ou próximas, e eletronegatividades próximas. Falhando alguma, a solubilidade fica limitada e aparecem diagramas com eutético ou compostos intermetálicos.
+            </div>
+            <p>O carbono no ferro é o exemplo intersticial que governa toda a metalurgia do aço. Ele ocupa os interstícios <strong>octaédricos</strong>, e é aí que está o segredo:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Fase</th><th>Estrutura</th><th>Fator de empacotamento</th><th>Interstício octaédrico</th><th>C máximo</th></tr></thead>
+              <tbody>
+                <tr><td>Ferrita α</td><td>CCC</td><td>0,68</td><td>Pequeno e distorcido (r = 0,019 nm)</td><td><strong>0,022 %</strong> a 727 °C</td></tr>
+                <tr><td>Austenita γ</td><td>CFC</td><td>0,74</td><td>Maior e simétrico (r = 0,052 nm)</td><td><strong>2,14 %</strong> a 1147 °C</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>O paradoxo que explica a têmpera</strong>
+              A austenita é <em>mais compacta</em> (0,74 contra 0,68) e mesmo assim dissolve <strong>cem vezes mais</strong> carbono. A razão: o que importa não é o espaço total vazio, e sim o tamanho do <em>maior</em> vazio individual. O CCC tem mais vazio, mas todo espalhado em buracos pequenos; o CFC concentra o vazio em poucos buracos grandes. Por isso, ao resfriar rápido, o carbono dissolvido na austenita fica <em>preso</em> na ferrita que não consegue acomodá-lo — e o resultado é a martensita, que é assunto de Ciência dos Materiais II.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Diagramas de fases e a regra das fases de Gibbs</summary>
+          <div class="topic-body">
+            <p>O diagrama de fases é um mapa: para cada par (composição, temperatura), diz quais fases coexistem <strong>em equilíbrio</strong>. A palavra "equilíbrio" é essencial — resfriamentos rápidos produzem estruturas que não aparecem no diagrama.</p>
+            <div class="formula"><span data-tex="P + F = C + 2"></span><span class="where">regra das fases de Gibbs: P = fases · F = graus de liberdade · C = componentes · o 2 são pressão e temperatura</span></div>
+            <p>Em metalurgia a pressão é fixa em 1 atm, e a regra vira:</p>
+            <div class="formula"><span data-tex="P + F = C + 1"></span><span class="where">forma condensada, para sistemas metálicos à pressão ambiente</span></div>
+            <div class="callout note">
+              <strong>Como ler a regra em um binário (C = 2)</strong>
+              Numa região de <strong>uma fase</strong>: F = 2, pode-se variar composição e temperatura livremente. Numa região de <strong>duas fases</strong>: F = 1, escolhendo a temperatura, as composições das duas fases ficam determinadas — é por isso que a conodal existe. Com <strong>três fases</strong>: F = 0, o sistema é <em>invariante</em>: só existe naquela temperatura e naquelas composições exatas. É o caso do eutetoide, do eutético e do peritético.
+            </div>
+
+            <h4>Regra da alavanca</h4>
+            <p>Numa região bifásica, traça-se a conodal (linha horizontal) na temperatura de interesse. Ela corta as duas fronteiras, dando a composição de cada fase. As frações saem da alavanca:</p>
+            <div class="formula"><span data-tex="W_\alpha = \frac{C_\beta - C_0}{C_\beta - C_\alpha} \qquad W_\beta = \frac{C_0 - C_\alpha}{C_\beta - C_\alpha}"></span><span class="where">a fração de uma fase é o braço OPOSTO dividido pelo comprimento total da conodal</span></div>
+            <div class="callout warn">
+              <strong>O braço é sempre o oposto</strong>
+              Se o ponto da liga está perto da fronteira da fase α, existe <em>muito</em> α — e o braço até α é curto. Por isso a fração de α usa o braço até β. Pensar num gangorra ajuda: para equilibrar, a massa maior fica do lado do braço curto.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. O diagrama ferro-carbono</summary>
+          <div class="topic-body">
+            <p>É o diagrama mais importante da engenharia. Rigorosamente ele é o <strong>Fe-Fe₃C metaestável</strong>: o equilíbrio verdadeiro seria ferro com grafita, mas a cementita é tão persistente que, para aços, o diagrama metaestável é o que vale na prática.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Ponto invariante</th><th>Reação</th><th>Composição</th><th>Temperatura</th><th>Produto</th></tr></thead>
+              <tbody>
+                <tr><td>Peritético</td><td>L + δ → γ</td><td>0,17 %C</td><td>1493 °C</td><td>austenita</td></tr>
+                <tr><td>Eutético</td><td>L → γ + Fe₃C</td><td><strong>4,30 %C</strong></td><td><strong>1147 °C</strong></td><td><strong>ledeburita</strong></td></tr>
+                <tr><td>Eutetoide</td><td>γ → α + Fe₃C</td><td><strong>0,76 %C</strong></td><td><strong>727 °C</strong></td><td><strong>perlita</strong></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Eutético e eutetoide: a diferença está no reagente</strong>
+              Eutético parte de <strong>líquido</strong> e produz dois sólidos. Eutetoide parte de um <strong>sólido</strong> e produz dois sólidos. O sufixo "-oide" significa justamente "à semelhança de": é a mesma reação, mas inteiramente no estado sólido. A consequência prática é enorme — a reação eutetoide pode ser <em>evitada</em> resfriando rápido, e é isso que torna a têmpera possível.
+            </div>
+
+            <h4>As três fases e os microconstituintes</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Nome</th><th>É fase?</th><th>O que é</th><th>Dureza</th></tr></thead>
+              <tbody>
+                <tr><td>Ferrita (α)</td><td>Sim</td><td>Fe CCC com até 0,022 %C</td><td>~80 HB — mole e dúctil</td></tr>
+                <tr><td>Austenita (γ)</td><td>Sim</td><td>Fe CFC com até 2,14 %C</td><td>~150 HB — só existe acima de 727 °C</td></tr>
+                <tr><td>Cementita (Fe₃C)</td><td>Sim</td><td>Carboneto com 6,67 %C</td><td>~800 HV — duríssima e frágil</td></tr>
+                <tr><td>Perlita</td><td><strong>Não</strong></td><td>Lamelas alternadas de α + Fe₃C (88 % / 12 %)</td><td>~250 HB</td></tr>
+                <tr><td>Ledeburita</td><td><strong>Não</strong></td><td>γ + Fe₃C do eutético; abaixo de 727 °C a γ vira perlita</td><td>Muito dura e frágil</td></tr>
+              </tbody>
+            </table>
+            </div>
+
+            <h4>Classificação pelo teor de carbono</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Faixa</th><th>Nome</th><th>Microestrutura recozida</th><th>Uso típico</th></tr></thead>
+              <tbody>
+                <tr><td>&lt; 0,022 %</td><td>Ferro comercialmente puro</td><td>Ferrita</td><td>Núcleos magnéticos</td></tr>
+                <tr><td>0,022 a 0,25 %</td><td>Aço de baixo carbono</td><td>Muita ferrita + pouca perlita</td><td>Chapas, perfis, tubos, soldagem</td></tr>
+                <tr><td>0,25 a 0,76 %</td><td>Aço hipoeutetoide</td><td>Ferrita proeutetoide + perlita</td><td>Eixos, engrenagens, forjados</td></tr>
+                <tr><td>= 0,76 %</td><td>Aço eutetoide</td><td>100 % perlita</td><td>Trilhos, arames de alta resistência</td></tr>
+                <tr><td>0,76 a 2,14 %</td><td>Aço hipereutetoide</td><td>Perlita + cementita em rede</td><td>Ferramentas, molas, rolamentos</td></tr>
+                <tr><td>2,14 a 4,30 %</td><td>Ferro fundido hipoeutético</td><td>Perlita + ledeburita</td><td>Blocos de motor, bases de máquina</td></tr>
+                <tr><td>&gt; 4,30 %</td><td>Ferro fundido hipereutético</td><td>Cementita primária + ledeburita</td><td>Raro: muito frágil</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Por que 2,14 % separa aço de ferro fundido</strong>
+              Não é uma convenção arbitrária: 2,14 % é a <strong>máxima solubilidade de carbono na austenita</strong>. Abaixo dela, ao aquecer, toda a liga pode virar austenita homogênea — e portanto pode ser forjada, laminada e tratada termicamente. Acima dela sempre sobra líquido para formar o eutético, a liga passa pela ledeburita e se torna frágil demais para conformação mecânica: só resta fundir.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Resfriamento lento passo a passo</summary>
+          <div class="topic-body">
+            <p>Percorrer uma liga do líquido até a temperatura ambiente, anotando o que acontece em cada cruzamento de linha, é o exercício central da disciplina. O roteiro para um <strong>aço hipoeutetoide</strong> de 0,4 %C:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Etapa</th><th>O que acontece</th><th>Fases</th></tr></thead>
+              <tbody>
+                <tr><td>Acima da liquidus</td><td>Tudo líquido</td><td>L</td></tr>
+                <tr><td>Cruza a liquidus (~1500 °C)</td><td>Começam a crescer cristais de austenita dentro do líquido</td><td>L + γ</td></tr>
+                <tr><td>Cruza a solidus (~1450 °C)</td><td>Acaba o líquido; só austenita, homogênea a 0,4 %C</td><td>γ</td></tr>
+                <tr><td>Cruza A₃ (~790 °C)</td><td><strong>Ferrita proeutetoide</strong> nucleia nos contornos de grão e expulsa carbono</td><td>α + γ</td></tr>
+                <tr><td>Descendo até 727 °C</td><td>Cresce a ferrita; a austenita restante enriquece progressivamente até 0,76 %C</td><td>α + γ</td></tr>
+                <tr><td>Cruza A₁ = 727 °C</td><td>Toda a austenita restante vira <strong>perlita</strong> de uma só vez</td><td>α + Fe₃C</td></tr>
+                <tr><td>Abaixo de 727 °C</td><td>Nada mais muda de forma perceptível</td><td>α + Fe₃C</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Por que a austenita enriquece ao resfriar</strong>
+              A ferrita que se forma quase não aceita carbono (0,022 % no máximo). Todo o carbono que estava naquele volume é <em>expulso</em> para a austenita vizinha. Como a ferrita cresce e a austenita encolhe, a mesma quantidade de carbono passa a estar num volume cada vez menor — a concentração sobe. Quando ela chega exatamente a 0,76 %, a temperatura chegou a 727 °C e a reação eutetoide dispara.
+            </div>
+            <div class="callout tip">
+              <strong>No hipereutetoide muda o vilão</strong>
+              Acima de 0,76 %C, quem precipita ao cruzar a A_cm é a <strong>cementita</strong>, e ela o faz formando uma <em>rede contínua</em> ao longo dos contornos de grão. Sendo duríssima e frágil, essa rede é um caminho pronto para a trinca — o aço fica quebradiço mesmo sem estar temperado. É por isso que aço hipereutetoide passa por <strong>esferoidização</strong> antes de ser usinado: o tratamento quebra a rede em partículas isoladas.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Discordâncias</summary>
+          <div class="topic-body">
+            <p>Se um metal escoasse rompendo todas as ligações de um plano ao mesmo tempo, a tensão necessária seria da ordem de G/10 — cerca de 8000 MPa para o aço. O aço real escoa a 250 MPa. A diferença de mais de mil vezes só se explica por um defeito de linha: a <strong>discordância</strong>.</p>
+            <div class="formula"><span data-tex="\tau_{teórico} \approx \frac{G}{10} \qquad \tau_{real} \approx \frac{G}{10^{4}}"></span><span class="where">a discrepância que levou à previsão teórica das discordâncias em 1934, antes de serem observadas</span></div>
+            <div class="callout note">
+              <strong>A analogia do tapete</strong>
+              Arrastar um tapete pesado pelo chão inteiro de uma vez é dificílimo. Fazer uma ruga em uma ponta e empurrar a ruga até a outra ponta move o tapete com esforço mínimo — e o resultado final é exatamente o mesmo. A discordância é essa ruga: ela desloca o plano cristalino uma ligação de cada vez.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tipo</th><th>Vetor de Burgers <span data-tex-inline="\vec{b}"></span></th><th>Movimento</th></tr></thead>
+              <tbody>
+                <tr><td>Cunha (aresta)</td><td><strong>Perpendicular</strong> à linha</td><td>Escorrega na direção de b; tem um semiplano extra</td></tr>
+                <tr><td>Hélice (espiral)</td><td><strong>Paralelo</strong> à linha</td><td>Move-se perpendicularmente a b; pode mudar de plano</td></tr>
+                <tr><td>Mista</td><td>Ângulo qualquer</td><td>O caso real: a linha curva tem os dois caracteres</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Discordâncias escorregam nos planos <strong>mais compactos</strong>, nas direções <strong>mais compactas</strong> — porque ali a distorção necessária é mínima. É isso que explica a ductilidade dos metais CFC:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Estrutura</th><th>Sistemas de escorregamento</th><th>Ductilidade</th><th>Exemplos</th></tr></thead>
+              <tbody>
+                <tr><td>CFC</td><td>12 ({111}〈110〉)</td><td>Alta, inclusive a frio</td><td>Al, Cu, Ni, aço inox austenítico</td></tr>
+                <tr><td>CCC</td><td>48, mas nenhum plano é totalmente compacto</td><td>Média; cai muito com o frio</td><td>Fe α, Cr, Mo, W</td></tr>
+                <tr><td>HC</td><td>3</td><td>Baixa</td><td>Mg, Zn, Ti α</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Por que o aço comum fica frágil no frio e o inox austenítico não</strong>
+              O ferro α é CCC: seus sistemas de escorregamento dependem de ativação térmica para funcionar. Abaixo de uma temperatura de transição, eles travam e o material passa a romper por clivagem, sem aviso. O aço inox austenítico é CFC, e os 12 sistemas compactos funcionam até temperaturas criogênicas — daí ser o material dos tanques de gás liquefeito. Foi essa transição dúctil-frágil que partiu ao meio dezenas de navios Liberty na Segunda Guerra.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Os quatro mecanismos de endurecimento</summary>
+          <div class="topic-body">
+            <p>Todo endurecimento de metal, sem exceção, funciona da mesma forma: <strong>colocar obstáculos no caminho das discordâncias</strong>. Mudam apenas os obstáculos.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Mecanismo</th><th>Obstáculo</th><th>Equação</th><th>Custa ductilidade?</th></tr></thead>
+              <tbody>
+                <tr><td>① Refino de grão</td><td>Contorno de grão</td><td><span data-tex-inline="\sigma_y = \sigma_0 + k_y d^{-1/2}"></span></td><td><strong>Não</strong> — melhora as duas</td></tr>
+                <tr><td>② Solução sólida</td><td>Átomo de soluto</td><td><span data-tex-inline="\Delta\sigma \propto \sqrt{c}"></span></td><td>Pouco</td></tr>
+                <tr><td>③ Encruamento</td><td>Outras discordâncias</td><td><span data-tex-inline="\sigma = K\varepsilon^{\,n}"></span></td><td>Muito</td></tr>
+                <tr><td>④ Precipitação</td><td>Partícula dura</td><td><span data-tex-inline="\Delta\tau = Gb/L"></span></td><td>Sim</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Hall-Petch é o único almoço grátis da metalurgia</strong>
+              Reduzir o tamanho de grão aumenta <em>simultaneamente</em> a resistência e a tenacidade. Todos os outros mecanismos trocam ductilidade por resistência. É por essa razão que o controle de tamanho de grão — por laminação controlada, por microligantes de Nb, V e Ti, por normalização — é o recurso mais buscado nos aços estruturais modernos.
+            </div>
+            <div class="formula"><span data-tex="\sigma_y = \sigma_0 + \frac{k_y}{\sqrt{d}}"></span><span class="where">σ₀ = tensão de atrito da rede · k_y = constante do material (0,74 MPa·mm^½ no ferro) · d = diâmetro médio de grão</span></div>
+            <p>O <strong>encruamento</strong> merece atenção especial porque é reversível. Deformando a frio, a densidade de discordâncias sobe de cerca de 10¹⁰ para 10¹⁶ linhas por m², e elas passam a se travar umas nas outras. Aquecendo, três coisas acontecem em sequência:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Etapa</th><th>O que acontece</th><th>Efeito nas propriedades</th></tr></thead>
+              <tbody>
+                <tr><td>Recuperação</td><td>Discordâncias se rearranjam e aniquilam parcialmente</td><td>Alivia tensões residuais; dureza cai pouco</td></tr>
+                <tr><td>Recristalização</td><td>Nucleiam grãos NOVOS, livres de deformação</td><td>Dureza despenca, ductilidade volta</td></tr>
+                <tr><td>Crescimento de grão</td><td>Grãos maiores consomem os menores</td><td>Piora tudo — deve ser evitado</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Temperatura de recristalização</strong>
+              Fica em torno de 0,4 T<sub>fusão</sub> em kelvin. Para o chumbo isso está abaixo da temperatura ambiente — por isso chumbo não encrua: ele recristaliza sozinho enquanto é deformado. É a mesma razão pela qual "trabalho a frio" e "trabalho a quente" não se definem por uma temperatura absoluta, mas pela posição em relação à recristalização daquele material.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Difusão</summary>
+          <div class="topic-body">
+            <p>Praticamente toda transformação de fase depende de átomos se moverem. A velocidade com que isso acontece é o que separa uma perlita grosseira de uma martensita.</p>
+            <div class="formula"><span data-tex="J = -D\,\frac{\partial C}{\partial x}"></span><span class="where">1ª lei de Fick, regime permanente: o fluxo é proporcional ao gradiente, no sentido de diluir</span></div>
+            <div class="formula"><span data-tex="\frac{\partial C}{\partial t} = D\,\frac{\partial^2 C}{\partial x^2}"></span><span class="where">2ª lei de Fick, regime transiente — o caso de qualquer tratamento termoquímico</span></div>
+            <p>Para um sólido semi-infinito com concentração mantida constante na superfície, a solução é:</p>
+            <div class="formula"><span data-tex="\frac{C_x - C_0}{C_s - C_0} = 1 - \mathrm{erf}\!\left(\frac{x}{2\sqrt{Dt}}\right)"></span><span class="where">C_s = teor na superfície · C₀ = teor inicial · erf = função erro, tabelada</span></div>
+            <div class="callout warn">
+              <strong>A camada cresce com a RAIZ do tempo</strong>
+              Dobrar a profundidade de camada exige <strong>quatro vezes</strong> mais tempo de forno. É a consequência prática mais cara desta disciplina: uma cementação de 1 mm em 5 horas vira 2 mm apenas em 20 horas. Por isso a saída econômica é quase sempre subir a temperatura, e não esperar mais — porque a temperatura entra no expoente.
+            </div>
+            <div class="formula"><span data-tex="D = D_0 \exp\!\left(-\frac{Q}{RT}\right)"></span><span class="where">Arrhenius · Q = energia de ativação · R = 8,314 J/mol·K · T sempre em KELVIN</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Par difusivo</th><th>Mecanismo</th><th>D₀ (m²/s)</th><th>Q (kJ/mol)</th></tr></thead>
+              <tbody>
+                <tr><td>C em Fe γ</td><td>Intersticial</td><td>2,3 × 10⁻⁵</td><td>148</td></tr>
+                <tr><td>C em Fe α</td><td>Intersticial</td><td>6,2 × 10⁻⁷</td><td>80</td></tr>
+                <tr><td>N em Fe α</td><td>Intersticial</td><td>3,0 × 10⁻⁷</td><td>76</td></tr>
+                <tr><td>Fe em Fe γ</td><td>Substitucional (lacunas)</td><td>5,0 × 10⁻⁵</td><td><strong>284</strong></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Por que Q substitucional é o dobro do intersticial</strong>
+              O átomo intersticial só precisa vencer a barreira de passar de um vazio para o vizinho. O substitucional precisa de <strong>duas</strong> coisas: que exista uma lacuna ao lado — e criar lacuna custa energia — e depois vencer a barreira do salto. A energia de ativação soma as duas parcelas, e o resultado é uma difusão ordens de grandeza mais lenta.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Defeitos cristalinos: o panorama</summary>
+          <div class="topic-body">
+            <p>Defeito não é sinônimo de problema: praticamente todas as propriedades úteis de um metal dependem deles.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Dimensão</th><th>Defeito</th><th>Papel</th></tr></thead>
+              <tbody>
+                <tr><td>0D — pontual</td><td>Lacuna</td><td>Torna possível a difusão substitucional; a concentração cresce exponencialmente com T</td></tr>
+                <tr><td>0D — pontual</td><td>Intersticial e soluto</td><td>Distorcem a rede e ancoram discordâncias</td></tr>
+                <tr><td>1D — linear</td><td><strong>Discordância</strong></td><td>Permite a deformação plástica; sem ela o metal seria frágil</td></tr>
+                <tr><td>2D — planar</td><td>Contorno de grão</td><td>Bloqueia discordâncias (Hall-Petch); é caminho rápido de difusão e de corrosão</td></tr>
+                <tr><td>2D — planar</td><td>Macla e falha de empilhamento</td><td>Mecanismo alternativo de deformação, importante em HC e em baixa temperatura</td></tr>
+                <tr><td>3D — volumétrico</td><td>Poro, inclusão, trinca</td><td>Concentram tensão; origem da maioria das falhas por fadiga</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\frac{N_v}{N} = \exp\!\left(-\frac{Q_v}{k\,T}\right)"></span><span class="where">concentração de lacunas em equilíbrio · k = 8,62 × 10⁻⁵ eV/K</span></div>
+            <div class="callout note">
+              <strong>Contorno de grão é dois-em-um</strong>
+              À temperatura ambiente ele <em>fortalece</em>, porque trava discordâncias. Em alta temperatura ele <em>enfraquece</em>, porque vira caminho preferencial de difusão e permite deslizamento entre grãos — que é o mecanismo da fluência. Daí as pás de turbina serem fabricadas com grãos colunares ou, no limite, como <strong>monocristal</strong>: eliminam-se os contornos transversais justamente porque, naquela temperatura, eles são o ponto fraco.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>10. O que os elementos de liga fazem com o diagrama</summary>
+          <div class="topic-body">
+            <p>Aço de verdade nunca é só ferro e carbono. Todo elemento adicionado — de propósito ou como residual da sucata — desloca o ponto eutetoide, e é preciso saber para que lado.</p>
+            <div class="callout note">
+              <strong>A regra que não tem exceção</strong>
+              <strong>Todos</strong> os elementos de liga <em>abaixam</em> o teor de carbono do eutetoide. O ponto sempre anda para a esquerda. Já a <em>temperatura</em> eutetoide sobe com uns e desce com outros — e é justamente essa divisão que separa os elementos em dois grupos.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th></th><th>Estabilizadores de FERRITA (alfagênicos)</th><th>Estabilizadores de AUSTENITA (gamagênicos)</th></tr></thead>
+              <tbody>
+                <tr><td>Quais são</td><td>Ti, Nb, V, W, Mo, Si, Cr, Al, Sn, P</td><td>Ni, Mn, Cu, Co, C, N</td></tr>
+                <tr><td>Temperatura eutetoide</td><td><strong>Sobe</strong></td><td><strong>Desce</strong></td></tr>
+                <tr><td>Campo austenítico</td><td>Fecha</td><td>Abre</td></tr>
+                <tr><td>Em teor alto</td><td>Ferrítico em qualquer T: <strong>não temperável</strong> (inox 430)</td><td>Austenítico até a T ambiente (inox 304, aço Hadfield)</td></tr>
+                <tr><td>Formam carbonetos?</td><td>Quase todos, sim</td><td>Não</td></tr>
+              </tbody>
+            </table>
+            </div>
+
+            <h4>Elemento por elemento</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Elemento</th><th>ΔT eutetoide</th><th>O que faz na prática</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Cromo</strong></td><td>Sobe (12 % → ~800 °C)</td><td>Temperabilidade, resistência ao desgaste, carbonetos duros. Acima de 10,5 % forma a película passiva de Cr₂O₃ — é o que faz o inox</td></tr>
+                <tr><td><strong>Níquel</strong></td><td>Desce (8 % → ~610 °C)</td><td>Tenacidade, sobretudo a baixa temperatura. Estabiliza a austenita: 18 Cr + 8 Ni dá o 304</td></tr>
+                <tr><td><strong>Molibdênio</strong></td><td>Sobe fortemente</td><td>O mais eficaz para empurrar o nariz da TTT. Dureza secundária, resistência à fluência, evita fragilização de revenido</td></tr>
+                <tr><td><strong>Manganês</strong></td><td>Desce</td><td>Temperabilidade barata. Neutraliza o enxofre formando MnS — sem ele o FeS funde nos contornos e o aço racha ao ser laminado</td></tr>
+                <tr><td><strong>Cobre</strong></td><td>Desce levemente</td><td>Estabiliza austenita e <strong>endurece por precipitação</strong> de partículas ricas em Cu. É o que dá resistência atmosférica aos aços patináveis (Corten, A588). Acima de 0,3 % sem níquel junto, causa fragilidade a quente</td></tr>
+                <tr><td><strong>Estanho</strong></td><td>Sobe</td><td>Residual indesejado da sucata: segrega para os contornos de grão e é uma das causas da fragilização de revenido. Em ligas de <em>cobre</em>, porém, é o elemento do <strong>bronze</strong></td></tr>
+                <tr><td><strong>Silício</strong></td><td>Sobe</td><td>Desoxidante; eleva bastante o limite elástico — daí os aços de mola (9260). Grafitizante em ferro fundido</td></tr>
+                <tr><td><strong>Titânio, Nb, V</strong></td><td>Sobem muito</td><td>Refinam o grão por precipitação de carbonitretos finíssimos. Base dos aços microligados de alta resistência, como o A572</td></tr>
+                <tr><td><strong>Alumínio</strong></td><td>Sobe</td><td>Desoxidante e refinador por AlN. Em teor alto, forma a camada da nitretação</td></tr>
+                <tr><td><strong>Enxofre, fósforo</strong></td><td>—</td><td>Impurezas. S melhora a usinabilidade mas fragiliza a quente; P fragiliza a frio. Ambos limitados a 0,05 % em aço estrutural</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Um aço de 0,45 %C pode virar hipereutetoide</strong>
+              Com 12 % de cromo, o eutetoide desce para cerca de 0,35 %C. Um aço com 0,45 % de carbono — que seria confortavelmente hipoeutetoide no Fe-C puro — passa a ser <strong>hipereutetoide</strong> e precipita cementita em rede nos contornos. É por isso que aços-ferramenta ligados formam carbonetos com teores de carbono que pareceriam modestos, e é por isso que usar a tabela do Fe-C puro para um aço ligado leva a erro.
+            </div>
+            <div class="formula"><span data-tex="Ni_{eq} = Ni + 30C + 0{,}5Mn \qquad Cr_{eq} = Cr + Mo + 1{,}5Si + 0{,}5Nb"></span><span class="where">equivalentes do diagrama de Schaeffler — preveem a estrutura resultante da solda de inox</span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>11. Como o diagrama se conecta à prática</summary>
+          <div class="topic-body">
+            <p>O diagrama de equilíbrio não diz apenas quais fases existem: ele fixa as temperaturas de todos os tratamentos térmicos.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tratamento</th><th>Temperatura</th><th>Referência no diagrama</th><th>Objetivo</th></tr></thead>
+              <tbody>
+                <tr><td>Recozimento pleno</td><td>A₃ + 30 a 50 °C (hipo)</td><td>Acima da A₃</td><td>Austenitizar e resfriar no forno: máxima ductilidade</td></tr>
+                <tr><td>Normalização</td><td>A₃ + 50 a 70 °C</td><td>Acima da A₃ ou A_cm</td><td>Resfriar ao ar: grão mais fino que o recozido</td></tr>
+                <tr><td>Esferoidização</td><td>Logo abaixo de A₁</td><td>Abaixo de 727 °C</td><td>Quebrar a rede de cementita do hipereutetoide</td></tr>
+                <tr><td>Têmpera</td><td>A₃ + 30 °C (hipo)</td><td>Acima da A₃</td><td>Austenitizar e resfriar rápido — <em>fora</em> do diagrama</td></tr>
+                <tr><td>Cementação</td><td>900 a 950 °C</td><td>Campo γ</td><td>Precisa ser austenita: é ela que dissolve carbono</td></tr>
+                <tr><td>Nitretação</td><td>500 a 550 °C</td><td>Campo α, abaixo de A₁</td><td>Sem mudança de fase: a peça não deforma</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Hipereutetoide não se austenitiza acima da A_cm</strong>
+              Para aço com mais de 0,76 %C, o recozimento e a têmpera são feitos entre A₁ e A_cm, não acima de A_cm. Duas razões: dissolver toda a cementita exigiria temperatura altíssima, que engrossa o grão; e a cementita não dissolvida é <em>desejável</em>, porque partículas duras dispersas melhoram a resistência ao desgaste. O que se combate é a cementita em REDE, e para isso basta a esferoidização.
+            </div>
+            <div class="callout tip">
+              <strong>O que este diagrama NÃO prevê</strong>
+              Bainita e martensita não aparecem em lugar nenhum aqui, porque não são fases de equilíbrio: são produtos de resfriamento rápido, em que a difusão não teve tempo de acontecer. Prevê-las exige as curvas TTT e CCT, que são assunto de Ciência dos Materiais II. O diagrama de equilíbrio continua indispensável, porém, porque é ele que diz de onde se parte: a temperatura de austenitização.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Seis modelos interativos e animados, todos com as fórmulas e a resolução passo a passo.</p>
+
+        <div id="sim-cristal" class="sim"></div>
+        <div id="sim-fec" class="sim"></div>
+        <div id="sim-elementos" class="sim"></div>
+        <div id="sim-isomorfo" class="sim"></div>
+        <div id="sim-discordancias" class="sim"></div>
+        <div id="sim-difusao" class="sim"></div>
+      </section>
+
+      <section class="section" id="ligas">
+        <h2>Ligas conhecidas — composição e comportamento</h2>
+        <p>As composições abaixo são as faixas típicas de norma; os valores de resistência são para a condição de fornecimento mais comum. Servem para reconhecer o material e prever o comportamento, não para especificação — para isso vale sempre o certificado do lote.</p>
+
+        <h3>Aços estruturais</h3>
+        <div class="tabela-wrap">
+          <table>
+            <thead><tr><th>Designação</th><th>C</th><th>Mn</th><th>Si</th><th>Outros</th><th>σ_e</th><th>σ_u</th><th>Onde se usa</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ASTM A36</strong></td><td>≤ 0,26</td><td>0,80 a 1,20</td><td>≤ 0,40</td><td>P, S ≤ 0,04 · Cu ≥ 0,20 se especificado</td><td><strong>250 MPa</strong></td><td>400 a 550 MPa</td><td>O aço estrutural mais comum: perfis, chapas, cantoneiras. Excelente soldabilidade</td></tr>
+              <tr><td><strong>ASTM A572 Gr 50</strong></td><td>≤ 0,23</td><td>≤ 1,35</td><td>≤ 0,40</td><td><strong>Nb, V ou Ti</strong> (microligado)</td><td><strong>345 MPa</strong></td><td>≥ 450 MPa</td><td>Pontes, edifícios altos, estruturas pesadas. 38 % mais resistente que o A36 com o mesmo peso</td></tr>
+              <tr><td><strong>ASTM A588</strong> (Corten)</td><td>≤ 0,19</td><td>0,80 a 1,25</td><td>0,30 a 0,65</td><td><strong>Cu 0,25-0,40 · Cr 0,40-0,65 · Ni ≤ 0,40</strong></td><td>345 MPa</td><td>≥ 485 MPa</td><td>Aço patinável: a própria pátina de óxido protege. Pontes e fachadas sem pintura</td></tr>
+              <tr><td><strong>ASTM A992</strong></td><td>≤ 0,23</td><td>0,50 a 1,50</td><td>≤ 0,40</td><td>V, Nb · relação σ_e/σ_u ≤ 0,85</td><td>345 a 450 MPa</td><td>≥ 450 MPa</td><td>Perfis W para edifícios: substituiu o A36 nos EUA. Ductilidade garantida por norma</td></tr>
+              <tr><td><strong>ABNT NBR 7007 MR250</strong></td><td>≤ 0,25</td><td>—</td><td>—</td><td>Equivalente nacional do A36</td><td>250 MPa</td><td>400 MPa</td><td>Estruturas em geral no Brasil</td></tr>
+              <tr><td><strong>ABNT NBR 7007 AR350</strong></td><td>≤ 0,22</td><td>≤ 1,50</td><td>—</td><td>Alta resistência e baixa liga</td><td>350 MPa</td><td>450 MPa</td><td>Equivalente ao A572 Gr 50</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout tip">
+          <strong>A36 contra A572 Gr 50 — a comparação que mais aparece em projeto</strong>
+          A composição é quase a mesma; a diferença está nos <strong>microligantes</strong>. Nióbio, vanádio e titânio, em teores de centésimos de por cento, precipitam carbonitretos finíssimos que travam o crescimento do grão durante a laminação. O resultado é um grão muito mais fino — e pela relação de Hall-Petch, σ<sub>e</sub> sobe de 250 para 345 MPa <em>sem</em> aumentar o carbono. Como o carbono não subiu, a soldabilidade é preservada. É o exemplo mais direto de "refino de grão é o único almoço grátis da metalurgia".
+        </div>
+
+        <h3>Aços-carbono e ligados de construção mecânica</h3>
+        <div class="tabela-wrap">
+          <table>
+            <thead><tr><th>SAE/AISI</th><th>C</th><th>Mn</th><th>Cr</th><th>Ni</th><th>Mo</th><th>Estado</th><th>σ_u</th><th>Aplicação</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1020</strong></td><td>0,18-0,23</td><td>0,30-0,60</td><td>—</td><td>—</td><td>—</td><td>Laminado</td><td>~420 MPa</td><td>Peças pouco solicitadas; base para cementação</td></tr>
+              <tr><td><strong>1045</strong></td><td>0,43-0,50</td><td>0,60-0,90</td><td>—</td><td>—</td><td>—</td><td>Normalizado</td><td>~625 MPa</td><td>Eixos, parafusos, engrenagens de baixa carga</td></tr>
+              <tr><td><strong>1080</strong></td><td>0,75-0,88</td><td>0,60-0,90</td><td>—</td><td>—</td><td>—</td><td>Patenteado</td><td>~1200 MPa</td><td>Molas, arames de alta resistência, trilhos</td></tr>
+              <tr><td><strong>4140</strong></td><td>0,38-0,43</td><td>0,75-1,00</td><td><strong>0,80-1,10</strong></td><td>—</td><td><strong>0,15-0,25</strong></td><td>Beneficiado</td><td>950 a 1100 MPa</td><td>O aço de eixos por excelência: virabrequins, hastes, ferramentas</td></tr>
+              <tr><td><strong>4340</strong></td><td>0,38-0,43</td><td>0,60-0,80</td><td>0,70-0,90</td><td><strong>1,65-2,00</strong></td><td>0,20-0,30</td><td>Beneficiado</td><td>1200 a 1500 MPa</td><td>Trem de pouso, eixos de grande seção. A maior temperabilidade da família</td></tr>
+              <tr><td><strong>5160</strong></td><td>0,56-0,64</td><td>0,75-1,00</td><td>0,70-0,90</td><td>—</td><td>—</td><td>Temperado e revenido</td><td>~1600 MPa</td><td>Molas de lâmina, feixes de suspensão</td></tr>
+              <tr><td><strong>8620</strong></td><td>0,18-0,23</td><td>0,70-0,90</td><td>0,40-0,60</td><td>0,40-0,70</td><td>0,15-0,25</td><td>Cementado</td><td>Núcleo ~700 MPa</td><td>Engrenagens: casca a 60 HRC e núcleo tenaz</td></tr>
+              <tr><td><strong>52100</strong></td><td>0,98-1,10</td><td>0,25-0,45</td><td><strong>1,30-1,60</strong></td><td>—</td><td>—</td><td>Temperado</td><td>62 a 65 HRC</td><td>Esferas e pistas de rolamento</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Inoxidáveis e não ferrosos</h3>
+        <div class="tabela-wrap">
+          <table>
+            <thead><tr><th>Liga</th><th>Composição principal</th><th>Estrutura</th><th>Característica</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Inox 304</strong></td><td>18 Cr · 8 Ni · C ≤ 0,08</td><td>Austenítica (CFC)</td><td>O mais usado. Não temperável, não magnético, dúctil até criogenia. Sensitiza ao soldar</td></tr>
+              <tr><td><strong>Inox 304L</strong></td><td>18 Cr · 8 Ni · <strong>C ≤ 0,03</strong></td><td>Austenítica</td><td>Baixo carbono: não sensitiza. Para peças soldadas</td></tr>
+              <tr><td><strong>Inox 316</strong></td><td>17 Cr · 12 Ni · <strong>2,5 Mo</strong></td><td>Austenítica</td><td>O Mo dá resistência a pite por cloreto. PREN ≈ 25. Ambiente marinho e químico</td></tr>
+              <tr><td><strong>Inox 430</strong></td><td>17 Cr · sem Ni</td><td>Ferrítica (CCC)</td><td>Barato, magnético, não temperável. Eletrodomésticos, talheres de mesa</td></tr>
+              <tr><td><strong>Inox 420</strong></td><td>13 Cr · C 0,15-0,40</td><td>Martensítica</td><td>Temperável até 55 HRC. Cutelaria, bisturis, sedes de válvula</td></tr>
+              <tr><td><strong>Duplex 2205</strong></td><td>22 Cr · 5 Ni · 3 Mo · N</td><td>50 % ferrita + 50 % austenita</td><td>Dobro da resistência do 304 e ótima resistência a cloreto. PREN ≈ 35</td></tr>
+              <tr><td><strong>Alumínio 6061-T6</strong></td><td>1,0 Mg · 0,6 Si · 0,3 Cu</td><td>CFC, endurecida por precipitação</td><td>σ_u ≈ 310 MPa. O alumínio estrutural mais versátil; extrudável e soldável</td></tr>
+              <tr><td><strong>Alumínio 7075-T6</strong></td><td>5,6 Zn · 2,5 Mg · 1,6 Cu</td><td>CFC, precipitação</td><td>σ_u ≈ 570 MPa — comparável a aço estrutural. Aeronáutico; sensível a corrosão sob tensão</td></tr>
+              <tr><td><strong>Latão 70/30</strong></td><td>70 Cu · 30 Zn</td><td>CFC (fase α)</td><td>Muito conformável; n ≈ 0,49. Sofre dezincificação em água</td></tr>
+              <tr><td><strong>Bronze ao estanho</strong></td><td>88 Cu · 12 <strong>Sn</strong></td><td>CFC com fase δ dura</td><td>Excelente em mancais e resistente à água do mar. O estanho, residual nocivo no aço, é aqui o elemento de liga</td></tr>
+              <tr><td><strong>Ti-6Al-4V</strong></td><td>6 Al · 4 V</td><td>α + β</td><td>σ_u ≈ 950 MPa com metade da densidade do aço. Biocompatível: próteses</td></tr>
+              <tr><td><strong>Inconel 718</strong></td><td>19 Cr · 52 Ni · 5 Nb · 3 Mo</td><td>CFC + γ″ precipitada</td><td>Resiste à fluência acima de 650 °C. Turbinas e poços de petróleo</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout note">
+          <strong>Como ler a composição de um aço estrutural</strong>
+          Três números decidem quase tudo. O <strong>carbono</strong> governa a soldabilidade — acima de 0,25 % já exige preaquecimento. O <strong>manganês</strong> dá temperabilidade barata e neutraliza o enxofre. E a presença de <strong>microligantes</strong> (Nb, V, Ti), mesmo em centésimos de por cento, indica que a resistência vem de grão fino e não de carbono — o que significa aço mais forte <em>e</em> mais soldável ao mesmo tempo.
+        </div>
+        <div class="formula"><span data-tex="C_{eq} = C + \frac{Mn}{6} + \frac{Cr + Mo + V}{5} + \frac{Ni + Cu}{15}"></span><span class="where">carbono equivalente (IIW): acima de 0,45 exige preaquecimento na soldagem — A36 fica em ~0,40 e A572 Gr 50 em ~0,42</span></div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="tabela-wrap">
+          <table>
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Regra das fases</td><td><span data-tex="P + F = C + 1"></span></td><td>forma condensada, pressão constante</td></tr>
+              <tr><td>Regra da alavanca</td><td><span data-tex="W_\alpha = \dfrac{C_\beta - C_0}{C_\beta - C_\alpha}"></span></td><td>braço OPOSTO sobre o total</td></tr>
+              <tr><td>Ferrita total</td><td><span data-tex="W_\alpha = \dfrac{6{,}67 - C_0}{6{,}648}"></span></td><td>à temperatura ambiente</td></tr>
+              <tr><td>Cementita total</td><td><span data-tex="W_{Fe_3C} = \dfrac{C_0 - 0{,}022}{6{,}648}"></span></td><td>à temperatura ambiente</td></tr>
+              <tr><td>Ferrita proeutetoide</td><td><span data-tex="W_{\alpha'} = \dfrac{0{,}76 - C_0}{0{,}738}"></span></td><td>só em hipoeutetoide</td></tr>
+              <tr><td>Perlita (hipo)</td><td><span data-tex="W_p = \dfrac{C_0 - 0{,}022}{0{,}738}"></span></td><td>C₀ &lt; 0,76 %</td></tr>
+              <tr><td>Cementita proeutetoide</td><td><span data-tex="W_{Fe_3C'} = \dfrac{C_0 - 0{,}76}{5{,}91}"></span></td><td>só em hipereutetoide</td></tr>
+              <tr><td>Perlita (hiper)</td><td><span data-tex="W_p = \dfrac{6{,}67 - C_0}{5{,}91}"></span></td><td>C₀ &gt; 0,76 %</td></tr>
+              <tr><td>Composição da perlita</td><td><span data-tex="88{,}9\%\ \alpha + 11{,}1\%\ Fe_3C"></span></td><td>vale para qualquer aço</td></tr>
+              <tr><td>Hall-Petch</td><td><span data-tex="\sigma_y = \sigma_0 + k_y d^{-1/2}"></span></td><td>d em mm, k_y em MPa·mm^½</td></tr>
+              <tr><td>Encruamento</td><td><span data-tex="\sigma = K\,\varepsilon^{\,n}"></span></td><td>lei de Hollomon</td></tr>
+              <tr><td>Orowan</td><td><span data-tex="\Delta\tau = \dfrac{G\,b}{L}"></span></td><td>L = espaçamento entre partículas</td></tr>
+              <tr><td>1ª lei de Fick</td><td><span data-tex="J = -D\,\dfrac{\partial C}{\partial x}"></span></td><td>regime permanente</td></tr>
+              <tr><td>2ª lei de Fick</td><td><span data-tex="\dfrac{\partial C}{\partial t} = D\dfrac{\partial^2 C}{\partial x^2}"></span></td><td>regime transiente</td></tr>
+              <tr><td>Solução semi-infinita</td><td><span data-tex="\dfrac{C_x - C_0}{C_s - C_0} = 1 - \mathrm{erf}\!\left(\dfrac{x}{2\sqrt{Dt}}\right)"></span></td><td>cementação e nitretação</td></tr>
+              <tr><td>Arrhenius</td><td><span data-tex="D = D_0 e^{-Q/RT}"></span></td><td>T em kelvin</td></tr>
+              <tr><td>Escala de camada</td><td><span data-tex="\dfrac{x_1^2}{D_1 t_1} = \dfrac{x_2^2}{D_2 t_2}"></span></td><td>dobrar x exige 4× o tempo</td></tr>
+              <tr><td>Lacunas em equilíbrio</td><td><span data-tex="\dfrac{N_v}{N} = e^{-Q_v/kT}"></span></td><td>k = 8,62 × 10⁻⁵ eV/K</td></tr>
+              <tr><td>Fator de empacotamento</td><td><span data-tex="FEA = \dfrac{n\,V_{átomo}}{V_{célula}}"></span></td><td>CFC 0,74 · CCC 0,68 · HC 0,74</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas e classificações</h2>
+        <p>As designações abaixo são citadas pelo número e pelo que definem. Os textos completos são obras protegidas das entidades emissoras.</p>
+        <div class="tabela-wrap">
+          <table>
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ABNT NBR NM 87</strong></td><td>Aço carbono e ligado — classificação</td><td>Sistema de designação usado no Brasil</td></tr>
+              <tr><td><strong>SAE J403 / AISI</strong></td><td>Composição química dos aços carbono</td><td>Os dois primeiros dígitos dão a família; os dois últimos, o teor de carbono em centésimos</td></tr>
+              <tr><td><strong>ASTM E112</strong></td><td>Determinação do tamanho de grão</td><td>Define o número ASTM G, que entra na Hall-Petch</td></tr>
+              <tr><td><strong>ASTM E407</strong></td><td>Ataque metalográfico de metais</td><td>Nital 2 % é o reagente padrão para revelar perlita e ferrita</td></tr>
+              <tr><td><strong>ASTM E3</strong></td><td>Preparação de amostras metalográficas</td><td>Corte, embutimento, lixamento e polimento</td></tr>
+              <tr><td><strong>ASTM E384</strong></td><td>Microdureza Vickers e Knoop</td><td>Medida da dureza fase a fase</td></tr>
+              <tr><td><strong>ABNT NBR 6152</strong></td><td>Ensaio de tração de materiais metálicos</td><td>Levanta σ_y, σ_u, alongamento e n</td></tr>
+              <tr><td><strong>ASTM A255</strong></td><td>Temperabilidade — ensaio Jominy</td><td>Base do que se estuda em Ciência dos Materiais II</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout note">
+          <strong>Tamanho de grão ASTM</strong>
+          O número G se relaciona com o número de grãos por polegada quadrada a 100× por <span data-tex-inline="N = 2^{G-1}"></span>. G maior significa grão <em>menor</em>: G = 8 corresponde a cerca de 22 µm e G = 3, a cerca de 125 µm. Como a Hall-Petch usa d^(−1/2), passar de G 3 para G 8 acrescenta bastante resistência.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre soluções sólidas, regra das fases, diagrama Fe-C, regra da alavanca, resfriamento de equilíbrio, discordâncias, mecanismos de endurecimento e difusão.</p>
+        <div id="quiz" data-quiz="ciencia-dos-materiais-1"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>CALLISTER, W. D.; RETHWISCH, D. G.</strong> <em>Ciência e Engenharia de Materiais: uma Introdução.</em> LTC. — Bibliografia principal. Caps. 4 (defeitos), 5 (difusão), 7 (discordâncias e endurecimento), 9 (diagramas de fases) e 10 (transformações).</li>
+          <li><strong>ASKELAND, D. R.; WRIGHT, W. J.</strong> <em>Ciência e Engenharia dos Materiais.</em> Cengage. — Boa alternativa, com muitos exemplos resolvidos de regra da alavanca.</li>
+          <li><strong>SHACKELFORD, J. F.</strong> <em>Ciência dos Materiais.</em> Pearson. — Tratamento conciso e direto.</li>
+          <li><strong>CHIAVERINI, V.</strong> <em>Aços e Ferros Fundidos.</em> ABM. — A referência brasileira sobre o diagrama Fe-C e suas consequências práticas.</li>
+          <li><strong>COLPAERT, H.</strong> <em>Metalografia dos Produtos Siderúrgicos Comuns.</em> Blucher. — Imprescindível para associar microestrutura ao que se vê no microscópio.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/ciencia-dos-materiais-1.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  C: ['Teor de carbono', '%', 'em massa; ou número de componentes na regra das fases'],
+  W: ['Fração em massa', '—', 'entre 0 e 1; sai da regra da alavanca'],
+  P: ['Número de fases', '—', 'na regra das fases de Gibbs'],
+  F: ['Graus de liberdade', '—', 'quantas variáveis se pode mexer sem mudar as fases'],
+  D: ['Coeficiente de difusão', 'm²/s', 'cresce exponencialmente com a temperatura'],
+  Q: ['Energia de ativação', 'kJ/mol', 'intersticial ≈ 150 · substitucional ≈ 285'],
+  J: ['Fluxo difusivo', 'kg/m²·s', 'vai do concentrado para o diluído'],
+  R: ['Constante universal dos gases', 'J/mol·K', '8,314'],
+  T: ['Temperatura', 'K', 'em Arrhenius, SEMPRE em kelvin'],
+  t: ['Tempo', 's', 'a camada cresce com a raiz dele'],
+  x: ['Profundidade', 'm', 'medida a partir da superfície'],
+  d: ['Tamanho de grão', 'mm', 'na Hall-Petch; menor é melhor'],
+  G: ['Módulo de cisalhamento', 'MPa', 'ou número ASTM de tamanho de grão'],
+  b: ['Vetor de Burgers', 'nm', 'o passo da discordância; ~0,25 nm nos metais'],
+  L: ['Espaçamento entre precipitados', 'nm', 'quanto menor, mais duro'],
+  n: ['Expoente de encruamento', '—', 'aço 0,21 · latão 0,49'],
+  K: ['Coeficiente de resistência', 'MPa', 'na lei de Hollomon σ = Kεⁿ'],
+  N: ['Número de grãos por pol² a 100×', '—', 'N = 2^(G−1)'],
+  α: ['Ferrita', '—', 'Fe CCC, até 0,022 %C, ~80 HB'],
+  γ: ['Austenita', '—', 'Fe CFC, até 2,14 %C, só acima de 727 °C'],
+  δ: ['Ferrita delta', '—', 'CCC de alta temperatura, acima de 1394 °C'],
+  σ: ['Tensão', 'MPa'],
+  ε: ['Deformação', '—', 'adimensional'],
+  τ: ['Tensão de cisalhamento', 'MPa', 'é ela que move a discordância'],
+  ρ: ['Densidade de discordâncias', 'm⁻²', '10¹⁰ recozido · 10¹⁶ encruado'],
+  'C_0': ['Composição da liga', '%', 'o teor global, que não muda com a temperatura'],
+  'C_s': ['Teor na superfície', '%', 'imposto pela atmosfera do forno'],
+  'k_y': ['Constante de Hall-Petch', 'MPa·mm^½', '0,74 para o ferro'],
+  'σ_0': ['Tensão de atrito da rede', 'MPa', 'o que a rede resiste sem obstáculo nenhum'],
+  'σ_y': ['Limite de escoamento', 'MPa'],
+  'N_v': ['Concentração de lacunas', '—', 'cresce exponencialmente com T'],
+  'A_1': ['Temperatura eutetoide', '°C', '727 °C, para qualquer teor de carbono'],
+  'A_3': ['Início da formação de ferrita', '°C', 'só em aço hipoeutetoide'],
+  'A_cm': ['Início da precipitação de cementita', '°C', 'só em aço hipereutetoide']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

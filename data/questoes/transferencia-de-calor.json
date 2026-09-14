@@ -1,0 +1,549 @@
+{
+  "disciplina": "Transferência de Calor",
+  "slug": "transferencia-de-calor",
+  "topicos": [
+    {
+      "id": "conducao",
+      "nome": "Condução e resistências"
+    },
+    {
+      "id": "isolamento",
+      "nome": "Isolamento e raio crítico"
+    },
+    {
+      "id": "aletas",
+      "nome": "Aletas"
+    },
+    {
+      "id": "transiente",
+      "nome": "Regime transiente"
+    },
+    {
+      "id": "conveccao",
+      "nome": "Convecção"
+    },
+    {
+      "id": "fase",
+      "nome": "Ebulição e condensação"
+    },
+    {
+      "id": "radiacao",
+      "nome": "Radiação"
+    },
+    {
+      "id": "mldt",
+      "nome": "Trocadores — MLDT"
+    },
+    {
+      "id": "nut",
+      "nome": "Trocadores — ε-NUT"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "tc-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "conducao",
+      "enunciado": "<p>A diferença fundamental entre o coeficiente de condutividade térmica k e o coeficiente de convecção h é que:</p>",
+      "alternativas": [
+        "k é propriedade do material, enquanto h depende do escoamento, da geometria e das propriedades do fluido.",
+        "Ambos são propriedades tabeladas do material.",
+        "h é propriedade do fluido e k depende da espessura da parede.",
+        "k só existe em sólidos e h só em gases."
+      ],
+      "correta": 0,
+      "explicacao": "<p>k é propriedade termofísica: dado o material e a temperatura, o valor está tabelado. h <strong>não é propriedade</strong> — é um coeficiente de ajuste que depende do campo de velocidades, da geometria, do regime (laminar ou turbulento) e das propriedades do fluido. É justamente por isso que metade da disciplina é dedicada a correlações para estimar h. Vale notar que a condução também ocorre em fluidos parados.</p>"
+    },
+    {
+      "id": "tc-002",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "conducao",
+      "enunciado": "<p>Uma parede composta é formada por tijolo (<span class=\"dado\">k = 0,72 W/m·K</span>, 10 cm), lã de vidro (<span class=\"dado\">k = 0,04 W/m·K</span>, 5 cm) e tijolo (10 cm). A diferença de temperatura entre as faces é <span class=\"dado\">25 °C</span>. Qual o fluxo de calor por unidade de área?</p>",
+      "alternativas": [
+        "10,9 W/m²",
+        "16,4 W/m²",
+        "20,0 W/m²",
+        "38,2 W/m²"
+      ],
+      "correta": 1,
+      "formulas": [
+        "R″ = L/k   [m²·K/W]",
+        "Resistências em série somam",
+        "q″ = ΔT / ΣR″"
+      ],
+      "explicacao": "<div class=\"passo\">R″<sub>tijolo</sub> = 0,10/0,72 = 0,1389 m²·K/W (cada camada)</div><div class=\"passo\">R″<sub>lã</sub> = 0,05/0,04 = 1,250 m²·K/W</div><div class=\"passo\">ΣR″ = 0,1389 + 1,250 + 0,1389 = 1,528 m²·K/W</div><div class=\"passo\">q″ = 25/1,528 = <strong>16,4 W/m²</strong></div><p>Repare que a lã, com apenas 5 cm, responde por 82 % da resistência total. É a resistência dominante — e é onde ocorre a maior parte da queda de temperatura.</p>"
+    },
+    {
+      "id": "tc-003",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "conducao",
+      "enunciado": "<p>Na mesma parede da questão anterior (ΣR″ = 1,528 m²·K/W), incluem-se agora as convecções interna (<span class=\"dado\">h = 10 W/m²·K</span>) e externa (<span class=\"dado\">h = 25 W/m²·K</span>), com diferença de 25 °C entre os fluidos. Determine o coeficiente global U e o fluxo de calor.</p>",
+      "alternativas": [
+        "U = 0,600 W/m²·K e q″ = 15,0 W/m²",
+        "U = 0,654 W/m²·K e q″ = 16,4 W/m²",
+        "U = 1,528 W/m²·K e q″ = 38,2 W/m²",
+        "U = 0,545 W/m²·K e q″ = 13,6 W/m²"
+      ],
+      "correta": 0,
+      "formulas": [
+        "R″_conv = 1/h",
+        "R″_total = 1/h_i + ΣR″_cond + 1/h_e",
+        "U = 1/R″_total    e    q″ = U·ΔT"
+      ],
+      "explicacao": "<div class=\"passo\">R″<sub>conv,i</sub> = 1/10 = 0,100 m²·K/W</div><div class=\"passo\">R″<sub>conv,e</sub> = 1/25 = 0,040 m²·K/W</div><div class=\"passo\">R″<sub>total</sub> = 0,100 + 1,528 + 0,040 = 1,668 m²·K/W</div><div class=\"passo\">U = 1/1,668 = <strong>0,600 W/m²·K</strong></div><div class=\"passo\">q″ = 0,600 × 25 = <strong>15,0 W/m²</strong></div><p>As convecções acrescentaram só 9 % à resistência total: com uma camada isolante boa, é a condução que governa. Em parede metálica sem isolamento, a situação se inverte completamente.</p>"
+    },
+    {
+      "id": "tc-004",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "conducao",
+      "enunciado": "<p>Em uma parede composta em série, a camada em que ocorre a maior queda de temperatura é aquela com:</p>",
+      "alternativas": [
+        "Maior condutividade térmica.",
+        "Menor espessura.",
+        "Maior massa específica.",
+        "Maior resistência térmica."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Em série, o fluxo de calor é o mesmo em todas as camadas, e ΔT<sub>i</sub> = q·R<sub>i</sub>. Logo a queda de temperatura é diretamente proporcional à resistência de cada camada. Como R = L/(kA), a camada crítica é a que combina grande espessura com baixa condutividade — exatamente o isolante. É a mesma lógica de resistores em série percorridos pela mesma corrente.</p>"
+    },
+    {
+      "id": "tc-005",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "isolamento",
+      "enunciado": "<p>Um cabo é isolado com material de <span class=\"dado\">k = 0,05 W/m·K</span> e troca calor com o ar por convecção com <span class=\"dado\">h = 8 W/m²·K</span>. Qual o raio crítico de isolamento?</p>",
+      "alternativas": [
+        "3,13 mm",
+        "6,25 mm",
+        "12,5 mm",
+        "160 mm"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Cilindro: r_cr = k_iso / h",
+        "Esfera:   r_cr = 2·k_iso / h"
+      ],
+      "explicacao": "<div class=\"passo\">r<sub>cr</sub> = 0,05/8 = 0,00625 m = <strong>6,25 mm</strong></div><p>Se o raio externo do cabo for menor que 6,25 mm, acrescentar isolante <em>aumenta</em> a dissipação de calor — porque o ganho de área externa supera o ganho de resistência de condução. Em cabos elétricos isso é desejável. Em tubulação de vapor, cujo raio já é muito maior que r<sub>cr</sub>, isolar sempre reduz a perda.</p>"
+    },
+    {
+      "id": "tc-006",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "isolamento",
+      "enunciado": "<p>Sobre o raio crítico de isolamento e por que ele existe em cilindro mas não em parede plana:</p>",
+      "alternativas": [
+        "Ele existe nas duas geometrias, apenas com valores diferentes.",
+        "Ele existe porque a condutividade do isolante varia com a curvatura.",
+        "Ele não existe de fato: acrescentar isolante sempre reduz a perda.",
+        "Acrescentar isolante em um cilindro faz duas coisas opostas: aumenta a resistência de condução e, ao ampliar a área externa, DIMINUI a resistência de convecção. A resistência total tem mínimo em r_cr = k/h, abaixo do qual isolar aumenta a perda. Na parede plana a área é constante, o segundo efeito não existe e a resistência só cresce. Na prática o fenômeno importa em fios finos e tubos de pequeno diâmetro, não em tubulação industrial."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Ao acrescentar isolante em um cilindro, dois efeitos opostos ocorrem simultaneamente. A resistência de <strong>condução</strong> aumenta, pois cresce com ln(r<sub>e</sub>/r<sub>i</sub>): mais material a atravessar. Mas a resistência de <strong>convecção</strong> externa, igual a 1/(h·2πr<sub>e</sub>L), <em>diminui</em>, porque a área externa cresce linearmente com o raio.</p><p>A resistência total é a soma das duas e apresenta um mínimo. Derivando em relação a r<sub>e</sub> e igualando a zero obtém-se r<sub>cr</sub> = k<sub>iso</sub>/h. Abaixo desse raio, o efeito do aumento de área domina e acrescentar isolante aumenta a taxa de calor; acima dele, a condução domina e o isolante finalmente cumpre seu papel.</p><p>Na <strong>parede plana</strong> o fenômeno não existe porque a área de troca é constante: acrescentar espessura só aumenta L/kA, sem qualquer efeito compensatório sobre a área externa. A resistência total cresce monotonicamente e não há mínimo.</p><p>Na prática, r<sub>cr</sub> é da ordem de milímetros para isolantes usuais em ar. Tubulações industriais têm raio muito maior, então isolar sempre ajuda. O efeito é relevante em fios e componentes de pequeno diâmetro, onde a capa é usada deliberadamente para dissipar melhor.</p>"
+    },
+    {
+      "id": "tc-007",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "aletas",
+      "enunciado": "<p>A eficiência de uma aleta é definida como:</p>",
+      "alternativas": [
+        "O calor dissipado pela aleta dividido pelo calor que a base dissiparia sem ela.",
+        "A razão entre a temperatura da ponta e a da base.",
+        "O calor real dissipado dividido pelo que seria dissipado se toda a aleta estivesse à temperatura da base.",
+        "A razão entre a área da aleta e a área da base."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A eficiência η<sub>a</sub> compara o desempenho real com o caso ideal de aleta isotérmica na temperatura da base (que exigiria k infinito). É sempre menor que 1. A primeira alternativa define a <strong>efetividade</strong> ε<sub>a</sub>, conceito distinto: ela mede se valeu a pena colocar a aleta, e só se justifica quando maior que 2.</p>"
+    },
+    {
+      "id": "tc-008",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "aletas",
+      "enunciado": "<p>Uma aleta retangular de alumínio (<span class=\"dado\">k = 200 W/m·K</span>) tem espessura <span class=\"dado\">t = 3 mm</span>, comprimento <span class=\"dado\">L = 50 mm</span> e largura 1 m, com <span class=\"dado\">h = 25 W/m²·K</span>. Determine a eficiência da aleta usando o comprimento corrigido.</p>",
+      "alternativas": [
+        "0,802",
+        "0,871",
+        "0,932",
+        "0,978"
+      ],
+      "correta": 2,
+      "formulas": [
+        "m = √(2h/(k·t))   [aleta retangular fina]",
+        "L_c = L + t/2",
+        "η = tanh(m·L_c) / (m·L_c)"
+      ],
+      "explicacao": "<div class=\"passo\">m = √(2 × 25/(200 × 0,003)) = √(50/0,6) = √83,33 = 9,129 m⁻¹</div><div class=\"passo\">L<sub>c</sub> = 0,050 + 0,003/2 = 0,0515 m</div><div class=\"passo\">m·L<sub>c</sub> = 9,129 × 0,0515 = 0,4702</div><div class=\"passo\">η = tanh(0,4702)/0,4702 = 0,4383/0,4702 = <strong>0,932</strong></div><p>Eficiência alta porque o alumínio é bom condutor e a aleta é curta. Trocando por aço inoxidável (k = 15), m subiria para 33,3 e a eficiência cairia para cerca de 0,73.</p>"
+    },
+    {
+      "id": "tc-009",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "aletas",
+      "enunciado": "<p>Colocar aletas em uma superfície pode, em certas condições, <em>reduzir</em> a taxa de transferência de calor. Isso ocorre quando:</p>",
+      "alternativas": [
+        "A aleta é feita de material muito condutor.",
+        "A temperatura da base é muito alta.",
+        "O coeficiente de convecção já é alto e a aleta é de material pouco condutor.",
+        "A aleta é muito fina e comprida."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A aleta acrescenta área, mas também acrescenta resistência de condução ao longo do seu corpo e ocupa parte da área original da base. Quando h já é alto (líquidos, ebulição) a convecção não é o gargalo, e quando k é baixo a condução ao longo da aleta é ruim: nesse cenário a efetividade fica abaixo de 1 e a aleta atrapalha. A regra prática é aletar quando h·t/k &lt; 0,25 — ou seja, aletas fazem sentido do lado do gás, não do lado do líquido.</p>"
+    },
+    {
+      "id": "tc-010",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "transiente",
+      "enunciado": "<p>Uma esfera de cobre (<span class=\"dado\">k = 200 W/m·K</span>) com comprimento característico <span class=\"dado\">L<sub>c</sub> = V/A<sub>s</sub> = 10 mm</span> é resfriada em ar com <span class=\"dado\">h = 50 W/m²·K</span>. O modelo de capacitância global é aplicável?</p>",
+      "alternativas": [
+        "Não, pois Bi = 2,5 > 0,1.",
+        "Sim, pois h é menor que k.",
+        "Não, pois o modelo só vale para placas planas.",
+        "Sim, pois Bi = 0,0025 < 0,1."
+      ],
+      "correta": 3,
+      "formulas": [
+        "Bi = h·L_c / k_sólido",
+        "L_c = V/A_s",
+        "Capacitância global válida se Bi < 0,1"
+      ],
+      "explicacao": "<div class=\"passo\">Bi = 50 × 0,010 / 200</div><div class=\"passo\">Bi = 0,5/200 = <strong>0,0025</strong></div><div class=\"passo\">0,0025 &lt; 0,1 → <strong>modelo aplicável</strong></div><p>O Biot baixíssimo significa que a resistência interna de condução é desprezível: o cobre uniformiza a temperatura muito mais rápido do que o ar consegue retirar calor. A esfera pode ser tratada como isotérmica, com decaimento exponencial de constante τ = ρVc<sub>p</sub>/(hA<sub>s</sub>).</p>"
+    },
+    {
+      "id": "tc-011",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "transiente",
+      "enunciado": "<p>Dois corpos idênticos em geometria, um de cobre e outro de vidro, são resfriados nas mesmas condições. Sobre o número de Biot:</p>",
+      "alternativas": [
+        "É maior no vidro, que tende a apresentar gradientes internos significativos.",
+        "É maior no cobre, que conduz melhor.",
+        "É igual, pois a geometria e o h são os mesmos.",
+        "Não depende do material."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Bi = h·L<sub>c</sub>/k<sub>sólido</sub> é inversamente proporcional à condutividade do sólido. O vidro (k ≈ 1 W/m·K) terá Bi centenas de vezes maior que o cobre (k ≈ 400), o que significa resistência interna relevante: a superfície esfria muito antes do centro. O cobre uniformiza rapidamente e admite o modelo de capacitância global; o vidro exige as soluções em série ou as cartas de Heisler — e é por isso que vidro trinca sob choque térmico.</p>"
+    },
+    {
+      "id": "tc-012",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "conveccao",
+      "enunciado": "<p>O número de Prandtl de um fluido representa fisicamente:</p>",
+      "alternativas": [
+        "A razão entre forças de inércia e forças viscosas.",
+        "A razão entre empuxo e viscosidade.",
+        "A razão entre convecção e condução na parede.",
+        "A razão entre a difusividade de quantidade de movimento e a difusividade térmica."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Pr = ν/α = μc<sub>p</sub>/k. Ele indica a espessura relativa das camadas limite de velocidade e térmica. Óleos têm Pr alto (centenas): a camada limite de velocidade é muito mais espessa que a térmica. Metais líquidos têm Pr baixíssimo (≈ 0,01): o oposto. Água a 20 °C tem Pr ≈ 7 e ar ≈ 0,7. As demais alternativas descrevem Reynolds, Nusselt e Grashof, respectivamente.</p>"
+    },
+    {
+      "id": "tc-013",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "conveccao",
+      "enunciado": "<p>Água escoa em tubo de <span class=\"dado\">D = 25 mm</span> a <span class=\"dado\">1,5 m/s</span>, sendo aquecida. Propriedades: ρ = 997 kg/m³, μ = 8,9×10⁻⁴ Pa·s, k = 0,607 W/m·K, Pr = 6,1. Estime o coeficiente de convecção por Dittus-Boelter.</p>",
+      "alternativas": [
+        "1 230 W/m²·K",
+        "2 890 W/m²·K",
+        "5 750 W/m²·K",
+        "9 340 W/m²·K"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Re = ρ·u·D/μ",
+        "Dittus-Boelter (aquecimento): Nu = 0,023·Re^0,8·Pr^0,4",
+        "h = Nu·k/D"
+      ],
+      "explicacao": "<div class=\"passo\">Re = 997 × 1,5 × 0,025 / 8,9×10⁻⁴ = 4,20×10⁴ → turbulento</div><div class=\"passo\">Re<sup>0,8</sup> = (42 008)<sup>0,8</sup> = 5 137</div><div class=\"passo\">Pr<sup>0,4</sup> = 6,1<sup>0,4</sup> = 2,051</div><div class=\"passo\">Nu = 0,023 × 5 137 × 2,051 = 236,9</div><div class=\"passo\">h = 236,9 × 0,607/0,025 = <strong>5 750 W/m²·K</strong></div><p>Cuidado com o expoente de Pr: 0,4 no aquecimento do fluido, 0,3 no resfriamento. A diferença chega a 8 % em h.</p>"
+    },
+    {
+      "id": "tc-014",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "conveccao",
+      "enunciado": "<p>A transição de escoamento laminar para turbulento ocorre tipicamente em:</p>",
+      "alternativas": [
+        "Re ≈ 2 300 em tubos e Re ≈ 5×10⁵ em placa plana.",
+        "Re ≈ 2 300 nos dois casos.",
+        "Re ≈ 5×10⁵ nos dois casos.",
+        "Re ≈ 10 000 em tubos e Re ≈ 2 300 em placa plana."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Os dois limiares são muito diferentes porque o comprimento característico é diferente: o diâmetro no tubo, e a distância desde o bordo de ataque na placa. Confundir os dois valores leva a escolher a correlação errada — e como Nu turbulento pode ser uma ordem de grandeza acima do laminar, o erro em h é enorme. Em tubos, Dittus-Boelter só é confiável acima de Re ≈ 10 000, na região plenamente turbulenta.</p>"
+    },
+    {
+      "id": "tc-015",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "conveccao",
+      "enunciado": "<p>Sobre a natureza do coeficiente de convecção h e a razão de existirem tantas correlações diferentes:</p>",
+      "alternativas": [
+        "h é propriedade do fluido, tabelada como a condutividade térmica.",
+        "As correlações diferem apenas por unidades adotadas por cada autor.",
+        "h depende apenas da velocidade do escoamento, e uma única correlação bastaria.",
+        "Na parede o fluido está em repouso e o transporte é por condução, de modo que h fica definido pelo gradiente de temperatura ali — ou seja, pelo campo de escoamento, e não pelo fluido isolado. Depende de propriedades, velocidade e regime, geometria, condição de contorno, região de entrada e rugosidade. Como não há solução analítica geral, cada combinação recebe uma correlação empírica, válida apenas dentro da sua faixa de Re, Pr e geometria."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Rigorosamente, todo o calor que sai da parede atravessa uma camada de fluido em repouso relativo junto a ela, e ali o transporte é por <strong>condução</strong>: q″ = −k<sub>f</sub>·(∂T/∂y) na parede. Definir h por q″ = h·ΔT é apenas escrever esse gradiente de forma conveniente, ou seja, h = −k<sub>f</sub>(∂T/∂y)<sub>parede</sub>/ΔT. Como o gradiente de temperatura na parede depende de todo o campo de escoamento, h herda essa dependência — não é propriedade termofísica alguma.</p><p>h depende, portanto: das propriedades do fluido (k, ρ, μ, c<sub>p</sub>, e portanto Pr); da velocidade e do regime de escoamento (Re, laminar ou turbulento); da geometria e da orientação da superfície; da condição de contorno térmica (T<sub>s</sub> constante ou q″ constante); de estar na região de entrada ou plenamente desenvolvida; da rugosidade; e, na convecção natural, da diferença de temperatura em si, através de Gr — o que torna o problema não linear.</p><p>Cada combinação desses fatores gera um campo de escoamento distinto e, por consequência, uma relação Nu = f(Re, Pr) ou Nu = f(Ra, Pr) própria. Como a solução analítica das equações de Navier-Stokes acopladas à energia só existe em pouquíssimos casos, o caminho prático é experimental: mede-se h, adimensionaliza-se em Nusselt e ajusta-se uma correlação para cada família de situações. Daí a quantidade de correlações — e a importância de verificar a <em>faixa de validade</em> de cada uma antes de usá-la.</p>"
+    },
+    {
+      "id": "tc-016",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fase",
+      "enunciado": "<p>Coeficientes de convecção em ebulição e condensação são muito maiores que em convecção monofásica porque:</p>",
+      "alternativas": [
+        "A viscosidade do fluido cai a zero na mudança de fase.",
+        "A temperatura da superfície fica constante.",
+        "A condutividade térmica do vapor é muito alta.",
+        "O calor latente transporta muita energia por unidade de massa, e a agitação das bolhas intensifica a mistura."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Na ebulição, cada grama de líquido que vaporiza absorve o calor latente — para a água, cerca de 2 260 kJ/kg, ordens de grandeza acima do que se consegue com o calor sensível de alguns graus de aquecimento. Além disso, a nucleação, o crescimento e o desprendimento das bolhas agitam violentamente a camada limite, destruindo a resistência térmica junto à parede. O vapor, ao contrário do que diz a alternativa C, tem condutividade baixa — é justamente por isso que o filme de vapor no <em>burnout</em> é tão prejudicial.</p>"
+    },
+    {
+      "id": "tc-017",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "fase",
+      "enunciado": "<p>O fluxo crítico de calor (CHF) em ebulição marca:</p>",
+      "alternativas": [
+        "O início da formação das primeiras bolhas na superfície.",
+        "O ponto em que a convecção natural cessa.",
+        "O máximo da curva de ebulição, após o qual um filme de vapor isola a superfície e a temperatura dispara.",
+        "A temperatura em que o líquido atinge a saturação."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Na ebulição nucleada, o aumento do superaquecimento eleva o fluxo até um pico. Passado esse pico, as bolhas coalescem e formam um filme contínuo de vapor, cuja condutividade é baixa: o coeficiente despenca e, se o aquecimento for controlado por fluxo (resistência elétrica, reator nuclear), a temperatura da parede salta centenas de graus e a superfície funde — o <em>burnout</em>. É por isso que o CHF é o limite de projeto em caldeiras e núcleos de reatores.</p>"
+    },
+    {
+      "id": "tc-018",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "radiacao",
+      "enunciado": "<p>Qual o poder emissivo de um corpo negro a <span class=\"dado\">1 000 K</span>?</p>",
+      "alternativas": [
+        "5,67 kW/m²",
+        "56,7 kW/m²",
+        "567 kW/m²",
+        "5 670 kW/m²"
+      ],
+      "correta": 1,
+      "formulas": [
+        "E_b = σ·T⁴",
+        "σ = 5,67×10⁻⁸ W/m²·K⁴",
+        "T sempre em kelvin"
+      ],
+      "explicacao": "<div class=\"passo\">E<sub>b</sub> = 5,67×10⁻⁸ × (1000)⁴</div><div class=\"passo\">E<sub>b</sub> = 5,67×10⁻⁸ × 10¹² = 56 700 W/m²</div><div class=\"passo\">E<sub>b</sub> = <strong>56,7 kW/m²</strong></div><p>A dependência de T⁴ é brutal: a 2 000 K o valor seria dezesseis vezes maior, 907 kW/m². Usar temperatura em °C aqui é erro fatal — a lei exige escala absoluta.</p>"
+    },
+    {
+      "id": "tc-019",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "radiacao",
+      "enunciado": "<p>Em que comprimento de onda ocorre a emissão máxima de um corpo negro a <span class=\"dado\">1 000 K</span>?</p>",
+      "alternativas": [
+        "0,29 μm",
+        "2,90 μm",
+        "29,0 μm",
+        "290 μm"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Lei do deslocamento de Wien: λ_máx · T = 2 898 μm·K"
+      ],
+      "explicacao": "<div class=\"passo\">λ<sub>máx</sub> = 2 898/1 000 = <strong>2,90 μm</strong></div><p>Está no infravermelho — por isso não vemos brilho visível a 1 000 K, apenas um vermelho fraco na cauda do espectro. O Sol, a cerca de 5 800 K, tem λ<sub>máx</sub> = 0,50 μm, bem no meio do visível. Essa diferença de espectro é a base do efeito estufa e das superfícies seletivas.</p>"
+    },
+    {
+      "id": "tc-020",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "radiacao",
+      "enunciado": "<p>Duas placas paralelas infinitas, ambas com emissividade <span class=\"dado\">ε = 0,8</span>, estão a <span class=\"dado\">800 K</span> e <span class=\"dado\">300 K</span>. Qual o fluxo líquido de calor por radiação?</p>",
+      "alternativas": [
+        "11,4 kW/m²",
+        "15,2 kW/m²",
+        "18,6 kW/m²",
+        "23,2 kW/m²"
+      ],
+      "correta": 1,
+      "formulas": [
+        "q″ = σ(T₁⁴ − T₂⁴) / (1/ε₁ + 1/ε₂ − 1)",
+        "σ = 5,67×10⁻⁸ W/m²·K⁴"
+      ],
+      "explicacao": "<div class=\"passo\">T₁⁴ = 800⁴ = 4,096×10¹¹; T₂⁴ = 300⁴ = 8,10×10⁹</div><div class=\"passo\">σ(T₁⁴ − T₂⁴) = 5,67×10⁻⁸ × 4,015×10¹¹ = 22 765 W/m²</div><div class=\"passo\">Denominador: 1/0,8 + 1/0,8 − 1 = 1,25 + 1,25 − 1 = 1,50</div><div class=\"passo\">q″ = 22 765/1,50 = <strong>15,2 kW/m²</strong></div><p>Note que a placa fria contribui com só 3,5 % do termo de temperatura: quando T₁ é bem maior que T₂, o corpo quente domina totalmente a troca líquida.</p>"
+    },
+    {
+      "id": "tc-021",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "radiacao",
+      "enunciado": "<p>A lei de Kirchhoff da radiação térmica estabelece que, para uma superfície cinza e difusa em equilíbrio:</p>",
+      "alternativas": [
+        "A emissividade é igual à absortividade.",
+        "A emissividade é igual à refletividade.",
+        "A soma da emissividade com a absortividade é 1.",
+        "A transmissividade é sempre nula."
+      ],
+      "correta": 0,
+      "explicacao": "<p>α = ε: bom emissor é bom absorvedor. A consequência prática é importante — uma superfície pintada de preto fosco absorve muita radiação solar mas também irradia bem; já superfícies <em>seletivas</em> de coletores solares burlam isso aproveitando que α e ε valem para faixas espectrais diferentes (alta absortividade no visível, baixa emissividade no infravermelho). A relação que soma 1 é ρ + α + τ = 1, entre refletividade, absortividade e transmissividade.</p>"
+    },
+    {
+      "id": "tc-022",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "mldt",
+      "enunciado": "<p>Em um trocador em <span class=\"dado\">contracorrente</span>, o fluido quente entra a 120 °C e sai a 80 °C; o frio entra a 25 °C e sai a 60 °C. Qual a média logarítmica das diferenças de temperatura?</p>",
+      "alternativas": [
+        "48,1 °C",
+        "52,5 °C",
+        "57,5 °C",
+        "60,0 °C"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Contracorrente: ΔT₁ = Tq,ent − Tf,sai ; ΔT₂ = Tq,sai − Tf,ent",
+        "ΔT_ml = (ΔT₁ − ΔT₂)/ln(ΔT₁/ΔT₂)"
+      ],
+      "explicacao": "<div class=\"passo\">ΔT₁ = 120 − 60 = 60 °C</div><div class=\"passo\">ΔT₂ = 80 − 25 = 55 °C</div><div class=\"passo\">ΔT<sub>ml</sub> = (60 − 55)/ln(60/55) = 5/0,08701</div><div class=\"passo\">ΔT<sub>ml</sub> = <strong>57,5 °C</strong></div><p>Para as mesmas quatro temperaturas em paralelo, ΔT₁ = 95 e ΔT₂ = 20, e a MLDT cairia para 48,1 °C — o distrator. Menor MLDT significa mais área para a mesma troca: é a desvantagem quantitativa do arranjo paralelo.</p>"
+    },
+    {
+      "id": "tc-023",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "mldt",
+      "enunciado": "<p>No trocador da questão anterior (contracorrente, ΔT<sub>ml</sub> = 57,5 °C), o fluido frio é água a <span class=\"dado\">1,5 kg/s</span> (c<sub>p</sub> = 4 180 J/kg·K) aquecida de 25 a 60 °C. Com <span class=\"dado\">U = 850 W/m²·K</span>, qual a área de troca necessária?</p>",
+      "alternativas": [
+        "3,21 m²",
+        "4,49 m²",
+        "5,37 m²",
+        "6,82 m²"
+      ],
+      "correta": 1,
+      "formulas": [
+        "q = ṁ·cp·ΔT",
+        "q = U·A·ΔT_ml",
+        "A = q/(U·ΔT_ml)"
+      ],
+      "explicacao": "<div class=\"passo\">q = 1,5 × 4 180 × (60 − 25) = 219 450 W ≈ 219 kW</div><div class=\"passo\">A = 219 450/(850 × 57,5)</div><div class=\"passo\">A = 219 450/48 875 = <strong>4,49 m²</strong></div><p>Se o arranjo fosse paralelo, com MLDT de 48,1 °C, a área subiria para 5,37 m² — 20 % a mais de trocador para a mesma carga térmica. Esse é o custo concreto de escolher o arranjo errado.</p>"
+    },
+    {
+      "id": "tc-024",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "mldt",
+      "enunciado": "<p>Uma vantagem exclusiva do arranjo em contracorrente sobre o paralelo é que:</p>",
+      "alternativas": [
+        "A perda de carga é sempre menor.",
+        "A temperatura de saída do fluido frio pode superar a de saída do quente.",
+        "O coeficiente global U é sempre maior.",
+        "Não há necessidade de fator de correção F."
+      ],
+      "correta": 1,
+      "explicacao": "<p>No arranjo paralelo, os dois fluidos tendem a uma mesma temperatura de equilíbrio, e a saída do frio jamais ultrapassa a saída do quente. Em contracorrente, o fluido frio que sai encontra o quente que <em>entra</em>, de modo que pode sair mais quente do que a saída do fluido quente — algo impossível no paralelo. Isso, somado à MLDT maior, é o que torna o contracorrente superior. U depende dos coeficientes de convecção, não do arranjo, e F = 1 vale para ambos os arranjos puros.</p>"
+    },
+    {
+      "id": "tc-025",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "nut",
+      "enunciado": "<p>Um trocador em contracorrente tem <span class=\"dado\">UA = 6 000 W/K</span>, <span class=\"dado\">C<sub>mín</sub> = 2 000 W/K</span> e <span class=\"dado\">C<sub>máx</sub> = 4 000 W/K</span>. Determine NUT, C<sub>r</sub> e a eficácia.</p>",
+      "alternativas": [
+        "NUT = 1,5; Cr = 0,5; ε = 0,655",
+        "NUT = 3,0; Cr = 2,0; ε = 0,950",
+        "NUT = 3,0; Cr = 0,5; ε = 0,874",
+        "NUT = 3,0; Cr = 0,5; ε = 0,632"
+      ],
+      "correta": 2,
+      "formulas": [
+        "NUT = UA/Cmín ;  Cr = Cmín/Cmáx",
+        "Contracorrente:",
+        "ε = [1 − e^(−NUT(1−Cr))] / [1 − Cr·e^(−NUT(1−Cr))]"
+      ],
+      "explicacao": "<div class=\"passo\">NUT = 6 000/2 000 = 3,0</div><div class=\"passo\">C<sub>r</sub> = 2 000/4 000 = 0,5</div><div class=\"passo\">NUT(1 − C<sub>r</sub>) = 3,0 × 0,5 = 1,5 → e<sup>−1,5</sup> = 0,2231</div><div class=\"passo\">ε = (1 − 0,2231)/(1 − 0,5 × 0,2231) = 0,7769/0,8884</div><div class=\"passo\">ε = <strong>0,874</strong></div><p>C<sub>r</sub> é sempre ≤ 1 por definição, o que elimina de imediato a segunda alternativa. Com ε = 0,874, o trocador entrega 87 % do máximo termodinamicamente possível.</p>"
+    },
+    {
+      "id": "tc-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "nut",
+      "enunciado": "<p>O método ε-NUT é preferível ao método MLDT quando:</p>",
+      "alternativas": [
+        "As quatro temperaturas de entrada e saída são conhecidas.",
+        "As temperaturas de saída são desconhecidas, e o método MLDT exigiria iteração.",
+        "O trocador opera em regime transiente.",
+        "O arranjo é necessariamente em paralelo."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Com as quatro temperaturas conhecidas — situação de <em>dimensionamento</em> — a MLDT dá a área diretamente. Já no problema de <em>desempenho</em> (trocador existente, quer-se saber o que ele entrega), só se conhecem as entradas: a MLDT precisaria das saídas, que dependem da própria troca, exigindo iteração. O ε-NUT resolve direto, pois ε depende apenas de NUT, C<sub>r</sub> e do arranjo. Os dois métodos são equivalentes e ambos valem em regime permanente.</p>"
+    },
+    {
+      "id": "tc-027",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "nut",
+      "enunciado": "<p>Em um condensador, o fluido que muda de fase tem capacidade calorífica efetiva infinita. Consequentemente:</p>",
+      "alternativas": [
+        "C_r = 0 e a eficácia vale ε = 1 − e^(−NUT), independentemente do arranjo.",
+        "C_r = 1 e a eficácia vale ε = NUT/(1 + NUT).",
+        "O método ε-NUT não se aplica.",
+        "A eficácia é sempre igual a 1."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Como o fluido condensa a temperatura constante, ele absorve calor sem variar T, o que equivale a C = ṁc<sub>p</sub> → ∞. Logo C<sub>r</sub> = C<sub>mín</sub>/C<sub>máx</sub> → 0 e todas as expressões de eficácia colapsam na mesma: ε = 1 − e<sup>−NUT</sup>. É o único caso em que o arranjo (paralelo, contracorrente ou cruzado) não faz diferença — afinal, com um dos fluidos isotérmico, o sentido do escoamento deixa de importar. A expressão com C<sub>r</sub> = 1 vale para o caso oposto, de capacidades equilibradas.</p>"
+    },
+    {
+      "id": "tc-028",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "nut",
+      "enunciado": "<p>Sobre por que não se justifica aumentar indefinidamente a área de um trocador de calor, do ponto de vista da curva ε versus NUT:</p>",
+      "alternativas": [
+        "A efetividade cai depois de certo NUT, tornando o trocador pior.",
+        "Como NUT = UA/C_mín é proporcional à área e ao custo, mas ε cresce rápido no início e satura, o retorno é fortemente decrescente: passar de NUT 1 para 2 rende muito, de 3 para 5 rende pouco. Fisicamente, a diferença local de temperatura tende a zero e a área extra quase não troca calor — e ainda acrescenta perda de carga, volume e custo de limpeza. A faixa econômica costuma ficar entre NUT 1 e 3.",
+        "O limite é estrutural: trocadores grandes não suportam a pressão de operação.",
+        "A efetividade cresce linearmente com NUT, de modo que o ganho é sempre proporcional ao investimento."
+      ],
+      "correta": 1,
+      "explicacao": "<p>NUT = UA/C<sub>mín</sub> é proporcional à área, e portanto ao custo do equipamento. A curva ε(NUT) cresce rapidamente no início: até NUT ≈ 1 a eficácia já alcança 60 a 65 %, e até NUT ≈ 2 chega a 80 a 90 %. A partir daí, porém, a curva satura assintoticamente rumo ao limite termodinâmico ε = 1 (ou ao valor limite correspondente a C<sub>r</sub>).</p><p>Isso significa retorno decrescente: dobrar a área de NUT = 1 para NUT = 2 pode render 20 pontos percentuais de eficácia; dobrar de NUT = 3 para NUT = 6 rende talvez 5 pontos. O custo, no entanto, dobra igualmente nos dois casos — o investimento cresce linearmente enquanto o benefício cresce cada vez menos.</p><p>Fisicamente a razão é clara: à medida que a eficácia se aproxima de 1, as temperaturas dos dois fluidos se aproximam ao longo de todo o trocador, a diferença de temperatura local tende a zero e o trecho final de área quase não transfere calor. Está-se pagando por superfície que opera com força motriz mínima.</p><p>Somam-se ainda os custos operacionais: mais área significa mais tubos, maior perda de carga e maior consumo de bombeamento, além de maior volume, peso e custo de instalação e de limpeza. Por isso o ponto ótimo de projeto costuma ficar entre NUT = 1 e 3, definido por uma análise de custo de ciclo de vida — e não pela busca da máxima eficácia.</p>"
+    },
+    {
+      "id": "tc-029",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "conducao",
+      "enunciado": "<p>Ao tocar um objeto metálico e um de madeira à mesma temperatura ambiente, o metal parece mais frio porque:</p>",
+      "alternativas": [
+        "O metal está de fato mais frio, por irradiar melhor para o ambiente.",
+        "A madeira absorve calor da pele mais rapidamente, mas a sensação é invertida pelo cérebro.",
+        "Os dois estão à mesma temperatura, mas a sensação térmica responde ao FLUXO de calor retirado da pele. A alta condutividade e a alta efusividade térmica do metal levam a interface pele-objeto a uma temperatura bem mais baixa e mantêm o gradiente, drenando calor continuamente; a madeira aquece localmente e a interface sobe quase até a temperatura da pele, cessando o fluxo.",
+        "O metal tem calor específico muito maior que o da madeira, e por isso armazena mais frio."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Os dois objetos estão à mesma temperatura — um termômetro confirmaria. O que a pele percebe não é temperatura, mas a <strong>taxa com que o calor é retirado dela</strong>, isto é, o fluxo de calor na região de contato.</p><p>O metal tem condutividade térmica muito alta (aço ≈ 50, alumínio ≈ 200 W/m·K) contra valores baixíssimos da madeira (≈ 0,15 W/m·K). Ao encostar, o metal conduz rapidamente o calor da pele para o interior da peça, mantendo a superfície de contato fria e sustentando um gradiente elevado. A madeira, mau condutor, aquece localmente na região tocada, a temperatura da interface sobe depressa até quase a da pele, o gradiente cai e o fluxo praticamente cessa.</p><p>O parâmetro que descreve isso quantitativamente é a <strong>efusividade térmica</strong>, √(kρc<sub>p</sub>), que governa a temperatura de interface entre dois semi-infinitos postos em contato: quanto maior a efusividade do objeto em relação à da pele, mais a temperatura de contato se aproxima da do objeto e mais frio ele parece.</p><p>A mesma explicação vale para o inverso: metal a 60 °C queima muito mais que madeira a 60 °C. E é por isso que cabos de panela são de baquelite ou madeira.</p>"
+    },
+    {
+      "id": "tc-030",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "radiacao",
+      "enunciado": "<p>Em um ambiente à temperatura ambiente, a troca de calor por radiação de uma superfície levemente aquecida:</p>",
+      "alternativas": [
+        "É sempre desprezível diante da convecção natural.",
+        "Só existe se houver vácuo entre a superfície e a vizinhança.",
+        "Pode ser da mesma ordem de grandeza da convecção natural, chegando a dobrar a perda total.",
+        "Depende linearmente da diferença de temperatura."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Para superfícies pouco acima da temperatura ambiente, o coeficiente de convecção natural em ar fica na faixa de 2 a 25 W/m²·K, e o coeficiente de radiação equivalente h<sub>r</sub> = εσ(T<sub>s</sub> + T<sub>viz</sub>)(T<sub>s</sub>² + T<sub>viz</sub>²) resulta em valores da mesma ordem para ε alto. Desprezar a radiação nesse caso pode subestimar a perda pela metade. A radiação não exige vácuo — só não é atenuada por ele — e depende de T⁴, não linearmente de ΔT.</p>"
+    }
+  ]
+}

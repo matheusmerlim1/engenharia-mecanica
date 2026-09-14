@@ -1,0 +1,13 @@
+Thumbs.db
+.DS_Store
+node_modules/
+
+# ferramentas internas de construção (não fazem parte do site)
+_docs/
+
+# credenciais, documentos pessoais e guias locais
+.env
+*.env
+token.txt
+*.pdf
+githubGuia.md

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engenharia Mecânica — Conteúdo e Simulados</title>
+<meta name="description" content="Conteúdo teórico, simuladores interativos e bancos de questões das disciplinas do curso de Engenharia Mecânica.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="#disciplinas" class="always">Disciplinas</a>
+      <a href="#como-usar">Como usar</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="wrap hero">
+    <p class="kicker">Material de estudo</p>
+    <h1>Todo o curso de Engenharia Mecânica em um só lugar</h1>
+    <p class="lead">
+      Resumo teórico, formulários, <strong>simuladores interativos</strong> e bancos de questões
+      com correção imediata para <strong id="total-disciplinas">43</strong> disciplinas —
+      do 1º período às optativas. Feito para estudar antes da prova e para consultar durante o projeto.
+    </p>
+    <div class="btn-row" style="margin-top:22px">
+      <a class="btn primary" href="#disciplinas">Ver disciplinas</a>
+      <a class="btn ghost" href="#como-usar">Como usar</a>
+    </div>
+  </section>
+
+  <section class="wrap section" id="disciplinas">
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:end;justify-content:space-between">
+      <div>
+        <h2 style="margin-bottom:4px">Disciplinas</h2>
+        <p style="margin:0;color:var(--text-muted);font-size:.92rem">Organizadas por período do curso.</p>
+      </div>
+      <input type="search" id="busca" placeholder="Buscar disciplina ou assunto…" aria-label="Buscar disciplina"
+             style="flex:0 1 300px;padding:9px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg-elev);color:var(--text);font:inherit;font-size:.9rem">
+    </div>
+    <div id="catalogo" data-base="" style="margin-top:8px"></div>
+  </section>
+
+  <section class="wrap section" id="como-usar">
+    <h2>Como usar</h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3 style="margin-top:0;font-size:1rem">Estudando para a prova</h3>
+        <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:0">
+          Abra a disciplina, leia o resumo teórico e o formulário, depois vá direto ao simulado.
+          Escolha <em>Difícil</em> + <em>Cálculo</em> para treinar a parte que costuma decidir a nota.
+          Ao final, o relatório mostra o acerto por tópico — volte à teoria do tópico mais fraco.
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;font-size:1rem">Usando como referência</h3>
+        <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:0">
+          Os simuladores aceitam os dados do seu problema real: coloque o vão da viga, a vazão da bomba
+          ou a rotação do eixo e leia o resultado. Todos mostram as equações usadas, então dá para
+          conferir a conta à mão.
+        </p>
+      </div>
+    </div>
+    <div class="callout note" style="margin-top:18px">
+      <strong>Atalhos no simulado</strong>
+      Teclas <kbd>1</kbd>–<kbd>5</kbd> escolhem a alternativa, <kbd>Enter</kbd> confirma e avança.
+      Em questões discursivas, <kbd>Ctrl</kbd>+<kbd>Enter</kbd> revela o gabarito.
+    </div>
+  </section>
+  <section class="wrap section" id="destaques" style="margin-top:26px">
+    <div class="grid cols-3">
+      <div class="card">
+        <span class="tag accent">Simulado</span>
+        <h3 style="margin:9px 0 5px;font-size:1rem">Questões que se adaptam</h3>
+        <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
+          Filtre por tópico, dificuldade e tipo. Múltipla escolha com resolução comentada,
+          discursivas com gabarito e critérios, e questões de cálculo com espaço de rascunho e calculadora.
+        </p>
+      </div>
+      <div class="card">
+        <span class="tag info">Interativo</span>
+        <h3 style="margin:9px 0 5px;font-size:1rem">Modelos que você mexe</h3>
+        <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
+          Diagramas de momento fletor, linha elástica, perda de carga, ciclos térmicos,
+          resposta de sistemas vibratórios — arraste os controles e veja o gráfico responder.
+        </p>
+      </div>
+      <div class="card">
+        <span class="tag warn">Normas</span>
+        <h3 style="margin:9px 0 5px;font-size:1rem">Referência normativa</h3>
+        <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
+          Disciplinas de projeto trazem o que cada norma ABNT, ASME, ISO, AGMA ou API define,
+          onde ela se aplica e como usá-la no dimensionamento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Engenharia Mecânica · material de estudo</span>
+    <span class="spacer"></span>
+    <span>Conteúdo de apoio — sempre confira a norma vigente e a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="js/core/app.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

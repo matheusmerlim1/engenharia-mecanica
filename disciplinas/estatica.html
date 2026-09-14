@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estática — Engenharia Mecânica</title>
+<meta name="description" content="Equilíbrio, treliças, atrito, centroides e momento de inércia: teoria, simuladores interativos e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">3º período · Engenharia Mecânica</p>
+    <h1>Estática</h1>
+    <p class="lead">A base de tudo que vem depois. Antes de calcular tensão, deflexão ou fadiga, é preciso saber quais forças realmente chegam a cada peça — e isso sai de três equações de equilíbrio bem aplicadas.</p>
+    <div class="btn-row">
+      <span class="tag accent">8 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">4 simuladores</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Corpo em repouso: a resultante das forças e a resultante dos momentos são nulas. No plano isso dá três equações — e praticamente toda a disciplina é aprender a escolher bem o corpo livre e o polo dos momentos.</p>
+        <div class="formula"><span data-tex="\sum \vec{F} = 0 \qquad \sum \vec{M}_O = 0"></span><span class="where">no plano: ΣFx = 0, ΣFy = 0 e ΣM = 0</span></div>
+        <div class="callout note">
+          <strong>O roteiro que resolve quase tudo</strong>
+          1) isolar o corpo e desenhar o <strong>diagrama de corpo livre</strong> · 2) marcar todas as forças, inclusive as reações · 3) escolher o polo que elimina mais incógnitas · 4) aplicar as três equações · 5) conferir com uma equação não usada.
+        </div>
+        <div class="callout warn">
+          <strong>O diagrama de corpo livre não é formalidade</strong>
+          É onde a maioria dos erros nasce: reação esquecida, sentido invertido, força interna desenhada como externa. Vale mais gastar tempo nele do que na álgebra.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teorico">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Forças, momentos e binários</summary>
+          <div class="topic-body">
+            <p>Momento mede a tendência de girar. O que conta é a distância <em>perpendicular</em> da linha de ação ao polo — o braço de alavanca.</p>
+            <div class="formula"><span data-tex="M_O = F \cdot d \qquad \vec{M}_O = \vec{r} \times \vec{F}"></span><span class="where">d = distância perpendicular; a forma vetorial resolve o caso tridimensional</span></div>
+            <div class="callout tip">
+              <strong>Teorema de Varignon</strong>
+              O momento de uma força é igual à soma dos momentos de suas componentes. Decompor a força em x e y quase sempre é mais rápido do que achar a distância perpendicular por trigonometria.
+            </div>
+            <p>Um <strong>binário</strong> é um par de forças iguais e opostas, com linhas de ação distintas. Ele tem resultante nula, mas momento não nulo — e esse momento é o mesmo em relação a qualquer polo.</p>
+            <div class="formula"><span data-tex="M_{\text{binário}} = F \cdot d"></span><span class="where">independe do ponto escolhido: é um vetor livre</span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Diagrama de corpo livre e vinculações</summary>
+          <div class="topic-body">
+            <p>Cada tipo de apoio impede certos movimentos e, por isso, gera certas reações. O número de reações define se o problema sai só por equilíbrio.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Vinculação</th><th class="num">Reações</th><th>O que impede</th></tr></thead>
+              <tbody>
+                <tr><td>Rolete / apoio simples</td><td class="num">1</td><td>Translação normal à superfície</td></tr>
+                <tr><td>Cabo ou barra biarticulada</td><td class="num">1</td><td>Translação na direção do cabo (só tração)</td></tr>
+                <tr><td>Pino / articulação</td><td class="num">2</td><td>As duas translações; permite girar</td></tr>
+                <tr><td>Engaste</td><td class="num">3</td><td>Translações e rotação</td></tr>
+                <tr><td>Superfície lisa</td><td class="num">1</td><td>Penetração; reação normal à superfície</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Contagem de incógnitas</strong>
+              No plano há 3 equações. Com 3 incógnitas o problema é <strong>isostático</strong>; com mais, hiperestático (precisa de compatibilidade de deslocamentos); com menos, hipostático — e o corpo é um mecanismo, não uma estrutura.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Sistemas equivalentes e redução de cargas</summary>
+          <div class="topic-body">
+            <p>Uma carga distribuída pode ser substituída por uma força concentrada igual à <strong>área</strong> do diagrama, aplicada no <strong>centroide</strong> desse diagrama.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Distribuição</th><th class="num">Resultante</th><th>Ponto de aplicação</th></tr></thead>
+              <tbody>
+                <tr><td>Uniforme q em L</td><td class="num"><span data-tex-inline="q L"></span></td><td>No meio do trecho</td></tr>
+                <tr><td>Triangular, máximo q</td><td class="num"><span data-tex-inline="\tfrac{1}{2} q L"></span></td><td>A 1/3 da base maior</td></tr>
+                <tr><td>Trapezoidal</td><td class="num">Soma das duas</td><td>Decomponha em retângulo + triângulo</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Cuidado com o uso</strong>
+              A resultante equivalente vale para calcular <em>reações externas</em>. Para traçar diagramas de esforços internos, a carga precisa continuar distribuída — substituí-la pela resultante dá diagramas errados.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Treliças planas</summary>
+          <div class="topic-body">
+            <p>Treliça ideal supõe nós rotulados, barras retas biarticuladas e cargas aplicadas <em>apenas nos nós</em>. Sob essas hipóteses, toda barra trabalha só à tração ou à compressão.</p>
+            <div class="formula"><span data-tex="m + r = 2n"></span><span class="where">m = barras, r = reações, n = nós. Igualdade → isostática</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Método</th><th>Quando usar</th><th>Como funciona</th></tr></thead>
+              <tbody>
+                <tr><td>Dos nós</td><td>Quando se quer <em>todas</em> as barras</td><td>ΣFx = ΣFy = 0 em cada nó; comece por um nó com 2 incógnitas</td></tr>
+                <tr><td>Das seções</td><td>Quando se quer <em>algumas</em> barras</td><td>Corte a treliça e aplique as 3 equações ao trecho</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Barras de força nula</strong>
+              Nó com duas barras não colineares e sem carga: ambas são nulas. Nó com três barras, duas colineares e sem carga: a terceira é nula. Identificá-las antes de calcular economiza muito tempo — e elas existem para dar estabilidade, não para carregar.
+            </div>
+            <div class="callout warn">
+              <strong>Compressão é mais perigosa que tração</strong>
+              Barra tracionada falha por resistência; comprimida falha por <em>flambagem</em>, quase sempre antes. É por isso que a treliça Pratt, com diagonais tracionadas, é preferida em aço, e a Howe em madeira.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Atrito seco</summary>
+          <div class="topic-body">
+            <p>O atrito estático não é um valor fixo: ele vale exatamente o necessário para equilibrar, até um teto.</p>
+            <div class="formula"><span data-tex="f \le f_{\text{max}} = \mu_s N \qquad f_{\text{cinético}} = \mu_k N"></span><span class="where">μk é sempre menor que μs — daí o solavanco ao iniciar o movimento</span></div>
+            <div class="formula"><span data-tex="\phi = \arctan \mu_s"></span><span class="where">ângulo de atrito: define o autotravamento</span></div>
+            <div class="callout tip">
+              <strong>Autotravamento não depende do peso</strong>
+              Um bloco escorrega quando tan θ &gt; μs. A massa aparece dos dois lados da inequação e se cancela — um bloco de 1 kg e outro de 1 tonelada escorregam no mesmo ângulo. É o mesmo princípio do parafuso que não afrouxa sozinho e da rampa de caminhão.
+            </div>
+            <div class="callout warn">
+              <strong>Erro clássico</strong>
+              Usar f = μN quando o corpo está <em>parado</em>. Enquanto não há iminência de movimento, o atrito vale só o necessário para equilibrar, e pode ser bem menor que μN.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Centroides e centro de gravidade</summary>
+          <div class="topic-body">
+            <p>Centroide é o centro geométrico da área; centro de gravidade é o ponto de aplicação do peso. Coincidem quando o material é homogêneo.</p>
+            <div class="formula"><span data-tex="\bar{x} = \frac{\sum A_i \bar{x}_i}{\sum A_i} \qquad \bar{y} = \frac{\sum A_i \bar{y}_i}{\sum A_i}"></span><span class="where">média das posições ponderada pelas áreas; furos entram com área negativa</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Figura</th><th class="num">Área</th><th class="num">Centroide</th></tr></thead>
+              <tbody>
+                <tr><td>Retângulo b×h</td><td class="num">bh</td><td class="num">h/2 da base</td></tr>
+                <tr><td>Triângulo b×h</td><td class="num">bh/2</td><td class="num">h/3 da base</td></tr>
+                <tr><td>Semicírculo raio r</td><td class="num">πr²/2</td><td class="num">4r/(3π) do diâmetro</td></tr>
+                <tr><td>Quarto de círculo</td><td class="num">πr²/4</td><td class="num">4r/(3π) de cada lado</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Simetria resolve metade do problema</strong>
+              O centroide sempre está sobre qualquer eixo de simetria. Com dois eixos, ele está na interseção — e não há conta a fazer.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Momento de inércia de área</summary>
+          <div class="topic-body">
+            <p>Mede como a área se distribui em relação a um eixo. É a grandeza que decide a rigidez à flexão e a resistência à flambagem.</p>
+            <div class="formula"><span data-tex="I_x = \int y^2\,\mathrm{d}A \qquad I_{\text{ret}} = \frac{b h^3}{12}"></span><span class="where">o expoente 3 na altura é o que torna a viga alta tão eficiente</span></div>
+            <div class="formula"><span data-tex="I = I_c + A d^2"></span><span class="where">teorema dos eixos paralelos (Steiner): transporta a inércia para um eixo afastado de d</span></div>
+            <div class="callout warn">
+              <strong>Steiner só parte do eixo centroidal</strong>
+              A fórmula I = I<sub>c</sub> + Ad² exige que I<sub>c</sub> seja o momento de inércia em relação ao eixo que passa pelo <em>centroide da própria figura</em>. Aplicá-la a partir de um eixo qualquer dá resultado errado.
+            </div>
+            <div class="formula"><span data-tex="J_O = I_x + I_y \qquad r = \sqrt{\frac{I}{A}}"></span><span class="where">momento polar e raio de giração</span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Máquinas, estruturas e cabos</summary>
+          <div class="topic-body">
+            <p>Diferente da treliça, os elementos de <strong>pórticos e máquinas</strong> recebem cargas fora dos nós e, portanto, sofrem flexão além de força axial.</p>
+            <div class="callout tip">
+              <strong>Estratégia</strong>
+              Analise primeiro o conjunto todo para achar as reações externas; depois desmembre e faça um diagrama de corpo livre de cada peça, lembrando que nas conexões as forças aparecem aos pares, iguais e opostas (3ª lei de Newton).
+            </div>
+            <p>Em <strong>cabos</strong> com carga distribuída ao longo do vão horizontal, a forma é parabólica; sob peso próprio, é uma catenária.</p>
+            <div class="formula"><span data-tex="T_{\text{max}} = \sqrt{H^2 + V^2} \qquad H = \frac{qL^2}{8f}"></span><span class="where">H = componente horizontal, constante em todo o cabo; f = flecha</span></div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Quatro modelos interativos, com fórmulas e resolução passo a passo.</p>
+
+        <div id="sim-trelica"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o exemplo 1 (Pratt) e depois o 2 (Howe): as diagonais trocam de sinal — na Pratt tracionam, na Howe comprimem. Depois abra o exemplo 4 e veja a força nos banzos dobrar ao reduzir a altura pela metade.
+        </div>
+
+        <div id="sim-equilibrio"></div>
+        <div id="sim-atrito"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Fixe μs = 0,30 e aumente a inclinação: em 16,7° (o ângulo de atrito) o bloco começa a escorregar. Mude o peso para qualquer valor — o ângulo não muda.
+        </div>
+
+        <div id="sim-centroide"></div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Equilíbrio</h4>
+            <div class="formula"><span data-tex="\sum F_x = 0 \quad \sum F_y = 0 \quad \sum M = 0"></span></div>
+            <div class="formula"><span data-tex="M_O = F \cdot d"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Treliças</h4>
+            <div class="formula"><span data-tex="m + r = 2n"></span></div>
+            <div class="formula"><span data-tex="F_{\text{banzo}} = \pm \frac{M}{h}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Atrito</h4>
+            <div class="formula"><span data-tex="f_{\text{max}} = \mu_s N \qquad \phi = \arctan\mu_s"></span></div>
+            <div class="formula"><span data-tex="F = W(\sin\theta + \mu_s\cos\theta)"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Centroide e inércia</h4>
+            <div class="formula"><span data-tex="\bar{y} = \frac{\sum A_i \bar{y}_i}{\sum A_i}"></span></div>
+            <div class="formula"><span data-tex="I = I_c + A d^2 \qquad r = \sqrt{I/A}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre momentos, corpo livre, treliças, atrito, centroides e momento de inércia — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
+        <div id="quiz" data-quiz="estatica"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>HIBBELER, R. C.</strong> <em>Estática: Mecânica para Engenharia.</em> Pearson. — Bibliografia principal. Caps. 4 (momentos), 5 (equilíbrio), 6 (treliças), 8 (atrito), 9 e 10 (centroides e inércia).</li>
+          <li><strong>BEER, F. P.; JOHNSTON, E. R.</strong> <em>Mecânica Vetorial para Engenheiros: Estática.</em> McGraw-Hill. — Excelente no tratamento vetorial e em problemas tridimensionais.</li>
+          <li><strong>MERIAM, J. L.; KRAIGE, L. G.</strong> <em>Mecânica para Engenharia: Estática.</em> LTC. — Boa coleção de problemas de máquinas e pórticos.</li>
+          <li>Notas de aula e listas de exercícios da disciplina.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/estatica.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  F: ['Força', 'N', 'ou kN em estruturas'],
+  M: ['Momento', 'N·m', 'M = F·d, com d perpendicular à linha de ação'],
+  N: ['Força normal', 'N', 'perpendicular à superfície de contato'],
+  W: ['Peso', 'N', 'W = m·g'],
+  R: ['Reação de apoio', 'kN', 'ou resultante de uma carga distribuída'],
+  d: ['Braço de alavanca', 'm', 'distância PERPENDICULAR da linha de ação ao polo'],
+  q: ['Carga distribuída', 'kN/m', 'resultante = área do diagrama'],
+  A: ['Área', 'mm²'],
+  I: ['Momento de inércia de área', 'mm⁴', 'retângulo: bh³/12'],
+  r: ['Raio de giração', 'mm', 'r = √(I/A)'],
+  μ: ['Coeficiente de atrito', '—', 'μs estático > μk cinético; independe da área de contato'],
+  φ: ['Ângulo de atrito', '°', 'φ = arctan μs — define o autotravamento'],
+  θ: ['Ângulo de inclinação', '°'],
+  m: ['Número de barras', '—', 'na treliça; ou massa, em kg'],
+  n: ['Número de nós', '—', 'na treliça'],
+  h: ['Altura', 'm', 'na treliça, define a força nos banzos: F = M/h'],
+  T: ['Tração', 'N', 'em cabos e barras tracionadas']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instalações e Offshore — Engenharia Mecânica</title>
+<meta name="description" content="Tipos de plataforma, ambiente oceânico, ondas de Airy, forças de Morison, ancoragem em catenária e taut-leg, topsides, processamento primário e sistemas submarinos: teoria, simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">Eletiva · Engenharia Mecânica</p>
+    <h1>Instalações e Offshore</h1>
+    <p class="lead">Produzir petróleo no mar é construir uma planta de processo, uma usina elétrica e um alojamento para centenas de pessoas sobre uma estrutura que o vento, a onda e a corrente tentam derrubar ou arrastar — ligada a poços a milhares de metros de profundidade. Esta disciplina é o conjunto de ideias que torna isso possível.</p>
+    <div class="btn-row">
+      <span class="tag accent">10 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Toda decisão de engenharia offshore parte de três perguntas: <strong>qual a lâmina d’água</strong>, <strong>o que o mar faz ali</strong> e <strong>para onde vai o óleo</strong>. A lâmina d’água separa estruturas que se apoiam no fundo das que flutuam; o mar define as cargas e os movimentos; o destino do óleo decide se a plataforma precisa estocar. Da resposta sai o conceito — jaqueta, semissubmersível, TLP, spar ou FPSO — e dele saem a ancoragem, os risers, o arranjo submarino e o topside.</p>
+        <div class="formula"><span data-tex="\text{reservatório} \to \text{poço} \to \text{sistema submarino} \to \text{riser} \to \text{plataforma} \to \text{escoamento}"></span></div>
+        <div class="callout note">
+          <strong>Resistir ou ceder</strong>
+          Uma plataforma fixa é rígida: resiste à onda e precisa ter período natural bem abaixo do das ondas (5 a 20 s). Uma flutuante faz o oposto: é “complacente” — cede às forças horizontais e usa a ancoragem só para limitar a deriva, com períodos naturais fora da faixa das ondas. A escolha entre as duas filosofias muda com a lâmina d’água, porque a estrutura fixa fica cada vez mais alta, flexível e cara.
+        </div>
+        <div class="callout warn">
+          <strong>Classificação da lâmina d’água</strong>
+          No Brasil usa-se: <strong>rasa</strong> até 300 m, <strong>profunda</strong> de 300 a 1 500 m e <strong>ultraprofunda</strong> acima de 1 500 m. O pré-sal está em 2 000 a 2 300 m de lâmina d’água, com mais 5 000 m de rocha e sal até o reservatório.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Operações offshore e desenvolvimento de um campo</summary>
+          <div class="topic-body">
+            <p>Um campo marítimo passa por etapas bem definidas, e cada uma pede um tipo de instalação diferente.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Etapa</th><th>O que se decide</th><th>Instalações típicas</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Exploração</strong></td><td>Existe petróleo? Sísmica e poço pioneiro</td><td>Navio sísmico, MODU (jack-up, semi, navio-sonda)</td></tr>
+                <tr><td><strong>Avaliação</strong></td><td>Tamanho e comportamento do reservatório; teste de longa duração (TLD)</td><td>Poços de delimitação, FPSO de teste</td></tr>
+                <tr><td><strong>Desenvolvimento</strong></td><td>Conceito da plataforma, número e arranjo dos poços, capacidade da planta, escoamento</td><td>Construção e instalação da unidade, perfuração dos poços de produção</td></tr>
+                <tr><td><strong>Produção</strong></td><td>Manter a produção: injeção de água e gás, intervenções, manutenção</td><td>Plataforma de produção, sondas de intervenção</td></tr>
+                <tr><td><strong>Descomissionamento</strong></td><td>Tamponar poços, remover ou deixar estruturas, conforme a regulação</td><td>Barcos de guindaste, embarcações de apoio</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>O que pesa na viabilidade econômica</strong>
+              Tamanho das reservas, preço do petróleo, lâmina d’água, distância da costa e da infraestrutura existente, regime fiscal e risco político. Plataformas “novas” só aparecem quando os conceitos conhecidos deixam de ser viáveis — foi assim que a água profunda criou a TLP, a spar e o FPSO de produção.
+            </div>
+            <h4>Jurisdição no mar (Convenção da ONU sobre o Direito do Mar)</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Faixa</th><th>Distância da linha de base</th><th>Direitos do país costeiro</th></tr></thead>
+              <tbody>
+                <tr><td>Mar territorial</td><td>até 12 milhas náuticas</td><td>Soberania plena</td></tr>
+                <tr><td>Zona contígua</td><td>até 24 milhas</td><td>Fiscalização aduaneira, sanitária e de imigração</td></tr>
+                <tr><td>Zona econômica exclusiva</td><td>até 200 milhas</td><td>Exploração exclusiva dos recursos da água, do solo e do subsolo</td></tr>
+                <tr><td>Plataforma continental estendida</td><td>até 350 milhas, se a margem geológica continuar</td><td>Direitos sobre os recursos do solo e subsolo — onde está boa parte do pré-sal</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Desenvolvimento histórico das estruturas offshore</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Marco</th><th>Por que importa</th></tr></thead>
+              <tbody>
+                <tr><td>1947 — Golfo do México, primeira plataforma fora da vista da costa</td><td>Estrutura de aço em ~6 m de lâmina d’água: nasce a indústria offshore moderna</td></tr>
+                <tr><td>Anos 1960–70 — jaquetas no Golfo do México e no Mar do Norte</td><td>Mar do Norte força o salto em cargas ambientais, fadiga e plataformas de gravidade</td></tr>
+                <tr><td>1968 — Brasil, campo de Guaricema (Sergipe)</td><td>Primeira produção marítima brasileira</td></tr>
+                <tr><td>1974 — Bacia de Campos, descoberta de Garoupa</td><td>Início da maior província offshore do país; sistemas de produção antecipada flutuantes</td></tr>
+                <tr><td>1984 — Hutton, primeira TLP (Mar do Norte)</td><td>Tendões tracionados eliminam o heave e permitem árvore seca em flutuante</td></tr>
+                <tr><td>Anos 1990 — Troll A (gravidade, 303 m), torres complacentes, primeira spar de produção</td><td>Limite prático das estruturas fixas; casco profundo contra o heave</td></tr>
+                <tr><td>Anos 1990–2000 — Marlim e Roncador</td><td>Brasil lidera águas profundas com semissubmersíveis, FPSOs e ancoragem de poliéster</td></tr>
+                <tr><td>2006 — pré-sal (Tupi)</td><td>Águas ultraprofundas com reservatório sob sal: FPSOs de grande capacidade, risers em lazy-wave</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>O “triângulo de ouro”</strong>
+              Golfo do México, costa do Brasil e oeste da África concentram a produção em águas profundas do mundo — as três regiões compartilham bacias formadas na abertura do Atlântico e, por isso, reservatórios parecidos.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Componentes e classificação das plataformas</summary>
+          <div class="topic-body">
+            <h4>Componentes de uma jaqueta típica</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Componente</th><th>Função</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Convés (topside, deck)</strong></td><td>Suporta a planta de processo, utilidades, alojamento, heliponto e sonda</td></tr>
+                <tr><td><strong>Jaqueta</strong></td><td>Treliça tubular de aço do fundo até acima da linha d’água; pernas inclinadas e contraventamentos</td></tr>
+                <tr><td><strong>Estacas</strong></td><td>Cravadas por dentro das pernas ou em guias; transmitem cargas ao solo por atrito lateral e ponta</td></tr>
+                <tr><td><strong>Condutores</strong></td><td>Tubos que guiam os poços do fundo até o convés</td></tr>
+                <tr><td><strong>Risers e dutos</strong></td><td>Levam fluidos entre o fundo e o convés, e para fora da plataforma</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Classificação pela configuração</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Grupo</th><th>Tipos</th><th>Lâmina d’água usual</th><th>Árvore de natal</th></tr></thead>
+              <tbody>
+                <tr><td>Fixas</td><td>Jaqueta, gravidade, torre complacente</td><td>até ~400 m (torre até ~900 m)</td><td>Seca</td></tr>
+                <tr><td>Móveis apoiadas no fundo</td><td>Autoelevatória (jack-up)</td><td>até ~150 m</td><td>Seca (perfuração)</td></tr>
+                <tr><td>Flutuantes ancoradas</td><td>Semissubmersível, FPSO, FSO, spar</td><td>100 a 3 000 m</td><td>Molhada (semi, FPSO) ou seca (spar)</td></tr>
+                <tr><td>Flutuantes atirantadas</td><td>TLP e mini-TLP</td><td>300 a ~1 800 m</td><td>Seca</td></tr>
+                <tr><td>Sem ancoragem</td><td>Navio-sonda com posicionamento dinâmico</td><td>até ~3 600 m</td><td>—</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>MODU e FPSO</strong>
+              <strong>MODU</strong> é <em>Mobile Offshore Drilling Unit</em>: unidade móvel de perfuração — jack-up, semissubmersível de perfuração e navio-sonda. <strong>FPSO</strong> é <em>Floating Production, Storage and Offloading</em>: produz, estoca e transfere o óleo para um navio aliviador. <strong>FSO</strong> é o mesmo sem a planta de produção. TLP e spar são unidades de produção, não MODUs.
+            </div>
+            <h4>Os seis graus de liberdade de um flutuante</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Translação</th><th>Rotação</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Surge</strong> — avanço (longitudinal)</td><td><strong>Roll</strong> — jogo (em torno do eixo longitudinal)</td></tr>
+                <tr><td><strong>Sway</strong> — deriva (transversal)</td><td><strong>Pitch</strong> — arfagem angular (em torno do eixo transversal)</td></tr>
+                <tr><td><strong>Heave</strong> — afundamento (vertical)</td><td><strong>Yaw</strong> — guinada (em torno do eixo vertical)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>A ancoragem não elimina os seis movimentos</strong>
+              Ancoragem convencional restringe principalmente os movimentos horizontais lentos (surge, sway, yaw). Heave, roll e pitch continuam governados pela hidrostática do casco. Só a TLP, com seus tendões verticais, restringe fortemente heave, roll e pitch.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Ambiente oceânico</summary>
+          <div class="topic-body">
+            <h4>Vento</h4>
+            <p>O vento global é organizado em três células de circulação por hemisfério — <strong>Hadley</strong> (equador a ~30°), <strong>Ferrel</strong> (30° a 60°) e <strong>polar</strong>. Localmente ele é turbulento: suas componentes variam aleatoriamente, e por isso é descrito estatisticamente — velocidade média, rajada e distribuição de ocorrência (Weibull).</p>
+            <div class="formula"><span data-tex="V(z) = V_{10}\left(\frac{z}{10}\right)^{\alpha}, \quad \alpha \approx 0{,}11\text{ a }0{,}14"></span><span class="where">perfil de velocidade com a altura sobre o mar</span></div>
+            <h4>Ondas</h4>
+            <p>O mar real é irregular: a soma de muitas ondas de alturas, períodos e direções diferentes. Ele é caracterizado por um <strong>estado de mar</strong> — altura significativa H<sub>s</sub> (média do terço maior das ondas) e período de pico T<sub>p</sub> — e por um espectro de energia.</p>
+            <div class="formula"><span data-tex="\omega^2 = g\,k\,\tanh(kd), \qquad L_0 = \frac{gT^2}{2\pi}, \qquad E = \frac{\rho g H^2}{8}"></span><span class="where">dispersão, comprimento em águas profundas e energia (teoria linear de Airy)</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Espectro</th><th>Uso</th></tr></thead>
+              <tbody>
+                <tr><td>Pierson-Moskowitz</td><td>Mar totalmente desenvolvido (vento soprando muito tempo sobre grande pista)</td></tr>
+                <tr><td>JONSWAP</td><td>Mar em desenvolvimento: pico mais concentrado (fator γ ≈ 3,3). O mais usado em projeto</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Onda de projeto e período de retorno</strong>
+              As estruturas são verificadas para condições com período de retorno de 100 anos (a onda que tem 1 % de chance de ocorrer em qualquer ano). Isso não quer dizer que ocorre uma vez a cada século: numa vida útil de 25 anos, a chance de encontrá-la é de 22 %.
+            </div>
+            <h4>Outros agentes</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Agente</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td>Correntes</td><td>Maré, vento e circulação oceânica; perfil variável na vertical; carga de arrasto em risers e linhas e vibração induzida por vórtices (VIV)</td></tr>
+                <tr><td>Marés</td><td>Mudam o nível d’água: definem a altura do convés (air gap) e a zona de respingo</td></tr>
+                <tr><td>Gelo</td><td>Força depende da espessura, concentração, velocidade e resistência do gelo e da forma da estrutura</td></tr>
+                <tr><td>Crescimento marinho</td><td>Aumenta diâmetro, rugosidade (C<sub>D</sub>) e massa; como os organismos têm densidade próxima à da água, o peso submerso extra é pequeno, mas a carga hidrodinâmica cresce</td></tr>
+                <tr><td>Sismos</td><td>Verificação em dois níveis: terremoto de resistência (a estrutura fica elástica) e de ductilidade (pode plastificar sem colapsar)</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Forças ambientais e cargas de projeto</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Categoria</th><th>Exemplos</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Permanentes</strong></td><td>Peso próprio da estrutura e equipamentos fixos, empuxo, lastro permanente</td></tr>
+                <tr><td><strong>Operacionais (variáveis)</strong></td><td>Óleo nos tanques, pessoas, carga no convés, operação de guindaste, pouso de helicóptero, tração de risers</td></tr>
+                <tr><td><strong>Ambientais</strong></td><td>Vento, onda, corrente, gelo, sismo, crescimento marinho</td></tr>
+                <tr><td><strong>Construção e instalação</strong></td><td>Load-out (do cais para a balsa), transporte (acelerações da balsa no mar), lançamento, flutuação e verticalização (upending), içamento, cravação de estacas</td></tr>
+                <tr><td><strong>Acidentais</strong></td><td>Colisão de navio, queda de objetos, explosão, incêndio, perda de compartimento</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Força de onda em membros esbeltos — Morison</h4>
+            <div class="formula"><span data-tex="f = \frac{1}{2}\rho\,C_D\,D\,|u|\,u + \rho\,C_M\,\frac{\pi D^2}{4}\,\dot u"></span><span class="where">arrasto + inércia, por metro de membro · válido para D/L &lt; 0,2</span></div>
+            <div class="formula"><span data-tex="KC = \frac{u_{máx}\,T}{D}"></span><span class="where">KC &lt; 5: inércia domina · KC &gt; 25: arrasto domina</span></div>
+            <h4>Vento e corrente</h4>
+            <div class="formula"><span data-tex="F = \frac{1}{2}\,\rho\,C_s\,A\,V^2"></span><span class="where">ρ do ar ≈ 1,225 kg/m³ · C<sub>s</sub> coeficiente de forma · A área projetada</span></div>
+            <h4>Estados limites</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Estado limite</th><th>Pergunta</th></tr></thead>
+              <tbody>
+                <tr><td>Último (ULS)</td><td>A estrutura resiste à carga extrema sem colapsar?</td></tr>
+                <tr><td>Serviço (SLS)</td><td>Deformações e vibrações permitem operar?</td></tr>
+                <tr><td>Fadiga (FLS)</td><td>As juntas soldadas sobrevivem aos milhões de ciclos de onda da vida útil?</td></tr>
+                <tr><td>Acidental (ALS)</td><td>Após um dano, a estrutura ainda resiste sem colapso progressivo?</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Fadiga é o modo de falha dominante das jaquetas</strong>
+              Uma plataforma recebe ~5 milhões de ciclos de onda por ano. As juntas tubulares soldadas concentram tensão (fatores de 3 a 10), e é ali que as trincas nascem. O acidente de Alexander Kielland (1980) começou numa trinca de fadiga num contraventamento.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Sistemas de ancoragem e fundações</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Sistema</th><th>Geometria</th><th>Raio de ancoragem</th><th>Âncora</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Catenária convencional</strong></td><td>Linha pesada que chega ao fundo tangente; parte fica apoiada</td><td>≈ 2 a 3 × LDA</td><td>Arrasto (só esforço horizontal)</td></tr>
+                <tr><td><strong>Taut-leg</strong></td><td>Linha de poliéster esticada, chega ao fundo inclinada (~35 a 45°)</td><td>≈ 1 × LDA</td><td>Estaca de sucção, torpedo ou VLA (resistem a esforço vertical)</td></tr>
+                <tr><td><strong>Tendões (TLP)</strong></td><td>Tubos de aço verticais tracionados pelo excesso de empuxo</td><td>≈ 0 (verticais)</td><td>Estacas sob template de fundação</td></tr>
+                <tr><td><strong>Turret (ponto único)</strong></td><td>Linhas presas numa torre em torno da qual o FPSO gira livremente</td><td>—</td><td>Qualquer uma</td></tr>
+                <tr><td><strong>Spread mooring</strong></td><td>Linhas distribuídas na proa e popa; o casco não gira</td><td>—</td><td>Qualquer uma</td></tr>
+                <tr><td><strong>DICAS</strong></td><td>Spread mooring com complacência diferenciada: proa mais rígida que a popa, permitindo algum alinhamento com o mar</td><td>—</td><td>Taut-leg (desenvolvimento brasileiro)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="T = H + w\,h, \qquad s = \sqrt{h^2 + 2h\frac{H}{w}}"></span><span class="where">catenária: tração no fairlead e comprimento suspenso · w peso submerso por metro</span></div>
+            <div class="callout tip">
+              <strong>Por que o Brasil adotou poliéster em águas profundas</strong>
+              Numa catenária de amarra em 1 500 m, só o peso da coluna de linha suspensa já consome a capacidade: T = H + w·h. O poliéster é quase neutro na água, então a tração vira restauração útil; o raio de ancoragem cai de ~3 para ~1 × LDA, liberando espaço no fundo para risers e dutos. O preço é a âncora ter de resistir a esforço vertical.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Componente da linha</th><th>Onde fica</th></tr></thead>
+              <tbody>
+                <tr><td>Amarra (corrente de aço)</td><td>Nas pontas: no fundo (resiste à abrasão) e junto ao fairlead (passa pelo guincho)</td></tr>
+                <tr><td>Cabo de aço</td><td>Trecho intermediário em catenárias profundas</td></tr>
+                <tr><td>Cabo de poliéster</td><td>Trecho intermediário em taut-leg — nunca tocando o fundo</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Fundações</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tipo</th><th>Como funciona</th></tr></thead>
+              <tbody>
+                <tr><td>Estaca cravada</td><td>Martelo hidráulico; atrito lateral e resistência de ponta — jaquetas e templates</td></tr>
+                <tr><td>Estaca de sucção</td><td>Cilindro aberto embaixo; bombeia-se a água de dentro e a diferença de pressão crava a estaca</td></tr>
+                <tr><td>Estaca torpedo</td><td>Lançada em queda livre, crava pelo próprio peso (desenvolvimento da Petrobras)</td></tr>
+                <tr><td>Base de gravidade / mudmat</td><td>Apoio direto sobre o solo por peso próprio — plataformas de gravidade, equipamentos submarinos leves</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Topsides — instalações de superfície</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Construção do convés</th><th>Vantagens</th><th>Limitações</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Integrado</strong></td><td>Menor peso, instalação de uma vez (grandes guindastes ou float-over)</td><td>Pouca flexibilidade para mudanças futuras</td></tr>
+                <tr><td><strong>Modular</strong></td><td>Módulos construídos em paralelo em vários estaleiros; ampliação posterior</td><td>Mais estrutura de interface e mais içamentos</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Processamento primário</h4>
+            <p>Do poço chega uma mistura de óleo, gás, água e areia. O processamento primário separa as fases e as condiciona:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Etapa</th><th>Equipamento</th><th>Saída</th></tr></thead>
+              <tbody>
+                <tr><td>Separação</td><td>Separadores bifásicos (gás/líquido) e trifásicos (gás/óleo/água), em estágios de pressão decrescente</td><td>Três correntes</td></tr>
+                <tr><td>Tratamento de óleo</td><td>Aquecedor + tratador eletrostático</td><td>Óleo com BSW &lt; 1 % e sal especificado, para os tanques ou oleoduto</td></tr>
+                <tr><td>Tratamento de gás</td><td>Depurador, compressores em estágios, desidratação (glicol), remoção de CO₂ (membranas)</td><td>Gás para exportação, gas lift, reinjeção e combustível</td></tr>
+                <tr><td>Tratamento de água</td><td>Hidrociclones + flotador</td><td>Descarte com TOG ≤ 29 mg/L (média mensal) ou reinjeção</td></tr>
+                <tr><td>Injeção</td><td>Remoção de sulfato + bombas de alta pressão</td><td>Água do mar tratada injetada no reservatório para manter a pressão</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>A água produzida nunca vai direto ao mar</strong>
+              Após o separador ela ainda tem centenas a milhares de mg/L de óleo. Só depois dos hidrociclones e do flotador — e comprovado o teor de óleo e graxas — ela pode ser descartada.
+            </div>
+            <h4>Utilidades, energia e segurança</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Sistema</th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td>Geração elétrica</td><td>Turbogeradores queimando o próprio gás; bombas e compressores são acionados eletricamente ou por turbinas dedicadas</td></tr>
+                <tr><td>Utilidades</td><td>Água de resfriamento, água potável (dessalinização), ar comprimido, nitrogênio, óleo diesel, sistema hidráulico</td></tr>
+                <tr><td>Tocha (flare)</td><td>Queima segura em alívios e emergências, na extremidade oposta ao alojamento</td></tr>
+                <tr><td>ESD e F&amp;G</td><td>Parada de emergência e detecção de fogo e gás, com fechamento das válvulas de poço e despressurização</td></tr>
+                <tr><td>Combate a incêndio</td><td>Bombas de incêndio, dilúvio, espuma; paredes corta-fogo e antiexplosão</td></tr>
+                <tr><td>Abandono</td><td>Rotas de fuga, ponto de encontro, baleeiras (TEMPSC) e botes</td></tr>
+                <tr><td>Medição fiscal</td><td>Medição de custódia (LACT — <em>Lease Automatic Custody Transfer</em>) para royalties</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Arranjo: afastar o que queima de quem mora</strong>
+              O convés é dividido em áreas de risco. Alojamento, sala de controle e baleeiras ficam do lado seguro, afastados dos poços, da planta e do queimador, e protegidos por paredes corta-fogo. Após Piper Alpha (1988), onde uma explosão no módulo de gás destruiu o alojamento, esse princípio virou exigência de projeto.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Panorama da engenharia submarina</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Equipamento</th><th>Função</th><th>Fundação e instalação</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Árvore de natal molhada (ANM)</strong></td><td>Conjunto de válvulas sobre a cabeça do poço: controla e fecha o poço no fundo do mar</td><td>Sobre a cabeça de poço; instalada por sonda ou barco com ferramenta</td></tr>
+                <tr><td><strong>Manifold</strong></td><td>Coletor que junta a produção de vários poços e distribui injeção</td><td>Estaca de sucção ou mudmat; içado por guindaste</td></tr>
+                <tr><td><strong>PLET / PLEM</strong></td><td>Terminação de duto (<em>Pipeline End Termination / Manifold</em>) que permite conectar o duto a outros equipamentos</td><td>Mudmat, instalado junto com o duto no lançamento</td></tr>
+                <tr><td><strong>Jumper</strong></td><td>Trecho curto de ligação rígida ou flexível entre equipamentos</td><td>Medido após a instalação e fabricado sob medida</td></tr>
+                <tr><td><strong>Umbilical</strong></td><td>Leva fluido hidráulico, energia, sinais e produtos químicos da plataforma aos equipamentos</td><td>Mangueiras termoplásticas, cabos elétricos e ópticos; armadura de aço dá resistência à tração no lançamento</td></tr>
+                <tr><td><strong>BOP</strong></td><td>Preventor de erupção durante perfuração e completação</td><td>Sobre a cabeça de poço, operado pela sonda</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Risers</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tipo</th><th>Característica</th></tr></thead>
+              <tbody>
+                <tr><td>Rígido vertical (topo tracionado)</td><td>TLP e spar, com árvore seca no convés</td></tr>
+                <tr><td>Rígido em catenária (SCR)</td><td>Aço, barato; sensível à fadiga no ponto de toque no fundo</td></tr>
+                <tr><td>Flexível</td><td>Camadas de aço e polímero; tolera grandes movimentos; limitado por pressão, temperatura e CO₂</td></tr>
+                <tr><td>Lazy-wave</td><td>Flutuadores no meio formam uma “corcova” que desacopla o movimento da plataforma do ponto de toque — padrão do pré-sal</td></tr>
+                <tr><td>Híbrido (torre de risers)</td><td>Parte vertical rígida com boia de subsuperfície + jumpers flexíveis até a plataforma</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>O custo cresce com a lâmina d’água</strong>
+              Mais profundidade significa risers mais longos e pesados, maior pressão externa (colapso), fluido mais frio (hidratos e parafina) e embarcações de instalação maiores. A engenharia submarina é hoje uma fração crescente do custo de um desenvolvimento.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Desenvolvimento de sistemas submarinos</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Arranjo</th><th>Vantagens</th><th>Desvantagens</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Poços satélites</strong> — cada poço com sua linha até a plataforma</td><td>Controle e teste individual de cada poço; flexível</td><td>Muitos risers e linhas; congestionamento no fundo e na plataforma</td></tr>
+                <tr><td><strong>Manifold + poços em cluster</strong></td><td>Menos linhas e risers; menor custo em campos grandes</td><td>Dependência do manifold; menor flexibilidade de teste</td></tr>
+                <tr><td><strong>Template</strong> — poços agrupados numa estrutura única</td><td>Perfuração concentrada, integração no estaleiro</td><td>Estrutura grande, instalação mais pesada</td></tr>
+                <tr><td><strong>Daisy chain</strong> — poços ligados em série</td><td>Permite pigagem em loop</td><td>Um problema afeta a cadeia</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Instalação de dutos</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Método</th><th>Uso</th></tr></thead>
+              <tbody>
+                <tr><td>S-lay</td><td>Duto sai quase horizontal pela popa sobre uma rampa (stinger); águas rasas a médias</td></tr>
+                <tr><td>J-lay</td><td>Duto sai quase vertical de uma torre; águas profundas</td></tr>
+                <tr><td>Reel-lay</td><td>Duto soldado em terra e enrolado num carretel; rápido para diâmetros menores</td></tr>
+                <tr><td>Flexíveis e umbilicais</td><td>Lançados de carretéis ou cestas por barcos PLSV</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Projeta-se o sistema submarino junto com a plataforma</strong>
+              Equipamentos submarinos exigem janelas de instalação, embarcações específicas e longo prazo de fabricação. Um programa de instalação mal planejado atrasa o primeiro óleo mais do que qualquer outro item do projeto — por isso o arranjo submarino é definido desde a escolha do conceito.
+            </div>
+            <div class="callout note">
+              <strong>Garantia de escoamento</strong>
+              Fluido quente saindo do poço esfria no duto a 4 °C: formam-se hidratos (gelo com gás) e parafina. As defesas são isolamento térmico, aquecimento, injeção de inibidores pelo umbilical e procedimentos de parada e partida — é a disciplina chamada <em>flow assurance</em>.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>10. Sistemas marítimos de produção e seleção do conceito</summary>
+          <div class="topic-body">
+            <p>A escolha do conceito segue um fluxo: dados do reservatório e do local → conceitos tecnicamente possíveis → estimativa de custo e cronograma → comparação econômica → requisitos de capital.</p>
+            <div class="formula"><span data-tex="\text{reservatório} \to \text{LDA e meteoceano} \to \text{estocagem?} \to \text{árvore seca ou molhada?} \to \text{CAPEX + OPEX} \to \text{conceito}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Condição</th><th>Favorece</th></tr></thead>
+              <tbody>
+                <tr><td>Águas rasas, perto de infraestrutura</td><td>Jaqueta com oleoduto</td></tr>
+                <tr><td>Campo afastado, sem oleoduto</td><td>FPSO (estoca e alivia por navio)</td></tr>
+                <tr><td>Muitos poços com intervenção frequente, águas profundas</td><td>TLP ou spar com árvore seca</td></tr>
+                <tr><td>Mar severo e produção média, sem estocagem</td><td>Semissubmersível</td></tr>
+                <tr><td>Campo marginal ou de vida curta</td><td>FPSO convertido ou arrendado, ou tie-back a uma unidade existente</td></tr>
+                <tr><td>Perfuração em lâmina rasa com fundo firme</td><td>Jack-up</td></tr>
+                <tr><td>Perfuração em lâmina rasa com fundo mole e mar severo</td><td>Semissubmersível de perfuração ancorada</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Escoamento: oleoduto ou navio aliviador</strong>
+              Oleoduto tem custo alto de instalação e baixo de operação, e prende o campo a uma rota. Navio aliviador dispensa infraestrutura e serve campos afastados, mas exige estocagem na plataforma e operação de transferência em mar aberto. O gás, que não é estocável a bordo, precisa de gasoduto, reinjeção ou consumo local.
+            </div>
+            <div class="callout warn">
+              <strong>Descomissionamento é parte do projeto</strong>
+              A unidade um dia será removida. A regulação exige plano de descomissionamento, tamponamento definitivo dos poços e destinação das estruturas. Projetar pensando na remoção reduz um custo que chega ao fim da vida do campo, quando a receita já é pequena.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Cinco modelos interativos e animados, com fórmulas e resolução passo a passo. Os modelos físicos foram conferidos contra formas fechadas e valores de referência.</p>
+
+        <div id="sim-plataformas" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Com o mesmo mar (exemplos 2, 3 e 4), compare semissubmersível, FPSO e TLP. A TLP quase não se mexe porque o período natural dela (~3 s) está abaixo das ondas; a semi, porque o dela (~18 s) está acima. Agora carregue o exemplo 8: swell de 18 s colocando a semi em ressonância.
+        </div>
+
+        <div id="sim-ondas" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Mantenha T = 10 s e reduza a profundidade de 1 500 m para 3 m. O comprimento de onda cai de 156 m para ~53 m e as órbitas das partículas passam de círculos que somem com a profundidade a elipses achatadas que varrem o fundo.
+        </div>
+
+        <div id="sim-morison" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare o exemplo 1 (perna de jaqueta, KC ≈ 30) com o 2 (monoestaca, KC ≈ 4): na perna, a força total acompanha a velocidade; na monoestaca, acompanha a aceleração e atinge o máximo um quarto de período antes da crista.
+        </div>
+
+        <div id="sim-ancoragem" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o exemplo 2: amarra de aço pura a 1 500 m. O peso da própria linha passa da pré-tensão e o sistema não fecha. Troque para o exemplo 4, taut-leg de poliéster: raio de ancoragem igual à lâmina d’água e offset abaixo de 1 %.
+        </div>
+
+        <div id="sim-processo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Do exemplo 1 para o 3, só a razão gás-óleo sobe — e o separador passa a ser dimensionado pelo gás. Depois suba a pressão de operação (exemplo 4): o gás fica mais denso, o vaso encolhe e a compressão fica mais barata.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Dispersão</td><td><span data-tex="\omega^2 = g k \tanh(kd)"></span></td><td>k = 2π/L, ω = 2π/T</td></tr>
+              <tr><td>Águas profundas</td><td><span data-tex="L_0 = \dfrac{gT^2}{2\pi} \approx 1{,}56\,T^2"></span></td><td>d/L &gt; 1/2</td></tr>
+              <tr><td>Águas rasas</td><td><span data-tex="c = \sqrt{gd}"></span></td><td>d/L &lt; 1/20</td></tr>
+              <tr><td>Energia da onda</td><td><span data-tex="E = \dfrac{\rho g H^2}{8}"></span></td><td>J/m²</td></tr>
+              <tr><td>Velocidade orbital</td><td><span data-tex="u = \dfrac{\pi H}{T}\dfrac{\cosh k(z+d)}{\sinh kd}\cos(kx - \omega t)"></span></td><td>Airy</td></tr>
+              <tr><td>Espectro JONSWAP</td><td><span data-tex="m_0 = \int S(\omega)\,d\omega = \dfrac{H_s^2}{16}"></span></td><td>γ ≈ 3,3</td></tr>
+              <tr><td>Morison</td><td><span data-tex="f = \tfrac{1}{2}\rho C_D D|u|u + \rho C_M \tfrac{\pi D^2}{4}\dot u"></span></td><td>D/L &lt; 0,2</td></tr>
+              <tr><td>Keulegan-Carpenter</td><td><span data-tex="KC = \dfrac{u_{máx}T}{D}"></span></td><td>&lt; 5 inércia · &gt; 25 arrasto</td></tr>
+              <tr><td>Força de vento</td><td><span data-tex="F = \tfrac{1}{2}\rho_{ar} C_s A V^2"></span></td><td>ρ<sub>ar</sub> ≈ 1,225 kg/m³</td></tr>
+              <tr><td>Perfil de vento</td><td><span data-tex="V(z) = V_{10}(z/10)^{\alpha}"></span></td><td>α ≈ 0,11–0,14</td></tr>
+              <tr><td>Período natural em heave</td><td><span data-tex="T_n = 2\pi\sqrt{\dfrac{M + A_{33}}{\rho g A_{wp} + K}}"></span></td><td>K = rigidez dos tendões na TLP</td></tr>
+              <tr><td>Catenária</td><td><span data-tex="T = H + wh, \quad s = \sqrt{h^2 + 2hH/w}"></span></td><td>w = peso submerso por metro</td></tr>
+              <tr><td>Taut-leg</td><td><span data-tex="T = EA\,\dfrac{\ell - \ell_0}{\ell_0}"></span></td><td>restauração elástica</td></tr>
+              <tr><td>Fator de segurança da linha</td><td><span data-tex="FS = \dfrac{MBL}{T_{máx}} \geq 1{,}67"></span></td><td>API RP 2SK, intacta</td></tr>
+              <tr><td>Souders-Brown</td><td><span data-tex="v_{máx} = K\sqrt{\dfrac{\rho_L - \rho_G}{\rho_G}}"></span></td><td>capacidade de gás do separador</td></tr>
+              <tr><td>Água produzida</td><td><span data-tex="TOG = TOG_0(1-\eta_h)(1-\eta_f) \leq 29\ mg/L"></span></td><td>CONAMA 393/2007</td></tr>
+              <tr><td>Período de retorno</td><td><span data-tex="P = 1 - \left(1 - \dfrac{1}{T_R}\right)^{n}"></span></td><td>chance de ocorrer em n anos</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>API RP 2A</strong></td><td>Projeto de plataformas fixas</td><td>Cargas de onda, fadiga de juntas tubulares, estacas</td></tr>
+              <tr><td><strong>ISO 19902</strong></td><td>Estruturas fixas de aço</td><td>Equivalente internacional da API RP 2A</td></tr>
+              <tr><td><strong>ISO 19901-1</strong></td><td>Condições meteoceanográficas</td><td>Vento, onda, corrente e períodos de retorno de projeto</td></tr>
+              <tr><td><strong>DNV-RP-C205</strong></td><td>Condições e cargas ambientais</td><td>Espectros, Morison, coeficientes C<sub>D</sub> e C<sub>M</sub></td></tr>
+              <tr><td><strong>DNV-OS-C101</strong></td><td>Projeto estrutural offshore (LRFD)</td><td>Estados limites ULS, SLS, FLS e ALS</td></tr>
+              <tr><td><strong>ISO 19904-1</strong></td><td>Estruturas flutuantes</td><td>Semissubmersíveis, spars, FPSOs</td></tr>
+              <tr><td><strong>API RP 2T</strong></td><td>Plataformas de pernas atirantadas</td><td>Tendões e fundações de TLP</td></tr>
+              <tr><td><strong>API RP 2SK / DNV-OS-E301</strong></td><td>Sistemas de ancoragem</td><td>Fatores de segurança, casos intacto e com linha rompida</td></tr>
+              <tr><td><strong>API RP 2RD</strong></td><td>Risers de plataformas flutuantes</td><td>Projeto de risers rígidos</td></tr>
+              <tr><td><strong>API Spec 17J</strong></td><td>Dutos flexíveis não aderidos</td><td>Risers e flowlines flexíveis</td></tr>
+              <tr><td><strong>API RP 17A / ISO 13628</strong></td><td>Sistemas de produção submarinos</td><td>ANM, manifolds, umbilicais, controles</td></tr>
+              <tr><td><strong>API Spec 12J</strong></td><td>Separadores de óleo e gás</td><td>Tempo de retenção e dimensionamento</td></tr>
+              <tr><td><strong>API RP 14C</strong></td><td>Segurança de processo em plataformas</td><td>Dispositivos de proteção e lógica de parada</td></tr>
+              <tr><td><strong>NR-37</strong></td><td>Segurança e saúde em plataformas de petróleo</td><td>Habitabilidade, treinamento, resposta a emergências</td></tr>
+              <tr><td><strong>NORMAM-01 (DPC)</strong></td><td>Embarcações e plataformas em mar aberto</td><td>Registro, estabilidade e certificação pela autoridade marítima</td></tr>
+              <tr><td><strong>ANP — SGSO</strong></td><td>Sistema de gestão de segurança operacional</td><td>Requisitos de segurança para instalações de perfuração e produção</td></tr>
+              <tr><td><strong>CONAMA 393/2007</strong></td><td>Descarte de água produzida</td><td>TOG médio mensal ≤ 29 mg/L</td></tr>
+              <tr><td><strong>IMO MODU Code</strong></td><td>Construção e equipamentos de unidades móveis de perfuração</td><td>Jack-ups, semissubmersíveis e navios-sonda</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre tipos de plataforma, ambiente oceânico, cargas, ancoragem, topsides, equipamentos submarinos e seleção de conceito.</p>
+        <div id="quiz" data-quiz="instalacoes-e-offshore"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>CHAKRABARTI, S. K. (ed.)</strong> <em>Handbook of Offshore Engineering</em>, vols. 1 e 2. Elsevier. — Referência central da disciplina: ambiente, cargas, tipos de plataforma, ancoragem e topsides.</li>
+          <li><strong>BAI, Y.; BAI, Q.</strong> <em>Subsea Engineering Handbook.</em> Gulf Professional Publishing. — Equipamentos e desenvolvimento de sistemas submarinos.</li>
+          <li><strong>GERWICK, B. C.</strong> <em>Construction of Marine and Offshore Structures.</em> CRC Press. — Construção, transporte e instalação.</li>
+          <li><strong>PAIK, J. K.; THAYAMBALLI, A. K.</strong> <em>Ship-Shaped Offshore Installations: Design, Building, and Operation.</em> Cambridge. — FPSOs.</li>
+          <li><strong>DAWSON, T. H.</strong> <em>Offshore Structural Engineering.</em> Prentice-Hall. — Teoria de ondas e forças de Morison.</li>
+          <li><strong>DNV-RP-C205</strong> <em>Environmental Conditions and Environmental Loads.</em> — Formulação usada nos simuladores de ondas e de Morison.</li>
+          <li><strong>Material da disciplina</strong> — aulas 1 a 10: operações offshore, histórico, componentes, ambiente oceânico, forças ambientais, ancoragem e fundação, topsides, engenharia submarina, desenvolvimento de campo e sistemas marítimos de produção.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/instalacoes-e-offshore.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  H: ['Altura da onda', 'm', 'ou componente horizontal da tração na catenária, em N'],
+  T: ['Período da onda', 's', 'ou tração na linha de ancoragem, em N'],
+  L: ['Comprimento de onda', 'm', 'ou comprimento da linha'],
+  d: ['Profundidade (lâmina d’água)', 'm'],
+  k: ['Número de onda', 'rad/m', 'k = 2π/L'],
+  ω: ['Frequência angular', 'rad/s', 'ω = 2π/T'],
+  g: ['Aceleração da gravidade', 'm/s²', '9,81'],
+  ρ: ['Massa específica', 'kg/m³', 'água do mar ≈ 1 025 · ar ≈ 1,225'],
+  u: ['Velocidade horizontal da partícula', 'm/s'],
+  D: ['Diâmetro do membro', 'm'],
+  E: ['Energia da onda por área', 'J/m²', 'ou módulo de elasticidade'],
+  c: ['Celeridade da onda', 'm/s', 'c = L/T'],
+  f: ['Força por unidade de comprimento', 'N/m'],
+  F: ['Força', 'N'],
+  M: ['Massa', 'kg', 'ou momento na base, em N·m'],
+  K: ['Rigidez', 'N/m', 'ou constante de Souders-Brown, em m/s'],
+  w: ['Peso submerso da linha por metro', 'N/m'],
+  h: ['Altura do fairlead sobre o fundo', 'm', '≈ lâmina d’água'],
+  s: ['Comprimento suspenso da linha', 'm'],
+  V: ['Velocidade do vento', 'm/s'],
+  η: ['Elevação da superfície', 'm', 'ou eficiência'],
+  'H_s': ['Altura significativa', 'm', 'média do terço maior das ondas; 4√m₀'],
+  'T_p': ['Período de pico do espectro', 's'],
+  'T_n': ['Período natural', 's'],
+  'L_0': ['Comprimento de onda em águas profundas', 'm', 'gT²/2π'],
+  'C_D': ['Coeficiente de arrasto', '—', '0,65 liso · 1,05 rugoso'],
+  'C_M': ['Coeficiente de inércia', '—', '≈ 1,6 a 2,0'],
+  'C_s': ['Coeficiente de forma (vento)', '—'],
+  'A_wp': ['Área da linha d’água', 'm²', 'define a rigidez hidrostática em heave'],
+  'A_33': ['Massa adicional em heave', 'kg'],
+  'm_0': ['Momento espectral de ordem zero', 'm²', 'variância da elevação'],
+  'KC': ['Número de Keulegan-Carpenter', '—', 'u_máx·T/D'],
+  'MBL': ['Carga mínima de ruptura', 'N'],
+  'EA': ['Rigidez axial da linha', 'N'],
+  'TOG': ['Teor de óleos e graxas', 'mg/L', 'limite de descarte 29 mg/L'],
+  'LDA': ['Lâmina d’água', 'm']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

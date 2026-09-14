@@ -1,0 +1,542 @@
+{
+  "disciplina": "Estática",
+  "slug": "estatica",
+  "topicos": [
+    {
+      "id": "momentos",
+      "nome": "Forças e momentos"
+    },
+    {
+      "id": "corpo-livre",
+      "nome": "Diagrama de corpo livre"
+    },
+    {
+      "id": "equilibrio",
+      "nome": "Equilíbrio"
+    },
+    {
+      "id": "distribuidas",
+      "nome": "Cargas distribuídas"
+    },
+    {
+      "id": "trelicas",
+      "nome": "Treliças"
+    },
+    {
+      "id": "atrito",
+      "nome": "Atrito"
+    },
+    {
+      "id": "centroide",
+      "nome": "Centroides"
+    },
+    {
+      "id": "inercia",
+      "nome": "Momento de inércia"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "es-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "momentos",
+      "enunciado": "<p>O momento de uma força em relação a um ponto depende:</p>",
+      "alternativas": [
+        "Apenas do módulo da força.",
+        "Apenas da direção da força.",
+        "Da distância entre o ponto de aplicação e o polo, medida em linha reta.",
+        "Do módulo da força e da distância perpendicular da sua linha de ação ao ponto."
+      ],
+      "correta": 3,
+      "explicacao": "<p>M = F·d, em que d é a distância <strong>perpendicular</strong> da linha de ação ao polo — o braço de alavanca. A distância direta até o ponto de aplicação só coincide com d quando a força é perpendicular a essa reta. Deslizar a força ao longo da sua própria linha de ação não muda o momento, o que é o princípio da transmissibilidade.</p>"
+    },
+    {
+      "id": "es-002",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "momentos",
+      "enunciado": "<p>Uma força de <span class=\"dado\">200 N</span> é aplicada perpendicularmente a uma chave de <span class=\"dado\">350 mm</span>. Qual o momento no parafuso?</p>",
+      "alternativas": [
+        "35 N·m",
+        "70 N·m",
+        "570 N·m",
+        "700 N·m"
+      ],
+      "correta": 1,
+      "formulas": [
+        "M = F · d",
+        "d = distância PERPENDICULAR à linha de ação",
+        "Atenção às unidades: mm → m"
+      ],
+      "explicacao": "<div class=\"passo\">d = 350 mm = 0,35 m</div><div class=\"passo\">M = 200 × 0,35 = <strong>70 N·m</strong></div><p>Se a força fosse aplicada a 60° com a chave, apenas a componente perpendicular contaria: M = 200 × 0,35 × sen 60° = 60,6 N·m.</p>"
+    },
+    {
+      "id": "es-003",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "momentos",
+      "enunciado": "<p>Um binário (conjugado) é caracterizado por:</p>",
+      "alternativas": [
+        "Uma única força aplicada fora do centroide.",
+        "Duas forças iguais, opostas e com a mesma linha de ação.",
+        "Duas forças iguais e opostas em linhas de ação distintas, com resultante nula e momento não nulo.",
+        "Duas forças perpendiculares entre si."
+      ],
+      "correta": 2,
+      "explicacao": "<p>O binário tem resultante de forças nula, mas produz momento M = F·d, sendo d a distância entre as linhas de ação. Sua característica notável é que esse momento é o <strong>mesmo em relação a qualquer polo</strong> — por isso ele é um vetor livre. Se as duas forças tivessem a mesma linha de ação, elas simplesmente se cancelariam.</p>"
+    },
+    {
+      "id": "es-004",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "corpo-livre",
+      "enunciado": "<p>Um apoio de segundo gênero (pino ou articulação) no plano fornece:</p>",
+      "alternativas": [
+        "Uma reação apenas.",
+        "Somente um momento.",
+        "Duas reações de força e um momento.",
+        "Duas reações de força, sem momento."
+      ],
+      "correta": 3,
+      "explicacao": "<p>O pino impede as duas translações, mas permite rotação — logo gera reação horizontal e vertical, e nenhum momento. O rolete (1º gênero) dá só uma reação normal; o engaste (3º gênero) dá três, incluindo momento. Contar corretamente essas incógnitas é o que decide se o problema é isostático.</p>"
+    },
+    {
+      "id": "es-005",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "equilibrio",
+      "enunciado": "<p>Uma estrutura plana com 5 reações de apoio incógnitas e sem rótulas internas é:</p>",
+      "alternativas": [
+        "Isostática.",
+        "Hipostática.",
+        "Hiperestática de grau 2.",
+        "Hiperestática de grau 5."
+      ],
+      "correta": 2,
+      "explicacao": "<p>No plano há 3 equações de equilíbrio. Com 5 incógnitas, sobram 2 equações a mais do que o equilíbrio fornece: a estrutura é hiperestática de <strong>grau 2</strong>. Resolvê-la exige condições de compatibilidade de deslocamentos, o que já é assunto de Mecânica dos Materiais. Rótulas internas acrescentariam equações e poderiam reduzir esse grau.</p>"
+    },
+    {
+      "id": "es-006",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "equilibrio",
+      "enunciado": "<p>Uma viga biapoiada de <span class=\"dado\">6 m</span> tem uma carga concentrada de <span class=\"dado\">30 kN</span> a 2,4 m do apoio A e uma carga distribuída de <span class=\"dado\">10 kN/m</span> entre 3 e 6 m. Determine as reações.</p>",
+      "alternativas": [
+        "Ay = 25,5 kN e By = 34,5 kN",
+        "Ay = 30,0 kN e By = 30,0 kN",
+        "Ay = 34,5 kN e By = 25,5 kN",
+        "Ay = 20,0 kN e By = 40,0 kN"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Rq = q · Lq, aplicada no centroide do trecho",
+        "ΣM_A = 0 → By",
+        "ΣFy = 0 → Ay"
+      ],
+      "explicacao": "<div class=\"passo\">R<sub>q</sub> = 10 × 3 = 30 kN, aplicada em x̄ = 4,5 m</div><div class=\"passo\">ΣM<sub>A</sub> = 0: B<sub>y</sub>×6 = 30×2,4 + 30×4,5 = 72 + 135 = 207</div><div class=\"passo\">B<sub>y</sub> = 207/6 = <strong>34,5 kN</strong></div><div class=\"passo\">ΣF<sub>y</sub> = 0: A<sub>y</sub> = 60 − 34,5 = <strong>25,5 kN</strong></div><p>Conferência: A<sub>y</sub> + B<sub>y</sub> = 60 kN, igual à carga total. A carga está mais próxima de B, então B recebe mais.</p>"
+    },
+    {
+      "id": "es-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "corpo-livre",
+      "enunciado": "<p>Sobre a importância do diagrama de corpo livre e os erros mais comuns na sua construção, assinale a alternativa correta:</p>",
+      "alternativas": [
+        "As três equações de equilíbrio são aplicadas sobre a figura original do problema, e o diagrama serve apenas como ilustração didática.",
+        "Arbitrar o sentido de uma reação é erro grave, porque o cálculo só é válido se todos os sentidos estiverem corretos desde o início.",
+        "As equações são aplicadas sobre o diagrama, e não sobre a figura original; por isso um diagrama errado — reação esquecida, vinculação incompatível ou força interna tratada como externa — invalida toda a álgebra seguinte, ainda que o resultado pareça plausível.",
+        "O erro mais comum é usar unidades inconsistentes, já que a montagem do diagrama é uma etapa mecânica e pouco sujeita a engano."
+      ],
+      "correta": 2,
+      "explicacao": "<p>O diagrama de corpo livre é a tradução do problema físico para o modelo matemático. As três equações de equilíbrio são aplicadas <em>sobre ele</em>, e não sobre a figura original. Se o diagrama estiver errado, toda a álgebra subsequente estará errada — e, pior, o resultado costuma parecer plausível, o que dificulta perceber o engano.</p><p>Os erros mais frequentes são: <strong>esquecer uma reação</strong>, tipicamente a componente horizontal de um pino ou o momento de um engaste; <strong>desenhar reações incompatíveis com a vinculação</strong>, como momento em um rolete; <strong>confundir força interna com externa</strong>, incluindo no diagrama esforços que são internos ao corpo isolado e que, pela terceira lei de Newton, se cancelam; <strong>esquecer o peso próprio</strong> quando ele é relevante; e <strong>manter a carga distribuída em vez de reduzi-la</strong> à resultante, ou reduzi-la com centroide errado.</p><p>Há ainda um erro de método: isolar o corpo errado. A escolha do corpo livre é estratégica — em uma máquina, isolar o conjunto todo dá as reações externas, mas para achar a força em um pino interno é preciso desmembrar.</p><p>Sobre os sentidos das reações, vale registrar que arbitrá-los não é erro: se o resultado sair negativo, o sentido real é o oposto. O que não se pode é mudar o sentido no meio do cálculo, nem esquecer de aplicar a terceira lei coerentemente nas conexões entre peças desmembradas.</p>"
+    },
+    {
+      "id": "es-008",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "distribuidas",
+      "enunciado": "<p>Uma carga uniformemente distribuída q ao longo de um comprimento L pode ser substituída, para o cálculo das reações, por:</p>",
+      "alternativas": [
+        "Uma força qL aplicada no meio do trecho.",
+        "Uma força qL aplicada na extremidade do trecho.",
+        "Uma força qL/2 aplicada no meio do trecho.",
+        "Duas forças qL/2 nas extremidades."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A resultante equivale à <strong>área</strong> do diagrama de carga (q × L, um retângulo) e é aplicada no <strong>centroide</strong> desse diagrama, que no retângulo fica no meio. Para carga triangular seria qL/2 a um terço da base. Atenção: essa substituição vale para reações externas, não para traçar diagramas de esforços internos.</p>"
+    },
+    {
+      "id": "es-009",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "distribuidas",
+      "enunciado": "<p>Uma carga triangular cresce de zero até <span class=\"dado\">18 kN/m</span> ao longo de <span class=\"dado\">4 m</span>. Qual a resultante e onde ela é aplicada, medida da extremidade de carga nula?</p>",
+      "alternativas": [
+        "72 kN a 2,00 m",
+        "36 kN a 1,33 m",
+        "36 kN a 2,67 m",
+        "72 kN a 2,67 m"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Triângulo: R = (1/2)·q_máx·L",
+        "Centroide do triângulo: a 2/3 da base a partir do vértice de carga nula"
+      ],
+      "explicacao": "<div class=\"passo\">R = ½ × 18 × 4 = <strong>36 kN</strong></div><div class=\"passo\">O centroide do triângulo fica a 2/3 do comprimento, contado a partir do lado de carga nula</div><div class=\"passo\">x̄ = (2/3) × 4 = <strong>2,67 m</strong></div><p>O erro clássico é aplicar a 1/3 — que é a distância medida a partir da <em>base maior</em>, ou seja, do lado de carga máxima.</p>"
+    },
+    {
+      "id": "es-010",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "trelicas",
+      "enunciado": "<p>Nas hipóteses da treliça ideal, cada barra está submetida:</p>",
+      "alternativas": [
+        "A tração ou compressão apenas.",
+        "A flexão e cisalhamento.",
+        "A torção.",
+        "A momento fletor nas extremidades."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Como os nós são rotulados e as cargas atuam apenas nos nós, cada barra é um elemento de duas forças: as únicas forças atuam nas extremidades, ao longo do eixo. Logo só há esforço axial. Se uma carga for aplicada no meio de uma barra, essa hipótese cai e a barra passa a fletir — que é justamente o que diferencia treliças de pórticos.</p>"
+    },
+    {
+      "id": "es-011",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "trelicas",
+      "enunciado": "<p>Uma treliça com <span class=\"dado\">13 barras</span>, <span class=\"dado\">8 nós</span> e apoios de pino e rolete (3 reações) é:</p>",
+      "alternativas": [
+        "Hipostática.",
+        "Hiperestática de grau 3.",
+        "Hiperestática de grau 1.",
+        "Isostática."
+      ],
+      "correta": 3,
+      "formulas": [
+        "m + r = 2n → isostática",
+        "m + r < 2n → hipostática (mecanismo)",
+        "m + r > 2n → hiperestática"
+      ],
+      "explicacao": "<div class=\"passo\">m + r = 13 + 3 = 16</div><div class=\"passo\">2n = 2 × 8 = 16</div><div class=\"passo\">16 = 16 → <strong>isostática</strong></div><p>O critério é necessário mas não suficiente: uma treliça pode satisfazer a contagem e ainda assim ser instável se a disposição das barras for inadequada, deixando um painel sem travamento.</p>"
+    },
+    {
+      "id": "es-012",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "trelicas",
+      "enunciado": "<p>Uma treliça biapoiada de <span class=\"dado\">12 m</span> de vão e <span class=\"dado\">3 m</span> de altura recebe <span class=\"dado\">40 kN</span> no nó central inferior. Estime a força no banzo superior no painel central pelo método das seções.</p>",
+      "alternativas": [
+        "40 kN de compressão",
+        "40 kN de tração",
+        "80 kN de compressão",
+        "120 kN de compressão"
+      ],
+      "correta": 0,
+      "formulas": [
+        "R = P/2 por simetria",
+        "Corte a seção e tome momento no nó inferior oposto",
+        "F_banzo = M/h"
+      ],
+      "explicacao": "<div class=\"passo\">Por simetria, R<sub>A</sub> = R<sub>B</sub> = 20 kN</div><div class=\"passo\">Cortando o painel central e tomando momento no nó inferior sob o corte (x = 6 m):</div><div class=\"passo\">M = 20 × 6 = 120 kN·m</div><div class=\"passo\">F = M/h = 120/3 = 40 kN, <strong>de compressão</strong> no banzo superior</div><p>O banzo superior comprime e o inferior traciona, como em qualquer viga fletida — a treliça é uma viga com o material concentrado nas fibras extremas. Reduzir a altura para 1,5 m dobraria essa força.</p>"
+    },
+    {
+      "id": "es-013",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "trelicas",
+      "enunciado": "<p>Em um nó de treliça onde chegam três barras, duas delas colineares, e não há carga aplicada:</p>",
+      "alternativas": [
+        "As três barras têm força nula.",
+        "Nada se pode afirmar sem calcular.",
+        "As duas colineares têm força nula.",
+        "A barra não colinear tem força nula."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Projetando o equilíbrio na direção perpendicular às duas barras colineares, só a terceira barra tem componente nessa direção. Como não há carga externa, ΣF nessa direção exige que sua força seja nula. Identificar essas barras antes de calcular economiza muito trabalho. Elas não são inúteis: servem para reduzir o comprimento de flambagem das barras comprimidas e dar estabilidade fora do plano.</p>"
+    },
+    {
+      "id": "es-014",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "trelicas",
+      "enunciado": "<p>Pratt e Howe têm a mesma geometria externa e diferem apenas na inclinação das diagonais. Sobre a preferência pela Pratt em aço e pela Howe em madeira, assinale a alternativa correta:</p>",
+      "alternativas": [
+        "Na Pratt as diagonais — que são as barras mais longas — ficam tracionadas, e tração não sofre penalidade de comprimento; em madeira inverte-se porque a ligação tracionada é o ponto fraco e a compressão pode ser transmitida por contato.",
+        "A Pratt usa menos barras que a Howe, o que a torna mais econômica em aço; em madeira o número de barras é irrelevante.",
+        "Na Pratt as diagonais ficam comprimidas, e o aço resiste melhor à compressão do que à tração.",
+        "As duas se equivalem estruturalmente; a escolha é apenas construtiva e estética."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Pratt e Howe diferem apenas na inclinação das diagonais. Na <strong>Pratt</strong> as diagonais descem em direção ao centro do vão e ficam <em>tracionadas</em>, enquanto os montantes verticais ficam comprimidos. Na <strong>Howe</strong> ocorre o inverso: as diagonais comprimem e os montantes tracionam.</p><p>Essa diferença importa porque tração e compressão não são simétricas no dimensionamento. Uma barra tracionada falha por resistência, e a área necessária sai direto de A ≥ F/σ<sub>adm</sub>, sem penalidade pelo comprimento. Uma barra comprimida falha por <strong>flambagem</strong>, com carga crítica P<sub>cr</sub> = π²EI/(KL)² — inversamente proporcional ao quadrado do comprimento. Barras longas comprimidas exigem seções muito maiores do que a resistência exigiria.</p><p>Nas treliças, as diagonais são as barras <strong>mais longas</strong>, e os montantes as mais curtas. Logo interessa deixar as diagonais tracionadas e concentrar a compressão nos montantes curtos — que é exatamente o arranjo Pratt. Em aço, material caro por quilo e de seções esbeltas, essa economia é significativa.</p><p>Em <strong>madeira</strong> a lógica se inverte por razões construtivas. A madeira tem boa resistência à compressão paralela às fibras, mas as <em>ligações</em> tracionadas são o ponto fraco: transmitir tração exige conectores metálicos, chapas ou parafusos, o que encarece e enfraquece o nó. Já a compressão pode ser transmitida por simples contato e encaixe. Como a Howe deixa as diagonais longas comprimidas, elas trabalham por contato direto, e a tração fica nos montantes curtos, onde a ligação é mais simples.</p><p>A Warren, com diagonais alternadas e sem montantes intermediários, é uma terceira opção: usa menos barras, mas alterna tração e compressão nas diagonais, o que exige dimensionar todas para o pior caso.</p>"
+    },
+    {
+      "id": "es-015",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "atrito",
+      "enunciado": "<p>Sobre a força de atrito estático em um corpo em repouso:</p>",
+      "alternativas": [
+        "Vale sempre μs·N.",
+        "Independe da força normal.",
+        "É sempre maior que a força aplicada.",
+        "Vale apenas o necessário para o equilíbrio, até o limite μs·N."
+      ],
+      "correta": 3,
+      "explicacao": "<p>O atrito estático é uma reação: ele assume exatamente o valor necessário para equilibrar, até um teto de μ<sub>s</sub>N. Se você empurra um armário com 50 N e ele não se move, o atrito vale 50 N — mesmo que μ<sub>s</sub>N seja 300 N. Usar f = μN em uma situação de repouso sem iminência de movimento é o erro mais comum do capítulo.</p>"
+    },
+    {
+      "id": "es-016",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "atrito",
+      "enunciado": "<p>Um bloco de <span class=\"dado\">500 N</span> está em um plano inclinado de <span class=\"dado\">20°</span>, com <span class=\"dado\">μs = 0,30</span>. O bloco escorrega?</p>",
+      "alternativas": [
+        "Não: Wt = 171 N e fmax = 141 N.",
+        "Sim: Wt = 171 N supera fmax = 141 N.",
+        "Não: fmax = 150 N supera Wt = 100 N.",
+        "Sim: o atrito é sempre insuficiente acima de 15°."
+      ],
+      "correta": 1,
+      "formulas": [
+        "N = W·cos θ",
+        "Wt = W·sen θ",
+        "f_max = μs · N",
+        "Escorrega se Wt > f_max"
+      ],
+      "explicacao": "<div class=\"passo\">N = 500 × cos 20° = 469,8 N</div><div class=\"passo\">W<sub>t</sub> = 500 × sen 20° = 171,0 N</div><div class=\"passo\">f<sub>máx</sub> = 0,30 × 469,8 = 141,0 N</div><div class=\"passo\">171,0 &gt; 141,0 → <strong>escorrega</strong></div><p>Conferindo pelo ângulo de atrito: φ = arctan 0,30 = 16,7°. Como 20° &gt; 16,7°, o bloco desliza — sem precisar calcular forças.</p>"
+    },
+    {
+      "id": "es-017",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "atrito",
+      "enunciado": "<p>Para o mesmo bloco (500 N, 20°, μs = 0,30), qual a força paralela ao plano necessária para fazê-lo subir na iminência do movimento?</p>",
+      "alternativas": [
+        "141 N",
+        "171 N",
+        "312 N",
+        "500 N"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Subindo, o atrito se opõe ao movimento:",
+        "F = W(sen θ + μs·cos θ)"
+      ],
+      "explicacao": "<div class=\"passo\">F = 500 × (sen 20° + 0,30 × cos 20°)</div><div class=\"passo\">F = 500 × (0,342 + 0,282) = 500 × 0,624</div><div class=\"passo\">F = <strong>312 N</strong></div><p>Para <em>descer</em> de forma controlada, o atrito ajudaria: F = W(μs·cos θ − sen θ) = −30 N, ou seja, negativo — o bloco desce sozinho, como já sabíamos da questão anterior.</p>"
+    },
+    {
+      "id": "es-018",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "atrito",
+      "enunciado": "<p>O ângulo de inclinação em que um bloco começa a escorregar em um plano:</p>",
+      "alternativas": [
+        "Depende do peso do bloco.",
+        "Depende da altura do bloco.",
+        "Depende da área de contato.",
+        "Depende apenas do coeficiente de atrito estático."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Na iminência: W·sen θ = μ<sub>s</sub>·W·cos θ, e o peso se cancela dos dois lados, restando tan θ = μ<sub>s</sub>. O ângulo depende <em>só</em> do coeficiente de atrito — é justamente por isso que esse experimento é o método clássico para medir μ<sub>s</sub>. A área de contato aparente também não entra, o que é uma das consequências menos intuitivas da lei de Coulomb. A altura só importaria se o bloco tombasse antes de escorregar.</p>"
+    },
+    {
+      "id": "es-019",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "atrito",
+      "enunciado": "<p>O fato de μk ser menor que μs explica:</p>",
+      "alternativas": [
+        "Por que o atrito aumenta com a velocidade.",
+        "O solavanco ao iniciar o movimento de um objeto pesado.",
+        "Por que o atrito depende da área de contato.",
+        "Por que corpos leves escorregam antes dos pesados."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Enquanto parado, é preciso vencer μ<sub>s</sub>N. Assim que o movimento começa, o atrito cai para μ<sub>k</sub>N, menor — e a força que estava sendo aplicada passa a sobrar, acelerando o corpo bruscamente. É o mesmo mecanismo do <em>stick-slip</em>, responsável pelo rangido de portas, pelo guincho de freios e pelo som do arco no violino.</p>"
+    },
+    {
+      "id": "es-020",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "centroide",
+      "enunciado": "<p>Duas massas, de <span class=\"dado\">10 kg</span> em x = 0 e <span class=\"dado\">30 kg</span> em x = 2 m, estão sobre uma barra de massa desprezível. Onde fica o centro de gravidade?</p>",
+      "alternativas": [
+        "x = 0,50 m",
+        "x = 1,00 m",
+        "x = 1,50 m",
+        "x = 2,00 m"
+      ],
+      "correta": 2,
+      "formulas": [
+        "x̄ = Σ(m_i · x_i) / Σm_i"
+      ],
+      "explicacao": "<div class=\"passo\">x̄ = (10×0 + 30×2)/(10 + 30)</div><div class=\"passo\">x̄ = 60/40 = <strong>1,50 m</strong></div><p>O centro de gravidade fica mais próximo da massa maior, como esperado. Se as massas fossem iguais, ficaria exatamente no meio.</p>"
+    },
+    {
+      "id": "es-021",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "centroide",
+      "enunciado": "<p>Ao calcular o centroide de uma chapa retangular com um furo circular, o furo deve ser tratado como:</p>",
+      "alternativas": [
+        "Área positiva somada às demais.",
+        "Área negativa, subtraída no numerador e no denominador.",
+        "Ignorado, por não ter massa.",
+        "Uma figura à parte, sem influência no resultado."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O método das áreas compostas trata vazios como áreas <strong>negativas</strong>. O furo entra com −A no denominador e com −A·ȳ no numerador, o que desloca o centroide para longe dele. Ignorar o furo dá o centroide da chapa cheia, que é diferente — e o erro cresce com o tamanho e a excentricidade do furo.</p>"
+    },
+    {
+      "id": "es-022",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "centroide",
+      "enunciado": "<p>O centroide de um triângulo de base b e altura h está a:</p>",
+      "alternativas": [
+        "h/2 da base.",
+        "h/3 da base.",
+        "2h/3 da base.",
+        "h/4 da base."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O centroide do triângulo fica a h/3 da <strong>base</strong> e a 2h/3 do vértice oposto — é o ponto de encontro das medianas. Confundir os dois é fonte frequente de erro em cargas triangulares, em que a resultante ½qL fica a 1/3 da base maior, ou seja, a 2/3 do vértice de carga nula.</p>"
+    },
+    {
+      "id": "es-023",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "centroide",
+      "enunciado": "<p>Um perfil I simétrico tem mesas de <span class=\"dado\">150 × 16 mm</span> e alma de <span class=\"dado\">10 × 280 mm</span>. Qual a área total e a posição do centroide?</p>",
+      "alternativas": [
+        "A = 7 600 mm², centroide a 156 mm da base",
+        "A = 7 600 mm², centroide a 140 mm da base",
+        "A = 5 200 mm², centroide a 156 mm da base",
+        "A = 7 600 mm², centroide a 312 mm da base"
+      ],
+      "correta": 0,
+      "formulas": [
+        "A = Σ A_i",
+        "ȳ = Σ(A_i·ȳ_i)/Σ A_i",
+        "Em seção simétrica, o centroide está no eixo de simetria"
+      ],
+      "explicacao": "<div class=\"passo\">A<sub>mesas</sub> = 2 × 150 × 16 = 4 800 mm²</div><div class=\"passo\">A<sub>alma</sub> = 10 × 280 = 2 800 mm²</div><div class=\"passo\">A = <strong>7 600 mm²</strong></div><div class=\"passo\">H total = 16 + 280 + 16 = 312 mm; por simetria, ȳ = 312/2 = <strong>156 mm</strong></div><p>Em seções simétricas nem é preciso somatório: o centroide está sobre o eixo de simetria. A conta só é necessária em perfis T, L ou C.</p>"
+    },
+    {
+      "id": "es-024",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "inercia",
+      "enunciado": "<p>O teorema dos eixos paralelos (Steiner) estabelece que:</p>",
+      "alternativas": [
+        "I = I_c − A·d²",
+        "I = I_c + A·d², onde I_c é a inércia em relação ao eixo centroidal da própria figura.",
+        "I = I_c + A·d, com d linear.",
+        "I = A·d² apenas."
+      ],
+      "correta": 1,
+      "explicacao": "<p>I = I<sub>c</sub> + A·d² transporta o momento de inércia de um eixo centroidal para outro eixo paralelo, afastado de d. Duas observações importantes: o termo A·d² é sempre <strong>positivo</strong>, logo o momento de inércia é mínimo no eixo centroidal; e I<sub>c</sub> precisa ser necessariamente em relação ao centroide da própria figura — partir de outro eixo invalida a fórmula.</p>"
+    },
+    {
+      "id": "es-025",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "inercia",
+      "enunciado": "<p>Um retângulo de <span class=\"dado\">60 × 100 mm</span> (altura 100 mm) tem que momento de inércia em relação ao eixo centroidal horizontal, e em relação a um eixo na base?</p>",
+      "alternativas": [
+        "5,0×10⁶ mm⁴ e 20,0×10⁶ mm⁴",
+        "5,0×10⁶ mm⁴ e 10,0×10⁶ mm⁴",
+        "2,5×10⁶ mm⁴ e 20,0×10⁶ mm⁴",
+        "5,0×10⁶ mm⁴ e 15,0×10⁶ mm⁴"
+      ],
+      "correta": 0,
+      "formulas": [
+        "I_c = b·h³/12",
+        "Steiner: I = I_c + A·d², com d = h/2 para o eixo na base",
+        "Resultado conhecido: I_base = b·h³/3"
+      ],
+      "explicacao": "<div class=\"passo\">I<sub>c</sub> = 60 × 100³/12 = 60 × 10⁶/12 = <strong>5,0×10⁶ mm⁴</strong></div><div class=\"passo\">A = 6 000 mm²; d = 50 mm → A·d² = 6 000 × 2 500 = 15,0×10⁶ mm⁴</div><div class=\"passo\">I<sub>base</sub> = 5,0×10⁶ + 15,0×10⁶ = <strong>20,0×10⁶ mm⁴</strong></div><p>Confere com o resultado conhecido bh³/3 = 60 × 10⁶/3 = 20×10⁶ mm⁴. Note que o momento na base é <em>quatro vezes</em> o centroidal.</p>"
+    },
+    {
+      "id": "es-026",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "inercia",
+      "enunciado": "<p>Em um perfil I, a maior parte do momento de inércia em relação ao eixo forte vem:</p>",
+      "alternativas": [
+        "Da inércia própria da alma.",
+        "Da parcela A·d² das mesas, afastadas da linha neutra.",
+        "Da inércia própria das mesas.",
+        "Distribui-se igualmente entre alma e mesas."
+      ],
+      "correta": 1,
+      "explicacao": "<p>As mesas são finas, então sua inércia própria (bh³/12 com h pequeno) é desprezível. Mas elas estão longe da linha neutra, e o termo A·d² é grande. Já a alma tem inércia própria significativa, porque sua altura é grande, mas seu centroide coincide com a linha neutra, e d ≈ 0. É essa observação que justifica toda a forma do perfil I: colocar material longe do centro é muito mais eficiente do que engrossar o centro.</p>"
+    },
+    {
+      "id": "es-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "equilibrio",
+      "enunciado": "<p>Ao resolver uma viga biapoiada, tomar o momento em relação a um dos apoios é vantajoso porque:</p>",
+      "alternativas": [
+        "Elimina as reações daquele apoio da equação, deixando só uma incógnita.",
+        "Simplifica o cálculo das cargas distribuídas.",
+        "Garante que o resultado seja positivo.",
+        "É a única forma matematicamente correta."
+      ],
+      "correta": 0,
+      "explicacao": "<p>As reações no apoio escolhido como polo têm braço nulo e desaparecem da equação de momentos. Sobra uma única incógnita, a reação do outro apoio, que sai diretamente. Depois ΣF<sub>y</sub> = 0 fornece a primeira. Qualquer polo é matematicamente válido — a escolha é estratégica, para minimizar álgebra. Tomar momento no <em>outro</em> apoio ao final é uma excelente conferência.</p>"
+    },
+    {
+      "id": "es-028",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "equilibrio",
+      "enunciado": "<p>Um elemento de duas forças (como uma barra biarticulada descarregada no vão) tem a particularidade de que:</p>",
+      "alternativas": [
+        "As forças nas duas extremidades são iguais, opostas e dirigidas ao longo da linha que une os pontos de aplicação.",
+        "As forças são sempre perpendiculares ao elemento.",
+        "Sempre há momento nas extremidades.",
+        "Ele só pode ser tracionado."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Para haver equilíbrio, as duas forças precisam ser iguais e opostas (ΣF = 0) e ter a mesma linha de ação (ΣM = 0), que só pode ser a reta que une os dois pontos. Por isso a direção da força é conhecida <em>antes</em> de qualquer cálculo — o que reduz o número de incógnitas e é a base do método dos nós. O elemento pode tanto tracionar quanto comprimir.</p>"
+    },
+    {
+      "id": "es-029",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "inercia",
+      "enunciado": "<p>Para o perfil I da questão 23 (mesas 150×16, alma 10×280, A = 7 600 mm², ȳ = 156 mm), o momento de inércia em relação ao eixo forte é aproximadamente:</p>",
+      "alternativas": [
+        "6 180 cm⁴",
+        "12 350 cm⁴",
+        "902 cm⁴",
+        "24 700 cm⁴"
+      ],
+      "correta": 1,
+      "formulas": [
+        "I = Σ(I_c,i + A_i·d_i²)",
+        "I_c,ret = b·h³/12",
+        "d_i = ȳ_i − ȳ"
+      ],
+      "explicacao": "<div class=\"passo\">Alma: I<sub>c</sub> = 10 × 280³/12 = 18,29×10⁶ mm⁴; d = 0 → contribui 18,29×10⁶</div><div class=\"passo\">Cada mesa: I<sub>c</sub> = 150 × 16³/12 = 0,051×10⁶ mm⁴; d = 148 mm</div><div class=\"passo\">A·d² = 2 400 × 148² = 52,57×10⁶ mm⁴ por mesa</div><div class=\"passo\">I = 18,29 + 2×(0,051 + 52,57) = 123,5×10⁶ mm⁴ = <strong>12 350 cm⁴</strong></div><p>Repare: as duas mesas contribuem com 105×10⁶, ou 85 % do total, quase tudo pelo termo A·d². A inércia própria das mesas é apenas 0,08 % — é a posição delas que importa, não a espessura.</p>"
+    },
+    {
+      "id": "es-030",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "distribuidas",
+      "enunciado": "<p>Sobre substituir uma carga distribuída pela sua resultante concentrada, assinale a alternativa correta:</p>",
+      "alternativas": [
+        "A substituição é sempre válida, inclusive para traçar os diagramas de esforços internos.",
+        "A substituição vale para as reações de apoio, porque o equilíbrio global só enxerga resultante e momento resultante; nos esforços internos ela é errada, pois estes dependem de onde a carga está distribuída — em viga biapoiada com carga uniforme daria qL²/4 em vez do correto qL²/8.",
+        "A substituição nunca é válida, nem mesmo para as reações de apoio.",
+        "A substituição vale para os esforços internos, mas não para as reações de apoio."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A substituição vale para o <strong>equilíbrio global</strong> do corpo. As três equações ΣF<sub>x</sub> = ΣF<sub>y</sub> = ΣM = 0 só enxergam a resultante das forças e o momento resultante. Como a força concentrada equivalente é definida justamente para ter a mesma resultante e o mesmo momento em relação a qualquer polo, as reações de apoio calculadas são exatamente as mesmas.</p><p>Os <strong>esforços internos</strong>, porém, dependem de <em>onde</em> a carga está distribuída ao longo do corpo, e não apenas da sua resultante. O cortante em uma seção é a soma das forças à esquerda dela: com a carga distribuída, essa soma varia continuamente; com a carga concentrada, ela dá um salto abrupto. O resultado é qualitativamente diferente: a carga distribuída produz cortante <em>linear</em> e momento <em>parabólico</em>, enquanto a concentrada produz cortante constante com salto e momento linear com bico.</p><p>Quantitativamente a diferença é grande. Uma viga biapoiada de vão L com carga uniforme q tem M<sub>máx</sub> = qL²/8 no meio. Substituindo por uma força concentrada qL no meio, obteria-se M<sub>máx</sub> = qLL/4 = qL²/4 — o <strong>dobro</strong> do valor correto. Dimensionar a viga assim levaria a um perfil desnecessariamente pesado; e em outras configurações o erro pode ser contra a segurança.</p><p>A regra prática: use a resultante equivalente apenas para achar as reações. Uma vez conhecidas, volte à carga distribuída original para percorrer a viga e montar os diagramas.</p>"
+    }
+  ]
+}

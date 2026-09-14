@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refino de Petróleo — Engenharia Mecânica</title>
+<meta name="description" content="Caracterização do petróleo, curva PEV, destilação atmosférica e a vácuo, craqueamento catalítico (FCC), hidrotratamento e especificação de derivados: teoria, simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛢️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">Eletiva · Engenharia Mecânica</p>
+    <h1>Refino de Petróleo</h1>
+    <p class="lead">O petróleo cru quase não tem uso direto. O refino o desmonta em frações pela temperatura de ebulição, quebra as moléculas grandes demais, remove o enxofre e mistura o resultado até cada derivado atender à sua especificação — tudo isso gastando o mínimo de energia e sem deixar sobrar o que não se vende.</p>
+    <div class="btn-row">
+      <span class="tag accent">11 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Toda a disciplina gira em torno de duas ideias. A primeira é que <strong>não existem dois petróleos iguais</strong>: a densidade, a curva de destilação e os contaminantes de cada cru determinam quanto de cada derivado ele pode dar. A segunda é que o mercado quer uma cesta de produtos que <strong>nunca coincide</strong> com o que a natureza entrega — há sempre fundo demais e gasolina e diesel de menos. O refino é a engenharia de fechar essa diferença.</p>
+        <div class="formula"><span data-tex="\text{separar (destilação)} \;\to\; \text{converter (FCC, coque, hidrocraqueamento)} \;\to\; \text{tratar (HDT, amina)} \;\to\; \text{misturar (blending)}"></span></div>
+        <div class="callout note">
+          <strong>Os quatro grupos de processos</strong>
+          <strong>Separação</strong> — físicos, não mudam as moléculas: destilação, desasfaltação, extração de aromáticos. <strong>Conversão</strong> — químicos, quebram ou rearranjam moléculas: craqueamento térmico e catalítico, coqueamento, hidrocraqueamento, reforma, alquilação. <strong>Tratamento</strong> — removem contaminantes sem mudar muito o resto: hidrotratamento, Merox, lavagem cáustica. <strong>Auxiliares</strong> — sustentam os outros: geração de hidrogênio, recuperação de enxofre, tratamento de águas ácidas, utilidades.
+        </div>
+        <div class="callout warn">
+          <strong>Separar não muda a molécula</strong>
+          Misturando de volta todos os produtos da destilação, reconstitui-se o petróleo original. Nos processos de conversão isso não é verdade: o que sai do FCC tem moléculas que não existiam na carga. Essa distinção explica por que a destilação sozinha nunca resolve o problema do “fundo de barril” — ela só pode dividir o que já está lá.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. O petróleo: composição e classificação</summary>
+          <div class="topic-body">
+            <p>O petróleo é uma mistura de milhares de hidrocarbonetos com pequenas quantidades de compostos de enxofre, nitrogênio, oxigênio e metais. Os hidrocarbonetos se agrupam em três famílias, e a proporção entre elas define o comportamento do cru e o que se consegue fazer com ele.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Família</th><th>Estrutura</th><th>No derivado</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Parafinas</strong> (alcanos)</td><td>Cadeias abertas saturadas, CₙH₂ₙ₊₂</td><td>Ótimo número de cetano (diesel) e ótimo querosene; péssima octanagem; parafina sólida em lubrificante</td></tr>
+                <tr><td><strong>Naftênicos</strong> (cicloalcanos)</td><td>Anéis saturados, CₙH₂ₙ</td><td>Carga ideal para a reforma catalítica, que os converte em aromáticos</td></tr>
+                <tr><td><strong>Aromáticos</strong></td><td>Anel benzênico</td><td>Alta octanagem (gasolina); baixo cetano; queimam com fuligem</td></tr>
+                <tr><td><strong>Olefinas</strong></td><td>Ligação dupla</td><td>Praticamente ausentes no cru — surgem no craqueamento; instáveis, formam goma</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Grau API</h4>
+            <div class="formula"><span data-tex="{}^\circ API = \frac{141{,}5}{d_{60/60}} - 131{,}5"></span><span class="where">d a 60 °F relativa à água a 60 °F · a água vale 10 °API</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Classe (ANP)</th><th>°API</th><th>Densidade</th><th>Exemplos</th></tr></thead>
+              <tbody>
+                <tr><td>Leve</td><td>&gt; 31,1</td><td>&lt; 0,870</td><td>Brent 38, WTI 40, Árabe Leve 33</td></tr>
+                <tr><td>Médio</td><td>22,3 a 31,1</td><td>0,870 a 0,920</td><td>Búzios e Tupi (pré-sal) 28 a 30</td></tr>
+                <tr><td>Pesado</td><td>10 a 22,3</td><td>0,920 a 1,000</td><td>Marlim 20, Maya 22</td></tr>
+                <tr><td>Extrapesado</td><td>&lt; 10</td><td>&gt; 1,000</td><td>Afunda na água — betume do Orinoco e de Alberta</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Fator de caracterização K<sub>UOP</sub></h4>
+            <p>Duas frações com o mesmo ponto de ebulição podem ter densidades bem diferentes: a parafínica é leve, a aromática é densa. Watson transformou isso num índice:</p>
+            <div class="formula"><span data-tex="K_{UOP} = \frac{\sqrt[3]{T_B}}{d_{60/60}}"></span><span class="where">T<sub>B</sub> em rankine · ≥ 12,5 parafínico · ≈ 11,5 naftênico · ≤ 11 aromático</span></div>
+            <h4>Contaminantes</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Contaminante</th><th>Por que importa</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Enxofre</strong> (0,05 a 5 %)</td><td>Vira SO₂ na queima; envenena catalisadores; corrói. Cru <em>doce</em> &lt; 0,5 % S, <em>ácido</em> acima</td></tr>
+                <tr><td><strong>Nitrogênio</strong></td><td>Envenena os sítios ácidos do catalisador de FCC e hidrocraqueamento; gera NOₓ</td></tr>
+                <tr><td><strong>Ácidos naftênicos</strong></td><td>Medidos pelo índice de acidez total (TAN, mg KOH/g). Acima de ~0,5 corroem a destilação entre 220 e 400 °C</td></tr>
+                <tr><td><strong>Níquel e vanádio</strong></td><td>Concentram-se no resíduo; destroem a zeólita do FCC e desativam o catalisador de hidrotratamento</td></tr>
+                <tr><td><strong>Sais e água</strong></td><td>Cloretos hidrolisam a HCl no forno e corroem o topo da torre — daí a dessalgação</td></tr>
+                <tr><td><strong>Asfaltenos</strong></td><td>Precipitam se o cru é misturado com outro muito parafínico: incrustam trocadores e tanques</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Avaliação do petróleo: curva PEV e cortes</summary>
+          <div class="topic-body">
+            <p>A <strong>curva PEV</strong> (ponto de ebulição verdadeiro, ou TBP) é o documento de identidade de um petróleo. Destila-se uma amostra numa coluna de laboratório de alta eficiência, anotando a temperatura do vapor contra o volume recolhido. Até ~350 °C a destilação é atmosférica (ASTM D2892); acima disso passa a ser feita sob vácuo (ASTM D5236) e as temperaturas são convertidas para a <strong>temperatura atmosférica equivalente</strong>, porque o resíduo craquearia antes de ferver.</p>
+            <div class="formula"><span data-tex="R_{corte} = x_{PEV}(T_{fim}) - x_{PEV}(T_{início})"></span><span class="where">rendimento de um corte lido direto na curva, em % volume</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Corte</th><th>Faixa PEV típica</th><th>Átomos de C</th><th>Destino</th></tr></thead>
+              <tbody>
+                <tr><td>Gás combustível e GLP</td><td>&lt; 20 °C</td><td>C1 a C4</td><td>Gás de refinaria; GLP (propano + butano)</td></tr>
+                <tr><td>Nafta leve</td><td>20 a 100 °C</td><td>C5 a C6</td><td>Gasolina (após isomerização) e petroquímica</td></tr>
+                <tr><td>Nafta pesada</td><td>100 a 175 °C</td><td>C7 a C10</td><td>Reforma catalítica → gasolina de alta octanagem</td></tr>
+                <tr><td>Querosene</td><td>175 a 235 °C</td><td>C10 a C14</td><td>QAV (querosene de aviação), após tratamento</td></tr>
+                <tr><td>Diesel leve e pesado</td><td>235 a 370 °C</td><td>C14 a C22</td><td>Óleo diesel, após hidrotratamento</td></tr>
+                <tr><td>Gasóleo de vácuo</td><td>370 a 565 °C</td><td>C22 a C45</td><td>Carga de FCC, hidrocraqueamento ou lubrificantes</td></tr>
+                <tr><td>Resíduo de vácuo</td><td>&gt; 565 °C</td><td>&gt; C45</td><td>Coqueamento, asfalto, óleo combustível</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>O mesmo corte tem nomes diferentes conforme a refinaria</strong>
+              As temperaturas de corte não são leis da natureza: são decisões de operação. Uma refinaria que quer mais querosene de aviação alarga a faixa do QAV para os dois lados; uma que quer mais diesel manda a nafta pesada e o gasóleo leve para o pool de diesel. O limite é sempre a especificação do produto — ponto de fulgor embaixo, ponto de congelamento ou destilação em cima.
+            </div>
+            <div class="callout warn">
+              <strong>O enxofre não se distribui por igual</strong>
+              Os compostos sulfurados leves (mercaptanas) somem com o gás; os pesados (benzotiofenos, dibenzotiofenos) fervem alto. Resultado: a nafta leve tem pouquíssimo enxofre e o resíduo de vácuo concentra de 2 a 4 vezes o teor do cru. Um petróleo de 0,5 % S pode ter resíduo com 1,5 % — e é o fundo que vai para o óleo combustível marítimo, limitado a 0,5 % S desde 2020 (IMO 2020).
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Objetivos do refino e esquemas de refino</summary>
+          <div class="topic-body">
+            <p>Uma refinaria é planejada para um de dois objetivos: <strong>combustíveis</strong> (GLP, gasolina, QAV, diesel, óleo combustível) ou <strong>lubrificantes básicos e parafinas</strong>. O primeiro grupo é a imensa maioria, porque a demanda por combustível é muito maior; todas as refinarias brasileiras produzem combustíveis, e só algumas também têm trem de lubrificantes.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Esquema</th><th>Unidades</th><th>O que faz com o fundo</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Topping</strong> (hydroskimming)</td><td>Destilação atmosférica + reforma + hidrotratamento</td><td>Nada: vende resíduo atmosférico como óleo combustível</td></tr>
+                <tr><td><strong>Conversão</strong></td><td>+ vácuo + FCC</td><td>Transforma o gasóleo de vácuo em gasolina e GLP; o resíduo de vácuo ainda sobra</td></tr>
+                <tr><td><strong>Conversão profunda</strong></td><td>+ coqueamento retardado ou hidrocraqueamento de resíduo</td><td>Praticamente não sobra óleo combustível: o fundo vira destilado e coque</td></tr>
+                <tr><td><strong>Lubrificantes</strong></td><td>Vácuo + desasfaltação a propano + extração de aromáticos + desparafinação</td><td>Gasóleos e óleo desasfaltado viram óleos básicos</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\text{Índice de Nelson} = \sum_i \frac{\text{capacidade}_i}{\text{capacidade da destilação}}\times F_i"></span><span class="where">mede a complexidade: topping ≈ 2 · com FCC ≈ 6 · conversão profunda 10 a 14</span></div>
+            <div class="callout note">
+              <strong>Por que o esquema muda com o tempo</strong>
+              O mercado de uma região se desloca (mais diesel, menos óleo combustível), a legislação aperta (enxofre no diesel e na gasolina, IMO 2020 no bunker) e o petróleo disponível muda (o pré-sal é mais leve e mais doce que Marlim). A refinaria acompanha com novas unidades. Refino é um processo dinâmico, planejado em horizonte de décadas.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Pré-aquecimento e dessalgação</summary>
+          <div class="topic-body">
+            <p>Antes de chegar ao forno, o cru passa por uma <strong>bateria de preaquecimento</strong>: uma sequência de trocadores em que ele é aquecido pelos próprios produtos e refluxos quentes que saem da torre. É onde está a maior economia de energia da refinaria — cada grau recuperado ali é um grau que o forno não precisa fornecer.</p>
+            <p>No meio da bateria, entre ~120 e 150 °C, fica a <strong>dessalgadora</strong>. Injeta-se água de lavagem (3 a 8 % do cru), mistura-se numa válvula de mistura e, dentro de um vaso com campo elétrico de alta tensão, as gotas coalescem e decantam levando os sais dissolvidos.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Sem dessalgação</th><th>Consequência</th></tr></thead>
+              <tbody>
+                <tr><td>MgCl₂ e CaCl₂ no forno</td><td>Hidrolisam a partir de ~120 °C: <span data-tex="MgCl_2 + 2H_2O \to Mg(OH)_2 + 2HCl"></span></td></tr>
+                <tr><td>HCl no topo da torre</td><td>Condensa com a água e corrói violentamente o sistema de topo</td></tr>
+                <tr><td>Sais depositados</td><td>Incrustam trocadores e tubos do forno</td></tr>
+                <tr><td>Sódio no resíduo</td><td>Envenena o catalisador do FCC</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Por que a dessalgadora fica no meio da bateria e não no início</strong>
+              A viscosidade do cru cai muito com a temperatura, e é a viscosidade que controla a velocidade de decantação das gotas (lei de Stokes). Aquecer ajuda a separar — mas acima de ~150 °C a água vaporizaria na pressão do vaso. O meio da bateria é o compromisso.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Destilação atmosférica</summary>
+          <div class="topic-body">
+            <p>O cru sai do forno a 350–385 °C parcialmente vaporizado e entra na <strong>zona de flash</strong> da torre. O vapor sobe através de 30 a 50 pratos, trocando calor e massa com o líquido que desce; em cada altura a composição é diferente, e é ali que se instalam as retiradas laterais. O líquido que não vaporizou desce, é retificado com vapor d’água e sai como <strong>resíduo atmosférico</strong>.</p>
+            <div class="formula"><span data-tex="p_{HC} = P\,\frac{n_{HC}}{n_{HC} + n_{vapor}}"></span><span class="where">o vapor d’água baixa a pressão parcial dos hidrocarbonetos — um vácuo parcial barato</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Elemento</th><th>Função</th></tr></thead>
+              <tbody>
+                <tr><td>Forno</td><td>Fornece todo o calor de separação; limite de ~370 a 385 °C por craqueamento térmico e coque nos tubos</td></tr>
+                <tr><td>Zona de flash</td><td>Separa vapor e líquido; opera 0,3 a 0,4 bar acima do topo</td></tr>
+                <tr><td>Overflash</td><td>2 a 5 % a mais vaporizado, que volta como óleo de lavagem e limpa o vapor de metais e asfaltenos</td></tr>
+                <tr><td>Retificadoras laterais</td><td>Pequenas torres com vapor que tiram os leves de cada retirada — acertam o ponto de fulgor</td></tr>
+                <tr><td>Refluxos circulantes</td><td>Retiram calor no meio da torre em nível alto, aproveitado na bateria de preaquecimento</td></tr>
+                <tr><td>Sistema de topo</td><td>Condensador, vaso de refluxo com bota de água, injeção de amina neutralizante e inibidor</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>“Atmosférica” não quer dizer 1 atm</strong>
+              O topo opera tipicamente a 1,5 a 2 bar absolutos, para que o vapor vença os pratos e o condensador trabalhe com água de refrigeração comum. Aumentar a pressão de topo esquenta a torre inteira e reduz a vaporização no flash.
+            </div>
+            <div class="callout tip">
+              <strong>Três alavancas para recuperar destilado do fundo</strong>
+              Subir a temperatura do forno (limitada pelo craqueamento), aumentar o vapor de retificação (limitado pela água ácida gerada e pela carga do condensador) ou baixar a pressão de topo (limitada pelo condensador). Todas mexem na mesma coisa: a pressão parcial e a temperatura na zona de flash.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Destilação a vácuo e tipos de unidade</summary>
+          <div class="topic-body">
+            <p>O resíduo atmosférico ainda contém 40 a 60 % de gasóleo, mas para destilá-lo a 1 atm seria preciso passar de 500 °C. A solução é reduzir a pressão: a 10–60 mmHg absolutos, o mesmo corte ferve abaixo de 420 °C.</p>
+            <div class="formula"><span data-tex="\ln\frac{P_2}{P_1} = -\frac{\Delta H_v}{R}\left(\frac{1}{T_2} - \frac{1}{T_1}\right)"></span><span class="where">Clausius-Clapeyron — para frações de petróleo usa-se a correlação de Maxwell-Bonnell</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Característica da torre de vácuo</th><th>Motivo</th></tr></thead>
+              <tbody>
+                <tr><td>Diâmetro muito grande</td><td>O vapor ocupa volume inversamente proporcional à pressão</td></tr>
+                <tr><td>Recheio estruturado em vez de pratos</td><td>Perda de carga baixíssima — cada mmHg perdido no leito é vácuo perdido no flash</td></tr>
+                <tr><td>Ejetores a vapor em estágios</td><td>Sem partes móveis; o vapor motriz arrasta os incondensáveis</td></tr>
+                <tr><td>Condensadores barométricos</td><td>Coluna de ~10 m de água sela o vácuo</td></tr>
+                <tr><td>Fundo resfriado (quench)</td><td>Evita craqueamento do resíduo parado a alta temperatura</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tipo de unidade</th><th>Composição</th><th>Uso</th></tr></thead>
+              <tbody>
+                <tr><td>Um estágio</td><td>Só destilação atmosférica</td><td>Pequenas refinarias ou cru muito leve</td></tr>
+                <tr><td>Dois estágios</td><td>Atmosférica + vácuo</td><td>O caso mais comum</td></tr>
+                <tr><td>Três estágios</td><td>Pré-fracionamento + atmosférica + vácuo</td><td>Cru leve com muito gás e nafta: a pré-flash alivia a torre principal</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Operação úmida ou seca</strong>
+              Na operação <em>úmida</em> injeta-se vapor no fundo e no forno para baixar a pressão parcial; na <em>seca</em>, confia-se só nos ejetores, que precisam ser maiores, mas geram menos água ácida. As unidades modernas tendem à operação seca com vácuo profundo (8 a 15 mmHg).
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Craqueamento catalítico fluido (FCC)</summary>
+          <div class="topic-body">
+            <p>O FCC é a principal unidade de conversão do mundo e o coração das refinarias brasileiras. Quebra o gasóleo de vácuo em gasolina, GLP e destilados sobre um catalisador zeolítico em pó, que se comporta como fluido quando aerado.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Seção</th><th>O que acontece</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Riser</strong></td><td>O gasóleo atomizado encontra o catalisador a ~700 °C, vaporiza e craqueia em 2 a 5 segundos subindo o tubo</td></tr>
+                <tr><td><strong>Vaso separador</strong></td><td>Ciclones separam o catalisador dos produtos, que seguem para a fracionadora</td></tr>
+                <tr><td><strong>Retificadora</strong></td><td>Vapor arranca os hidrocarbonetos presos nos poros do catalisador gasto</td></tr>
+                <tr><td><strong>Regenerador</strong></td><td>Ar queima o coque depositado; o catalisador sai limpo e quente</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\frac{C}{O} = \frac{Q_{riser}}{c_{p,cat}\,(T_{reg} - T_{rx})}"></span><span class="where">o catalisador é o próprio fluido que transporta o calor</span></div>
+            <div class="callout warn">
+              <strong>O FCC é termicamente balanceado</strong>
+              Não há forno de reação: o calor para vaporizar e craquear vem inteiro da queima do coque. Por isso a temperatura do regenerador não é uma variável independente — ela se ajusta até que o coque queimado pague exatamente o calor que o riser pede. Uma carga que faz mais coque esquenta o regenerador, reduz a circulação necessária e derruba a conversão. Acima de ~760 °C, é preciso instalar resfriador de catalisador.
+            </div>
+            <div class="formula"><span data-tex="y_{gasolina} \approx 1{,}30X - 0{,}86X^2 \;\Rightarrow\; X^* \approx 76\ \%"></span><span class="where">a gasolina passa por um máximo: além dele, craqueia de novo em GLP e gás</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Produto do FCC</th><th>% massa típica</th><th>Destino</th></tr></thead>
+              <tbody>
+                <tr><td>Gás seco (H₂, C1, C2)</td><td>3 a 4</td><td>Gás combustível da refinaria</td></tr>
+                <tr><td>GLP</td><td>15 a 25</td><td>GLP e propeno para petroquímica</td></tr>
+                <tr><td>Gasolina de craqueamento</td><td>45 a 52</td><td>Pool de gasolina (octanagem ~92 RON; tem olefinas e enxofre)</td></tr>
+                <tr><td>LCO (óleo leve de reciclo)</td><td>12 a 20</td><td>Diesel, após hidrotratamento severo</td></tr>
+                <tr><td>Óleo decantado</td><td>5 a 10</td><td>Óleo combustível, negro de fumo</td></tr>
+                <tr><td>Coque</td><td>4 a 6</td><td>Queimado no regenerador</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Outros processos de conversão</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Processo</th><th>Carga</th><th>Condições</th><th>Produtos e ideia central</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Coqueamento retardado</strong></td><td>Resíduo de vácuo</td><td>~490 °C, tambores em batelada de 18–24 h</td><td>Craqueamento térmico até a exaustão: gás, nafta, gasóleo e coque sólido. Resolve o fundo de barril a baixo custo</td></tr>
+                <tr><td><strong>Hidrocraqueamento</strong></td><td>Gasóleo de vácuo, LCO</td><td>370–430 °C, 100–180 bar de H₂</td><td>Craqueia e hidrogena ao mesmo tempo: diesel e QAV de altíssima qualidade, sem enxofre. Caro em H₂ e em pressão</td></tr>
+                <tr><td><strong>Reforma catalítica</strong></td><td>Nafta pesada hidrotratada</td><td>480–520 °C, 5–25 bar, Pt-Re</td><td>Naftênicos → aromáticos + H₂. Gasolina de 95–102 RON e principal fonte de hidrogênio da refinaria</td></tr>
+                <tr><td><strong>Alquilação</strong></td><td>Isobutano + olefinas C3–C4</td><td>HF ou H₂SO₄, baixa temperatura</td><td>Molécula ramificada de alta octanagem, sem aromáticos nem enxofre</td></tr>
+                <tr><td><strong>Isomerização</strong></td><td>Nafta leve C5–C6</td><td>150–260 °C, Pt</td><td>Parafina linear → ramificada: sobe a octanagem de ~70 para ~85 RON</td></tr>
+                <tr><td><strong>Desasfaltação a propano</strong></td><td>Resíduo de vácuo</td><td>Extração com solvente</td><td>Óleo desasfaltado (carga de FCC ou lubrificante) + asfalto</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Rejeitar carbono ou adicionar hidrogênio</strong>
+              Toda conversão de pesado em leve precisa aumentar a razão H/C. Há dois caminhos. <strong>Rejeição de carbono</strong>: tira-se carbono na forma de coque (FCC, coqueamento) — barato, mas perde massa. <strong>Adição de hidrogênio</strong>: acrescenta-se H₂ (hidrocraqueamento) — rende mais de 100 % em volume, mas exige hidrogênio caro e vasos de alta pressão.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Hidrotratamento e tratamentos</summary>
+          <div class="topic-body">
+            <p>O hidrotratamento (HDT) remove enxofre, nitrogênio, oxigênio e metais, e satura olefinas e parte dos aromáticos, reagindo a carga com hidrogênio sobre catalisador de CoMo ou NiMo em alumina, a 300–400 °C e 30–120 bar.</p>
+            <div class="formula"><span data-tex="R{-}S{-}R' + 2H_2 \;\to\; R{-}H + R'{-}H + H_2S"></span><span class="where">hidrodessulfurização (HDS) · exotérmica</span></div>
+            <div class="formula"><span data-tex="S_{sai} = \left[S_{entra}^{\,1-n} + (n-1)\frac{k}{LHSV}\right]^{\frac{1}{1-n}}, \quad n \approx 1{,}5"></span><span class="where">cinética de ordem aparente 1,5 — reflexo de muitos compostos com reatividades diferentes</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Composto sulfurado</th><th>Reatividade</th><th>Onde está</th></tr></thead>
+              <tbody>
+                <tr><td>Mercaptanas, sulfetos</td><td>Muito alta</td><td>Nafta e querosene</td></tr>
+                <tr><td>Tiofenos</td><td>Alta</td><td>Gasolina</td></tr>
+                <tr><td>Benzotiofenos</td><td>Média</td><td>Querosene e diesel leve</td></tr>
+                <tr><td>Dibenzotiofenos</td><td>Baixa</td><td>Diesel</td></tr>
+                <tr><td>4,6-dimetildibenzotiofeno</td><td>Muito baixa — o S fica escondido entre dois metilas</td><td>Diesel pesado e LCO: é quem decide o S-10</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Por que chegar a S-10 custou uma nova geração de unidades</strong>
+              Os primeiros 97 % de enxofre saem facilmente. Os últimos compostos só reagem depois de saturar um anel aromático, o que exige catalisador NiMo, alta pressão de hidrogênio e reator muito maior (velocidade espacial menor). Subir a temperatura não resolve: acima de ~380 °C o catalisador coqueia e a saturação de aromáticos esbarra no equilíbrio.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tratamento</th><th>O que remove</th><th>Como</th></tr></thead>
+              <tbody>
+                <tr><td>Lavagem com amina (DEA, MDEA)</td><td>H₂S e CO₂ dos gases</td><td>Absorção a frio, regeneração a quente</td></tr>
+                <tr><td>Merox</td><td>Mercaptanas do GLP e do querosene</td><td>Oxidação a dissulfetos com catalisador em soda</td></tr>
+                <tr><td>Unidade Claus</td><td>Converte o H₂S em enxofre elementar</td><td><span data-tex="2H_2S + SO_2 \to 3S + 2H_2O"></span></td></tr>
+                <tr><td>Retificadora de águas ácidas</td><td>H₂S e NH₃ da água de processo</td><td>Retificação com vapor</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>10. Derivados e especificações</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Derivado</th><th>Propriedade-chave</th><th>O que ela garante</th></tr></thead>
+              <tbody>
+                <tr><td><strong>GLP</strong></td><td>Pressão de vapor, intemperismo</td><td>Vaporiza no botijão sem deixar resíduo; não passa da pressão do vaso</td></tr>
+                <tr><td><strong>Gasolina</strong></td><td>Octanagem (RON, MON, IAD), PVR, destilação, S ≤ 50 ppm</td><td>Resistência à detonação; partida a frio sem tamponamento por vapor</td></tr>
+                <tr><td><strong>QAV-1</strong></td><td>Ponto de congelamento ≤ −47 °C, ponto de fulgor ≥ 38 °C, estabilidade térmica</td><td>Não congela a 12 km de altitude; manuseio seguro</td></tr>
+                <tr><td><strong>Diesel S-10</strong></td><td>Número de cetano ≥ 48, S ≤ 10 mg/kg, ponto de entupimento</td><td>Ignição rápida por compressão; compatível com catalisadores de pós-tratamento</td></tr>
+                <tr><td><strong>Óleo combustível</strong></td><td>Viscosidade, enxofre, ponto de fluidez</td><td>Bombeável e atomizável no queimador</td></tr>
+                <tr><td><strong>Asfalto (CAP)</strong></td><td>Penetração, ponto de amolecimento</td><td>Consistência no pavimento em temperatura de serviço</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="IAD = \frac{RON + MON}{2}"></span><span class="where">índice antidetonante, o número exposto na bomba em muitos países</span></div>
+            <div class="callout tip">
+              <strong>Octanagem e cetano são opostos</strong>
+              A gasolina precisa <em>resistir</em> à autoignição (motor de centelha): moléculas ramificadas e aromáticas. O diesel precisa <em>autoignir rápido</em> (motor de compressão): parafinas lineares. Por isso o que é ótimo para um é péssimo para o outro, e a reforma catalítica — que produz aromáticos — só serve à gasolina.
+            </div>
+            <div class="callout note">
+              <strong>O produto final é quase sempre uma mistura</strong>
+              A gasolina vendida é blending de nafta de destilação, reformado, gasolina de FCC, alquilado e isomerizado, mais o etanol anidro adicionado na distribuição. O planejamento da refinaria usa programação linear para escolher o cru e as proporções que atendem todas as especificações ao menor custo.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>11. Processos auxiliares, energia e segurança</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Sistema</th><th>Papel</th></tr></thead>
+              <tbody>
+                <tr><td>Geração de hidrogênio (reforma a vapor)</td><td><span data-tex="CH_4 + H_2O \to CO + 3H_2"></span> e deslocamento CO + H₂O → CO₂ + H₂: alimenta HDT e hidrocraqueamento</td></tr>
+                <tr><td>Recuperação de enxofre</td><td>Aminas + Claus + tratamento de gás de cauda: 99,9 % do H₂S vira enxofre sólido</td></tr>
+                <tr><td>Tocha (flare)</td><td>Queima segura dos alívios de pressão em emergência</td></tr>
+                <tr><td>Utilidades</td><td>Vapor em vários níveis, água de refrigeração, ar comprimido, nitrogênio, energia elétrica (cogeração)</td></tr>
+                <tr><td>Tratamento de efluentes</td><td>Separador água-óleo, flotação, biológico</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Hidrogênio a alta temperatura ataca o aço</strong>
+              Acima de ~200 °C e com pressão parcial de H₂ alta, o hidrogênio difunde no aço-carbono e reage com o carbono formando metano nos contornos de grão — o <em>ataque por hidrogênio a alta temperatura</em>, que trinca o equipamento sem aviso. As curvas de Nelson (API RP 941) definem o limite de temperatura e pressão para cada aço, e é por isso que reatores de HDT são de aço Cr-Mo com clad inoxidável.
+            </div>
+            <div class="callout note">
+              <strong>Onde vai a energia</strong>
+              Uma refinaria consome de 5 a 8 % do petróleo processado como combustível. Os fornos respondem pela maior parte. A integração energética — trocar calor entre correntes quentes e frias antes de queimar combustível — é o principal campo de atuação do engenheiro mecânico no refino.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Cinco modelos interativos e animados, com as fórmulas e a resolução passo a passo. Todos usam correlações publicadas e foram conferidos contra dados de referência.</p>
+
+        <div id="sim-petroleo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare o exemplo 1 (Brent) com o 6 (Marlim). Com as mesmas temperaturas de corte, o resíduo de vácuo sobe de ~18 % para mais de 40 %. É essa diferença que obriga uma refinaria projetada para cru pesado a ter coqueamento retardado.
+        </div>
+
+        <div id="sim-torre" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o exemplo 2 (forno frio): parte do diesel desce com o resíduo. Agora, em vez de subir o forno, aumente só o vapor de retificação — o diesel volta sem chegar perto da temperatura de craqueamento. É o exemplo 3.
+        </div>
+
+        <div id="sim-vacuo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Leve a pressão de 25 para 80 mmHg (exemplo 3, ejetor com falha) e acompanhe no gráfico de Maxwell-Bonnell o ponto de operação subindo pela curva: com o mesmo forno, o gasóleo de vácuo cai vários pontos percentuais do cru.
+        </div>
+
+        <div id="sim-fcc" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Suba o resíduo de carbono da carga de 0,5 para 4 % sem mexer em mais nada. A temperatura do regenerador dispara, a circulação de catalisador cai e a conversão despenca — tudo sozinho, pelo balanço térmico. É o dilema do FCC de resíduo.
+        </div>
+
+        <div id="sim-hds" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          No exemplo 1, tente chegar a S-10 só subindo a temperatura: no gráfico “enxofre x temperatura” a curva de LHSV 1,5 cruza S-10 muito além de 380 °C. Depois carregue o exemplo 3 e veja que o caminho real foi trocar o catalisador e aumentar o reator.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Grau API</td><td><span data-tex="{}^\circ API = \dfrac{141{,}5}{d_{60/60}} - 131{,}5"></span></td><td>ASTM D287</td></tr>
+              <tr><td>Fator de Watson</td><td><span data-tex="K_{UOP} = \dfrac{\sqrt[3]{T_B}}{d_{60/60}}"></span></td><td>T<sub>B</sub> em °R</td></tr>
+              <tr><td>Temperatura média volumétrica</td><td><span data-tex="T_B = \dfrac{T_{10}+T_{30}+T_{50}+T_{70}+T_{90}}{5}"></span></td><td>da curva de destilação</td></tr>
+              <tr><td>Rendimento de corte</td><td><span data-tex="R = x_{PEV}(T_{fim}) - x_{PEV}(T_{início})"></span></td><td>% volume</td></tr>
+              <tr><td>Volume → massa</td><td><span data-tex="w_i = \dfrac{V_i\,d_i}{\sum V_j\,d_j}"></span></td><td>—</td></tr>
+              <tr><td>Peso molecular</td><td><span data-tex="M = 42{,}965\,e^{2{,}097\times10^{-4}T_b - 7{,}787d + 2{,}085\times10^{-3}T_b d}\,T_b^{1{,}26}d^{4{,}98}"></span></td><td>Riazi-Daubert, T<sub>b</sub> em K</td></tr>
+              <tr><td>Pressão parcial</td><td><span data-tex="p_{HC} = P\,\dfrac{n_{HC}}{n_{HC}+n_{vapor}}"></span></td><td>efeito do vapor de retificação</td></tr>
+              <tr><td>Clausius-Clapeyron</td><td><span data-tex="\ln\dfrac{P_2}{P_1} = -\dfrac{\Delta H_v}{R}\left(\dfrac{1}{T_2}-\dfrac{1}{T_1}\right)"></span></td><td>base da destilação a vácuo</td></tr>
+              <tr><td>Carga térmica do forno</td><td><span data-tex="Q = \dot m\,c_p\,\Delta T + \dot m_{vap}\,\lambda"></span></td><td>sensível + latente</td></tr>
+              <tr><td>Relação catalisador/óleo</td><td><span data-tex="\dfrac{C}{O} = \dfrac{Q_{riser}}{c_{p,cat}(T_{reg}-T_{rx})}"></span></td><td>balanço térmico do FCC</td></tr>
+              <tr><td>Conversão no FCC</td><td><span data-tex="X = 100 - LCO - \text{óleo decantado}"></span></td><td>% massa ou volume</td></tr>
+              <tr><td>Velocidade espacial</td><td><span data-tex="LHSV = \dfrac{\dot V_{carga}}{V_{catalisador}}"></span></td><td>h⁻¹</td></tr>
+              <tr><td>HDS, ordem n</td><td><span data-tex="S_{sai} = \left[S_e^{1-n} + (n-1)\dfrac{k}{LHSV}\right]^{1/(1-n)}"></span></td><td>n ≈ 1,5</td></tr>
+              <tr><td>Arrhenius</td><td><span data-tex="k = k_0\,e^{-E_a/RT}"></span></td><td>HDS: E<sub>a</sub> ≈ 110 kJ/mol</td></tr>
+              <tr><td>Índice antidetonante</td><td><span data-tex="IAD = \dfrac{RON+MON}{2}"></span></td><td>gasolina</td></tr>
+              <tr><td>Índice de Nelson</td><td><span data-tex="N = \sum \dfrac{C_i}{C_{dest}}F_i"></span></td><td>complexidade da refinaria</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ASTM D287 / D1298</strong></td><td>Grau API e densidade</td><td>Classificação do cru e dos derivados; base de preço do barril</td></tr>
+              <tr><td><strong>ASTM D2892</strong></td><td>Destilação PEV (15 pratos teóricos, refluxo 5:1)</td><td>Levantamento da curva PEV até ~400 °C AET</td></tr>
+              <tr><td><strong>ASTM D5236</strong></td><td>Destilação a vácuo de frações pesadas</td><td>Continuação da PEV até ~565 °C AET</td></tr>
+              <tr><td><strong>ASTM D86</strong></td><td>Destilação de produtos a pressão atmosférica</td><td>Especificação de gasolina, QAV e diesel</td></tr>
+              <tr><td><strong>ASTM D2887</strong></td><td>Destilação simulada por cromatografia</td><td>Controle rápido de cortes em laboratório de processo</td></tr>
+              <tr><td><strong>ASTM D4294 / D5453</strong></td><td>Teor de enxofre (raio X / fluorescência UV)</td><td>A D5453 alcança o nível de ppm exigido pelo S-10</td></tr>
+              <tr><td><strong>ASTM D2699 / D2700</strong></td><td>Octanagem RON e MON</td><td>Gasolina</td></tr>
+              <tr><td><strong>ASTM D613 / D976</strong></td><td>Número e índice de cetano</td><td>Diesel</td></tr>
+              <tr><td><strong>ASTM D189 / D4530</strong></td><td>Resíduo de carbono (Conradson / micro)</td><td>Tendência a formar coque — carga de FCC e coqueamento</td></tr>
+              <tr><td><strong>ASTM D3907</strong></td><td>Microatividade do catalisador de FCC (MAT)</td><td>Acompanhamento do catalisador em equilíbrio</td></tr>
+              <tr><td><strong>ASTM D664</strong></td><td>Índice de acidez total (TAN)</td><td>Risco de corrosão naftênica na destilação</td></tr>
+              <tr><td><strong>ANP — especificação do diesel e da gasolina</strong></td><td>Limites de enxofre, cetano, octanagem, destilação</td><td>S-10 e S-500 no diesel; 50 ppm S na gasolina</td></tr>
+              <tr><td><strong>API Std 560</strong></td><td>Fornos de processo</td><td>Projeto dos fornos atmosférico e de vácuo</td></tr>
+              <tr><td><strong>API RP 941</strong></td><td>Aços para serviço com hidrogênio a alta temperatura</td><td>Curvas de Nelson — seleção de material de reatores de HDT</td></tr>
+              <tr><td><strong>API RP 571</strong></td><td>Mecanismos de dano em refinarias</td><td>Corrosão naftênica, por H₂S, por HCl no topo, fragilização</td></tr>
+              <tr><td><strong>API RP 520 / 521</strong></td><td>Dimensionamento de alívio de pressão e tocha</td><td>Segurança de vasos e torres</td></tr>
+              <tr><td><strong>NR-13</strong></td><td>Caldeiras e vasos de pressão</td><td>Inspeção de torres, vasos, reatores e caldeiras</td></tr>
+              <tr><td><strong>NR-20</strong></td><td>Segurança com inflamáveis e combustíveis</td><td>Classificação e capacitação em instalações de refino</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre caracterização do petróleo, curva PEV, destilação atmosférica e a vácuo, FCC, conversão, hidrotratamento e derivados.</p>
+        <div id="quiz" data-quiz="refino"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>SZKLO, A. S.; ULLER, V. C.; BONFÁ, M. H. P.</strong> <em>Fundamentos do Refino de Petróleo: Tecnologia e Economia.</em> Interciência. — A referência nacional; cobre esquemas de refino e cada unidade.</li>
+          <li><strong>FARAH, M. A.</strong> <em>Petróleo e seus Derivados.</em> LTC. — Caracterização do petróleo e especificação de derivados.</li>
+          <li><strong>GARY, J. H.; HANDWERK, G. E.; KAISER, M. J.</strong> <em>Petroleum Refining: Technology and Economics.</em> CRC Press. — Clássico internacional, com correlações de rendimento.</li>
+          <li><strong>SADEGHBEIGI, R.</strong> <em>Fluid Catalytic Cracking Handbook.</em> Butterworth-Heinemann. — Balanço térmico e operação do FCC.</li>
+          <li><strong>RIAZI, M. R.</strong> <em>Characterization and Properties of Petroleum Fractions.</em> ASTM MNL50. — Correlações de peso molecular e propriedades de frações.</li>
+          <li><strong>API</strong> <em>Technical Data Book — Petroleum Refining.</em> — Maxwell-Bonnell e conversões de curvas de destilação.</li>
+          <li><strong>Apostila da disciplina</strong> — Unidade 1 (conceitos fundamentais e tipos de processos) e Unidade 2 (pré-aquecimento, dessalgação, destilação atmosférica e a vácuo).</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/refino.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  d: ['Densidade relativa', '—', 'a 60 °F, relativa à água a 60 °F'],
+  K: ['Fator de caracterização de Watson', '—', '≥ 12,5 parafínico · ≤ 11 aromático'],
+  T: ['Temperatura', '°C ou K', 'em Maxwell-Bonnell e Watson, em rankine'],
+  P: ['Pressão', 'bar ou mmHg', 'absoluta'],
+  p: ['Pressão parcial', 'mmHg'],
+  x: ['Fração acumulada destilada', '% vol', 'lida na curva PEV'],
+  R: ['Rendimento do corte', '% vol', 'ou constante dos gases, 8,314 J/(mol·K)'],
+  X: ['Conversão', '%', 'no FCC: 100 − LCO − óleo decantado'],
+  Q: ['Calor', 'kJ/kg ou MW'],
+  S: ['Teor de enxofre', 'ppm ou % massa'],
+  k: ['Constante cinética', 'ppm⁻⁰·⁵ h⁻¹', 'na HDS de ordem 1,5'],
+  n: ['Ordem de reação ou número de mols', '—'],
+  M: ['Peso molecular', 'kg/kmol'],
+  y: ['Rendimento', '% massa'],
+  w: ['Fração mássica', '—'],
+  V: ['Volume', 'm³ ou % vol'],
+  N: ['Índice de Nelson', '—', 'complexidade da refinaria'],
+  λ: ['Calor latente de vaporização', 'kJ/kg', '≈ 250 a 300 para gasóleos'],
+  'API': ['Grau API', '°API', '141,5/d − 131,5'],
+  'T_B': ['Temperatura média de ebulição', '°R', 'média volumétrica da curva de destilação'],
+  'T_b': ['Temperatura de ebulição', 'K', ''],
+  'p_HC': ['Pressão parcial dos hidrocarbonetos', 'mmHg', 'reduzida pelo vapor de retificação'],
+  'n_HC': ['Vazão molar de hidrocarbonetos', 'kmol/h'],
+  'T_reg': ['Temperatura do regenerador', '°C', 'resulta do balanço térmico'],
+  'T_rx': ['Temperatura no topo do riser', '°C', '490 a 560 °C'],
+  'c_p': ['Calor específico', 'kJ/(kg·K)'],
+  'E_a': ['Energia de ativação', 'J/mol', 'HDS ≈ 110 kJ/mol'],
+  'LHSV': ['Velocidade espacial horária de líquido', 'h⁻¹', 'vazão ÷ volume de catalisador'],
+  'RON': ['Octanagem pelo método Research', '—', 'ASTM D2699'],
+  'MON': ['Octanagem pelo método Motor', '—', 'ASTM D2700'],
+  'IAD': ['Índice antidetonante', '—', '(RON + MON)/2'],
+  'LCO': ['Óleo leve de reciclo', '% massa', 'destilado do FCC, muito aromático'],
+  'AET': ['Temperatura atmosférica equivalente', '°C', 'temperatura em que a fração ferveria a 1 atm'],
+  'PEV': ['Ponto de ebulição verdadeiro', '°C', 'curva TBP, ASTM D2892']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

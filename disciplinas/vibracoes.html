@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibrações — Engenharia Mecânica</title>
+<meta name="description" content="Vibração livre e forçada, ressonância, isolamento e sistemas de 2 GDL: teoria, simuladores interativos e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">5º período · Engenharia Mecânica</p>
+    <h1>Vibrações</h1>
+    <p class="lead">Toda máquina vibra. A disciplina ensina a prever com que frequência, com que amplitude, e como evitar que essa amplitude destrua o equipamento — ou o edifício em que ele está apoiado.</p>
+    <div class="btn-row">
+      <span class="tag accent">8 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">4 simuladores</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Um único parâmetro organiza quase toda a disciplina: a <strong>razão entre a frequência de excitação e a frequência natural</strong>, r = ω/ω<sub>n</sub>. Onde o sistema opera nessa escala decide se ele é seguro, se amplifica ou se isola.</p>
+        <div class="grid cols-3">
+          <div class="card">
+            <h3 style="margin-top:0">r &lt; 0,7 — zona rígida</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">A massa acompanha a excitação. A resposta é praticamente a deflexão estática. Projeto rígido: aumentar k.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">r ≈ 1 — ressonância</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">A amplitude é limitada só pelo amortecimento. Zona proibida em regime — mas toda máquina a atravessa na partida.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">r &gt; √2 — isolamento</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">A inércia não acompanha e a transmissão cai. É onde se projeta o coxim. Molas mais macias aumentam r.</p>
+          </div>
+        </div>
+        <div class="callout note">
+          <strong>O roteiro de qualquer problema</strong>
+          1) modelar como massa-mola-amortecedor · 2) achar ω<sub>n</sub> = √(k/m) · 3) achar ζ ·
+          4) identificar a excitação e calcular r · 5) ler a amplitude ou a transmissibilidade na curva correspondente.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teorico">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Modelagem e graus de liberdade</summary>
+          <div class="topic-body">
+            <p>Grau de liberdade é o número de coordenadas independentes necessárias para descrever o movimento. Um sistema com n GDL tem exatamente <strong>n frequências naturais</strong> e n modos de vibrar.</p>
+            <div class="formula"><span data-tex="m\ddot{x} + c\dot{x} + kx = F(t)"></span><span class="where">equação do movimento de 1 grau de liberdade: inércia + amortecimento + rigidez = excitação</span></div>
+            <p>Molas em associação seguem regras opostas às dos resistores elétricos:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Associação</th><th>Rigidez equivalente</th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td>Paralelo</td><td><span data-tex-inline="k_{\text{eq}} = k_1 + k_2"></span></td><td>Mesmo deslocamento nas duas molas</td></tr>
+                <tr><td>Série</td><td><span data-tex-inline="\frac{1}{k_{\text{eq}}} = \frac{1}{k_1} + \frac{1}{k_2}"></span></td><td>Mesma força; a mais mole domina</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Atalho de campo</strong>
+              A frequência natural pode ser obtida sem conhecer k nem m separadamente: basta medir quanto a estrutura afunda sob o próprio peso.
+            </div>
+            <div class="formula"><span data-tex="\omega_n = \sqrt{\frac{g}{\delta_{\text{est}}}} \qquad f_n \approx \frac{15{,}76}{\sqrt{\delta_{\text{est}}\,[\text{mm}]}}"></span><span class="where">δ<sub>est</sub> = deflexão estática sob o peso próprio; f<sub>n</sub> em Hz</span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Vibração livre não amortecida</summary>
+          <div class="topic-body">
+            <p>Sem amortecimento o sistema oscila indefinidamente com amplitude constante, na sua frequência natural.</p>
+            <div class="formula"><span data-tex="\omega_n = \sqrt{\frac{k}{m}} \qquad f_n = \frac{\omega_n}{2\pi} \qquad T_n = \frac{1}{f_n}"></span><span class="where">ω<sub>n</sub> em rad/s; f<sub>n</sub> em Hz; T<sub>n</sub> = período, em s</span></div>
+            <div class="formula"><span data-tex="x(t) = A\cos(\omega_n t) + B\sin(\omega_n t) = X\sin(\omega_n t + \varphi)"></span><span class="where">A = x₀ e B = v₀/ω<sub>n</sub>, pelas condições iniciais</span></div>
+            <div class="callout warn">
+              <strong>ω<sub>n</sub> não depende das condições iniciais</strong>
+              Bater mais forte na estrutura aumenta a amplitude, não a frequência. Frequência natural é propriedade do sistema (k e m), não da excitação.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Amortecimento e os três regimes</summary>
+          <div class="topic-body">
+            <p>O fator de amortecimento ζ compara o amortecimento real com o valor crítico, e decide o comportamento inteiro.</p>
+            <div class="formula"><span data-tex="c_c = 2\sqrt{km} = 2m\omega_n \qquad \zeta = \frac{c}{c_c}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Faixa</th><th>Regime</th><th>Comportamento</th><th>Onde aparece</th></tr></thead>
+              <tbody>
+                <tr><td>ζ = 0</td><td>Não amortecido</td><td>Oscila para sempre</td><td>Idealização teórica</td></tr>
+                <tr><td>0 &lt; ζ &lt; 1</td><td>Subamortecido</td><td>Oscila com amplitude decrescente</td><td>Quase toda estrutura real (ζ = 0,01 a 0,1)</td></tr>
+                <tr><td>ζ = 1</td><td>Crítico</td><td>Retorno mais rápido, sem ultrapassar</td><td>Instrumentos, portas automáticas</td></tr>
+                <tr><td>ζ &gt; 1</td><td>Superamortecido</td><td>Retorno lento, sem oscilar</td><td>Molas pneumáticas</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\omega_d = \omega_n\sqrt{1-\zeta^2}"></span><span class="where">frequência amortecida; sempre menor que ω<sub>n</sub>, e só existe se ζ &lt; 1</span></div>
+            <p>Para medir ζ experimentalmente, usa-se o <strong>decremento logarítmico</strong> entre picos sucessivos da resposta livre:</p>
+            <div class="formula"><span data-tex="\delta = \ln\frac{x_i}{x_{i+1}} = \frac{2\pi\zeta}{\sqrt{1-\zeta^2}} \qquad \zeta \approx \frac{\delta}{2\pi}"></span><span class="where">a aproximação vale para ζ pequeno, que é o caso quase sempre</span></div>
+            <div class="callout tip">
+              <strong>Por que ζ = 1 é o alvo de instrumentos</strong>
+              É o retorno mais rápido possível sem ultrapassagem. Abaixo disso o ponteiro oscila em torno da leitura; acima, demora demais para chegar.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Vibração forçada e ressonância</summary>
+          <div class="topic-body">
+            <p>Com excitação harmônica, a resposta permanente tem a mesma frequência da força, mas amplitude e fase diferentes.</p>
+            <div class="formula"><span data-tex="M = \frac{X}{F_0/k} = \frac{1}{\sqrt{(1-r^2)^2 + (2\zeta r)^2}} \qquad r = \frac{\omega}{\omega_n}"></span><span class="where">M = fator de amplificação dinâmica; F₀/k = deflexão estática</span></div>
+            <div class="formula"><span data-tex="\varphi = \arctan\!\left(\frac{2\zeta r}{1-r^2}\right)"></span><span class="where">atraso da resposta em relação à força</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Região</th><th>Amplificação M</th><th>Fase φ</th><th>Quem domina</th></tr></thead>
+              <tbody>
+                <tr><td>r ≪ 1</td><td>≈ 1</td><td>≈ 0°</td><td>Rigidez — a massa acompanha</td></tr>
+                <tr><td>r = 1</td><td><span data-tex-inline="1/(2\zeta)"></span></td><td>90°</td><td>Amortecimento — é tudo o que segura</td></tr>
+                <tr><td>r ≫ 1</td><td>→ 0</td><td>→ 180°</td><td>Inércia — a massa não acompanha</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>O pico não está exatamente em r = 1</strong>
+              O máximo verdadeiro ocorre em <span data-tex-inline="r = \sqrt{1-2\zeta^2}"></span>, um pouco antes. Para ζ pequeno a diferença é desprezível — mas acima de ζ = 0,707 <em>não existe pico algum</em>: a curva só decresce.
+            </div>
+            <div class="callout tip">
+              <strong>Como identificar a ressonância na bancada</strong>
+              Pela <strong>fase</strong>, não pela amplitude: em r = 1 o atraso é exatamente 90°, qualquer que seja ζ. O pico de amplitude, esse, se desloca com o amortecimento.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Desbalanceamento rotativo</summary>
+          <div class="topic-body">
+            <p>Em máquina rotativa a força de excitação não é constante: cresce com o quadrado da rotação, porque é força centrífuga.</p>
+            <div class="formula"><span data-tex="F_0 = m_e\,e\,\omega^2 \qquad \frac{MX}{m_e e} = \frac{r^2}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}"></span><span class="where">m<sub>e</sub> = massa desbalanceada; e = excentricidade</span></div>
+            <div class="callout tip">
+              <strong>Consequência prática</strong>
+              Como F cresce com ω², em alta rotação a amplitude tende a um valor constante m<sub>e</sub>e/M, e não a zero. Por isso o balanceamento é obrigatório em rotores rápidos — não adianta apenas fugir da ressonância.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5-bis. Balanceamento estático e dinâmico</summary>
+          <div class="topic-body">
+            <p>Balancear é acrescentar (ou retirar) massa até que as forças e os momentos centrífugos do rotor se anulem. Há dois níveis, e confundi-los é a causa mais comum de um rotor "balanceado" que continua vibrando.</p>
+
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th></th><th>Balanceamento estático</th><th>Balanceamento dinâmico</th></tr></thead>
+              <tbody>
+                <tr><td>O que anula</td><td>Só a força resultante: Σm<sub>i</sub>r<sub>i</sub> = 0</td><td>Força E momento: Σm<sub>i</sub>r<sub>i</sub> = 0 <em>e</em> Σm<sub>i</sub>r<sub>i</sub>z<sub>i</sub> = 0</td></tr>
+                <tr><td>Planos de correção</td><td>Um</td><td>Dois, obrigatoriamente</td></tr>
+                <tr><td>Detecta parado?</td><td>Sim: o rotor gira sozinho até o ponto pesado ficar embaixo</td><td>Não: o rotor fica parado em qualquer posição</td></tr>
+                <tr><td>Onde basta</td><td>Rotor fino, disco: L/D &lt; 0,5</td><td>Rotor longo: L/D &gt; 0,5, e sempre acima de ~1000 rpm</td></tr>
+                <tr><td>Exemplo</td><td>Roda de automóvel, polia, ventilador axial de uma pá</td><td>Virabrequim, rotor de turbina, eixo de bomba multiestágio</td></tr>
+              </tbody>
+            </table>
+            </div>
+
+            <div class="callout warn">
+              <strong>Um rotor pode estar estaticamente balanceado e ainda assim vibrar muito</strong>
+              Basta ter duas massas iguais, diametralmente opostas, mas em planos <strong>diferentes</strong> ao longo do eixo. A resultante das forças centrífugas é zero — o rotor fica parado em qualquer posição — mas as duas forças formam um <strong>binário</strong> que faz o eixo "chicotear", carregando alternadamente cada mancal. Isso é desbalanceamento de <em>conjugado</em>, e só o balanceamento dinâmico em dois planos resolve.
+            </div>
+
+            <h4>As duas condições</h4>
+            <div class="formula"><span data-tex="\sum m_i\,r_i\,\vec{e}_i = 0"></span><span class="where">equilíbrio de FORÇAS — é o balanceamento estático; anula a resultante centrífuga</span></div>
+            <div class="formula"><span data-tex="\sum m_i\,r_i\,z_i\,\vec{e}_i = 0"></span><span class="where">equilíbrio de MOMENTOS em relação a um plano de referência — completa o balanceamento dinâmico</span></div>
+            <p>Como cada equação é vetorial no plano do rotor, elas valem por quatro equações escalares. Por isso são necessários exatamente <strong>dois planos de correção</strong>, com duas incógnitas cada (massa e ângulo).</p>
+
+            <h4>Desbalanceamento residual e o critério da ISO 1940</h4>
+            <div class="formula"><span data-tex="U = m_e\,e \qquad e_{\text{perm}} = \frac{G \cdot 1000}{\omega}"></span><span class="where">U em g·mm · e_perm em μm · G = grau de qualidade em mm/s · ω em rad/s</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Grau G</th><th>Aplicação típica</th></tr></thead>
+              <tbody>
+                <tr><td>G 40</td><td>Rodas e eixos de automóvel</td></tr>
+                <tr><td>G 16</td><td>Peças de motor diesel, eixos cardan</td></tr>
+                <tr><td>G 6,3</td><td>Ventiladores, bombas, rotores de máquina em geral</td></tr>
+                <tr><td>G 2,5</td><td>Turbinas a gás e a vapor, turbocompressores, motores elétricos médios</td></tr>
+                <tr><td>G 1</td><td>Rotores de rebolo, acionamentos de precisão</td></tr>
+                <tr><td>G 0,4</td><td>Fusos de retífica, giroscópios</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Note que a tolerância é <strong>inversamente proporcional à rotação</strong>: dobrar a rotação corta a excentricidade admissível pela metade. É a consequência direta de F = m<sub>e</sub>eω².</p>
+
+            <h4>Método dos coeficientes de influência</h4>
+            <p>É o procedimento usado na máquina de balanceamento e em campo. Não exige conhecer o desbalanceamento — mede-se a resposta a massas conhecidas e resolve-se o sistema:</p>
+            <div class="callout note">
+              <strong>Roteiro em dois planos</strong>
+              1) medir a vibração original nos dois mancais, em amplitude e fase: <span data-tex-inline="\vec{V}_1^{0}"></span> e <span data-tex-inline="\vec{V}_2^{0}"></span> · 2) colocar uma massa de prova conhecida no plano A e medir de novo · 3) retirar, colocar massa de prova no plano B, medir de novo · 4) montar os coeficientes de influência <span data-tex-inline="\alpha_{ij} = (\vec{V}_i - \vec{V}_i^{0})/\vec{m}_j"></span> · 5) resolver o sistema para as massas de correção.
+            </div>
+            <div class="formula"><span data-tex="\begin{bmatrix}\alpha_{11} & \alpha_{12}\\ \alpha_{21} & \alpha_{22}\end{bmatrix}\begin{Bmatrix}\vec{m}_A\\ \vec{m}_B\end{Bmatrix} = -\begin{Bmatrix}\vec{V}_1^{0}\\ \vec{V}_2^{0}\end{Bmatrix}"></span><span class="where">tudo com números complexos: módulo é amplitude, argumento é fase</span></div>
+            <div class="callout tip">
+              <strong>Rotor rígido e rotor flexível</strong>
+              Tudo acima vale para <strong>rotor rígido</strong>, isto é, operando bem abaixo da primeira velocidade crítica. Acima dela o eixo se deforma e a distribuição de desbalanceamento muda com a rotação: o rotor precisa ser balanceado <em>na</em> rotação de serviço, modo a modo. É o caso de turbinas de grande porte.
+            </div>
+            <div class="callout warn">
+              <strong>Nem toda vibração 1× é desbalanceamento</strong>
+              Desalinhamento, eixo empenado, folga em mancal e pé manco também aparecem na frequência de rotação. O que distingue: desbalanceamento dá vibração predominantemente <strong>radial</strong>, com fase estável e amplitude crescendo com ω²; desalinhamento acrescenta forte componente <strong>axial</strong> e costuma exibir 2× a rotação. Balancear um rotor desalinhado não resolve nada.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Isolamento de vibração</summary>
+          <div class="topic-body">
+            <p>Transmissibilidade é a fração da excitação que chega à fundação (ou ao equipamento, no caso inverso).</p>
+            <div class="formula"><span data-tex="\mathrm{TR} = \frac{F_{\text{transmitida}}}{F_0} = \frac{\sqrt{1+(2\zeta r)^2}}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}"></span></div>
+            <div class="callout warn">
+              <strong>Só há isolamento acima de r = √2</strong>
+              Em r = √2 ≈ 1,414 todas as curvas se cruzam em TR = 1, <em>qualquer que seja ζ</em>. Abaixo disso o isolador amplifica — fica pior do que parafusar a máquina direto na base.
+            </div>
+            <div class="callout warn">
+              <strong>O paradoxo do amortecimento</strong>
+              Na zona útil (r &gt; √2), <strong>mais amortecimento piora o isolamento</strong>: o amortecedor cria um caminho extra para a força. Mas ele continua indispensável, porque a máquina atravessa r = 1 toda vez que parte. Compromisso usual: ζ entre 0,03 e 0,10.
+            </div>
+            <p>Regra prática de projeto: buscar r ≥ 3, o que dá TR ≈ 0,13, ou seja, cerca de 87 % de isolamento.</p>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Sistemas de dois graus de liberdade</summary>
+          <div class="topic-body">
+            <p>Cada grau de liberdade acrescenta uma frequência natural e um modo — uma forma característica de deformação.</p>
+            <div class="formula"><span data-tex="[M]\{\ddot{x}\} + [K]\{x\} = \{F\} \qquad \det([K] - \omega^2[M]) = 0"></span><span class="where">as raízes da equação característica são as frequências naturais</span></div>
+            <p>No caso clássico de duas massas e duas molas iguais, o resultado é elegante:</p>
+            <div class="formula"><span data-tex="\omega_1 = 0{,}618\sqrt{k/m} \qquad \omega_2 = 1{,}618\sqrt{k/m} \qquad \frac{\omega_2}{\omega_1} = 2{,}618 = \varphi^2"></span><span class="where">φ é a razão áurea — resultado exato deste sistema</span></div>
+            <p>No <strong>1º modo</strong> as massas se movem em fase; no <strong>2º modo</strong>, em oposição de fase, com um nó entre elas.</p>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Absorvedor dinâmico de vibração</summary>
+          <div class="topic-body">
+            <p>Acopla-se uma segunda massa sintonizada exatamente na frequência da excitação. O resultado é que a massa principal fica <em>parada</em>.</p>
+            <div class="formula"><span data-tex="\omega_2 = \sqrt{\frac{k_2}{m_2}} = \omega_{\text{excitação}} \;\Rightarrow\; X_1 = 0"></span><span class="where">condição de sintonia; o absorvedor assume toda a vibração</span></div>
+            <div class="formula"><span data-tex="X_2 = -\frac{F_0}{k_2} \qquad \mu = \frac{m_2}{m_1}"></span><span class="where">quanto menor k₂, maior o curso que o absorvedor precisa ter</span></div>
+            <div class="callout warn">
+              <strong>O preço: uma ressonância vira duas</strong>
+              A ressonância original desaparece, mas surgem duas novas, uma de cada lado. Se a rotação da máquina variar, o sistema pode cair em uma delas. Aumentar μ afasta as duas, ao custo de mais massa — absorvedores reais usam 5 a 20 % da massa principal.
+            </div>
+            <div class="callout tip">
+              <strong>Onde se usa</strong>
+              Amortecedores de massa sintonizada em arranha-céus e passarelas, absorvedores em linhas de transmissão (os pesos em forma de haltere nos cabos) e em motores.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Quatro modelos interativos, com fórmulas e resolução passo a passo.</p>
+
+        <div id="sim-livre"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Percorra os exemplos 1, 3 e 4 (ζ = 0,05 · 1 · 2) e compare o tempo de retorno ao equilíbrio. O criticamente amortecido chega primeiro — é isso que "crítico" significa.
+        </div>
+
+        <div id="sim-forcada"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Ponha ζ = 0,05 e arraste r até 1: a amplificação salta para 10. Depois aumente ζ para 0,707 e veja o pico desaparecer completamente.
+        </div>
+
+        <div id="sim-isolamento"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Repare que todas as curvas de ζ se cruzam exatamente em r = √2. À direita desse ponto, a curva de menor ζ é a que fica <em>por baixo</em> — mais amortecimento piora o isolamento.
+        </div>
+
+        <div id="sim-2gdl"></div>
+
+        <div id="sim-balanceamento"></div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Parâmetros</h4>
+            <div class="formula"><span data-tex="\omega_n = \sqrt{k/m} = \sqrt{g/\delta_{\text{est}}}"></span></div>
+            <div class="formula"><span data-tex="c_c = 2\sqrt{km} \qquad \zeta = c/c_c"></span></div>
+            <div class="formula"><span data-tex="\omega_d = \omega_n\sqrt{1-\zeta^2}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Vibração livre</h4>
+            <div class="formula"><span data-tex="x = e^{-\zeta\omega_n t}(A\cos\omega_d t + B\sin\omega_d t)"></span></div>
+            <div class="formula"><span data-tex="\delta = \frac{2\pi\zeta}{\sqrt{1-\zeta^2}}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Resposta forçada</h4>
+            <div class="formula"><span data-tex="M = \frac{1}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}"></span></div>
+            <div class="formula"><span data-tex="M_{r=1} = \frac{1}{2\zeta} \qquad \varphi_{r=1} = 90^\circ"></span></div>
+            <div class="formula"><span data-tex="r_{\text{pico}} = \sqrt{1-2\zeta^2}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Isolamento</h4>
+            <div class="formula"><span data-tex="\mathrm{TR} = \frac{\sqrt{1+(2\zeta r)^2}}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}"></span></div>
+            <div class="formula"><span data-tex="\mathrm{TR} = 1 \text{ em } r = \sqrt{2}"></span></div>
+            <div class="formula"><span data-tex="f_n \approx \frac{15{,}76}{\sqrt{\delta_{\text{est}}}}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra no projeto</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>ISO 10816 / ISO 20816</strong></td>
+              <td>Avaliação da vibração de máquinas por medição em partes não rotativas</td>
+              <td>Zonas A, B, C e D de severidade, em velocidade eficaz (mm/s RMS), por classe de máquina.</td>
+              <td>É o critério que diz se a máquina medida está boa, aceitável ou deve parar.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO 1940-1</strong></td>
+              <td>Requisitos de qualidade de balanceamento de rotores rígidos</td>
+              <td>Graus G (G0,4 a G4000) e o desbalanceamento residual admissível em função da rotação.</td>
+              <td>Limita m<sub>e</sub>·e, que é a fonte da excitação em máquinas rotativas.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO 2631-1</strong></td>
+              <td>Avaliação da exposição humana à vibração de corpo inteiro</td>
+              <td>Curvas de ponderação em frequência e limites de exposição por tempo.</td>
+              <td>Critério de conforto em veículos, plataformas e edificações.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 15570</strong></td>
+              <td>Transporte rodoviário de passageiros — especificações técnicas</td>
+              <td>Requisitos de conforto vibracional em veículos de transporte coletivo.</td>
+              <td>Aplicação nacional dos critérios de vibração em veículos.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 6118 / NBR 8800</strong></td>
+              <td>Projeto de estruturas de concreto / de aço</td>
+              <td>Estados-limite de vibração excessiva em pisos e passarelas; frequência natural mínima.</td>
+              <td>Exige f<sub>n</sub> acima da faixa de caminhada (cerca de 2 Hz) para evitar ressonância com pessoas.</td>
+            </tr>
+            <tr>
+              <td><strong>API 610 / API 617</strong></td>
+              <td>Bombas centrífugas / Compressores para a indústria de petróleo</td>
+              <td>Margem de separação obrigatória entre a rotação de operação e as velocidades críticas.</td>
+              <td>Impõe que r fique longe de 1, tipicamente com 15 a 20 % de margem.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Sobre as revisões</strong>
+          Designações sem o ano por conta das revisões periódicas. O texto integral de ISO, ABNT e API é obra protegida, adquirida junto às respectivas entidades.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre modelagem, vibração livre e forçada, ressonância, isolamento e sistemas de 2 GDL — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
+        <div id="quiz" data-quiz="vibracoes"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>RAO, S. S.</strong> <em>Vibrações Mecânicas.</em> Pearson. — Bibliografia principal. Caps. 2 (livre), 3 (forçada), 5 (2 GDL), 9 (controle de vibração).</li>
+          <li><strong>THOMSON, W. T.</strong> <em>Teoria da Vibração com Aplicações.</em> — Referência clássica, muito boa em isolamento e transmissibilidade.</li>
+          <li><strong>INMAN, D. J.</strong> <em>Engineering Vibration.</em> Pearson. — Excelente no tratamento experimental e na identificação de parâmetros.</li>
+          <li><strong>MEIROVITCH, L.</strong> <em>Fundamentals of Vibrations.</em> — Tratamento mais rigoroso de sistemas contínuos e n GDL.</li>
+          <li>Notas de aula e listas de exercícios da disciplina.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/vibracoes.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  U: ['Desbalanceamento', 'g·mm', 'U = m_e·e — massa vezes excentricidade'],
+  'm_e': ['Massa desbalanceada', 'g', 'a massa equivalente fora do centro'],
+  G: ['Grau de qualidade de balanceamento', 'mm/s', 'ISO 1940: G 6,3 para bombas e ventiladores'],
+  'e_perm': ['Excentricidade permissível', 'μm', 'e_perm = G·1000/ω — cai com a rotação'],
+  ζ: ['Fator de amortecimento', '—', '< 1 oscila · = 1 crítico · > 1 não oscila'],
+  ω: ['Frequência angular', 'rad/s', 'ω_n natural · ω_d amortecida · ω de excitação'],
+  r: ['Razão de frequências', '—', 'r = ω/ω_n — o parâmetro que organiza toda a disciplina'],
+  c: ['Coeficiente de amortecimento', 'N·s/m', 'c_c = 2√(km) é o valor crítico'],
+  k: ['Rigidez', 'N/m', 'paralelo soma; série soma os inversos'],
+  m: ['Massa', 'kg'],
+  M: ['Fator de amplificação', '—', 'resposta dinâmica / deflexão estática'],
+  X: ['Amplitude de vibração', 'm'],
+  δ: ['Decremento logarítmico', '—', 'ou deflexão estática, em mm'],
+  φ: ['Ângulo de fase', '°', '90° exatamente na ressonância'],
+  μ: ['Razão de massas', '—', 'm₂/m₁ no absorvedor dinâmico'],
+  F: ['Força de excitação', 'N'],
+  T: ['Período', 's', 'ou transmissibilidade TR'],
+  x: ['Deslocamento', 'm'],
+  g: ['Aceleração da gravidade', 'm/s²', '9,81 m/s²']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

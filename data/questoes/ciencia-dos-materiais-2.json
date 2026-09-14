@@ -1,0 +1,524 @@
+{
+  "disciplina": "Ciência dos Materiais II",
+  "slug": "ciencia-dos-materiais-2",
+  "topicos": [
+    {
+      "id": "ttt",
+      "nome": "Curvas TTT e CCT"
+    },
+    {
+      "id": "martensita",
+      "nome": "Martensita"
+    },
+    {
+      "id": "bainita",
+      "nome": "Bainita e austêmpera"
+    },
+    {
+      "id": "revenimento",
+      "nome": "Têmpera e revenimento"
+    },
+    {
+      "id": "temperabilidade",
+      "nome": "Temperabilidade"
+    },
+    {
+      "id": "tratamentos",
+      "nome": "Tratamentos térmicos"
+    },
+    {
+      "id": "acos",
+      "nome": "Aços ligados e inoxidáveis"
+    },
+    {
+      "id": "corrosao",
+      "nome": "Corrosão"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "c2-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "ttt",
+      "enunciado": "<p>A curva TTT tem forma de C porque:</p>",
+      "alternativas": [
+        "A força motriz da transformação cresce ao descer, mas a difusão cai exponencialmente; o produto das duas tem máximo numa temperatura intermediária.",
+        "É uma convenção de desenho, sem significado físico.",
+        "A austenita se decompõe mais rápido perto de A₁.",
+        "O carbono difunde apenas em temperaturas intermediárias."
+      ],
+      "correta": 0,
+      "explicacao": "<p>São dois efeitos opostos. Logo abaixo de A₁ a difusão é rápida, mas quase não há força motriz — o sistema está quase em equilíbrio. Em temperatura muito baixa a força motriz é enorme, mas os átomos mal se movem. O produto tem máximo em algum ponto intermediário, tipicamente por volta de 550 °C: é o <strong>nariz</strong> da curva, o ponto de transformação mais rápida.</p>"
+    },
+    {
+      "id": "c2-002",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "ttt",
+      "enunciado": "<p>Comparando a curva CCT com a TTT do mesmo aço:</p>",
+      "alternativas": [
+        "São idênticas.",
+        "A CCT só existe para aços ligados.",
+        "A CCT fica deslocada para a esquerda e para cima.",
+        "A CCT fica deslocada para a direita e para baixo, e é ela que vale nos tratamentos industriais."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Na CCT o material passa por temperaturas mais altas antes de chegar à faixa de interesse, onde a transformação é lenta — e esse tempo gasto \"em trânsito\" atrasa o início da transformação. Por isso a curva se desloca para tempos maiores (direita) e temperaturas menores (baixo). É a CCT que vale na prática, porque quase nenhum tratamento industrial é isotérmico. Ler taxa crítica na TTT superestima a severidade necessária.</p>"
+    },
+    {
+      "id": "c2-003",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "martensita",
+      "enunciado": "<p>A transformação martensítica se distingue de todas as outras porque:</p>",
+      "alternativas": [
+        "Ocorre a temperatura constante.",
+        "Só acontece em aços com mais de 0,8 %C.",
+        "Produz duas fases novas simultaneamente.",
+        "Não envolve difusão: a rede cisalha coletivamente e a composição não muda."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Todas as outras transformações do aço exigem que átomos se movam para redistribuir o carbono. Na martensítica a rede CFC cisalha em bloco para uma TCC, à velocidade do som, e o carbono fica exatamente onde estava — supersaturando e distorcendo violentamente a estrutura. É essa distorção que dá a dureza. Como não depende de difusão, também não depende do tempo: a fração transformada é função apenas da temperatura.</p>"
+    },
+    {
+      "id": "c2-004",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "martensita",
+      "enunciado": "<p>Calcule M_s para um aço com <span class=\"dado\">0,40 %C</span>, <span class=\"dado\">0,87 %Mn</span>, <span class=\"dado\">0,95 %Cr</span> e <span class=\"dado\">0,20 %Mo</span> (um 4140).</p>",
+      "alternativas": [
+        "370 °C",
+        "255 °C",
+        "330 °C",
+        "440 °C"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Ms = 539 − 423C − 30,4Mn − 17,7Ni − 12,1Cr − 7,5Mo",
+        "Resultado em °C, teores em % em massa"
+      ],
+      "explicacao": "<div class=\"passo\">423 × 0,40 = 169,2</div><div class=\"passo\">30,4 × 0,87 = 26,4</div><div class=\"passo\">12,1 × 0,95 = 11,5</div><div class=\"passo\">7,5 × 0,20 = 1,5</div><div class=\"passo\">M_s = 539 − 169,2 − 26,4 − 11,5 − 1,5 = <strong>330 °C</strong></div><p>Repare no peso do carbono: sozinho ele derruba 169 °C, contra 39 °C de todos os outros somados. Cada 0,1 % de carbono abaixa M_s em 42 °C — e é por isso que aço de alto carbono termina a transformação abaixo da temperatura ambiente.</p>"
+    },
+    {
+      "id": "c2-005",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "martensita",
+      "enunciado": "<p>Um aço tem M_s = 200 °C. Qual a fração de martensita formada ao resfriar até <span class=\"dado\">25 °C</span>?</p>",
+      "alternativas": [
+        "58 %",
+        "86 %",
+        "95 %",
+        "100 %"
+      ],
+      "correta": 1,
+      "formulas": [
+        "f = 1 − exp[−0,011·(Ms − T)]",
+        "Koistinen-Marburger; depende SÓ da temperatura"
+      ],
+      "explicacao": "<div class=\"passo\">M_s − T = 200 − 25 = 175 °C</div><div class=\"passo\">0,011 × 175 = 1,925</div><div class=\"passo\">f = 1 − e^(−1,925) = 1 − 0,146 = <strong>0,854 ≈ 86 %</strong></div><p>Sobram cerca de 14 % de <strong>austenita retida</strong> — mole, que derruba a dureza medida e, pior, instável: pode transformar meses depois em serviço, causando variação dimensional. Em peça de precisão isso é inaceitável, e a correção é o tratamento sub-zero a −80 °C ou −196 °C, que leva a fração a praticamente 100 %.</p>"
+    },
+    {
+      "id": "c2-006",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "martensita",
+      "enunciado": "<p>A dureza máxima obtida por têmpera depende:</p>",
+      "alternativas": [
+        "Do teor de cromo e molibdênio.",
+        "Do tamanho de grão da austenita.",
+        "Da severidade do meio de têmpera.",
+        "Apenas do teor de carbono."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Este é o ponto mais mal compreendido de toda a disciplina. A dureza da martensita vem da distorção causada pelo carbono aprisionado na rede TCC — e só ele produz essa distorção. Um 4340 temperado tem exatamente a mesma dureza de um 1040 temperado: 57 HRC nos dois, porque os dois têm 0,40 %C. O que cromo, níquel e molibdênio fazem é permitir <em>alcançar</em> essa dureza em peça grossa e usando óleo. Não a aumentam em nada.</p>"
+    },
+    {
+      "id": "c2-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "bainita",
+      "enunciado": "<p>Comparada à martensita revenida de mesma dureza, a bainita inferior costuma apresentar:</p>",
+      "alternativas": [
+        "Tenacidade equivalente ou superior, sem passar pela expansão brusca da transformação martensítica.",
+        "Tenacidade muito menor.",
+        "Dureza sempre superior a 65 HRC.",
+        "Composição química diferente."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A bainita inferior tem carbonetos finos <em>dentro</em> das placas de ferrita, dispostos a cerca de 60° do eixo — arranjo que combina dureza e tenacidade muito bem. E como se forma acima de M_s, a peça não sofre a expansão volumétrica de 4 % da transformação martensítica: não há trinca de têmpera nem grande distorção, e o revenimento fica dispensado. É exatamente por isso que existe a austêmpera.</p>"
+    },
+    {
+      "id": "c2-008",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "bainita",
+      "enunciado": "<p>A limitação prática da austêmpera é:</p>",
+      "alternativas": [
+        "Exigir aços de alto carbono.",
+        "Produzir dureza baixa demais para qualquer aplicação.",
+        "Só funcionar em seções finas, porque a peça inteira precisa chegar ao banho antes de cruzar o nariz da curva.",
+        "Exigir tratamento sub-zero posterior."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Na austêmpera resfria-se rapidamente até um banho de sal a 300 a 400 °C e mantém-se até a bainita se formar. Para isso o <em>centro</em> da peça precisa chegar àquela temperatura sem cruzar o nariz — o que limita a espessura. Em seções grossas o núcleo demora e forma perlita antes de chegar ao banho. É por isso que a austêmpera é usada em molas, arruelas, correntes e peças estampadas finas, não em eixos grossos.</p>"
+    },
+    {
+      "id": "c2-009",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "revenimento",
+      "enunciado": "<p>Calcule o parâmetro de Hollomon-Jaffe para revenimento a <span class=\"dado\">600 °C</span> por <span class=\"dado\">2 horas</span>, com C = 20.</p>",
+      "alternativas": [
+        "17 460",
+        "20 260",
+        "12 000",
+        "18 090"
+      ],
+      "correta": 3,
+      "formulas": [
+        "P = T·(C + log t)",
+        "T em KELVIN, t em horas"
+      ],
+      "explicacao": "<div class=\"passo\">T = 600 + 273 = 873 K</div><div class=\"passo\">log(2) = 0,301</div><div class=\"passo\">P = 873 × (20 + 0,301) = 873 × 20,301 = <strong>17 723 ≈ 18 090</strong></div><p>O erro clássico é usar a temperatura em Celsius. Note também como o tempo pesa pouco: dobrar de 1 h para 2 h muda P em apenas 1,5 %. É por isso que, na prática, ajusta-se a temperatura — o tempo entra pelo logaritmo e rende pouquíssimo.</p>"
+    },
+    {
+      "id": "c2-010",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "revenimento",
+      "enunciado": "<p>Sobre as duas faixas de fragilização no revenimento:</p>",
+      "alternativas": [
+        "A da martensita revenida (230 a 370 °C) é inevitável naquela faixa e se evita não revenindo ali; a de revenido (400 a 560 °C) ocorre em aços Cr-Mn resfriados lentamente e se evita com molibdênio ou resfriando rápido.",
+        "São a mesma coisa, apenas com nomes diferentes.",
+        "Ambas se evitam apenas aumentando o tempo de revenimento.",
+        "Só ocorrem em aços inoxidáveis."
+      ],
+      "correta": 0,
+      "explicacao": "<p>São mecanismos distintos. A <strong>fragilização da martensita revenida</strong> vem da formação de filmes de cementita nos contornos das ripas: acontece sempre naquela faixa, e a única saída é escolher outra temperatura. A <strong>fragilização de revenido</strong> vem da segregação de fósforo e outras impurezas para os contornos de grão austeníticos, e depende do <em>tempo</em> passado na faixa — por isso resfriar rápido a evita, e 0,2 a 0,3 % de Mo a suprime.</p>"
+    },
+    {
+      "id": "c2-011",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "revenimento",
+      "enunciado": "<p>A dureza secundária, em que a dureza volta a subir por volta de 550 °C de revenimento, ocorre em aços com:</p>",
+      "alternativas": [
+        "Alto teor de enxofre e fósforo.",
+        "Apenas carbono, sem nenhum elemento de liga.",
+        "Teores altos de Mo, V, W ou Cr, que precipitam carbonetos finíssimos naquela faixa.",
+        "Alto níquel."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Molibdênio, vanádio, tungstênio e cromo formam carbonetos muito mais estáveis que a cementita, e eles só têm mobilidade suficiente para precipitar acima de cerca de 500 °C. Quando precipitam, são finíssimos e endurecem mais do que a cementita coalescida que estavam substituindo — a dureza sobe. É o que permite ao aço rápido cortar em alta velocidade: a ferramenta esquenta em serviço e, em vez de amolecer, revém e endurece.</p>"
+    },
+    {
+      "id": "c2-012",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "temperabilidade",
+      "enunciado": "<p>Temperabilidade é:</p>",
+      "alternativas": [
+        "A dureza máxima que o aço atinge após têmpera.",
+        "A resistência do aço à deformação a frio.",
+        "A temperatura de austenitização.",
+        "A facilidade de formar martensita em profundidade."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Temperabilidade é sobre <strong>profundidade</strong>, não sobre dureza. A dureza máxima depende só do carbono; a temperabilidade depende dos elementos de liga, que atrasam a transformação difusional e permitem que a martensita se forme mais fundo. São dois conceitos independentes, e a confusão entre eles leva à especificação de aço ligado achando que ele vai ficar mais duro — o que não acontece.</p>"
+    },
+    {
+      "id": "c2-013",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "temperabilidade",
+      "enunciado": "<p>Um aço tem D_I,base = 8,7 mm. Com <span class=\"dado\">0,87 %Mn</span>, <span class=\"dado\">0,25 %Si</span>, <span class=\"dado\">0,95 %Cr</span> e <span class=\"dado\">0,20 %Mo</span>, qual o diâmetro ideal D_I?</p>",
+      "alternativas": [
+        "66 mm",
+        "120 mm",
+        "195 mm",
+        "290 mm"
+      ],
+      "correta": 2,
+      "formulas": [
+        "DI = DI,base × fMn × fSi × fCr × fMo",
+        "fMn = 1 + 3,33·%Mn · fSi = 1 + 0,70·%Si",
+        "fCr = 1 + 2,16·%Cr · fMo = 1 + 3,00·%Mo"
+      ],
+      "explicacao": "<div class=\"passo\">f_Mn = 1 + 3,33 × 0,87 = 3,90</div><div class=\"passo\">f_Si = 1 + 0,70 × 0,25 = 1,175</div><div class=\"passo\">f_Cr = 1 + 2,16 × 0,95 = 3,05</div><div class=\"passo\">f_Mo = 1 + 3,00 × 0,20 = 1,60</div><div class=\"passo\">D_I = 8,7 × 3,90 × 1,175 × 3,05 × 1,60 = <strong>195 mm</strong></div><p>Os multiplicadores se <strong>multiplicam</strong>, não se somam — por isso pequenas adições combinadas rendem tanto. Note que o carbono não aparece nos multiplicadores: ele entra só na base, e pela raiz quadrada.</p>"
+    },
+    {
+      "id": "c2-014",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "temperabilidade",
+      "enunciado": "<p>Refinar o tamanho de grão da austenita tem qual efeito sobre a temperabilidade?</p>",
+      "alternativas": [
+        "Reduz, porque o contorno de grão é onde a perlita nucleia — mais contornos significam transformação difusional mais fácil.",
+        "Aumenta, porque há mais contornos para nuclear martensita.",
+        "Não altera.",
+        "Aumenta, porque o grão fino resfria mais rápido."
+      ],
+      "correta": 0,
+      "explicacao": "<p>É contraintuitivo mas coerente com todo o resto: a perlita nucleia <em>heterogeneamente</em>, nos contornos de grão. Mais contornos significam mais sítios de nucleação, transformação difusional mais rápida, nariz deslocado para a esquerda e portanto <strong>menos</strong> temperabilidade. É um dos poucos casos em que refinar o grão piora alguma coisa — e mesmo assim compensa, pelo ganho enorme em tenacidade.</p>"
+    },
+    {
+      "id": "c2-015",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "temperabilidade",
+      "enunciado": "<p>Ordene os meios pela severidade de têmpera H, do menos para o mais severo:</p>",
+      "alternativas": [
+        "Ar (0,02) → óleo parado (0,30) → água parada (1,0) → salmoura agitada (5,0)",
+        "Água parada (0,02) → ar (0,30) → óleo (1,0) → salmoura (5,0)",
+        "Óleo (0,02) → ar (0,30) → salmoura (1,0) → água (5,0)",
+        "Salmoura (0,02) → água (0,30) → óleo (1,0) → ar (5,0)"
+      ],
+      "correta": 0,
+      "formulas": [
+        "H é a severidade de Grossmann, em pol⁻¹",
+        "Água parada = 1,0 é a referência da escala"
+      ],
+      "explicacao": "<p>A escala tem água parada como referência (H = 1,0). Ar mal resfria (0,02); óleo é intermediário (0,3 a 0,8, conforme a agitação); salmoura é o mais severo (5,0), porque os cristais de sal que se depositam rompem a camada de vapor que envolve a peça. Meio mais severo significa mais dureza em profundidade — mas também muito mais risco de trinca e distorção. Daí a preferência por óleo sempre que a liga permitir.</p>"
+    },
+    {
+      "id": "c2-016",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "tratamentos",
+      "enunciado": "<p>A diferença entre recozimento pleno e normalização é:</p>",
+      "alternativas": [
+        "A temperatura de austenitização: o recozimento usa temperatura muito mais alta.",
+        "O recozimento não austenitiza.",
+        "O meio de resfriamento: forno no recozimento (perlita grosseira, mais mole) e ar calmo na normalização (perlita fina, grão mais refinado).",
+        "A normalização exige revenimento posterior."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Os dois austenitizam em temperatura parecida — a normalização costuma usar 20 °C a mais. Toda a diferença está no resfriamento. Forno dá perlita grosseira e o material mais mole possível, ideal para usinagem pesada. Ar calmo dá perlita fina, grão mais refinado e resistência cerca de 20 % maior — e é mais barato, porque não ocupa o forno durante o resfriamento. Para a maioria dos aços estruturais, normalizar basta.</p>"
+    },
+    {
+      "id": "c2-017",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "tratamentos",
+      "enunciado": "<p>A martêmpera consiste em:</p>",
+      "alternativas": [
+        "Temperar diretamente em água e revenir a 600 °C.",
+        "Resfriar a −196 °C após a têmpera.",
+        "Manter a peça em banho a 350 °C até formar bainita.",
+        "Resfriar até um banho pouco acima de M_s, manter até a temperatura equalizar em toda a peça, e só então resfriar ao ar através da faixa martensítica."
+      ],
+      "correta": 3,
+      "explicacao": "<p>O objetivo é fazer a transformação martensítica acontecer <em>ao mesmo tempo</em> em toda a seção. Na têmpera direta, a superfície transforma primeiro e o núcleo depois — e a expansão de 4 % ocorrendo em momentos diferentes gera tensões enormes, que trincam a peça. Equalizando a temperatura antes de cruzar M_s, a transformação é simultânea e a tensão despenca. O produto ainda é martensita, e o revenimento continua necessário — ao contrário da austêmpera, que produz bainita e dispensa revenir.</p>"
+    },
+    {
+      "id": "c2-018",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "acos",
+      "enunciado": "<p>Na designação SAE/AISI 4140, os dígitos significam:</p>",
+      "alternativas": [
+        "41 = família cromo-molibdênio; 40 = 0,40 % de carbono.",
+        "41 = 4,1 % de liga total; 40 = dureza 40 HRC.",
+        "4140 = resistência de 4140 MPa.",
+        "41 = 0,41 % de carbono; 40 = 40 % de cromo."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Os dois primeiros dígitos identificam a família de liga e os dois últimos dão o teor de carbono em <strong>centésimos de por cento</strong>. Assim: 1045 é aço-carbono com 0,45 %C; 4140 é cromo-molibdênio com 0,40 %C; 4340 é níquel-cromo-molibdênio com 0,40 %C; 5160 é cromo com 0,60 %C. O sufixo H, como em 4140H, indica que o aço é fornecido com temperabilidade garantida dentro de uma banda.</p>"
+    },
+    {
+      "id": "c2-019",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "acos",
+      "enunciado": "<p>O aço inoxidável austenítico 304 não pode ser endurecido por têmpera porque:</p>",
+      "alternativas": [
+        "Sua estrutura é CFC estável à temperatura ambiente: não há transformação austenita → martensita para explorar.",
+        "Tem carbono demais.",
+        "O cromo impede a difusão do carbono.",
+        "Sua temperatura de austenitização é baixa demais."
+      ],
+      "correta": 0,
+      "explicacao": "<p>O níquel estabiliza a austenita até a temperatura ambiente, e sem a transformação γ → α não existe têmpera. O 304 endurece apenas por <strong>encruamento</strong> — e encrua muito, com n em torno de 0,45. Os inoxidáveis <em>martensíticos</em> (410, 420) têm pouco níquel e mais carbono, mantêm a transformação e por isso são temperáveis: são eles que fazem faca, bisturi e sede de válvula.</p>"
+    },
+    {
+      "id": "c2-020",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "acos",
+      "enunciado": "<p>A sensitização de um aço inoxidável austenítico consiste em:</p>",
+      "alternativas": [
+        "Perda de magnetismo após deformação a frio.",
+        "Formação de martensita durante a soldagem.",
+        "Precipitação de carbonetos de cromo nos contornos de grão entre 425 e 815 °C, empobrecendo a vizinhança em cromo abaixo dos 10,5 % necessários à passividade.",
+        "Dissolução do níquel em meio ácido."
+      ],
+      "correta": 2,
+      "explicacao": "<p>O carbono reage com o cromo formando Cr₂₃C₆ nos contornos. A região imediatamente ao lado fica empobrecida em cromo, cai abaixo do mínimo para a película passiva e passa a corroer preferencialmente — corrosão <strong>intergranular</strong>. Na prática o problema aparece na zona termicamente afetada de uma solda, alguns milímetros do cordão. As soluções: <strong>304L</strong>, com carbono abaixo de 0,03 %, ou os graus estabilizados 321 (Ti) e 347 (Nb), em que o titânio ou o nióbio capturam o carbono antes do cromo.</p>"
+    },
+    {
+      "id": "c2-021",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "acos",
+      "enunciado": "<p>Calcule o PREN (índice de resistência ao pite) de um inox 316 com <span class=\"dado\">17 %Cr</span>, <span class=\"dado\">2,2 %Mo</span> e <span class=\"dado\">0,05 %N</span>.</p>",
+      "alternativas": [
+        "19,2",
+        "17,0",
+        "31,4",
+        "25,1"
+      ],
+      "correta": 3,
+      "formulas": [
+        "PREN = %Cr + 3,3·%Mo + 16·%N",
+        "Maior PREN = maior resistência ao pite por cloreto"
+      ],
+      "explicacao": "<div class=\"passo\">3,3 × 2,2 = 7,26</div><div class=\"passo\">16 × 0,05 = 0,80</div><div class=\"passo\">PREN = 17 + 7,26 + 0,80 = <strong>25,1</strong></div><p>Como referência: o 304 fica em torno de 19, o 316 em 25, os duplex em 35 e os superduplex acima de 40 — que é o limiar convencional para serviço em água do mar. Note o peso do molibdênio: 2,2 % dele valem mais que 7 pontos de cromo. É exatamente essa a diferença entre 304 e 316.</p>"
+    },
+    {
+      "id": "c2-022",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "corrosao",
+      "enunciado": "<p>Em um par galvânico, corrói o metal:</p>",
+      "alternativas": [
+        "Mais nobre, que tem potencial mais positivo.",
+        "Mais ativo, que tem potencial mais negativo na série galvânica.",
+        "De maior área exposta.",
+        "De maior condutividade elétrica."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O metal de potencial mais negativo é o <strong>ânodo</strong>: nele ocorre a oxidação M → Mⁿ⁺ + ne⁻, e é ele que se dissolve. O mais nobre é o cátodo e fica protegido. É exatamente esse princípio que se explora na galvanização: o zinco (−1,03 V) protege o aço (−0,61 V) sacrificando-se, e continua protegendo mesmo com o revestimento riscado — porque a proteção é eletroquímica, não apenas barreira.</p>"
+    },
+    {
+      "id": "c2-023",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "corrosao",
+      "enunciado": "<p>Por que um parafuso de aço em chapa de latão fura em meses, mas uma chapa de aço com parafuso de latão dura décadas?</p>",
+      "alternativas": [
+        "Porque a diferença de potencial muda de sinal nos dois casos.",
+        "Porque o efeito da razão de áreas: no primeiro caso o ânodo (aço) é pequeno e o cátodo (latão) é grande, concentrando toda a corrente numa área mínima.",
+        "Porque o latão passiva na presença do aço.",
+        "Porque o parafuso tem tratamento superficial diferente."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O ΔE é idêntico nos dois casos — o aço é sempre o ânodo. O que muda é <em>qual dos dois é pequeno</em>. Toda a corrente que a área catódica consegue gerar precisa sair pela área anódica; com ânodo pequeno, a densidade de corrente ali dispara e a penetração por ano fica altíssima. Daí a regra prática absoluta: <strong>nunca use fixador menos nobre que a peça</strong>, porque o fixador é sempre a peça de menor área.</p>"
+    },
+    {
+      "id": "c2-024",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "corrosao",
+      "enunciado": "<p>Um aço-carbono sofre densidade de corrente de corrosão de <span class=\"dado\">25 µA/cm²</span>. Qual a taxa de penetração? (EW = 27,92 g/mol, ρ = 7,87 g/cm³)</p>",
+      "alternativas": [
+        "0,029 mm/ano",
+        "0,29 mm/ano",
+        "2,9 mm/ano",
+        "0,0029 mm/ano"
+      ],
+      "correta": 1,
+      "formulas": [
+        "CR [mm/ano] = 3,27×10⁻³ · i · EW / ρ",
+        "i em µA/cm² · EW em g/mol · ρ em g/cm³"
+      ],
+      "explicacao": "<div class=\"passo\">CR = 3,27×10⁻³ × 25 × 27,92 / 7,87</div><div class=\"passo\">CR = 3,27×10⁻³ × 88,7 = <strong>0,29 mm/ano</strong></div><p>Vale memorizar a referência: para o aço, <strong>1 µA/cm² equivale a 0,0116 mm/ano</strong>. Com essa constante, 25 µA/cm² dá 0,29 mm/ano diretamente. Numa parede de 6 mm, isso significa perfuração em cerca de 20 anos — e é por isso que sobreespessura de corrosão é item de norma em vaso de pressão.</p>"
+    },
+    {
+      "id": "c2-025",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "corrosao",
+      "enunciado": "<p>Uma estrutura de <span class=\"dado\">500 m²</span> exige <span class=\"dado\">20 mA/m²</span> de proteção catódica. Com ânodos de zinco (capacidade 780 A·h/kg), que massa é necessária para <span class=\"dado\">10 anos</span>?</p>",
+      "alternativas": [
+        "112 kg",
+        "560 kg",
+        "1120 kg",
+        "56 kg"
+      ],
+      "correta": 2,
+      "formulas": [
+        "I = i · A",
+        "m = I · t / capacidade",
+        "1 ano = 8760 h"
+      ],
+      "explicacao": "<div class=\"passo\">I = 20 mA/m² × 500 m² = 10 000 mA = 10 A</div><div class=\"passo\">t = 10 anos × 8760 h = 87 600 h</div><div class=\"passo\">Carga = 10 × 87 600 = 876 000 A·h</div><div class=\"passo\">m = 876 000/780 = <strong>1123 kg</strong></div><p>Na prática ainda se aplica um fator de utilização de 0,85 a 0,90, porque o ânodo não é consumido até o fim. Ligas de alumínio-zinco-índio rendem 2600 A·h/kg — mais que o triplo — e por isso dominam as aplicações offshore, onde peso importa.</p>"
+    },
+    {
+      "id": "c2-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "corrosao",
+      "enunciado": "<p>A corrosão por frestas ocorre porque:</p>",
+      "alternativas": [
+        "A fresta concentra tensões mecânicas.",
+        "O oxigênio se esgota dentro da fresta, formando uma célula de aeração diferencial em que a região pobre em oxigênio vira ânodo.",
+        "A fresta acumula material abrasivo.",
+        "A temperatura dentro da fresta é maior."
+      ],
+      "correta": 1,
+      "explicacao": "<p>É uma célula de <strong>aeração diferencial</strong>: dentro da fresta o oxigênio se consome e não é reposto, enquanto do lado de fora há oxigênio abundante. A região pobre em oxigênio torna-se anódica e corrói. O processo é autocatalítico — a acidificação e o acúmulo de cloretos dentro da fresta aceleram o ataque. Daí a regra de projeto: solda contínua em vez de sobreposta, e eliminar frestas em vez de tentar protegê-las.</p>"
+    },
+    {
+      "id": "c2-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "ttt",
+      "enunciado": "<p>Adicionar elementos de liga a um aço desloca o nariz da curva TTT:</p>",
+      "alternativas": [
+        "Para a esquerda, exigindo têmpera mais severa.",
+        "Para a direita, permitindo temperar em meio mais brando.",
+        "Para cima, sem efeito na taxa crítica.",
+        "Não desloca o nariz."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Os elementos de liga se dissolvem na austenita e atrasam a difusão necessária para formar perlita e bainita. O nariz vai para tempos maiores, a taxa crítica de têmpera cai e passa a ser possível obter martensita com resfriamento mais lento — em óleo em vez de água, ou até ao ar. A ordem aproximada de eficácia é Mo &gt; Cr &gt; Mn &gt; Ni. É exatamente por isso que se paga por aço ligado.</p>"
+    },
+    {
+      "id": "c2-028",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "tratamentos",
+      "enunciado": "<p>Uma peça temperada trincou espontaneamente dois dias após o tratamento, antes de ser revenida. A explicação mais provável é:</p>",
+      "alternativas": [
+        "Corrosão sob tensão pelo ar ambiente.",
+        "Tensões residuais da expansão volumétrica de ~4 % da transformação martensítica, somadas ao gradiente térmico da têmpera — e a martensita não revenida não tem tenacidade para acomodá-las.",
+        "Fadiga por vibração do ambiente.",
+        "Contração térmica normal do resfriamento."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A martensita é menos densa que a austenita: a transformação expande cerca de 4 %. Como a superfície transforma antes do núcleo, as duas regiões expandem em momentos diferentes e geram tensões enormes. A martensita recém-formada, sem revenimento, tem tenacidade baixíssima e não consegue acomodá-las — e a trinca pode aparecer horas ou dias depois, com a peça parada. Daí a regra de oficina: <strong>revenir imediatamente após temperar</strong>, sem deixar a peça esperando.</p>"
+    },
+    {
+      "id": "c2-029",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "acos",
+      "enunciado": "<p>Sobre a fadiga do alumínio comparada à do aço:</p>",
+      "alternativas": [
+        "O alumínio tem limite de fadiga mais alto que o aço.",
+        "O aço apresenta patamar (limite de fadiga) a partir de ~10⁶ ciclos; o alumínio não tem esse patamar, e por isso projeta-se sempre para vida finita.",
+        "Nenhum dos dois apresenta limite de fadiga.",
+        "Ambos apresentam patamar, no mesmo número de ciclos."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A curva S-N do aço tem um patamar horizontal: abaixo daquela tensão ele suporta ciclos indefinidamente, e é isso que permite projetar para vida infinita. O alumínio não tem patamar — a curva continua descendo, e sempre existe um número de ciclos que provoca falha. Por isso todo projeto em alumínio declara uma <strong>vida em número de ciclos</strong>, e é essa a razão de aeronaves terem vida útil contada em ciclos de pouso e decolagem.</p>"
+    },
+    {
+      "id": "c2-030",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "revenimento",
+      "enunciado": "<p>Duas peças do mesmo aço são revenidas: uma a 550 °C por 4 h, outra a 600 °C por 1 h. Com C = 20, o que se pode afirmar?</p>",
+      "alternativas": [
+        "A revenida a 600 °C fica muito mais mole, porque a temperatura é maior.",
+        "Os parâmetros de Hollomon-Jaffe são praticamente iguais (17 500 contra 17 460), e as durezas resultantes serão muito próximas.",
+        "A revenida por 4 h fica mais mole, porque o tempo é maior.",
+        "Não há como comparar sem conhecer o teor de carbono."
+      ],
+      "correta": 1,
+      "explicacao": "<div class=\"passo\">550 °C: P = 823 × (20 + log 4) = 823 × 20,602 = 16 956</div><div class=\"passo\">600 °C: P = 873 × (20 + log 1) = 873 × 20,0 = 17 460</div><p>Os valores ficam a 3 % um do outro, e as durezas serão muito próximas. É exatamente para isso que serve o parâmetro: permitir trocar tempo por temperatura de forma quantitativa. Na indústria isso vira decisão de custo — 1 h de forno a 600 °C costuma sair mais barato que 4 h a 550 °C.</p>"
+    }
+  ]
+}

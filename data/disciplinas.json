@@ -1,0 +1,720 @@
+{
+  "curso": "Engenharia Mecânica",
+  "disciplinas": [
+    {
+      "slug": "desenho-tecnico",
+      "nome": "Desenho Técnico",
+      "periodo": "1",
+      "pasta": "1°- Desenho técnico",
+      "resumo": "Normas de representação, vistas ortográficas, cortes, cotagem e leitura de desenho.",
+      "temas": [
+        "vistas ortográficas",
+        "cortes",
+        "cotagem",
+        "escalas",
+        "perspectiva"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "introducao-a-engenharia",
+      "nome": "Introdução à Engenharia",
+      "periodo": "1",
+      "pasta": "1°- Introdução a Engenharia",
+      "resumo": "Perfil e atribuições do engenheiro mecânico, método de projeto, unidades e grandezas.",
+      "temas": [
+        "profissão",
+        "unidades SI",
+        "método de projeto",
+        "ética profissional"
+      ],
+      "simuladores": false,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "introducao-a-programacao",
+      "nome": "Introdução à Programação",
+      "periodo": "1",
+      "pasta": "1°- Introdução a Programação",
+      "resumo": "Lógica, algoritmos, estruturas de controle, vetores e funções aplicados à engenharia.",
+      "temas": [
+        "algoritmos",
+        "estruturas de repetição",
+        "vetores",
+        "funções"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "calculo-2",
+      "nome": "Cálculo II",
+      "periodo": "2",
+      "pasta": "2°- Calculo II",
+      "resumo": "Integrais, técnicas de integração, séries e funções de várias variáveis.",
+      "temas": [
+        "integrais",
+        "séries",
+        "derivadas parciais",
+        "integrais múltiplas"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "calculo-numerico",
+      "nome": "Cálculo Numérico",
+      "periodo": "2",
+      "pasta": "2°- Calculo Numérico",
+      "resumo": "Erros, raízes de equações, sistemas lineares, interpolação e integração numérica.",
+      "temas": [
+        "bisseção",
+        "Newton-Raphson",
+        "sistemas lineares",
+        "interpolação",
+        "quadratura"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "ciencia-do-ambiente",
+      "nome": "Ciência do Ambiente",
+      "periodo": "2",
+      "pasta": "2°- Ciência do Ambiente",
+      "resumo": "Impacto ambiental, poluição, licenciamento e sustentabilidade na indústria.",
+      "temas": [
+        "poluição",
+        "licenciamento",
+        "resíduos",
+        "ISO 14001"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "desenho-tecnico-2",
+      "nome": "Desenho Técnico II",
+      "periodo": "2",
+      "pasta": "2°- Desenho técnico II",
+      "resumo": "Desenho de conjunto, tolerâncias dimensionais e geométricas, ajustes e CAD.",
+      "temas": [
+        "tolerâncias",
+        "ajustes",
+        "GD&T",
+        "rugosidade",
+        "CAD"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "estatica",
+      "nome": "Estática",
+      "periodo": "3",
+      "pasta": "3°- Estática",
+      "resumo": "Equilíbrio de partículas e corpos rígidos, treliças, atrito e centroides.",
+      "temas": [
+        "equilíbrio",
+        "treliças",
+        "atrito",
+        "centroide",
+        "momento de inércia"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": true
+    },
+    {
+      "slug": "introducao-ciencia-materiais",
+      "nome": "Introdução à Ciência dos Materiais",
+      "periodo": "3",
+      "pasta": "3°- Introdução a Ciência dos Materiais",
+      "resumo": "Ligações, estruturas cristalinas, defeitos e propriedades básicas dos materiais.",
+      "temas": [
+        "ligações",
+        "estrutura cristalina",
+        "defeitos",
+        "difusão"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "modelagem-computacional",
+      "nome": "Modelagem Computacional",
+      "periodo": "3",
+      "pasta": "3°- Modelagem computacional",
+      "resumo": "Modelos matemáticos, simulação numérica e método dos elementos finitos.",
+      "temas": [
+        "modelagem",
+        "simulação",
+        "MEF",
+        "validação"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "etica",
+      "nome": "Ética",
+      "periodo": "3",
+      "pasta": "3°- Ética",
+      "resumo": "Ética profissional, responsabilidade técnica e código de ética do engenheiro.",
+      "temas": [
+        "ética profissional",
+        "CONFEA",
+        "responsabilidade técnica"
+      ],
+      "simuladores": false,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "ciencia-dos-materiais-1",
+      "nome": "Ciência dos Materiais I",
+      "periodo": "4",
+      "pasta": "4°- Ciência dos Materiais 1",
+      "resumo": "Diagramas de fases, transformações, discordâncias e mecanismos de endurecimento.",
+      "temas": [
+        "diagrama Fe-C",
+        "transformações",
+        "discordâncias",
+        "encruamento"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "probabilidade-e-estatistica",
+      "nome": "Probabilidade e Estatística",
+      "periodo": "4",
+      "pasta": "4°- Probabilidade e Estatistica",
+      "resumo": "Distribuições, amostragem, intervalos de confiança, testes de hipótese e regressão.",
+      "temas": [
+        "distribuições",
+        "intervalo de confiança",
+        "teste de hipótese",
+        "regressão"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "circuitos-eletricos",
+      "nome": "Circuitos Elétricos",
+      "periodo": "5",
+      "pasta": "5°- Circuitos Elétricos",
+      "resumo": "Leis de Kirchhoff, regime transitório e permanente, corrente alternada e potência.",
+      "temas": [
+        "Kirchhoff",
+        "RLC",
+        "fasores",
+        "potência",
+        "trifásico"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "ciencia-dos-materiais-2",
+      "nome": "Ciência dos Materiais II",
+      "periodo": "5",
+      "pasta": "5°- Ciência dos Materiais 2",
+      "resumo": "Tratamentos térmicos, curvas TTT/CCT, aços ligados, corrosão e materiais não ferrosos.",
+      "temas": [
+        "tratamento térmico",
+        "TTT",
+        "temperabilidade",
+        "corrosão"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "mecanica-dos-materiais",
+      "nome": "Mecânica dos Materiais",
+      "periodo": "5",
+      "pasta": "5°- Mecânica dos materiais",
+      "resumo": "Tensão, deformação, torção, flexão, diagramas de esforços e linha elástica.",
+      "temas": [
+        "tensão-deformação",
+        "torção",
+        "flexão",
+        "cortante e momento fletor",
+        "deflexão"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "metodos-numericos",
+      "nome": "Métodos Numéricos",
+      "periodo": "5",
+      "pasta": "5°- Métodos Numéricos",
+      "resumo": "Métodos numéricos aplicados a EDOs, EDPs, autovalores e otimização.",
+      "temas": [
+        "EDO",
+        "Runge-Kutta",
+        "diferenças finitas",
+        "autovalores"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "termodinamica",
+      "nome": "Termodinâmica",
+      "periodo": "5",
+      "pasta": "5°- Termodinâmica",
+      "resumo": "Propriedades, primeira e segunda leis, entropia e substâncias puras.",
+      "temas": [
+        "primeira lei",
+        "segunda lei",
+        "entropia",
+        "vapor",
+        "gás ideal"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": true
+    },
+    {
+      "slug": "vibracoes",
+      "nome": "Vibrações",
+      "periodo": "5",
+      "pasta": "5°- Vibrações",
+      "resumo": "Sistemas de 1 e n graus de liberdade, amortecimento, ressonância e isolamento.",
+      "temas": [
+        "1 GDL",
+        "amortecimento",
+        "ressonância",
+        "isolamento",
+        "modos"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "elementos-de-maquina",
+      "nome": "Elementos de Máquina I",
+      "periodo": "6",
+      "pasta": "6°- Elementos de Máquina",
+      "resumo": "Critérios de falha, fadiga, parafusos, soldas, molas e eixos.",
+      "temas": [
+        "von Mises",
+        "fadiga",
+        "parafusos",
+        "solda",
+        "molas",
+        "eixos"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "mecanica-dos-fluidos",
+      "nome": "Mecânica dos Fluidos",
+      "periodo": "6",
+      "pasta": "6°- Mecânica dos fluidos",
+      "resumo": "Estática dos fluidos, Bernoulli, volume de controle, perda de carga em tubulações.",
+      "temas": [
+        "hidrostática",
+        "Bernoulli",
+        "perda de carga",
+        "Moody",
+        "quantidade de movimento"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "mecanica-dos-materiais-2",
+      "nome": "Mecânica dos Materiais II",
+      "periodo": "6",
+      "pasta": "6°- Mecânica dos materiais 2",
+      "resumo": "Estado plano de tensões, Mohr, flambagem, vasos de pressão e energia de deformação.",
+      "temas": [
+        "círculo de Mohr",
+        "flambagem",
+        "vasos de pressão",
+        "critérios de falha"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "processos-de-fabricacao",
+      "nome": "Processos de Fabricação I",
+      "periodo": "6",
+      "pasta": "6°- Processos de Fabricação",
+      "resumo": "Fundição, conformação mecânica, soldagem e metalurgia do pó.",
+      "temas": [
+        "fundição",
+        "laminação",
+        "forjamento",
+        "soldagem"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "termodinamica-2",
+      "nome": "Termodinâmica II",
+      "periodo": "6",
+      "pasta": "6°- Termodinâmica II",
+      "resumo": "Ciclos de potência e refrigeração, psicrometria e misturas de gases.",
+      "temas": [
+        "Rankine",
+        "Brayton",
+        "Otto e Diesel",
+        "refrigeração",
+        "psicrometria"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "elementos-de-maquina-2",
+      "nome": "Elementos de Máquina II",
+      "periodo": "7",
+      "pasta": "7°- Elementos de Máquina 2",
+      "resumo": "Engrenagens, mancais de rolamento, correias, correntes, freios e embreagens.",
+      "temas": [
+        "engrenagens",
+        "AGMA",
+        "rolamentos",
+        "correias",
+        "freios"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "macromecanica",
+      "nome": "Macromecânica",
+      "periodo": "7",
+      "pasta": "7°- Macromecânica",
+      "resumo": "Mecânica dos compósitos: lâmina, laminado, teoria clássica e critérios de falha.",
+      "temas": [
+        "compósitos",
+        "regra das misturas",
+        "CLT",
+        "Tsai-Hill",
+        "Tsai-Wu"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "mecanica-dos-fluidos-2",
+      "nome": "Mecânica dos Fluidos II",
+      "periodo": "7",
+      "pasta": "7°- Mecânica dos fluidos 2",
+      "resumo": "Camada limite, escoamento compressível, turbomáquinas e escoamento externo.",
+      "temas": [
+        "camada limite",
+        "arrasto",
+        "escoamento compressível",
+        "turbomáquinas"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "controle-de-sistemas",
+      "nome": "Modelagem e Controle de Sistemas",
+      "periodo": "7",
+      "pasta": "7°- Modelagem de controle de sistemas",
+      "resumo": "Função de transferência, resposta no tempo, estabilidade, lugar das raízes e PID.",
+      "temas": [
+        "função de transferência",
+        "resposta ao degrau",
+        "Routh",
+        "lugar das raízes",
+        "PID"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "processos-2",
+      "nome": "Processos 2",
+      "periodo": "7",
+      "pasta": "7°- Processos 2",
+      "resumo": "Processos industriais avançados, automação da manufatura e integração de processos.",
+      "temas": [
+        "automação",
+        "CNC",
+        "manufatura integrada",
+        "qualidade"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "processos-de-fabricacao-2",
+      "nome": "Processos de Fabricação II",
+      "periodo": "7",
+      "pasta": "7°- Processos de Fabricação 2",
+      "resumo": "Usinagem, ferramentas de corte, vida de ferramenta, CNC e processos não convencionais.",
+      "temas": [
+        "usinagem",
+        "Taylor",
+        "torneamento",
+        "fresamento",
+        "CNC",
+        "EDM"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "transferencia-de-calor",
+      "nome": "Transferência de Calor",
+      "periodo": "7",
+      "pasta": "7°- Transferência de calor",
+      "resumo": "Condução, convecção, radiação, aletas e trocadores de calor.",
+      "temas": [
+        "condução",
+        "aletas",
+        "convecção",
+        "radiação",
+        "trocadores",
+        "NUT"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "engenharia-economica",
+      "nome": "Engenharia Econômica",
+      "periodo": "9",
+      "pasta": "9°- Engenharia Econômica",
+      "resumo": "Matemática financeira, VPL, TIR, payback, depreciação e análise de alternativas.",
+      "temas": [
+        "juros compostos",
+        "VPL",
+        "TIR",
+        "payback",
+        "depreciação"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "gerencia-de-projetos",
+      "nome": "Gerência de Projetos",
+      "periodo": "10",
+      "pasta": "10°- Gerencia de Projetos",
+      "resumo": "Ciclo de vida, escopo, EAP, cronograma, custos, riscos e PMBOK.",
+      "temas": [
+        "PMBOK",
+        "EAP",
+        "CPM/PERT",
+        "curva S",
+        "riscos"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "instrumentacao",
+      "nome": "Instrumentação de Projetos",
+      "periodo": "10",
+      "pasta": "10°- Instrumentação de projetos",
+      "resumo": "Sensores, condicionamento de sinal, incerteza de medição, aquisição de dados.",
+      "temas": [
+        "sensores",
+        "extensômetros",
+        "termopares",
+        "incerteza",
+        "amostragem"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "selecao-de-materiais",
+      "nome": "Seleção de Materiais",
+      "periodo": "10",
+      "pasta": "10°- Seleção de Materiais",
+      "resumo": "Índices de mérito, mapas de Ashby, restrições de projeto e processo.",
+      "temas": [
+        "índice de mérito",
+        "mapas de Ashby",
+        "restrições",
+        "custo"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "refino",
+      "nome": "Refino de Petróleo",
+      "periodo": "0",
+      "pasta": "0° - Refino",
+      "resumo": "Esquemas de refino, destilação, craqueamento e especificação de derivados.",
+      "temas": [
+        "destilação atmosférica",
+        "FCC",
+        "hidrotratamento",
+        "derivados"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "acustica-aplicada",
+      "nome": "Acústica Aplicada",
+      "periodo": "0",
+      "pasta": "0°- Acustica Aplicada",
+      "resumo": "Ondas sonoras, níveis em dB, propagação, isolamento e controle de ruído.",
+      "temas": [
+        "nível sonoro",
+        "dB",
+        "absorção",
+        "isolamento",
+        "ruído industrial"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "bombas-e-compressores",
+      "nome": "Bombas e Compressores",
+      "periodo": "0",
+      "pasta": "0°- Bombas e compressores",
+      "resumo": "Curvas características, NPSH, associação, compressores e seleção.",
+      "temas": [
+        "curva da bomba",
+        "NPSH",
+        "cavitação",
+        "associação",
+        "compressores"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "engenharia-de-polimeros",
+      "nome": "Engenharia de Polímeros",
+      "periodo": "0",
+      "pasta": "0°- Engenharia de Polímeros",
+      "resumo": "Estrutura, viscoelasticidade, processamento e propriedades de polímeros.",
+      "temas": [
+        "polimerização",
+        "Tg",
+        "viscoelasticidade",
+        "injeção",
+        "extrusão"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": false
+    },
+    {
+      "slug": "estrutura-da-materia",
+      "nome": "Estrutura da Matéria",
+      "periodo": "0",
+      "pasta": "0°- Estrutura da matéria",
+      "resumo": "Modelos atômicos, mecânica quântica introdutória e ligações químicas.",
+      "temas": [
+        "modelo atômico",
+        "quantização",
+        "orbitais",
+        "ligações"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "instalacoes-e-offshore",
+      "nome": "Instalações e Offshore",
+      "periodo": "0",
+      "pasta": "0°- Instalações e OffShore",
+      "resumo": "Sistemas offshore, plataformas, risers, tubulações industriais e utilidades.",
+      "temas": [
+        "plataformas",
+        "risers",
+        "tubulação",
+        "utilidades",
+        "segurança"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "processamento-de-imagem",
+      "nome": "Processamento de Imagem",
+      "periodo": "0",
+      "pasta": "0°- Processamento de Imagem",
+      "resumo": "Amostragem, filtros espaciais e de frequência, segmentação e morfologia.",
+      "temas": [
+        "histograma",
+        "filtros",
+        "FFT",
+        "segmentação",
+        "morfologia"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    },
+    {
+      "slug": "simulacao-reservatorio-petroleo",
+      "nome": "Simulação de Reservatório de Petróleo",
+      "periodo": "0",
+      "pasta": "0°- Simulação de reserva de petróleo",
+      "resumo": "Propriedades de rocha e fluido, lei de Darcy, curvas de produção e recuperação.",
+      "temas": [
+        "porosidade",
+        "permeabilidade",
+        "Darcy",
+        "declínio",
+        "recuperação"
+      ],
+      "simuladores": true,
+      "normas": false,
+      "pronta": false
+    }
+  ]
+}

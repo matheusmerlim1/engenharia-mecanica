@@ -1,0 +1,552 @@
+{
+  "disciplina": "Mecânica dos Fluidos",
+  "slug": "mecanica-dos-fluidos",
+  "topicos": [
+    {
+      "id": "propriedades",
+      "nome": "Propriedades"
+    },
+    {
+      "id": "estatica",
+      "nome": "Estática"
+    },
+    {
+      "id": "superficies",
+      "nome": "Forças submersas"
+    },
+    {
+      "id": "continuidade",
+      "nome": "Continuidade"
+    },
+    {
+      "id": "bernoulli",
+      "nome": "Bernoulli"
+    },
+    {
+      "id": "regimes",
+      "nome": "Regimes e Reynolds"
+    },
+    {
+      "id": "perda-carga",
+      "nome": "Perda de carga"
+    },
+    {
+      "id": "localizadas",
+      "nome": "Perdas localizadas"
+    },
+    {
+      "id": "momento",
+      "nome": "Quantidade de movimento"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "mf-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "propriedades",
+      "enunciado": "<p>A viscosidade cinemática do ar a 20 °C é cerca de 15 vezes maior que a da água, embora o ar seja muito menos viscoso no sentido usual. A explicação é que:</p>",
+      "alternativas": [
+        "A viscosidade dinâmica do ar é maior que a da água.",
+        "A temperatura afeta o ar de forma oposta à água.",
+        "O ar é compressível e a água não.",
+        "ν = μ/ρ, e a densidade do ar é quase mil vezes menor que a da água."
+      ],
+      "correta": 3,
+      "explicacao": "<p>A viscosidade dinâmica do ar (1,8×10⁻⁵ Pa·s) é cerca de 55 vezes <em>menor</em> que a da água (1,0×10⁻³ Pa·s). Mas a densidade é 830 vezes menor, e como ν = μ/ρ, a razão se inverte: ν<sub>ar</sub> = 1,51×10⁻⁵ contra 1,00×10⁻⁶ m²/s da água. Como é ν que entra no Reynolds, o ar atinge o regime laminar com mais facilidade do que a intuição sugere.</p>"
+    },
+    {
+      "id": "mf-002",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "propriedades",
+      "enunciado": "<p>A Lei de Newton da viscosidade estabelece que, em um fluido newtoniano:</p>",
+      "alternativas": [
+        "A tensão de cisalhamento é proporcional à taxa de deformação.",
+        "A tensão de cisalhamento é proporcional à deformação total.",
+        "A pressão é proporcional à profundidade.",
+        "A viscosidade cresce com a taxa de cisalhamento."
+      ],
+      "correta": 0,
+      "explicacao": "<p>τ = μ·(du/dy): a tensão depende da <em>taxa</em> de deformação, não da deformação acumulada — essa é a diferença essencial entre fluido e sólido elástico, no qual τ = G·γ. A quarta alternativa descreveria um fluido dilatante, que é justamente não newtoniano.</p>"
+    },
+    {
+      "id": "mf-003",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "estatica",
+      "enunciado": "<p>Qual a pressão manométrica no fundo de um reservatório de água com <span class=\"dado\">2,5 m</span> de profundidade? (ρ = 998 kg/m³)</p>",
+      "alternativas": [
+        "12,2 kPa",
+        "24,5 kPa",
+        "49,0 kPa",
+        "245 kPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "p = ρ·g·h",
+        "g = 9,81 m/s²",
+        "1 kPa = 1000 Pa"
+      ],
+      "explicacao": "<div class=\"passo\">p = 998 × 9,81 × 2,5</div><div class=\"passo\">p = 24 476 Pa = <strong>24,5 kPa</strong></div><p>Regra prática útil: cada 10 m de coluna d'água valem aproximadamente 1 atm (98 kPa). Aqui, 2,5 m dão cerca de um quarto disso.</p>"
+    },
+    {
+      "id": "mf-004",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "estatica",
+      "enunciado": "<p>Dois reservatórios abertos, um cilíndrico estreito e outro cônico muito largo, contêm água até a mesma altura. Sobre a pressão no fundo:</p>",
+      "alternativas": [
+        "É maior no reservatório largo, que contém mais água.",
+        "Depende do formato das paredes laterais.",
+        "É maior no estreito, por concentrar o peso em menor área.",
+        "É a mesma nos dois, pois depende só da altura da coluna."
+      ],
+      "correta": 3,
+      "explicacao": "<p>É o chamado paradoxo hidrostático. Como dp/dz = −ρg, a pressão depende exclusivamente da profundidade, não do volume nem do formato. A <em>força</em> total no fundo é diferente (F = p·A, e as áreas diferem), mas a pressão é idêntica. As paredes inclinadas suportam a diferença de peso.</p>"
+    },
+    {
+      "id": "mf-005",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "estatica",
+      "enunciado": "<p>Sobre pressão absoluta e manométrica, e sobre quando confundi-las provoca erro grave:</p>",
+      "alternativas": [
+        "p_abs = p_man + p_atm. Em comportas e paredes de tanque a manométrica basta, porque a atmosfera age dos dois lados e se cancela; já em cavitação, NPSH e na equação de estado dos gases a pressão precisa ser absoluta — usar manométrica ali erra por 101,3 kPa, ou 10,33 m de coluna d’água.",
+        "São intercambiáveis desde que se mantenha a coerência de unidades.",
+        "A pressão manométrica é sempre a correta em engenharia, e a absoluta tem uso apenas meteorológico.",
+        "A diferença só importa em altitudes elevadas, onde a pressão atmosférica é menor."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A pressão <strong>absoluta</strong> é medida a partir do vácuo perfeito; a <strong>manométrica</strong>, a partir da pressão atmosférica local. Relacionam-se por p<sub>abs</sub> = p<sub>man</sub> + p<sub>atm</sub>, com p<sub>atm</sub> ≈ 101,3 kPa ao nível do mar, equivalente a 10,33 m de coluna d'água.</p><p>Na maioria dos problemas estruturais a manométrica é a correta e conveniente: em uma comporta, uma barragem ou um tanque, a atmosfera age dos dois lados e se cancela, de modo que a força líquida depende apenas da pressão manométrica. Usar absoluta ali levaria a somar uma parcela que não existe.</p><p>O erro grave aparece sempre que o fenômeno depende do valor absoluto da pressão. Em <strong>cavitação</strong>, a condição é p<sub>abs</sub> &gt; p<sub>vapor</sub>: a água a 20 °C vaporiza a 2,34 kPa absolutos, o que corresponde a cerca de −99 kPa manométricos. Comparar a pressão de vapor com a manométrica indicaria segurança onde há cavitação. O mesmo vale no cálculo do <strong>NPSH disponível</strong> na sucção de bombas, que parte da pressão atmosférica absoluta e desconta altura de sucção, perdas e pressão de vapor.</p><p>Também é necessário usar absoluta em qualquer relação com equação de estado de gás (pV = mRT), pois ali a pressão é termodinâmica, e em escoamento compressível.</p>"
+    },
+    {
+      "id": "mf-006",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "superficies",
+      "enunciado": "<p>Uma comporta retangular vertical de <span class=\"dado\">3 m</span> de altura e <span class=\"dado\">2 m</span> de largura tem o topo na superfície livre da água (ρ = 998 kg/m³). Determine a força resultante e a posição do centro de pressão.</p>",
+      "alternativas": [
+        "F = 58,8 kN a 1,50 m da superfície",
+        "F = 88,1 kN a 1,50 m da superfície",
+        "F = 88,1 kN a 2,00 m da superfície",
+        "F = 176 kN a 2,00 m da superfície"
+      ],
+      "correta": 2,
+      "formulas": [
+        "F = ρ·g·h_c·A,  com h_c = profundidade do CENTROIDE",
+        "y_cp = y_c + I_xc/(y_c·A)",
+        "I_xc = b·h³/12",
+        "Retângulo vertical com topo na superfície: y_cp = 2h/3"
+      ],
+      "explicacao": "<div class=\"passo\">A = 3 × 2 = 6 m²; h<sub>c</sub> = 3/2 = 1,5 m</div><div class=\"passo\">F = 998 × 9,81 × 1,5 × 6 = 88 113 N = <strong>88,1 kN</strong></div><div class=\"passo\">I<sub>xc</sub> = 2 × 3³/12 = 4,5 m⁴</div><div class=\"passo\">y<sub>cp</sub> = 1,5 + 4,5/(1,5 × 6) = 1,5 + 0,5 = <strong>2,00 m</strong></div><p>Confere com o caso particular y<sub>cp</sub> = 2h/3 = 2,00 m. Aplicar a força no centroide (1,50 m) subestimaria em 33 % o braço e, portanto, o momento na dobradiça.</p>"
+    },
+    {
+      "id": "mf-007",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "superficies",
+      "enunciado": "<p>A mesma comporta (3 m × 2 m, vertical) agora tem o topo a <span class=\"dado\">2 m</span> abaixo da superfície. Determine a força resultante e o centro de pressão medido a partir da superfície livre.</p>",
+      "alternativas": [
+        "F = 88,1 kN e y_cp = 3,71 m",
+        "F = 206 kN e y_cp = 3,50 m",
+        "F = 206 kN e y_cp = 3,71 m",
+        "F = 206 kN e y_cp = 4,00 m"
+      ],
+      "correta": 2,
+      "formulas": [
+        "y_c = y_topo + h/2",
+        "F = ρ·g·y_c·A",
+        "y_cp = y_c + I_xc/(y_c·A)"
+      ],
+      "explicacao": "<div class=\"passo\">y<sub>c</sub> = 2 + 3/2 = 3,5 m; A = 6 m²</div><div class=\"passo\">F = 998 × 9,81 × 3,5 × 6 = 205 598 N = <strong>206 kN</strong></div><div class=\"passo\">e = I<sub>xc</sub>/(y<sub>c</sub>·A) = 4,5/(3,5 × 6) = 0,214 m</div><div class=\"passo\">y<sub>cp</sub> = 3,5 + 0,214 = <strong>3,71 m</strong></div><p>Compare com a questão anterior: ao afundar a placa, a excentricidade caiu de 0,50 para 0,214 m. Quanto mais profunda, mais uniforme fica o diagrama de pressão e mais o centro de pressão se aproxima do centroide.</p>"
+    },
+    {
+      "id": "mf-008",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "superficies",
+      "enunciado": "<p>Um bloco flutua em água com 60 % do volume submerso. A densidade relativa do bloco é:</p>",
+      "alternativas": [
+        "0,40",
+        "0,60",
+        "1,00",
+        "1,67"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Em equilíbrio, o empuxo iguala o peso: ρ<sub>água</sub>·g·V<sub>submerso</sub> = ρ<sub>bloco</sub>·g·V<sub>total</sub>. Logo ρ<sub>bloco</sub>/ρ<sub>água</sub> = V<sub>submerso</sub>/V<sub>total</sub> = 0,60. A fração submersa de um corpo flutuante é numericamente igual à sua densidade relativa — é por isso que cerca de 90 % de um iceberg fica sob a água.</p>"
+    },
+    {
+      "id": "mf-009",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "continuidade",
+      "enunciado": "<p>Água escoa a <span class=\"dado\">2,0 m/s</span> em um tubo de <span class=\"dado\">100 mm</span> que se reduz para <span class=\"dado\">60 mm</span>. Qual a velocidade no trecho estreito?</p>",
+      "alternativas": [
+        "1,20 m/s",
+        "3,33 m/s",
+        "5,56 m/s",
+        "8,00 m/s"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Q = A₁·v₁ = A₂·v₂",
+        "A = π·D²/4",
+        "v₂ = v₁·(D₁/D₂)²"
+      ],
+      "explicacao": "<div class=\"passo\">v₂ = v₁·(D₁/D₂)² = 2,0 × (100/60)²</div><div class=\"passo\">v₂ = 2,0 × 2,778 = <strong>5,56 m/s</strong></div><p>A velocidade varia com o <em>quadrado</em> da razão de diâmetros, não linearmente. Responder 3,33 m/s é usar a razão simples (100/60) — o erro mais comum aqui.</p>"
+    },
+    {
+      "id": "mf-010",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "bernoulli",
+      "enunciado": "<p>Em um escoamento incompressível, permanente e sem atrito ao longo de uma linha de corrente horizontal, um trecho apresenta redução de área. O que ocorre com a pressão estática?</p>",
+      "alternativas": [
+        "Aumenta, porque a vazão aumenta.",
+        "Permanece constante, pois o fluido é incompressível.",
+        "Depende apenas da cota do trecho.",
+        "Diminui, porque a velocidade aumenta e a soma das cargas é constante."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Pela continuidade, menor área implica maior velocidade. Como p/γ + v²/2g + z é constante e a cota não muda, o aumento da carga cinética exige queda da carga de pressão. A vazão, por definição de regime permanente, não muda — é a velocidade que muda. Esse é o princípio do Venturi e da asa.</p>"
+    },
+    {
+      "id": "mf-011",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "bernoulli",
+      "enunciado": "<p>Em um Venturi horizontal com água (ρ = 998 kg/m³), a velocidade passa de <span class=\"dado\">2,55 m/s</span> na tubulação para <span class=\"dado\">10,19 m/s</span> na garganta. Qual a queda de pressão?</p>",
+      "alternativas": [
+        "24,3 kPa",
+        "38,9 kPa",
+        "48,5 kPa",
+        "51,8 kPa"
+      ],
+      "correta": 2,
+      "formulas": [
+        "p₁/γ + v₁²/2g = p₂/γ + v₂²/2g   (z constante)",
+        "Δp = ρ/2 · (v₂² − v₁²)"
+      ],
+      "explicacao": "<div class=\"passo\">v₂² = 10,19² = 103,8 m²/s²</div><div class=\"passo\">v₁² = 2,55² = 6,50 m²/s²</div><div class=\"passo\">Δp = (998/2) × (103,8 − 6,50) = 499 × 97,3</div><div class=\"passo\">Δp = 48 537 Pa = <strong>48,5 kPa</strong></div><p>Esquecer de subtrair v₁² dá 51,8 kPa — é o distrator. A parcela de v₁ costuma ser pequena, mas não é nula.</p>"
+    },
+    {
+      "id": "mf-012",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "bernoulli",
+      "enunciado": "<p>Sobre a linha de energia (LE) e a linha piezométrica (LP) em uma tubulação real com escoamento permanente:</p>",
+      "alternativas": [
+        "A LE nunca sobe no sentido do escoamento, exceto ao passar por uma bomba.",
+        "A LP nunca sobe no sentido do escoamento.",
+        "LE e LP são sempre paralelas.",
+        "A distância entre LE e LP é a carga de posição z."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A LE representa a energia total. Como o atrito só dissipa, ela só pode descer — salvo se houver uma máquina fornecendo energia (bomba). Já a LP pode subir: basta que a velocidade diminua, por exemplo numa expansão, convertendo carga cinética em pressão. A distância vertical entre elas é v²/2g, a carga cinética, e elas só são paralelas em trecho de diâmetro constante.</p>"
+    },
+    {
+      "id": "mf-013",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "bernoulli",
+      "enunciado": "<p>Sobre as hipóteses da equação de Bernoulli e as situações em que aplicá-la leva a resultado incorreto:</p>",
+      "alternativas": [
+        "Bernoulli vale em qualquer escoamento de água, por ser incompressível.",
+        "A única restrição é que o escoamento seja permanente.",
+        "Ela falha apenas quando há mudança de altura significativa entre os pontos.",
+        "Ela supõe escoamento incompressível, permanente, sem atrito, sem máquina e ao longo de uma mesma linha de corrente. Falha em tubulação longa (atrito exige h_f), em trecho com bomba ou turbina (exige o termo de máquina) e em expansão brusca ou válvula (exige h_m) — além de casos compressíveis e transitórios."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Bernoulli na forma p/γ + v²/2g + z = constante exige: escoamento <strong>incompressível</strong>, <strong>permanente</strong>, <strong>sem atrito</strong>, sem troca de trabalho com máquinas, e a aplicação <strong>ao longo de uma mesma linha de corrente</strong> (ou em escoamento irrotacional, entre dois pontos quaisquer).</p><p><strong>Primeira situação — tubulação longa.</strong> Em uma adutora de centenas de metros, o atrito viscoso dissipa uma parcela grande da energia. Bernoulli previria pressão constante e a realidade mostra queda contínua. A hipótese violada é a de escoamento sem atrito; usa-se a equação da energia com o termo h<sub>f</sub> de Darcy-Weisbach.</p><p><strong>Segunda situação — expansão brusca.</strong> Na saída de um tubo para um reservatório ou em um alargamento súbito, forma-se recirculação e a energia cinética é dissipada em turbulência. Aplicar Bernoulli através da expansão superestima muito a recuperação de pressão. Usa-se a perda localizada h<sub>m</sub> = K·v²/2g, com K = 1 na saída para reservatório.</p><p><strong>Terceira situação — presença de bomba ou turbina.</strong> A máquina adiciona ou retira energia do escoamento, quebrando a constância da soma. É preciso a equação da energia com os termos H<sub>bomba</sub> e H<sub>turbina</sub>.</p><p>Outras violações relevantes: escoamento compressível com Mach acima de 0,3 (a densidade deixa de ser constante), regime transitório como no golpe de aríete, e a tentativa de comparar pontos em linhas de corrente diferentes em escoamento rotacional, por exemplo dentro de uma esteira.</p>"
+    },
+    {
+      "id": "mf-014",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "regimes",
+      "enunciado": "<p>Em escoamento no interior de tubos, a transição de laminar para turbulento ocorre tipicamente em:</p>",
+      "alternativas": [
+        "Re ≈ 500",
+        "Re ≈ 2 300",
+        "Re ≈ 5×10⁵",
+        "Re ≈ 10⁶"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Em tubo, o comprimento característico é o diâmetro e a transição fica em torno de Re = 2 300, com uma faixa crítica instável até cerca de 4 000. Re ≈ 5×10⁵ é a transição em <strong>placa plana</strong>, onde o comprimento característico é a distância desde o bordo de ataque. Trocar os dois limiares leva à correlação errada e a um erro de ordem de grandeza em h ou em f.</p>"
+    },
+    {
+      "id": "mf-015",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "regimes",
+      "enunciado": "<p>Água a 20 °C (ν = 1,004×10⁻⁶ m²/s) escoa a <span class=\"dado\">3 L/s</span> em tubo de <span class=\"dado\">50 mm</span>. Determine a velocidade e o número de Reynolds.</p>",
+      "alternativas": [
+        "v = 1,53 m/s e Re = 7,6×10⁴",
+        "v = 1,53 m/s e Re = 3,8×10⁴",
+        "v = 0,76 m/s e Re = 3,8×10⁴",
+        "v = 3,06 m/s e Re = 1,5×10⁵"
+      ],
+      "correta": 0,
+      "formulas": [
+        "A = π·D²/4",
+        "v = Q/A",
+        "Re = v·D/ν"
+      ],
+      "explicacao": "<div class=\"passo\">A = π(0,050)²/4 = 1,963×10⁻³ m²</div><div class=\"passo\">v = 0,003/1,963×10⁻³ = 1,528 m/s</div><div class=\"passo\">Re = 1,528 × 0,050/1,004×10⁻⁶ = 7,61×10⁴</div><p>Turbulento, bem acima de 4 000. A velocidade de 1,5 m/s está na faixa econômica usual para água (1 a 3 m/s).</p>"
+    },
+    {
+      "id": "mf-016",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "regimes",
+      "enunciado": "<p>Comparando os perfis de velocidade em tubo, no regime turbulento o perfil é mais achatado que no laminar. A consequência prática é que:</p>",
+      "alternativas": [
+        "A velocidade máxima no turbulento é o dobro da média, como no laminar.",
+        "A razão v_máx/v_média cai de 2,0 no laminar para cerca de 1,2 no turbulento.",
+        "O perfil turbulento tem gradiente de velocidade menor junto à parede.",
+        "No turbulento não há camada limite."
+      ],
+      "correta": 1,
+      "explicacao": "<p>No laminar o perfil é parabólico e v<sub>máx</sub> = 2·v<sub>média</sub> exatamente. A mistura turbulenta uniformiza o núcleo do escoamento, achatando o perfil, e a razão cai para 1,15 a 1,25. Justamente por isso o gradiente junto à parede é <em>maior</em> no turbulento — o que explica o atrito mais alto. A subcamada viscosa existe e é o que determina a influência da rugosidade.</p>"
+    },
+    {
+      "id": "mf-017",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "perda-carga",
+      "enunciado": "<p>Água (ρ = 998 kg/m³, ν = 1,0×10⁻⁶ m²/s) escoa a <span class=\"dado\">Q = 8 L/s</span> em tubo de aço comercial (ε = 0,046 mm) com <span class=\"dado\">D = 75 mm</span> e <span class=\"dado\">L = 120 m</span>. Qual a perda de carga distribuída?</p>",
+      "alternativas": [
+        "1,9 m",
+        "3,4 m",
+        "5,4 m",
+        "7,8 m"
+      ],
+      "correta": 2,
+      "formulas": [
+        "A = πD²/4  e  v = Q/A",
+        "Re = v·D/ν",
+        "1/√f = −2·log10( ε/(3,7D) + 2,51/(Re·√f) )   [Colebrook]",
+        "hf = f·(L/D)·v²/(2g)"
+      ],
+      "explicacao": "<div class=\"passo\">A = π(0,075)²/4 = 4,418×10⁻³ m² → v = 0,008/4,418×10⁻³ = 1,811 m/s</div><div class=\"passo\">Re = 1,811 × 0,075/1,0×10⁻⁶ = 1,358×10⁵ → turbulento</div><div class=\"passo\">ε/D = 0,046/75 = 6,13×10⁻⁴ → Colebrook converge para f = 0,0201</div><div class=\"passo\">hf = 0,0201 × (120/0,075) × (1,811²/19,62) = <strong>5,4 m</strong></div><p>Conferindo por Swamee-Jain: f = 0,0202, praticamente o mesmo. Você pode reproduzir esse caso no simulador de perda de carga.</p>"
+    },
+    {
+      "id": "mf-018",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "perda-carga",
+      "enunciado": "<p>Óleo SAE 30 (ν = 2,4×10⁻⁴ m²/s) escoa a <span class=\"dado\">1,5 L/s</span> em tubo de <span class=\"dado\">50 mm</span> e <span class=\"dado\">40 m</span>. Determine o fator de atrito e a perda de carga.</p>",
+      "alternativas": [
+        "f = 0,021 e hf = 0,50 m",
+        "f = 0,402 e hf = 9,57 m",
+        "f = 0,064 e hf = 1,52 m",
+        "f = 0,402 e hf = 2,39 m"
+      ],
+      "correta": 1,
+      "formulas": [
+        "v = Q/A",
+        "Re = v·D/ν",
+        "Se Re < 2300:  f = 64/Re   (a rugosidade não importa)",
+        "hf = f·(L/D)·v²/(2g)"
+      ],
+      "explicacao": "<div class=\"passo\">A = 1,963×10⁻³ m² → v = 0,0015/1,963×10⁻³ = 0,764 m/s</div><div class=\"passo\">Re = 0,764 × 0,050/2,4×10⁻⁴ = 159 → <strong>laminar</strong></div><div class=\"passo\">f = 64/159 = 0,402</div><div class=\"passo\">hf = 0,402 × (40/0,050) × (0,764²/19,62) = <strong>9,57 m</strong></div><p>Repare que o fator de atrito é vinte vezes maior que o de água turbulenta no mesmo tubo. Em óleo pesado a perda é dominada pela viscosidade, e a rugosidade do tubo é irrelevante.</p>"
+    },
+    {
+      "id": "mf-019",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "perda-carga",
+      "enunciado": "<p>Na região de turbulência plenamente desenvolvida do diagrama de Moody, as curvas ficam horizontais. Isso significa que:</p>",
+      "alternativas": [
+        "O fator de atrito depende apenas do número de Reynolds.",
+        "O fator de atrito depende apenas da rugosidade relativa ε/D.",
+        "A perda de carga deixa de depender da vazão.",
+        "O escoamento voltou a ser laminar."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Com Reynolds muito alto, a subcamada viscosa fica mais fina que as asperezas da parede, que passam a se projetar no escoamento turbulento. A partir daí o atrito é dominado pela forma da rugosidade e f = f(ε/D) apenas. Atenção: <em>f</em> fica constante, mas a perda de carga continua crescendo com v², já que h<sub>f</sub> = f(L/D)v²/2g.</p>"
+    },
+    {
+      "id": "mf-020",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "perda-carga",
+      "enunciado": "<p>Sobre a dependência da perda de carga em relação à rugosidade nos regimes laminar e turbulento plenamente desenvolvido:</p>",
+      "alternativas": [
+        "No laminar f = 64/Re, sem termo de rugosidade, porque as camadas deslizam ordenadamente e as asperezas ficam submersas no escoamento viscoso; no turbulento a subcamada viscosa afina conforme Re cresce, até que as asperezas a atravessem e passem a governar sozinhas — daí o patamar horizontal do diagrama de Moody, com f dependendo só de ε/D.",
+        "Em ambos os regimes f depende igualmente de Re e da rugosidade.",
+        "No laminar a rugosidade domina e no turbulento ela desaparece.",
+        "A rugosidade nunca influi em f; o que muda é apenas a velocidade média."
+      ],
+      "correta": 0,
+      "explicacao": "<p>No regime <strong>laminar</strong> o escoamento se dá em camadas paralelas e ordenadas, sem mistura transversal. A resistência vem inteiramente do cisalhamento viscoso entre essas camadas, e a solução analítica de Hagen-Poiseuille conduz a f = 64/Re, expressão em que a rugosidade sequer aparece. Fisicamente, as asperezas ficam imersas em fluido praticamente estagnado junto à parede e não perturbam o escoamento principal.</p><p>No regime <strong>turbulento</strong> existe uma <strong>subcamada viscosa</strong> muito fina colada à parede, de espessura δ<sub>v</sub> ≈ 5ν/u*, que diminui à medida que o Reynolds aumenta. Enquanto δ<sub>v</sub> &gt; ε, as asperezas permanecem submersas nessa subcamada e o tubo se comporta como hidraulicamente liso: f depende só de Re. À medida que Re cresce, δ<sub>v</sub> encolhe até ficar menor que ε; as asperezas passam a se projetar no núcleo turbulento e a gerar esteiras e arrasto de forma.</p><p>Nesse ponto, a dissipação é governada pela geometria da rugosidade e não mais pela viscosidade: a equação de Colebrook tende a 1/√f = −2·log₁₀[ε/(3,7D)], sem Re, e as curvas do diagrama de Moody se tornam horizontais. Entre os dois extremos existe a zona de transição, em que f depende simultaneamente de Re e de ε/D — é ali que a forma completa de Colebrook é necessária.</p>"
+    },
+    {
+      "id": "mf-021",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "localizadas",
+      "enunciado": "<p>Uma válvula globo aberta (K = 6,0) opera com água a <span class=\"dado\">2,0 m/s</span>. Qual a perda de carga localizada?</p>",
+      "alternativas": [
+        "0,20 m",
+        "0,61 m",
+        "1,22 m",
+        "2,45 m"
+      ],
+      "correta": 2,
+      "formulas": [
+        "h_m = K·v²/(2g)",
+        "g = 9,81 m/s²"
+      ],
+      "explicacao": "<div class=\"passo\">v²/2g = 2,0²/(2 × 9,81) = 0,2039 m</div><div class=\"passo\">h<sub>m</sub> = 6,0 × 0,2039 = <strong>1,22 m</strong></div><p>Uma única válvula globo consome mais carga do que dezenas de metros de tubo reto. Onde a função é apenas bloquear, especifica-se válvula gaveta (K = 0,15), quarenta vezes menor.</p>"
+    },
+    {
+      "id": "mf-022",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "localizadas",
+      "enunciado": "<p>Para a mesma válvula globo (K = 6,0) instalada em tubo de <span class=\"dado\">50 mm</span> com f = 0,021, qual o comprimento equivalente de tubo reto?</p>",
+      "alternativas": [
+        "0,30 m",
+        "2,52 m",
+        "14,3 m",
+        "28,6 m"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Igualando h_m = h_f:  K·v²/2g = f·(L_eq/D)·v²/2g",
+        "L_eq = K·D/f"
+      ],
+      "explicacao": "<div class=\"passo\">L<sub>eq</sub> = K·D/f = 6,0 × 0,050/0,021</div><div class=\"passo\">L<sub>eq</sub> = 0,30/0,021 = <strong>14,3 m</strong></div><p>Note que o comprimento equivalente depende do diâmetro e do fator de atrito, não só do acessório. É por isso que as tabelas de L<sub>eq</sub> são sempre organizadas por bitola.</p>"
+    },
+    {
+      "id": "mf-023",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "localizadas",
+      "enunciado": "<p>O coeficiente de perda localizada na saída de uma tubulação para um grande reservatório vale aproximadamente K = 1,0. A razão física é que:</p>",
+      "alternativas": [
+        "Toda a energia cinética do jato é dissipada na turbulência do reservatório.",
+        "A pressão no reservatório é maior que na tubulação.",
+        "Há contração da veia líquida na saída.",
+        "A velocidade aumenta bruscamente ao sair."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Ao desembocar em um grande reservatório, a velocidade cai praticamente a zero e toda a carga cinética v²/2g se dissipa em turbulência e calor, sem recuperação de pressão. Como h<sub>m</sub> = K·v²/2g e a perda é exatamente v²/2g, resulta K = 1,0. A contração de veia é o fenômeno da <em>entrada</em> de borda viva, que dá K ≈ 0,5.</p>"
+    },
+    {
+      "id": "mf-024",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "momento",
+      "enunciado": "<p>Um sistema de recalque eleva água a <span class=\"dado\">8 L/s</span> com altura manométrica de <span class=\"dado\">15 m</span>. Qual a potência de eixo necessária, considerando rendimento de <span class=\"dado\">65 %</span>? (ρ = 998 kg/m³)</p>",
+      "alternativas": [
+        "0,76 kW",
+        "1,17 kW",
+        "1,81 kW",
+        "2,78 kW"
+      ],
+      "correta": 2,
+      "formulas": [
+        "P_hidráulica = ρ·g·Q·H",
+        "P_eixo = P_hidráulica / η"
+      ],
+      "explicacao": "<div class=\"passo\">P<sub>hid</sub> = 998 × 9,81 × 0,008 × 15 = 1 175 W = 1,17 kW</div><div class=\"passo\">P<sub>eixo</sub> = 1,17/0,65 = <strong>1,81 kW</strong></div><p>Responder 1,17 kW é esquecer o rendimento — é a potência entregue ao fluido, não a que o motor precisa fornecer. Comercialmente adotaria-se um motor de 2 ou 2,5 cv, com folga.</p>"
+    },
+    {
+      "id": "mf-025",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "momento",
+      "enunciado": "<p>Para calcular a força que um jato d'água exerce ao atingir uma placa, a ferramenta adequada é:</p>",
+      "alternativas": [
+        "A equação de Bernoulli entre o bocal e a placa.",
+        "A equação da continuidade.",
+        "A equação da energia com o termo de perda.",
+        "A equação da quantidade de movimento no volume de controle."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Bernoulli e a equação da energia são escalares e fornecem pressões e velocidades, não forças. Quando o que se pede é <em>força</em> ou reação de apoio, a ferramenta é a equação da quantidade de movimento, ΣF = ṁ(v<sub>saída</sub> − v<sub>entrada</sub>), aplicada componente a componente. Ela também é a única que funciona quando há perdas desconhecidas dentro do volume de controle, como em uma expansão brusca.</p>"
+    },
+    {
+      "id": "mf-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "momento",
+      "enunciado": "<p>O ponto de operação de um sistema de bombeamento é determinado por:</p>",
+      "alternativas": [
+        "O ponto de máximo rendimento da bomba.",
+        "A interseção da curva da bomba com a curva do sistema.",
+        "A vazão nominal indicada na placa do motor.",
+        "O ponto em que a altura manométrica é nula."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A bomba fornece uma relação H×Q decrescente; o sistema exige uma relação H×Q crescente (Δz + kQ²). O regime permanente só é possível onde as duas se igualam. O ponto de melhor rendimento (BEP) é uma característica da bomba e o objetivo do projetista é fazer o ponto de operação cair perto dele — mas quem determina onde ele cai é o cruzamento das curvas.</p>"
+    },
+    {
+      "id": "mf-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "momento",
+      "enunciado": "<p>Ao fechar parcialmente a válvula de descarga de um sistema de bombeamento, o que acontece com o ponto de operação e por que essa é uma forma ineficiente de controlar a vazão?</p>",
+      "alternativas": [
+        "A curva da bomba se desloca para baixo, reduzindo vazão e altura simultaneamente, com boa eficiência energética.",
+        "Fechar a válvula aumenta ΣK e levanta a curva do sistema; o ponto de operação caminha pela curva da bomba para menor vazão e MAIOR altura. A energia correspondente ao acréscimo de altura é dissipada dentro da válvula, sem trabalho útil, e ainda se afasta a bomba do ponto de melhor rendimento — reduzir a rotação por inversor faz a potência cair com o cubo.",
+        "A vazão cai e a altura também, porque a bomba passa a trabalhar mais aliviada.",
+        "O ponto de operação não se altera: a válvula apenas dissipa o excesso sem afetar a bomba."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Fechar parcialmente a válvula aumenta seu coeficiente de perda K. Como a curva do sistema é H = Δz + (f·L/D + ΣK)·v²/2g, isto é, uma parábola em Q, o aumento de ΣK torna a parábola mais íngreme — a curva do sistema sobe.</p><p>O novo ponto de operação é o cruzamento dessa curva mais alta com a curva da bomba, que é decrescente. O resultado é deslocamento para a <strong>esquerda e para cima</strong>: menor vazão e maior altura manométrica. É por isso que estrangular a descarga de fato reduz a vazão.</p><p>A ineficiência está em <em>onde</em> essa energia vai parar. A bomba continua consumindo potência proporcional a ρgQH, e a parcela adicional de H criada pelo estrangulamento não realiza trabalho útil algum: é integralmente dissipada em turbulência e calor na válvula. Estrangular é, portanto, produzir energia hidráulica para em seguida destruí-la deliberadamente.</p><p>Há ainda um efeito colateral: o ponto de operação se afasta do ponto de melhor rendimento da bomba, reduzindo η e agravando o consumo; em casos extremos, leva a operação com vazão muito baixa, com recirculação interna, aquecimento e vibração.</p><p>A alternativa eficiente é variar a rotação com um inversor de frequência. Pelas leis de semelhança, Q ∝ n, H ∝ n² e P ∝ n³: reduzir a rotação em 20 % corta a potência em cerca de metade, em vez de desperdiçá-la na válvula.</p>"
+    },
+    {
+      "id": "mf-028",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "bernoulli",
+      "enunciado": "<p>Um Venturi com <span class=\"dado\">D₁ = 100 mm</span> e <span class=\"dado\">β = D₂/D₁ = 0,5</span> mede uma queda de pressão de <span class=\"dado\">30 kPa</span> em água (ρ = 998 kg/m³), com C<sub>d</sub> = 0,98. Qual a vazão?</p>",
+      "alternativas": [
+        "9,7 L/s",
+        "12,4 L/s",
+        "15,4 L/s",
+        "19,6 L/s"
+      ],
+      "correta": 2,
+      "formulas": [
+        "A₂ = π·D₂²/4,  com D₂ = β·D₁",
+        "Q = Cd·A₂·√[ 2·Δp / (ρ·(1 − β⁴)) ]"
+      ],
+      "explicacao": "<div class=\"passo\">D₂ = 0,5 × 100 = 50 mm → A₂ = π(0,050)²/4 = 1,963×10⁻³ m²</div><div class=\"passo\">β⁴ = 0,5⁴ = 0,0625 → 1 − β⁴ = 0,9375</div><div class=\"passo\">2Δp/(ρ(1−β⁴)) = 60 000/(998 × 0,9375) = 64,13 m²/s²</div><div class=\"passo\">Q = 0,98 × 1,963×10⁻³ × √64,13 = 0,98 × 1,963×10⁻³ × 8,008</div><div class=\"passo\">Q = 1,541×10⁻² m³/s = <strong>15,4 L/s</strong></div><p>Sem o termo (1 − β⁴) o resultado cairia para 14,9 L/s: a correção existe porque a velocidade de aproximação v₁ não é desprezível quando β é grande.</p>"
+    },
+    {
+      "id": "mf-029",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "bernoulli",
+      "enunciado": "<p>Em um Venturi, aumentar demais o estrangulamento (reduzir β) pode provocar cavitação. A condição limite é:</p>",
+      "alternativas": [
+        "A pressão na garganta cair abaixo da pressão atmosférica.",
+        "A pressão absoluta na garganta cair abaixo da pressão de vapor do líquido.",
+        "A velocidade na garganta ultrapassar a velocidade do som.",
+        "O número de Reynolds na garganta ultrapassar 10⁶."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Cavitação é a vaporização do líquido por queda de pressão à temperatura constante. Ocorre quando a pressão <strong>absoluta</strong> local fica abaixo da pressão de vapor — para água a 20 °C, 2,34 kPa absolutos. Cair abaixo da atmosférica é perfeitamente normal e não causa problema. As bolhas formadas implodem a jusante, onde a pressão se recupera, e o impacto erode o metal.</p>"
+    },
+    {
+      "id": "mf-030",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "perda-carga",
+      "enunciado": "<p>Mantendo a vazão constante e reduzindo o diâmetro de um tubo pela metade, a perda de carga distribuída aumenta aproximadamente:</p>",
+      "alternativas": [
+        "4 vezes",
+        "8 vezes",
+        "16 vezes",
+        "32 vezes"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Com Q fixa, v = Q/A ∝ 1/D², logo v² ∝ 1/D⁴. Somando o termo L/D da fórmula de Darcy-Weisbach, resulta h<sub>f</sub> ∝ 1/D⁵, ou seja, um fator 2⁵ = 32 (a variação de f atenua um pouco esse valor na prática). É a dependência mais forte de toda a disciplina, e a razão de o diâmetro ser a decisão mais cara de um projeto hidráulico.</p>"
+    }
+  ]
+}

@@ -1,0 +1,539 @@
+{
+  "disciplina": "Mecânica dos Materiais II",
+  "slug": "mecanica-dos-materiais-2",
+  "topicos": [
+    {
+      "id": "estado-plano",
+      "nome": "Estado plano de tensões"
+    },
+    {
+      "id": "mohr",
+      "nome": "Círculo de Mohr"
+    },
+    {
+      "id": "duteis",
+      "nome": "Critérios — dúcteis"
+    },
+    {
+      "id": "frageis",
+      "nome": "Critérios — frágeis"
+    },
+    {
+      "id": "flambagem",
+      "nome": "Flambagem"
+    },
+    {
+      "id": "vasos-fina",
+      "nome": "Vasos de parede fina"
+    },
+    {
+      "id": "vasos-espessa",
+      "nome": "Vasos de parede espessa"
+    },
+    {
+      "id": "energia",
+      "nome": "Energia de deformação"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "m2-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "estado-plano",
+      "enunciado": "<p>Em um plano principal, por definição:</p>",
+      "alternativas": [
+        "A tensão de cisalhamento é nula e a normal é extrema.",
+        "As tensões normal e de cisalhamento são iguais.",
+        "A tensão de cisalhamento é máxima.",
+        "A tensão normal é nula."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Plano principal é aquele em que τ = 0. Nessa orientação a tensão normal assume seu valor máximo (σ₁) ou mínimo (σ₂). Os planos de cisalhamento máximo são outros: estão a 45° dos principais, e neles a tensão normal vale a média (σ₁+σ₂)/2, que em geral não é nula.</p>"
+    },
+    {
+      "id": "m2-002",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "mohr",
+      "enunciado": "<p>Um ponto tem <span class=\"dado\">σx = 80 MPa</span>, <span class=\"dado\">σy = −40 MPa</span> e <span class=\"dado\">τxy = 30 MPa</span>. Determine as tensões principais.</p>",
+      "alternativas": [
+        "σ₁ = 110 MPa e σ₂ = −70 MPa",
+        "σ₁ = 87,1 MPa e σ₂ = −47,1 MPa",
+        "σ₁ = 80,0 MPa e σ₂ = −40,0 MPa",
+        "σ₁ = 67,1 MPa e σ₂ = −67,1 MPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Centro: σméd = (σx + σy)/2",
+        "Raio: R = √[((σx − σy)/2)² + τxy²]",
+        "σ1,2 = σméd ± R"
+      ],
+      "explicacao": "<div class=\"passo\">σ<sub>méd</sub> = (80 − 40)/2 = 20 MPa</div><div class=\"passo\">R = √[(60)² + (30)²] = √(3600 + 900) = √4500 = 67,08 MPa</div><div class=\"passo\">σ₁ = 20 + 67,08 = <strong>87,1 MPa</strong></div><div class=\"passo\">σ₂ = 20 − 67,08 = <strong>−47,1 MPa</strong></div><p>Note que (σx − σy)/2 = 60, não 20 — esquecer que σy é negativo é o erro mais comum aqui.</p>"
+    },
+    {
+      "id": "m2-003",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "mohr",
+      "enunciado": "<p>Para o mesmo estado (σx = 80, σy = −40, τxy = 30 MPa), qual a tensão de cisalhamento máxima no plano e o ângulo dos planos principais?</p>",
+      "alternativas": [
+        "τmáx = 67,1 MPa e θp = 26,6°",
+        "τmáx = 134 MPa e θp = 13,3°",
+        "τmáx = 67,1 MPa e θp = 13,3°",
+        "τmáx = 30,0 MPa e θp = 26,6°"
+      ],
+      "correta": 2,
+      "formulas": [
+        "τmáx (no plano) = R",
+        "tan 2θp = 2τxy/(σx − σy)",
+        "θp = (1/2)·arctan[...]"
+      ],
+      "explicacao": "<div class=\"passo\">τ<sub>máx</sub> = R = <strong>67,1 MPa</strong></div><div class=\"passo\">tan 2θ<sub>p</sub> = 2(30)/(80 − (−40)) = 60/120 = 0,5</div><div class=\"passo\">2θ<sub>p</sub> = 26,57° → θ<sub>p</sub> = <strong>13,3°</strong></div><p>O fator 2 no ângulo é a pegadinha clássica: 26,6° é o ângulo <em>no círculo de Mohr</em>, e 13,3° é o giro real do elemento.</p>"
+    },
+    {
+      "id": "m2-004",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "mohr",
+      "enunciado": "<p>Em um estado plano com σ₁ = 100 MPa e σ₂ = 60 MPa (ambas de tração), a máxima tensão de cisalhamento no ponto vale:</p>",
+      "alternativas": [
+        "80 MPa, igual à média.",
+        "40 MPa, igual à diferença.",
+        "20 MPa, igual a (σ₁ − σ₂)/2.",
+        "50 MPa, considerando σ₃ = 0."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Aqui está o erro clássico do círculo de Mohr plano. O estado é <em>plano</em>, mas o ponto é tridimensional, com σ₃ = 0. As três tensões principais são 100, 60 e 0, e τ<sub>máx</sub> absoluto vale (σ<sub>máx</sub> − σ<sub>mín</sub>)/2 = (100 − 0)/2 = <strong>50 MPa</strong>, num plano fora do papel. O valor 20 MPa é o cisalhamento máximo apenas <em>no plano</em> analisado.</p>"
+    },
+    {
+      "id": "m2-005",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "mohr",
+      "enunciado": "<p>As equações de transformação de tensões envolvem 2θ e não θ. A razão e a consequência prática são:</p>",
+      "alternativas": [
+        "É apenas uma convenção algébrica, sem efeito na leitura do círculo de Mohr.",
+        "Porque o estado de tensão se repete a cada 180° de giro do elemento; no círculo de Mohr todo ângulo aparece dobrado, de modo que os dois planos principais ficam a 180° no círculo e a 90° no elemento real, e os planos de τ máximo ficam a 90° no círculo, ou seja, a 45° do plano principal.",
+        "Porque a tensão é uma grandeza vetorial e vetores giram com o dobro do ângulo.",
+        "Porque o círculo de Mohr tem raio igual ao dobro da tensão de cisalhamento máxima."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O estado de tensão em um elemento tem periodicidade de 180°, não de 360°. Girar o elemento 180° devolve exatamente a mesma face, com a mesma tensão — uma face e sua oposta são fisicamente equivalentes. Para representar essa periodicidade com funções trigonométricas de período 360°, o argumento precisa ser 2θ, e é o que aparece nas equações de transformação.</p><p>A consequência imediata é o fator 2 na relação tan 2θ<sub>p</sub> = 2τ<sub>xy</sub>/(σ<sub>x</sub> − σ<sub>y</sub>): o ângulo lido no círculo é o dobro do giro real do elemento. Errar isso é o engano mais frequente da disciplina.</p><p>Na leitura do círculo, três consequências práticas se seguem. Primeira: os dois planos principais, que estão a 90° entre si no elemento físico, aparecem como pontos <strong>diametralmente opostos</strong> (180°) no círculo. Segunda: os planos de cisalhamento máximo, que no círculo estão a 90° dos principais, correspondem a apenas 45° de giro real — e é por isso que a ruptura por cisalhamento em um corpo de prova tracionado ocorre a 45°. Terceira: uma volta completa no círculo (360°) equivale a girar o elemento apenas 180°.</p><p>O ganho da representação é que qualquer estado plano vira um círculo cujo centro é a média das tensões normais e cujo raio é o cisalhamento máximo no plano — dois números que resumem todo o estado.</p>"
+    },
+    {
+      "id": "m2-006",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "duteis",
+      "enunciado": "<p>Comparado ao critério de von Mises, o critério de Tresca é:</p>",
+      "alternativas": [
+        "Sempre igual ou mais conservador, com diferença máxima de cerca de 15 %.",
+        "Aplicável apenas a materiais frágeis.",
+        "Independente do estado de tensão.",
+        "Sempre menos conservador."
+      ],
+      "correta": 0,
+      "explicacao": "<p>No plano σ₁–σ₂, a elipse de von Mises circunscreve o hexágono de Tresca, tocando-o em seis pontos. Onde coincidem (tração pura, biaxial igual) os critérios dão o mesmo resultado; nos demais estados Tresca prevê falha antes. A diferença máxima, 15,5 %, ocorre em cisalhamento puro: Tresca dá τ<sub>escoamento</sub> = 0,50·S<sub>y</sub> e von Mises, 0,577·S<sub>y</sub>.</p>"
+    },
+    {
+      "id": "m2-007",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "duteis",
+      "enunciado": "<p>Para σ₁ = 87,1 MPa e σ₂ = −47,1 MPa, calcule a tensão equivalente de von Mises e a de Tresca.</p>",
+      "alternativas": [
+        "von Mises = 118 MPa e Tresca = 87,1 MPa",
+        "von Mises = 118 MPa e Tresca = 134 MPa",
+        "von Mises = 134 MPa e Tresca = 118 MPa",
+        "von Mises = 87,1 MPa e Tresca = 134 MPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "von Mises (plano): σ' = √(σ1² − σ1σ2 + σ2²)",
+        "Tresca: σ_eq = σmáx − σmín  (incluindo σ3 = 0)"
+      ],
+      "explicacao": "<div class=\"passo\">σ₁² = 7 586; σ₂² = 2 218; σ₁σ₂ = −4 102</div><div class=\"passo\">σ' = √(7 586 + 4 102 + 2 218) = √13 906 = <strong>118 MPa</strong></div><div class=\"passo\">Tresca: σ₁ − σ₂ = 87,1 − (−47,1) = <strong>134 MPa</strong></div><p>Tresca é 13,7 % maior, ou seja, mais conservador — coerente com a regra geral. Atenção ao sinal: −σ₁σ₂ com σ₂ negativo vira uma soma.</p>"
+    },
+    {
+      "id": "m2-008",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "frageis",
+      "enunciado": "<p>Para ferro fundido cinzento, cuja resistência à compressão é cerca de três vezes a de tração, o critério adequado é:</p>",
+      "alternativas": [
+        "Von Mises, por ser o mais preciso.",
+        "Tresca, por ser conservador.",
+        "Mohr-Coulomb, que trata Sut e Suc separadamente.",
+        "Soderberg."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Von Mises e Tresca pressupõem material dúctil e resistências iguais em tração e compressão. O ferro fundido é frágil e fortemente assimétrico, o que exige um critério com dois limites: Mohr-Coulomb, na forma σ₁/S<sub>ut</sub> − σ₃/S<sub>uc</sub> ≤ 1/n. Soderberg não é critério estático — é critério de fadiga com tensão média.</p>"
+    },
+    {
+      "id": "m2-009",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "frageis",
+      "enunciado": "<p>O critério da máxima tensão normal (σ₁ ≤ Sut) é considerado não conservador:</p>",
+      "alternativas": [
+        "Em estado uniaxial de tração.",
+        "Apenas em materiais dúcteis.",
+        "No primeiro quadrante, com ambas as tensões de tração.",
+        "No quarto quadrante, com tração e compressão combinadas."
+      ],
+      "correta": 3,
+      "explicacao": "<p>O critério só olha σ₁ e ignora completamente σ₃. No quarto quadrante (σ₁ &gt; 0 e σ₂ &lt; 0), a presença da compressão agrava a falha em material frágil, mas o critério não percebe isso — e prevê segurança onde a peça já rompeu. É exatamente o caso de um eixo de ferro fundido sob torção, em que σ₁ = −σ₂ = τ. Por isso se usa Mohr-Coulomb modificado.</p>"
+    },
+    {
+      "id": "m2-010",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "flambagem",
+      "enunciado": "<p>A carga crítica de flambagem de Euler depende:</p>",
+      "alternativas": [
+        "Do módulo de elasticidade, do momento de inércia e do comprimento efetivo.",
+        "Apenas da área da seção transversal.",
+        "Da resistência à compressão do material.",
+        "Do limite de escoamento do material."
+      ],
+      "correta": 0,
+      "explicacao": "<p>P<sub>cr</sub> = π²EI/L<sub>e</sub>². Flambagem é um problema de <strong>estabilidade e rigidez</strong>, não de resistência: o material entra apenas por E. Dois aços com S<sub>y</sub> de 250 e 700 MPa flambam exatamente na mesma carga, porque ambos têm E = 200 GPa. Trocar por aço mais resistente não resolve flambagem — só mudar a geometria ou a vinculação resolve.</p>"
+    },
+    {
+      "id": "m2-011",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "flambagem",
+      "enunciado": "<p>Uma coluna biarticulada de aço (E = 200 GPa) tem <span class=\"dado\">L = 3 m</span> e <span class=\"dado\">I = 4,5×10⁻⁶ m⁴</span>. Qual a carga crítica de Euler?</p>",
+      "alternativas": [
+        "247 kN",
+        "987 kN",
+        "1 974 kN",
+        "3 948 kN"
+      ],
+      "correta": 1,
+      "formulas": [
+        "P_cr = π²·E·I/(K·L)²",
+        "Biarticulada: K = 1,0"
+      ],
+      "explicacao": "<div class=\"passo\">L<sub>e</sub> = 1,0 × 3 = 3 m</div><div class=\"passo\">P<sub>cr</sub> = π² × 200×10⁹ × 4,5×10⁻⁶ / 9</div><div class=\"passo\">P<sub>cr</sub> = 8,883×10⁶/9 = 9,87×10⁵ N = <strong>987 kN</strong></div><p>Os distratores correspondem às outras vinculações: 247 kN é engastada-livre (K = 2) e 3 948 kN é biengastada (K = 0,5).</p>"
+    },
+    {
+      "id": "m2-012",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "flambagem",
+      "enunciado": "<p>Para a mesma coluna, com <span class=\"dado\">A = 3 000 mm²</span> e aço de <span class=\"dado\">Sy = 250 MPa</span>, verifique se a fórmula de Euler é aplicável.</p>",
+      "alternativas": [
+        "Não: a coluna é curta demais para flambar.",
+        "Sim: λ = 77,5 e σcr = 329 MPa, abaixo do escoamento.",
+        "Não: λ = 77,5 está abaixo do limite de 126, e σcr = 329 MPa excede Sy.",
+        "Sim: λ = 126 é exatamente o limite."
+      ],
+      "correta": 2,
+      "formulas": [
+        "r = √(I/A)",
+        "λ = KL/r",
+        "σ_cr = π²E/λ²",
+        "λ_limite = √(2π²E/Sy)"
+      ],
+      "explicacao": "<div class=\"passo\">r = √(4,5×10⁻⁶/3×10⁻³) = √1,5×10⁻³ = 0,0387 m</div><div class=\"passo\">λ = 3/0,0387 = 77,5</div><div class=\"passo\">σ<sub>cr</sub> = π² × 200 000/77,5² = 329 MPa</div><div class=\"passo\">λ<sub>lim</sub> = √(2π² × 200 000/250) = <strong>126</strong></div><p>Como λ = 77,5 &lt; 126, a coluna é <strong>intermediária</strong>: Euler prevê 329 MPa, acima do escoamento de 250 MPa, o que é fisicamente impossível. Deve-se usar a parábola de Johnson, que dá um valor abaixo de S<sub>y</sub>.</p>"
+    },
+    {
+      "id": "m2-013",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "flambagem",
+      "enunciado": "<p>Ao verificar a flambagem de uma coluna de perfil I, deve-se usar:</p>",
+      "alternativas": [
+        "A média dos dois momentos de inércia.",
+        "O momento polar de inércia.",
+        "O maior momento de inércia da seção.",
+        "O menor momento de inércia da seção."
+      ],
+      "correta": 3,
+      "explicacao": "<p>A coluna flamba no eixo de <strong>menor rigidez</strong> — encontra o caminho mais fácil. Em perfil I, isso significa o eixo fraco (menor I), e não o eixo forte usado em flexão. É justamente por isso que se contraventa colunas na direção fraca: travando esse eixo, força-se a flambagem para o eixo forte, com carga crítica muito maior.</p>"
+    },
+    {
+      "id": "m2-014",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "flambagem",
+      "enunciado": "<p>Trocar o aço de uma coluna esbelta por outro de maior resistência não aumenta a carga de flambagem porque:</p>",
+      "alternativas": [
+        "A carga de Euler depende de E, I e do comprimento efetivo, não de S_y: flambagem é instabilidade elástica, e todos os aços têm E ≈ 200 GPa. O que funciona é aumentar I, reduzir o comprimento efetivo ou melhorar a vinculação — a resistência só volta a governar em colunas curtas.",
+        "O aço de maior resistência tem módulo de elasticidade menor, o que anula o ganho.",
+        "A carga de flambagem depende apenas da área da seção, que não mudou.",
+        "A troca de fato aumenta a carga de flambagem, na mesma proporção do aumento de S_y."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A carga crítica de Euler é P<sub>cr</sub> = π²EI/(KL)². As únicas grandezas que aparecem são o módulo de elasticidade E, o momento de inércia I, o comprimento L e o fator de vinculação K. O <strong>limite de escoamento não aparece</strong>.</p><p>A razão física é que flambagem não é falha por resistência, e sim por <strong>instabilidade elástica</strong>: a coluna perde o equilíbrio e flete lateralmente enquanto o material ainda está no regime elástico, com tensões bem abaixo do escoamento. O que resiste a essa tendência é a rigidez à flexão EI, não a capacidade do material de suportar tensão.</p><p>Como todos os aços estruturais têm praticamente o mesmo E — cerca de 200 GPa, do ASTM A36 ao A572 —, trocar um aço de 250 MPa por outro de 700 MPa não muda absolutamente nada na carga crítica de uma coluna esbelta. É dinheiro gasto sem efeito.</p><p>O que realmente aumenta P<sub>cr</sub>: <strong>aumentar I</strong>, redistribuindo o material para longe do centroide (tubo em vez de barra maciça, perfil mais alto), o que é a medida mais eficiente; <strong>reduzir o comprimento efetivo</strong>, seja encurtando a coluna, seja contraventando-a no meio, o que reduz L pela metade e quadruplica P<sub>cr</sub>; e <strong>melhorar a vinculação</strong>, passando de biarticulada (K = 1) para biengastada (K = 0,5), o que também quadruplica a carga.</p><p>A ressalva importante é que isso vale para colunas <em>esbeltas</em>. Em colunas curtas, que falham por escoamento, o aço de maior resistência faz toda a diferença — e é aí que a parábola de Johnson e o índice de esbeltez limite entram para decidir em qual regime a coluna está.</p>"
+    },
+    {
+      "id": "m2-015",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "vasos-fina",
+      "enunciado": "<p>Um vaso cilíndrico de parede fina tem <span class=\"dado\">D = 1,0 m</span>, <span class=\"dado\">t = 10 mm</span> e pressão interna de <span class=\"dado\">2 MPa</span>. Determine as tensões circunferencial e longitudinal.</p>",
+      "alternativas": [
+        "100 MPa e 50 MPa",
+        "100 MPa e 100 MPa",
+        "200 MPa e 100 MPa",
+        "50 MPa e 100 MPa"
+      ],
+      "correta": 0,
+      "formulas": [
+        "σ_circunferencial = p·D/(2t)",
+        "σ_longitudinal = p·D/(4t)",
+        "Parede fina exige D/t > 20"
+      ],
+      "explicacao": "<div class=\"passo\">D/t = 1000/10 = 100 &gt; 20 → parede fina válida</div><div class=\"passo\">σ<sub>circ</sub> = 2 × 1000/(2 × 10) = <strong>100 MPa</strong></div><div class=\"passo\">σ<sub>long</sub> = 2 × 1000/(4 × 10) = <strong>50 MPa</strong></div><p>A circunferencial é sempre o dobro da longitudinal. Inverter as duas é o erro mais comum — e leva a subdimensionar o vaso por um fator 2.</p>"
+    },
+    {
+      "id": "m2-016",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "vasos-fina",
+      "enunciado": "<p>Um tubo pressurizado que rompe apresenta uma fissura longitudinal, ao longo do comprimento, e não circunferencial. A explicação é:</p>",
+      "alternativas": [
+        "A solda longitudinal é sempre mais fraca.",
+        "A tensão circunferencial é o dobro da longitudinal, e ela é que abre a fissura longitudinal.",
+        "A pressão atua preferencialmente na direção radial.",
+        "O material é anisotrópico."
+      ],
+      "correta": 1,
+      "explicacao": "<p>A tensão circunferencial (σ = pD/2t) é o dobro da longitudinal (pD/4t). Uma fissura se abre perpendicularmente à maior tensão de tração, e a circunferencial atua na direção do perímetro — logo a fissura se propaga <em>ao longo</em> do eixo. É também por isso que a solda longitudinal de um vaso é a mais crítica, e recebe eficiência de junta menor nas normas ASME.</p>"
+    },
+    {
+      "id": "m2-017",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "vasos-fina",
+      "enunciado": "<p>Um vaso <span class=\"dado\">esférico</span> de parede fina tem os mesmos D = 1,0 m, t = 10 mm e p = 2 MPa. Qual a tensão na parede?</p>",
+      "alternativas": [
+        "200 MPa",
+        "25 MPa",
+        "50 MPa",
+        "100 MPa"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Esfera: σ = p·D/(4t), igual nas duas direções",
+        "Cilindro: σ_circ = p·D/(2t)"
+      ],
+      "explicacao": "<div class=\"passo\">σ = 2 × 1000/(4 × 10) = <strong>50 MPa</strong></div><p>Metade da tensão circunferencial do cilindro equivalente, e igual nas duas direções. É por isso que a esfera é a forma mais eficiente para armazenar gás sob pressão — com a mesma espessura suporta o dobro da pressão. A desvantagem é o custo de fabricação e o aproveitamento ruim de espaço.</p>"
+    },
+    {
+      "id": "m2-018",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "vasos-espessa",
+      "enunciado": "<p>Um cilindro de parede espessa tem <span class=\"dado\">ri = 100 mm</span>, <span class=\"dado\">re = 150 mm</span> e pressão interna de <span class=\"dado\">50 MPa</span>. Qual a tensão circunferencial na superfície interna, por Lamé?</p>",
+      "alternativas": [
+        "150 MPa",
+        "100 MPa",
+        "125 MPa",
+        "130 MPa"
+      ],
+      "correta": 3,
+      "formulas": [
+        "σθ(ri) = p_int·(re² + ri²)/(re² − ri²)",
+        "σr(ri) = −p_int",
+        "Parede fina daria σ = p_int·D_médio/(2t)",
+        "p_int = pressão interna · r_i, r_e = raios interno e externo",
+        "Na calculadora, \"pi\" é a constante 3,1416 — substitua p_int pelo valor numérico."
+      ],
+      "explicacao": "<div class=\"passo\">r<sub>e</sub>² = 0,0225; r<sub>i</sub>² = 0,01 m²</div><div class=\"passo\">σ<sub>θ</sub> = 50 × (0,0225 + 0,01)/(0,0225 − 0,01)</div><div class=\"passo\">σ<sub>θ</sub> = 50 × 0,0325/0,0125 = <strong>130 MPa</strong></div><p>A fórmula de parede fina daria 125 MPa — erro de 4 % contra a segurança, porque D<sub>médio</sub>/t = 5, bem abaixo do limite de 20. Além disso, na superfície interna atua σ<sub>r</sub> = −50 MPa, que a formulação de parede fina ignora por completo.</p>"
+    },
+    {
+      "id": "m2-019",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "vasos-espessa",
+      "enunciado": "<p>Na superfície interna de um cilindro de parede espessa sob pressão interna, a tensão radial vale:</p>",
+      "alternativas": [
+        "−p_i, ou seja, compressão igual à pressão interna.",
+        "+p_i, de tração.",
+        "Metade da circunferencial.",
+        "Zero."
+      ],
+      "correta": 0,
+      "explicacao": "<p>É uma condição de contorno direta: o fluido pressurizado empurra a parede, e a tensão radial na face interna iguala a pressão, em compressão — σ<sub>r</sub>(r<sub>i</sub>) = −p<sub>i</sub>. Na face externa, sem pressão, σ<sub>r</sub>(r<sub>e</sub>) = 0. Em vasos de alta pressão essa compressão é significativa e precisa entrar no critério de falha junto com a circunferencial e a longitudinal.</p>"
+    },
+    {
+      "id": "m2-020",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "vasos-espessa",
+      "enunciado": "<p>Em vasos de altíssima pressão, aumentar a espessura da parede tem retorno decrescente. A explicação e as soluções práticas são:</p>",
+      "alternativas": [
+        "Não há retorno decrescente: a tensão cai proporcionalmente à espessura acrescentada, e basta engrossar a parede.",
+        "O retorno decrescente vem da flambagem da parede, resolvida com enrijecedores externos.",
+        "Com r_e → ∞ a tensão circunferencial na face interna tende a p_i, o que estabelece um piso que a espessura não vence; o material externo fica subutilizado enquanto peso e custo disparam. As saídas usuais são a autofretagem, que deixa tensões residuais de compressão na face interna, e os cilindros compostos por encamisamento com interferência.",
+        "O problema é apenas de fabricação, e a solução é usar material de maior resistência."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Pela equação de Lamé, a tensão circunferencial na superfície interna vale σ<sub>θ</sub> = p<sub>i</sub>(r<sub>e</sub>² + r<sub>i</sub>²)/(r<sub>e</sub>² − r<sub>i</sub>²). Fazendo r<sub>e</sub> tender ao infinito, a razão tende a 1, e σ<sub>θ</sub> tende a p<sub>i</sub> — não a zero.</p><p>Ou seja, existe um <strong>piso</strong>: por mais espessa que seja a parede, a tensão na superfície interna nunca cai abaixo da própria pressão interna. Se o material tem tensão admissível menor que p<sub>i</sub>, nenhuma espessura resolve o problema. E mesmo antes desse limite o retorno é fortemente decrescente: dobrar a espessura reduz a tensão muito menos que proporcionalmente, enquanto o peso e o custo crescem com o quadrado do raio.</p><p>Há ainda um agravante: a tensão é máxima na face interna e cai em direção à externa, de modo que o material do lado de fora fica subutilizado. Engrossar a parede acrescenta justamente material que quase não trabalha.</p><p><strong>Primeira solução: autofretagem.</strong> Pressuriza-se o cilindro além do escoamento antes de colocá-lo em serviço, plastificando a camada interna. Ao despressurizar, a camada externa, ainda elástica, comprime a interna, deixando tensões residuais de compressão exatamente onde a tensão de serviço é máxima. Em operação, as duas se subtraem.</p><p><strong>Segunda solução: cilindros compostos (encamisamento).</strong> Monta-se um cilindro externo por interferência sobre o interno — por contração térmica ou prensagem —, o que gera compressão residual na parede interna, com efeito análogo. É a técnica clássica de tubos de canhão e de vasos de indústria química de alta pressão.</p><p>Uma terceira alternativa é o enrolamento de fita ou fio sob tração sobre o cilindro, com o mesmo princípio de pré-compressão.</p>"
+    },
+    {
+      "id": "m2-021",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "energia",
+      "enunciado": "<p>O segundo teorema de Castigliano permite calcular:</p>",
+      "alternativas": [
+        "A tensão máxima em uma seção.",
+        "O deslocamento no ponto de aplicação de uma carga, na direção dessa carga.",
+        "A carga crítica de flambagem.",
+        "A frequência natural da estrutura."
+      ],
+      "correta": 1,
+      "explicacao": "<p>δ<sub>i</sub> = ∂U/∂P<sub>i</sub>: derivando a energia de deformação em relação a uma carga, obtém-se o deslocamento no ponto de aplicação dela, na direção dela. Se o deslocamento desejado for em um ponto sem carga, introduz-se uma carga fictícia Q, deriva-se, e depois se faz Q = 0. É especialmente eficiente em estruturas curvas, pórticos e sistemas hiperestáticos.</p>"
+    },
+    {
+      "id": "m2-022",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "energia",
+      "enunciado": "<p>Na energia de deformação de uma viga esbelta em flexão, a parcela de cisalhamento é geralmente desprezada porque:</p>",
+      "alternativas": [
+        "O módulo G é muito maior que E.",
+        "O cisalhamento não armazena energia.",
+        "Sua contribuição é pequena quando o vão é grande em relação à altura.",
+        "A tensão de cisalhamento é sempre nula em vigas."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A razão entre as parcelas de cisalhamento e de flexão é da ordem de (h/L)². Para L/h &gt; 10, a parcela de cisalhamento fica abaixo de 1 % e pode ser desprezada com tranquilidade. Em vigas curtas e altas, porém, ela passa a importar, e é aí que se usa a teoria de Timoshenko em vez da de Euler-Bernoulli. O cisalhamento certamente armazena energia, e G é <em>menor</em> que E, não maior.</p>"
+    },
+    {
+      "id": "m2-023",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "estado-plano",
+      "enunciado": "<p>Um eixo submetido a torção pura tem, na superfície, um estado de:</p>",
+      "alternativas": [
+        "Compressão uniaxial.",
+        "Tensão hidrostática.",
+        "Tração uniaxial.",
+        "Cisalhamento puro, com σ₁ = −σ₂ = τ."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Na torção pura σ<sub>x</sub> = σ<sub>y</sub> = 0 e só existe τ<sub>xy</sub>. O círculo de Mohr fica centrado na origem com raio τ, dando σ₁ = +τ e σ₂ = −τ, a 45° do eixo. É por isso que um eixo de material <strong>frágil</strong> sob torção rompe em uma superfície helicoidal a 45°, perpendicular a σ₁ — enquanto um eixo dúctil rompe em seção reta, perpendicular ao eixo, onde τ é máximo.</p>"
+    },
+    {
+      "id": "m2-024",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "duteis",
+      "enunciado": "<p>Um material tem <span class=\"dado\">Sy = 350 MPa</span>. Qual a tensão de cisalhamento que causa escoamento em cisalhamento puro, por von Mises e por Tresca?</p>",
+      "alternativas": [
+        "von Mises = 202 MPa e Tresca = 175 MPa",
+        "von Mises = 350 MPa e Tresca = 175 MPa",
+        "von Mises = 202 MPa e Tresca = 350 MPa",
+        "von Mises = 175 MPa e Tresca = 202 MPa"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Cisalhamento puro: σ1 = +τ, σ2 = −τ",
+        "von Mises: τ_esc = 0,577·Sy",
+        "Tresca: τ_esc = 0,500·Sy"
+      ],
+      "explicacao": "<div class=\"passo\">von Mises: τ = S<sub>y</sub>/√3 = 350/1,732 = <strong>202 MPa</strong></div><div class=\"passo\">Tresca: τ = S<sub>y</sub>/2 = <strong>175 MPa</strong></div><p>É aqui que a diferença entre os critérios é máxima, 15,5 %. Tresca prevê escoamento antes, sendo o conservador — e a ordem dos dois é justamente o que a alternativa incorreta inverte.</p>"
+    },
+    {
+      "id": "m2-025",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "duteis",
+      "enunciado": "<p>Um estado de tensão hidrostático puro (σ₁ = σ₂ = σ₃ = σ) aplicado a um material dúctil:</p>",
+      "alternativas": [
+        "Causa escoamento quando σ atinge Sy.",
+        "Não causa escoamento por von Mises, qualquer que seja o valor de σ.",
+        "Causa escoamento quando σ atinge Sy/2.",
+        "Causa escoamento apenas em compressão."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O critério de von Mises baseia-se na energia de <em>distorção</em>, e um estado hidrostático não produz distorção alguma — apenas mudança de volume. Substituindo σ₁ = σ₂ = σ₃ na expressão, σ' = 0. Tresca chega à mesma conclusão, porque σ₁ − σ₃ = 0. Isso é confirmado experimentalmente: metais suportam pressões hidrostáticas enormes sem escoar, e é a base dos processos de conformação sob pressão.</p>"
+    },
+    {
+      "id": "m2-026",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "vasos-fina",
+      "enunciado": "<p>Um vaso cilíndrico (D = 1,0 m, t = 10 mm, p = 2 MPa) tem σcirc = 100 MPa e σlong = 50 MPa. Qual a tensão equivalente de von Mises na parede?</p>",
+      "alternativas": [
+        "50 MPa",
+        "75 MPa",
+        "86,6 MPa",
+        "150 MPa"
+      ],
+      "correta": 2,
+      "formulas": [
+        "σ' = √(σ1² − σ1σ2 + σ2²)",
+        "σ1 = σ_circ, σ2 = σ_long, σ3 ≈ 0 (parede fina)"
+      ],
+      "explicacao": "<div class=\"passo\">σ' = √(100² − 100×50 + 50²)</div><div class=\"passo\">σ' = √(10 000 − 5 000 + 2 500) = √7 500</div><div class=\"passo\">σ' = <strong>86,6 MPa</strong></div><p>Menor que a circunferencial isolada (100 MPa), porque a tensão longitudinal, sendo também de tração, alivia a distorção. Por Tresca daria σ₁ − σ₃ = 100 − 0 = 100 MPa, mais conservador.</p>"
+    },
+    {
+      "id": "m2-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "flambagem",
+      "enunciado": "<p>Contraventar uma coluna biarticulada exatamente no meio do vão, impedindo o deslocamento lateral, faz a carga crítica:</p>",
+      "alternativas": [
+        "Aumentar 8 vezes.",
+        "Permanecer a mesma.",
+        "Dobrar.",
+        "Quadruplicar."
+      ],
+      "correta": 3,
+      "explicacao": "<p>O contraventamento no meio força a coluna a flambar em dois semicomprimentos, cada um com L<sub>e</sub> = L/2. Como P<sub>cr</sub> ∝ 1/L<sub>e</sub>², reduzir L<sub>e</sub> à metade <strong>quadruplica</strong> a carga crítica. É a intervenção de melhor relação custo-benefício em estruturas comprimidas — muito mais eficiente do que engrossar o perfil.</p>"
+    },
+    {
+      "id": "m2-028",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "mohr",
+      "enunciado": "<p>Uma propriedade invariante do estado plano de tensões, que não muda com a rotação do elemento, é:</p>",
+      "alternativas": [
+        "A soma σx + σy.",
+        "A diferença σx − σy.",
+        "A tensão de cisalhamento τxy.",
+        "O ângulo θ."
+      ],
+      "correta": 0,
+      "explicacao": "<p>σ<sub>x</sub> + σ<sub>y</sub> = σ₁ + σ₂ é o primeiro invariante de tensão, e corresponde ao dobro da abscissa do centro do círculo de Mohr — que obviamente não se move ao girar o elemento. É um excelente teste de conferência: depois de transformar as tensões, a soma tem que bater. A diferença e o cisalhamento mudam a cada rotação.</p>"
+    },
+    {
+      "id": "m2-029",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "vasos-fina",
+      "enunciado": "<p>A hipótese de parede fina em vasos de pressão é considerada aceitável quando:</p>",
+      "alternativas": [
+        "O material é dúctil.",
+        "D/t > 20, ou equivalentemente t < r/10.",
+        "D/t < 10.",
+        "A pressão é menor que 1 MPa."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O critério é geométrico, não depende da pressão nem do material. Com D/t &gt; 20 a variação da tensão ao longo da espessura é pequena e o erro da formulação simplificada fica abaixo de 5 %. Abaixo disso é preciso recorrer à solução de Lamé, que também fornece a tensão radial — ignorada na formulação de parede fina.</p>"
+    },
+    {
+      "id": "m2-030",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "duteis",
+      "enunciado": "<p>Sob torção pura, um eixo de aço dúctil rompe em uma superfície transversal e um de ferro fundido em uma hélice a 45°. Pelo círculo de Mohr:</p>",
+      "alternativas": [
+        "O estado é de cisalhamento puro, com círculo centrado na origem e σ₁ = −σ₂ = τ atuando a 45° do eixo. O dúctil falha por cisalhamento máximo, que ocorre na seção transversal; o frágil falha por tração máxima, que ocorre no plano a 45° — daí a hélice.",
+        "Os dois falham por tração máxima; a diferença é apenas de velocidade de propagação da trinca.",
+        "O círculo de Mohr é o mesmo, mas o ferro fundido tem tensões principais nulas por ser frágil.",
+        "O dúctil falha por tração máxima na seção transversal e o frágil por cisalhamento a 45°."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Na torção pura, o estado de tensão na superfície do eixo tem σ<sub>x</sub> = σ<sub>y</sub> = 0 e apenas τ. O círculo de Mohr fica centrado na origem com raio τ, o que dá σ₁ = +τ e σ₂ = −τ, atuando em planos a <strong>45°</strong> do eixo. O cisalhamento máximo, por sua vez, ocorre nos planos transversal e longitudinal, isto é, a 0° e 90°.</p><p>O material <strong>dúctil</strong> falha por cisalhamento — é o escorregamento de planos cristalinos que governa seu escoamento, e por isso critérios como Tresca e von Mises se baseiam em cisalhamento. Como τ é máximo na seção transversal, o eixo de aço rompe em uma <strong>seção reta, perpendicular ao eixo</strong>, com aspecto plano e fibroso.</p><p>O material <strong>frágil</strong> falha por tração — a trinca nucleia e se propaga perpendicularmente à maior tensão normal de tração. Como σ₁ atua a 45°, a fratura segue a superfície perpendicular a essa direção, produzindo a característica <strong>superfície helicoidal a 45°</strong> do ferro fundido, com aspecto de saca-rolhas.</p><p>A observação vale como diagnóstico de campo: pelo ângulo da superfície de fratura de um eixo torcido é possível dizer se o material se comportou de forma dúctil ou frágil. E ela justifica a escolha dos critérios — Tresca e von Mises para dúcteis, Mohr-Coulomb ou tensão normal máxima para frágeis.</p>"
+    }
+  ]
+}

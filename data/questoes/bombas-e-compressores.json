@@ -1,0 +1,548 @@
+{
+  "disciplina": "Bombas e Compressores",
+  "slug": "bombas-e-compressores",
+  "topicos": [
+    {
+      "id": "classificacao",
+      "nome": "Classificação das máquinas"
+    },
+    {
+      "id": "euler",
+      "nome": "Euler e triângulos de velocidade"
+    },
+    {
+      "id": "curvas",
+      "nome": "Curvas e ponto de operação"
+    },
+    {
+      "id": "potencia",
+      "nome": "Potência e rendimento"
+    },
+    {
+      "id": "npsh",
+      "nome": "NPSH e cavitação"
+    },
+    {
+      "id": "associacao",
+      "nome": "Associação e semelhança"
+    },
+    {
+      "id": "compressores",
+      "nome": "Compressores"
+    },
+    {
+      "id": "turbinas",
+      "nome": "Turbinas hidráulicas"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "bc-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "classificacao",
+      "enunciado": "<p>Fechar completamente a válvula de descarga de uma bomba de deslocamento positivo em operação:</p>",
+      "alternativas": [
+        "É seguro: a vazão simplesmente cai a zero, como na centrífuga.",
+        "Reduz o consumo de energia sem outros efeitos.",
+        "Faz a bomba parar sozinha por falta de carga.",
+        "Faz a pressão subir até romper algum componente, salvo se houver válvula de alívio."
+      ],
+      "correta": 3,
+      "explicacao": "<p>A bomba de deslocamento positivo confina um volume e insiste em deslocá-lo, independentemente da pressão. Sem saída, a pressão sobe até o limite de resistência da tubulação, da carcaça ou do acionamento. Por isso toda instalação com esse tipo de bomba exige <strong>válvula de alívio</strong> na descarga — é proteção de projeto, não procedimento de operação. Na centrífuga acontece o oposto: fechar a descarga leva ao shutoff, condição de menor potência, tolerável por poucos minutos até o líquido aquecer.</p>"
+    },
+    {
+      "id": "bc-002",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "euler",
+      "enunciado": "<p>Na equação de Euler, a componente da velocidade absoluta que gera altura é:</p>",
+      "alternativas": [
+        "A componente meridional c_m2, que transporta a vazão.",
+        "O módulo da velocidade absoluta c₂.",
+        "A velocidade relativa w₂.",
+        "A componente tangencial c_u2."
+      ],
+      "correta": 3,
+      "explicacao": "<p>H = u₂·c<sub>u2</sub>/g: só a componente <strong>tangencial</strong> aparece. Isso vem da conservação de momento angular — apenas o que gira em torno do eixo troca torque com o rotor. A componente meridional c<sub>m2</sub> é radial, não tem braço em relação ao eixo e por isso não contribui, ainda que seja ela quem carrega a vazão para fora do rotor.</p>"
+    },
+    {
+      "id": "bc-003",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "euler",
+      "enunciado": "<p>Um rotor de <span class=\"dado\">250 mm</span> gira a <span class=\"dado\">1750 rpm</span>. Qual a velocidade tangencial na periferia e qual a altura máxima teórica que ele poderia gerar?</p>",
+      "alternativas": [
+        "u₂ = 22,9 m/s e H_máx = 53,5 m",
+        "u₂ = 22,9 m/s e H_máx = 26,7 m",
+        "u₂ = 45,8 m/s e H_máx = 53,5 m",
+        "u₂ = 7,29 m/s e H_máx = 5,4 m"
+      ],
+      "correta": 0,
+      "formulas": [
+        "u₂ = π·D₂·n/60",
+        "H_máx = u₂²/g   (caso limite de pás radiais, β₂ = 90°)"
+      ],
+      "explicacao": "<div class=\"passo\">u₂ = π × 0,250 × 1750/60 = <strong>22,91 m/s</strong></div><div class=\"passo\">H<sub>máx</sub> = 22,91²/9,81 = 524,9/9,81 = <strong>53,49 m</strong></div><p>Esse é o teto absoluto: só seria atingido com pás radiais, infinitas em número e sem nenhuma perda. Uma bomba real com esse rotor entrega tipicamente metade disso. Note que a altura só depende de u₂ — e portanto do produto D₂·n. Dobrar a rotação quadruplica a altura.</p>"
+    },
+    {
+      "id": "bc-004",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "euler",
+      "enunciado": "<p>Um rotor com pás voltadas para a frente (β₂ &gt; 90°) tem curva teórica H × Q crescente. A consequência prática é:</p>",
+      "alternativas": [
+        "Maior rendimento, por isso é o arranjo preferido.",
+        "Curva idêntica à das pás para trás, apenas espelhada.",
+        "Impossibilidade de gerar qualquer altura.",
+        "Risco de operação instável, com o ponto de operação oscilando entre cruzamentos."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Se a curva da bomba sobe com a vazão e a do sistema também, elas podem se cruzar em mais de um ponto. A máquina alterna entre eles e a instalação inteira pulsa — é o <em>surge</em>. Além disso, a energia sai do rotor predominantemente como energia cinética, e converter isso em pressão na voluta custa rendimento. Pás para a frente sobrevivem em ventiladores sirocco, onde se quer muita vazão com rotor pequeno e a pressão é baixa.</p>"
+    },
+    {
+      "id": "bc-005",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "euler",
+      "enunciado": "<p>A correção de escorregamento (Stodola) reduz a altura calculada por Euler porque:</p>",
+      "alternativas": [
+        "Contabiliza o atrito do líquido contra as paredes do canal.",
+        "Desconta o atrito dos mancais e do selo mecânico.",
+        "Considera o vazamento pelas folgas do anel de desgaste.",
+        "Com número finito de pás, o líquido não segue perfeitamente o contorno da pá e sai com menor componente tangencial."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Esta é uma distinção que costuma confundir: o escorregamento é uma <strong>perda de troca de energia</strong>, não de atrito. O trabalho simplesmente nunca chegou ao fluido, porque o canal entre duas pás é largo demais para guiar perfeitamente o escoamento. Atrito e choque entram depois, no rendimento hidráulico; vazamento pelas folgas, no volumétrico; mancais e selo, no mecânico. Quanto menor o número de pás, maior o escorregamento.</p>"
+    },
+    {
+      "id": "bc-006",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "euler",
+      "enunciado": "<p>Um rotor tem <span class=\"dado\">D₂ = 300 mm</span>, largura de saída <span class=\"dado\">b₂ = 25 mm</span> e escoa <span class=\"dado\">Q = 0,040 m³/s</span>. Qual a velocidade meridional na saída?</p>",
+      "alternativas": [
+        "1,70 m/s",
+        "0,566 m/s",
+        "3,40 m/s",
+        "0,849 m/s"
+      ],
+      "correta": 0,
+      "formulas": [
+        "A₂ = π·D₂·b₂   (área lateral cilíndrica de saída)",
+        "c_m2 = Q/A₂"
+      ],
+      "explicacao": "<div class=\"passo\">A₂ = π × 0,300 × 0,025 = 0,02356 m²</div><div class=\"passo\">c<sub>m2</sub> = 0,040/0,02356 = <strong>1,70 m/s</strong></div><p>O erro clássico é usar a área do círculo πD²/4 em vez da área lateral πD·b. O líquido não sai pela face do disco: sai pela <strong>periferia</strong>, por uma faixa cilíndrica de altura b₂. Repare também que c<sub>m2</sub> é pequena diante de u₂ — o triângulo de velocidades de saída é bem achatado.</p>"
+    },
+    {
+      "id": "bc-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "euler",
+      "enunciado": "<p>Sobre o uso de pás para trás em bombas centrífugas e de pás radiais em compressores centrífugos:</p>",
+      "alternativas": [
+        "Pás para trás (β₂ < 90°) dão curva descendente, que cruza o sistema em um único ponto, deixam c₂ menor — logo menos energia cinética a converter na voluta — e limitam naturalmente a potência de eixo. No compressor busca-se a máxima transferência por estágio (c_u2 = u₂) e a velocidade periférica é altíssima, faixa em que só a pá radial não induz flexão na raiz pela força centrífuga.",
+        "Pás radiais dão maior rendimento em qualquer máquina; a bomba usa pás para trás apenas por facilidade de fundição.",
+        "A escolha é indiferente do ponto de vista hidráulico e se deve apenas ao custo de fabricação.",
+        "Pás para trás dão curva crescente, o que é desejável em bomba por garantir vazão mesmo com o sistema fechado."
+      ],
+      "correta": 0,
+      "explicacao": "<p>A altura teórica de Euler é H = u₂²/g − [u₂/(g·πD₂b₂·tan β₂)]·Q. O sinal do segundo termo depende de tan β₂ e é ele que define o feitio da curva.</p><p>Com <strong>β₂ &lt; 90°</strong>, tan β₂ é positiva, o termo subtrai e a curva <em>cai</em> com a vazão. Isso dá três vantagens à bomba. Primeiro, <strong>estabilidade</strong>: a curva descendente cruza a curva ascendente do sistema em um único ponto, e qualquer perturbação é naturalmente corrigida. Segundo, <strong>rendimento</strong>: a velocidade absoluta de saída c₂ é menor, então sobra menos energia cinética para a voluta converter em pressão — e essa conversão é justamente a etapa de pior rendimento da máquina. Terceiro, a potência de eixo é <strong>limitada</strong>: como H cai com Q, a potência tem máximo e depois se estabiliza, o que permite dimensionar o motor sem risco de sobrecarga se a vazão disparar.</p><p>Com <strong>β₂ &gt; 90°</strong> ocorre o oposto: curva crescente, possibilidade de múltiplos cruzamentos e oscilação (<em>surge</em>), muita energia cinética a converter e potência que só cresce com a vazão.</p><p>No <strong>compressor centrífugo</strong> a escolha muda porque as prioridades mudam. Ali se busca a maior razão de pressão possível por estágio, e pás radiais entregam a máxima transferência de energia: c<sub>u2</sub> = u₂, sem o desconto de c<sub>m2</sub>/tan β₂. Além disso, a velocidade periférica de um compressor é altíssima — frequentemente acima de 400 m/s — e nessa faixa a tensão centrífuga governa o projeto. A pá radial é a única geometria em que a força centrífuga age <strong>ao longo</strong> da pá, sem induzir flexão; qualquer curvatura criaria momento fletor na raiz, que naquelas velocidades seria proibitivo. Some-se a isso que a pá radial é mais simples de usinar em bloco único, e a escolha se justifica mesmo custando alguma estabilidade — que é depois recuperada com controle antissurge.</p>"
+    },
+    {
+      "id": "bc-008",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "curvas",
+      "enunciado": "<p>A vazão com que uma bomba centrífuga opera em uma instalação é determinada por:</p>",
+      "alternativas": [
+        "Apenas pela bomba escolhida.",
+        "Apenas pelo desnível geométrico.",
+        "Pelo cruzamento da curva da bomba com a curva do sistema.",
+        "Pela potência do motor instalado."
+      ],
+      "correta": 2,
+      "explicacao": "<p>A bomba só sabe entregar pares (Q, H) que estejam sobre a sua curva. A instalação, por sua vez, exige um par (Q, H) sobre a curva do sistema. O único ponto que satisfaz as duas condições ao mesmo tempo é o <strong>cruzamento</strong> — e é ali que a máquina vai operar, queira o projetista ou não. Trocar por uma bomba mais potente sem mexer na tubulação move o cruzamento bem menos do que a intuição sugere, porque a perda cresce com Q².</p>"
+    },
+    {
+      "id": "bc-009",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "curvas",
+      "enunciado": "<p>Em uma instalação onde o desnível geométrico é grande e a perda de carga é pequena, a curva do sistema é:</p>",
+      "alternativas": [
+        "Quase horizontal, e o ponto de operação é pouco sensível à vazão.",
+        "Muito inclinada, e a vazão fica travada.",
+        "Uma reta que passa pela origem.",
+        "Vertical."
+      ],
+      "correta": 0,
+      "explicacao": "<p>H<sub>sis</sub> = Δz + C·Q². Com Δz grande e C pequeno, a parábola tem vértice alto e cresce devagar: a curva é quase horizontal. Isso tem uma consequência prática importante — nesse tipo de sistema, <strong>associar bombas em paralelo funciona bem</strong>, porque a vazão pode crescer bastante sem que o sistema exija muito mais altura. O caso oposto (Δz pequeno, perda dominante) é onde o paralelo mais decepciona.</p>"
+    },
+    {
+      "id": "bc-010",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "potencia",
+      "enunciado": "<p>Uma bomba recalca <span class=\"dado\">50 m³/h</span> de água com altura manométrica de <span class=\"dado\">30 m</span> e rendimento de <span class=\"dado\">70 %</span>. Qual a potência de eixo?</p>",
+      "alternativas": [
+        "4,08 kW",
+        "8,33 kW",
+        "2,86 kW",
+        "5,83 kW"
+      ],
+      "correta": 3,
+      "formulas": [
+        "P_hidráulica = ρ·g·Q·H",
+        "P_eixo = P_hidráulica/η",
+        "Atenção: Q precisa estar em m³/s"
+      ],
+      "explicacao": "<div class=\"passo\">Q = 50/3600 = 0,01389 m³/s</div><div class=\"passo\">P<sub>hid</sub> = 998,2 × 9,81 × 0,01389 × 30 = 4080 W</div><div class=\"passo\">P<sub>eixo</sub> = 4080/0,70 = 5829 W = <strong>5,83 kW</strong></div><p>O rendimento sempre <em>divide</em> na bomba: a máquina consome mais do que entrega. Para selecionar o motor comercial, aplica-se ainda uma folga de cerca de 15 %, o que levaria a 6,7 kW — motor de 7,5 kW.</p>"
+    },
+    {
+      "id": "bc-011",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "potencia",
+      "enunciado": "<p>Operar uma bomba centrífuga muito à esquerda do ponto de melhor rendimento (por exemplo, a 40 % da vazão nominal) provoca:</p>",
+      "alternativas": [
+        "Recirculação interna, aquecimento do líquido, vibração e desgaste prematuro do mancal.",
+        "Nada de relevante: apenas menor consumo.",
+        "Aumento do rendimento, por operar mais leve.",
+        "Aumento da vazão por efeito de sucção."
+      ],
+      "correta": 0,
+      "explicacao": "<p>Fora da faixa recomendada de 70 % a 120 % do BEP, o escoamento deixa de acompanhar as pás e passa a recircular dentro do rotor. A energia que não sai com o líquido vira calor e vibração. O resultado é ruído, esforço radial desbalanceado sobre o eixo e falha prematura de mancal e selo. Em vazões muito baixas a água pode até vaporizar dentro da carcaça. Curiosamente, o NPSH requerido também <em>sobe</em> nessa região, por causa da recirculação na entrada.</p>"
+    },
+    {
+      "id": "bc-012",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "npsh",
+      "enunciado": "<p>Cavitação em uma bomba é:</p>",
+      "alternativas": [
+        "A entrada de ar pela gaxeta do eixo.",
+        "O aquecimento do líquido por atrito.",
+        "A formação de bolhas de vapor onde a pressão cai abaixo da pressão de vapor, seguida da sua implosão dentro do rotor.",
+        "A separação da água em suas fases por centrifugação."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Cavitação é um fenômeno de <strong>vapor</strong>, não de ar. Onde a pressão local cai abaixo de p<sub>v</sub> — tipicamente logo na entrada do rotor, no ponto de maior aceleração — o líquido ferve à temperatura ambiente. As bolhas são arrastadas para regiões de pressão maior e <strong>implodem</strong>. Cada implosão é um micro-impacto de pressão altíssima contra a superfície da pá; repetido milhões de vezes, arranca material. O ruído característico é de cascalho passando pela carcaça.</p>"
+    },
+    {
+      "id": "bc-013",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "npsh",
+      "enunciado": "<p>Uma bomba está <span class=\"dado\">3 m acima</span> do nível de água (20 °C, ao nível do mar) e a perda na sucção é de <span class=\"dado\">1,2 m</span>. Qual o NPSH disponível?</p>",
+      "alternativas": [
+        "10,1 m",
+        "4,71 m",
+        "8,91 m",
+        "5,91 m"
+      ],
+      "correta": 3,
+      "formulas": [
+        "NPSH_disp = (p_atm − p_v)/(ρ·g) + z_s − h_f,succ",
+        "Bomba ACIMA do nível → z_s negativo",
+        "Água a 20 °C: p_v = 2,34 kPa, ρ = 998,2 kg/m³"
+      ],
+      "explicacao": "<div class=\"passo\">(101,3 − 2,34)×10³/(998,2 × 9,81) = 98 960/9792 = 10,11 m</div><div class=\"passo\">z<sub>s</sub> = −3 m (a bomba está acima do nível)</div><div class=\"passo\">NPSH<sub>disp</sub> = 10,11 − 3,00 − 1,20 = <strong>5,91 m</strong></div><p>Os 10,11 m são a parcela barométrica — o limite físico absoluto de qualquer sucção de água fria ao nível do mar. Depois de descontar altura e perdas sobram 5,91 m, que precisam ainda superar o NPSH requerido pelo fabricante mais uma margem de 0,5 m.</p>"
+    },
+    {
+      "id": "bc-014",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "npsh",
+      "enunciado": "<p>A mesma instalação da questão anterior passa a bombear água a <span class=\"dado\">80 °C</span> (p_v = 47,3 kPa, ρ = 971,8 kg/m³). O que acontece com o NPSH disponível?</p>",
+      "alternativas": [
+        "Cai para cerca de 1,5 m — a bomba provavelmente cavitará.",
+        "Praticamente não muda: continua em torno de 5,9 m.",
+        "Aumenta, porque a água quente é menos densa.",
+        "Cai para cerca de 4,7 m, ainda seguro."
+      ],
+      "correta": 0,
+      "formulas": [
+        "NPSH_disp = (p_atm − p_v)/(ρ·g) + z_s − h_f",
+        "p_v cresce muito rápido com a temperatura"
+      ],
+      "explicacao": "<div class=\"passo\">(101,3 − 47,3)×10³/(971,8 × 9,81) = 54 000/9533 = 5,66 m</div><div class=\"passo\">NPSH<sub>disp</sub> = 5,66 − 3,00 − 1,20 = <strong>1,47 m</strong></div><p>A parcela barométrica despencou de 10,11 m para 5,66 m: quase metade foi consumida só pela pressão de vapor. Este é o motivo pelo qual bombas de água quente — condensado, caldeira, processo — são praticamente sempre instaladas <strong>afogadas</strong>, abaixo do nível do reservatório. A 100 °C a parcela barométrica chega a zero: a única sucção possível é positiva.</p>"
+    },
+    {
+      "id": "bc-015",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "npsh",
+      "enunciado": "<p>Para reduzir a vazão de uma bomba centrífuga em operação, deve-se estrangular a válvula:</p>",
+      "alternativas": [
+        "Da sucção, por ser mais acessível.",
+        "Qualquer uma das duas, o efeito é o mesmo.",
+        "Do recalque, nunca a da sucção.",
+        "Nenhuma: só é possível trocar o rotor."
+      ],
+      "correta": 2,
+      "explicacao": "<p>Estrangular a sucção acrescenta perda de carga <em>antes</em> da bomba, e isso entra diretamente no NPSH disponível, reduzindo-o. É a forma mais rápida de provocar cavitação. Estrangular o recalque aumenta a exigência do sistema depois da bomba: o ponto de operação sobe pela curva, a vazão cai e o NPSH disponível até melhora, porque a perda na sucção diminui com a vazão. A regra é absoluta: <strong>controle sempre no recalque</strong>. A sucção deve permanecer totalmente aberta e tão curta e larga quanto possível.</p>"
+    },
+    {
+      "id": "bc-016",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "npsh",
+      "enunciado": "<p>Uma bomba de poço que funcionava bem começou a apresentar ruído de cascalho e queda de vazão no fim do verão. A investigação deve começar por:</p>",
+      "alternativas": [
+        "Trocar a bomba por uma de maior potência, já que a vazão caiu.",
+        "Verificar o motor elétrico, pois o ruído indica falha de rolamento.",
+        "Medir o nível dinâmico do poço. O sintoma é cavitação, e como a instalação funcionava antes, alguma parcela do NPSH disponível se deteriorou: no fim do verão o nível do poço está no mínimo, tornando z_s mais negativo. Depois vêm a temperatura da água (p_v maior), o crivo e a válvula de pé (h_f maior) e, por último, desgaste interno ou mudança do ponto de operação, que elevam o NPSH requerido.",
+        "Estrangular a válvula de sucção para reduzir a vazão e aliviar a bomba."
+      ],
+      "correta": 2,
+      "explicacao": "<p>O sintoma descrito — ruído de cascalho com queda de vazão — é cavitação. Como a instalação funcionava bem antes, alguma parcela do NPSH disponível se deteriorou. Vale percorrer a equação NPSH<sub>d</sub> = (p<sub>atm</sub> − p<sub>v</sub>)/ρg + z<sub>s</sub> − h<sub>f,succ</sub> termo a termo.</p><p><strong>z<sub>s</sub> — a hipótese mais provável.</strong> É fim de verão: o nível do poço tende a estar no mínimo anual. Se o nível baixou, a altura de sucção aumentou e z<sub>s</sub> ficou mais negativo. Verificar primeiro, medindo o nível estático e o nível dinâmico com a bomba ligada — o rebaixamento durante o bombeamento também conta.</p><p><strong>p<sub>v</sub> — segunda hipótese.</strong> Água mais quente no fim do verão eleva a pressão de vapor. O efeito isolado costuma ser modesto em poço, mas soma-se ao anterior e pode ser o que faltava para cruzar o limite.</p><p><strong>h<sub>f,succ</sub> — terceira hipótese.</strong> Crivo parcialmente obstruído, incrustação no tubo de sucção ou válvula de pé travada aumentam a perda. É verificável por inspeção e, indiretamente, medindo a pressão na entrada da bomba.</p><p>Há ainda causas que não passam pelo NPSH disponível e devem ser consideradas se as anteriores forem descartadas: <strong>desgaste do anel</strong>, que aumenta a recirculação interna e faz a bomba operar mais à direita na curva, elevando o NPSH requerido; e <strong>mudança no ponto de operação</strong>, se alguma válvula do recalque foi aberta a mais, deslocando a bomba para vazão maior — o NPSH requerido cresce com o quadrado da vazão.</p><p>A ordem de verificação seria: 1) medir o nível dinâmico do poço; 2) medir a temperatura da água; 3) inspecionar crivo e válvula de pé; 4) medir a pressão na sucção e comparar com o calculado; 5) conferir a abertura das válvulas do recalque; 6) só então suspeitar de desgaste interno.</p><p>As soluções seguem a mesma ordem de custo: baixar a bomba ou usar bomba submersa resolve z<sub>s</sub> definitivamente; limpar ou engrossar a sucção ataca h<sub>f</sub>; estrangular ligeiramente o recalque reduz a vazão e alivia os dois lados da desigualdade, servindo como paliativo imediato.</p>"
+    },
+    {
+      "id": "bc-017",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "associacao",
+      "enunciado": "<p>Duas bombas idênticas associadas em série, na mesma vazão:</p>",
+      "alternativas": [
+        "Dobram a vazão.",
+        "Não alteram nem vazão nem altura.",
+        "Dobram o rendimento.",
+        "Dobram a altura."
+      ],
+      "correta": 3,
+      "explicacao": "<p>Em série, a mesma vazão atravessa as duas máquinas e cada uma acrescenta a sua altura: somam-se as <strong>alturas</strong>, ponto a ponto na vertical. Em paralelo, ambas trabalham contra a mesma altura e somam <strong>vazões</strong>, ponto a ponto na horizontal. Atenção: dobrar a curva não significa dobrar a operação — o ponto real ainda depende de onde a curva resultante cruza o sistema.</p>"
+    },
+    {
+      "id": "bc-018",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "associacao",
+      "enunciado": "<p>Uma bomba tem curva H = 50 − 0,01Q² e o sistema é H = 10 + 0,01Q² (Q em m³/h). Qual a vazão com uma bomba, e qual com <span class=\"dado\">duas em paralelo</span>?</p>",
+      "alternativas": [
+        "44,7 m³/h e 89,4 m³/h",
+        "44,7 m³/h e 56,6 m³/h",
+        "63,2 m³/h e 89,4 m³/h",
+        "44,7 m³/h e 44,7 m³/h"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Uma bomba: 50 − 0,01Q² = 10 + 0,01Q²",
+        "Duas em paralelo: cada uma passa Q/2, então H = 50 − 0,01(Q/2)²",
+        "O sistema não muda"
+      ],
+      "explicacao": "<div class=\"passo\"><strong>Uma bomba:</strong> 40 = 0,02Q² → Q² = 2000 → Q = <strong>44,7 m³/h</strong></div><div class=\"passo\"><strong>Duas em paralelo:</strong> 50 − 0,0025Q² = 10 + 0,01Q²</div><div class=\"passo\">40 = 0,0125Q² → Q² = 3200 → Q = <strong>56,6 m³/h</strong></div><p>O ganho foi de apenas <strong>1,27×</strong>, não 2×. A razão é que ao aumentar a vazão a perda de carga cresce com o quadrado, e o sistema passa a exigir muito mais altura. Cada bomba passa 28,3 m³/h — menos do que passava sozinha. Se o sistema tivesse Δz maior e perda menor, o ganho seria bem melhor.</p>"
+    },
+    {
+      "id": "bc-019",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "associacao",
+      "enunciado": "<p>Uma bomba tem a rotação reduzida de 1750 para <span class=\"dado\">1400 rpm</span> por inversor. Pelas leis de semelhança, a vazão, a altura e a potência passam a valer, respectivamente:</p>",
+      "alternativas": [
+        "80 %, 80 % e 80 % dos valores originais",
+        "80 %, 64 % e 51,2 %",
+        "64 %, 80 % e 51,2 %",
+        "80 %, 64 % e 64 %"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Q₂/Q₁ = n₂/n₁",
+        "H₂/H₁ = (n₂/n₁)²",
+        "P₂/P₁ = (n₂/n₁)³"
+      ],
+      "explicacao": "<div class=\"passo\">n₂/n₁ = 1400/1750 = 0,80</div><div class=\"passo\">Q: 0,80 → <strong>80 %</strong></div><div class=\"passo\">H: 0,80² = 0,64 → <strong>64 %</strong></div><div class=\"passo\">P: 0,80³ = 0,512 → <strong>51,2 %</strong></div><p>Reduzir 20 % da rotação corta praticamente <strong>metade</strong> da potência. É toda a economia do inversor de frequência em uma linha. Se a mesma redução de vazão fosse obtida estrangulando a válvula, a bomba permaneceria na sua curva original, a altura subiria, e a potência cairia muito pouco — a diferença vira calor na válvula.</p>"
+    },
+    {
+      "id": "bc-020",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "associacao",
+      "enunciado": "<p>Uma bomba a <span class=\"dado\">1750 rpm</span> entrega <span class=\"dado\">50 m³/h</span> com <span class=\"dado\">30 m</span>. Qual a sua rotação específica?</p>",
+      "alternativas": [
+        "16,1",
+        "51,3",
+        "4,64",
+        "160"
+      ],
+      "correta": 0,
+      "formulas": [
+        "n_s = n·√Q / H^(3/4)",
+        "n em rpm, Q em m³/s, H em m"
+      ],
+      "explicacao": "<div class=\"passo\">Q = 50/3600 = 0,01389 m³/s → √Q = 0,1178</div><div class=\"passo\">H^0,75 = 30^0,75 = 12,82</div><div class=\"passo\">n<sub>s</sub> = 1750 × 0,1178/12,82 = <strong>16,1</strong></div><p>Valor baixo, característico de <strong>rotor radial puro</strong>: pouca vazão para muita altura. Rotação específica alta indicaria rotor axial, próprio de muita vazão com pouca altura. Atenção à unidade de Q — usar m³/h aqui daria um número 60 vezes maior e sem sentido.</p>"
+    },
+    {
+      "id": "bc-021",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "compressores",
+      "enunciado": "<p>Na compressão politrópica de um gás, a temperatura de descarga depende:</p>",
+      "alternativas": [
+        "Da diferença p₂ − p₁.",
+        "Da razão p₂/p₁ e do expoente n.",
+        "Apenas da vazão mássica.",
+        "Apenas do volume deslocado."
+      ],
+      "correta": 1,
+      "explicacao": "<p>T₂/T₁ = (p₂/p₁)^((n−1)/n): entra a <strong>razão</strong>, não a diferença. Comprimir de 100 para 800 kPa aquece exatamente tanto quanto comprimir de 1000 para 8000 kPa, porque em ambos os casos a razão é 8. É essa propriedade que justifica dividir a compressão em estágios com razões iguais: cada estágio enfrenta a mesma elevação de temperatura.</p>"
+    },
+    {
+      "id": "bc-022",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "compressores",
+      "enunciado": "<p>Ar a <span class=\"dado\">25 °C</span> é comprimido de <span class=\"dado\">100 para 2500 kPa</span> em um único estágio com <span class=\"dado\">n = 1,30</span>. Qual a temperatura de descarga?</p>",
+      "alternativas": [
+        "159 °C",
+        "254 °C",
+        "353 °C",
+        "625 °C"
+      ],
+      "correta": 2,
+      "formulas": [
+        "T₂ = T₁·(p₂/p₁)^((n−1)/n)",
+        "T em kelvin"
+      ],
+      "explicacao": "<div class=\"passo\">T₁ = 298,15 K; razão = 25; (n−1)/n = 0,3/1,3 = 0,2308</div><div class=\"passo\">T₂ = 298,15 × 25^0,2308 = 298,15 × 2,101 = 626,4 K</div><div class=\"passo\">T₂ = 626,4 − 273,15 = <strong>353 °C</strong></div><p>Temperatura proibitiva: o óleo lubrificante degrada acima de cerca de 180 °C, e há risco de ignição de depósitos carbonizados na descarga. Nenhum compressor alternativo trabalha assim em um estágio — esta conta é a justificativa numérica do inter-resfriamento.</p>"
+    },
+    {
+      "id": "bc-023",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "compressores",
+      "enunciado": "<p>A mesma compressão (100 → 2500 kPa, ar a 25 °C, n = 1,30) é dividida em <span class=\"dado\">dois estágios</span> com resfriamento intermediário até 25 °C. Qual a pressão intermediária ótima e a nova temperatura de descarga de cada estágio?</p>",
+      "alternativas": [
+        "1300 kPa e 254 °C",
+        "500 kPa e 159 °C",
+        "500 kPa e 353 °C",
+        "1250 kPa e 159 °C"
+      ],
+      "correta": 1,
+      "formulas": [
+        "r por estágio = (p₂/p₁)^(1/N) — igual em todos",
+        "Dois estágios: p_int = √(p₁·p₂)",
+        "T₂ = T₁·r^((n−1)/n)"
+      ],
+      "explicacao": "<div class=\"passo\">p<sub>int</sub> = √(100 × 2500) = √250 000 = <strong>500 kPa</strong></div><div class=\"passo\">r por estágio = 500/100 = 2500/500 = 5</div><div class=\"passo\">T₂ = 298,15 × 5^0,2308 = 298,15 × 1,447 = 431,4 K = <strong>159 °C</strong></div><p>A temperatura caiu de 353 °C para 159 °C, agora dentro do aceitável para o lubrificante. O trabalho também cai: de 409 kJ/kg para 334 kJ/kg, uma economia de <strong>18 %</strong>. A média <em>aritmética</em> (1300 kPa) é o erro clássico — a divisão ótima é a que iguala as <em>razões</em>, ou seja, a média geométrica.</p>"
+    },
+    {
+      "id": "bc-024",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "compressores",
+      "enunciado": "<p>Um compressor alternativo com <span class=\"dado\">5 % de espaço nocivo</span> comprime de 100 para 800 kPa com n = 1,30. Qual a eficiência volumétrica?</p>",
+      "alternativas": [
+        "95,0 %",
+        "80,2 %",
+        "100 %",
+        "62,5 %"
+      ],
+      "correta": 1,
+      "formulas": [
+        "η_v = 1 + c − c·(p₂/p₁)^(1/n)",
+        "c = fração de espaço nocivo"
+      ],
+      "explicacao": "<div class=\"passo\">(p₂/p₁)^(1/n) = 8^(1/1,30) = 8^0,7692 = 4,885</div><div class=\"passo\">η<sub>v</sub> = 1 + 0,05 − 0,05 × 4,885 = 1,05 − 0,244 = <strong>0,802</strong></div><p>O compressor aspira apenas 80 % do volume que desloca. O gás preso no espaço nocivo reexpande no curso de admissão e ocupa parte dele antes que a válvula de sucção consiga abrir. Note como o efeito é sensível à razão de pressão: com os mesmos 5 % de espaço nocivo mas razão 25, η<sub>v</sub> cairia para 40 % — mais um argumento a favor dos estágios.</p>"
+    },
+    {
+      "id": "bc-025",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "compressores",
+      "enunciado": "<p>Sobre a compressão isotérmica exigir menos trabalho que a adiabática, e sobre como o projeto se aproxima dela:</p>",
+      "alternativas": [
+        "A isotérmica exige mais trabalho, porque o gás precisa ser resfriado continuamente.",
+        "As duas exigem o mesmo trabalho; muda apenas a temperatura final.",
+        "No diagrama p-V a isoterma fica abaixo da adiabática, logo a área — o trabalho — é menor: na adiabática parte do trabalho vira energia interna, o que é desperdício para o objetivo de comprimir. É inatingível porque o calor não tem tempo de sair no intervalo de uma compressão, e n real fica entre 1,25 e 1,35 para o ar. Aproxima-se dela com inter-resfriamento entre estágios — que converge para a isoterma no limite de infinitos estágios — além de camisa resfriada e injeção de líquido.",
+        "A isotérmica é atingida em qualquer compressor com camisa d’água, bastando resfriamento suficiente."
+      ],
+      "correta": 2,
+      "explicacao": "<p>No diagrama p-V, o trabalho de compressão em regime permanente é a área <em>à esquerda</em> da curva, entre p₁ e p₂. A isoterma pV = const é sempre <strong>mais baixa</strong> que a adiabática pV^k = const partindo do mesmo ponto, porque na adiabática o gás aquece e o aquecimento eleva a pressão para cada volume. Área menor significa trabalho menor.</p><p>A leitura física é a mesma: parte do trabalho fornecido ao gás vira energia interna, isto é, temperatura. Essa parcela é desperdício do ponto de vista da compressão — o objetivo era elevar a pressão, não aquecer. Retirando calor durante o processo, mantém-se a temperatura e todo o trabalho vai para o que interessa. Para ar a 25 °C comprimido de 100 a 2500 kPa, o trabalho isotérmico é RT·ln(25) = 275 kJ/kg contra 409 kJ/kg da politrópica com n = 1,3 — quase um terço a menos.</p><p>A impossibilidade prática é de <strong>escala de tempo</strong>. Manter a temperatura constante exigiria retirar calor exatamente na mesma taxa em que ele é gerado. Mas a compressão em um compressor alternativo dura uma fração de segundo, e a transferência de calor pela parede do cilindro depende de área e de diferença de temperatura, ambas limitadas. O calor simplesmente não tem tempo de sair. Na prática, n fica entre 1,25 e 1,35 para ar: mais próximo do adiabático (1,4) do que do isotérmico (1,0).</p><p>O projeto se aproxima da isoterma por três caminhos. O mais eficaz é o <strong>inter-resfriamento entre estágios</strong>: a compressão é dividida e o gás é resfriado até perto da temperatura de admissão entre um estágio e o seguinte. No diagrama p-V isso desenha uma escada que acompanha a isoterma, e no limite de infinitos estágios resfriados o trabalho converge exatamente para o isotérmico. Os outros dois são o <strong>resfriamento da camisa</strong>, com aletas ou camisa d'água, que reduz n em alguns centésimos, e a <strong>injeção de líquido</strong> no compressor de parafuso, em que o óleo injetado absorve calor durante a própria compressão e é depois separado e resfriado — é justamente por isso que o parafuso lubrificado atinge razões de pressão razoáveis em um único estágio.</p>"
+    },
+    {
+      "id": "bc-026",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "turbinas",
+      "enunciado": "<p>A diferença fundamental entre uma turbina de ação (Pelton) e uma de reação (Francis) é que:</p>",
+      "alternativas": [
+        "A Pelton é maior.",
+        "Na Pelton o rotor trabalha à pressão atmosférica, recebendo um jato livre; na Francis o rotor trabalha afogado e sob pressão.",
+        "A Pelton só funciona com baixa queda.",
+        "A Francis não tem pás móveis."
+      ],
+      "correta": 1,
+      "explicacao": "<p>Na turbina de <strong>ação</strong>, toda a queda é convertida em energia cinética no injetor: o jato sai à pressão atmosférica e as conchas apenas o desviam. Não há variação de pressão através do rotor. Na turbina de <strong>reação</strong>, apenas parte da queda vira velocidade no distribuidor; o restante é energia de pressão que continua sendo convertida <em>dentro</em> do rotor, que por isso precisa estar completamente cheio e sob pressão. Daí também a necessidade do tubo de sucção na Francis.</p>"
+    },
+    {
+      "id": "bc-027",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "turbinas",
+      "enunciado": "<p>Uma central com queda líquida de <span class=\"dado\">100 m</span> e vazão de <span class=\"dado\">5 m³/s</span> tem rendimento global de <span class=\"dado\">88 %</span>. Qual a potência elétrica gerada?</p>",
+      "alternativas": [
+        "4896 kW",
+        "4309 kW",
+        "5563 kW",
+        "3900 kW"
+      ],
+      "correta": 1,
+      "formulas": [
+        "P_disponível = ρ·g·Q·H",
+        "P_elétrica = η·P_disponível",
+        "Na turbina o rendimento MULTIPLICA (ao contrário da bomba)"
+      ],
+      "explicacao": "<div class=\"passo\">P<sub>disp</sub> = 998,2 × 9,81 × 5 × 100 = 4,896×10⁶ W = 4896 kW</div><div class=\"passo\">P<sub>el</sub> = 0,88 × 4896 = <strong>4309 kW</strong></div><p>Cuidado com o sentido do rendimento: na bomba ele <em>divide</em>, porque a máquina consome mais do que entrega ao fluido; na turbina ele <em>multiplica</em>, porque a máquina entrega menos do que o fluido oferece. Os 4896 kW são o teto absoluto — nenhuma turbina naquela queda e vazão entrega mais que isso.</p>"
+    },
+    {
+      "id": "bc-028",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "turbinas",
+      "enunciado": "<p>Em uma turbina Pelton, o rendimento hidráulico é máximo quando a velocidade tangencial da concha vale:</p>",
+      "alternativas": [
+        "u = V₁ (a concha acompanha o jato)",
+        "u = V₁/2",
+        "u = 2V₁",
+        "u = V₁/4"
+      ],
+      "correta": 1,
+      "formulas": [
+        "η_h = 2u(V₁ − u)(1 − cos β₂)/V₁²",
+        "Maximizar: dη/du = 0"
+      ],
+      "explicacao": "<div class=\"passo\">P = ρQ·u·(V₁ − u)(1 − cos β₂)</div><div class=\"passo\">dP/du = 0 → V₁ − 2u = 0 → <strong>u = V₁/2</strong></div><p>É um dos resultados mais elegantes da disciplina, e o raciocínio físico confirma: se u = 0, a concha não anda e não há trabalho; se u = V₁, o jato nunca alcança a concha e também não há trabalho. O máximo fica exatamente no meio. Nesse ponto, com β₂ = 180°, a água sai da concha com velocidade absoluta <em>nula</em> — toda a energia cinética foi aproveitada. Na prática usa-se u/V₁ entre 0,44 e 0,48 e β₂ ≈ 165°, para que a água que sai não bata na concha seguinte.</p>"
+    },
+    {
+      "id": "bc-029",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "turbinas",
+      "enunciado": "<p>Uma central tem rotação específica calculada n_s = 620. A turbina indicada é:</p>",
+      "alternativas": [
+        "Pelton, por ser a mais eficiente.",
+        "Francis, faixa intermediária.",
+        "Kaplan ou bulbo, típica de baixa queda e grande vazão.",
+        "Qualquer uma: n_s não define o tipo."
+      ],
+      "correta": 2,
+      "explicacao": "<p>As faixas usuais são n<sub>s</sub> &lt; 30 para Pelton, de 30 a 450 para Francis e acima de 450 para Kaplan e bulbo. Um n<sub>s</sub> de 620 indica <strong>muita vazão para pouca queda</strong> — o domínio das máquinas axiais. A rotação específica é uma forma adimensionalizada de expressar a razão entre vazão e queda, e por isso independe do tamanho: duas máquinas geometricamente semelhantes têm o mesmo n<sub>s</sub>, ainda que uma seja dez vezes maior.</p>"
+    },
+    {
+      "id": "bc-030",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "turbinas",
+      "enunciado": "<p>Sobre a função do tubo de sucção na turbina de reação e a sua ausência na Pelton:</p>",
+      "alternativas": [
+        "Ele serve apenas para conduzir a água ao canal de fuga, sem efeito energético; a Pelton o dispensa por ser menor.",
+        "Ao se alargar gradualmente, o tubo desacelera a água e cria depressão logo abaixo do rotor, recuperando energia cinética que se perderia e permitindo aproveitar a queda até o nível de jusante mesmo com a máquina instalada acima dele. O limite é a cavitação, análoga ao NPSH da bomba. A Pelton não o usa porque o seu rotor trabalha à pressão atmosférica: não há como criar depressão em ambiente aberto.",
+        "Ele aumenta a velocidade da água na saída do rotor, elevando a potência extraída.",
+        "Ele existe apenas para reduzir o ruído da descarga, e a Pelton o dispensa por operar em local remoto."
+      ],
+      "correta": 1,
+      "explicacao": "<p>O tubo de sucção é o duto divergente que liga a saída do rotor de uma turbina de reação ao canal de fuga, e ele cumpre duas funções que valem energia.</p><p>A primeira é <strong>recuperar energia cinética</strong>. A água deixa o rotor da Francis ainda com velocidade apreciável — em uma máquina de baixa queda, essa parcela pode representar vários por cento da queda total. Como o tubo se alarga gradualmente, a velocidade cai e, por Bernoulli, a pressão sobe: cria-se uma depressão logo abaixo do rotor. Essa depressão aumenta a diferença de pressão efetivamente aproveitada pela máquina, o que equivale a recuperar energia que sairia perdida no canal de fuga.</p><p>A segunda é <strong>aproveitar a altura entre o rotor e o nível de jusante</strong>. Sem o tubo, a turbina só usaria a queda até a sua própria cota de instalação; com o tubo cheio de água, o rotor “enxerga” a queda até o nível do canal de fuga. Isso permite instalar a máquina acima do nível de jusante sem perder essa parcela — o que é construtivamente muito conveniente.</p><p>Há um limite, e ele é a cavitação. A depressão criada não pode levar a pressão na saída do rotor abaixo da pressão de vapor da água. É isso que fixa a altura máxima de instalação da turbina acima do canal de fuga — o problema é exatamente análogo ao NPSH da bomba, com o mesmo teto barométrico de cerca de 10 m.</p><p>A <strong>Pelton não precisa do tubo</strong> porque o seu princípio é outro. O rotor trabalha ao ar livre, à pressão atmosférica, e a água que sai das conchas simplesmente cai por gravidade até o canal de fuga. Não há como criar depressão em um ambiente aberto à atmosfera, e portanto não haveria o que recuperar. A contrapartida é que a Pelton perde a queda entre o eixo da roda e o nível de jusante — perda irrelevante em uma central de 400 m de queda, mas que seria inaceitável em uma de 15 m. É mais um motivo pelo qual cada tipo domina a sua faixa.</p>"
+    }
+  ]
+}

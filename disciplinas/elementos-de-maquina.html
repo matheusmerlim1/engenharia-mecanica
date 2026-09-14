@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elementos de Máquina I — Engenharia Mecânica</title>
+<meta name="description" content="Fadiga, critérios de falha, parafusos, soldas e molas: teoria, simuladores, normas e simulado de Elementos de Máquina I.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#normas">Normas</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">6º período · Engenharia Mecânica</p>
+    <h1>Elementos de Máquina I</h1>
+    <p class="lead">O ponto em que a resistência dos materiais vira projeto de peça real: escolher o diâmetro do eixo, a classe do parafuso, o cordão de solda e a mola — sabendo que a carga é variável e que a peça precisa durar milhões de ciclos.</p>
+    <div class="btn-row">
+      <span class="tag accent">8 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">4 simuladores</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Mecânica dos Materiais responde <em>qual é a tensão</em>. Elementos de Máquina responde <em>a peça aguenta, e por quanto tempo</em>. A mudança de pergunta traz três complicações que dominam a disciplina:</p>
+        <div class="grid cols-3">
+          <div class="card">
+            <h3 style="margin-top:0">Carga variável</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">Peça que gira tem tensão alternada. Falha por fadiga com tensão muito abaixo do escoamento — o modo de falha mais comum em máquinas.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Peça real ≠ corpo de prova</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">Acabamento, tamanho, temperatura e confiabilidade reduzem o limite de fadiga. É o que os fatores de Marin corrigem.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Componente normalizado</h3>
+            <p style="color:var(--text-muted);font-size:.9rem">Parafuso, rolamento e mola não se inventam: escolhem-se em série normalizada, com propriedades tabeladas por norma.</p>
+          </div>
+        </div>
+        <div class="callout note">
+          <strong>Roteiro de projeto que a disciplina ensina</strong>
+          1) carregamento e esforços internos · 2) tensões no ponto crítico · 3) tensão média e alternada ·
+          4) limite de fadiga corrigido S<sub>e</sub> · 5) critério (Goodman, Soderberg, Gerber) · 6) coeficiente de segurança.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teorico">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Critérios de falha estática</summary>
+          <div class="topic-body">
+            <p>Antes da fadiga vem a verificação estática. O critério depende de o material ser dúctil ou frágil — usar o critério errado é erro conceitual, não de conta.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Material</th><th>Critério</th><th>Expressão</th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td rowspan="2">Dúctil</td><td>Energia de distorção (von Mises)</td><td><span data-tex-inline="\sigma ' = \sqrt{\sigma_{x}^{2} - \sigma_{x}\sigma_{y} + \sigma_{y}^{2} + 3\tau^{2}} \le \frac{S_{y}}{n}"></span></td><td>Mais preciso; padrão em projeto</td></tr>
+                <tr><td>Tensão cisalhante máxima (Tresca)</td><td><span data-tex-inline="\sigma_{1} - \sigma_{3} \le \frac{S_{y}}{n}"></span></td><td>Conservador em até 15 %</td></tr>
+                <tr><td rowspan="2">Frágil</td><td>Mohr-Coulomb</td><td><span data-tex-inline="\frac{\sigma_{1}}{S_{\text{ut}}} - \frac{\sigma_{3}}{S_{\text{uc}}} \le \frac{1}{n}"></span></td><td>Trata S<sub>ut</sub> ≠ S<sub>uc</sub></td></tr>
+                <tr><td>Tensão normal máxima</td><td><span data-tex-inline="\sigma_{1} \le \frac{S_{\text{ut}}}{n}"></span></td><td>Não conservador no 4º quadrante</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>No caso muito comum de eixo com flexão e torção (σ e τ no mesmo ponto, σ<sub>y</sub> = 0):</p>
+            <div class="formula"><span data-tex="\sigma ' = \sqrt{\sigma^{2} + 3\tau^{2}}"></span><span class="where">σ = 32M/(πd³) na flexão; τ = 16T/(πd³) na torção de eixo maciço</span></div>
+            <div class="callout warn">
+              <strong>Tresca ≠ von Mises no cisalhamento puro</strong>
+              Em cisalhamento puro, Tresca prevê escoamento em τ = 0,5·S<sub>y</sub> e von Mises em τ = 0,577·S<sub>y</sub>. Essa diferença de 15 % aparece em prova com frequência.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Fadiga: o fenômeno e o diagrama S–N</summary>
+          <div class="topic-body">
+            <p>Fadiga é a falha progressiva sob carregamento cíclico, em três estágios: nucleação da trinca (quase sempre na superfície, em um concentrador), propagação estável (as marcas de praia) e ruptura final brusca.</p>
+            <p>A curva S–N (Wöhler) relaciona amplitude de tensão e número de ciclos até a falha. Para aços existe um <strong>patamar</strong>: abaixo do limite de fadiga a peça tem vida infinita.</p>
+            <div class="formula"><span data-tex="S_{e}' \approx 0,5\cdot S_{\text{ut}} (\text{aços}, \text{para} S_{\text{ut}} \le 1400 \text{MPa})"></span><span class="where">S<sub>e</sub>′ = limite de fadiga do corpo de prova padrão, em flexão rotativa</span></div>
+            <div class="callout warn">
+              <strong>Alumínio não tem patamar</strong>
+              Ligas não ferrosas não apresentam limite de fadiga verdadeiro. Especifica-se a resistência à fadiga para uma vida definida, normalmente 5×10⁸ ciclos.
+            </div>
+            <p>Na região de vida finita (10³ a 10⁶ ciclos), a curva é uma reta em escala log-log:</p>
+            <div class="formula"><span data-tex="S_{f} = a\cdot N^{b} \quad a = (f\cdot S_{\text{ut}})\frac{^{2}}{S_{e}} \quad b = - (\frac{1}{3})\cdot \log (f\cdot \frac{S_{\text{ut}}}{S_{e}})"></span><span class="where">f ≈ 0,9 para S<sub>ut</sub> baixo, 0,8 para S<sub>ut</sub> alto (ver gráfico de Shigley)</span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Fatores de Marin — do corpo de prova à peça</summary>
+          <div class="topic-body">
+            <p>O corpo de prova é polido, tem 7,6 mm, ensaia à temperatura ambiente sob flexão rotativa. Nenhuma peça real é assim. Os fatores modificadores corrigem essa distância:</p>
+            <div class="formula"><span data-tex="S_{e} = k_{a}\cdot k_{b}\cdot k_{c}\cdot k_{d}\cdot k_{e}\cdot k_{f}\cdot S_{e}'"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Fator</th><th>O que corrige</th><th>Expressão / valor típico</th></tr></thead>
+              <tbody>
+                <tr><td>k<sub>a</sub> superfície</td><td>Acabamento — rugosidade nucleia trinca</td><td>a·S<sub>ut</sub><sup>b</sup>: retificado (1,58; −0,085), usinado (4,51; −0,265), laminado a quente (57,7; −0,718), forjado (272; −0,995)</td></tr>
+                <tr><td>k<sub>b</sub> tamanho</td><td>Volume sob tensão alta</td><td>1,24·d<sup>−0,107</sup> para 2,79 ≤ d ≤ 51 mm; <strong>k<sub>b</sub> = 1 em carga axial</strong></td></tr>
+                <tr><td>k<sub>c</sub> carregamento</td><td>Tipo de solicitação</td><td>1,0 flexão · 0,85 axial · 0,59 torção</td></tr>
+                <tr><td>k<sub>d</sub> temperatura</td><td>Queda de resistência a quente</td><td>≈ 1 até 250 °C; usar S<sub>T</sub>/S<sub>RT</sub> acima disso</td></tr>
+                <tr><td>k<sub>e</sub> confiabilidade</td><td>Dispersão dos dados</td><td><span data-tex-inline="0,897 (90 %) \cdot 0,868 (95 %) \cdot 0,814 (99 %) \cdot 0,753 (99,9 %)"></span></td></tr>
+                <tr><td>k<sub>f</sub> diversos</td><td>Corrosão, revestimento, tensão residual</td><td>Caso a caso; jateamento pode dar k<sub>f</sub> &gt; 1</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Ordem de grandeza</strong>
+              Um aço com S<sub>ut</sub> = 700 MPa tem S<sub>e</sub>′ = 350 MPa. Usinado (k<sub>a</sub> = 0,79) e com d = 30 mm (k<sub>b</sub> = 0,86), o limite corrigido cai para cerca de 240 MPa. Perdeu-se um terço só com acabamento e tamanho.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Tensão média e critérios de fadiga</summary>
+          <div class="topic-body">
+            <p>Carregamento cíclico real quase nunca é totalmente alternado. Decompõe-se em uma parcela média e uma alternada:</p>
+            <div class="formula"><span data-tex="\sigma_{m} = \frac{\sigma_{\text{máx}} + \sigma_{\text{mín}}}{2} \quad \sigma_{a} = |\sigma_{\text{máx}} - \sigma_{\text{mín}}|/2 \quad R = \frac{\sigma_{\text{mín}}}{\sigma_{\text{máx}}}"></span></div>
+            <p>A tensão média de tração é prejudicial: ela abre a trinca. Os critérios traçam a fronteira de segurança no plano σ<sub>m</sub>–σ<sub>a</sub>:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Critério</th><th>Equação</th><th>Caráter</th></tr></thead>
+              <tbody>
+                <tr><td>Goodman modificado</td><td><span data-tex-inline="\frac{\sigma_{a}}{S_{e}} + \frac{\sigma_{m}}{S_{\text{ut}}} = \frac{1}{n}"></span></td><td>Reta; padrão em projeto, levemente conservador</td></tr>
+                <tr><td>Soderberg</td><td><span data-tex-inline="\frac{\sigma_{a}}{S_{e}} + \frac{\sigma_{m}}{S_{y}} = \frac{1}{n}"></span></td><td>Reta; o mais conservador — protege contra escoamento</td></tr>
+                <tr><td>Gerber</td><td><span data-tex-inline="n\cdot \frac{\sigma_{a}}{S_{e}} + (n\cdot \frac{\sigma_{m}}{S_{\text{ut}}})^{2} = 1"></span></td><td>Parábola; melhor ajuste aos dados experimentais</td></tr>
+                <tr><td>ASME elíptica</td><td><span data-tex-inline="(n\cdot \frac{\sigma_{a}}{S_{e}})^{2} + (n\cdot \frac{\sigma_{m}}{S_{y}})^{2} = 1"></span></td><td>Elipse; usada em eixos</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Verifique também o escoamento no primeiro ciclo</strong>
+              Nenhum critério de fadiga garante que a peça não escoe logo na primeira aplicação da carga máxima. É preciso checar à parte n<sub>y</sub> = S<sub>y</sub>/(σ<sub>a</sub> + σ<sub>m</sub>).
+            </div>
+            <p>Concentradores de tensão em fadiga entram pelo fator <em>efetivo</em>, sempre aplicado à parcela alternada (e, no critério conservador, também à média):</p>
+            <div class="formula"><span data-tex="K_{f} = 1 + q\cdot (K_{t} - 1)"></span><span class="where">q = sensibilidade ao entalhe (0 a 1); q → 0 em ferro fundido, q → 1 em aço de alta resistência</span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Parafusos e juntas pré-carregadas</summary>
+          <div class="topic-body">
+            <p>A ideia central: o parafuso não deve trabalhar como um elo que recebe toda a carga externa. Ele é apertado antes, comprimindo os membros, e a junta passa a dividir a carga externa na proporção das rigidezes.</p>
+            <div class="formula"><span data-tex="C =\frac{k_{b}}{k_{b} + k_{m}}"></span><span class="where">C = constante de rigidez da junta; k<sub>b</sub> = rigidez do parafuso; k<sub>m</sub> = rigidez dos membros</span></div>
+            <div class="formula"><span data-tex="F_{b} = C\cdot P + F_{i} \quad F_{m} = (1 - C)\cdot P - F_{i}"></span></div>
+            <p>Como os membros são muito mais rígidos que o parafuso (C típico entre 0,1 e 0,3), <strong>a maior parte da carga externa alivia a compressão dos membros em vez de esticar o parafuso</strong>. É exatamente por isso que a junta pré-carregada é excelente em fadiga: a variação de carga no parafuso é só C·P.</p>
+            <div class="formula"><span data-tex="P_{0} =\frac{F_{i}}{1 - C}"></span><span class="where">carga externa que separa a junta; acima dela o parafuso recebe 100 % da carga</span></div>
+            <p>Pré-carga recomendada e torque de aperto:</p>
+            <div class="formula"><span data-tex="F_{i} = 0,75\cdot A_{t}\cdot S_{p} (\text{reutilizável}) \cdot 0,90\cdot A_{t}\cdot S_{p} (\text{permanente})"></span></div>
+            <div class="formula"><span data-tex="T = K\cdot F_{i}\cdot d"></span><span class="where">K ≈ 0,20 (sem lubrificação); A<sub>t</sub> = área de tração da rosca, tabelada; S<sub>p</sub> = resistência de prova da classe</span></div>
+            <div class="callout warn">
+              <strong>Pré-carga insuficiente é a causa nº 1 de falha de parafuso</strong>
+              Sem pré-carga adequada a junta separa, o parafuso passa a receber toda a variação de carga e falha por fadiga em pouco tempo. O aperto não é acabamento: é parte do dimensionamento.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Juntas soldadas</summary>
+          <div class="topic-body">
+            <p>No filete, a falha ocorre por cisalhamento na <strong>garganta</strong>, o menor plano do cordão, a 45° das pernas:</p>
+            <div class="formula"><span data-tex="t_{g} = 0,707\cdot h \quad \tau =\frac{F}{0,707\cdot h\cdot L}"></span><span class="where">h = perna do filete; L = comprimento total do cordão</span></div>
+            <p>Convenciona-se calcular a tensão sempre por cisalhamento na garganta, mesmo quando a carga é normal ao cordão — é uma simplificação de norma, do lado seguro.</p>
+            <p>Sob <strong>carga excêntrica</strong>, o cordão sofre cisalhamento primário (direto) e secundário (por torção em torno do centroide do grupo):</p>
+            <div class="formula"><span data-tex="\tau ' = \frac{V}{A} \quad \tau '' = M\cdot \frac{r}{J_{u}\cdot} (\frac{1}{0,707h}) \quad \tau_{\text{res}} = |\tau ' + \tau '' |"></span><span class="where">soma vetorial no ponto mais distante do centroide; J<sub>u</sub> = momento polar unitário do grupo</span></div>
+            <div class="callout tip">
+              <strong>Onde procurar o ponto crítico</strong>
+              É sempre o ponto do cordão mais distante do centroide do grupo de soldas — e no lado em que os dois cisalhamentos apontam no mesmo sentido.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Molas helicoidais</summary>
+          <div class="topic-body">
+            <p>A mola helicoidal de compressão trabalha essencialmente por torção do arame. O índice da mola C = D/d controla tudo: fabricabilidade, tensão e estabilidade.</p>
+            <div class="formula"><span data-tex="\tau = K_{W}\cdot 8\cdot F\cdot \frac{D}{\pi \cdot d^{3}} \quad K_{W} = \frac{4C - 1}{4C - 4} + \frac{0,615}{C}"></span><span class="where">K<sub>W</sub> = fator de Wahl: corrige a curvatura e o cisalhamento direto; D = diâmetro médio da espira; d = diâmetro do arame</span></div>
+            <div class="formula"><span data-tex="k =\frac{G\cdot d^{4}}{8\cdot D^{3}\cdot N_{a}}"></span><span class="where">k = constante da mola [N/mm]; N<sub>a</sub> = número de espiras ativas</span></div>
+            <div class="callout tip">
+              <strong>Faixa de projeto</strong>
+              4 ≤ C ≤ 12. Abaixo de 4 a mola é difícil de enrolar e a curvatura eleva muito a tensão interna; acima de 12 ela fica frágil ao manuseio e propensa a flambagem.
+            </div>
+            <p>A dependência k ∝ d⁴/D³ é o que torna a mola tão sensível: aumentar 10 % o diâmetro do arame aumenta a rigidez em 46 %.</p>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Eixos: projeto por fadiga</summary>
+          <div class="topic-body">
+            <p>O eixo rotativo sob carga transversal constante é o exemplo canônico: a flexão é <strong>totalmente alternada</strong> (σ<sub>m</sub> = 0) e o torque, se constante, é puramente médio (τ<sub>a</sub> = 0).</p>
+            <p>Aplicando a formulação ASME elíptica com essas condições, chega-se à equação de diâmetro usada em projeto:</p>
+            <div class="formula"><span data-tex="d = { (\frac{16n}{\pi }) \cdot [ 4(\frac{K_{f}M_{a}}{S_{e}})^{2} + 3(\frac{K_{\text{fs}}T_{m}}{S_{y}})^{2} ]^{\frac{1}{2}} }^{\frac{1}{3}}"></span><span class="where">M<sub>a</sub> = momento alternado; T<sub>m</sub> = torque médio; K<sub>f</sub>, K<sub>fs</sub> = fatores de entalhe em flexão e torção</span></div>
+            <div class="callout warn">
+              <strong>A seção crítica raramente é a de maior momento</strong>
+              É a que combina momento elevado <em>com</em> concentrador: rasgo de chaveta, ressalto de rolamento, ranhura de anel elástico. Sempre verifique cada mudança de seção, não só o meio do vão.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Quatro modelos que reproduzem as decisões de projeto da disciplina. Todos recalculam ao vivo.</p>
+
+        <div id="sim-fadiga"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Troque o acabamento de retificado para forjado e veja S<sub>e</sub> despencar sem que S<sub>ut</sub> mude. Depois aumente S<sub>ut</sub> além de 1400 MPa e observe o patamar de S<sub>e</sub>′ — aço mais duro não dá mais limite de fadiga proporcional.
+        </div>
+
+        <div id="sim-goodman"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Fixe σ<sub>a</sub> e aumente σ<sub>m</sub>: o ponto caminha para a direita e cruza primeiro a reta de Soderberg, depois a de Goodman, por fim a parábola de Gerber. Essa ordem é a hierarquia de conservadorismo dos critérios.
+        </div>
+
+        <div id="sim-parafuso"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Reduza a pré-carga e acompanhe a carga de separação. Quando P ultrapassa P₀, a inclinação da curva do parafuso muda bruscamente — ele passa a receber toda a carga externa, e é ali que a junta morre por fadiga.
+        </div>
+
+        <div id="sim-solda"></div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Falha estática</h4>
+            <div class="formula"><span data-tex="\sigma ' = \sqrt{\sigma^{2} + 3\tau^{2}} \le \frac{S_{y}}{n}"></span></div>
+            <div class="formula"><span data-tex="\sigma = \frac{32M}{\pi d^{3}} \tau = \frac{16T}{\pi d^{3}}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Fadiga</h4>
+            <div class="formula"><span data-tex="S_{e} = k_{a}k_{b}k_{c}k_{d}k_{e}\cdot 0,5S_{\text{ut}}"></span></div>
+            <div class="formula"><span data-tex="\frac{\sigma_{a}}{S_{e}} + \frac{\sigma_{m}}{S_{\text{ut}}} = \frac{1}{n}"></span></div>
+            <div class="formula"><span data-tex="K_{f} = 1 + q(K_{t} - 1)"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Parafusos</h4>
+            <div class="formula"><span data-tex="C = \frac{k_{b}}{k_{b}+k_{m}}"></span></div>
+            <div class="formula"><span data-tex="F_{b} = CP + F_{i} P_{0} = \frac{F_{i}}{1- C}"></span></div>
+            <div class="formula"><span data-tex="F_{i} = 0,75A_{t}S_{p} T = 0,20F_{i}d"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Soldas e molas</h4>
+            <div class="formula"><span data-tex="\tau = \frac{F}{0,707\cdot h\cdot L}"></span></div>
+            <div class="formula"><span data-tex="\tau = K_{W}\cdot \frac{8FD}{\pi d^{3}}"></span></div>
+            <div class="formula"><span data-tex="k = \frac{Gd^{4}}{8D^{3}N_{a}}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <p>Esta é a disciplina em que a norma entra diretamente na conta: a área de tração da rosca, a resistência de prova da classe do parafuso e o tamanho mínimo do filete de solda são todos valores normalizados. Abaixo, cada norma com o número que ela fornece.</p>
+
+        <h3>Roscas e parafusos</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra no projeto</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>ISO 68-1</strong></td>
+              <td>ISO general purpose screw threads — Basic profile</td>
+              <td>Perfil básico da rosca métrica: ângulo de 60°, alturas e truncamentos.</td>
+              <td>Base geométrica de onde saem os diâmetros efetivo e menor da rosca.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO 261 / ISO 262</strong></td>
+              <td>ISO general purpose metric screw threads — General plan / Selected sizes</td>
+              <td>Séries de passo grosso e fino e as combinações diâmetro × passo preferenciais.</td>
+              <td>Define quais M6×1, M12×1,75 etc. existem — e o passo entra em A<sub>t</sub>.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO 898-1</strong></td>
+              <td>Mechanical properties of fasteners — Bolts, screws and studs</td>
+              <td>Classes de resistência (4.6, 5.8, 8.8, 10.9, 12.9): S<sub>p</sub>, S<sub>ut</sub> e S<sub>y</sub> de cada uma.</td>
+              <td><strong>Fornece S<sub>p</sub> para F<sub>i</sub> = 0,75·A<sub>t</sub>·S<sub>p</sub>.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>ASME B1.1</strong></td>
+              <td>Unified Inch Screw Threads (UN, UNR)</td>
+              <td>Perfil, passo, classes de ajuste e áreas resistentes das roscas em polegada.</td>
+              <td>Área de tração A<sub>t</sub> quando o projeto é em unidades inglesas.</td>
+            </tr>
+            <tr>
+              <td><strong>ASME B18.2.1</strong></td>
+              <td>Square, Hex, Heavy Hex and Askew Head Bolts</td>
+              <td>Dimensões de cabeça, comprimento de rosca e tolerâncias.</td>
+              <td>Comprimento de aperto e a espessura de membro usada em k<sub>m</sub>.</td>
+            </tr>
+            <tr>
+              <td><strong>SAE J429</strong></td>
+              <td>Mechanical and Material Requirements for Externally Threaded Fasteners</td>
+              <td>Graus SAE 2, 5 e 8 — equivalente norte-americano do ISO 898-1.</td>
+              <td>S<sub>p</sub> em psi para parafusos em polegada.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="callout note">
+          <strong>Classe de resistência: como ler</strong>
+          Na designação <code>8.8</code>, o primeiro número × 100 é S<sub>ut</sub> em MPa (800 MPa) e o produto dos dois × 10 é S<sub>y</sub> (8 × 8 × 10 = 640 MPa). Vale para toda a série ISO 898-1.
+        </div>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Classe ISO 898-1</th><th class="num">S<sub>p</sub> (MPa)</th><th class="num">S<sub>y</sub> mín (MPa)</th><th class="num">S<sub>ut</sub> mín (MPa)</th><th>Uso típico</th></tr></thead>
+          <tbody>
+            <tr><td>4.6</td><td class="num">225</td><td class="num">240</td><td class="num">400</td><td>Baixa exigência, aço baixo carbono</td></tr>
+            <tr><td>5.8</td><td class="num">380</td><td class="num">420</td><td class="num">520</td><td>Uso geral</td></tr>
+            <tr><td><strong>8.8</strong></td><td class="num">600</td><td class="num">640</td><td class="num">800</td><td>Padrão em máquinas e estruturas</td></tr>
+            <tr><td><strong>10.9</strong></td><td class="num">830</td><td class="num">940</td><td class="num">1040</td><td>Juntas de alta responsabilidade</td></tr>
+            <tr><td>12.9</td><td class="num">970</td><td class="num">1100</td><td class="num">1220</td><td>Alta pré-carga, espaço restrito</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Rosca métrica grossa</th><th class="num">Passo (mm)</th><th class="num">A<sub>t</sub> (mm²)</th><th class="num">F<sub>i</sub> classe 8.8 (kN)</th></tr></thead>
+          <tbody>
+            <tr><td>M6</td><td class="num">1,00</td><td class="num">20,1</td><td class="num">9,0</td></tr>
+            <tr><td>M8</td><td class="num">1,25</td><td class="num">36,6</td><td class="num">16,5</td></tr>
+            <tr><td>M10</td><td class="num">1,50</td><td class="num">58,0</td><td class="num">26,1</td></tr>
+            <tr><td>M12</td><td class="num">1,75</td><td class="num">84,3</td><td class="num">37,9</td></tr>
+            <tr><td>M16</td><td class="num">2,00</td><td class="num">157</td><td class="num">70,7</td></tr>
+            <tr><td>M20</td><td class="num">2,50</td><td class="num">245</td><td class="num">110,3</td></tr>
+            <tr><td>M24</td><td class="num">3,00</td><td class="num">353</td><td class="num">158,9</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="font-size:.84rem;color:var(--text-faint)">A<sub>t</sub> conforme ISO 898-1 / ISO 262. F<sub>i</sub> calculada como 0,75·A<sub>t</sub>·S<sub>p</sub> com S<sub>p</sub> = 600 MPa (classe 8.8), critério para junta reutilizável.</p>
+
+        <h3>Soldagem</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra no projeto</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>AWS D1.1</strong></td>
+              <td>Structural Welding Code — Steel</td>
+              <td>Tensões admissíveis, tamanho mínimo e máximo do filete, qualificação de procedimento e critérios de inspeção.</td>
+              <td>Fornece τ<sub>adm</sub> do cordão e o filete mínimo em função da espessura da chapa.</td>
+            </tr>
+            <tr>
+              <td><strong>AWS A2.4</strong></td>
+              <td>Standard Symbols for Welding, Brazing and NDE</td>
+              <td>Simbologia de solda em desenho: perna, comprimento, passo, lado da seta.</td>
+              <td>Traduz o cordão calculado em informação de fabricação.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 8800</strong></td>
+              <td>Projeto de estruturas de aço e mistas</td>
+              <td>Resistência de cálculo de soldas de filete e de entalhe, com coeficientes de ponderação.</td>
+              <td>Verificação normativa brasileira do cordão.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO 5817</strong></td>
+              <td>Welding — Quality levels for imperfections</td>
+              <td>Níveis de qualidade B, C e D e limites de descontinuidade aceitáveis.</td>
+              <td>Define o quanto de porosidade e mordedura o cordão dimensionado pode ter.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Filete mínimo (AWS D1.1)</strong>
+          O tamanho mínimo da perna cresce com a espessura da chapa mais grossa: 3 mm até 6 mm de chapa; 5 mm de 6 a 13 mm; 6 mm de 13 a 19 mm; 8 mm acima de 19 mm. A regra existe para evitar resfriamento rápido demais e trinca a frio.
+        </div>
+
+        <h3>Molas, eixos e tolerâncias</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra no projeto</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>ASTM A227 / A228 / A229</strong></td>
+              <td>Steel Wire for Mechanical Springs (hard drawn, music wire, oil-tempered)</td>
+              <td>Composição, tratamento e a resistência à tração em função do diâmetro do arame.</td>
+              <td>Fornece S<sub>ut</sub> = A·d<sup>−m</sup> usado na tensão admissível da mola.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR ISO 286-1</strong></td>
+              <td>Sistema de tolerâncias e ajustes ISO</td>
+              <td>Campos de tolerância (H7, g6, k6…) e classes IT.</td>
+              <td>Ajuste do assento do rolamento e do cubo no eixo.</td>
+            </tr>
+            <tr>
+              <td><strong>ABNT NBR 6158</strong></td>
+              <td>Sistema de tolerâncias e ajustes (versão nacional histórica)</td>
+              <td>Mesma matéria da ISO 286, muito citada na bibliografia brasileira.</td>
+              <td>Aparece em desenhos e enunciados mais antigos.</td>
+            </tr>
+            <tr>
+              <td><strong>DIN 6885</strong></td>
+              <td>Drive type fastenings without taper action — Parallel keys</td>
+              <td>Dimensões de chaveta paralela e do rasgo em função do diâmetro do eixo.</td>
+              <td>Define o rasgo que gera o concentrador K<sub>f</sub> na seção crítica.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO 1940-1</strong></td>
+              <td>Mechanical vibration — Balance quality requirements of rotors</td>
+              <td>Graus de qualidade de balanceamento G, do rotor rígido.</td>
+              <td>Limita o desbalanceamento que gera carga alternada adicional no eixo.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="callout warn">
+          <strong>Sobre o texto das normas</strong>
+          As designações estão sem o ano porque as normas são periodicamente revisadas — confirme a edição vigente antes de usar em projeto real. O texto integral de ISO, ASME, AWS, ASTM e ABNT é obra protegida e comercializada pelas respectivas entidades; o que está reproduzido aqui são valores de domínio didático, presentes na bibliografia da disciplina (Shigley, Norton), citados com a fonte normativa correspondente.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre falha estática, fadiga, fatores de Marin, parafusos, soldas, molas e eixos — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
+        <div id="quiz" data-quiz="elementos-de-maquina"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>BUDYNAS, R. G.; NISBETT, J. K. (SHIGLEY)</strong> <em>Elementos de Máquinas de Shigley: Projeto de Engenharia Mecânica.</em> 10ª ed. McGraw-Hill. — Caps. 5 (falha estática), 6 (fadiga), 8 (parafusos), 9 (soldas), 10 (molas). Bibliografia principal.</li>
+          <li><strong>NORTON, R. L.</strong> <em>Projeto de Máquinas: Uma Abordagem Integrada.</em> Bookman. — Excelente no tratamento de concentração de tensão e sensibilidade ao entalhe.</li>
+          <li><strong>JUVINALL, R. C.; MARSHEK, K. M.</strong> <em>Fundamentos do Projeto de Componentes de Máquinas.</em> LTC.</li>
+          <li>Notas de aula da disciplina: aulas 12–13 (Fadiga), 17–20 (Parafusos), 21–22 (Soldagem), 23–25 (Molas), 26–27 (Mancais), além dos Capítulos 5 e 6 e da lista de exercícios de parafusos e soldas.</li>
+          <li>Material de apoio da pasta: <em>Fatores de Marin e concentradores de tensão</em>, <em>Limite de fadiga CDP versus peça pela S<sub>ut</sub></em>.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/elementos-de-maquina.js"></script>
+<script>
+/* glossário específico desta disciplina — sobrepõe o significado
+   padrão dos símbolos que mudam de sentido conforme a matéria */
+if (window.Glossario) Glossario.definir({
+  σ: ['Tensão normal', 'MPa'],
+  τ: ['Tensão de cisalhamento', 'MPa'],
+  S: ['Resistência do material', 'MPa', 'S_ut ruptura · S_y escoamento · S_e limite de fadiga'],
+  K: ['Fator de concentração de tensão', '—', 'K_t teórico · K_f efetivo em fadiga'],
+  k: ['Fator de Marin', '—', 'k_a superfície · k_b tamanho · k_c carregamento'],
+  C: ['Constante de rigidez da junta', '—', 'C = k_b/(k_b+k_m); típico 0,1 a 0,3'],
+  F: ['Força', 'N', 'F_i pré-carga · F_b no parafuso · F_m nos membros'],
+  A: ['Área', 'mm²', 'A_t = área de tração da rosca, tabelada por norma'],
+  n: ['Coeficiente de segurança', '—'],
+  N: ['Número de ciclos até a falha', 'ciclos', 'vida infinita acima de 10⁶ em aços'],
+  h: ['Perna do filete de solda', 'mm', 'garganta efetiva = 0,707·h'],
+  d: ['Diâmetro nominal', 'mm'],
+  q: ['Sensibilidade ao entalhe', '—', '0 = insensível (ferro fundido) · 1 = totalmente sensível'],
+  T: ['Torque de aperto', 'N·m', 'T = K·F_i·d, com K ≈ 0,20 a seco']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

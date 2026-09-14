@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Termodinâmica — Engenharia Mecânica</title>
+<meta name="description" content="Primeira e segunda leis, substância pura, entropia e ciclo de Carnot: teoria, simuladores interativos e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">5º período · Engenharia Mecânica</p>
+    <h1>Termodinâmica</h1>
+    <p class="lead">A contabilidade da energia e o limite do que é possível. A primeira lei diz que nada se perde; a segunda diz que nem tudo se aproveita — e é ela que fixa o teto de rendimento de qualquer motor, geladeira ou usina.</p>
+    <div class="btn-row">
+      <span class="tag accent">9 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">4 simuladores</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>A disciplina se apoia em duas leis que respondem a perguntas diferentes. Confundi-las é a origem de quase todo erro conceitual em prova.</p>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3 style="margin-top:0">Primeira lei — quanto</h3>
+            <p style="color:var(--text-muted);font-size:.92rem">Conservação da energia. Diz quanta energia atravessa a fronteira como calor e trabalho, e quanto sobra dentro. Sempre fecha, em qualquer processo.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Segunda lei — se é possível</h3>
+            <p style="color:var(--text-muted);font-size:.92rem">Direção e limite. Diz que o calor não sobe sozinho a temperatura, que nenhum motor converte tudo em trabalho e quanto se perdeu de potencial útil.</p>
+          </div>
+        </div>
+        <div class="callout note">
+          <strong>O roteiro de qualquer problema</strong>
+          1) definir o sistema (fechado ou volume de controle) · 2) identificar o processo e as hipóteses ·
+          3) achar as propriedades nos estados (tabela ou gás ideal) · 4) aplicar a primeira lei ·
+          5) verificar a segunda lei ou o rendimento.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teorico">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Conceitos e definições</summary>
+          <div class="topic-body">
+            <p>Antes de qualquer equação, é preciso escolher o <strong>sistema</strong>: a região do universo sob análise, delimitada por uma fronteira.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tipo</th><th>Atravessa a fronteira</th><th>Exemplo</th></tr></thead>
+              <tbody>
+                <tr><td>Fechado (massa de controle)</td><td>Só energia</td><td>Gás em cilindro-pistão</td></tr>
+                <tr><td>Aberto (volume de controle)</td><td>Energia e massa</td><td>Turbina, bomba, trocador</td></tr>
+                <tr><td>Isolado</td><td>Nada</td><td>Universo, garrafa térmica ideal</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Propriedades se dividem em <strong>extensivas</strong> (dependem da massa: V, U, H, S) e <strong>intensivas</strong> (não dependem: T, P, v, u, h, s). Dividir uma extensiva pela massa produz a específica correspondente.</p>
+            <div class="callout warn">
+              <strong>Sempre em kelvin</strong>
+              Toda relação com temperatura absoluta — rendimento de Carnot, gás ideal, entropia — exige K. Usar °C em η = 1 − T<sub>C</sub>/T<sub>H</sub> é o erro numérico mais frequente da disciplina.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Substância pura e o domo de saturação</summary>
+          <div class="topic-body">
+            <p>Uma substância pura pode existir como líquido comprimido, mistura saturada ou vapor superaquecido. O diagrama T-v organiza os três.</p>
+            <div class="formula"><span data-tex="x = \frac{m_{\text{vapor}}}{m_{\text{total}}}"></span><span class="where">título: fração mássica de vapor, entre 0 e 1. Só existe DENTRO do domo</span></div>
+            <div class="formula"><span data-tex="v = v_{f} + x\cdot v_{\text{fg}} \quad h = h_{f} + x\cdot h_{\text{fg}} \quad s = s_{f} + x\cdot s_{\text{fg}}"></span><span class="where">a mesma combinação linear vale para v, u, h e s</span></div>
+            <div class="callout warn">
+              <strong>Dentro do domo, T e P não são independentes</strong>
+              A cada pressão corresponde uma única temperatura de saturação. Informar as duas é redundante e não define o estado — é preciso uma terceira propriedade, quase sempre o título.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Região</th><th>Como identificar</th><th>Onde buscar as propriedades</th></tr></thead>
+              <tbody>
+                <tr><td>Líquido comprimido</td><td>T &lt; T<sub>sat</sub>(P) &nbsp;ou&nbsp; v &lt; v<sub>f</sub></td><td>Tabela de líquido comprimido, ou aproximar por líquido saturado à mesma T</td></tr>
+                <tr><td>Mistura saturada</td><td>v<sub>f</sub> &lt; v &lt; v<sub>g</sub></td><td>Tabela de saturação + título</td></tr>
+                <tr><td>Vapor superaquecido</td><td>T &gt; T<sub>sat</sub>(P) &nbsp;ou&nbsp; v &gt; v<sub>g</sub></td><td>Tabela de superaquecido, com dupla entrada</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Propriedades críticas da água: T<sub>c</sub> = 373,95 °C, P<sub>c</sub> = 22,06 MPa. Acima delas não há distinção entre líquido e vapor, e h<sub>fg</sub> = 0.</p>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Gás ideal</summary>
+          <div class="topic-body">
+            <p>Quando o vapor está longe da saturação (baixa pressão e alta temperatura relativas ao ponto crítico), o modelo de gás ideal substitui a tabela com boa precisão.</p>
+            <div class="formula"><span data-tex="P\cdot V = m\cdot R\cdot T \quad P\cdot v = R\cdot T"></span><span class="where">R = R<sub>universal</sub>/M; ar: 0,287 kJ/kg·K</span></div>
+            <div class="formula"><span data-tex="c_{p} - c_{v} = R \quad k = \frac{c_{p}}{c_{v}}"></span></div>
+            <div class="callout tip">
+              <strong>Para gás ideal, u e h dependem só de T</strong>
+              Δu = c<sub>v</sub>·ΔT e Δh = c<sub>p</sub>·ΔT valem em <em>qualquer</em> processo, não apenas a volume ou pressão constante. O índice em c<sub>v</sub> indica de onde veio a definição, não uma restrição de uso.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Gás</th><th class="num">R (kJ/kg·K)</th><th class="num">c<sub>p</sub></th><th class="num">c<sub>v</sub></th><th class="num">k</th></tr></thead>
+              <tbody>
+                <tr><td>Ar</td><td class="num">0,287</td><td class="num">1,005</td><td class="num">0,718</td><td class="num">1,400</td></tr>
+                <tr><td>Nitrogênio</td><td class="num">0,2968</td><td class="num">1,039</td><td class="num">0,743</td><td class="num">1,400</td></tr>
+                <tr><td><span data-tex-inline="CO_{2}"></span></td><td class="num">0,1889</td><td class="num">0,846</td><td class="num">0,657</td><td class="num">1,289</td></tr>
+                <tr><td>Hélio</td><td class="num">2,0769</td><td class="num">5,193</td><td class="num">3,116</td><td class="num">1,667</td></tr>
+                <tr><td>Metano</td><td class="num">0,5182</td><td class="num">2,254</td><td class="num">1,736</td><td class="num">1,299</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Trabalho e processos politrópicos</summary>
+          <div class="topic-body">
+            <p>Trabalho de fronteira é a área sob a curva do processo no diagrama P-v. Um único parâmetro descreve os quatro processos clássicos:</p>
+            <div class="formula"><span data-tex="P\cdot V^{n} = \text{constante}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th class="num">n</th><th>Processo</th><th class="num">Trabalho</th><th>Consequência</th></tr></thead>
+              <tbody>
+                <tr><td class="num">0</td><td>Isobárico</td><td class="num"><span data-tex-inline="P\cdot (V_{2} - V_{1})"></span></td><td><span data-tex-inline="Q = m\cdot c_{p}\cdot \Delta T"></span></td></tr>
+                <tr><td class="num">1</td><td>Isotérmico</td><td class="num"><span data-tex-inline="P_{1}V_{1}\cdot \ln (\frac{V_{2}}{V_{1}})"></span></td><td>ΔU = 0, logo Q = W</td></tr>
+                <tr><td class="num">k</td><td>Adiabático reversível</td><td class="num"><span data-tex-inline="\frac{P_{2}V_{2} - P_{1}V_{1}}{1 - k}"></span></td><td>Q = 0, logo W = −ΔU; isentrópico</td></tr>
+                <tr><td class="num">∞</td><td>Isocórico</td><td class="num">0</td><td><span data-tex-inline="Q = \Delta U = m\cdot c_{v}\cdot \Delta T"></span></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\frac{T_{2}}{T_{1}} = (\frac{V_{1}}{V_{2}})^{n- 1} = (\frac{P_{2}}{P_{1}})^{\frac{n- 1}{n}}"></span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Primeira lei — sistema fechado</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="Q - W = \Delta U"></span><span class="where">convenção: Q positivo entrando, W positivo saindo (realizado pelo sistema)</span></div>
+            <p>Para sistemas com variação apreciável de velocidade ou altura, entram também as parcelas cinética e potencial:</p>
+            <div class="formula"><span data-tex="Q - W = \Delta U + \Delta EC + \Delta EP"></span></div>
+            <div class="callout warn">
+              <strong>Cuidado com a convenção de sinais</strong>
+              Alguns livros escrevem ΔU = Q + W, adotando W positivo quando realizado <em>sobre</em> o sistema. As duas formulações são equivalentes; o erro é misturar as duas dentro do mesmo problema.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Primeira lei — volume de controle</summary>
+          <div class="topic-body">
+            <p>Em regime permanente, com uma entrada e uma saída, a equação da energia se reduz a:</p>
+            <div class="formula"><span data-tex="\dot{Q} - \dot{W} = \dot{m}\cdot [(h_{2} - h_{1}) + \frac{v_{2}^{2} - v_{1}^{2}}{2} + g\cdot (z_{2} - z_{1})]"></span><span class="where">h = u + Pv já inclui o trabalho de escoamento; por isso se usa entalpia, e não energia interna</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Equipamento</th><th>Hipóteses usuais</th><th>Equação reduzida</th></tr></thead>
+              <tbody>
+                <tr><td>Turbina / compressor</td><td>Adiabático, ΔEC e ΔEP desprezíveis</td><td><span data-tex-inline="\dot{W} = \dot{m}\cdot (h_{1} - h_{2})"></span></td></tr>
+                <tr><td>Bocal / difusor</td><td>Adiabático, sem trabalho</td><td><span data-tex-inline="h_{1} + \frac{v_{1}^{2}}{2} = h_{2} + \frac{v_{2}^{2}}{2}"></span></td></tr>
+                <tr><td>Válvula de estrangulamento</td><td>Adiabática, sem trabalho, ΔEC desprezível</td><td>h₁ = h₂ (isentálpico)</td></tr>
+                <tr><td>Trocador de calor</td><td>Sem trabalho, ΔP desprezível</td><td><span data-tex-inline="\dot{m}_{q}\Delta h_{q} = \dot{m}_{f}\Delta h_{f}"></span></td></tr>
+                <tr><td>Bomba (líquido)</td><td>Incompressível, adiabática</td><td><span data-tex-inline="\dot{W} = \dot{m}\cdot v\cdot \Delta P"></span></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Por que entalpia aparece sozinha</strong>
+              Empurrar massa para dentro do volume de controle custa trabalho Pv. Somando-o à energia interna, h = u + Pv, esse termo some da equação — é toda a razão de a entalpia existir.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Segunda lei e o ciclo de Carnot</summary>
+          <div class="topic-body">
+            <p>Dois enunciados clássicos, equivalentes entre si:</p>
+            <div class="callout note">
+              <strong>Kelvin-Planck</strong> É impossível um dispositivo cíclico que converta integralmente calor de uma única fonte em trabalho.<br>
+              <strong>Clausius</strong> É impossível transferir calor de um corpo frio para um quente sem outro efeito, isto é, sem consumo de trabalho.
+            </div>
+            <div class="formula"><span data-tex="\eta = \frac{W_{\text{líq}}}{Q_{H}} = 1 - \frac{Q_{C}}{Q_{H}} \quad \eta_{\text{Carnot}} = 1 - \frac{T_{C}}{T_{H}}"></span></div>
+            <div class="formula"><span data-tex="\mathrm{COP}_{\text{refrig}} = \frac{T_{C}}{T_{H} - T_{C}} \quad \mathrm{COP}_{\text{bomba}} = \frac{T_{H}}{T_{H} - T_{C}} = \mathrm{COP}_{\text{refrig}} + 1"></span></div>
+            <div class="callout tip">
+              <strong>COP maior que 1 não viola nada</strong>
+              O coeficiente de desempenho não é rendimento: ele compara calor <em>movido</em> com trabalho <em>gasto</em>, e não energia produzida com energia consumida. Uma bomba de calor com COP 4 move quatro unidades de calor por unidade de trabalho — e é por isso que aquecer com bomba de calor é melhor que com resistência elétrica.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Entropia</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="\mathrm{d}S = (\frac{\delta Q}{T})_{\text{reversível}} \quad \Delta S_{\text{universo}} \ge 0"></span></div>
+            <p>Para gás ideal com calores específicos constantes:</p>
+            <div class="formula"><span data-tex="\Delta s = c_{v}\cdot \ln (\frac{T_{2}}{T_{1}}) + R\cdot \ln (\frac{v_{2}}{v_{1}}) = c_{p}\cdot \ln (\frac{T_{2}}{T_{1}}) - R\cdot \ln (\frac{P_{2}}{P_{1}})"></span></div>
+            <p>Nos processos isentrópicos de gás ideal valem as relações:</p>
+            <div class="formula"><span data-tex="\frac{T_{2}}{T_{1}} = (\frac{P_{2}}{P_{1}})^{\frac{k- 1}{k}} = (\frac{v_{1}}{v_{2}})^{k- 1}"></span></div>
+            <div class="callout warn">
+              <strong>A entropia do sistema pode diminuir</strong>
+              O que a segunda lei proíbe é a do <em>universo</em> diminuir. Um gás resfriado tem sua entropia reduzida, às custas de um aumento maior na vizinhança.
+            </div>
+            <p>A eficiência isentrópica compara o equipamento real com o ideal reversível:</p>
+            <div class="formula"><span data-tex="\eta_{\text{turbina}} = \frac{h_{1} - h_{2,\text{real}}}{h_{1} - h_{2,s}} \quad \eta_{\text{compressor}} = \frac{h_{2,s} - h_{1}}{h_{2,\text{real}} - h_{1}}"></span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Exergia e trabalho perdido</summary>
+          <div class="topic-body">
+            <p>Nem toda energia tem o mesmo valor. Exergia é a parcela que pode virar trabalho útil, medida em relação ao ambiente.</p>
+            <div class="formula"><span data-tex="X_{\text{calor}} = Q\cdot (1 - \frac{T_{0}}{T})"></span><span class="where">T₀ = temperatura do ambiente de referência</span></div>
+            <div class="formula"><span data-tex="W_{\text{perdido}} = T_{0}\cdot S_{\text{gerada}}"></span><span class="where">teorema de Gouy-Stodola: toda entropia gerada é trabalho destruído</span></div>
+            <div class="callout tip">
+              <strong>1 kJ de calor a 1000 K vale mais que 1 kJ a 350 K</strong>
+              A primeira lei os trata como iguais; a exergia mostra que o primeiro pode gerar 70 % de trabalho e o segundo, apenas 15 %. É a razão de se evitar degradar calor de alta temperatura em usos de baixa.
+            </div>
+          </div>
+        </details>
+      </section>
+
+
+      <section class="section" id="ciclos">
+        <h2>Ciclos térmicos — as máquinas por dentro</h2>
+        <p>Uma máquina térmica é sempre a mesma ideia: recebe calor de uma fonte quente, converte parte dele em trabalho e é <strong>obrigada</strong> a rejeitar o resto numa fonte fria. O que muda de ciclo para ciclo é o fluido, a ordem dos processos e o formato dos equipamentos. Nos simuladores abaixo a instalação está animada: o fluido escoa, a chama queima, o pistão desce e o ponto correspondente anda pelos diagramas.</p>
+
+        <div class="callout note">
+          <strong>Como ler qualquer ciclo em quatro perguntas</strong>
+          Em cada componente, pergunte-se: 1) <strong>entra ou sai calor?</strong> — se sim, é trocador · 2) <strong>entra ou sai trabalho de eixo?</strong> — se sim, é turbina, bomba ou compressor · 3) <strong>o que fica constante?</strong> — pressão no trocador, entropia na máquina ideal, volume no cilindro fechado · 4) <strong>o que varia?</strong> — a resposta a essa é o balanço de energia daquele componente.
+        </div>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Componente</th><th>Balanço</th><th>Fica constante</th><th>Varia</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Bomba</strong> (líquido)</td><td>w = h₂ − h₁ ≈ v·Δp</td><td>s (ideal) e o volume específico</td><td>P muito, h e T pouquíssimo</td></tr>
+            <tr><td><strong>Compressor</strong> (gás)</td><td>w = h₂ − h₁</td><td>s (ideal)</td><td>P, T e v, todos muito</td></tr>
+            <tr><td><strong>Caldeira / combustor</strong></td><td>q = h₃ − h₂</td><td><strong>P</strong> — e também T, enquanto ferve</td><td>h e s, muito</td></tr>
+            <tr><td><strong>Turbina</strong></td><td>w = h₃ − h₄</td><td>s (ideal); q = 0 sempre</td><td>P, T e h caem — a queda de h É o trabalho</td></tr>
+            <tr><td><strong>Condensador</strong></td><td>q = h₄ − h₁</td><td><strong>P e T juntas</strong>, porque está dentro do domo</td><td>h e s caem</td></tr>
+            <tr><td><strong>Válvula de expansão</strong></td><td>h₃ = h₄</td><td><strong>h</strong> — é estrangulamento</td><td>P cai, T cai, s AUMENTA (irreversível)</td></tr>
+            <tr><td><strong>Regenerador</strong></td><td>q recuperado internamente</td><td>P nos dois lados</td><td>preaquece um lado e resfria o outro</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <details class="topic" open>
+          <summary>Rankine — a usina a vapor</summary>
+          <div class="topic-body">
+            <p>É o ciclo de praticamente toda a geração térmica do mundo: termelétrica a carvão, a gás em ciclo combinado, nuclear e solar concentrada. O fluido é água, que muda de fase duas vezes por ciclo — e é justamente isso que o torna eficiente.</p>
+            <div class="formula"><span data-tex="\eta = \frac{w_{\text{turb}} - w_{\text{bomba}}}{q_{\text{ent}}} = \frac{(h_3-h_4)-(h_2-h_1)}{h_3-h_2}"></span></div>
+            <div class="callout tip">
+              <strong>Por que a bomba consome tão pouco</strong>
+              Ela comprime <em>líquido</em>, que é praticamente incompressível: w ≈ v·Δp, e v da água vale 0,001 m³/kg. Bombear de 10 kPa a 15 MPa custa uns 15 kJ/kg, contra 1400 kJ/kg que a turbina produz — cerca de 1 %. No Brayton, que comprime gás, essa fração passa de 40 %.
+            </div>
+            <p>As três formas de melhorar o Rankine atacam sempre a mesma coisa: aproximar as temperaturas médias de fornecimento e de rejeição das temperaturas das fontes.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Recurso</th><th>O que faz</th><th>Ganho típico</th><th>Efeito colateral</th></tr></thead>
+              <tbody>
+                <tr><td>Baixar P do condensador</td><td>Reduz a temperatura média de rejeição</td><td>O mais eficaz</td><td>Limitado pela água de resfriamento; aumenta a umidade na saída</td></tr>
+                <tr><td>Superaquecer</td><td>Sobe a temperatura média de fornecimento</td><td>Alguns pontos</td><td>Limitado pelo material dos tubos (~600 °C)</td></tr>
+                <tr><td>Subir P da caldeira</td><td>Sobe a temperatura de evaporação</td><td>Bom</td><td><strong>Molha</strong> a saída da turbina — exige reaquecimento</td></tr>
+                <tr><td>Reaquecimento</td><td>Expande em dois estágios, reaquecendo no meio</td><td>4 a 5 pontos</td><td>Complica a caldeira</td></tr>
+                <tr><td>Regeneração</td><td>Extrai vapor para preaquecer a água</td><td>4 a 6 pontos</td><td>Perde-se trabalho na fração extraída</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>O limite que ninguém pode ignorar: x ≥ 0,88</strong>
+              Se a expansão terminar com título abaixo de 0,88, as gotas de água que se formam batem nas pás do último estágio a centenas de metros por segundo e erodem o metal. É esse limite — não o rendimento — que obriga o superaquecimento e o reaquecimento em usinas de alta pressão.
+            </div>
+          </div>
+        </details>
+
+        <div id="sim-rankine"></div>
+
+        <details class="topic">
+          <summary>Otto e Diesel — os motores alternativos</summary>
+          <div class="topic-body">
+            <p>Aqui o fluido não muda de fase e o volume de controle é fechado durante a compressão e a expansão. A diferença entre os dois ciclos está em <strong>como o calor entra</strong>.</p>
+            <div class="formula"><span data-tex="\eta_{\text{Otto}} = 1 - \frac{1}{r^{\,k-1}} \qquad \eta_{\text{Diesel}} = 1 - \frac{1}{r^{\,k-1}}\left[\frac{r_c^{\,k}-1}{k(r_c-1)}\right]"></span><span class="where">r = taxa de compressão · r_c = razão de corte (até onde vai a injeção)</span></div>
+            <div class="callout note">
+              <strong>O paradoxo do Diesel</strong>
+              Na <em>mesma</em> taxa de compressão, o Otto rende mais — o colchete da fórmula do Diesel é sempre maior que 1. Mas o Diesel real rende mais, porque pode usar taxa muito maior: ele comprime só <strong>ar</strong>, e ar não detona. O Otto comprime mistura ar-combustível e fica preso em r ≈ 12, acima do qual a mistura se autoinflama antes da faísca — é a "batida de pino".
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th></th><th>Otto</th><th>Diesel</th></tr></thead>
+              <tbody>
+                <tr><td>Ignição</td><td>Vela, por centelha</td><td>Pela própria compressão</td></tr>
+                <tr><td>O que se comprime</td><td>Mistura ar + combustível</td><td>Só ar</td></tr>
+                <tr><td>Calor entra a</td><td>Volume constante</td><td>Pressão constante</td></tr>
+                <tr><td>Taxa de compressão</td><td>8 a 12</td><td>15 a 22</td></tr>
+                <tr><td>Limite da taxa</td><td>Detonação</td><td>Pressão máxima estrutural</td></tr>
+                <tr><td>Controle de carga</td><td>Estrangula a admissão</td><td>Dosa o combustível — sem borboleta</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <div id="sim-otto-diesel"></div>
+
+        <details class="topic">
+          <summary>Brayton — a turbina a gás</summary>
+          <div class="topic-body">
+            <p>Compressor, combustor e turbina em fluxo contínuo, com compressor e turbina no <strong>mesmo eixo</strong>. É o ciclo do motor de avião, das turbinas industriais e da metade "quente" do ciclo combinado.</p>
+            <div class="formula"><span data-tex="\eta_{\text{Brayton}} = 1 - \frac{1}{r_p^{\,(k-1)/k}} \qquad BWR = \frac{w_{\text{compressor}}}{w_{\text{turbina}}}"></span></div>
+            <div class="callout warn">
+              <strong>O Back Work Ratio é o calcanhar do Brayton</strong>
+              Entre 40 % e 60 % de tudo que a turbina produz volta para mover o compressor. Como o trabalho líquido é a <em>diferença</em> entre dois números grandes, uma queda de 10 pontos no rendimento do compressor derruba o rendimento do ciclo muito mais que isso. Foi por essa razão que a turbina a gás só se tornou prática nos anos 1940, quando os compressores axiais passaram de 80 % de rendimento.
+            </div>
+            <p>Três recursos melhoram o Brayton, e todos aparecem no simulador ou nas fórmulas:</p>
+            <ul>
+              <li><strong>Regeneração</strong> — o escape ainda sai quente e preaquece o ar que vai ao combustor. Só funciona se T₄ &gt; T₂, ou seja, com razão de pressão <em>baixa</em>. Com r<sub>p</sub> alto o escape esfria e o regenerador deixa de servir.</li>
+              <li><strong>Inter-resfriamento e reaquecimento</strong> — dividem compressão e expansão em estágios, aproximando o ciclo do Ericsson.</li>
+              <li><strong>Ciclo combinado</strong> — o escape a 500 ou 600 °C vira a fonte de calor de um Rankine. O conjunto passa de 60 % de rendimento, o maior de qualquer máquina térmica em operação comercial.</li>
+            </ul>
+          </div>
+        </details>
+
+        <div id="sim-brayton"></div>
+
+        <details class="topic">
+          <summary>Refrigeração por compressão de vapor — o ciclo invertido</summary>
+          <div class="topic-body">
+            <p>É o Rankine ao contrário: em vez de produzir trabalho a partir de calor, gasta trabalho para mover calor do frio para o quente. A diferença estrutural é que a turbina é substituída por uma <strong>válvula de expansão</strong>.</p>
+            <div class="formula"><span data-tex="COP_R = \frac{q_L}{w_{\text{comp}}} = \frac{h_1 - h_4}{h_2 - h_1} \qquad COP_{BC} = COP_R + 1"></span></div>
+            <div class="callout note">
+              <strong>Por que uma válvula, e não uma turbina</strong>
+              Uma turbina recuperaria trabalho na expansão, e o ciclo ficaria mais eficiente. Mas o fluido ali é líquido saturado passando a mistura: uma turbina bifásica é cara, delicada e recuperaria pouquíssimo, porque o volume específico do líquido é baixo. A válvula é barata, não tem parte móvel e ainda serve de controle. O preço é a irreversibilidade: no estrangulamento a entalpia se conserva mas a <strong>entropia aumenta</strong>.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Componente</th><th>Processo</th><th>Constante</th><th>O que acontece</th></tr></thead>
+              <tbody>
+                <tr><td>Evaporador</td><td>1 ← 4</td><td>P e T</td><td>Absorve q_L do ambiente frio; o refrigerante ferve</td></tr>
+                <tr><td>Compressor</td><td>1 → 2</td><td>s (ideal)</td><td>Consome trabalho; o vapor sai superaquecido e quente</td></tr>
+                <tr><td>Condensador</td><td>2 → 3</td><td>P (e T na parte bifásica)</td><td>Rejeita q_H ao ambiente; o refrigerante condensa</td></tr>
+                <tr><td>Válvula</td><td>3 → 4</td><td><strong>h</strong></td><td>P despenca, T despenca, parte vaporiza, s aumenta</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>O COP pode passar de 1 sem violar nada</strong>
+              COP não é rendimento: é uma razão entre calor <em>movido</em> e trabalho <em>gasto</em>. Um COP de 4 significa que cada joule de eletricidade move quatro joules de calor — nada é criado, apenas transportado. O teto continua sendo o de Carnot: COP<sub>máx</sub> = T_C/(T_H − T_C), que cresce quando as duas temperaturas se aproximam. É por isso que um ar-condicionado gasta muito mais em dia de 40 °C do que em dia de 25 °C.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Quatro modelos, todos com fórmulas e resolução passo a passo. As propriedades da água vêm das equações do IAPWS, com precisão de tabela de vapor.</p>
+
+        <div id="sim-saturacao"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o exemplo 5 (370 °C, perto do ponto crítico) e veja v<sub>f</sub> e v<sub>g</sub> quase se encontrarem enquanto h<sub>fg</sub> despenca para perto de zero — é o domo se fechando. Depois compare com o exemplo 6 (condensador a 7 kPa), onde o vapor ocupa mais de 20 m³/kg.
+        </div>
+
+        <div id="sim-processo"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Percorra os exemplos 1 a 4 na ordem: n = 0, 1, k e ∞. Observe o balanço de energia mudar de configuração em cada um — no isotérmico Q = W exatamente, no adiabático Q = 0, no isocórico W = 0.
+        </div>
+
+        <div id="sim-carnot"></div>
+        <div id="sim-entropia"></div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Estados</h4>
+            <div class="formula"><span data-tex="PV = mRT \qquad h = u + Pv"></span></div>
+            <div class="formula"><span data-tex="v = v_{f} + x\cdot v_{\text{fg}}"></span></div>
+            <div class="formula"><span data-tex="c_{p} - c_{v} = R \qquad k = \frac{c_{p}}{c_{v}}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Primeira lei</h4>
+            <div class="formula"><span data-tex="Q - W = \Delta U"></span></div>
+            <div class="formula"><span data-tex="\dot{Q} - \dot{W} = \dot{m}\cdot \Delta (h + \frac{v^{2}}{2} + gz)"></span></div>
+            <div class="formula"><span data-tex="W = \int P \mathrm{d}V"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Segunda lei</h4>
+            <div class="formula"><span data-tex="\eta_{\text{Carnot}} = 1 - \frac{T_{C}}{T_{H}}"></span></div>
+            <div class="formula"><span data-tex="\mathrm{COP}_{R} = \frac{T_{C}}{T_{H}- T_{C}}"></span></div>
+            <div class="formula"><span data-tex="\Delta S_{\text{univ}} \ge 0"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Entropia e exergia</h4>
+            <div class="formula"><span data-tex="\Delta s = c_{v}\ln (\frac{T_{2}}{T_{1}}) + R\cdot \ln (\frac{v_{2}}{v_{1}})"></span></div>
+            <div class="formula"><span data-tex="X = Q(1 - \frac{T_{0}}{T})"></span></div>
+            <div class="formula"><span data-tex="W_{\text{perd}} = T_{0}\cdot S_{\text{ger}}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões cobrindo conceitos, substância pura, gás ideal, primeira e segunda leis, entropia e exergia — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
+        <div id="quiz" data-quiz="termodinamica"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>ÇENGEL, Y. A.; BOLES, M. A.</strong> <em>Termodinâmica.</em> McGraw-Hill. — Bibliografia principal. Caps. 1 a 8. Tabelas de vapor no apêndice.</li>
+          <li><strong>BORGNAKKE, C.; SONNTAG, R. E.</strong> <em>Fundamentos da Termodinâmica.</em> Blucher. — Tratamento rigoroso de entropia e volume de controle.</li>
+          <li><strong>MORAN, M. J.; SHAPIRO, H. N.</strong> <em>Princípios de Termodinâmica para Engenharia.</em> LTC. — Excelente no capítulo de exergia.</li>
+          <li><strong>VAN WYLEN, G. J.</strong> <em>Fundamentos da Termodinâmica Clássica.</em> — Referência clássica.</li>
+          <li>Notas de aula da disciplina (aulas 2 a 14) e o livro-texto com apêndice de tabelas disponível na pasta do curso.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/termodinamica.js"></script>
+<script src="../js/sim/ciclos.js"></script>
+<script>
+/* glossário específico desta disciplina — sobrepõe o significado
+   padrão dos símbolos que mudam de sentido conforme a matéria */
+if (window.Glossario) Glossario.definir({
+  h: ['Entalpia específica', 'kJ/kg', 'h = u + pv — já inclui o trabalho de escoamento'],
+  s: ['Entropia específica', 'kJ/kg·K'],
+  u: ['Energia interna específica', 'kJ/kg', 'para gás ideal depende SÓ da temperatura'],
+  v: ['Volume específico', 'm³/kg', 'v = V/m = 1/ρ'],
+  x: ['Título', '—', 'fração mássica de vapor; só existe dentro do domo'],
+  T: ['Temperatura absoluta', 'K', 'SEMPRE em kelvin nas relações termodinâmicas'],
+  p: ['Pressão', 'kPa'],
+  Q: ['Calor', 'kJ', 'positivo quando ENTRA no sistema'],
+  W: ['Trabalho', 'kJ', 'positivo quando realizado PELO sistema'],
+  R: ['Constante do gás', 'kJ/kg·K', 'ar = 0,287; R = c_p − c_v'],
+  c: ['Calor específico', 'kJ/kg·K', 'c_p a pressão constante · c_v a volume constante'],
+  k: ['Razão de calores específicos', '—', 'k = c_p/c_v; ar 1,4 · monoatômico 1,667'],
+  n: ['Expoente politrópico', '—', '0 isobárico · 1 isotérmico · k adiabático · ∞ isocórico'],
+  η: ['Rendimento térmico', '—', 'η_Carnot = 1 − T_C/T_H'],
+  X: ['Exergia', 'kJ', 'parcela do calor que pode virar trabalho'],
+  S: ['Entropia', 'kJ/K']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>
