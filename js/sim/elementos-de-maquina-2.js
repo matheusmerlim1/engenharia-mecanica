@@ -1,4 +1,4 @@
-/* Elementos de Máquinas II — modelos (engrenagens, molas, freios) e simuladores */
+/* Elementos de Máquinas II — modelos (engrenagens, molas, freios, mancais, correias) e simuladores */
 /* ==========================================================================
    Elementos de Máquinas II — modelos (sem DOM, validados em node)
    --------------------------------------------------------------------------
@@ -329,6 +329,165 @@
     var razao = Math.exp(p.f * th);
     var P1 = p.P1, P2 = P1 / razao;
     return { razao: razao, P1: P1, P2: P2, T: (P1 - P2) * r, pmax: P1 / (p.b / 1000 * r) / 1e6 };
+  };
+
+
+  /* ==========================================================================
+     Mancais de rolamento (ISO 281), correias, mancal hidrodinâmico e chavetas
+     ========================================================================== */
+
+  /* ---------------- rolamentos ----------------
+     P = X·Fr + Y·Fa; L10 = (C/P)^a; L10h = 10⁶ L10/(60 n)
+     X, Y e e do rolamento rígido de esferas variam com Fa/C0 (catálogo SKF). */
+  var TAB_E = [[0.025, 0.22, 2.0], [0.04, 0.24, 1.8], [0.07, 0.27, 1.6],
+               [0.13, 0.31, 1.4], [0.25, 0.37, 1.2], [0.5, 0.44, 1.0]];
+  EM2.TIPOS_ROL = {
+    esferas:  { nome: 'Rígido de esferas', a: 3, C0: 0.55, axial: 'limitada' },
+    angular:  { nome: 'Contato angular 40°', a: 3, C0: 0.65, axial: 'alta, num sentido' },
+    autoc:    { nome: 'Autocompensador de esferas', a: 3, C0: 0.35, axial: 'baixa' },
+    rolos:    { nome: 'Rolos cilíndricos', a: 10 / 3, C0: 0.75, axial: 'nenhuma' },
+    conicos:  { nome: 'Rolos cônicos', a: 10 / 3, C0: 0.85, axial: 'alta, num sentido' },
+    esfrolos: { nome: 'Autocompensador de rolos', a: 10 / 3, C0: 1.0, axial: 'média' }
+  };
+  /* confiabilidade: fator a1 da ISO 281 */
+  EM2.A1 = { '90': 1, '95': 0.64, '96': 0.55, '97': 0.47, '98': 0.37, '99': 0.25 };
+
+  EM2.rolamento = function (p) {
+    var t = EM2.TIPOS_ROL[p.tipo], C0 = p.C * 1000 * t.C0;   /* N */
+    var X = 1, Y = 0, e = 0, modo = 'só radial';
+    if (p.tipo === 'rolos') {                     /* rolos cilíndricos não tomam axial */
+      X = 1; Y = 0;
+    } else if (p.tipo === 'angular' || p.tipo === 'conicos') {
+      e = p.tipo === 'angular' ? 1.14 : 0.37;
+      if (p.Fa / p.Fr > e) { X = p.tipo === 'angular' ? 0.35 : 0.4; Y = p.tipo === 'angular' ? 0.57 : 1.6; modo = 'radial + axial'; }
+    } else {
+      /* interpola e e Y na tabela pela relação Fa/C0 */
+      var razaoC0 = p.Fa / C0, i, eY;
+      if (razaoC0 <= TAB_E[0][0]) eY = [TAB_E[0][1], TAB_E[0][2]];
+      else if (razaoC0 >= TAB_E[TAB_E.length - 1][0]) eY = [TAB_E[TAB_E.length - 1][1], TAB_E[TAB_E.length - 1][2]];
+      else {
+        for (i = 0; i < TAB_E.length - 1; i++) {
+          if (razaoC0 <= TAB_E[i + 1][0]) {
+            var fi = (razaoC0 - TAB_E[i][0]) / (TAB_E[i + 1][0] - TAB_E[i][0]);
+            eY = [TAB_E[i][1] + fi * (TAB_E[i + 1][1] - TAB_E[i][1]), TAB_E[i][2] + fi * (TAB_E[i + 1][2] - TAB_E[i][2])];
+            break;
+          }
+        }
+      }
+      e = eY[0];
+      if (p.Fa / p.Fr > e) { X = 0.56; Y = eY[1]; modo = 'radial + axial'; }
+      if (p.tipo === 'autoc' && p.Fa / p.Fr > e) { Y = 2.5; }
+    }
+    var P = X * p.Fr + Y * p.Fa;
+    var a1 = EM2.A1[String(p.conf)] || 1;
+    var L10 = Math.pow(p.C * 1000 / P, t.a);            /* milhões de revoluções (C em kN) */
+    var L10h = 1e6 * L10 / (60 * p.rpm);
+    var Lnm = a1 * L10, Lnmh = a1 * L10h;
+    /* carga que daria exatamente a vida desejada */
+    var Cnec = P * Math.pow(p.vida * 60 * p.rpm / 1e6 / a1, 1 / t.a) / 1000;
+    return { t: t, X: X, Y: Y, e: e, modo: modo, P: P, C0: C0, s0: C0 / Math.max(p.Fr, p.Fa, 1e-9),
+             L10: L10, L10h: L10h, a1: a1, Lnm: Lnm, Lnmh: Lnmh, Cnec: Cnec, atende: Lnmh >= p.vida };
+  };
+  /* carga média cúbica de um regime com vários patamares: [[P, fração de tempo], ...] */
+  EM2.cargaMedia = function (etapas, a) {
+    var s = 0, tt = 0;
+    etapas.forEach(function (q) { s += q[1] * Math.pow(q[0], a); tt += q[1]; });
+    return Math.pow(s / tt, 1 / a);
+  };
+
+  /* ---------------- transmissão por correia ----------------
+     θ = π ∓ 2 arcsen((D − d)/2C); (F1 − Fc)/(F2 − Fc) = e^{fθ/sen(β/2)} */
+  EM2.correia = function (p) {
+    var d = p.d / 1000, D = p.D / 1000, C = p.C / 1000;
+    var dif = (D - d) / (2 * C);
+    var aberto = Math.abs(dif) < 1;
+    var th1 = Math.PI - 2 * Math.asin(Math.min(1, Math.abs(dif)));   /* polia menor */
+    var th2 = Math.PI + 2 * Math.asin(Math.min(1, Math.abs(dif)));
+    var L = 2 * C + Math.PI * (D + d) / 2 + Math.pow(D - d, 2) / (4 * C);
+    var v = Math.PI * d * p.rpm / 60;
+    var beta = p.tipo === 'v' ? 38 : 180;                            /* ângulo do canal */
+    var fEf = p.f / Math.sin(beta / 2 * Math.PI / 180);
+    var razao = Math.exp(fEf * th1);
+    var Fc = p.massa * v * v;                                        /* tração centrífuga */
+    /* com tração inicial Fi: F1 + F2 = 2Fi (+2Fc), e (F1−Fc)/(F2−Fc) = razão */
+    var F1 = Fc + 2 * (p.Fi - Fc) * razao / (razao + 1);
+    var F2 = Fc + 2 * (p.Fi - Fc) / (razao + 1);
+    var H = (F1 - F2) * v;                                           /* W */
+    var sigma = F1 / (p.b * p.t);                                    /* MPa, correia plana */
+    /* potência máxima: tração no lado tenso no limite admissível do material */
+    var F1max = p.sigmaAdm * p.b * p.t;
+    var Hmax = Math.max(0, (F1max - Fc) * (1 - 1 / razao) * v);
+    var FiMax = (F1max + Fc + (F1max - Fc) / razao) / 2;
+    return { th1: th1, th2: th2, L: L, v: v, razao: razao, Fc: Fc, F1: F1, F2: F2, H: H / 1000,
+             Hmax: Hmax / 1000, F1max: F1max, FiMax: FiMax, escorrega: F2 < Fc + 1e-9, sigma: sigma, i: D / d, rpm2: p.rpm * d / D, aberto: aberto, fEf: fEf,
+             Tmotor: (F1 - F2) * d / 2 };
+  };
+
+  /* ---------------- mancal radial hidrodinâmico (mancal curto, Ocvirk) ----------------
+     Resolve a equação de Reynolds do mancal curto e integra numericamente a carga
+     e o atrito; a cavitação é tratada pela condição de Gümbel (só 0 ≤ θ ≤ π). */
+  function cargaCurto(eps, p) {
+    /* p: mu (Pa·s), N (rev/s), r (m), c (m), L (m) */
+    var U = 2 * Math.PI * p.r * p.N;
+    var n = 200, Wx = 0, Wy = 0, Fat = 0;
+    /* pressão: pp(θ, z) = 3 μ U c ε senθ /(r h³) · (L²/4 − z²) */
+    for (var i = 0; i < n; i++) {
+      var th = Math.PI * (i + 0.5) / n, dth = Math.PI / n;
+      var h = p.c * (1 + eps * Math.cos(th));
+      var k = 3 * p.mu * U * p.c * eps * Math.sin(th) / (p.r * Math.pow(h, 3));
+      var integralZ = 2 * (Math.pow(p.L / 2, 3) / 3) * 2;             /* ∫(L²/4 − z²)dz = L³/6 */
+      integralZ = Math.pow(p.L, 3) / 6;
+      var dF = k * integralZ * p.r * dth;                             /* força por elemento */
+      Wx += dF * Math.cos(th);                                        /* ao longo da linha de centros */
+      Wy += dF * Math.sin(th);
+    }
+    /* atrito viscoso em toda a circunferência (Couette + Poiseuille desprezível) */
+    for (i = 0; i < 2 * n; i++) {
+      var th2 = 2 * Math.PI * (i + 0.5) / (2 * n), dth2 = Math.PI / n;
+      var h2 = p.c * (1 + eps * Math.cos(th2));
+      Fat += p.mu * U / h2 * p.r * dth2 * p.L;
+    }
+    return { W: Math.hypot(Wx, Wy), Wx: Wx, Wy: Wy, Fat: Fat, phi: Math.atan2(Wy, -Wx) };
+  }
+  EM2.mancal = function (p) {
+    var r = p.d / 2000, c = p.c / 1000, L = p.L / 1000;
+    var mu = p.mu, N = p.rpm / 60;
+    var W = p.W;                                                      /* N */
+    var base = { mu: mu, N: N, r: r, c: c, L: L };
+    /* acha a excentricidade que equilibra a carga */
+    var lo = 1e-4, hi = 0.999, eps;
+    for (var it = 0; it < 80; it++) {
+      eps = (lo + hi) / 2;
+      if (cargaCurto(eps, base).W < W) lo = eps; else hi = eps;
+    }
+    var q = cargaCurto(eps, base);
+    var P = W / (2 * r * L);                                          /* pressão média, Pa */
+    var S = Math.pow(r / c, 2) * mu * N / P;                          /* número de Sommerfeld */
+    var f = q.Fat / W;                                                /* coeficiente de atrito */
+    var fPetroff = 2 * Math.PI * Math.PI * mu * N / P * (r / c);
+    var h0 = c * (1 - eps);
+    var pot = q.Fat * 2 * Math.PI * r * N;                            /* W dissipados */
+    var pmaxTeta = 0, pmax = 0;
+    for (var i = 1; i < 200; i++) {
+      var th = Math.PI * i / 200, h = c * (1 + eps * Math.cos(th));
+      var pp = 3 * mu * (2 * Math.PI * r * N) * c * eps * Math.sin(th) / (r * Math.pow(h, 3)) * (L * L / 4);
+      if (pp > pmax) { pmax = pp; pmaxTeta = th; }
+    }
+    return { eps: eps, h0: h0, S: S, f: f, fPetroff: fPetroff, phi: q.phi, P: P, pot: pot,
+             pmax: pmax, pmaxTeta: pmaxTeta, Fat: q.Fat, LD: L / (2 * r), U: 2 * Math.PI * r * N,
+             base: base, W: W };
+  };
+
+  /* ---------------- chaveta paralela e acoplamento ---------------- */
+  EM2.chaveta = function (p) {
+    var T = p.T, d = p.d / 1000, b = p.b / 1000, h = p.h / 1000, L = p.L / 1000;
+    var F = 2 * T / d;                                                /* força na superfície do eixo */
+    var tau = F / (b * L) / 1e6;                                      /* MPa */
+    var sesm = F / (h / 2 * L) / 1e6;                                 /* esmagamento no rasgo */
+    var Ssy = 0.577 * p.Sy;
+    return { F: F, tau: tau, sesm: sesm, nCis: Ssy / tau, nEsm: p.Sy / sesm,
+             Lcis: 2 * T / (d * b * (Ssy / p.n) * 1e6) * 1000, Lesm: 4 * T / (d * h * (p.Sy / p.n) * 1e6) * 1000,
+             Tmax: Math.min(Ssy / p.n * 1e6 * b * L, p.Sy / p.n * 1e6 * h / 2 * L) * d / 2 };
   };
 
   global.EM2 = EM2;
@@ -1905,6 +2064,811 @@
         out.t = { v: fr.t, u: 's' };
         out.dT = { v: fr.dT, u: 'K', classe: fr.dT > 150 ? 'alerta' : '' };
         return out;
+      }
+    });
+  })();
+
+  /* ==========================================================================
+     7. Mancais de rolamento — vida ISO 281
+     ========================================================================== */
+  (function () {
+    if (!document.getElementById('sim-rolamento')) return;
+    var A = { ctx: null, p: null, r: null, th: 0, rel: relogio(), on: true };
+
+    function desenhar(c, pl) {
+      var a = pl._area, p = A.p, r = A.r;
+      if (!p || !r) return;
+      var cor = Plot.cssVar('--text', '#111'), faint = Plot.cssVar('--text-faint', '#888');
+      var R = Math.min(a.w * 0.2, a.h * 0.38), cx = a.x + a.w * 0.28, cy = a.y + a.h * 0.5;
+      var rolos = p.tipo === 'rolos' || p.tipo === 'conicos' || p.tipo === 'esfrolos';
+      var n = 12, dRol = R * 0.24, Rm = R * 0.72;
+      /* anel externo e interno */
+      c.strokeStyle = cor; c.lineWidth = 1.6;
+      [[R, R * 0.86], [Rm - dRol / 2, Rm - dRol / 2 - R * 0.14]].forEach(function (q) {
+        c.fillStyle = faint; c.globalAlpha = 0.25;
+        c.beginPath(); c.arc(cx, cy, q[0], 0, TAU); c.arc(cx, cy, q[1], 0, TAU, true); c.fill('evenodd');
+        c.globalAlpha = 1;
+        c.beginPath(); c.arc(cx, cy, q[0], 0, TAU); c.stroke();
+        c.beginPath(); c.arc(cx, cy, q[1], 0, TAU); c.stroke();
+      });
+      /* zona de carga: a carga radial vem de cima; só ~metade dos elementos a recebe */
+      var thGaiola = A.th * 0.42;
+      for (var k = 0; k < n; k++) {
+        var ang = thGaiola + k * TAU / n;
+        var x = cx + Rm * Math.cos(ang), y = cy - Rm * Math.sin(ang);
+        var carga = Math.max(0, Math.cos(ang + Math.PI / 2));       /* máxima em baixo (−y) */
+        c.fillStyle = 'rgb(' + Math.round(90 + 150 * carga) + ',' + Math.round(150 - 60 * carga) + ',' + Math.round(220 - 160 * carga) + ')';
+        c.beginPath();
+        if (rolos) {
+          c.save(); c.translate(x, y); c.rotate(-ang);
+          c.fillRect(-dRol * 0.35, -dRol / 2, dRol * 0.7, dRol);
+          c.strokeStyle = cor; c.lineWidth = 1; c.strokeRect(-dRol * 0.35, -dRol / 2, dRol * 0.7, dRol);
+          c.restore();
+        } else {
+          c.arc(x, y, dRol / 2, 0, TAU); c.fill();
+          c.strokeStyle = cor; c.lineWidth = 1; c.stroke();
+        }
+      }
+      /* eixo */
+      c.fillStyle = Plot.cssVar('--bg-elev', '#fff');
+      c.beginPath(); c.arc(cx, cy, Rm - dRol / 2 - R * 0.14, 0, TAU); c.fill();
+      c.strokeStyle = cor; c.lineWidth = 1.4; c.stroke();
+      giro(c, cx, cy, R * 0.3, 1, Plot.serie(0));
+      /* cargas */
+      seta(c, cx, cy - R - 52, cx, cy - R - 8, 'rgb(220,60,60)', 3, 12);
+      rotulo(c, 'Fr = ' + sg(p.Fr / 1000, 3) + ' kN', cx, cy - R - 62, 'rgb(220,60,60)', 11.5, '700');
+      if (p.Fa > 0) {
+        seta(c, cx - R - 60, cy, cx - R - 10, cy, Plot.serie(4), 3, 12);
+        rotulo(c, 'Fa = ' + sg(p.Fa / 1000, 3) + ' kN', cx - R - 34, cy - 14, Plot.serie(4), 11.5, '700');
+      }
+      rotulo(c, r.t.nome, cx, cy + R + 22, cor, 12, '700');
+      rotulo(c, 'zona de carga', cx, cy + R * 0.55, faint, 10, '600');
+      /* painel */
+      var lx = a.x + a.w * 0.56, ly = a.y + 24;
+      var linhas = [
+        ['carga equivalente P = X·Fr + Y·Fa', sg(r.P / 1000, 4) + ' kN   (X = ' + sg(r.X, 3) + ', Y = ' + sg(r.Y, 3) + ')'],
+        ['expoente a', r.t.a === 3 ? '3 (esferas)' : '10/3 (rolos)'],
+        ['vida nominal L10', sg(r.L10, 4) + ' milhões de voltas'],
+        ['L10h a ' + sg(p.rpm, 4) + ' rpm', sg(r.L10h, 4) + ' h'],
+        ['vida para ' + p.conf + ' % (a₁ = ' + r.a1 + ')', sg(r.Lnmh, 4) + ' h'],
+        ['C necessária para ' + sg(p.vida, 4) + ' h', sg(r.Cnec, 4) + ' kN']
+      ];
+      linhas.forEach(function (ln, j) {
+        rotulo(c, ln[0], lx, ly + j * 38, faint, 10, '400', 'left');
+        rotulo(c, ln[1], lx, ly + 14 + j * 38, j === 4 ? (r.atende ? 'rgb(60,170,110)' : 'rgb(220,60,60)') : cor, 12, '700', 'left');
+      });
+      rotulo(c, r.atende ? 'atende à vida pedida' : 'NÃO atende à vida pedida', lx, ly + 6 * 38 + 6,
+        r.atende ? 'rgb(60,170,110)' : 'rgb(220,60,60)', 12, '700', 'left');
+    }
+    function desenha() {
+      if (!A.ctx) return;
+      var pl = A.ctx.plot('rol');
+      pl.clear(); pl.setLimits([0, 1], [0, 1]); pl.custom(desenhar); pl.draw();
+    }
+    registrar(function () {
+      var dt = A.rel.dt();
+      if (!A.on || !A.ctx) return;
+      A.th += dt * 1.6;
+      desenha();
+    });
+
+    Sim.build('#sim-rolamento', {
+      titulo: 'Mancais de rolamento — carga equivalente e vida ISO 281',
+      descricao: 'O rolamento não falha por resistência, e sim por fadiga de contato nas pistas: por isso a vida é estatística. L10 é a vida que 90 % dos rolamentos iguais ultrapassam. A carga radial e a axial são combinadas numa carga equivalente P, e a vida cai com a terceira potência dela.',
+      controlesLargos: true,
+      exemplos: [
+        { nome: '1 · Bomba centrífuga', desc: 'rígido de esferas, C = 50 kN, P = 5 kN, 1500 rpm', valores: { tipo: 'esferas', C: 50, Fr: 5, Fa: 0, rpm: 1500, conf: '90', vida: 20000, regime: 'constante', Fr2: 2, frac: 50 } },
+        { nome: '2 · Com carga axial', desc: 'Fr 4 kN e Fa 3 kN: o Y do catálogo entra', valores: { tipo: 'esferas', C: 30, Fr: 4, Fa: 3, rpm: 1000, conf: '90', vida: 20000, regime: 'constante', Fr2: 2, frac: 50 } },
+        { nome: '3 · Rolos cilíndricos', desc: 'mesma carga, expoente 10/3 e sem axial', valores: { tipo: 'rolos', C: 50, Fr: 5, Fa: 0, rpm: 1500, conf: '90', vida: 20000, regime: 'constante', Fr2: 2, frac: 50 } },
+        { nome: '4 · Confiabilidade de 99 %', desc: 'a₁ = 0,25: a vida cai a um quarto', valores: { tipo: 'esferas', C: 50, Fr: 5, Fa: 0, rpm: 1500, conf: '99', vida: 20000, regime: 'constante', Fr2: 2, frac: 50 } },
+        { nome: '5 · Carga variável', desc: 'metade do tempo a 10 kN, metade a 5 kN', valores: { tipo: 'esferas', C: 60, Fr: 10, Fa: 0, rpm: 1500, conf: '90', vida: 20000, regime: 'dois', Fr2: 5, frac: 50 } },
+        { nome: '6 · Contato angular', desc: 'carga axial alta num só sentido', valores: { tipo: 'angular', C: 40, Fr: 3, Fa: 6, rpm: 1800, conf: '90', vida: 20000, regime: 'constante', Fr2: 2, frac: 50 } }
+      ],
+      controles: [
+        { id: 'tipo', tipo: 'select', label: 'Tipo de rolamento', valor: 'esferas',
+          opcoes: Object.keys(EM2.TIPOS_ROL).map(function (k) { return { v: k, t: EM2.TIPOS_ROL[k].nome }; }) },
+        { id: 'C', label: 'Capacidade de carga dinâmica C', min: 2, max: 500, step: 1, valor: 50, unidade: 'kN', desc: 'do catálogo do fabricante' },
+        { tipo: 'titulo', label: 'Carregamento' },
+        { id: 'Fr', label: 'Carga radial Fr', min: 0.1, max: 100, step: 0.1, valor: 5, unidade: 'kN' },
+        { id: 'Fa', label: 'Carga axial Fa', min: 0, max: 100, step: 0.1, valor: 0, unidade: 'kN' },
+        { id: 'rpm', label: 'Rotação', min: 10, max: 10000, step: 10, valor: 1500, unidade: 'rpm' },
+        { id: 'regime', tipo: 'seg', label: 'Regime de carga', valor: 'constante',
+          opcoes: [{ v: 'constante', t: 'Constante' }, { v: 'dois', t: 'Dois patamares' }] },
+        { id: 'Fr2', label: 'Carga radial do 2º patamar', min: 0.1, max: 100, step: 0.1, valor: 5, unidade: 'kN' },
+        { id: 'frac', label: 'Tempo no 1º patamar', min: 5, max: 95, step: 5, valor: 50, unidade: '%' },
+        { tipo: 'titulo', label: 'Projeto' },
+        { id: 'vida', label: 'Vida desejada', min: 500, max: 100000, step: 500, valor: 20000, unidade: 'h' },
+        { id: 'conf', tipo: 'select', label: 'Confiabilidade', valor: '90',
+          opcoes: [{ v: '90', t: '90 % — L10 (a₁ = 1)' }, { v: '95', t: '95 % (0,64)' }, { v: '97', t: '97 % (0,47)' }, { v: '99', t: '99 % (0,25)' }] }
+      ],
+      graficos: [
+        { id: 'rol', axes: false, height: 330, grid: false, legend: false },
+        { id: 'vida', titulo: 'Vida × carga equivalente', xlabel: 'Carga equivalente P (kN)', ylabel: 'Vida L10h (h)', aspect: 0.5, ylog: true, legendPos: 'topright' }
+      ],
+      saidas: [
+        { id: 'P', label: 'Carga equivalente P' },
+        { id: 'XY', label: 'X · Y (e = Fa/Fr limite)' },
+        { id: 'L10', label: 'Vida L10' },
+        { id: 'L10h', label: 'Vida L10h' },
+        { id: 'Lnmh', label: 'Vida corrigida' },
+        { id: 'Cnec', label: 'C necessária' },
+        { id: 'estado', label: 'Verificação' }
+      ],
+      formulas: [
+        { g: 'Carga equivalente' },
+        { tex: 'P = X F_r + Y F_a', d: 'X e Y do catálogo; se Fa/Fr ≤ e, usa-se P = Fr', destaque: true },
+        { tex: '\\frac{F_a}{F_r} \\le e \\Rightarrow X = 1,\\ Y = 0', d: 'e cresce com Fa/C₀ no rolamento rígido de esferas' },
+        { tex: 'P_m = \\left(\\frac{\\sum P_i^{\\,a}\\,t_i}{\\sum t_i}\\right)^{1/a}', d: 'carga média para regime variável (média cúbica, nas esferas)', destaque: true },
+        { g: 'Vida' },
+        { tex: 'L_{10} = \\left(\\frac{C}{P}\\right)^{a}', d: 'em milhões de voltas; a = 3 (esferas) ou 10/3 (rolos)', destaque: true },
+        { tex: 'L_{10h} = \\frac{10^6}{60\\,n}\\left(\\frac{C}{P}\\right)^{a}', d: 'em horas' },
+        { tex: 'L_{nm} = a_1 L_{10}', d: 'a₁: 1 (90 %), 0,64 (95 %), 0,47 (97 %), 0,25 (99 %)' },
+        { tex: 's_0 = \\frac{C_0}{P_0}', d: 'segurança estática: deformação permanente das pistas' }
+      ],
+      passos: [],
+      nota: 'X, Y e e do rolamento rígido de esferas interpolados da tabela de catálogo em função de Fa/C₀, com C₀ estimado como uma fração de C conforme o tipo. Sem fatores de contaminação e lubrificação (a_ISO da ISO 281 completa).',
+      calcular: function (p, ctx) {
+        var Fr = p.Fr * 1000, Fa = p.Fa * 1000;
+        var r = EM2.rolamento({ tipo: p.tipo, C: p.C, Fr: Fr, Fa: Fa, rpm: p.rpm, conf: p.conf, vida: p.vida });
+        var Pm = r.P, rm = r;
+        if (p.regime === 'dois') {
+          var r2 = EM2.rolamento({ tipo: p.tipo, C: p.C, Fr: p.Fr2 * 1000, Fa: Fa, rpm: p.rpm, conf: p.conf, vida: p.vida });
+          Pm = EM2.cargaMedia([[r.P, p.frac / 100], [r2.P, 1 - p.frac / 100]], r.t.a);
+          rm = EM2.rolamento({ tipo: p.tipo, C: p.C, Fr: Pm, Fa: 0, rpm: p.rpm, conf: p.conf, vida: p.vida });
+          rm.P = Pm;
+        }
+        A.ctx = ctx; A.p = { tipo: p.tipo, Fr: Fr, Fa: Fa, rpm: p.rpm, conf: p.conf, vida: p.vida }; A.r = rm; A.on = true;
+        desenha();
+
+        var g = ctx.plot('vida').clear();
+        var Ps = Plot.linspace(Math.max(0.05 * p.C, 0.2), 0.6 * p.C, 80);
+        [['esferas', 3], ['rolos', 10 / 3]].forEach(function (q, j) {
+          g.line(Ps, Ps.map(function (P) { return Math.log10(1e6 / (60 * p.rpm) * Math.pow(p.C / P, q[1])); }),
+            { color: Plot.serie(j), width: r.t.a === q[1] ? 2.8 : 1.5, label: 'a = ' + (q[1] === 3 ? '3 (esferas)' : '10/3 (rolos)') });
+        });
+        g.hline(Math.log10(p.vida), { color: 'rgb(220,60,60)', dash: [4, 4], text: 'vida pedida' });
+        g.marker(Pm / 1000, Math.log10(rm.L10h), 'operação', { color: Plot.serie(6), r: 5 });
+        g.setLimits([Ps[0], Ps[Ps.length - 1]], [Math.log10(100), Math.log10(1e6)]).draw();
+
+        var passos = [];
+        passos.push({ t: '① Carga equivalente',
+          tex: 'P = X F_r + Y F_a',
+          texSub: r.modo === 'só radial' ? '\\frac{F_a}{F_r} = ' + nt(Fa / Fr, 3) + ' \\le e = ' + nt(r.e, 3) + ' \\Rightarrow P = F_r = ' + nt(r.P, 4) + '\\ N'
+            : 'P = ' + nt(r.X, 3) + '\\cdot' + nt(Fr, 4) + ' + ' + nt(r.Y, 3) + '\\cdot' + nt(Fa, 4) + ' = ' + nt(r.P, 4) + '\\ N',
+          obs: r.modo === 'só radial' ? 'A axial é pequena demais para mudar o contato: o rolamento trabalha só com a radial.'
+            : 'Com Fa/C₀ = ' + sg(Fa / r.C0, 3) + ', o catálogo dá e = ' + sg(r.e, 3) + ' e Y = ' + sg(r.Y, 3) + '.' });
+        if (p.regime === 'dois') {
+          passos.push({ t: '② Carga média do regime variável',
+            tex: 'P_m = \\left(\\frac{\\sum P_i^{\\,a} t_i}{\\sum t_i}\\right)^{1/a}',
+            texSub: 'P_m = \\left(' + nt(p.frac / 100, 2) + '\\cdot' + nt(r.P, 4) + '^{' + nt(r.t.a, 3) + '} + ' + nt(1 - p.frac / 100, 2) + '\\cdot' + nt(p.Fr2 * 1000, 4) + '^{' + nt(r.t.a, 3) + '}\\right)^{1/' + nt(r.t.a, 3) + '} = ' + nt(Pm, 4) + '\\ N',
+            obs: 'A média é cúbica, não aritmética: os picos pesam muito mais. A média aritmética daria ' + sg((r.P * p.frac / 100 + p.Fr2 * 1000 * (1 - p.frac / 100)), 4) + ' N e superestimaria a vida.' });
+        }
+        passos.push({ t: '③ Vida nominal',
+          tex: 'L_{10} = (C/P)^a \\qquad L_{10h} = \\frac{10^6}{60 n} L_{10}',
+          texSub: 'L_{10} = \\left(\\frac{' + nt(p.C * 1000, 4) + '}{' + nt(Pm, 4) + '}\\right)^{' + (r.t.a === 3 ? '3' : '10/3') + '} = ' + nt(rm.L10, 4) + '\\ \\text{milhões de voltas} \\Rightarrow L_{10h} = ' + nt(rm.L10h, 4) + '\\ h',
+          obs: 'Dobrar a carga divide a vida por ' + sg(Math.pow(2, r.t.a), 3) + '. É por isso que um pequeno desalinhamento ou uma correia apertada demais acabam com o rolamento.' });
+        passos.push({ t: '④ Confiabilidade e verificação',
+          tex: 'L_{nm} = a_1 L_{10}',
+          texSub: 'a_1 = ' + nt(r.a1, 3) + ' \\Rightarrow L_{nmh} = ' + nt(rm.Lnmh, 4) + '\\ h \\quad (\\text{pedido: } ' + nt(p.vida, 4) + '\\ h)',
+          r: rm.Lnmh >= p.vida ? 'Atende' : 'Não atende — C necessária: ' + sg(rm.Cnec, 4) + ' kN',
+          obs: 'L10 quer dizer que 10 % dos rolamentos falham antes desse valor. Para 99 % de confiabilidade a vida admissível cai a um quarto.' });
+        ctx.setPassos(passos);
+        return {
+          P: { v: Pm / 1000, u: 'kN', classe: 'destaque' },
+          XY: { v: sg(r.X, 3) + ' · ' + sg(r.Y, 3), u: 'e = ' + sg(r.e, 3) },
+          L10: { v: rm.L10, u: 'milhões de voltas' },
+          L10h: { v: rm.L10h, u: 'h' },
+          Lnmh: { v: rm.Lnmh, u: 'h', classe: 'destaque' },
+          Cnec: { v: rm.Cnec, u: 'kN' },
+          estado: { v: rm.Lnmh >= p.vida ? 'Atende à vida pedida' : 'Abaixo da vida pedida', u: '', classe: rm.Lnmh >= p.vida ? 'ok' : 'alerta' }
+        };
+      }
+    });
+  })();
+
+  /* ==========================================================================
+     8. Transmissão por correia
+     ========================================================================== */
+  (function () {
+    if (!document.getElementById('sim-correia')) return;
+    var A = { ctx: null, p: null, r: null, s: 0, rel: relogio(), on: true };
+
+    function desenhar(c, pl) {
+      var a = pl._area, p = A.p, r = A.r;
+      if (!p || !r) return;
+      var cor = Plot.cssVar('--text', '#111'), faint = Plot.cssVar('--text-faint', '#888');
+      var esc = Math.min((a.w * 0.62) / (p.C + p.d / 2 + p.D / 2 + 40), (a.h - 60) / (p.D + 30));
+      var x1 = a.x + 30 + p.d / 2 * esc, x2 = x1 + p.C * esc, yc = a.y + a.h * 0.5;
+      var r1 = p.d / 2 * esc, r2 = p.D / 2 * esc;
+      /* tangentes externas */
+      var dx = x2 - x1, alfa = Math.asin((r2 - r1) / dx);
+      var pontos = function (sinal) {
+        return [[x1 + r1 * Math.cos(Math.PI / 2 + sinal * alfa) * -sinal, 0]];
+      };
+      void pontos;
+      var ang1 = Math.PI / 2 + alfa, ang2 = Math.PI / 2 + alfa;
+      /* correia: dois arcos + duas retas */
+      c.strokeStyle = Plot.serie(3); c.lineWidth = 4; c.globalAlpha = 0.9;
+      c.beginPath();
+      c.arc(x1, yc, r1, ang1, TAU - ang1, false);
+      c.arc(x2, yc, r2, TAU - ang2, ang2, false);
+      c.closePath(); c.stroke(); c.globalAlpha = 1;
+      /* polias */
+      [[x1, r1, p.rpm, '' + p.d + ' mm'], [x2, r2, r.rpm2, '' + p.D + ' mm']].forEach(function (q, j) {
+        c.fillStyle = Plot.cssVar('--bg-elev', '#fff');
+        c.beginPath(); c.arc(q[0], yc, q[1] - 3, 0, TAU); c.fill();
+        c.strokeStyle = Plot.serie(j); c.lineWidth = 2;
+        c.beginPath(); c.arc(q[0], yc, q[1] - 3, 0, TAU); c.stroke();
+        /* raios girando */
+        var th = A.s / (q[1] || 1) * 40;
+        c.lineWidth = 1.2;
+        for (var k = 0; k < 4; k++) {
+          var an = th + k * Math.PI / 2;
+          c.beginPath(); c.moveTo(q[0], yc); c.lineTo(q[0] + (q[1] - 6) * Math.cos(an), yc - (q[1] - 6) * Math.sin(an)); c.stroke();
+        }
+        rotulo(c, sg(q[2], 4) + ' rpm', q[0], yc + q[1] + 16, Plot.serie(j), 11, '700');
+        rotulo(c, q[3], q[0], yc + q[1] + 30, faint, 10, '400');
+      });
+      /* marcas correndo na correia */
+      var yTenso = yc - (r1 + r2) / 2 * 0 - 0;
+      void yTenso;
+      c.fillStyle = Plot.serie(3);
+      for (var m = 0; m < 10; m++) {
+        var f = ((A.s * 0.06 + m / 10) % 1);
+        var xm = x1 + f * dx;
+        c.beginPath(); c.arc(xm, yc - (r1 + (r2 - r1) * f), 2.6, 0, TAU); c.fill();
+        c.beginPath(); c.arc(x1 + dx * (1 - f), yc + (r1 + (r2 - r1) * (1 - f)), 2.2, 0, TAU); c.fill();
+      }
+      /* trações */
+      rotulo(c, 'lado tenso F₁ = ' + sg(r.F1, 4) + ' N', (x1 + x2) / 2, yc - (r1 + r2) / 2 - 16, 'rgb(220,60,60)', 11.5, '700');
+      rotulo(c, 'lado frouxo F₂ = ' + sg(r.F2, 4) + ' N', (x1 + x2) / 2, yc + (r1 + r2) / 2 + 18, Plot.serie(0), 11.5, '700');
+      rotulo(c, 'θ = ' + sg(r.th1 * 180 / Math.PI, 4) + '° na polia menor', x1, a.y + 14, cor, 11, '700', 'left');
+      /* painel */
+      var lx = a.x + a.w * 0.72, ly = a.y + 26;
+      var linhas = [['velocidade da correia', sg(r.v, 4) + ' m/s'], ['F₁/F₂ no limite', sg(r.razao, 3)],
+        ['tração centrífuga Fc', sg(r.Fc, 4) + ' N'], ['potência transmitida', sg(r.H, 4) + ' kW'],
+        ['potência máxima', sg(r.Hmax, 4) + ' kW'], ['comprimento da correia', sg(r.L * 1000, 5) + ' mm']];
+      linhas.forEach(function (ln, j) {
+        rotulo(c, ln[0], lx, ly + j * 34, faint, 10, '400', 'left');
+        rotulo(c, ln[1], lx, ly + 13 + j * 34, cor, 12, '700', 'left');
+      });
+      if (r.escorrega) rotulo(c, 'F₂ ≤ Fc: a correia escorrega', lx, ly + 6 * 34 + 4, 'rgb(220,60,60)', 11.5, '700', 'left');
+    }
+    function desenha() {
+      if (!A.ctx) return;
+      var pl = A.ctx.plot('correia');
+      pl.clear(); pl.setLimits([0, 1], [0, 1]); pl.custom(desenhar); pl.draw();
+    }
+    registrar(function () {
+      var dt = A.rel.dt();
+      if (!A.on || !A.ctx || !A.r) return;
+      A.s += dt * Math.min(A.r.v, 30);
+      desenha();
+    });
+
+    Sim.build('#sim-correia', {
+      titulo: 'Transmissão por correia — trações e potência',
+      descricao: 'A correia transmite potência pela diferença entre as trações dos dois lados, e essa diferença é limitada pelo atrito: F₁/F₂ não passa de e^(fθ). A força centrífuga alivia o contato e, acima de certa velocidade, derruba a potência que a correia consegue transmitir. A correia em V multiplica o atrito efetivo pelo efeito de cunha.',
+      controlesLargos: true,
+      exemplos: [
+        { nome: '1 · Correia plana', desc: '200 → 400 mm, 1500 rpm, f = 0,3', valores: { tipo: 'plana', d: 200, D: 400, C: 1000, rpm: 1500, f: 0.3, Fi: 900, massa: 0.4, b: 100, t: 5, sigmaAdm: 2.5 } },
+        { nome: '2 · Correia em V', desc: 'o canal de 38° multiplica o atrito', valores: { tipo: 'v', d: 200, D: 400, C: 1000, rpm: 1500, f: 0.3, Fi: 900, massa: 0.4, b: 100, t: 5, sigmaAdm: 2.5 } },
+        { nome: '3 · Polias muito diferentes', desc: 'redução 1:4: o abraçamento cai', valores: { tipo: 'v', d: 120, D: 480, C: 800, rpm: 1750, f: 0.3, Fi: 700, massa: 0.35, b: 60, t: 8, sigmaAdm: 3 } },
+        { nome: '4 · Velocidade alta demais', desc: 'a força centrífuga come a capacidade', valores: { tipo: 'plana', d: 200, D: 400, C: 1000, rpm: 4000, f: 0.3, Fi: 900, massa: 0.4, b: 100, t: 5, sigmaAdm: 2.5 } },
+        { nome: '5 · Correia frouxa', desc: 'tração inicial baixa: escorrega', valores: { tipo: 'plana', d: 200, D: 400, C: 1000, rpm: 1500, f: 0.3, Fi: 250, massa: 0.4, b: 100, t: 5, sigmaAdm: 2.5 } }
+      ],
+      controles: [
+        { id: 'tipo', tipo: 'seg', label: 'Tipo de correia', valor: 'plana', opcoes: [{ v: 'plana', t: 'Plana' }, { v: 'v', t: 'Em V (canal 38°)' }] },
+        { tipo: 'titulo', label: 'Geometria' },
+        { id: 'd', label: 'Diâmetro da polia motora', min: 50, max: 600, step: 5, valor: 200, unidade: 'mm' },
+        { id: 'D', label: 'Diâmetro da polia movida', min: 50, max: 1200, step: 5, valor: 400, unidade: 'mm' },
+        { id: 'C', label: 'Distância entre centros', min: 200, max: 3000, step: 10, valor: 1000, unidade: 'mm' },
+        { id: 'rpm', label: 'Rotação da motora', min: 100, max: 5000, step: 10, valor: 1500, unidade: 'rpm' },
+        { tipo: 'titulo', label: 'Correia' },
+        { id: 'f', label: 'Coeficiente de atrito', min: 0.1, max: 0.6, step: 0.01, valor: 0.3, unidade: '' },
+        { id: 'Fi', label: 'Tração inicial Fi (por lado)', min: 50, max: 3000, step: 10, valor: 900, unidade: 'N' },
+        { id: 'massa', label: 'Massa por metro', min: 0.05, max: 2, step: 0.05, valor: 0.4, unidade: 'kg/m' },
+        { id: 'b', label: 'Largura', min: 10, max: 300, step: 5, valor: 100, unidade: 'mm' },
+        { id: 't', label: 'Espessura', min: 2, max: 20, step: 0.5, valor: 5, unidade: 'mm' },
+        { id: 'sigmaAdm', label: 'Tensão admissível da correia', min: 0.5, max: 10, step: 0.1, valor: 2.5, unidade: 'MPa' }
+      ],
+      graficos: [
+        { id: 'correia', axes: false, height: 330, grid: false, legend: false },
+        { id: 'pot', titulo: 'Potência × velocidade da correia', xlabel: 'Velocidade da correia (m/s)', ylabel: 'Potência máxima (kW)', aspect: 0.45, legendPos: 'topright' }
+      ],
+      saidas: [
+        { id: 'th', label: 'Ângulo de abraçamento' },
+        { id: 'v', label: 'Velocidade da correia' },
+        { id: 'razao', label: 'F₁/F₂ limite' },
+        { id: 'F1', label: 'Tração no lado tenso' },
+        { id: 'F2', label: 'Tração no lado frouxo' },
+        { id: 'Fc', label: 'Tração centrífuga' },
+        { id: 'H', label: 'Potência transmitida' },
+        { id: 'L', label: 'Comprimento da correia' },
+        { id: 'estado', label: 'Verificação' }
+      ],
+      formulas: [
+        { g: 'Geometria' },
+        { tex: '\\theta = \\pi - 2\\,\\text{arcsen}\\frac{D - d}{2C}', d: 'abraçamento na polia menor — é ela que escorrega primeiro', destaque: true },
+        { tex: 'L = 2C + \\frac{\\pi(D + d)}{2} + \\frac{(D - d)^2}{4C}', d: 'comprimento da correia aberta' },
+        { tex: 'v = \\frac{\\pi d n}{60} \\qquad i = \\frac{D}{d} = \\frac{n_1}{n_2}', d: 'sem escorregamento' },
+        { g: 'Trações' },
+        { tex: '\\frac{F_1 - F_c}{F_2 - F_c} = e^{f\\theta}', d: 'limite de escorregamento (correia plana)', destaque: true },
+        { tex: '\\frac{F_1 - F_c}{F_2 - F_c} = e^{f\\theta/\\text{sen}(\\beta/2)}', d: 'correia em V: o efeito de cunha multiplica o atrito', destaque: true },
+        { tex: 'F_c = m\'\\,v^2', d: 'tração centrífuga; m\' = massa por metro' },
+        { tex: 'F_1 + F_2 = 2F_i', d: 'a tração inicial fixa a soma' },
+        { g: 'Potência' },
+        { tex: 'H = (F_1 - F_2)\\,v', d: 'só a diferença transmite potência', destaque: true },
+        { tex: 'v_{ótima} = \\sqrt{\\frac{F_{1,adm}}{3m\'}}', d: 'acima dela a força centrífuga derruba a capacidade' }
+      ],
+      passos: [],
+      nota: 'Correia aberta, sem escorregamento elástico nem efeito da flexão nas polias. A tração inicial é mantida constante (esticador de mola); em transmissões com centro fixo ela cai com o tempo e a correia escorrega.',
+      calcular: function (p, ctx) {
+        var r = EM2.correia(p);
+        A.ctx = ctx; A.p = p; A.r = r; A.on = true;
+        desenha();
+
+        var g = ctx.plot('pot').clear();
+        var vs = Plot.linspace(1, Math.max(60, r.v * 1.4), 100);
+        var F1max = p.sigmaAdm * p.b * p.t;
+        var Hs = vs.map(function (v) { return Math.max(0, (F1max - p.massa * v * v) * (1 - 1 / r.razao) * v / 1000); });
+        g.line(vs, Hs, { color: Plot.serie(3), width: 2.6, label: 'com F₁ no limite do material' });
+        var vOt = Math.sqrt(F1max / (3 * p.massa));
+        g.vline(vOt, { color: Plot.serie(5), text: 'v ótima = ' + sg(vOt, 3) + ' m/s' });
+        g.marker(r.v, r.H, 'operação', { color: Plot.serie(6), r: 5 });
+        g.setLimits([0, vs[vs.length - 1]], [0, Math.max.apply(null, Hs) * 1.15]).draw();
+
+        ctx.setPassos([
+          { t: '① Geometria da transmissão',
+            tex: '\\theta = \\pi - 2\\,\\text{arcsen}\\frac{D-d}{2C} \\qquad v = \\frac{\\pi d n}{60}',
+            texSub: '\\theta = \\pi - 2\\,\\text{arcsen}\\frac{' + nt(p.D - p.d, 4) + '}{' + nt(2 * p.C, 5) + '} = ' + nt(r.th1 * 180 / Math.PI, 4) + '^\\circ,\\quad v = ' + nt(r.v, 4) + '\\ m/s',
+            obs: 'A polia menor tem o menor abraçamento e, por isso, é sempre nela que a correia escorrega primeiro. A rotação da movida sai da relação: ' + sg(r.rpm2, 4) + ' rpm.' },
+          { t: '② Razão limite de trações',
+            tex: p.tipo === 'v' ? '\\frac{F_1 - F_c}{F_2 - F_c} = e^{f\\theta/\\text{sen}(\\beta/2)}' : '\\frac{F_1 - F_c}{F_2 - F_c} = e^{f\\theta}',
+            texSub: (p.tipo === 'v' ? 'f_{ef} = \\frac{' + nt(p.f) + '}{\\text{sen}\\,19^\\circ} = ' + nt(r.fEf, 3) + ' \\Rightarrow ' : '') + 'e^{' + nt(r.fEf, 3) + '\\cdot' + nt(r.th1, 3) + '} = ' + nt(r.razao, 4),
+            obs: p.tipo === 'v' ? 'A correia em V se encunha no canal: a força normal cresce 1/sen(β/2) vezes, e com ela o atrito. É por isso que uma correia em V transmite muito mais que uma plana do mesmo tamanho.'
+              : 'Uma correia plana depende só do atrito direto contra a polia — daí a necessidade de tração inicial alta.' },
+          { t: '③ Trações de trabalho',
+            tex: 'F_1 + F_2 = 2F_i \\qquad F_c = m\'v^2',
+            texSub: 'F_c = ' + nt(p.massa) + '\\cdot' + nt(r.v, 4) + '^2 = ' + nt(r.Fc, 4) + '\\ N \\Rightarrow F_1 = ' + nt(r.F1, 4) + '\\ N,\\ F_2 = ' + nt(r.F2, 4) + '\\ N',
+            obs: 'A tração centrífuga não ajuda a transmitir nada: ela só afasta a correia da polia e consome parte da tração disponível.' },
+          { t: '④ Potência',
+            tex: 'H = (F_1 - F_2)\\,v',
+            texSub: 'H = (' + nt(r.F1, 4) + ' - ' + nt(r.F2, 4) + ')\\cdot' + nt(r.v, 4) + ' = ' + nt(r.H * 1000, 4) + '\\ W = ' + nt(r.H, 4) + '\\ kW',
+            r: r.escorrega ? 'Tração inicial insuficiente: escorrega' : 'Transmite ' + sg(r.H, 3) + ' kW',
+            obs: 'O torque no eixo motor é (F₁ − F₂)·d/2 = ' + sg(r.Tmotor, 4) + ' N·m. Com a tração no limite do material, a potência máxima seria ' + sg(r.Hmax, 4) + ' kW.' }
+        ]);
+        return {
+          th: { v: r.th1 * 180 / Math.PI, u: '°' },
+          v: { v: r.v, u: 'm/s' },
+          razao: { v: r.razao, u: '' },
+          F1: { v: r.F1, u: 'N' },
+          F2: { v: r.F2, u: 'N', classe: r.escorrega ? 'alerta' : '' },
+          Fc: { v: r.Fc, u: 'N' },
+          H: { v: r.H, u: 'kW', classe: 'destaque' },
+          L: { v: r.L * 1000, u: 'mm' },
+          estado: { v: r.escorrega ? 'Escorrega (F₂ ≤ Fc)' : 'Transmissão estável', u: '', classe: r.escorrega ? 'alerta' : 'ok' }
+        };
+      }
+    });
+  })();
+
+  /* ==========================================================================
+     9. Mancal radial hidrodinâmico
+     ========================================================================== */
+  (function () {
+    if (!document.getElementById('sim-mancal')) return;
+    var A = { ctx: null, p: null, r: null, th: 0, rel: relogio(), on: true };
+
+    function desenhar(c, pl) {
+      var a = pl._area, p = A.p, r = A.r;
+      if (!p || !r) return;
+      var cor = Plot.cssVar('--text', '#111'), faint = Plot.cssVar('--text-faint', '#888');
+      var R = Math.min(a.w * 0.2, a.h * 0.38), cx = a.x + a.w * 0.27, cy = a.y + a.h * 0.5;
+      var exag = 0.22;                                   /* folga exagerada para enxergar o filme */
+      var Rj = R * (1 - exag);
+      /* a carga vem de cima; o eixo se desloca para baixo e para o lado, pelo ângulo de atitude */
+      var ang = Math.PI / 2 + r.phi;                     /* direção da linha de centros */
+      var ex = r.eps * (R - Rj) * Math.cos(ang), ey = r.eps * (R - Rj) * Math.sin(ang);
+      var jx = cx + ex, jy = cy + ey;
+      /* mancal */
+      c.fillStyle = faint; c.globalAlpha = 0.18;
+      c.beginPath(); c.arc(cx, cy, R * 1.35, 0, TAU); c.arc(cx, cy, R, 0, TAU, true); c.fill('evenodd');
+      c.globalAlpha = 1; c.strokeStyle = cor; c.lineWidth = 1.6;
+      c.beginPath(); c.arc(cx, cy, R, 0, TAU); c.stroke();
+      c.beginPath(); c.arc(cx, cy, R * 1.35, 0, TAU); c.stroke();
+      /* filme de óleo, com a espessura variando */
+      c.fillStyle = Plot.serie(4); c.globalAlpha = 0.3;
+      c.beginPath(); c.arc(cx, cy, R, 0, TAU); c.arc(jx, jy, Rj, 0, TAU, true); c.fill('evenodd');
+      c.globalAlpha = 1;
+      /* campo de pressão: raio proporcional a p(θ) medido a partir da superfície */
+      var pmax = r.pmax, esc = R * 0.42 / (pmax || 1);
+      c.strokeStyle = 'rgb(220,60,60)'; c.lineWidth = 2; c.beginPath();
+      for (var i = 0; i <= 90; i++) {
+        var th = Math.PI * i / 90;                        /* θ a partir da folga máxima */
+        var h = p.c * (1 + r.eps * Math.cos(th));
+        var pp = 3 * p.mu * r.U * p.c * r.eps * Math.sin(th) / (p.r * Math.pow(h, 3)) * (p.L * p.L / 4);
+        var dir = ang + Math.PI + th;                      /* θ = 0 na folga máxima (lado oposto à carga) */
+        var xr = cx + (R + pp * esc) * Math.cos(dir), yr = cy + (R + pp * esc) * Math.sin(dir);
+        if (i) c.lineTo(xr, yr); else c.moveTo(xr, yr);
+      }
+      c.stroke();
+      rotulo(c, 'pressão no filme (máx ' + sg(pmax / 1e6, 3) + ' MPa)', cx, cy + R * 1.6, 'rgb(220,60,60)', 10.5, '700');
+      /* eixo girando */
+      c.fillStyle = Plot.cssVar('--bg-elev', '#fff');
+      c.beginPath(); c.arc(jx, jy, Rj, 0, TAU); c.fill();
+      c.strokeStyle = Plot.serie(0); c.lineWidth = 2;
+      c.beginPath(); c.arc(jx, jy, Rj, 0, TAU); c.stroke();
+      c.lineWidth = 1.2;
+      for (var k = 0; k < 4; k++) {
+        var an = A.th + k * Math.PI / 2;
+        c.beginPath(); c.moveTo(jx, jy); c.lineTo(jx + Rj * 0.85 * Math.cos(an), jy - Rj * 0.85 * Math.sin(an)); c.stroke();
+      }
+      /* menor espessura de filme */
+      var dh = ang;
+      var hx = jx + Rj * Math.cos(dh), hy = jy + Rj * Math.sin(dh);
+      c.strokeStyle = Plot.serie(2); c.lineWidth = 2.4;
+      c.beginPath(); c.moveTo(hx, hy); c.lineTo(cx + R * Math.cos(dh), cy + R * Math.sin(dh)); c.stroke();
+      rotulo(c, 'h₀ = ' + sg(r.h0 * 1e6, 3) + ' µm', cx + R * 1.12 * Math.cos(dh), cy + R * 1.12 * Math.sin(dh) + 12, Plot.serie(2), 11, '700');
+      /* carga e linha de centros */
+      seta(c, cx, cy - R * 1.35 - 48, cx, cy - R * 1.35 - 6, 'rgb(220,60,60)', 3, 12);
+      rotulo(c, 'W = ' + sg(p.W / 1000, 3) + ' kN', cx, cy - R * 1.35 - 58, 'rgb(220,60,60)', 11.5, '700');
+      c.setLineDash([4, 3]); c.strokeStyle = faint; c.lineWidth = 1;
+      c.beginPath(); c.moveTo(cx, cy); c.lineTo(jx, jy); c.stroke();
+      c.beginPath(); c.moveTo(cx, cy); c.lineTo(cx, cy + R); c.stroke();
+      c.setLineDash([]);
+      rotulo(c, 'φ = ' + sg(r.phi * 180 / Math.PI, 3) + '°', cx + 8, cy + R * 0.45, faint, 10.5, '600', 'left');
+      giro(c, jx, jy, Rj * 0.45, 1, Plot.serie(0));
+      /* painel */
+      var lx = a.x + a.w * 0.58, ly = a.y + 22;
+      var linhas = [
+        ['excentricidade relativa ε', sg(r.eps, 3)],
+        ['menor espessura h₀ = c(1 − ε)', sg(r.h0 * 1e6, 4) + ' µm'],
+        ['número de Sommerfeld S', sg(r.S, 3)],
+        ['coeficiente de atrito f', sg(r.f, 3) + '   (Petroff: ' + sg(r.fPetroff, 3) + ')'],
+        ['pressão média P = W/(L·d)', sg(r.P / 1e6, 3) + ' MPa'],
+        ['potência dissipada', sg(r.pot, 4) + ' W']
+      ];
+      linhas.forEach(function (ln, j) {
+        rotulo(c, ln[0], lx, ly + j * 36, faint, 10, '400', 'left');
+        rotulo(c, ln[1], lx, ly + 14 + j * 36, cor, 12, '700', 'left');
+      });
+      var seguro = r.h0 * 1e6 > 3 * p.Ra;
+      rotulo(c, seguro ? 'filme completo: h₀ > 3·Ra' : 'h₀ perto da rugosidade: regime misto',
+        lx, ly + 6 * 36 + 4, seguro ? 'rgb(60,170,110)' : 'rgb(220,110,40)', 11.5, '700', 'left');
+    }
+    function desenha() {
+      if (!A.ctx) return;
+      var pl = A.ctx.plot('mancal');
+      pl.clear(); pl.setLimits([0, 1], [0, 1]); pl.custom(desenhar); pl.draw();
+    }
+    registrar(function () {
+      var dt = A.rel.dt();
+      if (!A.on || !A.ctx) return;
+      A.th += dt * 3;
+      desenha();
+    });
+
+    Sim.build('#sim-mancal', {
+      titulo: 'Mancal radial hidrodinâmico — filme de óleo',
+      descricao: 'O eixo, ao girar, arrasta óleo para uma folga que se estreita e gera pressão: é ela que sustenta a carga, sem contato entre metais. O modelo resolve a equação de Reynolds do mancal curto e acha a excentricidade que equilibra a carga, a menor espessura de filme, o atrito e a potência dissipada.',
+      controlesLargos: true,
+      exemplos: [
+        { nome: '1 · Mancal de bomba', desc: 'd 50 mm, L/D = 1, 1800 rpm, 2 kN', valores: { d: 50, L: 50, c: 0.05, mu: 27.6, rpm: 1800, W: 2, Ra: 0.8 } },
+        { nome: '2 · Carga dobrada', desc: 'ε sobe e h₀ cai', valores: { d: 50, L: 50, c: 0.05, mu: 27.6, rpm: 1800, W: 4, Ra: 0.8 } },
+        { nome: '3 · Óleo quente', desc: 'viscosidade em 10 mPa·s: o filme afina', valores: { d: 50, L: 50, c: 0.05, mu: 10, rpm: 1800, W: 2, Ra: 0.8 } },
+        { nome: '4 · Rotação de partida', desc: '20 rpm e superfície rugosa: regime misto', valores: { d: 50, L: 50, c: 0.05, mu: 27.6, rpm: 20, W: 2, Ra: 1.6 } },
+        { nome: '5 · Mancal curto', desc: 'L/D = 0,5: menos capacidade', valores: { d: 50, L: 25, c: 0.05, mu: 27.6, rpm: 1800, W: 2, Ra: 0.8 } },
+        { nome: '6 · Folga excessiva', desc: 'c = 0,1 mm: capacidade cai com 1/c²', valores: { d: 50, L: 50, c: 0.1, mu: 27.6, rpm: 1800, W: 2, Ra: 0.8 } }
+      ],
+      controles: [
+        { tipo: 'titulo', label: 'Geometria' },
+        { id: 'd', label: 'Diâmetro do munhão', min: 20, max: 300, step: 1, valor: 50, unidade: 'mm' },
+        { id: 'L', label: 'Comprimento do mancal', min: 10, max: 300, step: 1, valor: 50, unidade: 'mm' },
+        { id: 'c', label: 'Folga radial c', min: 0.01, max: 0.3, step: 0.005, valor: 0.05, unidade: 'mm', desc: 'tipicamente c/r ≈ 0,001' },
+        { id: 'Ra', label: 'Rugosidade das superfícies', min: 0.1, max: 3.2, step: 0.1, valor: 0.8, unidade: 'µm' },
+        { tipo: 'titulo', label: 'Operação' },
+        { id: 'rpm', label: 'Rotação', min: 20, max: 6000, step: 10, valor: 1800, unidade: 'rpm' },
+        { id: 'W', label: 'Carga radial', min: 0.05, max: 60, step: 0.05, valor: 2, unidade: 'kN' },
+        { id: 'mu', label: 'Viscosidade dinâmica do óleo', min: 2, max: 200, step: 0.5, valor: 27.6, unidade: 'mPa·s', desc: 'SAE 30 a 60 °C ≈ 30 mPa·s; a 100 °C ≈ 8' }
+      ],
+      graficos: [
+        { id: 'mancal', axes: false, height: 360, grid: false, legend: false },
+        { id: 'stribeck', titulo: 'Curva de Stribeck', xlabel: 'Número de Hersey  μN/P', ylabel: 'Coeficiente de atrito f', aspect: 0.45, xlog: true, legendPos: 'topleft' },
+        { id: 'perfil', titulo: 'Filme e pressão ao longo da circunferência', xlabel: 'Ângulo a partir da folga máxima (°)', ylabel: 'valor normalizado', aspect: 0.42, legendPos: 'topright' }
+      ],
+      saidas: [
+        { id: 'eps', label: 'Excentricidade ε' },
+        { id: 'h0', label: 'Menor espessura h₀' },
+        { id: 'S', label: 'Número de Sommerfeld' },
+        { id: 'f', label: 'Coeficiente de atrito' },
+        { id: 'P', label: 'Pressão média' },
+        { id: 'pmax', label: 'Pressão máxima' },
+        { id: 'pot', label: 'Potência dissipada' },
+        { id: 'estado', label: 'Regime de lubrificação' }
+      ],
+      formulas: [
+        { g: 'Equação de Reynolds (mancal curto)' },
+        { tex: '\\frac{\\partial}{\\partial z}\\left(h^3\\frac{\\partial p}{\\partial z}\\right) = 6\\mu U\\frac{dh}{dx}', d: 'no mancal curto o fluxo axial domina', destaque: true },
+        { tex: 'h(\\theta) = c\\,(1 + \\varepsilon\\cos\\theta)', d: 'θ medido a partir da folga máxima' },
+        { tex: 'p(\\theta, z) = \\frac{3\\mu U c\\,\\varepsilon\\,\\text{sen}\\,\\theta}{r\\,h^3}\\left(\\frac{L^2}{4} - z^2\\right)', d: 'pressão positiva só na metade convergente (Gümbel)', destaque: true },
+        { g: 'Parâmetros de projeto' },
+        { tex: 'S = \\left(\\frac{r}{c}\\right)^2\\frac{\\mu N}{P} \\qquad P = \\frac{W}{L\\,d}', d: 'número de Sommerfeld e pressão média projetada', destaque: true },
+        { tex: 'h_0 = c\\,(1 - \\varepsilon)', d: 'menor espessura; precisa ficar acima de ~3 vezes a rugosidade' },
+        { tex: 'f = 2\\pi^2\\frac{\\mu N}{P}\\frac{r}{c}', d: 'equação de Petroff — válida com carga leve (ε → 0)' },
+        { tex: '\\Phi = f W U', d: 'potência dissipada, que aquece o óleo' }
+      ],
+      passos: [],
+      nota: 'Solução do mancal curto (Ocvirk) integrada numericamente, com condição de contorno de Gümbel. Óleo isoviscoso e isotérmico, mancal alinhado e rígido, sem ranhuras de alimentação. Para L/D acima de ~1 a hipótese de mancal curto subestima a capacidade de carga.',
+      calcular: function (p, ctx) {
+        var ent = { d: p.d, L: p.L, c: p.c, mu: p.mu / 1000, rpm: p.rpm, W: p.W * 1000 };
+        var r = EM2.mancal(ent);
+        A.ctx = ctx;
+        A.p = { r: p.d / 2000, c: p.c / 1000, L: p.L / 1000, mu: p.mu / 1000, W: p.W * 1000, Ra: p.Ra };
+        A.r = r; A.on = true;
+        desenha();
+
+        /* Stribeck: varre a carga mantendo μ e N */
+        var g = ctx.plot('stribeck').clear();
+        var Ws = Plot.linspace(Math.log10(p.W * 1000 / 60), Math.log10(p.W * 1000 * 12), 40).map(function (l) { return Math.pow(10, l); });
+        var xs = [], ys = [];
+        Ws.slice().reverse().forEach(function (W) {          /* carga decrescente → Hersey crescente */
+          var q = EM2.mancal({ d: p.d, L: p.L, c: p.c, mu: p.mu / 1000, rpm: p.rpm, W: W });
+          xs.push(Math.log10(p.mu / 1000 * (p.rpm / 60) / q.P)); ys.push(q.f);
+        });
+        g.line(xs, ys, { color: Plot.serie(0), width: 2.6, label: 'hidrodinâmico (modelo)' });
+        var hersey = p.mu / 1000 * (p.rpm / 60) / r.P;
+        g.marker(Math.log10(hersey), r.f, 'operação', { color: Plot.serie(6), r: 5 });
+        /* limite do filme completo: onde h0 = 3 Ra */
+        var lim = null;
+        for (var i = 0; i < Ws.length; i++) {
+          var q2 = EM2.mancal({ d: p.d, L: p.L, c: p.c, mu: p.mu / 1000, rpm: p.rpm, W: Ws[i] });
+          if (q2.h0 * 1e6 > 3 * p.Ra) { lim = Math.log10(p.mu / 1000 * (p.rpm / 60) / q2.P); break; }
+        }
+        if (lim !== null) g.vline(lim, { color: 'rgb(220,110,40)', dash: [4, 4], text: 'h₀ = 3·Ra' });
+        g.setLimits([xs[0], xs[xs.length - 1]], [0, Math.max.apply(null, ys) * 1.15]).draw();
+
+        /* perfis */
+        var gp = ctx.plot('perfil').clear();
+        var ths = Plot.linspace(0, 360, 181);
+        var hs = ths.map(function (t) { return (1 + r.eps * Math.cos(t * Math.PI / 180)) / (1 + r.eps); });
+        var ps = ths.map(function (t) {
+          if (t > 180) return 0;
+          var h = p.c / 1000 * (1 + r.eps * Math.cos(t * Math.PI / 180));
+          return 3 * (p.mu / 1000) * r.U * (p.c / 1000) * r.eps * Math.sin(t * Math.PI / 180) / (p.d / 2000 * Math.pow(h, 3)) * Math.pow(p.L / 1000, 2) / 4 / r.pmax;
+        });
+        gp.line(ths, hs, { color: Plot.serie(2), width: 2.2, label: 'espessura h / h_máx' });
+        gp.line(ths, ps, { color: 'rgb(220,60,60)', width: 2.6, label: 'pressão p / p_máx  (p_máx = ' + sg(r.pmax / 1e6, 3) + ' MPa)' });
+        gp.area(ths, ps, { color: 'rgb(220,60,60)', alpha: 0.08 });
+        gp.marker(r.pmaxTeta * 180 / Math.PI, 1, 'p máx', { color: 'rgb(220,60,60)', r: 4 });
+        gp.vline(180, { color: Plot.cssVar('--text-faint', '#888'), dash: [3, 3], text: 'h₀ (folga mínima)' });
+        gp.setLimits([0, 360], [0, 1.25]).draw();
+
+        var misto = r.h0 * 1e6 <= 3 * p.Ra;
+        ctx.setPassos([
+          { t: '① Pressão média de projeto',
+            tex: 'P = \\frac{W}{L\\,d}',
+            texSub: 'P = \\frac{' + nt(p.W * 1000, 4) + '}{' + nt(p.L / 1000, 4) + '\\cdot' + nt(p.d / 1000, 4) + '} = ' + nt(r.P / 1e6, 4) + '\\ MPa',
+            obs: 'Mancais de bronze em máquinas industriais trabalham tipicamente entre 0,5 e 2 MPa; em motores, bem mais.' },
+          { t: '② Número de Sommerfeld',
+            tex: 'S = \\left(\\frac{r}{c}\\right)^2\\frac{\\mu N}{P}',
+            texSub: 'S = \\left(\\frac{' + nt(p.d / 2, 4) + '}{' + nt(p.c, 3) + '}\\right)^2\\frac{' + nt(p.mu / 1000, 3) + '\\cdot' + nt(p.rpm / 60, 4) + '}{' + nt(r.P, 4) + '} = ' + nt(r.S, 3),
+            obs: 'S reúne tudo o que importa: geometria, viscosidade, rotação e carga. Dois mancais com o mesmo S e o mesmo L/D operam com a mesma excentricidade.' },
+          { t: '③ Excentricidade de equilíbrio',
+            tex: 'S\\left(\\frac{L}{D}\\right)^2 = \\frac{(1-\\varepsilon^2)^2}{\\pi\\varepsilon\\sqrt{\\pi^2(1-\\varepsilon^2) + 16\\varepsilon^2}}',
+            texSub: 'S(L/D)^2 = ' + nt(r.S * r.LD * r.LD, 4) + ' \\Rightarrow \\varepsilon = ' + nt(r.eps, 4),
+            obs: 'O simulador resolve a equação de Reynolds numericamente e chega exatamente a essa relação fechada do mancal curto. Quanto maior a carga, mais o eixo desce e mais fino fica o filme.' },
+          { t: '④ Espessura mínima de filme',
+            tex: 'h_0 = c\\,(1 - \\varepsilon)',
+            texSub: 'h_0 = ' + nt(p.c * 1000, 3) + '(1 - ' + nt(r.eps, 4) + ') = ' + nt(r.h0 * 1e6, 4) + '\\ \\mu m',
+            r: misto ? 'Regime misto: h₀ ≤ 3·Ra' : 'Filme completo',
+            obs: 'A superfície tem rugosidade Ra = ' + sg(p.Ra, 2) + ' µm. Se h₀ cai para a ordem de 3·Ra, as asperezas se tocam: entra-se no regime misto e o desgaste começa. É o que acontece em toda partida, antes de a rotação formar o filme.' },
+          { t: '⑤ Atrito e calor',
+            tex: 'f = \\frac{F_{at}}{W} \\qquad \\Phi = F_{at}\\,U',
+            texSub: 'f = ' + nt(r.f, 4) + ' \\quad (\\text{Petroff: } ' + nt(r.fPetroff, 4) + ') \\qquad \\Phi = ' + nt(r.pot, 4) + '\\ W',
+            obs: 'Com carga leve o mancal é praticamente concêntrico e o atrito coincide com o de Petroff. Toda essa potência vira calor no óleo — daí a necessidade de vazão de alimentação e, às vezes, de trocador.' }
+        ]);
+        return {
+          eps: { v: r.eps, u: '' },
+          h0: { v: r.h0 * 1e6, u: 'µm', classe: misto ? 'alerta' : 'destaque' },
+          S: { v: r.S, u: '' },
+          f: { v: r.f, u: '' },
+          P: { v: r.P / 1e6, u: 'MPa' },
+          pmax: { v: r.pmax / 1e6, u: 'MPa' },
+          pot: { v: r.pot, u: 'W' },
+          estado: { v: misto ? 'Misto — risco de desgaste' : 'Hidrodinâmico (filme completo)', u: '', classe: misto ? 'alerta' : 'ok' }
+        };
+      }
+    });
+  })();
+
+  /* ==========================================================================
+     10. Chavetas e acoplamentos
+     ========================================================================== */
+  (function () {
+    if (!document.getElementById('sim-chaveta')) return;
+    var A = { ctx: null, p: null, r: null, t: 0, rel: relogio(), on: true };
+    /* seções normalizadas de chaveta paralela (DIN 6885 / ISO 773), por faixa de diâmetro */
+    var SECOES = [[10, 3, 3], [12, 4, 4], [17, 5, 5], [22, 6, 6], [30, 8, 7], [38, 10, 8], [44, 12, 8],
+                  [50, 14, 9], [58, 16, 10], [65, 18, 11], [75, 20, 12], [85, 22, 14], [95, 25, 14],
+                  [110, 28, 16], [130, 32, 18], [1e9, 36, 20]];
+    function secao(d) {
+      for (var i = 0; i < SECOES.length; i++) if (d <= SECOES[i][0]) return { b: SECOES[i][1], h: SECOES[i][2] };
+      return { b: 36, h: 20 };
+    }
+
+    function desenhar(c, pl) {
+      var a = pl._area, p = A.p, r = A.r;
+      if (!p || !r) return;
+      var cor = Plot.cssVar('--text', '#111'), faint = Plot.cssVar('--text-faint', '#888');
+      /* ---- vista da seção transversal ---- */
+      var R = Math.min(a.w * 0.16, a.h * 0.27), cx = a.x + a.w * 0.22, cy = a.y + a.h * 0.56;
+      var esc = R / (p.d / 2);
+      var osc = 0.5 + 0.5 * Math.sin(A.t * 2);
+      /* cubo */
+      c.fillStyle = faint; c.globalAlpha = 0.2;
+      c.beginPath(); c.arc(cx, cy, R * 1.55, 0, TAU); c.arc(cx, cy, R, 0, TAU, true); c.fill('evenodd');
+      c.globalAlpha = 1; c.strokeStyle = cor; c.lineWidth = 1.5;
+      c.beginPath(); c.arc(cx, cy, R, 0, TAU); c.stroke();
+      c.beginPath(); c.arc(cx, cy, R * 1.55, 0, TAU); c.stroke();
+      /* eixo */
+      c.fillStyle = Plot.serie(0); c.globalAlpha = 0.18;
+      c.beginPath(); c.arc(cx, cy, R, 0, TAU); c.fill(); c.globalAlpha = 1;
+      /* chaveta no topo, metade no eixo e metade no cubo */
+      var bp = p.b * esc, hp = p.h * esc;
+      c.fillStyle = Plot.serie(3); c.globalAlpha = 0.65;
+      c.fillRect(cx - bp / 2, cy - R - hp / 2, bp, hp);
+      c.globalAlpha = 1; c.strokeStyle = cor; c.lineWidth = 1.4;
+      c.strokeRect(cx - bp / 2, cy - R - hp / 2, bp, hp);
+      /* plano de cisalhamento e faces de esmagamento */
+      c.strokeStyle = 'rgb(220,60,60)'; c.lineWidth = 2.6;
+      c.beginPath(); c.moveTo(cx - bp / 2, cy - R); c.lineTo(cx + bp / 2, cy - R); c.stroke();
+      rotulo(c, 'plano de cisalhamento (b × L)', cx, cy - R - hp / 2 - 26, 'rgb(220,60,60)', 10.5, '700');
+      c.strokeStyle = Plot.serie(4); c.lineWidth = 3;
+      c.beginPath(); c.moveTo(cx + bp / 2, cy - R - hp / 2); c.lineTo(cx + bp / 2, cy - R); c.stroke();
+      c.beginPath(); c.moveTo(cx - bp / 2, cy - R); c.lineTo(cx - bp / 2, cy - R + hp / 2); c.stroke();
+      rotulo(c, 'esmagamento (h/2 × L)', cx + bp / 2 + 10, cy - R - hp / 4, Plot.serie(4), 10.5, '700', 'left');
+      /* torque */
+      giro(c, cx, cy, R * 0.55, 1, Plot.serie(0));
+      rotulo(c, 'T = ' + sg(p.T, 4) + ' N·m', cx, cy + R * 1.55 + 18, cor, 12, '700');
+      rotulo(c, 'eixo Ø' + sg(p.d, 3) + ' mm · chaveta ' + sg(p.b, 3) + ' × ' + sg(p.h, 3) + ' × ' + sg(p.L, 3) + ' mm', cx, cy + R * 1.55 + 34, faint, 10.5, '600');
+      /* ---- barras de tensão ---- */
+      var lx = a.x + a.w * 0.5, ly = a.y + 34, larg = a.w * 0.2;
+      [['Cisalhamento', r.tau, 0.577 * p.Sy / p.n, Plot.serie(3)],
+       ['Esmagamento', r.sesm, p.Sy / p.n, Plot.serie(4)]].forEach(function (q, j) {
+        var y = ly + j * 74;
+        rotulo(c, q[0], lx, y, cor, 11.5, '700', 'left');
+        c.fillStyle = Plot.cssVar('--border', '#ddd'); c.fillRect(lx, y + 12, larg, 13);
+        var fr = Math.min(q[1] / q[2], 1.25) / 1.25;
+        c.fillStyle = q[1] > q[2] ? 'rgb(220,60,60)' : q[3];
+        c.fillRect(lx, y + 12, larg * fr * (1 + osc * 0), 13);
+        c.strokeStyle = cor; c.lineWidth = 1.6;
+        c.beginPath(); c.moveTo(lx + larg / 1.25, y + 9); c.lineTo(lx + larg / 1.25, y + 28); c.stroke();
+        rotulo(c, sg(q[1], 3) + ' MPa   ·   admissível ' + sg(q[2], 3) + ' MPa', lx, y + 40, faint, 10.5, '400', 'left');
+      });
+      rotulo(c, 'traço = tensão admissível (Sy/n)', lx, ly + 158, faint, 9.5, '400', 'left');
+      /* comprimentos mínimos */
+      rotulo(c, 'L mínimo por cisalhamento: ' + sg(r.Lcis, 3) + ' mm', lx, ly + 186, Plot.serie(3), 11, '700', 'left');
+      rotulo(c, 'L mínimo por esmagamento: ' + sg(r.Lesm, 3) + ' mm', lx, ly + 204, Plot.serie(4), 11, '700', 'left');
+      rotulo(c, r.ok ? 'chaveta aprovada' : 'chaveta insuficiente', lx, ly + 228, r.ok ? 'rgb(60,170,110)' : 'rgb(220,60,60)', 12, '700', 'left');
+    }
+    function desenha() {
+      if (!A.ctx) return;
+      var pl = A.ctx.plot('chaveta');
+      pl.clear(); pl.setLimits([0, 1], [0, 1]); pl.custom(desenhar); pl.draw();
+    }
+    registrar(function () {
+      var dt = A.rel.dt();
+      if (!A.on || !A.ctx) return;
+      A.t += dt;
+      desenha();
+    });
+
+    Sim.build('#sim-chaveta', {
+      titulo: 'Chaveta paralela — cisalhamento e esmagamento',
+      descricao: 'A chaveta transmite o torque entre eixo e cubo por duas vias que precisam ser verificadas: o cisalhamento da seção b × L e o esmagamento das faces laterais, que apoiam em apenas metade da altura. Ela é projetada de propósito para ser o elemento mais fraco — é mais barato trocar uma chaveta do que um eixo.',
+      controlesLargos: true,
+      exemplos: [
+        { nome: '1 · Acoplamento de motor', desc: 'eixo de 40 mm, 240 N·m', valores: { T: 240, d: 40, auto: true, b: 12, h: 8, L: 60, Sy: 350, n: 2, fs: '1.0' } },
+        { nome: '2 · Torque alto', desc: 'a chaveta esmaga antes de cisalhar', valores: { T: 900, d: 40, auto: true, b: 12, h: 8, L: 60, Sy: 350, n: 2, fs: '1.0' } },
+        { nome: '3 · Serviço pesado', desc: 'fator de serviço 1,75 (choques)', valores: { T: 500, d: 60, auto: true, b: 18, h: 11, L: 80, Sy: 350, n: 2, fs: '1.75' } },
+        { nome: '4 · Chaveta curta demais', desc: 'L = 25 mm no mesmo torque', valores: { T: 500, d: 60, auto: true, b: 18, h: 11, L: 25, Sy: 350, n: 2, fs: '1.0' } },
+        { nome: '5 · Aço mais resistente', desc: 'Sy = 600 MPa permite chaveta menor', valores: { T: 500, d: 60, auto: true, b: 18, h: 11, L: 40, Sy: 600, n: 2, fs: '1.0' } }
+      ],
+      controles: [
+        { tipo: 'titulo', label: 'Transmissão' },
+        { id: 'T', label: 'Torque nominal', min: 5, max: 5000, step: 5, valor: 240, unidade: 'N·m' },
+        { id: 'fs', tipo: 'select', label: 'Fator de serviço do acoplamento', valor: '1.0',
+          opcoes: [{ v: '1.0', t: '1,00 — carga uniforme' }, { v: '1.25', t: '1,25 — choques leves' },
+                   { v: '1.75', t: '1,75 — choques moderados' }, { v: '2.5', t: '2,50 — choques pesados' }] },
+        { tipo: 'titulo', label: 'Chaveta' },
+        { id: 'd', label: 'Diâmetro do eixo', min: 10, max: 150, step: 1, valor: 40, unidade: 'mm' },
+        { id: 'auto', tipo: 'check', label: 'Seção normalizada pelo diâmetro (DIN 6885)', valor: true },
+        { id: 'b', label: 'Largura b', min: 3, max: 40, step: 1, valor: 12, unidade: 'mm' },
+        { id: 'h', label: 'Altura h', min: 3, max: 25, step: 1, valor: 8, unidade: 'mm' },
+        { id: 'L', label: 'Comprimento L', min: 10, max: 250, step: 1, valor: 60, unidade: 'mm' },
+        { tipo: 'titulo', label: 'Material' },
+        { id: 'Sy', label: 'Limite de escoamento da chaveta', min: 200, max: 900, step: 10, valor: 350, unidade: 'MPa' },
+        { id: 'n', label: 'Coeficiente de segurança', min: 1, max: 4, step: 0.1, valor: 2, unidade: '' }
+      ],
+      graficos: [
+        { id: 'chaveta', axes: false, height: 330, grid: false, legend: false },
+        { id: 'comp', titulo: 'Comprimento necessário × torque', xlabel: 'Torque (N·m)', ylabel: 'Comprimento mínimo (mm)', aspect: 0.45, legendPos: 'topleft' }
+      ],
+      saidas: [
+        { id: 'secao', label: 'Seção b × h' },
+        { id: 'Tp', label: 'Torque de projeto' },
+        { id: 'F', label: 'Força na chaveta' },
+        { id: 'tau', label: 'Cisalhamento' },
+        { id: 'sesm', label: 'Esmagamento' },
+        { id: 'Lmin', label: 'Comprimento mínimo' },
+        { id: 'Tmax', label: 'Torque máximo desta chaveta' },
+        { id: 'estado', label: 'Verificação' }
+      ],
+      formulas: [
+        { g: 'Força e tensões' },
+        { tex: 'F = \\frac{2T}{d}', d: 'força tangencial na superfície do eixo', destaque: true },
+        { tex: '\\tau = \\frac{F}{b\\,L} = \\frac{2T}{d\\,b\\,L}', d: 'cisalhamento no plano do diâmetro', destaque: true },
+        { tex: '\\sigma_{esm} = \\frac{F}{(h/2)\\,L} = \\frac{4T}{d\\,h\\,L}', d: 'esmagamento: só metade da altura apoia em cada peça', destaque: true },
+        { g: 'Dimensionamento' },
+        { tex: '\\tau_{adm} = \\frac{0{,}577\\,S_y}{n} \\qquad \\sigma_{adm} = \\frac{S_y}{n}', d: 'critério de von Mises para o cisalhamento' },
+        { tex: 'T_{projeto} = f_s\\,T_{nominal}', d: 'fator de serviço conforme o regime da máquina' },
+        { tex: 'L \\ge \\frac{2T}{d\\,b\\,\\tau_{adm}} \\quad\\text{e}\\quad L \\ge \\frac{4T}{d\\,h\\,\\sigma_{adm}}', d: 'o maior dos dois governa; usual L ≈ 1,5·d' }
+      ],
+      passos: [],
+      nota: 'Chaveta paralela de seção retangular, montada em rasgo com metade da altura em cada peça, e distribuição uniforme de pressão ao longo do comprimento. Chavetas muito longas não ajudam: a torção do eixo faz a carga se concentrar na entrada do cubo.',
+      calcular: function (p, ctx) {
+        var sec = p.auto ? secao(p.d) : { b: p.b, h: p.h };
+        var fs = parseFloat(p.fs), Tp = p.T * fs;
+        var r = EM2.chaveta({ T: Tp, d: p.d, b: sec.b, h: sec.h, L: p.L, Sy: p.Sy, n: p.n });
+        r.ok = r.Lcis <= p.L && r.Lesm <= p.L;
+        A.ctx = ctx; A.p = { T: Tp, d: p.d, b: sec.b, h: sec.h, L: p.L, Sy: p.Sy, n: p.n }; A.r = r; A.on = true;
+        desenha();
+
+        var g = ctx.plot('comp').clear();
+        var Ts = Plot.linspace(10, Math.max(Tp * 2, 200), 60);
+        g.line(Ts, Ts.map(function (T) { return EM2.chaveta({ T: T, d: p.d, b: sec.b, h: sec.h, L: p.L, Sy: p.Sy, n: p.n }).Lcis; }),
+          { color: Plot.serie(3), width: 2.4, label: 'por cisalhamento' });
+        g.line(Ts, Ts.map(function (T) { return EM2.chaveta({ T: T, d: p.d, b: sec.b, h: sec.h, L: p.L, Sy: p.Sy, n: p.n }).Lesm; }),
+          { color: Plot.serie(4), width: 2.4, label: 'por esmagamento' });
+        g.hline(p.L, { color: Plot.serie(6), text: 'L escolhido' });
+        g.hline(1.5 * p.d, { color: Plot.cssVar('--text-faint', '#888'), dash: [3, 3], text: 'L = 1,5 d (usual)' });
+        g.marker(Tp, Math.max(r.Lcis, r.Lesm), 'projeto', { color: 'rgb(220,60,60)', r: 5 });
+        g.setLimits([0, Ts[Ts.length - 1]], [0, Math.max(p.L, r.Lesm) * 1.4]).draw();
+
+        ctx.setPassos([
+          { t: '① Torque de projeto',
+            tex: 'T_p = f_s\\,T',
+            texSub: 'T_p = ' + nt(fs) + '\\cdot' + nt(p.T, 4) + ' = ' + nt(Tp, 4) + '\\ N\\cdot m',
+            obs: 'O fator de serviço do acoplamento cobre choques e partidas: um motor acionando um britador pede 2,5; uma bomba centrífuga, 1,0.' },
+          { t: '② Força na chaveta',
+            tex: 'F = \\frac{2T}{d}',
+            texSub: 'F = \\frac{2\\cdot' + nt(Tp, 4) + '}{' + nt(p.d / 1000, 4) + '} = ' + nt(r.F, 4) + '\\ N',
+            obs: 'Quanto maior o eixo, menor a força para o mesmo torque — mas também maior a chaveta normalizada.' },
+          { t: '③ Cisalhamento',
+            tex: '\\tau = \\frac{2T}{d\\,b\\,L}',
+            texSub: '\\tau = \\frac{' + nt(r.F, 4) + '}{' + nt(sec.b, 3) + '\\cdot' + nt(p.L, 3) + '} = ' + nt(r.tau, 4) + '\\ MPa \\quad (\\text{admissível } ' + nt(0.577 * p.Sy / p.n, 4) + ')',
+            obs: 'A seção que cisalha é b × L, no plano do diâmetro do eixo.' },
+          { t: '④ Esmagamento',
+            tex: '\\sigma_{esm} = \\frac{4T}{d\\,h\\,L}',
+            texSub: '\\sigma_{esm} = \\frac{' + nt(r.F, 4) + '}{' + nt(sec.h / 2, 3) + '\\cdot' + nt(p.L, 3) + '} = ' + nt(r.sesm, 4) + '\\ MPa \\quad (\\text{admissível } ' + nt(p.Sy / p.n, 4) + ')',
+            obs: 'A área que apoia é metade da altura vezes o comprimento — por isso o esmagamento costuma governar em chavetas de seção padronizada (b ≈ h).' },
+          { t: '⑤ Comprimento necessário',
+            tex: 'L \\ge \\max\\left(\\frac{2T}{d\\,b\\,\\tau_{adm}},\\ \\frac{4T}{d\\,h\\,\\sigma_{adm}}\\right)',
+            texSub: 'L \\ge \\max(' + nt(r.Lcis, 4) + ';\\ ' + nt(r.Lesm, 4) + ') = ' + nt(Math.max(r.Lcis, r.Lesm), 4) + '\\ mm',
+            r: r.ok ? 'L = ' + sg(p.L, 3) + ' mm atende' : 'L = ' + sg(p.L, 3) + ' mm é insuficiente',
+            obs: 'Com esta chaveta e este comprimento, o torque máximo admissível é ' + sg(r.Tmax, 4) + ' N·m.' }
+        ]);
+        return {
+          secao: { v: sec.b + ' × ' + sec.h, u: 'mm' + (p.auto ? ' (norma)' : '') },
+          Tp: { v: Tp, u: 'N·m' },
+          F: { v: r.F / 1000, u: 'kN' },
+          tau: { v: r.tau, u: 'MPa', classe: r.tau > 0.577 * p.Sy / p.n ? 'alerta' : '' },
+          sesm: { v: r.sesm, u: 'MPa', classe: r.sesm > p.Sy / p.n ? 'alerta' : '' },
+          Lmin: { v: Math.max(r.Lcis, r.Lesm), u: 'mm', classe: 'destaque' },
+          Tmax: { v: r.Tmax, u: 'N·m' },
+          estado: { v: r.ok ? 'Chaveta aprovada' : 'Aumente L ou a seção', u: '', classe: r.ok ? 'ok' : 'alerta' }
+        };
       }
     });
   })();

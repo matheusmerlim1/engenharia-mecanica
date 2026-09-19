@@ -426,11 +426,13 @@
       "periodo": "7",
       "materia": "Projeto de Máquinas e Vibrações",
       "pasta": "7°- Elementos de Máquina 2",
-      "resumo": "Engrenagens de dentes retos (geometria, trens, forças e tensões AGMA), molas helicoidais, freios e embreagens.",
+      "resumo": "Engrenagens (geometria, trens, forças e AGMA), mancais de rolamento e hidrodinâmicos, correias, chavetas, molas, freios e embreagens.",
       "temas": [
         "engrenagens",
-        "trens planetários",
         "AGMA",
+        "mancais",
+        "correias",
+        "chavetas",
         "molas",
         "freios e embreagens"
       ],

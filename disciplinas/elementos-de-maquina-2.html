@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elementos de Máquina II — Engenharia Mecânica</title>
-<meta name="description" content="Engrenagens de dentes retos (geometria, trens, forças, tensões AGMA de flexão e contato), molas helicoidais, freios e embreagens: teoria, simuladores animados e simulado.">
+<meta name="description" content="Engrenagens de dentes retos (geometria, trens, forças, tensões AGMA), mancais de rolamento e hidrodinâmicos, correias, chavetas, molas helicoidais, freios e embreagens: teoria, simuladores animados e simulado.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/quiz.css">
@@ -34,11 +34,11 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">7º período · Engenharia Mecânica</p>
     <h1>Elementos de Máquina II</h1>
-    <p class="lead">Elementos de Máquina I ensinou a não deixar uma peça quebrar; esta disciplina aplica isso aos elementos que transmitem movimento e energia. Engrenagens trocam velocidade por torque, molas armazenam energia e freios e embreagens a dissipam ou a acoplam — e cada um tem um modo de falha próprio para dimensionar.</p>
+    <p class="lead">Elementos de Máquina I ensinou a não deixar uma peça quebrar; esta disciplina aplica isso aos elementos que transmitem movimento e energia. Engrenagens trocam velocidade por torque, mancais sustentam os eixos, correias e chavetas ligam as peças, molas armazenam energia e freios e embreagens a dissipam ou a acoplam — e cada um tem um modo de falha próprio para dimensionar.</p>
     <div class="btn-row">
-      <span class="tag accent">10 tópicos</span>
-      <span class="tag ok">30 questões</span>
-      <span class="tag info">6 simuladores animados</span>
+      <span class="tag accent">14 tópicos</span>
+      <span class="tag ok">40 questões</span>
+      <span class="tag info">10 simuladores animados</span>
       <span class="tag warn">normas</span>
     </div>
   </div>
@@ -56,6 +56,9 @@
           <tbody>
             <tr><td>Engrenagens</td><td>Transmitir potência com relação de velocidades constante</td><td>Flexão na raiz do dente (quebra) e fadiga superficial (pitting)</td></tr>
             <tr><td>Molas helicoidais</td><td>Armazenar energia, manter contato, absorver choque</td><td>Fadiga por torção do fio, escoamento ao fechar, flambagem, ressonância</td></tr>
+            <tr><td>Mancais de rolamento</td><td>Sustentar o eixo com atrito baixo</td><td>Fadiga de contato nas pistas — vida estatística L10</td></tr>
+            <tr><td>Mancais de deslizamento</td><td>Sustentar cargas altas sem contato metálico</td><td>Filme de óleo fino demais: regime misto e desgaste</td></tr>
+            <tr><td>Correias, chavetas e acoplamentos</td><td>Transmitir torque entre eixos e entre eixo e cubo</td><td>Escorregamento, cisalhamento e esmagamento</td></tr>
             <tr><td>Freios e embreagens</td><td>Dissipar energia ou acoplar dois eixos por atrito</td><td>Pressão e temperatura no material de atrito</td></tr>
           </tbody>
         </table>
@@ -345,11 +348,126 @@
             </div>
           </div>
         </details>
+
+        <details class="topic">
+          <summary>11. Mancais de rolamento</summary>
+          <div class="topic-body">
+            <p>O rolamento substitui o escorregamento por rolamento: o atrito cai de 0,1 para cerca de 0,002. Em compensação, o contato entre esfera e pista é pontual, com pressões de Hertz altíssimas — e a falha típica é a <strong>fadiga de contato</strong> das pistas. Como ela é estatística, a vida é definida por probabilidade.</p>
+            <div class="formula"><span data-tex="L_{10} = \left(\frac{C}{P}\right)^{a} \qquad L_{10h} = \frac{10^6}{60\,n}\left(\frac{C}{P}\right)^{a}"></span><span class="where">L₁₀ em milhões de voltas; a = 3 para esferas e 10/3 para rolos; C é a capacidade de carga dinâmica do catálogo</span></div>
+            <p><strong>L₁₀</strong> é a vida que 90 % dos rolamentos de um lote ultrapassam. Para outras confiabilidades, multiplica-se pelo fator a₁ (1 para 90 %, 0,64 para 95 %, 0,25 para 99 %).</p>
+            <div class="formula"><span data-tex="P = X F_r + Y F_a \qquad P_m = \left(\frac{\sum P_i^{\,a} t_i}{\sum t_i}\right)^{1/a}"></span><span class="where">carga equivalente e carga média de um regime variável</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tipo</th><th>Carga radial</th><th>Carga axial</th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td>Rígido de esferas</td><td>Boa</td><td>Moderada, nos dois sentidos</td><td>O mais comum e mais barato; aceita alta rotação</td></tr>
+                <tr><td>Contato angular</td><td>Boa</td><td>Alta, num sentido só</td><td>Montado aos pares (costa a costa ou face a face)</td></tr>
+                <tr><td>Autocompensador de esferas</td><td>Boa</td><td>Baixa</td><td>Tolera desalinhamento angular do eixo</td></tr>
+                <tr><td>Rolos cilíndricos</td><td>Muito alta</td><td>Nenhuma</td><td>Contato linear; costuma ser o mancal livre do par</td></tr>
+                <tr><td>Rolos cônicos</td><td>Muito alta</td><td>Alta, num sentido</td><td>Aos pares, com pré-carga ajustável</td></tr>
+                <tr><td>Autocompensador de rolos</td><td>Altíssima</td><td>Média</td><td>Cargas pesadas com desalinhamento</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Mancal fixo e mancal livre</strong>
+              Num eixo com dois mancais, apenas um deve travar axialmente. O outro precisa deslizar (rolos cilíndricos, ou anel externo com folga no alojamento) para absorver a dilatação térmica do eixo — senão os rolamentos se carregam mutuamente e a vida despenca.
+            </div>
+            <div class="callout tip">
+              <strong>A vida cai com o cubo da carga</strong>
+              Dobrar a carga divide a vida por 8 num rolamento de esferas. Uma correia apertada demais, um desalinhamento ou um rotor desbalanceado não fazem barulho no começo — mas reduzem a vida do rolamento a uma fração do projeto.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>12. Mancais de deslizamento e lubrificação</summary>
+          <div class="topic-body">
+            <p>No mancal hidrodinâmico não há contato entre metais: o próprio giro do eixo arrasta óleo para dentro de uma folga que se estreita, e a pressão que aparece nesse filme sustenta a carga. A equação que governa isso é a de <strong>Reynolds</strong>, obtida das equações de Navier-Stokes para filmes finos.</p>
+            <div class="formula"><span data-tex="\frac{\partial}{\partial x}\left(\frac{h^3}{\mu}\frac{\partial p}{\partial x}\right) + \frac{\partial}{\partial z}\left(\frac{h^3}{\mu}\frac{\partial p}{\partial z}\right) = 6U\frac{\partial h}{\partial x}"></span><span class="where">h: espessura do filme, U: velocidade da superfície, p: pressão</span></div>
+            <p>Três condições são necessárias para haver filme: <strong>folga convergente</strong>, <strong>movimento relativo</strong> e <strong>fluido viscoso</strong>. Sem qualquer uma delas, o filme não se forma — é o que acontece na partida, quando o mancal trabalha em regime misto e desgasta.</p>
+            <div class="formula"><span data-tex="S = \left(\frac{r}{c}\right)^2\frac{\mu N}{P} \qquad h_0 = c\,(1 - \varepsilon) \qquad f = 2\pi^2\frac{\mu N}{P}\frac{r}{c}"></span><span class="where">número de Sommerfeld, espessura mínima do filme e atrito de Petroff (carga leve)</span></div>
+            <h4>A curva de Stribeck</h4>
+            <p>Colocando o coeficiente de atrito em função do número de Hersey μN/P, aparecem três regimes. O mínimo da curva marca a transição: à esquerda, as asperezas se tocam.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Regime</th><th>Espessura do filme</th><th>Atrito</th><th>Quando ocorre</th></tr></thead>
+              <tbody>
+                <tr><td>Limítrofe</td><td>Camadas moleculares do aditivo</td><td>0,05–0,15</td><td>Partida, parada, carga muito alta</td></tr>
+                <tr><td>Misto</td><td>Da ordem da rugosidade</td><td>0,01–0,05</td><td>Transição; há desgaste</td></tr>
+                <tr><td>Hidrodinâmico</td><td>h₀ &gt; 3·Ra</td><td>0,001–0,01</td><td>Regime normal de operação</td></tr>
+                <tr><td>Elasto-hidrodinâmico (EHL)</td><td>0,1–1 µm, com deformação elástica</td><td>0,001–0,01</td><td>Contatos concentrados: rolamentos, dentes de engrenagem</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Óleo quente é óleo fino</strong>
+              A viscosidade cai fortemente com a temperatura, e o calor vem do próprio atrito do filme. Se a refrigeração não dá conta, o filme afina, o atrito sobe, aquece mais — e o mancal funde. É por isso que o projeto térmico (vazão de óleo, trocador) faz parte do projeto do mancal.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>13. Transmissão por correias e correntes</summary>
+          <div class="topic-body">
+            <p>Correias transmitem potência por atrito, com eixos afastados, absorvem choques e escorregam em caso de sobrecarga — o que protege a máquina. O limite é o atrito disponível, que segue a mesma equação do cabo enrolado no cabrestante:</p>
+            <div class="formula"><span data-tex="\frac{F_1 - F_c}{F_2 - F_c} = e^{f\theta} \qquad \text{(em V: } e^{f\theta/\text{sen}(\beta/2)}\text{)} \qquad H = (F_1 - F_2)\,v"></span><span class="where">F_c = m′v² é a tração centrífuga; β ≈ 38° é o ângulo do canal da polia</span></div>
+            <div class="formula"><span data-tex="\theta = \pi - 2\,\text{arcsen}\frac{D - d}{2C} \qquad L = 2C + \frac{\pi(D + d)}{2} + \frac{(D - d)^2}{4C}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Elemento</th><th>Vantagens</th><th>Limitações</th></tr></thead>
+              <tbody>
+                <tr><td>Correia plana</td><td>Silenciosa, eficiente, aceita distâncias grandes</td><td>Precisa de tração inicial alta; escorrega</td></tr>
+                <tr><td>Correia em V</td><td>O efeito de cunha multiplica o atrito; compacta</td><td>Rendimento um pouco menor; perde tração com o tempo</td></tr>
+                <tr><td>Correia sincronizadora (dentada)</td><td>Não escorrega: sincronismo garantido</td><td>Mais cara e menos tolerante ao desalinhamento</td></tr>
+                <tr><td>Corrente de rolos</td><td>Não escorrega, suporta temperatura e carga altas</td><td>Ruído, necessidade de lubrificação, efeito poligonal</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Existe uma velocidade ótima</strong>
+              A tração útil é limitada pelo material: F₁ não pode passar de σ_adm·b·t. Como a centrífuga F_c = m′v² consome parte dessa tração, a potência transmitida cresce com v, passa por um máximo em <span data-tex-inline="v = \sqrt{F_{1,adm}/3m'}"></span> e depois cai. Correias planas industriais trabalham tipicamente entre 15 e 25 m/s.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>14. Chavetas, acoplamentos e vedações</summary>
+          <div class="topic-body">
+            <p>A <strong>chaveta</strong> liga o cubo ao eixo. Ela é dimensionada em duas verificações, e costuma ser projetada de propósito como o elo fraco: é mais barato trocar a chaveta do que o eixo ou a engrenagem.</p>
+            <div class="formula"><span data-tex="\tau = \frac{2T}{d\,b\,L} \qquad \sigma_{esm} = \frac{4T}{d\,h\,L}"></span><span class="where">cisalhamento na seção b × L e esmagamento nas faces, que apoiam só em h/2</span></div>
+            <p>A seção b × h é normalizada pelo diâmetro do eixo (DIN 6885 / ISO 773); o que se dimensiona é o comprimento, tipicamente L ≈ 1,5·d. Alternativas: chaveta Woodruff (meia-lua, para eixos cônicos), estriado (vários dentes, para torques altos) e buchas cônicas de aperto, sem rasgo.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Acoplamento</th><th>Função</th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td>Rígido (luva, flange)</td><td>Une dois eixos perfeitamente alinhados</td><td>Não perdoa desalinhamento: sobrecarrega os mancais</td></tr>
+                <tr><td>Flexível (elastômero, grade, garras)</td><td>Acomoda desalinhamento residual e amortece choques</td><td>O mais usado entre motor e máquina acionada</td></tr>
+                <tr><td>De engrenagens / discos</td><td>Torques altos com algum desalinhamento</td><td>O de discos não precisa de lubrificação</td></tr>
+                <tr><td>Limitador de torque</td><td>Escorrega ou rompe um pino na sobrecarga</td><td>Protege a máquina</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Na seleção, o torque nominal é majorado por um <strong>fator de serviço</strong> (1,0 para carga uniforme; 1,75 para choques moderados; 2,5 ou mais para britadores e prensas).</p>
+            <h4>Vedações</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tipo</th><th>Onde se usa</th><th>Característica</th></tr></thead>
+              <tbody>
+                <tr><td>Retentor (lábio)</td><td>Eixos rotativos, reter óleo e excluir sujeira</td><td>Barato; vida limitada pelo desgaste do lábio</td></tr>
+                <tr><td>Gaxeta (engaxetamento)</td><td>Bombas e válvulas</td><td>Precisa de vazamento controlado para lubrificar e de reaperto periódico</td></tr>
+                <tr><td>Selo mecânico</td><td>Bombas de processo</td><td>Faces de carbono/cerâmica em contato; elimina o vazamento visível e dispensa aperto</td></tr>
+                <tr><td>Anel O-ring</td><td>Vedação estática e dinâmica leve</td><td>Material conforme o fluido: NBR para óleo e derivados, FKM para alta temperatura</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
       </section>
 
       <section class="section" id="simuladores">
         <h2>Simuladores</h2>
-        <p>Seis modelos interativos e animados, com fórmulas e resolução passo a passo. As tabelas de fator J e de C<sub>p</sub> são as do Norton, e os modelos foram conferidos contra os exemplos resolvidos da disciplina.</p>
+        <p>Dez modelos interativos e animados, com fórmulas e resolução passo a passo. As tabelas de fator J e de C<sub>p</sub> são as do Norton, o mancal hidrodinâmico resolve a equação de Reynolds numericamente, e todos os modelos foram conferidos contra exemplos resolvidos.</p>
 
         <div id="sim-engrenamento" class="sim"></div>
         <div class="callout tip">
@@ -373,6 +491,30 @@
         <div class="callout tip">
           <strong>O que testar</strong>
           No redutor industrial, estreite a face abaixo de 8m: o coeficiente de contato despenca antes do de flexão. Depois suba a dureza e veja que o ganho no pitting é bem maior que na flexão.
+        </div>
+
+        <div id="sim-rolamento" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Com C = 50 kN e P = 5 kN a 1500 rpm, a vida é de 11 111 h. Dobre a carga radial e veja a vida cair para um oitavo. Depois ligue o regime de dois patamares: a carga média é cúbica, não aritmética.
+        </div>
+
+        <div id="sim-mancal" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Use o exemplo 4 (20 rpm, superfície mais rugosa): a espessura mínima do filme cai à ordem da rugosidade e o mancal entra em regime misto — é exatamente o que acontece em cada partida, antes de a rotação formar o filme. Na curva de Stribeck, o ponto de operação anda para a esquerda.
+        </div>
+
+        <div id="sim-correia" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Troque de correia plana para em V mantendo tudo igual: o atrito efetivo passa de 0,3 para 0,92 e a razão de trações salta. Depois suba a rotação até 4000 rpm e veja a tração centrífuga comer a capacidade.
+        </div>
+
+        <div id="sim-chaveta" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Com a seção normalizada, o esmagamento quase sempre governa o comprimento — compare as duas curvas do gráfico. Aumente o fator de serviço para 1,75 e veja o comprimento necessário subir na mesma proporção.
         </div>
 
         <div id="sim-mola" class="sim"></div>
@@ -408,6 +550,15 @@
               <tr><td>Disco (desgaste uniforme)</td><td><span data-tex="T = N f\,2\pi p_a r_i (r_o - r_i)\dfrac{r_o + r_i}{2}"></span></td><td>N faces</td></tr>
               <tr><td>Cinta</td><td><span data-tex="\dfrac{P_1}{P_2} = e^{f\theta}, \quad T = (P_1 - P_2)r"></span></td><td>—</td></tr>
               <tr><td>Energia de frenagem</td><td><span data-tex="E = \tfrac12 I\omega^2, \quad \Delta T = \dfrac{E}{mc}"></span></td><td>—</td></tr>
+              <tr><td>Rolamento: vida</td><td><span data-tex="L_{10} = \left(\dfrac{C}{P}\right)^{a}, \quad L_{10h} = \dfrac{10^6}{60n}L_{10}"></span></td><td>a = 3 ou 10/3</td></tr>
+              <tr><td>Rolamento: carga</td><td><span data-tex="P = X F_r + Y F_a"></span></td><td>catálogo</td></tr>
+              <tr><td>Carga média</td><td><span data-tex="P_m = \left(\dfrac{\sum P_i^{\,a}t_i}{\sum t_i}\right)^{1/a}"></span></td><td>regime variável</td></tr>
+              <tr><td>Sommerfeld</td><td><span data-tex="S = \left(\dfrac{r}{c}\right)^2\dfrac{\mu N}{P}"></span></td><td>mancal radial</td></tr>
+              <tr><td>Petroff</td><td><span data-tex="f = 2\pi^2\dfrac{\mu N}{P}\dfrac{r}{c}"></span></td><td>carga leve</td></tr>
+              <tr><td>Filme mínimo</td><td><span data-tex="h_0 = c\,(1-\varepsilon)"></span></td><td>h₀ &gt; 3·Ra</td></tr>
+              <tr><td>Correia</td><td><span data-tex="\dfrac{F_1 - F_c}{F_2 - F_c} = e^{f\theta}, \quad H = (F_1 - F_2)v"></span></td><td>em V: f/sen(β/2)</td></tr>
+              <tr><td>Abraçamento</td><td><span data-tex="\theta = \pi - 2\,\text{arcsen}\dfrac{D-d}{2C}"></span></td><td>polia menor</td></tr>
+              <tr><td>Chaveta</td><td><span data-tex="\tau = \dfrac{2T}{dbL}, \quad \sigma_{esm} = \dfrac{4T}{dhL}"></span></td><td>L ≈ 1,5 d</td></tr>
             </tbody>
           </table>
         </div>
@@ -428,6 +579,11 @@
               <tr><td><strong>ISO 701</strong></td><td>Notação internacional de engrenagens</td><td>Símbolos</td></tr>
               <tr><td><strong>EN 13906-1</strong></td><td>Cálculo e projeto de molas helicoidais de compressão</td><td>Tensões, fadiga e flambagem de molas</td></tr>
               <tr><td><strong>ASTM A228 / A229 / A232 / A401</strong></td><td>Fios de aço para molas</td><td>Resistência do fio S<sub>ut</sub> = A/d<sup>m</sup></td></tr>
+              <tr><td><strong>ISO 281</strong></td><td>Capacidade de carga dinâmica e vida de rolamentos</td><td>L₁₀, fator a₁ e carga equivalente</td></tr>
+              <tr><td><strong>ISO 76</strong></td><td>Capacidade de carga estática de rolamentos</td><td>Verificação com a máquina parada (s₀ = C₀/P₀)</td></tr>
+              <tr><td><strong>ISO 7902</strong></td><td>Mancais radiais hidrodinâmicos</td><td>Cálculo do filme, do atrito e do balanço térmico</td></tr>
+              <tr><td><strong>DIN 6885-1 / ISO 773</strong></td><td>Chavetas paralelas e seus rasgos</td><td>Seção b × h em função do diâmetro do eixo</td></tr>
+              <tr><td><strong>ISO 4183 / ISO 4184</strong></td><td>Polias e correias em V clássicas e estreitas</td><td>Seleção de perfil e comprimento</td></tr>
               <tr><td><strong>SAE J661</strong></td><td>Ensaio de coeficiente de atrito de materiais de freio</td><td>Classificação do atrito a frio e a quente</td></tr>
             </tbody>
           </table>
@@ -436,7 +592,7 @@
 
       <section class="section" id="simulado">
         <h2>Simulado</h2>
-        <p>30 questões sobre geometria de engrenagens, trens, forças, tensões AGMA, molas, freios e embreagens.</p>
+        <p>40 questões sobre geometria de engrenagens, trens, forças, tensões AGMA, mancais, correias, chavetas, molas, freios e embreagens.</p>
         <div id="quiz" data-quiz="elementos-de-maquina-2"></div>
       </section>
 
@@ -447,6 +603,7 @@
           <li><strong>BUDYNAS, R. G.; NISBETT, J. K.</strong> <em>Elementos de Máquinas de Shigley.</em> McGraw-Hill. — Engrenagens (caps. 13 e 14), molas (cap. 10), embreagens e freios (cap. 16).</li>
           <li><strong>JUVINALL, R. C.; MARSHEK, K. M.</strong> <em>Fundamentos do Projeto de Componentes de Máquinas.</em> LTC.</li>
           <li><strong>COLLINS, J. A.</strong> <em>Projeto Mecânico de Elementos de Máquinas.</em> LTC.</li>
+          <li><strong>SKF</strong> <em>Catálogo geral de rolamentos.</em> — Capacidades C e C₀, fatores X, Y e e, e critérios de seleção.</li>
           <li><strong>Material da disciplina</strong> — aulas de introdução às engrenagens, trens, carregamentos, tensões AGMA e exemplos resolvidos.</li>
         </ul>
       </section>
@@ -515,7 +672,21 @@ if (window.Glossario) Glossario.definir({
   'K_R': ['Fator de confiabilidade', '—'],
   'S_{ut}': ['Resistência à tração', 'MPa'],
   'S_{sy}': ['Escoamento em torção', 'MPa'],
-  'S_{su}': ['Ruptura em torção', 'MPa']
+  'S_{su}': ['Ruptura em torção', 'MPa'],
+  'L_{10}': ['Vida nominal do rolamento', 'milhões de voltas', '90 % dos rolamentos ultrapassam'],
+  'C': ['Capacidade de carga dinâmica', 'kN', 'do catálogo do rolamento'],
+  'C_0': ['Capacidade de carga estática', 'kN'],
+  'P': ['Carga equivalente', 'N', 'ou pressão média no mancal'],
+  'a_1': ['Fator de confiabilidade', '—', 'ISO 281'],
+  'S': ['Número de Sommerfeld', '—'],
+  'c': ['Folga radial do mancal', 'mm', 'ou folga nas engrenagens'],
+  'ε': ['Excentricidade relativa', '—', 'e/c no mancal'],
+  'h_0': ['Espessura mínima do filme', 'µm'],
+  'μ': ['Viscosidade dinâmica', 'Pa·s', 'ou coeficiente de atrito'],
+  'F_1': ['Tração no lado tenso', 'N'],
+  'F_2': ['Tração no lado frouxo', 'N'],
+  'F_c': ['Tração centrífuga', 'N', "m'v²"],
+  'f_s': ['Fator de serviço', '—', 'acoplamentos']
 });
 </script>
 <script src="../js/core/quiz.js"></script>

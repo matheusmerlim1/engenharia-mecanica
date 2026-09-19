@@ -529,6 +529,46 @@
       "ordem": 3
     },
     {
+      "id": "sim-rolamento",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Mancais de rolamento — carga equivalente e vida ISO 281",
+      "resumo": "O rolamento não falha por resistência, e sim por fadiga de contato nas pistas: por isso a vida é estatística.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-mancal",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Mancal radial hidrodinâmico — filme de óleo",
+      "resumo": "O eixo, ao girar, arrasta óleo para uma folga que se estreita e gera pressão: é ela que sustenta a carga, sem contato entre metais.",
+      "ordem": 5
+    },
+    {
+      "id": "sim-correia",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Transmissão por correia — trações e potência",
+      "resumo": "A correia transmite potência pela diferença entre as trações dos dois lados, e essa diferença é limitada pelo atrito: F₁/F₂ não passa de e^(fθ).",
+      "ordem": 6
+    },
+    {
+      "id": "sim-chaveta",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Chaveta paralela — cisalhamento e esmagamento",
+      "resumo": "A chaveta transmite o torque entre eixo e cubo por duas vias que precisam ser verificadas: o cisalhamento da seção b × L e o esmagamento das faces laterais, que apoiam em apenas metade da altura.",
+      "ordem": 7
+    },
+    {
       "id": "sim-mola",
       "slug": "elementos-de-maquina-2",
       "disciplina": "Elementos de Máquina II",
@@ -536,7 +576,7 @@
       "materia": "Projeto de Máquinas e Vibrações",
       "titulo": "Mola helicoidal de compressão — rigidez, tensão e fadiga",
       "resumo": "A mola é uma barra de torção enrolada: a força axial vira torque no fio.",
-      "ordem": 4
+      "ordem": 8
     },
     {
       "id": "sim-freio",
@@ -546,7 +586,7 @@
       "materia": "Projeto de Máquinas e Vibrações",
       "titulo": "Freios e embreagens — disco e cinta",
       "resumo": "Numa embreagem de disco o torque depende de como a pressão se distribui: disco novo tem pressão uniforme; depois de amaciado, o desgaste uniforme concentra pressão perto do raio interno e é a hipótese mais conservadora.",
-      "ordem": 5
+      "ordem": 9
     },
     {
       "id": "sim-parede",

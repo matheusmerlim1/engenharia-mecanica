@@ -29,6 +29,18 @@
   {
    "id": "freios",
    "nome": "Freios e embreagens"
+  },
+  {
+   "id": "mancais",
+   "nome": "Mancais de rolamento e deslizamento"
+  },
+  {
+   "id": "correias",
+   "nome": "Correias"
+  },
+  {
+   "id": "chavetas",
+   "nome": "Chavetas e acoplamentos"
   }
  ],
  "questoes": [
@@ -540,6 +552,173 @@
    ],
    "correta": 1,
    "explicacao": "<p>Num disco novo e rígido a pressão é uniforme. Mas a parte externa, mais rápida, desgasta mais, até que o desgaste (proporcional a p·V, logo a p·r) fique igual em todo o disco. Como essa condição dá o menor torque para a mesma força de acionamento, projetar com ela garante que a embreagem continua transmitindo o torque durante toda a vida.</p>"
+  },
+  {
+   "id": "em2-031",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "mancais",
+   "enunciado": "<p>A vida nominal L<sub>10</sub> de um rolamento significa que:</p>",
+   "alternativas": [
+    "Todos os rolamentos duram exatamente esse tempo.",
+    "É a vida garantida pelo fabricante, sob qualquer carga.",
+    "10 % dos rolamentos duram mais que esse valor.",
+    "90 % dos rolamentos de um lote atingem ou ultrapassam essa vida antes de falhar por fadiga de contato."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A falha do rolamento é a fadiga das pistas, um fenômeno estatístico: rolamentos idênticos, na mesma carga, falham em tempos diferentes. L<sub>10</sub> é o percentil de 10 % de falhas. Para confiabilidades maiores aplica-se o fator a₁ da ISO 281: 0,64 para 95 % e 0,25 para 99 %.</p>"
+  },
+  {
+   "id": "em2-032",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "mancais",
+   "enunciado": "<p>Um rolamento rígido de esferas tem <span class=\"dado\">C = 50 kN</span> e opera com carga equivalente <span class=\"dado\">P = 5 kN</span> a <span class=\"dado\">1500 rpm</span>. Sua vida nominal L<sub>10h</sub>, em horas, vale aproximadamente:</p>",
+   "alternativas": [
+    "1 000 h",
+    "11 111 h",
+    "111 100 h",
+    "16 670 h"
+   ],
+   "correta": 1,
+   "formulas": [
+    "L₁₀ = (C/P)^a, com a = 3 para esferas",
+    "L₁₀h = 10⁶·L₁₀/(60 n)"
+   ],
+   "explicacao": "<div class=\"passo\">L<sub>10</sub> = (50/5)³ = 1000 milhões de voltas</div><div class=\"passo\">L<sub>10h</sub> = 10⁶ × 1000/(60 × 1500) = <strong>11111 h</strong></div><p>1 000 h confunde milhões de voltas com horas; 111 100 h erra uma potência de 10; 16 670 h usa a = 1 (proporcional à carga), o que não vale para fadiga de contato.</p>"
+  },
+  {
+   "id": "em2-033",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "mancais",
+   "enunciado": "<p>Um rolamento de esferas trabalha <span class=\"dado\">metade do tempo sob 10 kN</span> e a outra metade sob <span class=\"dado\">5 kN</span>. A carga equivalente a usar no cálculo da vida é de aproximadamente:</p>",
+   "alternativas": [
+    "7,50 kN",
+    "10,0 kN",
+    "8,25 kN",
+    "6,30 kN"
+   ],
+   "correta": 2,
+   "formulas": [
+    "P_m = (Σ Pᵢ^a tᵢ / Σ tᵢ)^(1/a)"
+   ],
+   "explicacao": "<div class=\"passo\">P<sub>m</sub> = (0,5 × 10 000³ + 0,5 × 5 000³)<sup>1/3</sup></div><div class=\"passo\">P<sub>m</sub> = (500 × 10⁹ + 62,5 × 10⁹)<sup>1/3</sup> = <strong>8,25 kN</strong></div><p>A média é cúbica, não aritmética: 7,50 kN (média simples) superestimaria bastante a vida, porque o dano cresce com a terceira potência da carga. 10 kN seria ignorar o alívio; 6,30 kN é a média geométrica.</p>"
+  },
+  {
+   "id": "em2-034",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "mancais",
+   "enunciado": "<p>Num eixo apoiado em dois rolamentos, por que apenas um deles deve travar axialmente?</p>",
+   "alternativas": [
+    "Porque o rolamento livre absorve a dilatação térmica do eixo; se os dois travarem, eles se carregam mutuamente e a vida despenca.",
+    "Para reduzir o custo de montagem.",
+    "Porque o rolamento livre é o único que suporta carga radial.",
+    "Porque assim o eixo pode girar nos dois sentidos."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O eixo aquece e se alonga. O mancal fixo posiciona axialmente o eixo; o livre (normalmente de rolos cilíndricos, ou com o anel externo deslizante no alojamento) acompanha a dilatação. Com dois mancais fixos, o alongamento vira carga axial enorme sobre as pistas.</p>"
+  },
+  {
+   "id": "em2-035",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "mancais",
+   "enunciado": "<p>As três condições necessárias para que se forme um filme hidrodinâmico num mancal de deslizamento são:</p>",
+   "alternativas": [
+    "Alta pressão de alimentação, folga grande e óleo sintético.",
+    "Superfícies polidas, baixa carga e temperatura constante.",
+    "Folga convergente no sentido do movimento, movimento relativo entre as superfícies e fluido viscoso.",
+    "Rotação alta, óleo fino e mancal bipartido."
+   ],
+   "correta": 2,
+   "explicacao": "<p>É o próprio movimento que arrasta o fluido para a região convergente e gera a pressão. Nenhuma das três pode faltar: na partida o movimento é lento demais e o filme não se forma, e é aí que o mancal desgasta. Bombas de alimentação servem para refrigerar e, em mancais hidrostáticos, para sustentar a carga com a máquina parada.</p>"
+  },
+  {
+   "id": "em2-036",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "mancais",
+   "enunciado": "<p>Estime o coeficiente de atrito pela equação de Petroff num mancal com <span class=\"dado\">μ = 20 mPa·s</span>, <span class=\"dado\">N = 30 rev/s</span>, pressão média <span class=\"dado\">P = 2 MPa</span> e <span class=\"dado\">r/c = 1000</span>.</p>",
+   "alternativas": [
+    "0,00592",
+    "0,000592",
+    "0,0592",
+    "0,00188"
+   ],
+   "correta": 0,
+   "formulas": [
+    "f = 2π²·(μN/P)·(r/c)"
+   ],
+   "explicacao": "<div class=\"passo\">μN/P = 0,02 × 30/2 × 10⁶ = 3,0 × 10⁻⁷</div><div class=\"passo\">f = 2π² × 3,0 × 10⁻⁷ × 1000 = <strong>0,00592</strong></div><p>Petroff vale para mancal praticamente concêntrico (carga leve) e dá a ordem de grandeza: alguns milésimos, cem vezes menos que o atrito seco. 0,000592 esquece o r/c; 0,0592 erra a potência de 10; 0,00188 troca 2π² por π².</p>"
+  },
+  {
+   "id": "em2-037",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "mancais",
+   "enunciado": "<p>Na curva de Stribeck, o ponto de mínimo atrito marca a transição entre:</p>",
+   "alternativas": [
+    "Os regimes hidrodinâmico e turbulento.",
+    "Mancal de deslizamento e mancal de rolamento.",
+    "Lubrificação a óleo e a graxa.",
+    "Os regimes limítrofe/misto e hidrodinâmico — à esquerda dele há contato entre asperezas."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A curva relaciona o coeficiente de atrito ao número de Hersey μN/P. Vindo da direita, ao reduzir a rotação ou a viscosidade (ou aumentar a carga), o filme afina; quando a espessura chega à ordem da rugosidade, o atrito para de cair e dispara. O projeto mantém o mancal bem à direita desse mínimo.</p>"
+  },
+  {
+   "id": "em2-038",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "correias",
+   "enunciado": "<p>Uma correia opera com tração de <span class=\"dado\">1200 N</span> no lado tenso e <span class=\"dado\">400 N</span> no lado frouxo, a <span class=\"dado\">15 m/s</span>. A potência transmitida é:</p>",
+   "alternativas": [
+    "24,0 kW",
+    "6,00 kW",
+    "3,00 kW",
+    "12,0 kW"
+   ],
+   "correta": 3,
+   "formulas": [
+    "H = (F₁ − F₂)·v"
+   ],
+   "explicacao": "<div class=\"passo\">F₁ − F₂ = 1200 − 400 = 800 N</div><div class=\"passo\">H = 800 × 15 = 12 000 W = <strong>12,0 kW</strong></div><p>Só a diferença de trações transmite potência: a parte comum apenas comprime as polias e carrega os mancais. 24 kW soma as trações; 6 kW usa F₂; 3 kW é a razão entre elas.</p>"
+  },
+  {
+   "id": "em2-039",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "correias",
+   "enunciado": "<p>Por que uma correia em V transmite muito mais potência que uma correia plana de mesmas dimensões e mesmo coeficiente de atrito?</p>",
+   "alternativas": [
+    "Porque o encunhamento no canal multiplica a força normal por 1/sen(β/2), e com ela o atrito: a razão limite passa a e^(fθ/sen(β/2)).",
+    "Porque a correia em V é sempre mais larga.",
+    "Porque a correia em V não sofre força centrífuga.",
+    "Porque o ângulo de abraçamento na correia em V é sempre 360°."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Com canal de β = 38°, sen(19°) ≈ 0,326: o atrito efetivo fica cerca de três vezes maior. É o mesmo princípio da cunha. Em compensação, a flexão nas polias e o escorregamento interno reduzem um pouco o rendimento em relação à correia plana bem tracionada.</p>"
+  },
+  {
+   "id": "em2-040",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "chavetas",
+   "enunciado": "<p>Uma chaveta paralela de <span class=\"dado\">10 mm de largura</span> e <span class=\"dado\">60 mm de comprimento</span> é montada num eixo de <span class=\"dado\">40 mm</span> e transmite <span class=\"dado\">240 N·m</span>. A tensão de cisalhamento na chaveta é:</p>",
+   "alternativas": [
+    "10,0 MPa",
+    "20,0 MPa",
+    "40,0 MPa",
+    "30,0 MPa"
+   ],
+   "correta": 1,
+   "formulas": [
+    "F = 2T/d",
+    "τ = F/(b·L) = 2T/(d·b·L)"
+   ],
+   "explicacao": "<div class=\"passo\">F = 2 × 240/0,040 = 12 000 N</div><div class=\"passo\">τ = 12 000/(0,010 × 0,060) = 20 × 10⁶ Pa = <strong>20,0 MPa</strong></div><p>10 MPa usa o raio como se fosse o diâmetro na força; 40 MPa dobra a força de novo; 30 MPa usa a altura no lugar da largura. Note que o esmagamento, calculado sobre h/2, costuma ser o crítico.</p>"
   }
  ]
 }
