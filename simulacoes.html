@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Engenharia Mecânica — Conteúdo e Simulados</title>
-<meta name="description" content="Conteúdo teórico, simuladores interativos e bancos de questões das disciplinas do curso de Engenharia Mecânica.">
+<title>Simulações — Engenharia Mecânica</title>
+<meta name="description" content="Todas as simulações interativas e animadas do curso de Engenharia Mecânica num só lugar: escolha por qual começar.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
 <link rel="stylesheet" href="css/main.css">
 </head>
@@ -19,108 +19,46 @@
     </a>
     <div class="spacer"></div>
     <nav class="nav-links">
-      <a href="#disciplinas" class="always">Disciplinas</a>
-      <a href="simulacoes.html" class="always nav-destaque">Simulações</a>
-      <a href="#como-usar">Como usar</a>
+      <a href="index.html#disciplinas" class="always">Disciplinas</a>
+      <a href="simulacoes.html" class="always nav-destaque" aria-current="page">Simulações</a>
     </nav>
     <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
   </div>
 </header>
 
 <main id="conteudo">
-  <section class="wrap hero">
-    <p class="kicker">Material de estudo</p>
-    <h1>Todo o curso de Engenharia Mecânica em um só lugar</h1>
+  <section class="wrap hero" style="padding-bottom:10px">
+    <p class="kicker">Modelos interativos e animados</p>
+    <h1>Simulações</h1>
     <p class="lead">
-      Resumo teórico, formulários, <strong>simuladores interativos</strong> e bancos de questões
-      com correção imediata para <strong id="total-disciplinas">43</strong> disciplinas —
-      do 1º período às optativas. Feito para estudar antes da prova e para consultar durante o projeto.
+      As <strong id="total-simulacoes">—</strong> simulações do site, sem o resto do conteúdo. Escolha por qual começar:
+      a simulação abre sozinha, com as fórmulas e a resolução passo a passo, e os botões
+      <em>Anterior</em> e <em>Próxima</em> levam às outras da mesma matéria.
     </p>
-    <div class="btn-row" style="margin-top:22px">
-      <a class="btn primary" href="#disciplinas">Ver disciplinas</a>
-      <a class="btn" href="simulacoes.html">Só as simulações</a>
-      <a class="btn ghost" href="#como-usar">Como usar</a>
+    <div class="btn-row" style="margin-top:18px">
+      <button type="button" class="btn" id="sim-sorteio">Me surpreenda</button>
+      <a class="btn ghost" href="index.html#disciplinas">Ver as disciplinas</a>
     </div>
   </section>
 
-  <section class="wrap section" id="disciplinas">
-    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:end;justify-content:space-between">
-      <div>
-        <h2 style="margin-bottom:4px">Disciplinas</h2>
-        <p id="catalogo-legenda" style="margin:0;color:var(--text-muted);font-size:.92rem">Organizadas por período do curso.</p>
-      </div>
-      <div class="alternador" data-alternar-grupo role="group" aria-label="Organizar as disciplinas">
-        <button type="button" data-grupo="periodo">Por período</button>
+  <section class="wrap section" id="lista">
+    <div class="barra-ferramentas">
+      <input type="search" id="busca" placeholder="Buscar simulação ou assunto…" aria-label="Buscar simulação">
+      <div class="alternador" data-alternar-grupo role="group" aria-label="Organizar as simulações">
         <button type="button" data-grupo="materia">Por matéria</button>
+        <button type="button" data-grupo="periodo">Por período</button>
       </div>
-      <input type="search" id="busca" placeholder="Buscar disciplina ou assunto…" aria-label="Buscar disciplina"
-             style="flex:0 1 300px;padding:9px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg-elev);color:var(--text);font:inherit;font-size:.9rem">
     </div>
-    <div id="catalogo" data-base="" style="margin-top:8px"></div>
+    <p id="catalogo-legenda" style="margin:10px 0 0;color:var(--text-muted);font-size:.9rem"></p>
+    <div id="sim-catalogo" data-base="" style="margin-top:4px"></div>
   </section>
-
-  <section class="wrap section" id="como-usar">
-    <h2>Como usar</h2>
-    <div class="grid cols-2">
-      <div class="card">
-        <h3 style="margin-top:0;font-size:1rem">Estudando para a prova</h3>
-        <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:0">
-          Abra a disciplina, leia o resumo teórico e o formulário, depois vá direto ao simulado.
-          Escolha <em>Difícil</em> + <em>Cálculo</em> para treinar a parte que costuma decidir a nota.
-          Ao final, o relatório mostra o acerto por tópico — volte à teoria do tópico mais fraco.
-        </p>
-      </div>
-      <div class="card">
-        <h3 style="margin-top:0;font-size:1rem">Usando como referência</h3>
-        <p style="font-size:.9rem;color:var(--text-muted);margin-bottom:0">
-          Os simuladores aceitam os dados do seu problema real: coloque o vão da viga, a vazão da bomba
-          ou a rotação do eixo e leia o resultado. Todos mostram as equações usadas, então dá para
-          conferir a conta à mão.
-        </p>
-      </div>
-    </div>
-    <div class="callout note" style="margin-top:18px">
-      <strong>Atalhos no simulado</strong>
-      Teclas <kbd>1</kbd>–<kbd>5</kbd> escolhem a alternativa, <kbd>Enter</kbd> confirma e avança.
-      Em questões discursivas, <kbd>Ctrl</kbd>+<kbd>Enter</kbd> revela o gabarito.
-    </div>
-  </section>
-  <section class="wrap section" id="destaques" style="margin-top:26px">
-    <div class="grid cols-3">
-      <div class="card">
-        <span class="tag accent">Simulado</span>
-        <h3 style="margin:9px 0 5px;font-size:1rem">Questões que se adaptam</h3>
-        <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
-          Filtre por tópico, dificuldade e tipo. Múltipla escolha com resolução comentada,
-          discursivas com gabarito e critérios, e questões de cálculo com espaço de rascunho e calculadora.
-        </p>
-      </div>
-      <div class="card">
-        <span class="tag info">Interativo</span>
-        <h3 style="margin:9px 0 5px;font-size:1rem">Modelos que você mexe</h3>
-        <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
-          Diagramas de momento fletor, linha elástica, perda de carga, ciclos térmicos,
-          resposta de sistemas vibratórios — arraste os controles e veja o gráfico responder.
-        </p>
-      </div>
-      <div class="card">
-        <span class="tag warn">Normas</span>
-        <h3 style="margin:9px 0 5px;font-size:1rem">Referência normativa</h3>
-        <p style="margin:0;font-size:.88rem;color:var(--text-muted)">
-          Disciplinas de projeto trazem o que cada norma ABNT, ASME, ISO, AGMA ou API define,
-          onde ela se aplica e como usá-la no dimensionamento.
-        </p>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>Engenharia Mecânica · material de estudo</span>
+    <a href="index.html">← Página inicial</a>
     <span class="spacer"></span>
-    <span>Conteúdo de apoio — sempre confira a norma vigente e a bibliografia da disciplina.</span>
+    <span>Engenharia Mecânica · material de estudo</span>
   </div>
 </footer>
 

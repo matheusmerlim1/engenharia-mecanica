@@ -29,8 +29,8 @@
   }
 
   Sim.build('#sim-mohr', {
-    titulo: 'Circulo de Mohr — estado plano de tensoes',
-    descricao: 'Ajuste o estado de tensao e gire o elemento. O circulo e o elemento girado sao a mesma informacao vista de dois jeitos.',
+    titulo: 'Círculo de Mohr — estado plano de tensões',
+    descricao: 'Ajuste o estado de tensão e gire o elemento. O círculo e o elemento girado são a mesma informação vista de dois jeitos.',
     controles: [
       { id: 'sx', label: 'σx', min: -250, max: 250, step: 1, valor: 100, unidade: 'MPa' },
       { id: 'sy', label: 'σy', min: -250, max: 250, step: 1, valor: -40, unidade: 'MPa' },
@@ -442,7 +442,7 @@
 
   Sim.build('#sim-flambagem', {
     titulo: 'Flambagem de colunas — Euler x Johnson',
-    descricao: 'A hiperbole de Euler so vale acima da esbeltez de transicao. Abaixo dela ela mente para mais — e o erro classico de projeto.',
+    descricao: 'A hipérbole de Euler só vale acima da esbeltez de transição. Abaixo dela ela mente para mais — é o erro clássico de projeto.',
     controlesLargos: true,
     controles: [
       { id: 'sec', tipo: 'select', label: 'Secao transversal', valor: 'ret',
@@ -713,8 +713,8 @@
   if (!document.getElementById('sim-vaso')) return;
 
   Sim.build('#sim-vaso', {
-    titulo: 'Vaso de pressao — parede fina x parede espessa (Lame)',
-    descricao: 'Aumente a espessura e veja a hipotese de parede fina se afastar da solucao exata de Lame.',
+    titulo: 'Vaso de pressão — parede fina x parede espessa (Lamé)',
+    descricao: 'Aumente a espessura e veja a hipótese de parede fina se afastar da solução exata de Lamé.',
     controles: [
       { id: 'geo', tipo: 'seg', label: 'Geometria', valor: 'cil',
         opcoes: [{ v: 'cil', t: 'Cilindrico' }, { v: 'esf', t: 'Esferico' }] },
@@ -883,8 +883,8 @@
   if (!document.getElementById('sim-criterios')) return;
 
   Sim.build('#sim-criterios', {
-    titulo: 'Criterios de falha estatica no plano σ1–σ2',
-    descricao: 'O ponto de operacao dentro da envoltoria significa n > 1. Compare o que cada criterio permite no 2º e 4º quadrantes.',
+    titulo: 'Critérios de falha estática no plano σ1–σ2',
+    descricao: 'O ponto de operação dentro da envoltória significa n > 1. Compare o que cada critério permite no 2º e 4º quadrantes.',
     controles: [
       { id: 's1', label: 'σ1', min: -600, max: 600, step: 5, valor: 120, unidade: 'MPa' },
       { id: 's2', label: 'σ2', min: -600, max: 600, step: 5, valor: -60, unidade: 'MPa' },

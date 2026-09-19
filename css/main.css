@@ -582,3 +582,37 @@ mark.busca-hit-atual {
 @media (max-width: 620px) {
   .busca-conta { min-width: 0; font-size: 11px; }
 }
+
+/* ---------- alternador "por período | por matéria" ---------- */
+.alternador { display: inline-flex; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-elev); }
+.alternador button {
+  font: inherit; font-size: .85rem; font-weight: 550; padding: 7px 14px; border: 0; cursor: pointer;
+  background: transparent; color: var(--text-muted); border-right: 1px solid var(--border);
+}
+.alternador button:last-child { border-right: 0; }
+.alternador button:hover { color: var(--text); background: var(--bg-sunken); }
+.alternador button.ativo { background: var(--accent); color: #fff; }
+.nav-links a.nav-destaque { color: var(--accent); font-weight: 650; }
+
+/* ---------- catálogo de simulações ---------- */
+.card-sim { display: flex; flex-direction: column; }
+.card-sim .card-top { flex-wrap: wrap; }
+.card-sim .sim-tambem { font-size: .78rem; color: var(--text-faint); margin-top: 6px; }
+.card-sim .sim-abrir { margin-top: auto; padding-top: 10px; font-size: .84rem; font-weight: 650; color: var(--accent); }
+.barra-ferramentas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-top: 8px; }
+.barra-ferramentas input[type=search] {
+  flex: 1 1 260px; max-width: 360px; padding: 9px 14px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg-elev); color: var(--text); font: inherit; font-size: .9rem;
+}
+
+/* ---------- modo "só esta simulação" (?sim=) ---------- */
+.modo-sim .hero, .modo-sim .toc, .modo-sim .busca,
+.modo-sim .section:not(#simuladores), .modo-sim #simuladores > h2, .modo-sim #simuladores > p { display: none !important; }
+.modo-sim .page-layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.modo-sim #simuladores { margin-top: 18px; }
+.foco-barra {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 16px;
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev);
+}
+.foco-barra .foco-disc { font-size: .88rem; color: var(--text-muted); }
+

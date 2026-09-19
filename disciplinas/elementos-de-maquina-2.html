@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elementos de Máquina II — Engenharia Mecânica</title>
+<meta name="description" content="Engrenagens de dentes retos (geometria, trens, forças, tensões AGMA de flexão e contato), molas helicoidais, freios e embreagens: teoria, simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">7º período · Engenharia Mecânica</p>
+    <h1>Elementos de Máquina II</h1>
+    <p class="lead">Elementos de Máquina I ensinou a não deixar uma peça quebrar; esta disciplina aplica isso aos elementos que transmitem movimento e energia. Engrenagens trocam velocidade por torque, molas armazenam energia e freios e embreagens a dissipam ou a acoplam — e cada um tem um modo de falha próprio para dimensionar.</p>
+    <div class="btn-row">
+      <span class="tag accent">10 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">6 simuladores animados</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>O roteiro da disciplina segue o de um projeto de redutor: escolher a geometria das engrenagens, montar o trem que dá a relação pedida, calcular as forças nos dentes e verificar os dentes contra os dois modos de falha — a quebra por flexão e o desgaste da superfície por fadiga de contato. Depois vêm as molas e os freios e embreagens, que completam os elementos de transmissão.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Elemento</th><th>Função</th><th>Falha que governa o projeto</th></tr></thead>
+          <tbody>
+            <tr><td>Engrenagens</td><td>Transmitir potência com relação de velocidades constante</td><td>Flexão na raiz do dente (quebra) e fadiga superficial (pitting)</td></tr>
+            <tr><td>Molas helicoidais</td><td>Armazenar energia, manter contato, absorver choque</td><td>Fadiga por torção do fio, escoamento ao fechar, flambagem, ressonância</td></tr>
+            <tr><td>Freios e embreagens</td><td>Dissipar energia ou acoplar dois eixos por atrito</td><td>Pressão e temperatura no material de atrito</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Continuação de Elementos de Máquina I</strong>
+          Os critérios de falha estática, a fadiga com Goodman e o limite de resistência à fadiga, vistos em Elementos de Máquina I, são usados aqui o tempo todo: a AGMA nada mais é do que uma forma organizada de aplicar essas ideias ao dente de engrenagem.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Engrenagens: tipos e lei do engrenamento</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tipo</th><th>Eixos</th><th>Características</th></tr></thead>
+              <tbody>
+                <tr><td>Dentes retos</td><td>Paralelos</td><td>Mais simples e baratas; sem força axial; ruidosas em alta velocidade</td></tr>
+                <tr><td>Helicoidais</td><td>Paralelos (ou reversos)</td><td>Engrenamento gradual, mais silenciosas e mais carga; geram força axial</td></tr>
+                <tr><td>Cônicas</td><td>Concorrentes (em geral a 90°)</td><td>Retas ou espirais; forças radial e axial</td></tr>
+                <tr><td>Parafuso sem-fim e coroa</td><td>Reversos, a 90°</td><td>Reduções de até 100:1 num só par; podem ser autotravantes; rendimento baixo</td></tr>
+                <tr><td>Cremalheira</td><td>—</td><td>Engrenagem de raio infinito: converte rotação em translação</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Lei fundamental do engrenamento</h4>
+            <p>Para que a relação de velocidades seja constante, a normal comum aos perfis no ponto de contato tem de passar sempre pelo mesmo ponto da linha de centros, o <strong>ponto primitivo</strong>. Os círculos que rolam um sobre o outro sem escorregar nesse ponto são os <strong>círculos primitivos</strong>.</p>
+            <div class="formula"><span data-tex="m_V = \frac{\omega_g}{\omega_p} = \frac{r_p}{r_g} = \frac{N_p}{N_g}"></span><span class="where">p = pinhão (a menor), g = coroa; o sinal indica inversão de sentido</span></div>
+            <h4>O perfil evolvente</h4>
+            <p>A evolvente é a curva descrita pela ponta de um fio esticado que se desenrola de um cilindro — o <strong>círculo de base</strong>. Duas evolventes em contato têm a normal comum sempre tangente aos dois círculos de base: essa reta fixa é a <strong>linha de ação</strong>, e ela cruza a linha de centros sempre no ponto primitivo. O ângulo entre a linha de ação e a tangente aos círculos primitivos é o <strong>ângulo de pressão</strong> φ.</p>
+            <div class="formula"><span data-tex="r_b = r\cos\phi \qquad \text{inv}\,\phi = \tan\phi - \phi"></span></div>
+            <div class="callout tip">
+              <strong>Por que todo mundo usa a evolvente</strong>
+              Ela tolera erro na distância entre centros: se os eixos se afastam um pouco, o ângulo de pressão muda, mas a relação de velocidades continua exata, porque depende só da razão entre os círculos de base. Além disso, uma ferramenta de flancos retos (cremalheira) gera evolventes para qualquer número de dentes.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Nomenclatura e geometria dos dentes</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Grandeza</th><th>Definição</th><th>Profundidade completa</th></tr></thead>
+              <tbody>
+                <tr><td>Módulo m</td><td>Diâmetro primitivo por dente: <span data-tex-inline="m = d/N"></span> (mm)</td><td>Normalizado (ISO 54): 1; 1,25; 1,5; 2; 2,5; 3; 4; 5; 6; 8; 10…</td></tr>
+                <tr><td>Passo diametral P<sub>d</sub></td><td>Dentes por polegada de diâmetro (sistema inglês)</td><td><span data-tex-inline="m = 25{,}4/P_d"></span></td></tr>
+                <tr><td>Passo circular p</td><td>Arco entre dentes no círculo primitivo</td><td><span data-tex-inline="p = \pi m"></span></td></tr>
+                <tr><td>Adendo a</td><td>Do primitivo ao topo do dente</td><td><span data-tex-inline="a = m"></span></td></tr>
+                <tr><td>Dedendo b</td><td>Do primitivo ao pé do dente</td><td><span data-tex-inline="b = 1{,}25\,m"></span></td></tr>
+                <tr><td>Folga c</td><td>Dedendo menos o adendo da parceira</td><td><span data-tex-inline="c = 0{,}25\,m"></span></td></tr>
+                <tr><td>Espessura do dente</td><td>No círculo primitivo</td><td><span data-tex-inline="t = p/2"></span> (menos a folga de engrenamento)</td></tr>
+                <tr><td>Distância entre centros</td><td>Soma dos raios primitivos</td><td><span data-tex-inline="C = m(N_p + N_g)/2"></span></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Duas engrenagens só engrenam se tiverem o mesmo módulo e o mesmo ângulo de pressão. Os sistemas padronizados usam φ = 20° (o mais comum), 25° (dentes mais robustos, mais força radial) e o antigo 14,5°.</p>
+            <div class="callout note">
+              <strong>Folga de engrenamento (backlash)</strong>
+              Na prática os dentes são afinados um pouco para que sobre uma folga entre os flancos que não estão em contato. Ela acomoda a dilatação térmica, os erros de fabricação e o filme de lubrificante — e é o que faz um mecanismo “bater” quando o torque inverte.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Razão de contato e interferência</summary>
+          <div class="topic-body">
+            <p>O contato entre um par de dentes começa onde o círculo de adendo da coroa corta a linha de ação e termina onde o círculo de adendo do pinhão a corta. Esse trecho é o <strong>comprimento de ação</strong> Z. Dividido pelo passo de base, dá quantos pares estão em contato em média:</p>
+            <div class="formula"><span data-tex="Z = \sqrt{r_{ap}^2 - r_{bp}^2} + \sqrt{r_{ag}^2 - r_{bg}^2} - C\,\text{sen}\,\phi \qquad m_p = \frac{Z}{p_b} = \frac{Z}{\pi m \cos\phi}"></span></div>
+            <p>Com m<sub>p</sub> = 1,6, por exemplo, há dois pares em contato 60 % do tempo e um par só nos outros 40 %. Recomenda-se m<sub>p</sub> ≥ 1,2; dentes retos comuns ficam entre 1,4 e 2.</p>
+            <h4>Interferência e adelgaçamento</h4>
+            <p>Se o contato começar antes do ponto de tangência com o círculo de base do pinhão, a ponta do dente da coroa encontra o pinhão numa região onde não há evolvente: é a <strong>interferência</strong>. Na fabricação por geração a ferramenta remove esse material e o pé do dente fica <strong>adelgaçado</strong> (undercut), mais fraco. Acontece com pinhões de poucos dentes.</p>
+            <div class="formula"><span data-tex="N_p = \frac{2k}{(1+2m_G)\,\text{sen}^2\phi}\left(m_G + \sqrt{m_G^2 + (1+2m_G)\,\text{sen}^2\phi}\right)"></span><span class="where">menor pinhão sem interferência; k = 1 para profundidade completa, m<sub>G</sub> = N<sub>g</sub>/N<sub>p</sub></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>φ</th><th>Par 1:1</th><th>Com coroa grande</th><th>Com cremalheira</th></tr></thead>
+              <tbody>
+                <tr><td>14,5°</td><td>23</td><td>—</td><td>32</td></tr>
+                <tr><td>20°</td><td>13</td><td>16 (m<sub>G</sub> = 4)</td><td>18</td></tr>
+                <tr><td>25°</td><td>9</td><td>—</td><td>12</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Três saídas para um pinhão pequeno</strong>
+              Aumentar o ângulo de pressão para 25°; usar dentes de adendo desigual (pinhão com adendo alongado, coroa com adendo encurtado — a “correção” de perfil); ou aceitar mais dentes com módulo menor.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Trens de engrenagens</summary>
+          <div class="topic-body">
+            <p>O <strong>valor do trem</strong> é a razão entre a velocidade da última e a da primeira engrenagem:</p>
+            <div class="formula"><span data-tex="e = \frac{\omega_L}{\omega_F} = \pm\frac{\text{produto dos números de dentes das motoras}}{\text{produto dos números de dentes das movidas}}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Arranjo</th><th>Característica</th><th>Uso</th></tr></thead>
+              <tbody>
+                <tr><td>Simples</td><td>Uma engrenagem por eixo; as intermediárias só invertem o sentido</td><td>Ligar eixos distantes, inverter giro</td></tr>
+                <tr><td>Composto</td><td>Duas engrenagens solidárias no mesmo eixo: a relação é o produto das relações</td><td>Reduções grandes em pouco espaço (acima de ~10:1 num só par a coroa fica enorme)</td></tr>
+                <tr><td>Composto reverso</td><td>Entrada e saída coaxiais</td><td>Caixas de câmbio, redutores em linha</td></tr>
+                <tr><td>Planetário (epicicloidal)</td><td>Engrenagens cujo eixo gira (planetas num braço); 2 graus de liberdade</td><td>Reduções altas e compactas, diferenciais, transmissões automáticas</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Trens planetários — fórmula de Willis</h4>
+            <p>Vistas por um observador que gira com o braço, as engrenagens formam um trem comum. Por isso:</p>
+            <div class="formula"><span data-tex="e = \frac{\omega_L - \omega_A}{\omega_F - \omega_A}"></span><span class="where">F e L: primeira e última engrenagem do trem, com o braço A parado; e calculado como num trem comum</span></div>
+            <p>Para o arranjo sol–planeta–anel interno, <span data-tex-inline="e = -N_s/N_r"></span> (o planeta é intermediário e o anel interno não inverte o sentido). Com três membros e dois graus de liberdade, é preciso fixar um e acionar outro:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Fixo</th><th>Entrada</th><th>Saída</th><th>Relação</th></tr></thead>
+              <tbody>
+                <tr><td>Anel</td><td>Sol</td><td>Braço</td><td><span data-tex-inline="\omega_A/\omega_s = N_s/(N_s + N_r)"></span> — redução</td></tr>
+                <tr><td>Sol</td><td>Anel</td><td>Braço</td><td><span data-tex-inline="\omega_A/\omega_r = N_r/(N_s + N_r)"></span> — redução pequena</td></tr>
+                <tr><td>Braço</td><td>Sol</td><td>Anel</td><td><span data-tex-inline="\omega_r/\omega_s = -N_s/N_r"></span> — inverte o sentido</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Exemplo — sol acionando, anel fixo</strong>
+              Com N<sub>s</sub> = 20 e N<sub>r</sub> = 80 e o sol a 100 rpm: <span data-tex-inline="-\tfrac{20}{80} = \tfrac{0 - \omega_A}{100 - \omega_A}"></span> dá ω<sub>A</sub> = 20 rpm no mesmo sentido do sol. O planeta (N<sub>p</sub> = 30) gira, em relação ao chão, a <span data-tex-inline="\omega_A - \tfrac{N_s}{N_p}(\omega_s - \omega_A) = -33{,}3"></span> rpm.
+            </div>
+            <p>Condições de montagem: <span data-tex-inline="N_r = N_s + 2N_p"></span> (mesmo módulo) e, para n planetas igualmente espaçados, <span data-tex-inline="(N_s + N_r)/n"></span> inteiro.</p>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Análise de forças nas engrenagens</summary>
+          <div class="topic-body">
+            <p>Sem atrito, a força entre os dentes age ao longo da linha de ação. Ela se decompõe em uma componente <strong>tangencial</strong>, que transmite o torque, e uma <strong>radial</strong>, que só tende a separar as engrenagens e carrega os mancais.</p>
+            <div class="formula"><span data-tex="W_t = \frac{2T}{d} = \frac{H}{V} \qquad V = \frac{\pi d n}{60} \qquad W_r = W_t\tan\phi \qquad W = \frac{W_t}{\cos\phi}"></span><span class="where">H em W, V em m/s, n em rpm, d em m</span></div>
+            <div class="callout note">
+              <strong>Exemplo da aula — engrenagem intermediária</strong>
+              Pinhão de 20 dentes a 1750 rpm transmite 2,5 kW, m = 2,5 mm, φ = 20°: d = 50 mm, V = 4,58 m/s, W<sub>t</sub> = 0,546 kN e W<sub>r</sub> = 0,199 kN. A intermediária recebe a mesma força tangencial dos dois lados, em sentidos que se anulam no torque; com as linhas de centro a 90°, o mancal dela carrega <span data-tex-inline="\sqrt 2\,(0{,}546 + 0{,}199) = 1{,}05"></span> kN.
+            </div>
+            <h4>Helicoidais e cônicas</h4>
+            <p>Na helicoidal o dente é inclinado do ângulo de hélice ψ e aparece uma força axial; na cônica, radial e axial dependem do semiângulo do cone:</p>
+            <div class="formula"><span data-tex="\text{helicoidal: } W_r = W_t\tan\phi_t,\ W_a = W_t\tan\psi \qquad \text{cônica: } W_r = W_t\tan\phi\cos\gamma,\ W_a = W_t\tan\phi\,\text{sen}\,\gamma"></span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Tensões de flexão — Lewis e AGMA</summary>
+          <div class="topic-body">
+            <p><strong>Lewis</strong> modelou o dente como uma viga em balanço de seção variável, com a carga na ponta, e encontrou a parábola de igual resistência inscrita no dente. O resultado cabe num fator de forma adimensional Y:</p>
+            <div class="formula"><span data-tex="\sigma = \frac{W_t}{F\,m\,Y}"></span><span class="where">F = largura de face, m = módulo; Y cresce com o número de dentes (0,245 para 12 dentes; 0,485 para cremalheira)</span></div>
+            <p>A equação <strong>AGMA</strong> mantém essa forma e acrescenta o que Lewis não considera: concentração de tensão na raiz, divisão da carga entre pares, efeitos dinâmicos e de montagem.</p>
+            <div class="formula"><span data-tex="\sigma_b = \frac{W_t}{F\,m\,J}\,\frac{K_a K_m}{K_v}\,K_s K_B K_I"></span><span class="where">convenção do Norton; o Shigley escreve o mesmo com K<sub>o</sub>, K<sub>v</sub> ≥ 1 multiplicando e K<sub>H</sub> no lugar de K<sub>m</sub></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Fator</th><th>O que representa</th><th>Valores</th></tr></thead>
+              <tbody>
+                <tr><td>J — geométrico</td><td>Forma do dente, concentração de tensão na raiz e ponto de aplicação da carga</td><td>Tabelas por φ, número de dentes do par e carga no HPSTC ou na ponta; ~0,25 a 0,57</td></tr>
+                <tr><td>K<sub>v</sub> — dinâmico</td><td>Vibração causada por erros de perfil e espaçamento (engrenamento não conjugado)</td><td><span data-tex-inline="K_v = \left(\frac{A}{A + \sqrt{200V}}\right)^B"></span>, dependente do índice de qualidade Q<sub>v</sub></td></tr>
+                <tr><td>K<sub>m</sub> — distribuição de carga</td><td>Desalinhamento e deflexões ao longo da largura de face</td><td>1,6 (F ≤ 50 mm) a 2,0 (F ≥ 500 mm); regra prática 8m &lt; F &lt; 16m</td></tr>
+                <tr><td>K<sub>a</sub> — aplicação</td><td>Choques da máquina motora e da acionada</td><td>1,00 (uniforme) a 2,00 (choque pesado nos dois lados)</td></tr>
+                <tr><td>K<sub>s</sub> — tamanho</td><td>Dentes maiores que os dos corpos de prova</td><td>1 em geral; 1,25 a 1,5 para dentes muito grandes</td></tr>
+                <tr><td>K<sub>B</sub> — espessura de borda</td><td>Engrenagens em anel fino, que podem trincar na borda</td><td>1 se m<sub>B</sub> ≥ 1,2; <span data-tex-inline="-2m_B + 3{,}4"></span> se menor; m<sub>B</sub> &lt; 0,5 não recomendado</td></tr>
+                <tr><td>K<sub>I</sub> — ciclo de carga</td><td>Engrenagem intermediária: flexão alternada nos dois flancos</td><td>1,42 na intermediária; 1 nas demais</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>HPSTC: o pior ponto não é a ponta</strong>
+              Quando a razão de contato é maior que 1, a carga na ponta do dente é dividida com outro par. O maior momento na raiz ocorre no <em>ponto mais alto de contato de um só par</em> (HPSTC) — por isso as tabelas de J do Norton trazem colunas separadas para carga na ponta e no HPSTC. Combinações marcadas com U têm adelgaçamento e devem ser evitadas.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Tensões de superfície (contato)</summary>
+          <div class="topic-body">
+            <p>No contato os dois flancos rolam e escorregam sob pressão de Hertz. A falha típica é a <strong>fadiga superficial</strong>: trincas logo abaixo da superfície que arrancam pequenas crateras (pitting). Aproximando os flancos por dois cilindros com os raios de curvatura da evolvente:</p>
+            <div class="formula"><span data-tex="\sigma_c = C_p\sqrt{\frac{W_t}{F\,I\,d}\,\frac{C_a C_m}{C_v}\,C_s C_f}"></span><span class="where">d = diâmetro primitivo do pinhão; C<sub>a</sub>, C<sub>m</sub>, C<sub>v</sub>, C<sub>s</sub> iguais a K<sub>a</sub>, K<sub>m</sub>, K<sub>v</sub>, K<sub>s</sub>; C<sub>f</sub> = acabamento</span></div>
+            <div class="formula"><span data-tex="C_p = \sqrt{\frac{1}{\pi\left(\frac{1-\nu_p^2}{E_p} + \frac{1-\nu_g^2}{E_g}\right)}} \qquad I = \frac{\cos\phi}{\left(\frac{1}{\rho_p} + \frac{1}{\rho_g}\right)d_p}"></span></div>
+            <p>C<sub>p</sub> = 191 √MPa para aço contra aço, 174 para aço contra ferro fundido. Os raios de curvatura dos flancos saem da geometria da evolvente:</p>
+            <div class="formula"><span data-tex="\rho_p = \sqrt{(r_p + m)^2 - (r_p\cos\phi)^2} - \pi m\cos\phi \qquad \rho_g = C\,\text{sen}\,\phi - \rho_p"></span></div>
+            <div class="callout tip">
+              <strong>A tensão de contato cresce com a raiz da carga</strong>
+              Dobrar a carga aumenta σ<sub>c</sub> só √2 vezes. Por isso o coeficiente de segurança ao contato costuma ser escrito como <span data-tex-inline="(S_{fc}/\sigma_c)^2"></span>, para ficar comparável ao de flexão como razão entre cargas.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Resistência à fadiga e coeficientes de segurança</summary>
+          <div class="topic-body">
+            <p>A AGMA fornece resistências obtidas em ensaios de engrenagens (já incluem a concentração de tensão), para 10<sup>7</sup> ciclos e 99 % de confiabilidade. Para aço grau 1 endurecido:</p>
+            <div class="formula"><span data-tex="S_t = 0{,}533\,H_B + 88{,}3 \qquad S_c = 2{,}22\,H_B + 200 \qquad (\text{MPa})"></span></div>
+            <p>Elas são corrigidas para a vida e a confiabilidade desejadas:</p>
+            <div class="formula"><span data-tex="S_{fb} = \frac{Y_N}{K_T K_R}\,S_t \qquad S_{fc} = \frac{Z_N C_H}{K_T K_R}\,S_c"></span><span class="where">Y<sub>N</sub> = 1,3558 N<sup>−0,0178</sup> e Z<sub>N</sub> = 1,4488 N<sup>−0,023</sup> acima de 10<sup>7</sup> ciclos; K<sub>R</sub> = 0,85 (90 %), 1 (99 %), 1,25 (99,9 %), 1,5 (99,99 %)</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Material / tratamento</th><th>Comentário</th></tr></thead>
+              <tbody>
+                <tr><td>Aço temperado e revenido (através)</td><td>200–400 HB; o mais comum</td></tr>
+                <tr><td>Cementação e têmpera</td><td>Superfície 55–64 HRC com núcleo tenaz: a melhor resistência ao pitting</td></tr>
+                <tr><td>Têmpera por indução ou chama</td><td>Endurece só o flanco e a raiz</td></tr>
+                <tr><td>Nitretação</td><td>Camada fina e muito dura, pouca distorção</td></tr>
+                <tr><td>Ferro fundido</td><td>Barato, amortece ruído, bom ao desgaste; fraco em flexão</td></tr>
+                <tr><td>Bronze</td><td>Coroas de sem-fim, pelo baixo atrito contra aço</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>O pinhão sofre mais</strong>
+              Ele gira m<sub>G</sub> vezes mais que a coroa, acumula mais ciclos e tem J menor. É comum fazer o pinhão cerca de 40 HB mais duro que a coroa, o que também ajuda no amaciamento por encruamento da coroa.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Molas helicoidais</summary>
+          <div class="topic-body">
+            <p>Na mola helicoidal de compressão a força axial F produz no fio um torque F·D/2 e um cisalhamento direto. A curvatura do fio concentra tensão no lado interno da espira; o fator de Bergsträsser reúne os dois efeitos:</p>
+            <div class="formula"><span data-tex="\tau = K_B\frac{8FD}{\pi d^3} \qquad K_B = \frac{4C+2}{4C-3} \qquad C = \frac{D}{d}"></span><span class="where">D = diâmetro médio da espira, d = diâmetro do fio; C recomendado entre 4 e 12</span></div>
+            <div class="formula"><span data-tex="k = \frac{F}{y} = \frac{d^4 G}{8D^3 N_a}"></span><span class="where">G ≈ 79–82 GPa para aços de mola</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Extremidades</th><th>Espiras totais N<sub>t</sub></th><th>Comprimento sólido L<sub>s</sub></th></tr></thead>
+              <tbody>
+                <tr><td>Simples</td><td>N<sub>a</sub></td><td>d(N<sub>t</sub> + 1)</td></tr>
+                <tr><td>Simples e retificadas</td><td>N<sub>a</sub> + 1</td><td>d N<sub>t</sub></td></tr>
+                <tr><td>Esquadradas</td><td>N<sub>a</sub> + 2</td><td>d(N<sub>t</sub> + 1)</td></tr>
+                <tr><td>Esquadradas e retificadas</td><td>N<sub>a</sub> + 2</td><td>d N<sub>t</sub></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Materiais e resistência</h4>
+            <p>Fios de mola são trefilados, e quanto mais finos, mais resistentes: <span data-tex-inline="S_{ut} = A/d^{\,m}"></span>, com A e m tabelados (corda de piano ASTM A228, temperado em óleo A229, cromo-vanádio A232, cromo-silício A401, inox A313). Em torção, <span data-tex-inline="S_{sy} \approx 0{,}45"></span> a <span data-tex-inline="0{,}50\,S_{ut}"></span> e <span data-tex-inline="S_{su} = 0{,}67\,S_{ut}"></span>.</p>
+            <h4>Fadiga</h4>
+            <p>Molas trabalham quase sempre com carga flutuante entre F<sub>min</sub> e F<sub>max</sub>. Zimmerli mostrou que, para fios de até 10 mm, a resistência à fadiga por torção quase não depende do material: <span data-tex-inline="S_{sa} = 241"></span> MPa e <span data-tex-inline="S_{sm} = 379"></span> MPa sem jateamento (398 e 534 MPa com jateamento). Com a reta de Goodman em torção:</p>
+            <div class="formula"><span data-tex="S_{se} = \frac{S_{sa}}{1 - S_{sm}/S_{su}} \qquad \frac{1}{n_f} = \frac{\tau_a}{S_{se}} + \frac{\tau_m}{S_{su}}"></span></div>
+            <h4>Flambagem e ressonância</h4>
+            <p>Molas longas flambam: entre placas paralelas, é preciso <span data-tex-inline="L_0 &lt; 2{,}63\,D/\alpha"></span> com α = 0,5; acima disso, guia interna ou externa. E a mola é também um sistema massa-mola distribuído: sua frequência natural <span data-tex-inline="f_n = \tfrac12\sqrt{k/m}"></span> deve ficar 15 a 20 vezes acima da frequência da excitação, senão ondas de compressão percorrem as espiras (<em>surge</em>).</p>
+            <div class="callout note">
+              <strong>Molas de extensão e de torção</strong>
+              A mola de extensão tem pré-tensão enrolada no fio e falha em geral no gancho, onde há flexão e torção combinadas. A de torção trabalha à flexão do fio, com o momento <span data-tex-inline="M = F\,r"></span> e tensão <span data-tex-inline="\sigma = K_i\,32M/(\pi d^3)"></span>.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>10. Freios e embreagens</summary>
+          <div class="topic-body">
+            <p>Os dois são o mesmo dispositivo de atrito: a embreagem acopla dois eixos que giram, o freio acopla um eixo à carcaça parada. A análise sempre envolve a força de acionamento, o torque transmitido, a energia dissipada e o aumento de temperatura.</p>
+            <h4>Embreagens e freios de disco</h4>
+            <p>Um disco novo, plano e rígido tem pressão uniforme. Com o uso, a região externa, mais rápida, desgasta mais até que o desgaste se uniformize — o que exige <span data-tex-inline="p\,r"></span> = constante, com a pressão máxima no raio interno.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Hipótese</th><th>Força</th><th>Torque (por face)</th></tr></thead>
+              <tbody>
+                <tr><td>Desgaste uniforme</td><td><span data-tex="F = 2\pi p_a r_i (r_o - r_i)"></span></td><td><span data-tex="T = fF\,\frac{r_o + r_i}{2}"></span></td></tr>
+                <tr><td>Pressão uniforme</td><td><span data-tex="F = \pi p_a (r_o^2 - r_i^2)"></span></td><td><span data-tex="T = fF\,\frac{2}{3}\frac{r_o^3 - r_i^3}{r_o^2 - r_i^2}"></span></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>O desgaste uniforme dá um torque um pouco menor para a mesma força e é a hipótese de projeto. Para p<sub>a</sub> e r<sub>o</sub> fixos, o torque é máximo com <span data-tex-inline="r_i = r_o/\sqrt 3"></span>. Com N superfícies de atrito (multidisco), multiplica-se o torque por N.</p>
+            <h4>Freios de tambor com sapatas</h4>
+            <p>Numa sapata articulada, o atrito cria um momento em torno do pino que pode ajudar a apertar a sapata (<strong>autoenergização</strong>) ou atrapalhar. Com a pressão proporcional a sen θ:</p>
+            <div class="formula"><span data-tex="F = \frac{M_N - M_f}{c} \qquad M_N = \frac{p_a b r a}{\text{sen}\,\theta_a}\int_{\theta_1}^{\theta_2}\text{sen}^2\theta\,d\theta \qquad M_f = \frac{f p_a b r}{\text{sen}\,\theta_a}\int_{\theta_1}^{\theta_2}\text{sen}\,\theta\,(r - a\cos\theta)\,d\theta"></span></div>
+            <p>Se <span data-tex-inline="M_f \ge M_N"></span> a sapata é <strong>autotravante</strong>: agarra sem força externa. Isso é evitado projetando com M<sub>f</sub> bem menor que M<sub>N</sub>.</p>
+            <h4>Freios de cinta</h4>
+            <p>A cinta abraça o tambor num ângulo θ. Um elemento de cinta em equilíbrio dá a mesma equação do cabrestante:</p>
+            <div class="formula"><span data-tex="\frac{P_1}{P_2} = e^{f\theta} \qquad T = (P_1 - P_2)\,r \qquad p_{max} = \frac{P_1}{b\,r}"></span><span class="where">P<sub>1</sub> no lado para onde a superfície do tambor se move</span></div>
+            <h4>Energia e temperatura</h4>
+            <div class="formula"><span data-tex="E = \tfrac12 I(\omega_1^2 - \omega_2^2) \qquad \Delta T = \frac{E}{m\,c}"></span><span class="where">c ≈ 500 J/(kg·K) para ferro fundido e aço</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Material de atrito</th><th>f típico</th><th>Temperatura máxima</th></tr></thead>
+              <tbody>
+                <tr><td>Orgânico moldado</td><td>0,25–0,45</td><td>~200–260 °C instantânea</td></tr>
+                <tr><td>Metal sinterizado</td><td>0,15–0,45</td><td>~550 °C</td></tr>
+                <tr><td>Cerâmico / cermet</td><td>0,20–0,40</td><td>~800 °C</td></tr>
+                <tr><td>Qualquer um em óleo</td><td>0,05–0,15</td><td>troca calor com o óleo</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Fading</strong>
+              Acima da temperatura admissível o coeficiente de atrito do material cai: o freio que parava o carro no primeiro declive deixa de parar no décimo. O projeto térmico (massa, ventilação, área) é tão importante quanto o de torque.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Seis modelos interativos e animados, com fórmulas e resolução passo a passo. As tabelas de fator J e de C<sub>p</sub> são as do Norton, e os modelos foram conferidos contra os exemplos resolvidos da disciplina.</p>
+
+        <div id="sim-engrenamento" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Com 12 dentes a 20° o trecho de contato fica vermelho: começa antes do ponto de tangência T₁. Troque para 25° e ele volta ao normal. Depois use o zoom e veja os pontos de contato correndo sempre sobre a mesma reta.
+        </div>
+
+        <div id="sim-trens" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          No planetário, troque o membro fixo mantendo o sol como entrada: com o anel fixo o braço gira devagar no mesmo sentido; com o braço fixo o anel gira ao contrário. É exatamente o que uma transmissão automática faz com embreagens e freios que prendem um membro de cada vez.
+        </div>
+
+        <div id="sim-intermediaria" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          O exemplo da aula dá 1,05 kN no mancal da intermediária. Gire a coroa em volta dela: conforme o lado, as duas forças de contato se somam (até 2·W) ou quase se anulam. Depois inverta o giro do pinhão e veja o lado favorável trocar.
+        </div>
+
+        <div id="sim-agma" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          No redutor industrial, estreite a face abaixo de 8m: o coeficiente de contato despenca antes do de flexão. Depois suba a dureza e veja que o ganho no pitting é bem maior que na flexão.
+        </div>
+
+        <div id="sim-mola" class="sim"></div>
+
+        <div id="sim-freio" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Na embreagem, varie o raio interno com o externo fixo e acompanhe o gráfico: o torque máximo no desgaste uniforme cai em r<sub>i</sub> = 0,577·r<sub>o</sub>. No freio de cinta, passe de 270° para 540°: uma volta a mais multiplica P₁/P₂ por <span data-tex-inline="e^{2\pi f}"></span>.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Módulo e passo</td><td><span data-tex="m = \dfrac{d}{N}, \quad p = \pi m, \quad p_b = p\cos\phi"></span></td><td>mesmo m e φ para engrenar</td></tr>
+              <tr><td>Distância entre centros</td><td><span data-tex="C = \dfrac{m(N_p + N_g)}{2}"></span></td><td>—</td></tr>
+              <tr><td>Razão de contato</td><td><span data-tex="m_p = \dfrac{\sqrt{r_{ap}^2 - r_{bp}^2} + \sqrt{r_{ag}^2 - r_{bg}^2} - C\,\text{sen}\,\phi}{p_b}"></span></td><td>≥ 1,2</td></tr>
+              <tr><td>Pinhão mínimo</td><td><span data-tex="N_p = \dfrac{2(m_G + \sqrt{m_G^2 + (1+2m_G)\text{sen}^2\phi})}{(1+2m_G)\text{sen}^2\phi}"></span></td><td>sem interferência</td></tr>
+              <tr><td>Valor do trem</td><td><span data-tex="e = \pm\dfrac{\prod N_{motoras}}{\prod N_{movidas}}"></span></td><td>—</td></tr>
+              <tr><td>Willis</td><td><span data-tex="e = \dfrac{\omega_L - \omega_A}{\omega_F - \omega_A}"></span></td><td>planetário</td></tr>
+              <tr><td>Forças</td><td><span data-tex="W_t = \dfrac{H}{V}, \quad W_r = W_t\tan\phi"></span></td><td>—</td></tr>
+              <tr><td>Lewis</td><td><span data-tex="\sigma = \dfrac{W_t}{F m Y}"></span></td><td>—</td></tr>
+              <tr><td>AGMA flexão</td><td><span data-tex="\sigma_b = \dfrac{W_t}{F m J}\dfrac{K_a K_m}{K_v}K_s K_B K_I"></span></td><td>Norton</td></tr>
+              <tr><td>Fator dinâmico</td><td><span data-tex="K_v = \left(\dfrac{A}{A + \sqrt{200V}}\right)^B"></span></td><td><span data-tex-inline="B = (12 - Q_v)^{2/3}/4"></span></td></tr>
+              <tr><td>AGMA contato</td><td><span data-tex="\sigma_c = C_p\sqrt{\dfrac{W_t}{F I d}\dfrac{C_a C_m}{C_v}C_s C_f}"></span></td><td><span data-tex-inline="C_p = 191\sqrt{MPa}"></span> aço-aço</td></tr>
+              <tr><td>Segurança</td><td><span data-tex="n_b = \dfrac{S_{fb}}{\sigma_b}, \quad n_c = \left(\dfrac{S_{fc}}{\sigma_c}\right)^2"></span></td><td>—</td></tr>
+              <tr><td>Mola: tensão</td><td><span data-tex="\tau = \dfrac{4C+2}{4C-3}\dfrac{8FD}{\pi d^3}"></span></td><td>Bergsträsser</td></tr>
+              <tr><td>Mola: rigidez</td><td><span data-tex="k = \dfrac{d^4 G}{8D^3 N_a}"></span></td><td>—</td></tr>
+              <tr><td>Mola: fadiga</td><td><span data-tex="\dfrac{1}{n_f} = \dfrac{\tau_a}{S_{se}} + \dfrac{\tau_m}{S_{su}}"></span></td><td>Goodman + Zimmerli</td></tr>
+              <tr><td>Disco (desgaste uniforme)</td><td><span data-tex="T = N f\,2\pi p_a r_i (r_o - r_i)\dfrac{r_o + r_i}{2}"></span></td><td>N faces</td></tr>
+              <tr><td>Cinta</td><td><span data-tex="\dfrac{P_1}{P_2} = e^{f\theta}, \quad T = (P_1 - P_2)r"></span></td><td>—</td></tr>
+              <tr><td>Energia de frenagem</td><td><span data-tex="E = \tfrac12 I\omega^2, \quad \Delta T = \dfrac{E}{mc}"></span></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ANSI/AGMA 2001-D04</strong></td><td>Fatores fundamentais e métodos de cálculo de engrenagens de dentes retos e helicoidais</td><td>Equações de flexão e contato, fatores K, resistências S<sub>t</sub> e S<sub>c</sub></td></tr>
+              <tr><td><strong>ANSI/AGMA 2015-1</strong></td><td>Classificação de exatidão de engrenagens cilíndricas (substitui a AGMA 2000)</td><td>Índice de qualidade que entra no fator dinâmico</td></tr>
+              <tr><td><strong>ISO 6336 (partes 1 a 3)</strong></td><td>Cálculo da capacidade de carga de engrenagens cilíndricas</td><td>Equivalente europeu da AGMA 2001</td></tr>
+              <tr><td><strong>ISO 1328-1</strong></td><td>Tolerâncias de flancos de engrenagens cilíndricas</td><td>Graus de qualidade de fabricação</td></tr>
+              <tr><td><strong>ISO 53</strong></td><td>Perfil de referência (cremalheira básica) de engrenagens cilíndricas</td><td>φ = 20°, adendo m, dedendo 1,25m</td></tr>
+              <tr><td><strong>ISO 54</strong></td><td>Módulos normalizados</td><td>Escolha do módulo</td></tr>
+              <tr><td><strong>ISO 701</strong></td><td>Notação internacional de engrenagens</td><td>Símbolos</td></tr>
+              <tr><td><strong>EN 13906-1</strong></td><td>Cálculo e projeto de molas helicoidais de compressão</td><td>Tensões, fadiga e flambagem de molas</td></tr>
+              <tr><td><strong>ASTM A228 / A229 / A232 / A401</strong></td><td>Fios de aço para molas</td><td>Resistência do fio S<sub>ut</sub> = A/d<sup>m</sup></td></tr>
+              <tr><td><strong>SAE J661</strong></td><td>Ensaio de coeficiente de atrito de materiais de freio</td><td>Classificação do atrito a frio e a quente</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre geometria de engrenagens, trens, forças, tensões AGMA, molas, freios e embreagens.</p>
+        <div id="quiz" data-quiz="elementos-de-maquina-2"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>NORTON, R. L.</strong> <em>Projeto de Máquinas: uma abordagem integrada.</em> Bookman. — Livro-texto da disciplina: engrenagens de dentes retos, tabelas de J e C<sub>p</sub>, molas e freios.</li>
+          <li><strong>BUDYNAS, R. G.; NISBETT, J. K.</strong> <em>Elementos de Máquinas de Shigley.</em> McGraw-Hill. — Engrenagens (caps. 13 e 14), molas (cap. 10), embreagens e freios (cap. 16).</li>
+          <li><strong>JUVINALL, R. C.; MARSHEK, K. M.</strong> <em>Fundamentos do Projeto de Componentes de Máquinas.</em> LTC.</li>
+          <li><strong>COLLINS, J. A.</strong> <em>Projeto Mecânico de Elementos de Máquinas.</em> LTC.</li>
+          <li><strong>Material da disciplina</strong> — aulas de introdução às engrenagens, trens, carregamentos, tensões AGMA e exemplos resolvidos.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/elementos-de-maquina-2.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  m: ['Módulo', 'mm', 'd/N'],
+  N: ['Número de dentes', '—'],
+  d: ['Diâmetro primitivo', 'mm', 'ou diâmetro do fio da mola'],
+  D: ['Diâmetro médio da espira', 'mm'],
+  C: ['Distância entre centros', 'mm', 'ou índice de mola D/d'],
+  F: ['Largura de face', 'mm', 'ou força'],
+  J: ['Fator geométrico de flexão', '—', 'tabelado pela AGMA'],
+  I: ['Fator geométrico de superfície', '—', 'ou momento de inércia de massa'],
+  Y: ['Fator de forma de Lewis', '—'],
+  V: ['Velocidade na linha primitiva', 'm/s'],
+  φ: ['Ângulo de pressão', '°', '14,5°, 20° ou 25°'],
+  θ: ['Ângulo de abraçamento', 'rad'],
+  f: ['Coeficiente de atrito', '—'],
+  k: ['Rigidez da mola', 'N/mm'],
+  G: ['Módulo de elasticidade transversal', 'GPa'],
+  e: ['Valor do trem', '—', 'ω saída / ω entrada'],
+  T: ['Torque', 'N·m'],
+  H: ['Potência', 'W'],
+  'W_t': ['Força tangencial', 'N', 'transmite o torque'],
+  'W_r': ['Força radial', 'N', 'W_t·tan φ'],
+  'K_v': ['Fator dinâmico', '—', '≤ 1 na convenção do Norton'],
+  'K_m': ['Fator de distribuição de carga', '—'],
+  'K_a': ['Fator de aplicação', '—'],
+  'K_s': ['Fator de tamanho', '—'],
+  'K_B': ['Fator de espessura de borda', '—', 'ou de Bergsträsser, nas molas'],
+  'K_I': ['Fator de ciclo de carga', '—', '1,42 na intermediária'],
+  'C_p': ['Coeficiente elástico', '√MPa', '191 para aço-aço'],
+  'Q_v': ['Índice de qualidade', '—', '5 a 11 em engrenagens comerciais'],
+  'N_a': ['Espiras ativas', '—'],
+  'm_p': ['Razão de contato', '—'],
+  'm_G': ['Relação de engrenamento', '—', 'N_g/N_p'],
+  'p_b': ['Passo de base', 'mm', 'p·cos φ'],
+  'p_a': ['Pressão máxima admissível', 'MPa'],
+  'r_o': ['Raio externo', 'mm'],
+  'r_i': ['Raio interno', 'mm'],
+  'S_t': ['Resistência AGMA à flexão', 'MPa'],
+  'S_c': ['Resistência AGMA ao contato', 'MPa'],
+  'Y_N': ['Fator de vida à flexão', '—'],
+  'Z_N': ['Fator de vida ao contato', '—'],
+  'K_R': ['Fator de confiabilidade', '—'],
+  'S_{ut}': ['Resistência à tração', 'MPa'],
+  'S_{sy}': ['Escoamento em torção', 'MPa'],
+  'S_{su}': ['Ruptura em torção', 'MPa']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

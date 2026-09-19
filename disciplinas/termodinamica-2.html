@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Termodinâmica II — Engenharia Mecânica</title>
+<meta name="description" content="Ciclos de potência a vapor e a gás, refrigeração por compressão de vapor e a ar, misturas de gases, psicrometria e escoamento compressível em bocais: teoria, simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❄️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">6º período · Engenharia Mecânica</p>
+    <h1>Termodinâmica II</h1>
+    <p class="lead">A primeira parte da termodinâmica ensinou as leis; esta ensina as máquinas. Usinas a vapor, motores, turbinas a gás, geladeiras e bombas de calor são aplicações dos mesmos balanços de energia e entropia — e o ar úmido e o gás que acelera num bocal completam o repertório do engenheiro que projeta sistemas térmicos.</p>
+    <div class="btn-row">
+      <span class="tag accent">9 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">7 simuladores animados</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Toda a disciplina é aplicação de duas equações ao volume de controle em regime permanente — a primeira lei e a segunda lei — sobre fluidos cujas propriedades se leem em tabelas ou se calculam como gás ideal. O que muda de um capítulo para outro é o equipamento e o fluido.</p>
+        <div class="formula"><span data-tex="\dot Q - \dot W = \sum \dot m_s\left(h_s + \frac{V_s^2}{2} + g z_s\right) - \sum \dot m_e\left(h_e + \frac{V_e^2}{2} + g z_e\right)"></span><span class="where">primeira lei em regime permanente — a base de todos os capítulos</span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Capítulo</th><th>Fluido</th><th>Pergunta central</th></tr></thead>
+          <tbody>
+            <tr><td>Ciclos a vapor</td><td>Água (tabelas)</td><td>Como converter calor em trabalho com a maior eficiência possível?</td></tr>
+            <tr><td>Ciclos a gás</td><td>Ar (gás ideal, padrão ar)</td><td>Motores e turbinas: o que limita a eficiência?</td></tr>
+            <tr><td>Refrigeração</td><td>R-134a (tabelas) ou ar</td><td>Quanto trabalho custa mover calor do frio para o quente?</td></tr>
+            <tr><td>Misturas e psicrometria</td><td>Ar seco + vapor d’água</td><td>Como tratar o ar de um ambiente?</td></tr>
+            <tr><td>Escoamento compressível</td><td>Gás ideal com k constante</td><td>O que acontece quando o gás se aproxima da velocidade do som?</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Os ciclos de potência também estão em Termodinâmica</strong>
+          Os simuladores de Rankine, Otto/Diesel e Brayton são os mesmos das duas páginas. Aqui eles aparecem com o aprofundamento que a disciplina pede: melhorias do ciclo, desvios do ideal e comparação entre arranjos.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Revisão: leis da termodinâmica e o gás ideal</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Lei</th><th>Enunciado</th></tr></thead>
+              <tbody>
+                <tr><td>Zero</td><td>Se A e B estão, cada um, em equilíbrio térmico com C, estão em equilíbrio entre si — é o que dá sentido ao termômetro</td></tr>
+                <tr><td>Primeira</td><td>Num sistema fechado, a variação de energia é o calor recebido menos o trabalho realizado: <span data-tex="\Delta U = Q - W"></span></td></tr>
+                <tr><td>Segunda</td><td>A entropia de um sistema isolado nunca diminui: <span data-tex="S_{ger} \geq 0"></span>. Nenhum ciclo converte todo o calor recebido em trabalho</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Gás ideal e teoria cinética</h4>
+            <p>No modelo de gás ideal as moléculas são pontos que não interagem e colidem elasticamente. Pela equipartição, cada grau de liberdade armazena <span data-tex-inline="\tfrac{1}{2}k_B T"></span> por molécula:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Molécula</th><th>Graus de liberdade</th><th>Energia interna</th><th><span data-tex-inline="c_v"></span> molar</th><th>k</th></tr></thead>
+              <tbody>
+                <tr><td>Monoatômica (He, Ar)</td><td>3 de translação</td><td><span data-tex="U = \tfrac{3}{2}nRT"></span></td><td><span data-tex-inline="\tfrac{3}{2}R"></span></td><td>1,667</td></tr>
+                <tr><td>Diatômica (N₂, O₂, ar)</td><td>3 de translação + 2 de rotação</td><td><span data-tex="U = \tfrac{5}{2}nRT"></span></td><td><span data-tex-inline="\tfrac{5}{2}R"></span></td><td>1,40</td></tr>
+                <tr><td>Poliatômica não linear (CH₄, H₂O)</td><td>3 + 3</td><td><span data-tex="U = 3nRT"></span></td><td><span data-tex-inline="3R"></span></td><td>≈ 1,33</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="Pv = RT, \qquad c_p - c_v = R, \qquad k = \frac{c_p}{c_v}"></span></div>
+            <div class="callout note">
+              <strong>A expansão livre de Joule</strong>
+              Um gás que se expande no vácuo, isolado, não troca calor nem realiza trabalho — logo U não muda. Para o gás ideal, a temperatura também não muda: a energia interna depende só de T, não do volume. Um gás real esfria um pouco (as forças de atração entre as moléculas “custam” energia), e o efeito some quando a pressão tende a zero.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Ciclos de potência a vapor — Rankine e suas melhorias</summary>
+          <div class="topic-body">
+            <p>O ciclo de Carnot é impraticável com vapor: comprimir uma mistura líquido-vapor é difícil e a turbina trabalharia com muita umidade. O ciclo de <strong>Rankine</strong> resolve isso superaquecendo o vapor na caldeira e condensando-o totalmente, para bombear só líquido.</p>
+            <div class="formula"><span data-tex="\eta = \frac{w_T - w_B}{q_{ent}} = 1 - \frac{h_4 - h_1}{h_3 - h_2}, \qquad w_B = v_1 (P_2 - P_1)"></span><span class="where">1 saída do condensador · 2 saída da bomba · 3 saída da caldeira · 4 saída da turbina</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Mudança</th><th>Efeito na eficiência</th><th>Efeito colateral</th></tr></thead>
+              <tbody>
+                <tr><td>Baixar a pressão do condensador</td><td>Aumenta: a temperatura média de rejeição cai</td><td>Mais umidade no fim da turbina (x₄ &lt; 0,88–0,90 erode as pás); limite pela água de resfriamento</td></tr>
+                <tr><td>Superaquecer mais o vapor</td><td>Aumenta: a temperatura média de fornecimento sobe</td><td>Limite metalúrgico (~620 °C para aços usuais); melhora o título na saída</td></tr>
+                <tr><td>Aumentar a pressão da caldeira</td><td>Aumenta</td><td>Piora o título na saída da turbina — por isso vem junto com reaquecimento</td></tr>
+                <tr><td>Reaquecimento</td><td>Aumenta pouco (~4 %)</td><td>O grande ganho é o título: permite pressões de caldeira muito altas</td></tr>
+                <tr><td>Regeneração (aquecedores de água de alimentação)</td><td>Aumenta bastante</td><td>Extrai vapor da turbina para pré-aquecer a água: a caldeira fornece calor a temperatura média maior</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>A régua é sempre a temperatura média</strong>
+              Toda melhoria do Rankine faz uma de duas coisas: sobe a temperatura média em que o calor entra ou desce a temperatura média em que o calor sai. É o raciocínio do ciclo de Carnot, <span data-tex-inline="\eta = 1 - T_L/T_H"></span>, aplicado às médias.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Aquecedor de água de alimentação</th><th>Como funciona</th></tr></thead>
+              <tbody>
+                <tr><td>Aberto (de mistura)</td><td>O vapor extraído se mistura com a água; sai líquido saturado na pressão do aquecedor. Barato, exige uma bomba por aquecedor. O desaerador é um aquecedor aberto</td></tr>
+                <tr><td>Fechado (trocador de calor)</td><td>Vapor e água não se misturam; o condensado é drenado para trás (cascata) ou bombeado para frente. Mais caro, dispensa bombas intermediárias</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Ciclos de potência a gás — padrão ar</summary>
+          <div class="topic-body">
+            <p>Motores e turbinas a gás são analisados com as hipóteses do <strong>padrão ar</strong>: o fluido é ar como gás ideal, que circula num ciclo fechado; a combustão vira fornecimento de calor externo e a exaustão vira rejeição de calor. Com calores específicos constantes, é o <strong>padrão ar frio</strong>.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Ciclo</th><th>Máquina</th><th>Processos</th><th>Eficiência (padrão ar frio)</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Otto</strong></td><td>Ignição por centelha</td><td>Compressão e expansão isentrópicas; calor a volume constante</td><td><span data-tex="\eta = 1 - \frac{1}{r^{k-1}}"></span></td></tr>
+                <tr><td><strong>Diesel</strong></td><td>Ignição por compressão</td><td>Calor a pressão constante</td><td><span data-tex="\eta = 1 - \frac{1}{r^{k-1}}\,\frac{r_c^k - 1}{k(r_c - 1)}"></span></td></tr>
+                <tr><td><strong>Brayton</strong></td><td>Turbina a gás</td><td>Compressão e expansão isentrópicas; calor a pressão constante</td><td><span data-tex="\eta = 1 - \frac{1}{r_p^{(k-1)/k}}"></span></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Mesma taxa de compressão, Otto é mais eficiente que Diesel</strong>
+              O fator <span data-tex-inline="(r_c^k - 1)/[k(r_c - 1)]"></span> é sempre maior que 1. O Diesel é mais eficiente na prática porque trabalha com taxas de compressão de 14 a 22, impossíveis no motor a gasolina, que detonaria.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Melhoria do Brayton</th><th>O que faz</th></tr></thead>
+              <tbody>
+                <tr><td>Regeneração</td><td>O gás quente de exaustão pré-aquece o ar comprimido. Só funciona se a exaustão estiver mais quente que a saída do compressor — ou seja, em razões de pressão baixas</td></tr>
+                <tr><td>Resfriamento intermediário (intercooling)</td><td>Comprime em estágios com resfriamento entre eles: menos trabalho de compressão</td></tr>
+                <tr><td>Reaquecimento</td><td>Expande em estágios, queimando combustível entre eles: mais trabalho da turbina</td></tr>
+                <tr><td>Ciclo combinado</td><td>A exaustão a ~550 °C gera vapor para um Rankine: eficiência global acima de 60 %</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="r_{bw} = \frac{w_{comp}}{w_{turb}}"></span><span class="where">razão de trabalho reverso: no Brayton, de 40 a 80 % do trabalho da turbina volta para o compressor</span></div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Refrigeração por compressão de vapor e bomba de calor</summary>
+          <div class="topic-body">
+            <p>O ciclo de refrigeração é o ciclo de potência invertido: gasta trabalho para retirar calor de um meio frio e rejeitá-lo num meio quente. Um refrigerador e uma bomba de calor são a mesma máquina — muda apenas qual dos dois calores é o efeito útil.</p>
+            <div class="formula"><span data-tex="COP_R = \frac{Q_L}{W} = \frac{h_1 - h_4}{h_2 - h_1}, \qquad COP_{BC} = \frac{Q_H}{W} = COP_R + 1"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Componente</th><th>Processo ideal</th><th>Estado de saída</th></tr></thead>
+              <tbody>
+                <tr><td>Compressor</td><td>Isentrópico</td><td>2: vapor superaquecido na pressão do condensador</td></tr>
+                <tr><td>Condensador</td><td>Pressão constante, rejeita Q<sub>H</sub></td><td>3: líquido saturado</td></tr>
+                <tr><td>Válvula de expansão</td><td>Estrangulamento: <span data-tex-inline="h_4 = h_3"></span></td><td>4: mistura de baixo título</td></tr>
+                <tr><td>Evaporador</td><td>Pressão constante, absorve Q<sub>L</sub></td><td>1: vapor saturado</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Por que uma válvula e não uma turbina</strong>
+              O Carnot invertido pediria uma turbina entre 3 e 4. Mas o trabalho recuperado seria pequeno e a turbina de mistura bifásica cara e problemática. A válvula é barata, controla a vazão e só custa alguns por cento de COP — é a única etapa irreversível do ciclo ideal.
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Refrigerante</th><th>Uso</th><th>Observação ambiental</th></tr></thead>
+              <tbody>
+                <tr><td>CFC-12, R-22 (HCFC)</td><td>Antigos</td><td>Destroem a camada de ozônio — banidos pelo Protocolo de Montreal</td></tr>
+                <tr><td>R-134a (HFC)</td><td>Geladeiras, ar-condicionado automotivo</td><td>Não ataca o ozônio, mas GWP ≈ 1 430: em redução pela Emenda de Kigali</td></tr>
+                <tr><td>R-410A</td><td>Ar-condicionado split</td><td>GWP ≈ 2 090</td></tr>
+                <tr><td>R-600a (isobutano), R-290 (propano)</td><td>Geladeiras novas, pequenos sistemas</td><td>GWP ≈ 3, mas inflamáveis: carga limitada</td></tr>
+                <tr><td>Amônia (R-717)</td><td>Frigoríficos industriais</td><td>Excelente termodinamicamente, tóxica</td></tr>
+                <tr><td>CO₂ (R-744)</td><td>Supermercados, bombas de calor</td><td>GWP 1, opera em pressões muito altas (transcrítico)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Ciclo real</strong>
+              O vapor sai do evaporador ligeiramente superaquecido (protege o compressor de líquido), o líquido sai do condensador subresfriado (aumenta o efeito refrigerante), o compressor não é isentrópico e há perdas de carga nas linhas. Para temperaturas muito baixas usam-se sistemas em cascata ou de múltiplos estágios; onde há calor residual barato, a refrigeração por absorção substitui o compressor por uma bomba e um gerador.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Refrigeração a gás</summary>
+          <div class="topic-body">
+            <p>O ciclo Brayton invertido comprime ar, resfria-o à temperatura ambiente e o expande numa turbina, de onde ele sai muito frio. O ar então absorve calor do espaço refrigerado.</p>
+            <div class="formula"><span data-tex="COP_R = \frac{q_L}{w_{comp} - w_{turb}} = \frac{c_p(T_1 - T_4)}{c_p(T_2 - T_1) - c_p(T_3 - T_4)}, \qquad COP_{ideal} = \frac{1}{r_p^{(k-1)/k} - 1}"></span></div>
+            <div class="callout note">
+              <strong>Quando vale a pena</strong>
+              O COP é bem menor que o da compressão de vapor, porque o calor é trocado com temperatura variável e não numa mudança de fase. Mas o sistema é leve, compacto e usa o próprio ar: é o <em>air cycle machine</em> que condiciona a cabine dos aviões a partir do ar sangrado dos motores. Com regenerador, chega a temperaturas criogênicas.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Misturas de gases ideais</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="y_i = \frac{N_i}{N_m}, \qquad mf_i = \frac{m_i}{m_m}, \qquad M_m = \sum y_i M_i, \qquad R_m = \frac{R_u}{M_m}"></span><span class="where">frações molar e mássica, massa molar e constante da mistura</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Modelo</th><th>Hipótese</th><th>Resultado</th></tr></thead>
+              <tbody>
+                <tr><td>Dalton — pressões aditivas</td><td>Cada gás ocupa sozinho o volume inteiro, à temperatura da mistura</td><td><span data-tex="P_i = y_i P_m, \quad P_m = \sum P_i"></span></td></tr>
+                <tr><td>Amagat — volumes aditivos</td><td>Cada gás ocupa seu volume à pressão e temperatura da mistura</td><td><span data-tex="V_i = y_i V_m"></span></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="c_{p,m} = \sum mf_i\,c_{p,i}, \qquad u_m = \sum mf_i\,u_i, \qquad h_m = \sum mf_i\,h_i"></span><span class="where">propriedades extensivas: média ponderada em massa</span></div>
+            <div class="callout warn">
+              <strong>A entropia de cada componente usa a pressão parcial</strong>
+              <span data-tex-inline="\Delta s_i = c_{p,i}\ln\frac{T_2}{T_1} - R_i \ln\frac{P_{i,2}}{P_{i,1}}"></span>. Por isso misturar dois gases diferentes gera entropia mesmo à mesma temperatura e pressão: cada um se expande até ocupar todo o volume.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Psicrometria — o ar atmosférico</summary>
+          <div class="topic-body">
+            <p>O ar atmosférico é ar seco mais vapor d’água. Nas temperaturas de condicionamento o vapor está em pressão parcial tão baixa que se comporta como gás ideal, e a entalpia é a soma das duas parcelas.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Grandeza</th><th>Definição</th></tr></thead>
+              <tbody>
+                <tr><td>Umidade absoluta ω</td><td><span data-tex="\omega = \frac{m_v}{m_a} = \frac{0{,}622\,P_v}{P - P_v}"></span></td></tr>
+                <tr><td>Umidade relativa φ</td><td><span data-tex="\phi = \frac{P_v}{P_g(T)}"></span></td></tr>
+                <tr><td>Entalpia (por kg de ar seco)</td><td><span data-tex="h = 1{,}005\,T + \omega(2501{,}3 + 1{,}82\,T)"></span></td></tr>
+                <tr><td>Ponto de orvalho</td><td>Temperatura de saturação na pressão de vapor: onde começa a condensar ao resfriar a ω constante</td></tr>
+                <tr><td>Bulbo úmido</td><td>Temperatura de um termômetro com bulbo envolto em pano molhado; na prática igual à temperatura de saturação adiabática</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\omega_1 = \frac{c_p(T_2 - T_1) + \omega_2 h_{fg,2}}{h_{g,1} - h_{f,2}}"></span><span class="where">saturação adiabática: com T de bulbo seco e úmido se obtém ω</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Processo</th><th>Na carta</th><th>Balanços</th></tr></thead>
+              <tbody>
+                <tr><td>Aquecimento ou resfriamento simples</td><td>Linha horizontal (ω constante)</td><td><span data-tex-inline="\dot Q = \dot m_a(h_2 - h_1)"></span></td></tr>
+                <tr><td>Aquecimento com umidificação</td><td>Sobe e vai para a direita</td><td>+ água ou vapor injetado</td></tr>
+                <tr><td>Resfriamento com desumidificação</td><td>Horizontal até o orvalho, depois desce pela saturação</td><td><span data-tex-inline="\dot m_w = \dot m_a(\omega_1 - \omega_2)"></span></td></tr>
+                <tr><td>Resfriamento evaporativo</td><td>Sobre a linha de bulbo úmido (h ≈ constante)</td><td>ω aumenta, T cai</td></tr>
+                <tr><td>Mistura adiabática</td><td>Sobre a reta que une os dois estados</td><td>Médias de ω e h ponderadas pela massa de ar seco</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Conforto térmico</strong>
+              A zona de conforto usual fica entre 22 e 27 °C com umidade relativa de 40 a 60 %. Abaixo de ~30 % o ar resseca mucosas; acima de ~70 % o suor não evapora e a sensação é de abafamento, mesmo com temperatura moderada.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Escoamento compressível — estagnação, Mach e bocais</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="h_0 = h + \frac{V^2}{2}, \qquad T_0 = T + \frac{V^2}{2c_p}"></span><span class="where">propriedades de estagnação: o estado alcançado desacelerando o gás adiabaticamente até parar</span></div>
+            <div class="formula"><span data-tex="c = \sqrt{kRT}, \qquad Ma = \frac{V}{c}"></span><span class="where">velocidade do som e número de Mach</span></div>
+            <div class="formula"><span data-tex="\frac{dA}{A} = (Ma^2 - 1)\frac{dV}{V}"></span><span class="where">a relação que explica todo bocal</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th></th><th>Subsônico (Ma &lt; 1)</th><th>Supersônico (Ma &gt; 1)</th></tr></thead>
+              <tbody>
+                <tr><td>Tubeira (acelera, P cai)</td><td>Área diminui — convergente</td><td>Área aumenta — divergente</td></tr>
+                <tr><td>Difusor (desacelera, P sobe)</td><td>Área aumenta</td><td>Área diminui</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Por isso, para ir de subsônico a supersônico, o bocal precisa convergir e depois divergir, com Ma = 1 exatamente na garganta.</p>
+            <div class="formula"><span data-tex="\frac{T^*}{T_0} = \frac{2}{k+1}, \quad \frac{P^*}{P_0} = \left(\frac{2}{k+1}\right)^{\frac{k}{k-1}}"></span><span class="where">para o ar: 0,8333 e 0,5283</span></div>
+            <div class="callout warn">
+              <strong>Bloqueio</strong>
+              Num bocal convergente, baixar a contrapressão aumenta a vazão só até a garganta ficar sônica, com P = 0,5283 P₀ no ar. Daí em diante a vazão não aumenta mais: as ondas de pressão viajam à velocidade do som e não conseguem subir contra um escoamento sônico. É a base das válvulas de alívio e dos bocais sônicos usados como padrão de vazão.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Choque normal e bocais convergente-divergentes</summary>
+          <div class="topic-body">
+            <p>Um choque normal é uma descontinuidade de espessura molecular em que o escoamento passa de supersônico a subsônico. É adiabático — T₀ se conserva — mas fortemente irreversível: a pressão de estagnação cai e a entropia sobe.</p>
+            <div class="formula"><span data-tex="Ma_2^2 = \frac{Ma_1^2 + \frac{2}{k-1}}{\frac{2k}{k-1}Ma_1^2 - 1}, \qquad \frac{P_2}{P_1} = \frac{1 + kMa_1^2}{1 + kMa_2^2}, \qquad T_{02} = T_{01}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Contrapressão P<sub>b</sub></th><th>O que acontece no bocal convergente-divergente</th></tr></thead>
+              <tbody>
+                <tr><td>Pouco abaixo de P₀</td><td>Subsônico em todo o bocal; funciona como Venturi</td></tr>
+                <tr><td>1ª pressão crítica</td><td>Garganta sônica, resto subsônico; vazão máxima</td></tr>
+                <tr><td>Entre a 1ª crítica e a de choque na saída</td><td>Choque normal dentro da parte divergente; quanto menor P<sub>b</sub>, mais a jusante</td></tr>
+                <tr><td>Entre a de choque na saída e a de projeto</td><td>Supersônico até a saída; <strong>sobre-expandido</strong> — choques oblíquos no jato</td></tr>
+                <tr><td>Igual à pressão de projeto</td><td>Expansão perfeita</td></tr>
+                <tr><td>Abaixo da de projeto</td><td><strong>Subexpandido</strong> — ondas de expansão no jato</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Onde isso aparece</strong>
+              Bocais de turbinas a vapor e a gás, tubeiras de foguetes, entradas de ar de aviões supersônicos (difusores), válvulas de segurança e ejetores. Em todos, a mesma pergunta: qual é a razão de pressões e em que ponto o escoamento fica sônico.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Sete modelos interativos e animados, com fórmulas e resolução passo a passo. As propriedades do R-134a e da água vêm das tabelas do Çengel (6ª ed.), as mesmas das listas, e cada modelo foi conferido contra os exemplos resolvidos do livro.</p>
+
+        <div id="sim-rankine" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Suba a pressão da caldeira mantendo a temperatura: a eficiência aumenta, mas o título na saída da turbina cai abaixo de 88 %. Agora escolha a configuração com reaquecimento e veja o título voltar ao seguro.
+        </div>
+
+        <div id="sim-otto-diesel" class="sim"></div>
+
+        <div id="sim-brayton" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Com regenerador, aumente a razão de pressão: a partir de certo ponto o ar sai do compressor mais quente que a exaustão da turbina, e o regenerador passa a atrapalhar.
+        </div>
+
+        <div id="sim-refrigeracao" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          O exemplo 1 reproduz o Exemplo 11-1 do Çengel: COP ≈ 3,97. Suba a pressão do condensador para 1,4 MPa (exemplo 6, condensador sujo) e veja o COP despencar — é por isso que a serpentina atrás da geladeira precisa de ventilação.
+        </div>
+
+        <div id="sim-refrigeracao-ar" class="sim"></div>
+
+        <div id="sim-psicrometria" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          No exemplo 1, o ar sai a 14 °C mas a serpentina retirou 511 kJ/min — dos quais mais da metade foi para condensar água. Baixe a umidade de entrada para 40 % e veja o calor cair para menos da metade, com as mesmas temperaturas.
+        </div>
+
+        <div id="sim-bocal" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Comece com a contrapressão perto de P₀ e desça devagar. Até a 1ª pressão crítica a vazão aumenta; depois ela congela no valor bloqueado e um choque normal aparece na garganta, andando para a saída à medida que a contrapressão cai.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Rankine</td><td><span data-tex="\eta = 1 - \dfrac{h_4 - h_1}{h_3 - h_2}"></span></td><td><span data-tex-inline="w_B = v_1(P_2 - P_1)"></span></td></tr>
+              <tr><td>Otto</td><td><span data-tex="\eta = 1 - r^{1-k}"></span></td><td>r: taxa de compressão</td></tr>
+              <tr><td>Diesel</td><td><span data-tex="\eta = 1 - \dfrac{1}{r^{k-1}}\dfrac{r_c^k - 1}{k(r_c - 1)}"></span></td><td>r<sub>c</sub>: razão de corte</td></tr>
+              <tr><td>Brayton</td><td><span data-tex="\eta = 1 - r_p^{(1-k)/k}"></span></td><td>r<sub>p</sub>: razão de pressão</td></tr>
+              <tr><td>COP do refrigerador</td><td><span data-tex="COP_R = \dfrac{h_1 - h_4}{h_2 - h_1}"></span></td><td>compressão de vapor</td></tr>
+              <tr><td>COP da bomba de calor</td><td><span data-tex="COP_{BC} = COP_R + 1"></span></td><td>mesmas condições</td></tr>
+              <tr><td>Carnot</td><td><span data-tex="COP_{R} = \dfrac{T_L}{T_H - T_L}"></span></td><td>temperaturas em K</td></tr>
+              <tr><td>Refrigeração a gás</td><td><span data-tex="COP = \dfrac{1}{r_p^{(k-1)/k} - 1}"></span></td><td>ideal</td></tr>
+              <tr><td>Mistura</td><td><span data-tex="M_m = \sum y_i M_i, \quad P_i = y_i P"></span></td><td>Dalton</td></tr>
+              <tr><td>Umidade absoluta</td><td><span data-tex="\omega = \dfrac{0{,}622 P_v}{P - P_v}"></span></td><td>kg vapor / kg ar seco</td></tr>
+              <tr><td>Umidade relativa</td><td><span data-tex="\phi = \dfrac{P_v}{P_g}"></span></td><td>—</td></tr>
+              <tr><td>Entalpia do ar úmido</td><td><span data-tex="h = 1{,}005T + \omega(2501{,}3 + 1{,}82T)"></span></td><td>kJ/kg ar seco</td></tr>
+              <tr><td>Estagnação</td><td><span data-tex="\dfrac{T_0}{T} = 1 + \dfrac{k-1}{2}Ma^2"></span></td><td>—</td></tr>
+              <tr><td>Pressão de estagnação</td><td><span data-tex="\dfrac{P_0}{P} = \left(\dfrac{T_0}{T}\right)^{k/(k-1)}"></span></td><td>isentrópico</td></tr>
+              <tr><td>Razão de áreas</td><td><span data-tex="\dfrac{A}{A^*} = \dfrac{1}{Ma}\left[\dfrac{2}{k+1}\left(1 + \dfrac{k-1}{2}Ma^2\right)\right]^{\frac{k+1}{2(k-1)}}"></span></td><td>—</td></tr>
+              <tr><td>Vazão bloqueada</td><td><span data-tex="\dot m = A^* P_0\sqrt{\dfrac{k}{RT_0}}\left(\dfrac{2}{k+1}\right)^{\frac{k+1}{2(k-1)}}"></span></td><td>garganta sônica</td></tr>
+              <tr><td>Choque normal</td><td><span data-tex="\dfrac{P_2}{P_1} = \dfrac{1 + kMa_1^2}{1 + kMa_2^2}"></span></td><td>T₀ constante</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ABNT NBR 16401</strong></td><td>Instalações de ar-condicionado — sistemas centrais e unitários</td><td>Projeto, condições de conforto e qualidade do ar interior</td></tr>
+              <tr><td><strong>ASHRAE 55</strong></td><td>Condições ambientais para conforto térmico</td><td>Faixas de temperatura e umidade na carta psicrométrica</td></tr>
+              <tr><td><strong>ASHRAE 62.1</strong></td><td>Ventilação e qualidade do ar interior</td><td>Vazão de ar externo — o fluxo que entra na mistura</td></tr>
+              <tr><td><strong>ASHRAE 34 / ISO 817</strong></td><td>Designação e classificação de segurança de refrigerantes</td><td>Classes A1, A2L, A3, B2L (toxicidade e inflamabilidade)</td></tr>
+              <tr><td><strong>Protocolo de Montreal e Emenda de Kigali</strong></td><td>Eliminação de substâncias que destroem o ozônio e redução dos HFC</td><td>Escolha do refrigerante</td></tr>
+              <tr><td><strong>ASME PTC 6</strong></td><td>Ensaio de desempenho de turbinas a vapor</td><td>Eficiência real de um ciclo Rankine</td></tr>
+              <tr><td><strong>ASME PTC 22 / ISO 2314</strong></td><td>Ensaio de desempenho de turbinas a gás</td><td>Eficiência e potência de um ciclo Brayton</td></tr>
+              <tr><td><strong>ISO 9300 / ASME MFC-7</strong></td><td>Medição de vazão de gás com bocais Venturi em escoamento crítico</td><td>Aplicação direta do bloqueio: vazão fixada por P₀ e T₀</td></tr>
+              <tr><td><strong>ISO 5167</strong></td><td>Medição de vazão por pressão diferencial (placa de orifício, bocal, Venturi)</td><td>Bocais em regime subsônico</td></tr>
+              <tr><td><strong>NR-13</strong></td><td>Caldeiras, vasos de pressão e tubulações</td><td>Caldeiras de ciclos a vapor e vasos de sistemas frigoríficos</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre ciclos a vapor e a gás, refrigeração, misturas, psicrometria e escoamento compressível.</p>
+        <div id="quiz" data-quiz="termodinamica-2"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>ÇENGEL, Y. A.; BOLES, M. A.</strong> <em>Termodinâmica.</em> McGraw-Hill. — Capítulos 9 a 12, 13, 14 e 17; as tabelas do apêndice são as usadas nos simuladores.</li>
+          <li><strong>MORAN, M. J.; SHAPIRO, H. N.</strong> <em>Princípios de Termodinâmica para Engenharia.</em> LTC. — Ciclos, psicrometria e escoamento compressível.</li>
+          <li><strong>BORGNAKKE, C.; SONNTAG, R. E.</strong> <em>Fundamentos da Termodinâmica.</em> Blucher. — Tratamento clássico dos ciclos e misturas.</li>
+          <li><strong>STOECKER, W. F.; JABARDO, J. M. S.</strong> <em>Refrigeração Industrial.</em> Blucher. — Sistemas frigoríficos reais.</li>
+          <li><strong>ASHRAE</strong> <em>Handbook — Fundamentals.</em> — Psicrometria e propriedades de refrigerantes.</li>
+          <li><strong>ANDERSON, J. D.</strong> <em>Modern Compressible Flow.</em> McGraw-Hill. — Bocais e ondas de choque.</li>
+          <li><strong>Material da disciplina</strong> — capítulos 1 a 5 (revisão, ciclos de potência, refrigeração, misturas e psicrometria, escoamento compressível) e listas de exercícios.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/ciclos.js"></script>
+<script src="../js/sim/termodinamica-2.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  h: ['Entalpia específica', 'kJ/kg', 'no ar úmido, por kg de ar seco'],
+  s: ['Entropia específica', 'kJ/(kg·K)'],
+  v: ['Volume específico', 'm³/kg'],
+  T: ['Temperatura', '°C ou K', 'em razões de temperatura e no COP de Carnot, sempre em K'],
+  P: ['Pressão', 'kPa'],
+  k: ['Razão de calores específicos', '—', 'c_p/c_v: 1,4 para o ar'],
+  r: ['Taxa de compressão', '—', 'V_máx/V_mín no Otto e no Diesel'],
+  x: ['Título', '—', 'fração de vapor na mistura líquido-vapor'],
+  η: ['Eficiência', '—'],
+  ω: ['Umidade absoluta', 'kg vapor/kg ar seco'],
+  φ: ['Umidade relativa', '—', 'P_v/P_g'],
+  V: ['Velocidade', 'm/s', 'ou volume'],
+  c: ['Velocidade do som', 'm/s', '√(kRT)'],
+  A: ['Área da seção', 'm² ou cm²'],
+  R: ['Constante do gás', 'kJ/(kg·K)', 'ar: 0,287'],
+  M: ['Massa molar', 'kg/kmol'],
+  y: ['Fração molar', '—'],
+  W: ['Potência', 'kW'],
+  Q: ['Taxa de calor', 'kW'],
+  N: ['Número de mols', 'kmol'],
+  'Ma': ['Número de Mach', '—', 'V/c'],
+  'COP_R': ['Coeficiente de desempenho do refrigerador', '—', 'Q_L/W'],
+  'COP_BC': ['Coeficiente de desempenho da bomba de calor', '—', 'Q_H/W'],
+  'Q_L': ['Calor retirado do meio frio', 'kW'],
+  'Q_H': ['Calor rejeitado ao meio quente', 'kW'],
+  'T_L': ['Temperatura do meio frio', 'K'],
+  'T_H': ['Temperatura do meio quente', 'K'],
+  'T_0': ['Temperatura de estagnação', 'K'],
+  'P_0': ['Pressão de estagnação', 'kPa'],
+  'P_v': ['Pressão parcial do vapor', 'kPa'],
+  'P_g': ['Pressão de saturação da água', 'kPa', 'na temperatura do ar'],
+  'r_p': ['Razão de pressão', '—'],
+  'r_c': ['Razão de corte', '—', 'V₃/V₂ no Diesel'],
+  'c_p': ['Calor específico a pressão constante', 'kJ/(kg·K)', 'ar: 1,005'],
+  'c_v': ['Calor específico a volume constante', 'kJ/(kg·K)', 'ar: 0,718'],
+  'w_B': ['Trabalho da bomba', 'kJ/kg'],
+  'h_fg': ['Entalpia de vaporização', 'kJ/kg'],
+  'M_m': ['Massa molar da mistura', 'kg/kmol'],
+  'm_a': ['Massa de ar seco', 'kg'],
+  'm_w': ['Massa de água condensada ou adicionada', 'kg']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

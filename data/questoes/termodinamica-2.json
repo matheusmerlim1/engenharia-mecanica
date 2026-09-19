@@ -1,0 +1,533 @@
+{
+ "disciplina": "Termodinâmica II",
+ "slug": "termodinamica-2",
+ "topicos": [
+  {
+   "id": "revisao",
+   "nome": "Revisão e gás ideal"
+  },
+  {
+   "id": "vapor",
+   "nome": "Ciclos de potência a vapor"
+  },
+  {
+   "id": "gas",
+   "nome": "Ciclos de potência a gás"
+  },
+  {
+   "id": "refrigeracao",
+   "nome": "Refrigeração e bomba de calor"
+  },
+  {
+   "id": "misturas",
+   "nome": "Misturas de gases"
+  },
+  {
+   "id": "psicrometria",
+   "nome": "Psicrometria"
+  },
+  {
+   "id": "compressivel",
+   "nome": "Escoamento compressível"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "t2-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "revisao",
+   "enunciado": "<p>Pela equipartição da energia, a energia interna de n mols de um gás ideal monoatômico é:</p>",
+   "alternativas": [
+    "U = 3/2 nRT",
+    "U = 5/2 nRT",
+    "U = nRT",
+    "U = 3 nRT"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O gás monoatômico só tem os 3 graus de liberdade de translação, cada um com ½ k<sub>B</sub>T por molécula: U = 3·(½ nRT). Os diatômicos somam 2 graus de rotação (5/2 nRT) e os poliatômicos não lineares, 3 (3 nRT).</p>"
+  },
+  {
+   "id": "t2-002",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "revisao",
+   "enunciado": "<p>Na expansão livre de Joule, um gás ideal isolado se expande para o vácuo. O que acontece com sua temperatura?</p>",
+   "alternativas": [
+    "Cai, porque o gás realiza trabalho ao se expandir.",
+    "Sobe, porque a entropia aumenta.",
+    "Permanece constante: Q = 0 e W = 0, logo U não muda — e a energia interna do gás ideal só depende de T.",
+    "Cai até o zero absoluto no limite de volume infinito."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Não há fronteira móvel empurrando nada, então W = 0; o sistema é isolado, então Q = 0. Pela primeira lei U é constante e, no gás ideal, U = U(T): a temperatura não muda, embora o volume aumente e a entropia cresça. Um gás real esfria um pouco, por causa das forças de atração entre as moléculas.</p>"
+  },
+  {
+   "id": "t2-003",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "vapor",
+   "enunciado": "<p>No ciclo de Rankine ideal, qual processo acontece na bomba?</p>",
+   "alternativas": [
+    "Expansão isentrópica do vapor",
+    "Rejeição de calor a pressão constante",
+    "Fornecimento de calor a pressão constante",
+    "Compressão isentrópica do líquido"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A bomba eleva a pressão do líquido saturado que sai do condensador até a pressão da caldeira. Como o líquido é quase incompressível, o trabalho é pequeno: w<sub>B</sub> = v(P₂ − P₁), geralmente menos de 1 % do trabalho da turbina.</p>"
+  },
+  {
+   "id": "t2-004",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "vapor",
+   "enunciado": "<p>Estime o trabalho da bomba de um ciclo Rankine que eleva água de <span class=\"dado\">10 kPa</span> para <span class=\"dado\">3 MPa</span>, com <span class=\"dado\">v = 0,00101 m³/kg</span>.</p>",
+   "alternativas": [
+    "30,3 kJ/kg",
+    "3,02 kJ/kg",
+    "3,03 J/kg",
+    "0,303 kJ/kg"
+   ],
+   "correta": 1,
+   "formulas": [
+    "w_B = v (P₂ − P₁)",
+    "kPa·m³/kg = kJ/kg"
+   ],
+   "explicacao": "<div class=\"passo\">w_B = 0,00101 × (3000 − 10)</div><div class=\"passo\">w_B = 0,00101 × 2990 = <strong>3,02 kJ/kg</strong></div><p>É irrisório perto das centenas de kJ/kg que a turbina produz — por isso o Rankine tem razão de trabalho reverso tão baixa. 30,3 kJ/kg usa 30 000 kPa no lugar de 3 000; 0,303 usa 300 kPa.</p>"
+  },
+  {
+   "id": "t2-005",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "vapor",
+   "enunciado": "<p>Reduzir a pressão no condensador de um ciclo Rankine:</p>",
+   "alternativas": [
+    "Aumenta a eficiência, mas aumenta a umidade no fim da expansão, o que erode as pás da turbina.",
+    "Diminui a eficiência, porque o condensador rejeita mais calor.",
+    "Não altera a eficiência, só a potência.",
+    "Aumenta a eficiência e reduz a umidade na saída da turbina."
+   ],
+   "correta": 0,
+   "explicacao": "<p>A temperatura de saturação no condensador cai, e com ela a temperatura média em que o calor é rejeitado — o ciclo se aproxima de Carnot. O efeito colateral é o título na saída da turbina: abaixo de ~88–90 % as gotas de líquido erodem as pás. O limite prático da pressão é a temperatura da água de resfriamento disponível.</p>"
+  },
+  {
+   "id": "t2-006",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "vapor",
+   "enunciado": "<p>Qual é o principal benefício do reaquecimento num ciclo Rankine?</p>",
+   "alternativas": [
+    "Dobrar a eficiência térmica do ciclo.",
+    "Eliminar a necessidade de bomba.",
+    "Permitir pressões de caldeira mais altas sem que o vapor fique úmido demais no fim da expansão.",
+    "Reduzir a temperatura máxima do ciclo."
+   ],
+   "correta": 2,
+   "explicacao": "<p>O ganho direto de eficiência do reaquecimento é modesto, alguns pontos percentuais. O que ele resolve é o título: expandindo em duas etapas com reaquecimento no meio, o vapor chega ao condensador mais seco. Isso libera o uso de pressões de caldeira altas, que é onde está o ganho grande de eficiência.</p>"
+  },
+  {
+   "id": "t2-007",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "vapor",
+   "enunciado": "<p>Num aquecedor de água de alimentação ABERTO de um ciclo regenerativo:</p>",
+   "alternativas": [
+    "O vapor extraído e a água não se misturam; o condensado é drenado para o condensador.",
+    "Não há necessidade de bomba antes nem depois do aquecedor.",
+    "A água é aquecida pelos gases de exaustão da caldeira.",
+    "O vapor extraído da turbina se mistura diretamente com a água de alimentação, que sai como líquido saturado na pressão do aquecedor."
+   ],
+   "correta": 3,
+   "explicacao": "<p>O aquecedor aberto é uma câmara de mistura. Como a mistura precisa estar numa única pressão, é preciso uma bomba antes (para levar o condensado até a pressão do aquecedor) e outra depois (até a pressão da caldeira). O desaerador das usinas é um aquecedor aberto: aproveita a mistura para expulsar gases dissolvidos.</p>"
+  },
+  {
+   "id": "t2-008",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "gas",
+   "enunciado": "<p>Qual a eficiência de um ciclo Otto ideal (padrão ar frio, <span class=\"dado\">k = 1,4</span>) com taxa de compressão <span class=\"dado\">8</span>?</p>",
+   "alternativas": [
+    "87,5 %",
+    "43,5 %",
+    "56,5 %",
+    "24,2 %"
+   ],
+   "correta": 2,
+   "formulas": [
+    "η = 1 − 1/r^(k−1)"
+   ],
+   "explicacao": "<div class=\"passo\">r^(k−1) = 8^0,4 = 2,297</div><div class=\"passo\">η = 1 − 1/2,297 = <strong>56,5 %</strong></div><p>Motores reais a gasolina ficam em 25 a 35 %: atrito, troca de calor, combustão não instantânea e bombeamento. 87,5 % é 1 − 1/8, esquecendo o expoente k − 1.</p>"
+  },
+  {
+   "id": "t2-009",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "gas",
+   "enunciado": "<p>Um ciclo Diesel ideal tem taxa de compressão <span class=\"dado\">18</span> e razão de corte <span class=\"dado\">2</span> (<span class=\"dado\">k = 1,4</span>). Qual sua eficiência?</p>",
+   "alternativas": [
+    "63,2 %",
+    "68,5 %",
+    "76,6 %",
+    "44,4 %"
+   ],
+   "correta": 0,
+   "formulas": [
+    "η = 1 − [1/r^(k−1)] × (r_c^k − 1)/[k (r_c − 1)]"
+   ],
+   "explicacao": "<div class=\"passo\">1/r^(k−1) = 1/18^0,4 = 0,3147</div><div class=\"passo\">(2^1,4 − 1)/[1,4 × (2 − 1)] = 1,171</div><div class=\"passo\">η = 1 − 0,3147 × 1,171 = <strong>63,2 %</strong></div><p>Um Otto com a mesma taxa de 18 teria 68,5 % — mais eficiente. O Diesel ganha na prática porque pode usar taxas que um motor a gasolina não suportaria sem detonar.</p>"
+  },
+  {
+   "id": "t2-010",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "gas",
+   "enunciado": "<p>Uma turbina a gás opera num ciclo Brayton ideal com razão de pressão <span class=\"dado\">10</span> (<span class=\"dado\">k = 1,4</span>). Qual a eficiência térmica?</p>",
+   "alternativas": [
+    "90,0 %",
+    "60,2 %",
+    "19,3 %",
+    "48,2 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "η = 1 − 1/r_p^((k−1)/k)"
+   ],
+   "explicacao": "<div class=\"passo\">(k − 1)/k = 0,2857</div><div class=\"passo\">10^0,2857 = 1,931</div><div class=\"passo\">η = 1 − 1/1,931 = <strong>48,2 %</strong></div><p>No Brayton ideal a eficiência depende só da razão de pressão. 60,2 % usa o expoente k − 1 do Otto; 90 % é 1 − 1/10.</p>"
+  },
+  {
+   "id": "t2-011",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "gas",
+   "enunciado": "<p>Num ciclo Brayton com regenerador, aumentar muito a razão de pressão pode fazer a regeneração:</p>",
+   "alternativas": [
+    "Perder o sentido: o ar sai do compressor mais quente que o gás de exaustão da turbina, e o regenerador passaria a esfriar o ar.",
+    "Aumentar indefinidamente a eficiência.",
+    "Reduzir o trabalho do compressor.",
+    "Eliminar a necessidade de câmara de combustão."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O regenerador transfere calor da exaustão para o ar comprimido. Com r_p alto, T₂ sobe e T₄ desce; quando T₂ > T₄ o calor fluiria no sentido errado. Por isso a regeneração só vale em turbinas de razão de pressão baixa — e, nas de razão alta, o calor da exaustão vai para um ciclo a vapor (ciclo combinado).</p>"
+  },
+  {
+   "id": "t2-012",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "refrigeracao",
+   "enunciado": "<p>Qual o máximo COP de um refrigerador que opera entre um congelador a <span class=\"dado\">−20 °C</span> e uma cozinha a <span class=\"dado\">30 °C</span>?</p>",
+   "alternativas": [
+    "0,400",
+    "5,06",
+    "6,06",
+    "0,165"
+   ],
+   "correta": 1,
+   "formulas": [
+    "COP_R,Carnot = T_L/(T_H − T_L)",
+    "temperaturas em kelvin"
+   ],
+   "explicacao": "<div class=\"passo\">T_L = 253,15 K, T_H = 303,15 K</div><div class=\"passo\">COP = 253,15/(303,15 − 253,15) = 253,15/50 = <strong>5,06</strong></div><p>É o teto termodinâmico. Refrigeradores reais chegam a 1,5–3 nessas condições. 0,400 usa as temperaturas em °C (−20/−50); 6,06 é o COP da bomba de calor (T_H/(T_H − T_L)).</p>"
+  },
+  {
+   "id": "t2-013",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "refrigeracao",
+   "enunciado": "<p>Num ciclo ideal com R-134a: <span class=\"dado\">h₁ = 239,16</span> (saída do evaporador), <span class=\"dado\">h₂ = 275,39</span> (saída do compressor) e <span class=\"dado\">h₃ = 95,47 kJ/kg</span> (saída do condensador). Qual o COP do refrigerador?</p>",
+   "alternativas": [
+    "4,97",
+    "0,252",
+    "6,60",
+    "3,97"
+   ],
+   "correta": 3,
+   "formulas": [
+    "h₄ = h₃ (válvula)",
+    "COP_R = (h₁ − h₄)/(h₂ − h₁)"
+   ],
+   "explicacao": "<div class=\"passo\">h₄ = h₃ = 95,47 kJ/kg</div><div class=\"passo\">q_L = 239,16 − 95,47 = 143,69 kJ/kg</div><div class=\"passo\">w = 275,39 − 239,16 = 36,23 kJ/kg</div><div class=\"passo\">COP = 143,69/36,23 = <strong>3,97</strong></div><p>É o Exemplo 11-1 do Çengel (0,14 e 0,8 MPa). 4,97 é o COP de bomba de calor (q_H/w); 6,60 esquece de descontar h₄ e faz h₁/w.</p>"
+  },
+  {
+   "id": "t2-014",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "refrigeracao",
+   "enunciado": "<p>Por que o ciclo de refrigeração por compressão de vapor usa uma válvula de expansão, e não uma turbina, entre o condensador e o evaporador?</p>",
+   "alternativas": [
+    "Porque a válvula produz mais frio que a turbina.",
+    "Porque a turbina aumentaria a temperatura do refrigerante.",
+    "Porque o trabalho recuperável é pequeno e uma turbina para mistura líquido-vapor seria cara e problemática; a válvula também controla a vazão.",
+    "Porque a segunda lei proíbe turbinas em ciclos de refrigeração."
+   ],
+   "correta": 2,
+   "explicacao": "<p>A expansão do líquido gera pouco trabalho e a turbina teria de lidar com mistura bifásica. A válvula é simples, barata e permite regular a vazão conforme a carga térmica. O custo é uma perda de alguns por cento de COP: o estrangulamento (h₄ = h₃) é a única etapa irreversível do ciclo ideal.</p>"
+  },
+  {
+   "id": "t2-015",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "refrigeracao",
+   "enunciado": "<p>Uma bomba de calor e um refrigerador operam entre as mesmas temperaturas e com o mesmo trabalho. Qual relação é sempre verdadeira?</p>",
+   "alternativas": [
+    "COP_BC = COP_R",
+    "COP_BC = COP_R − 1",
+    "COP_BC = COP_R + 1",
+    "COP_BC = 1/COP_R"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Pela primeira lei, Q_H = Q_L + W. Dividindo por W: Q_H/W = Q_L/W + 1. Por isso o COP de uma bomba de calor é sempre maior que 1 — ela entrega em casa todo o calor retirado de fora mais a energia do compressor.</p>"
+  },
+  {
+   "id": "t2-016",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "refrigeracao",
+   "enunciado": "<p>Num refrigerador real, o condensador está com as aletas sujas e passa a condensar a uma pressão maior. Mantidos o evaporador e a vazão:</p>",
+   "alternativas": [
+    "O COP aumenta, porque o refrigerante sai mais quente.",
+    "O efeito refrigerante aumenta e o trabalho diminui.",
+    "Nada muda, pois o evaporador não foi alterado.",
+    "O trabalho do compressor aumenta e o efeito refrigerante por kg diminui, então o COP cai."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Maior pressão de condensação obriga o compressor a elevar mais a pressão (h₂ maior) e deixa o líquido mais quente antes da válvula (h₃ = h₄ maior, logo q_L = h₁ − h₄ menor). O COP piora pelos dois lados. É por isso que a serpentina atrás da geladeira precisa ser limpa e ventilada.</p>"
+  },
+  {
+   "id": "t2-017",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "refrigeracao",
+   "enunciado": "<p>Um ciclo ideal de refrigeração a ar (Brayton reverso, <span class=\"dado\">k = 1,4</span>) opera com razão de pressão <span class=\"dado\">4</span>. Qual o seu COP?</p>",
+   "alternativas": [
+    "0,486",
+    "3,06",
+    "1,06",
+    "2,06"
+   ],
+   "correta": 3,
+   "formulas": [
+    "COP = 1/[r_p^((k−1)/k) − 1]"
+   ],
+   "explicacao": "<div class=\"passo\">4^0,2857 = 1,486</div><div class=\"passo\">COP = 1/(1,486 − 1) = 1/0,486 = <strong>2,06</strong></div><p>Bem abaixo de um ciclo a vapor nas mesmas temperaturas: o calor é trocado com temperatura variável, não numa mudança de fase. Compensa onde leveza e o uso do próprio ar pesam mais — na cabine dos aviões. 0,486 é o denominador; 3,06 soma 1 como se fosse bomba de calor.</p>"
+  },
+  {
+   "id": "t2-018",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "misturas",
+   "enunciado": "<p>Estime a massa molar do ar tratado como mistura de <span class=\"dado\">79 % de N₂</span> (28,01 kg/kmol) e <span class=\"dado\">21 % de O₂</span> (32,00 kg/kmol), em fração molar.</p>",
+   "alternativas": [
+    "30,01 kg/kmol",
+    "60,01 kg/kmol",
+    "29,16 kg/kmol",
+    "28,85 kg/kmol"
+   ],
+   "correta": 3,
+   "formulas": [
+    "M_m = Σ y_i M_i"
+   ],
+   "explicacao": "<div class=\"passo\">M_m = 0,79 × 28,013 + 0,21 × 31,999</div><div class=\"passo\">M_m = 22,13 + 6,72 = <strong>28,85 kg/kmol</strong></div><p>O valor tabelado para o ar, 28,97, inclui o argônio. 30,01 é a média simples das duas massas molares, sem ponderar; 60,01 é a soma.</p>"
+  },
+  {
+   "id": "t2-019",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "misturas",
+   "enunciado": "<p>Uma mistura de gases ideais está a <span class=\"dado\">200 kPa</span>. Um dos componentes tem fração molar <span class=\"dado\">0,3</span>. Qual a sua pressão parcial pelo modelo de Dalton?</p>",
+   "alternativas": [
+    "60 kPa",
+    "140 kPa",
+    "200 kPa",
+    "667 kPa"
+   ],
+   "correta": 0,
+   "formulas": [
+    "P_i = y_i P_m"
+   ],
+   "explicacao": "<div class=\"passo\">P_i = 0,3 × 200 = <strong>60 kPa</strong></div><p>Pelo modelo de Dalton, cada componente se comporta como se ocupasse sozinho todo o volume à temperatura da mistura. 140 kPa é a pressão parcial dos demais componentes somados.</p>"
+  },
+  {
+   "id": "t2-020",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "misturas",
+   "enunciado": "<p>Dois gases diferentes, à mesma temperatura e pressão, são misturados adiabaticamente numa câmara. A entropia do conjunto:</p>",
+   "alternativas": [
+    "Permanece constante, porque T e P não mudam.",
+    "Diminui, porque a mistura é mais ordenada.",
+    "Aumenta, porque cada gás passa a ocupar o volume total e sua pressão parcial cai.",
+    "Só muda se houver reação química."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Na mistura cada componente se expande da pressão total para a sua pressão parcial: Δs_i = −R_i ln(P_i/P) > 0. A mistura é um processo irreversível espontâneo; separar os gases de volta exige trabalho.</p>"
+  },
+  {
+   "id": "t2-021",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "psicrometria",
+   "enunciado": "<p>O ar de uma sala está a <span class=\"dado\">25 °C</span> e <span class=\"dado\">60 %</span> de umidade relativa, a <span class=\"dado\">101,325 kPa</span>. Com P<sub>g</sub>(25 °C) = 3,1698 kPa, qual a umidade absoluta?</p>",
+   "alternativas": [
+    "0,0201 kg/kg",
+    "0,600 kg/kg",
+    "0,0119 kg/kg de ar seco",
+    "0,0191 kg/kg"
+   ],
+   "correta": 2,
+   "formulas": [
+    "P_v = φ P_g",
+    "ω = 0,622 P_v/(P − P_v)"
+   ],
+   "explicacao": "<div class=\"passo\">P_v = 0,6 × 3,1698 = 1,902 kPa</div><div class=\"passo\">ω = 0,622 × 1,902/(101,325 − 1,902) = <strong>0,0119</strong></div><p>São 11,9 g de vapor por kg de ar seco. 0,0201 é o valor com o ar saturado (φ = 100 %); 0,0191 esquece o fator 0,622.</p>"
+  },
+  {
+   "id": "t2-022",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "psicrometria",
+   "enunciado": "<p>Para o mesmo ar (25 °C, ω = 0,0119 kg/kg), qual a entalpia por kg de ar seco?</p>",
+   "alternativas": [
+    "25,1 kJ/kg",
+    "80,5 kJ/kg",
+    "55,4 kJ/kg",
+    "30,3 kJ/kg"
+   ],
+   "correta": 2,
+   "formulas": [
+    "h = 1,005 T + ω (2501,3 + 1,82 T)"
+   ],
+   "explicacao": "<div class=\"passo\">parcela do ar seco: 1,005 × 25 = 25,1 kJ/kg</div><div class=\"passo\">parcela do vapor: 0,0119 × (2501,3 + 45,5) = 30,3 kJ/kg</div><div class=\"passo\">h = <strong>55,4 kJ/kg</strong></div><p>Pouco mais de 1 % da massa é vapor, mas ele carrega mais da metade da entalpia — é a energia latente. Por isso desumidificar custa mais que resfriar. 25,1 kJ/kg é só o ar seco; 30,3, só o vapor.</p>"
+  },
+  {
+   "id": "t2-023",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "psicrometria",
+   "enunciado": "<p>Ao aquecer o ar de um ambiente sem adicionar nem retirar água:</p>",
+   "alternativas": [
+    "A umidade absoluta fica constante e a relativa diminui.",
+    "A umidade absoluta e a relativa aumentam.",
+    "A umidade absoluta diminui e a relativa aumenta.",
+    "As duas ficam constantes."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Sem água entrando ou saindo, ω não muda. Mas P_g cresce muito com a temperatura, então φ = P_v/P_g cai. É por isso que o aquecimento no inverno resseca o ar e sistemas de calefação costumam ter umidificador.</p>"
+  },
+  {
+   "id": "t2-024",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "psicrometria",
+   "enunciado": "<p>O que é a temperatura de ponto de orvalho?</p>",
+   "alternativas": [
+    "A temperatura de bulbo úmido medida com termômetro de pano molhado.",
+    "A temperatura em que o vapor começa a condensar quando o ar é resfriado a pressão e umidade absoluta constantes.",
+    "A temperatura mínima que um resfriador evaporativo alcança.",
+    "A temperatura em que a umidade relativa vale 50 %."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Resfriando a ω constante, a pressão de vapor não muda; quando T chega à temperatura de saturação correspondente a P_v, começa a condensação. É o que embaça o copo gelado e forma o orvalho nas madrugadas. O limite do resfriador evaporativo é o bulbo úmido, que é diferente.</p>"
+  },
+  {
+   "id": "t2-025",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "psicrometria",
+   "enunciado": "<p>Um resfriador evaporativo funciona muito melhor em clima seco do que em clima úmido porque:</p>",
+   "alternativas": [
+    "A água evapora mais devagar no ar seco.",
+    "O processo segue a linha de bulbo úmido, e no ar seco a diferença entre bulbo seco e bulbo úmido é grande.",
+    "No ar úmido o resfriador passa a aquecer o ar.",
+    "A entalpia do ar seco é maior."
+   ],
+   "correta": 1,
+   "explicacao": "<p>O processo é praticamente adiabático e a entalpia fica quase constante: o ar esfria à custa de evaporar água, e o limite é a temperatura de bulbo úmido. Em clima seco, 35 °C com 20 % de umidade, o bulbo úmido está perto de 19 °C — ganho grande. Em clima úmido os dois quase coincidem e não há o que ganhar.</p>"
+  },
+  {
+   "id": "t2-026",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "compressivel",
+   "enunciado": "<p>Ar escoa a <span class=\"dado\">Ma = 2</span> com temperatura estática de <span class=\"dado\">300 K</span>. Qual a temperatura de estagnação (<span class=\"dado\">k = 1,4</span>)?</p>",
+   "alternativas": [
+    "420 K",
+    "1 500 K",
+    "167 K",
+    "540 K"
+   ],
+   "correta": 3,
+   "formulas": [
+    "T₀/T = 1 + (k − 1)/2 · Ma²"
+   ],
+   "explicacao": "<div class=\"passo\">T₀/T = 1 + 0,2 × 4 = 1,8</div><div class=\"passo\">T₀ = 1,8 × 300 = <strong>540 K</strong></div><p>É a temperatura que um termopar parado dentro do escoamento tende a indicar: o ar desacelera sobre ele e converte energia cinética em entalpia. 420 K usa Ma em vez de Ma²; 167 K divide por 1,8 em vez de multiplicar.</p>"
+  },
+  {
+   "id": "t2-027",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "compressivel",
+   "enunciado": "<p>Um bocal convergente é alimentado por ar a <span class=\"dado\">P₀ = 600 kPa</span>. Abaixo de que contrapressão a vazão deixa de aumentar (<span class=\"dado\">k = 1,4</span>)?</p>",
+   "alternativas": [
+    "317 kPa",
+    "300 kPa",
+    "500 kPa",
+    "158 kPa"
+   ],
+   "correta": 0,
+   "formulas": [
+    "P*/P₀ = [2/(k + 1)]^(k/(k−1))"
+   ],
+   "explicacao": "<div class=\"passo\">P*/P₀ = (2/2,4)^3,5 = 0,5283</div><div class=\"passo\">P* = 0,5283 × 600 = <strong>317 kPa</strong></div><p>Abaixo disso a garganta está sônica e o bocal está bloqueado: nenhuma redução na contrapressão sobe o escoamento. Metade de P₀ (300 kPa) é uma aproximação grosseira e errada para o ar.</p>"
+  },
+  {
+   "id": "t2-028",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "compressivel",
+   "enunciado": "<p>Ar a <span class=\"dado\">Ma₁ = 2,0</span> e <span class=\"dado\">P₁ = 100 kPa</span> atravessa um choque normal (<span class=\"dado\">k = 1,4</span>). Quais são Ma₂ e P₂?</p>",
+   "alternativas": [
+    "Ma₂ = 0,500 e P₂ = 200 kPa",
+    "Ma₂ = 0,577 e P₂ = 450 kPa",
+    "Ma₂ = 1,00 e P₂ = 128 kPa",
+    "Ma₂ = 0,577 e P₂ = 22,2 kPa"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Ma₂² = (Ma₁² + 2/(k−1)) / (2k Ma₁²/(k−1) − 1)",
+    "P₂/P₁ = (1 + k Ma₁²)/(1 + k Ma₂²)"
+   ],
+   "explicacao": "<div class=\"passo\">Ma₂² = (4 + 5)/(7 × 4 − 1) = 9/27 = 0,3333 → Ma₂ = 0,5774</div><div class=\"passo\">P₂/P₁ = (1 + 1,4 × 4)/(1 + 1,4 × 0,3333) = 6,6/1,4667 = 4,500</div><div class=\"passo\">P₂ = <strong>450 kPa</strong></div><p>Confere com a tabela A-33 (0,5774 e 4,500). O choque é uma compressão brusca: a pressão sobe 4,5 vezes, mas a pressão de estagnação cai para 72 % — é a irreversibilidade. 22,2 kPa divide em vez de multiplicar.</p>"
+  },
+  {
+   "id": "t2-029",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "compressivel",
+   "enunciado": "<p>Para acelerar um gás de subsônico a supersônico, o bocal precisa ser:</p>",
+   "alternativas": [
+    "Só convergente.",
+    "Só divergente.",
+    "Convergente e depois divergente, com Ma = 1 na garganta.",
+    "De área constante e muito longo."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Pela relação dA/A = (Ma² − 1) dV/V, no subsônico a velocidade cresce quando a área diminui, e no supersônico quando a área aumenta. A passagem por Ma = 1 só pode acontecer onde dA = 0, isto é, na garganta. É o bocal de Laval, das turbinas a vapor e dos foguetes.</p>"
+  },
+  {
+   "id": "t2-030",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "compressivel",
+   "enunciado": "<p>Sobre um choque normal, é correto afirmar:</p>",
+   "alternativas": [
+    "É isentrópico e reversível.",
+    "A temperatura de estagnação se conserva, mas a pressão de estagnação diminui e a entropia aumenta.",
+    "O escoamento passa de subsônico a supersônico.",
+    "A pressão estática diminui através do choque."
+   ],
+   "correta": 1,
+   "explicacao": "<p>O choque é adiabático e sem trabalho, então h₀ — e T₀ num gás ideal — se conserva. Mas é fortemente irreversível: a entropia sobe e P₀ cai. O escoamento sempre passa de supersônico a subsônico, e a pressão estática aumenta; o contrário violaria a segunda lei.</p>"
+  }
+ ]
+}

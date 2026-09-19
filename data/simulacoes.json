@@ -1,0 +1,742 @@
+{
+  "simulacoes": [
+    {
+      "id": "sim-trelica",
+      "slug": "estatica",
+      "disciplina": "Estática",
+      "periodo": "3",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Treliça plana — método dos nós",
+      "resumo": "O sistema de equilíbrio de todos os nós é montado e resolvido de uma vez.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-equilibrio",
+      "slug": "estatica",
+      "disciplina": "Estática",
+      "periodo": "3",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Equilíbrio de corpo rígido — reações de apoio",
+      "resumo": "Três equações no plano, três incógnitas. Mude as cargas e veja as reações se ajustarem, com a verificação de equilíbrio sempre fechando.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-atrito",
+      "slug": "estatica",
+      "disciplina": "Estática",
+      "periodo": "3",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Atrito — bloco em plano inclinado",
+      "resumo": "O ângulo de atrito decide tudo: abaixo dele o bloco fica parado sozinho; acima, escorrega.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-centroide",
+      "slug": "estatica",
+      "disciplina": "Estática",
+      "periodo": "3",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Centroide e momento de inércia de seção composta",
+      "resumo": "Monte um perfil com três retângulos e acompanhe o centroide e o momento de inércia.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-cristal",
+      "slug": "ciencia-dos-materiais-1",
+      "disciplina": "Ciência dos Materiais I",
+      "periodo": "4",
+      "materia": "Materiais",
+      "titulo": "Estruturas cristalinas e o fator de empacotamento",
+      "resumo": "CS, CCC, CFC e HC lado a lado, com a célula girando.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-fec",
+      "slug": "ciencia-dos-materiais-1",
+      "disciplina": "Ciência dos Materiais I",
+      "periodo": "4",
+      "materia": "Materiais",
+      "titulo": "Diagrama ferro-carbono — resfriamento lento animado",
+      "resumo": "Escolha o teor de carbono e desça a temperatura: o ponto caminha pelo diagrama, as fases mudam e a microestrutura se forma junto, do líquido até a perlita.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-elementos",
+      "slug": "ciencia-dos-materiais-1",
+      "disciplina": "Ciência dos Materiais I",
+      "periodo": "4",
+      "materia": "Materiais",
+      "titulo": "O que os elementos de liga fazem com o diagrama Fe-C",
+      "resumo": "Nenhum elemento deixa o diagrama intacto.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-isomorfo",
+      "slug": "ciencia-dos-materiais-1",
+      "disciplina": "Ciência dos Materiais I",
+      "periodo": "4",
+      "materia": "Materiais",
+      "titulo": "Liga isomorfa Cu-Ni — solidificação e regra da alavanca",
+      "resumo": "O caso mais simples de diagrama binário: cobre e níquel se dissolvem um no outro em qualquer proporção, sólidos ou líquidos.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-discordancias",
+      "slug": "ciencia-dos-materiais-1",
+      "disciplina": "Ciência dos Materiais I",
+      "periodo": "4",
+      "materia": "Materiais",
+      "titulo": "Discordâncias e os quatro mecanismos de endurecimento",
+      "resumo": "Deformar plasticamente um metal é mover discordâncias.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-difusao",
+      "slug": "ciencia-dos-materiais-1",
+      "disciplina": "Ciência dos Materiais I",
+      "periodo": "4",
+      "materia": "Materiais",
+      "titulo": "Difusão — cementação e a 2ª lei de Fick",
+      "resumo": "Endurecer a superfície sem endurecer o núcleo: é assim que se faz uma engrenagem que resiste ao desgaste nos dentes e absorve impacto no corpo.",
+      "ordem": 5
+    },
+    {
+      "id": "sim-ttt",
+      "slug": "ciencia-dos-materiais-2",
+      "disciplina": "Ciência dos Materiais II",
+      "periodo": "5",
+      "materia": "Materiais",
+      "titulo": "Curvas TTT e CCT — o que se forma depende da velocidade",
+      "resumo": "O diagrama de equilíbrio só prevê perlita.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-temperabilidade",
+      "slug": "ciencia-dos-materiais-2",
+      "disciplina": "Ciência dos Materiais II",
+      "periodo": "5",
+      "materia": "Materiais",
+      "titulo": "Temperabilidade — ensaio Jominy e diâmetro crítico",
+      "resumo": "Temperabilidade não é dureza: é a PROFUNDIDADE até onde a dureza chega.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-revenimento",
+      "slug": "ciencia-dos-materiais-2",
+      "disciplina": "Ciência dos Materiais II",
+      "periodo": "5",
+      "materia": "Materiais",
+      "titulo": "Revenimento — trocar dureza por tenacidade",
+      "resumo": "Martensita recém-temperada é dura e quebradiça demais para uso.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-corrosao",
+      "slug": "ciencia-dos-materiais-2",
+      "disciplina": "Ciência dos Materiais II",
+      "periodo": "5",
+      "materia": "Materiais",
+      "titulo": "Corrosão galvânica e proteção catódica",
+      "resumo": "Dois metais diferentes em contato dentro de um eletrólito formam uma pilha.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-viga",
+      "slug": "mecanica-dos-materiais",
+      "disciplina": "Mecânica dos Materiais",
+      "periodo": "5",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Viga — cortante, momento fletor e linha elástica",
+      "resumo": "Escolha a vinculação, o carregamento e a seção.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-tensao",
+      "slug": "mecanica-dos-materiais",
+      "disciplina": "Mecânica dos Materiais",
+      "periodo": "5",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Ensaio de tração — curva tensão × deformação",
+      "resumo": "Compare materiais e leia na curva o que cada propriedade significa: rigidez, escoamento, encruamento, resiliência e tenacidade.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-torcao",
+      "slug": "mecanica-dos-materiais",
+      "disciplina": "Mecânica dos Materiais",
+      "periodo": "5",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Torção de eixo circular",
+      "resumo": "A tensão de cisalhamento cresce linearmente do centro para a superfície.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-flexao",
+      "slug": "mecanica-dos-materiais",
+      "disciplina": "Mecânica dos Materiais",
+      "periodo": "5",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Flexão — tensão normal e cisalhante na seção",
+      "resumo": "σ = M·y/I é linear e máxima nas fibras extremas; τ = VQ/(I·t) é parabólica e máxima na linha neutra.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-rankine",
+      "slug": "termodinamica-2",
+      "disciplina": "Termodinâmica II",
+      "periodo": "6",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Ciclo Rankine — a usina a vapor por dentro",
+      "resumo": "O esquema à esquerda é a instalação de verdade: o vapor escoa, a chama aquece, a turbina gira e a cor das partículas é a temperatura do fluido.",
+      "ordem": 0,
+      "tambem": [
+        {
+          "slug": "termodinamica",
+          "disciplina": "Termodinâmica"
+        }
+      ]
+    },
+    {
+      "id": "sim-otto-diesel",
+      "slug": "termodinamica-2",
+      "disciplina": "Termodinâmica II",
+      "periodo": "6",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Ciclos Otto e Diesel — o motor por dentro",
+      "resumo": "O pistão desce e sobe de verdade, a vela solta faísca no ponto certo, o injetor pulveriza combustível, e o ponto correspondente anda pelos diagramas p-v e T-s ao mesmo tempo.",
+      "ordem": 1,
+      "tambem": [
+        {
+          "slug": "termodinamica",
+          "disciplina": "Termodinâmica"
+        }
+      ]
+    },
+    {
+      "id": "sim-brayton",
+      "slug": "termodinamica-2",
+      "disciplina": "Termodinâmica II",
+      "periodo": "6",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Ciclo Brayton — a turbina a gás",
+      "resumo": "Compressor e turbina no mesmo eixo: boa parte do que a turbina produz é consumida ali mesmo para comprimir o ar.",
+      "ordem": 2,
+      "tambem": [
+        {
+          "slug": "termodinamica",
+          "disciplina": "Termodinâmica"
+        }
+      ]
+    },
+    {
+      "id": "sim-saturacao",
+      "slug": "termodinamica",
+      "disciplina": "Termodinâmica",
+      "periodo": "5",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Substância pura — diagramas T-v e P-v da água",
+      "resumo": "O domo de saturação separa líquido comprimido, mistura e vapor superaquecido.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-processo",
+      "slug": "termodinamica",
+      "disciplina": "Termodinâmica",
+      "periodo": "5",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Processo politrópico de gás ideal — 1ª lei",
+      "resumo": "P·Vⁿ = constante descreve os quatro processos clássicos com um único parâmetro.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-carnot",
+      "slug": "termodinamica",
+      "disciplina": "Termodinâmica",
+      "periodo": "5",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Segunda lei — Carnot, refrigerador e bomba de calor",
+      "resumo": "O rendimento de Carnot é o teto imposto pela segunda lei.",
+      "ordem": 5
+    },
+    {
+      "id": "sim-entropia",
+      "slug": "termodinamica",
+      "disciplina": "Termodinâmica",
+      "periodo": "5",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Geração de entropia e trabalho perdido",
+      "resumo": "Transferir calor por uma diferença finita de temperatura destrói potencial de trabalho.",
+      "ordem": 6
+    },
+    {
+      "id": "sim-livre",
+      "slug": "vibracoes",
+      "disciplina": "Vibrações",
+      "periodo": "5",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Vibração livre de 1 grau de liberdade",
+      "resumo": "O fator de amortecimento ζ decide o comportamento inteiro: abaixo de 1 o sistema oscila, acima de 1 apenas retorna.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-forcada",
+      "slug": "vibracoes",
+      "disciplina": "Vibrações",
+      "periodo": "5",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Resposta a excitação harmônica — ressonância",
+      "resumo": "O fator de amplificação mostra quanto a resposta supera a deflexão estática.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-isolamento",
+      "slug": "vibracoes",
+      "disciplina": "Vibrações",
+      "periodo": "5",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Isolamento de vibração — transmissibilidade",
+      "resumo": "Só há isolamento acima de r = √2. Abaixo disso, o isolador AMPLIFICA a transmissão.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-2gdl",
+      "slug": "vibracoes",
+      "disciplina": "Vibrações",
+      "periodo": "5",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Dois graus de liberdade e absorvedor dinâmico",
+      "resumo": "Cada grau de liberdade acrescenta uma frequência natural e um modo de vibrar.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-balanceamento",
+      "slug": "vibracoes",
+      "disciplina": "Vibrações",
+      "periodo": "5",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Balanceamento estático e dinâmico",
+      "resumo": "Duas massas desbalanceadas em planos diferentes.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-fadiga",
+      "slug": "elementos-de-maquina",
+      "disciplina": "Elementos de Máquina I",
+      "periodo": "6",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Limite de resistência à fadiga — fatores de Marin",
+      "resumo": "Se = ka·kb·kc·kd·ke·Se′. Veja quanto o corpo de prova de laboratório perde ",
+      "ordem": 0
+    },
+    {
+      "id": "sim-goodman",
+      "slug": "elementos-de-maquina",
+      "disciplina": "Elementos de Máquina I",
+      "periodo": "6",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Diagrama de fadiga com tensão média",
+      "resumo": "Ponto de operação (σm, σa) contra os quatro critérios clássicos.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-parafuso",
+      "slug": "elementos-de-maquina",
+      "disciplina": "Elementos de Máquina I",
+      "periodo": "6",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Junta parafusada pré-carregada",
+      "resumo": "Rigidez do parafuso e dos membros, constante da junta C, pré-carga e torque de aperto.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-solda",
+      "slug": "elementos-de-maquina",
+      "disciplina": "Elementos de Máquina I",
+      "periodo": "6",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Solda de filete sob carga excêntrica",
+      "resumo": "Método do momento polar de inércia unitário: J = 0,707·h·Ju.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-perda-carga",
+      "slug": "mecanica-dos-fluidos",
+      "disciplina": "Mecânica dos Fluidos",
+      "periodo": "6",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Perda de carga em tubulação",
+      "resumo": "Darcy-Weisbach com fator de atrito de Colebrook-White, mais as perdas localizadas dos acessórios.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-moody",
+      "slug": "mecanica-dos-fluidos",
+      "disciplina": "Mecânica dos Fluidos",
+      "periodo": "6",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Diagrama de Moody",
+      "resumo": "O mapa do fator de atrito. Mova o ponto de operação e veja quando f deixa de depender de Re e passa a depender só da rugosidade.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-bernoulli",
+      "slug": "mecanica-dos-fluidos",
+      "disciplina": "Mecânica dos Fluidos",
+      "periodo": "6",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Bernoulli em um Venturi",
+      "resumo": "Estreitar a seção acelera o fluido e derruba a pressão.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-hidrostatica",
+      "slug": "mecanica-dos-fluidos",
+      "disciplina": "Mecânica dos Fluidos",
+      "periodo": "6",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Força hidrostática em comporta plana",
+      "resumo": "A pressão cresce linearmente com a profundidade, então a resultante não age no centroide: ela desce para o centro de pressão.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-mohr",
+      "slug": "mecanica-dos-materiais-2",
+      "disciplina": "Mecânica dos Materiais II",
+      "periodo": "6",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Círculo de Mohr — estado plano de tensões",
+      "resumo": "Ajuste o estado de tensão e gire o elemento.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-flambagem",
+      "slug": "mecanica-dos-materiais-2",
+      "disciplina": "Mecânica dos Materiais II",
+      "periodo": "6",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Flambagem de colunas — Euler x Johnson",
+      "resumo": "A hipérbole de Euler só vale acima da esbeltez de transição.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-vaso",
+      "slug": "mecanica-dos-materiais-2",
+      "disciplina": "Mecânica dos Materiais II",
+      "periodo": "6",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Vaso de pressão — parede fina x parede espessa (Lamé)",
+      "resumo": "Aumente a espessura e veja a hipótese de parede fina se afastar da solução exata de Lamé.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-criterios",
+      "slug": "mecanica-dos-materiais-2",
+      "disciplina": "Mecânica dos Materiais II",
+      "periodo": "6",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Critérios de falha estática no plano σ1–σ2",
+      "resumo": "O ponto de operação dentro da envoltória significa n > 1.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-roseta",
+      "slug": "mecanica-dos-materiais-2",
+      "disciplina": "Mecânica dos Materiais II",
+      "periodo": "6",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Roseta de extensômetros — das três leituras ao estado de tensão",
+      "resumo": "Um extensômetro mede deformação em uma direção só.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-refrigeracao",
+      "slug": "termodinamica-2",
+      "disciplina": "Termodinâmica II",
+      "periodo": "6",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Refrigeração por compressão de vapor — R-134a",
+      "resumo": "O refrigerante ferve no evaporador a baixa pressão, roubando calor do espaço frio; o compressor eleva a pressão para que ele condense acima da temperatura ambiente e devolva esse calor fora.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-refrigeracao-ar",
+      "slug": "termodinamica-2",
+      "disciplina": "Termodinâmica II",
+      "periodo": "6",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Refrigeração a gás — o ciclo Brayton invertido",
+      "resumo": "Em vez de evaporar um líquido, comprime-se ar, resfria-se o ar comprimido até perto da temperatura ambiente e expande-se numa turbina: ele sai muito frio.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-psicrometria",
+      "slug": "termodinamica-2",
+      "disciplina": "Termodinâmica II",
+      "periodo": "6",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Psicrometria — carta interativa e processos de ar-condicionado",
+      "resumo": "O ar atmosférico é uma mistura de ar seco e vapor d’água.",
+      "ordem": 5
+    },
+    {
+      "id": "sim-bocal",
+      "slug": "termodinamica-2",
+      "disciplina": "Termodinâmica II",
+      "periodo": "6",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Escoamento compressível — bocal convergente-divergente",
+      "resumo": "Abaixando a pressão de saída, o escoamento acelera até a garganta ficar sônica — daí em diante a vazão não aumenta mais (bocal bloqueado).",
+      "ordem": 6
+    },
+    {
+      "id": "sim-engrenamento",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Engrenamento de dentes retos — evolvente e linha de ação",
+      "resumo": "Dois perfis em evolvente desenhados a partir do módulo, do número de dentes e do ângulo de pressão.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-trens",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Trens de engrenagens — composto e planetário",
+      "resumo": "No trem composto a relação é o produto das relações de cada par, o que permite grandes reduções em pouco espaço.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-intermediaria",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Forças no engrenamento — pinhão, intermediária e coroa",
+      "resumo": "A força entre dentes age ao longo da linha de ação e se decompõe em tangencial (transmite o torque) e radial (só afasta as engrenagens).",
+      "ordem": 2
+    },
+    {
+      "id": "sim-agma",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Tensões nos dentes — AGMA flexão e contato",
+      "resumo": "A equação de Lewis trata o dente como uma viga em balanço; a AGMA a corrige com o fator geométrico J e com fatores de dinâmica, distribuição de carga, aplicação, tamanho e borda.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-mola",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Mola helicoidal de compressão — rigidez, tensão e fadiga",
+      "resumo": "A mola é uma barra de torção enrolada: a força axial vira torque no fio.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-freio",
+      "slug": "elementos-de-maquina-2",
+      "disciplina": "Elementos de Máquina II",
+      "periodo": "7",
+      "materia": "Projeto de Máquinas e Vibrações",
+      "titulo": "Freios e embreagens — disco e cinta",
+      "resumo": "Numa embreagem de disco o torque depende de como a pressão se distribui: disco novo tem pressão uniforme; depois de amaciado, o desgaste uniforme concentra pressão perto do raio interno e é a hipótese mais conservadora.",
+      "ordem": 5
+    },
+    {
+      "id": "sim-parede",
+      "slug": "transferencia-de-calor",
+      "disciplina": "Transferência de Calor",
+      "periodo": "7",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "1. Condução em parede composta — analogia elétrica",
+      "resumo": "Resistências em série: películas de convecção + camadas de condução.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-aleta",
+      "slug": "transferencia-de-calor",
+      "disciplina": "Transferência de Calor",
+      "periodo": "7",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "2. Aleta — perfil de temperatura, eficiência e efetividade",
+      "resumo": "Compare as três condições de ponta, veja o parâmetro mL saturar a eficiência e descubra a partir de quando a aleta deixa de compensar.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-trocador",
+      "slug": "transferencia-de-calor",
+      "disciplina": "Transferência de Calor",
+      "periodo": "7",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "3. Trocador de calor — MLDT e ε-NUT",
+      "resumo": "Os dois métodos no mesmo modelo. Veja o perfil de temperatura que explica a vantagem do contracorrente e onde o paralelo trava por cruzamento de temperatura.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-radiacao",
+      "slug": "transferencia-de-calor",
+      "disciplina": "Transferência de Calor",
+      "periodo": "7",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "4. Radiação térmica — Planck, Wien e troca entre superfícies cinzas",
+      "resumo": "A distribuição espectral com o pico de Wien marcado e a troca líquida entre duas superfícies cinzas, comparada lado a lado com a convecção.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-petroleo",
+      "slug": "refino",
+      "disciplina": "Refino de Petróleo",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Caracterização do petróleo — °API, curva PEV e rendimento dos cortes",
+      "resumo": "Não existem dois petróleos iguais. A densidade diz se ele é leve ou pesado; a curva de ponto de ebulição verdadeiro (PEV) diz quanto de cada derivado ele pode dar.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-torre",
+      "slug": "refino",
+      "disciplina": "Refino de Petróleo",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Destilação atmosférica — forno, zona de flash e retiradas laterais",
+      "resumo": "O cru sai do forno parcialmente vaporizado e se separa na zona de flash: o vapor sobe e é fracionado nos pratos, o líquido desce e vira resíduo.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-vacuo",
+      "slug": "refino",
+      "disciplina": "Refino de Petróleo",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Destilação a vácuo — ferver o gasóleo sem craquear o resíduo",
+      "resumo": "O resíduo atmosférico ainda tem 40 a 60 % de gasóleo, mas para destilá-lo a 1 atm seria preciso passar de 500 °C — e ele craquearia antes.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-fcc",
+      "slug": "refino",
+      "disciplina": "Refino de Petróleo",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "FCC — craqueamento catalítico em leito fluidizado",
+      "resumo": "O catalisador circula entre o riser, onde craqueia o gasóleo e se cobre de coque, e o regenerador, onde o coque é queimado.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-hds",
+      "slug": "refino",
+      "disciplina": "Refino de Petróleo",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Hidrodessulfurização — do diesel S-1800 ao S-10",
+      "resumo": "O enxofre do diesel sai reagindo com hidrogênio sobre um catalisador de cobalto-molibdênio ou níquel-molibdênio, em alta pressão.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-rotor",
+      "slug": "bombas-e-compressores",
+      "disciplina": "Bombas e Compressores",
+      "periodo": "0",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Rotor centrífugo — equação de Euler",
+      "resumo": "A altura que a bomba gera nasce de uma coisa só: a velocidade tangencial que o rotor entrega ao líquido.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-instalacao",
+      "slug": "bombas-e-compressores",
+      "disciplina": "Bombas e Compressores",
+      "periodo": "0",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Instalação de recalque — ponto de operação e cavitação",
+      "resumo": "A bomba não escolhe a vazão: ela é imposta pelo cruzamento da curva da bomba com a curva do sistema.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-associacao",
+      "slug": "bombas-e-compressores",
+      "disciplina": "Bombas e Compressores",
+      "periodo": "0",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Associação de bombas e leis de semelhança",
+      "resumo": "Duas bombas em paralelo não dobram a vazão, e duas em série não dobram a altura útil: quem decide é a curva do sistema.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-compressor",
+      "slug": "bombas-e-compressores",
+      "disciplina": "Bombas e Compressores",
+      "periodo": "0",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Compressor alternativo — diagrama p-V animado",
+      "resumo": "O pistão se move de verdade e o ponto anda pelo diagrama p-V junto com ele.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-turbina",
+      "slug": "bombas-e-compressores",
+      "disciplina": "Bombas e Compressores",
+      "periodo": "0",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Turbina hidráulica gerando energia",
+      "resumo": "A mesma queda pode virar Pelton ou Francis — quem decide é a rotação específica.",
+      "ordem": 4
+    },
+    {
+      "id": "sim-plataformas",
+      "slug": "instalacoes-e-offshore",
+      "disciplina": "Instalações e Offshore",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Tipos de plataforma — lâmina d’água, movimento e escolha do conceito",
+      "resumo": "Plataforma fixa resiste à onda; plataforma flutuante tenta não responder a ela.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-ondas",
+      "slug": "instalacoes-e-offshore",
+      "disciplina": "Instalações e Offshore",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Ondas lineares (Airy) — comprimento, órbitas e energia",
+      "resumo": "Numa onda, a água não viaja: cada partícula gira numa órbita e volta ao lugar.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-morison",
+      "slug": "instalacoes-e-offshore",
+      "disciplina": "Instalações e Offshore",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Equação de Morison — onda e corrente numa perna de jaqueta",
+      "resumo": "Para um membro esbelto, a força da onda é a soma de duas parcelas defasadas 90°: arrasto, proporcional ao quadrado da velocidade, e inércia, proporcional à aceleração.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-ancoragem",
+      "slug": "instalacoes-e-offshore",
+      "disciplina": "Instalações e Offshore",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Ancoragem — catenária x taut-leg",
+      "resumo": "Na catenária, é o peso da linha que segura a plataforma: ela se afasta, levanta amarra do fundo e o peso suspenso aumenta a tração.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-processo",
+      "slug": "instalacoes-e-offshore",
+      "disciplina": "Instalações e Offshore",
+      "periodo": "0",
+      "materia": "Petróleo e Offshore",
+      "titulo": "Processamento primário — separar óleo, gás e água no convés",
+      "resumo": "Do poço chega uma mistura de óleo, gás, água e areia.",
+      "ordem": 4
+    }
+  ]
+}

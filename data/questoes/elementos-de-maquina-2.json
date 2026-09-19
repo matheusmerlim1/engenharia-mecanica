@@ -1,0 +1,545 @@
+{
+ "disciplina": "Elementos de Máquina II",
+ "slug": "elementos-de-maquina-2",
+ "topicos": [
+  {
+   "id": "geometria",
+   "nome": "Geometria do engrenamento"
+  },
+  {
+   "id": "trens",
+   "nome": "Trens de engrenagens"
+  },
+  {
+   "id": "forcas",
+   "nome": "Forças nas engrenagens"
+  },
+  {
+   "id": "flexao",
+   "nome": "Tensões de flexão (AGMA)"
+  },
+  {
+   "id": "contato",
+   "nome": "Tensões de contato"
+  },
+  {
+   "id": "molas",
+   "nome": "Molas helicoidais"
+  },
+  {
+   "id": "freios",
+   "nome": "Freios e embreagens"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "em2-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "geometria",
+   "enunciado": "<p>A lei fundamental do engrenamento exige que:</p>",
+   "alternativas": [
+    "A normal comum aos perfis no ponto de contato passe sempre pelo mesmo ponto da linha de centros (o ponto primitivo).",
+    "Os dois perfis tenham o mesmo número de dentes.",
+    "O ângulo de pressão seja exatamente 20°.",
+    "Os dentes nunca escorreguem uns sobre os outros."
+   ],
+   "correta": 0,
+   "explicacao": "<p>É essa condição que garante relação de velocidades angulares constante. Perfis que a satisfazem são chamados conjugados; a evolvente é o perfil conjugado usado na prática. Os dentes escorregam, sim: só no ponto primitivo o movimento relativo é de rolamento puro.</p>"
+  },
+  {
+   "id": "em2-002",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "geometria",
+   "enunciado": "<p>Por que o perfil evolvente é praticamente universal nas engrenagens de transmissão?</p>",
+   "alternativas": [
+    "Porque elimina totalmente o escorregamento entre os dentes.",
+    "Porque só ele permite razão de contato maior que 2.",
+    "Porque a relação de velocidades continua exata mesmo com pequenos erros na distância entre centros, e porque uma ferramenta de flancos retos o gera para qualquer número de dentes.",
+    "Porque dispensa lubrificação."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Na evolvente, a relação de velocidades depende só da razão entre os círculos de base, que são fixos. Se os eixos se afastam, muda o ângulo de pressão de operação, mas não a relação. E a cremalheira de referência, de flancos retos, gera evolventes — o que torna a fabricação por geração (fresa caracol, cremalheira) simples e barata.</p>"
+  },
+  {
+   "id": "em2-003",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "geometria",
+   "enunciado": "<p>Duas engrenagens de dentes retos só podem engrenar corretamente se tiverem:</p>",
+   "alternativas": [
+    "O mesmo diâmetro primitivo.",
+    "O mesmo número de dentes.",
+    "O mesmo módulo e o mesmo ângulo de pressão.",
+    "A mesma largura de face."
+   ],
+   "correta": 2,
+   "explicacao": "<p>O passo de base, p·cos φ = π·m·cos φ, precisa ser igual nas duas para que os dentes se encaixem sucessivamente ao longo da linha de ação. Diâmetros e números de dentes diferentes são justamente o que dá a relação de transmissão.</p>"
+  },
+  {
+   "id": "em2-004",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "geometria",
+   "enunciado": "<p>Um pinhão de <span class=\"dado\">20 dentes</span> engrena com uma coroa de <span class=\"dado\">50 dentes</span>, módulo <span class=\"dado\">3 mm</span>. Qual é a distância entre centros?</p>",
+   "alternativas": [
+    "210 mm",
+    "70 mm",
+    "52,5 mm",
+    "105 mm"
+   ],
+   "correta": 3,
+   "formulas": [
+    "d = m·N",
+    "C = (d_p + d_g)/2"
+   ],
+   "explicacao": "<div class=\"passo\">d<sub>p</sub> = 3 × 20 = 60 mm; d<sub>g</sub> = 3 × 50 = 150 mm</div><div class=\"passo\">C = (60 + 150)/2 = <strong>105 mm</strong></div><p>210 mm é a soma dos diâmetros (esqueceu de dividir por 2); 70 mm é a soma dos dentes sem o módulo; 52,5 mm divide por 4.</p>"
+  },
+  {
+   "id": "em2-005",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "geometria",
+   "enunciado": "<p>Calcule a razão de contato de um par de <span class=\"dado\">22 × 60 dentes</span>, <span class=\"dado\">m = 3 mm</span>, <span class=\"dado\">φ = 20°</span>, profundidade completa.</p>",
+   "alternativas": [
+    "1,68",
+    "1,58",
+    "2,04",
+    "6,43"
+   ],
+   "correta": 0,
+   "formulas": [
+    "Z = √(r_ap² − r_bp²) + √(r_ag² − r_bg²) − C sen φ",
+    "m_p = Z/p_b",
+    "p_b = π m cos φ"
+   ],
+   "explicacao": "<div class=\"passo\">r<sub>p</sub> = 33, r<sub>g</sub> = 90, C = 123 mm; r<sub>ap</sub> = 36, r<sub>ag</sub> = 93 mm</div><div class=\"passo\">r<sub>bp</sub> = 33 cos 20° = 31,01; r<sub>bg</sub> = 84,57 mm</div><div class=\"passo\">Z = √(36² − 31,01²) + √(93² − 84,57²) − 123 sen 20° = 18,28 + 38,69 − 42,07 = 14,90 mm</div><div class=\"passo\">p<sub>b</sub> = π·3·cos 20° = 8,856 mm → m<sub>p</sub> = <strong>1,68</strong></div><p>Em média 1,68 par de dentes está em contato: dois pares durante 68 % do tempo e um só no resto. 1,58 divide Z pelo passo circular em vez do passo de base; 2,04 usa o dedendo (1,25m) como adendo; 6,43 esquece de subtrair C·sen φ.</p>"
+  },
+  {
+   "id": "em2-006",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "geometria",
+   "enunciado": "<p>Um pinhão de 12 dentes, φ = 20°, profundidade completa, engrena com uma coroa de 40 dentes. O que acontece e como resolver sem mudar a relação?</p>",
+   "alternativas": [
+    "Nada: 12 dentes está acima do mínimo de 20°.",
+    "A razão de contato fica maior que 3, e os dentes quebram por excesso de carga.",
+    "Há interferência: a ponta da coroa invade o pinhão abaixo do círculo de base. Soluções: usar φ = 25°, adendo alongado no pinhão (correção de perfil) ou mais dentes com módulo menor.",
+    "Há interferência, que só se resolve aumentando a largura de face."
+   ],
+   "correta": 2,
+   "explicacao": "<p>A 20° o menor pinhão sem interferência para m<sub>G</sub> ≈ 3,3 é de 16 dentes. Na fabricação por geração a interferência vira adelgaçamento (undercut) do pé do dente, que perde resistência. Com φ = 25° o mínimo cai para cerca de 11 dentes; a largura de face não tem nada a ver com a geometria do perfil.</p>"
+  },
+  {
+   "id": "em2-007",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "trens",
+   "enunciado": "<p>Um redutor composto tem os pares <span class=\"dado\">20/60</span> e <span class=\"dado\">18/72</span> (motora/movida). Com entrada a <span class=\"dado\">1800 rpm</span>, a rotação de saída é:</p>",
+   "alternativas": [
+    "150 rpm, em sentido oposto ao da entrada",
+    "600 rpm, em sentido oposto ao da entrada",
+    "150 rpm, no mesmo sentido da entrada",
+    "450 rpm, no mesmo sentido da entrada"
+   ],
+   "correta": 2,
+   "formulas": [
+    "e = (−N₂/N₃)(−N₄/N₅)"
+   ],
+   "explicacao": "<div class=\"passo\">e = (−20/60)(−18/72) = (1/3)(1/4) = +1/12</div><div class=\"passo\">ω<sub>5</sub> = 1800/12 = <strong>150 rpm</strong></div><p>Dois engrenamentos externos invertem o sentido duas vezes: a saída gira no mesmo sentido da entrada. 600 rpm é só o primeiro estágio; 450 rpm só o segundo.</p>"
+  },
+  {
+   "id": "em2-008",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "trens",
+   "enunciado": "<p>Num trem planetário com sol de <span class=\"dado\">20 dentes</span> e anel interno de <span class=\"dado\">80 dentes</span>, o anel está <span class=\"dado\">fixo</span> e o sol gira a <span class=\"dado\">100 rpm</span>. A rotação do braço é:</p>",
+   "alternativas": [
+    "20 rpm, no sentido do sol",
+    "25 rpm, em sentido oposto ao do sol",
+    "80 rpm, no sentido do sol",
+    "400 rpm, no sentido do sol"
+   ],
+   "correta": 0,
+   "formulas": [
+    "e = (ω_L − ω_A)/(ω_F − ω_A)",
+    "e = −N_s/N_r"
+   ],
+   "explicacao": "<div class=\"passo\">e = −20/80 = −0,25 (sol → anel, com o braço parado)</div><div class=\"passo\">−0,25 = (0 − ω<sub>A</sub>)/(100 − ω<sub>A</sub>) → −25 + 0,25 ω<sub>A</sub> = −ω<sub>A</sub></div><div class=\"passo\">ω<sub>A</sub> = 25/1,25 = <strong>20,0 rpm</strong></div><p>Com o anel fixo a redução é 1 + N<sub>r</sub>/N<sub>s</sub> = 5. Os 25 rpm em sentido oposto seriam a rotação do anel com o braço fixo; 80 rpm seria o braço com o sol fixo e o anel a 100 rpm; 400 rpm inverte a relação de dentes.</p>"
+  },
+  {
+   "id": "em2-009",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "trens",
+   "enunciado": "<p>No mesmo trem planetário (sol 20, anel 80), agora com o <span class=\"dado\">braço fixo</span> e o sol a <span class=\"dado\">100 rpm</span>, o anel gira a:</p>",
+   "alternativas": [
+    "+25 rpm (mesmo sentido do sol)",
+    "−25 rpm (sentido oposto ao do sol)",
+    "−400 rpm",
+    "+20 rpm"
+   ],
+   "correta": 1,
+   "formulas": [
+    "ω_r = e·ω_s com ω_A = 0"
+   ],
+   "explicacao": "<div class=\"passo\">Com o braço parado o planetário vira um trem simples: sol → planeta → anel</div><div class=\"passo\">e = (−N<sub>s</sub>/N<sub>p</sub>)(+N<sub>p</sub>/N<sub>r</sub>) = −20/80</div><div class=\"passo\">ω<sub>r</sub> = −0,25 × 100 = <strong>-25,0 rpm</strong></div><p>O contato externo sol-planeta inverte o sentido; o contato interno planeta-anel não inverte. O planeta funciona como intermediária e seus dentes não entram na relação. +25 rpm erra o sinal; −400 rpm inverte a relação; +20 rpm é o braço quando o anel está fixo.</p>"
+  },
+  {
+   "id": "em2-010",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "trens",
+   "enunciado": "<p>Qual é o efeito de uma engrenagem intermediária num trem simples?</p>",
+   "alternativas": [
+    "Aumenta a redução na proporção dos seus dentes.",
+    "Divide a potência entre dois eixos.",
+    "Anula o torque na saída.",
+    "Não altera a relação de transmissão, apenas inverte o sentido de rotação (e permite afastar os eixos)."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Os dentes da intermediária aparecem no numerador e no denominador do valor do trem e se cancelam: e = (−N₂/N₃)(−N₃/N₄) = N₂/N₄. Ela serve para inverter o sentido ou vencer a distância entre eixos — mas sofre flexão alternada, por isso a AGMA aplica K<sub>I</sub> = 1,42.</p>"
+  },
+  {
+   "id": "em2-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "trens",
+   "enunciado": "<p>Para montar 3 planetas igualmente espaçados num trem com sol de N<sub>s</sub> dentes e anel de N<sub>r</sub> dentes, é preciso que:</p>",
+   "alternativas": [
+    "N<sub>s</sub> seja múltiplo de 3.",
+    "(N<sub>s</sub> + N<sub>r</sub>)/3 seja inteiro.",
+    "N<sub>r</sub> − N<sub>s</sub> seja múltiplo de 3.",
+    "Os planetas tenham exatamente o mesmo número de dentes do sol."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Além da condição geométrica N<sub>r</sub> = N<sub>s</sub> + 2N<sub>p</sub>, os dentes de cada planeta precisam encaixar ao mesmo tempo no sol e no anel. Isso só acontece em posições angulares múltiplas de 360°/(N<sub>s</sub> + N<sub>r</sub>); para n planetas igualmente espaçados, (N<sub>s</sub> + N<sub>r</sub>)/n tem de ser inteiro.</p>"
+  },
+  {
+   "id": "em2-012",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "forcas",
+   "enunciado": "<p>Um pinhão de <span class=\"dado\">50 mm</span> de diâmetro primitivo gira a <span class=\"dado\">1750 rpm</span> transmitindo <span class=\"dado\">2,5 kW</span>. A força tangencial no dente é:</p>",
+   "alternativas": [
+    "546 N",
+    "1,09 kN",
+    "28,6 N",
+    "273 N"
+   ],
+   "correta": 0,
+   "formulas": [
+    "V = π d n/60",
+    "W_t = H/V"
+   ],
+   "explicacao": "<div class=\"passo\">V = π × 0,050 × 1750/60 = 4,58 m/s</div><div class=\"passo\">W<sub>t</sub> = 2500/4,58 = <strong>546 N</strong></div><p>Confere com o exemplo da aula (0,546 kN). 1,09 kN usa o raio no lugar do diâmetro na velocidade; 273 N usa o diâmetro no lugar do raio ao passar do torque à força; 28,6 N divide a potência por n·d sem converter rpm em m/s.</p>"
+  },
+  {
+   "id": "em2-013",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "forcas",
+   "enunciado": "<p>Para a força tangencial de <span class=\"dado\">546 N</span> da questão anterior, com <span class=\"dado\">φ = 20°</span>, a componente radial vale:</p>",
+   "alternativas": [
+    "513 N",
+    "581 N",
+    "187 N",
+    "199 N"
+   ],
+   "correta": 3,
+   "formulas": [
+    "W_r = W_t tan φ"
+   ],
+   "explicacao": "<div class=\"passo\">W<sub>r</sub> = 546 × tan 20° = 546 × 0,364 = <strong>199 N</strong></div><p>513 N é 546·cos 20°; 581 N é a força total W = W<sub>t</sub>/cos φ; 187 N é 546·sen 20°. A radial não transmite torque, mas carrega os mancais.</p>"
+  },
+  {
+   "id": "em2-014",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "forcas",
+   "enunciado": "<p>Uma engrenagem intermediária recebe <span class=\"dado\">W<sub>t</sub> = 546 N</span> e <span class=\"dado\">W<sub>r</sub> = 199 N</span> de cada vizinha. As linhas de centro para o pinhão e para a coroa formam <span class=\"dado\">90°</span>, e as tangenciais somam-se com as radiais em cada eixo coordenado. Qual é a carga no mancal da intermediária?</p>",
+   "alternativas": [
+    "0,745 kN",
+    "0 (a intermediária não transmite torque)",
+    "1,05 kN",
+    "1,49 kN"
+   ],
+   "correta": 2,
+   "formulas": [
+    "F_b = −(F₂₃ + F₄₃)"
+   ],
+   "explicacao": "<div class=\"passo\">Em x: 546 + 199 = 745 N; em y: 199 + 546 = 745 N</div><div class=\"passo\">F<sub>b</sub> = √(745² + 745²) = <strong>1,05 kN</strong></div><p>O torque no eixo da intermediária é nulo, mas a força não: o mancal equilibra a soma vetorial das duas forças de contato. 0,745 kN é só uma componente; 1,49 kN soma as componentes algebricamente.</p>"
+  },
+  {
+   "id": "em2-015",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "forcas",
+   "enunciado": "<p>Numa engrenagem helicoidal, comparada a uma de dentes retos de mesmas dimensões, aparece:</p>",
+   "alternativas": [
+    "Uma força axial W<sub>a</sub> = W<sub>t</sub>·tan ψ, que exige mancais capazes de absorvê-la.",
+    "Uma força radial nula.",
+    "Um torque maior para a mesma potência e rotação.",
+    "Uma componente tangencial menor para a mesma potência e rotação."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Com os dentes inclinados do ângulo de hélice ψ, a força normal ganha uma componente ao longo do eixo. Para a mesma potência, rotação e diâmetro, a tangencial é a mesma (ela é que transmite a potência). A força axial é o preço do engrenamento mais suave e silencioso — e pode ser anulada com helicoidais duplas (espinha de peixe).</p>"
+  },
+  {
+   "id": "em2-016",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "flexao",
+   "enunciado": "<p>Pela equação de Lewis, qual é a tensão de flexão num dente com <span class=\"dado\">W<sub>t</sub> = 2 kN</span>, <span class=\"dado\">F = 40 mm</span>, <span class=\"dado\">m = 4 mm</span> e <span class=\"dado\">20 dentes</span> (Y = 0,322)?</p>",
+   "alternativas": [
+    "12,5 MPa",
+    "38,8 MPa",
+    "4,03 MPa",
+    "19,4 MPa"
+   ],
+   "correta": 1,
+   "formulas": [
+    "σ = W_t/(F m Y)"
+   ],
+   "explicacao": "<div class=\"passo\">σ = 2000/(40 × 4 × 0,322) = <strong>38,8 MPa</strong></div><p>N/mm² = MPa. 12,5 MPa ignora Y; 4,03 MPa multiplica por Y em vez de dividir; 19,4 MPa usa o dobro do módulo. A equação de Lewis não considera concentração de tensão nem efeitos dinâmicos — é o que a AGMA acrescenta.</p>"
+  },
+  {
+   "id": "em2-017",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "flexao",
+   "enunciado": "<p>Calcule o fator dinâmico AGMA (convenção do Norton) para <span class=\"dado\">Q<sub>v</sub> = 6</span> e velocidade primitiva de <span class=\"dado\">5 m/s</span>.</p>",
+   "alternativas": [
+    "0,654",
+    "0,970",
+    "0,704",
+    "1,42"
+   ],
+   "correta": 2,
+   "formulas": [
+    "B = (12 − Q_v)^(2/3)/4",
+    "A = 50 + 56(1 − B)",
+    "K_v = [A/(A + √(200 V))]^B"
+   ],
+   "explicacao": "<div class=\"passo\">B = 6<sup>2/3</sup>/4 = 0,8255</div><div class=\"passo\">A = 50 + 56(1 − 0,8255) = 59,77</div><div class=\"passo\">K<sub>v</sub> = [59,77/(59,77 + √1000)]<sup>0,825</sup> = <strong>0,704</strong></div><p>K<sub>v</sub> menor que 1 divide a capacidade: a tensão cresce 42 % por efeito dinâmico. Engrenagens de qualidade melhor (Q<sub>v</sub> maior) têm K<sub>v</sub> mais perto de 1. 0,654 esquece o expoente B; 0,970 esquece o fator 200 da conversão para m/s; 1,42 é o inverso — o fator dinâmico na convenção do Shigley, que multiplica a tensão.</p>"
+  },
+  {
+   "id": "em2-018",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "flexao",
+   "enunciado": "<p>No exemplo da aula (<span class=\"dado\">W<sub>t</sub> = 546 N</span>, <span class=\"dado\">m = 4 mm</span>, <span class=\"dado\">F = 48 mm</span>, pinhão com <span class=\"dado\">J = 0,33</span>), com K<sub>a</sub> = K<sub>s</sub> = K<sub>B</sub> = K<sub>I</sub> = 1, <span class=\"dado\">K<sub>m</sub> = 1,6</span> e <span class=\"dado\">K<sub>v</sub> = 0,70</span>, a tensão de flexão AGMA no pinhão é:</p>",
+   "alternativas": [
+    "8,62 MPa",
+    "19,6 MPa",
+    "12,3 MPa",
+    "27,9 MPa"
+   ],
+   "correta": 1,
+   "formulas": [
+    "σ_b = W_t/(F m J) · K_a K_m/K_v · K_s K_B K_I"
+   ],
+   "explicacao": "<div class=\"passo\">W<sub>t</sub>/(F m J) = 546/(48 × 4 × 0,33) = 8,62 MPa</div><div class=\"passo\">σ<sub>b</sub> = 8,62 × 1,6/0,70 = <strong>19,6 MPa</strong></div><p>8,62 MPa esquece os fatores; 12,3 MPa aplica só o K<sub>v</sub>; 27,9 MPa multiplica também por K<sub>I</sub> = 1,42, que só vale para a intermediária (e é o que dá a tensão dela, com o J dela).</p>"
+  },
+  {
+   "id": "em2-019",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "flexao",
+   "enunciado": "<p>O que é o HPSTC e por que ele aparece nas tabelas de fator J?</p>",
+   "alternativas": [
+    "É o ponto de tangência com o círculo de base; lá a tensão de contato é máxima.",
+    "É o fator de temperatura para engrenagens que trabalham acima de 120 °C.",
+    "É a hipótese de carga na ponta, a mais conservadora, usada quando a razão de contato é maior que 2.",
+    "É o ponto mais alto de contato de um só par: com razão de contato maior que 1, a carga na ponta é dividida, e o maior momento na raiz ocorre quando um único par carrega tudo, nesse ponto."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Highest Point of Single Tooth Contact. Quando o dente recebe carga na ponta, outro par ainda está em contato e divide a força. O pior caso para a flexão é mais abaixo, no HPSTC, onde o braço de momento ainda é grande e o dente está sozinho. Por isso J com carga no HPSTC é maior que J com carga na ponta.</p>"
+  },
+  {
+   "id": "em2-020",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "flexao",
+   "enunciado": "<p>Uma coroa é feita como anel, com razão de recuo da borda <span class=\"dado\">m<sub>B</sub> = 0,8</span>. O fator de espessura de borda é:</p>",
+   "alternativas": [
+    "1,0",
+    "0,8",
+    "2,6",
+    "1,8"
+   ],
+   "correta": 3,
+   "formulas": [
+    "K_B = −2 m_B + 3,4 (0,5 ≤ m_B ≤ 1,2)"
+   ],
+   "explicacao": "<div class=\"passo\">K<sub>B</sub> = −2 × 0,8 + 3,4 = <strong>1,8</strong></div><p>A borda fina deixa a trinca correr pela borda em vez da raiz do dente, e a tensão de projeto sobe 80 %. K<sub>B</sub> = 1 só vale para m<sub>B</sub> ≥ 1,2 ou disco sólido; abaixo de 0,5 o arranjo não é recomendado. 0,8 confunde K<sub>B</sub> com m<sub>B</sub>; 2,6 esquece o fator 2.</p>"
+  },
+  {
+   "id": "em2-021",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "flexao",
+   "enunciado": "<p>A regra prática para a largura de face de engrenagens de dentes retos (módulo m) é:</p>",
+   "alternativas": [
+    "F entre 1m e 2m.",
+    "F igual ao diâmetro primitivo do pinhão.",
+    "F entre 8m e 16m.",
+    "F entre 30m e 50m."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Face estreita demais concentra tensão e dá pouca capacidade; face larga demais é difícil de alinhar e a carga se concentra numa das pontas — o que o fator K<sub>m</sub> tenta cobrir. No sistema inglês a mesma regra se escreve 8/P<sub>d</sub> &lt; F &lt; 16/P<sub>d</sub>.</p>"
+  },
+  {
+   "id": "em2-022",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "contato",
+   "enunciado": "<p>Por que o coeficiente de segurança ao contato costuma ser definido como n<sub>c</sub> = (S<sub>fc</sub>/σ<sub>c</sub>)²?</p>",
+   "alternativas": [
+    "Porque a resistência ao contato é o quadrado da resistência à flexão.",
+    "Porque σ<sub>c</sub> cresce com a raiz quadrada da carga; elevando ao quadrado, n<sub>c</sub> passa a comparar cargas, como n<sub>b</sub>.",
+    "Porque há dois dentes em contato.",
+    "Por convenção histórica, sem significado físico."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Pela teoria de Hertz, a pressão máxima entre dois cilindros é proporcional a √W. Dobrar a carga aumenta σ<sub>c</sub> só 41 %. Com o quadrado, n<sub>c</sub> = 2 significa, como em flexão, que a carga pode dobrar antes da falha — e os dois coeficientes podem ser comparados diretamente.</p>"
+  },
+  {
+   "id": "em2-023",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "contato",
+   "enunciado": "<p>O pitting em engrenagens é:</p>",
+   "alternativas": [
+    "A quebra do dente na raiz por fadiga de flexão.",
+    "A deformação plástica do dente por sobrecarga estática.",
+    "Corrosão por pites causada pelo lubrificante.",
+    "Fadiga superficial: trincas logo abaixo da superfície, causadas pelas tensões de contato de Hertz, arrancam pequenas crateras dos flancos."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Sob contato de rolamento com escorregamento, a tensão cisalhante máxima fica um pouco abaixo da superfície; é lá que as trincas nucleiam. O remédio é dureza superficial: cementação, têmpera por indução ou nitretação sobem S<sub>c</sub> muito mais do que S<sub>t</sub>.</p>"
+  },
+  {
+   "id": "em2-024",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "molas",
+   "enunciado": "<p>Uma mola de compressão de corda de piano tem <span class=\"dado\">d = 3 mm</span>, <span class=\"dado\">D = 24 mm</span> e <span class=\"dado\">8 espiras ativas</span>, com <span class=\"dado\">G = 81,7 GPa</span>. Sua rigidez é:</p>",
+   "alternativas": [
+    "59,8 N/mm",
+    "0,935 N/mm",
+    "7,48 N/mm",
+    "2,49 N/mm"
+   ],
+   "correta": 2,
+   "formulas": [
+    "k = d⁴ G/(8 D³ N_a)"
+   ],
+   "explicacao": "<div class=\"passo\">k = 3⁴ × 81 700/(8 × 24³ × 8) = 6 617 700/884 736 = <strong>7,48 N/mm</strong></div><p>59,8 N/mm esquece o 8 do denominador; 0,935 N/mm divide por 8 duas vezes; 2,49 N/mm usa d³ em vez de d⁴. A rigidez cresce com a quarta potência do fio e cai com o cubo do diâmetro da espira.</p>"
+  },
+  {
+   "id": "em2-025",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "molas",
+   "enunciado": "<p>Na mesma mola (<span class=\"dado\">d = 3 mm</span>, <span class=\"dado\">D = 24 mm</span>), qual é a tensão de cisalhamento no fio sob <span class=\"dado\">F = 200 N</span>, com o fator de Bergsträsser?</p>",
+   "alternativas": [
+    "453 MPa",
+    "1062 MPa",
+    "177 MPa",
+    "531 MPa"
+   ],
+   "correta": 3,
+   "formulas": [
+    "C = D/d",
+    "K_B = (4C + 2)/(4C − 3)",
+    "τ = K_B · 8FD/(π d³)"
+   ],
+   "explicacao": "<div class=\"passo\">C = 24/3 = 8; K<sub>B</sub> = 34/29 = 1,172</div><div class=\"passo\">8FD/(πd³) = 8 × 200 × 24/(π × 27) = 452,7 MPa</div><div class=\"passo\">τ = 1,172 × 452,7 = <strong>531 MPa</strong></div><p>453 MPa esquece o fator de curvatura — que aqui acrescenta 17 %. 1062 MPa usa 16 no lugar de 8; 177 MPa usa d⁴ no lugar de d³.</p>"
+  },
+  {
+   "id": "em2-026",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "molas",
+   "enunciado": "<p>Uma mola de válvula de motor trabalha a 3000 ciclos por minuto (50 Hz). A frequência natural da mola é 200 Hz. Qual é o risco?</p>",
+   "alternativas": [
+    "Nenhum: basta a frequência natural ser maior que a da excitação.",
+    "Surge: a frequência natural deveria ficar 15 a 20 vezes acima da excitação; com só 4 vezes, harmônicos do came podem entrar em ressonância e as espiras vibram, perdendo o controle da válvula e acelerando a fadiga.",
+    "Flambagem, porque a frequência natural é baixa.",
+    "Escoamento estático, porque a frequência natural é alta demais."
+   ],
+   "correta": 1,
+   "explicacao": "<p>A mola é um sistema massa-mola distribuído; ondas de compressão percorrem as espiras. O perfil do came tem harmônicos de ordem alta, e qualquer um deles perto de f<sub>n</sub> excita a ressonância. Por isso se recomenda f<sub>n</sub> ≥ 15–20 vezes a frequência de operação.</p>"
+  },
+  {
+   "id": "em2-027",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "molas",
+   "enunciado": "<p>Segundo os dados de Zimmerli, a resistência à fadiga por torção de molas helicoidais (fio até 10 mm, sem jateamento) é:</p>",
+   "alternativas": [
+    "Praticamente independente do material: S<sub>sa</sub> = 241 MPa e S<sub>sm</sub> = 379 MPa; o jateamento de granalha sobe esses valores.",
+    "Proporcional ao S<sub>ut</sub> do material: aços mais resistentes têm fadiga proporcionalmente maior.",
+    "Igual a 0,5 S<sub>ut</sub>, como em barras polidas.",
+    "Nula: molas não podem trabalhar com carga variável."
+   ],
+   "correta": 0,
+   "explicacao": "<p>É um resultado experimental: para fios de mola até 10 mm, a superfície (descarbonetação, marcas de trefilação) domina a fadiga, e aços muito diferentes dão o mesmo resultado. O jateamento cria tensões residuais de compressão e eleva S<sub>sa</sub> para cerca de 398 MPa.</p>"
+  },
+  {
+   "id": "em2-028",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "freios",
+   "enunciado": "<p>Uma embreagem de disco seco com <span class=\"dado\">2 faces</span>, <span class=\"dado\">r<sub>o</sub> = 150 mm</span>, <span class=\"dado\">r<sub>i</sub> = 87 mm</span>, <span class=\"dado\">f = 0,3</span> e <span class=\"dado\">p<sub>a</sub> = 0,8 MPa</span>. Pela hipótese de desgaste uniforme, o torque transmitido é:</p>",
+   "alternativas": [
+    "1959 N·m",
+    "980 N·m",
+    "2010 N·m",
+    "3920 N·m"
+   ],
+   "correta": 0,
+   "formulas": [
+    "F = 2π p_a r_i (r_o − r_i)",
+    "T = N f F (r_o + r_i)/2"
+   ],
+   "explicacao": "<div class=\"passo\">F = 2π × 0,8·10⁶ × 0,087 × 0,063 = 27,6 kN</div><div class=\"passo\">T = 2 × 0,3 × 27551 × 0,1185 = <strong>1959 N·m</strong></div><p>980 N·m considera uma só face; 2010 N·m é o valor pela pressão uniforme com a mesma força (menos conservador); 3920 N·m conta 4 faces. Com r<sub>i</sub> ≈ r<sub>o</sub>/√3, esse é praticamente o torque máximo possível para esse r<sub>o</sub> e p<sub>a</sub>.</p>"
+  },
+  {
+   "id": "em2-029",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "freios",
+   "enunciado": "<p>Um freio de cinta abraça <span class=\"dado\">270°</span> de um tambor de <span class=\"dado\">400 mm</span> de diâmetro, com <span class=\"dado\">f = 0,25</span>. A tração no lado tenso é <span class=\"dado\">5 kN</span>. O torque de frenagem é:</p>",
+   "alternativas": [
+    "1000 N·m",
+    "692 N·m",
+    "308 N·m",
+    "1380 N·m"
+   ],
+   "correta": 1,
+   "formulas": [
+    "P₁/P₂ = e^(fθ)",
+    "T = (P₁ − P₂) r"
+   ],
+   "explicacao": "<div class=\"passo\">fθ = 0,25 × 4,712 = 1,178 → P₁/P₂ = 3,248</div><div class=\"passo\">P₂ = 5000/3,248 = 1539 N</div><div class=\"passo\">T = (5000 − 1539) × 0,2 = <strong>692 N·m</strong></div><p>1000 N·m é P₁·r, como se o lado frouxo não tivesse tração; 308 N·m é P₂·r; 1380 N·m usa o diâmetro no lugar do raio. Note como a tração cai de 5 kN para 1,5 kN ao longo de 270° de contato.</p>"
+  },
+  {
+   "id": "em2-030",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "freios",
+   "enunciado": "<p>Por que a hipótese de desgaste uniforme é a usada no projeto de embreagens de disco?</p>",
+   "alternativas": [
+    "Porque dá um torque maior, o que é mais econômico.",
+    "Porque, depois do amaciamento, o disco de fato desgasta até p·r ficar constante, e essa hipótese dá um torque um pouco menor para a mesma força — é a conservadora.",
+    "Porque a pressão uniforme é fisicamente impossível.",
+    "Porque ela dispensa o coeficiente de atrito."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Num disco novo e rígido a pressão é uniforme. Mas a parte externa, mais rápida, desgasta mais, até que o desgaste (proporcional a p·V, logo a p·r) fique igual em todo o disco. Como essa condição dá o menor torque para a mesma força de acionamento, projetar com ela garante que a embreagem continua transmitindo o torque durante toda a vida.</p>"
+  }
+ ]
+}

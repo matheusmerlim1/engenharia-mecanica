@@ -6,7 +6,9 @@ questões com correção imediata.
 
 **Acesse:** https://matheusmerlim1.github.io/engenharia-mecanica/
 
-Das 43 disciplinas do catálogo, 13 já estão prontas; as demais aparecem como pendentes.
+Das 43 disciplinas do catálogo, 15 já estão prontas; as demais aparecem como pendentes. A página inicial
+organiza as disciplinas por período ou por matéria, e a página **Simulações** reúne todos os modelos
+interativos do site para abrir um de cada vez.
 
 ## O que tem em cada página
 
@@ -47,7 +49,8 @@ npx serve .
 ## Estrutura
 
 ```
-├── index.html              catálogo das disciplinas
+├── index.html              catálogo das disciplinas (por período ou por matéria)
+├── simulacoes.html         todas as simulações; cada uma abre sozinha em disciplinas/<slug>.html?sim=<id>
 ├── css/
 │   ├── main.css            design system (tokens, layout, tipografia)
 │   ├── quiz.css            componentes do simulado
@@ -60,7 +63,8 @@ npx serve .
 │   │   └── quiz.js         motor de simulado
 │   └── sim/<slug>.js       modelos interativos de cada disciplina
 ├── data/
-│   ├── disciplinas.json    catálogo
+│   ├── disciplinas.json    catálogo (com período e matéria de cada disciplina)
+│   ├── simulacoes.json     catálogo das simulações, gerado a partir das páginas
 │   └── questoes/<slug>.json bancos de questões
 └── disciplinas/<slug>.html páginas das disciplinas
 ```
