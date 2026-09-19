@@ -36,7 +36,7 @@
     <h1>Vibrações</h1>
     <p class="lead">Toda máquina vibra. A disciplina ensina a prever com que frequência, com que amplitude, e como evitar que essa amplitude destrua o equipamento — ou o edifício em que ele está apoiado.</p>
     <div class="btn-row">
-      <span class="tag accent">8 tópicos</span>
+      <span class="tag accent">9 tópicos</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">4 simuladores</span>
       <span class="tag warn">normas</span>
@@ -88,6 +88,23 @@
                 <tr><td>Série</td><td><span data-tex-inline="\frac{1}{k_{\text{eq}}} = \frac{1}{k_1} + \frac{1}{k_2}"></span></td><td>Mesma força; a mais mole domina</td></tr>
               </tbody>
             </table>
+            </div>
+            <p>Quando a "mola" é uma peça estrutural, a rigidez equivalente sai da deflexão sob carga unitária:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Elemento</th><th>Rigidez equivalente</th><th>Onde aparece</th></tr></thead>
+              <tbody>
+                <tr><td>Barra em tração/compressão</td><td><span data-tex-inline="k = EA/L"></span></td><td>Tirantes, colunas curtas</td></tr>
+                <tr><td>Eixo em torção</td><td><span data-tex-inline="k_t = GJ/L"></span></td><td>Vibração torcional de eixos</td></tr>
+                <tr><td>Viga em balanço, massa na ponta</td><td><span data-tex-inline="k = 3EI/L^{3}"></span></td><td>Suportes, sensores, pás</td></tr>
+                <tr><td>Viga biapoiada, massa no meio</td><td><span data-tex-inline="k = 48EI/L^{3}"></span></td><td>Máquina apoiada em viga de piso</td></tr>
+                <tr><td>Viga biengastada, massa no meio</td><td><span data-tex-inline="k = 192EI/L^{3}"></span></td><td>Base rígida</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Exemplo</strong>
+              Massa de 50 kg na ponta de uma viga em balanço de rigidez equivalente 600 N/mm: <span data-tex-inline="\omega_n = \sqrt{600\,000/50} = 109{,}5"></span> rad/s, ou <strong>17,4 Hz</strong>. Desprezou-se a massa da viga; incluí-la (33 % da massa da viga somada à da ponta) baixa um pouco a frequência.
             </div>
             <div class="callout tip">
               <strong>Atalho de campo</strong>
@@ -279,6 +296,48 @@
             <div class="callout tip">
               <strong>Onde se usa</strong>
               Amortecedores de massa sintonizada em arranha-céus e passarelas, absorvedores em linhas de transmissão (os pesos em forma de haltere nos cabos) e em motores.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Diagnóstico de máquinas e manutenção preditiva</summary>
+          <div class="topic-body">
+            <p>O espectro de vibração identifica a causa pela <strong>frequência</strong> em que a energia aparece, e não pelo nível global. Cada defeito tem sua assinatura, relacionada à rotação do eixo (1×).</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Frequência</th><th>Causa típica</th><th>Pista adicional</th></tr></thead>
+              <tbody>
+                <tr><td>1× rotação</td><td>Desbalanceamento</td><td>Radial, fase estável; cresce com o quadrado da rotação</td></tr>
+                <tr><td>2× rotação</td><td>Desalinhamento</td><td>Componente axial alta; fase oposta nos dois lados do acoplamento</td></tr>
+                <tr><td>Harmônicos 1×, 2×, 3×…</td><td>Folga mecânica</td><td>Muitos harmônicos, às vezes 0,5×</td></tr>
+                <tr><td>z × rotação (GMF)</td><td>Engrenamento — z dentes</td><td>Bandas laterais espaçadas da rotação do eixo indicam dente defeituoso</td></tr>
+                <tr><td>BPFO, BPFI, BSF, FTF</td><td>Defeito em pista externa, interna, esfera ou gaiola do rolamento</td><td>Frequências não inteiras; aparecem primeiro em alta frequência (envelope)</td></tr>
+                <tr><td>N × rotação (N = pás)</td><td>Passagem de pás em bombas e ventiladores</td><td>Sobe com folga rotor-voluta pequena</td></tr>
+                <tr><td>Banda larga, sem pico definido</td><td>Cavitação, turbulência, atrito</td><td>Ruído característico de "pedras" na cavitação</td></tr>
+                <tr><td>2× frequência da rede (120 Hz)</td><td>Problema elétrico no motor</td><td>Some instantaneamente ao cortar a energia</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Transdutores</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Sensor</th><th>Mede</th><th>Faixa útil</th></tr></thead>
+              <tbody>
+                <tr><td>Sonda de proximidade (sem contato)</td><td>Deslocamento relativo eixo-mancal</td><td>0 a 1 kHz — máquinas com mancal hidrodinâmico</td></tr>
+                <tr><td>Velocímetro (bobina móvel)</td><td>Velocidade absoluta da carcaça</td><td>10 Hz a 1 kHz — faixa das normas ISO</td></tr>
+                <tr><td>Acelerômetro piezoelétrico</td><td>Aceleração da carcaça</td><td>1 Hz a 20 kHz — rolamentos e engrenagens</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>As normas <strong>ISO 10816</strong> e <strong>ISO 20816</strong> classificam a severidade pela velocidade eficaz (RMS, em mm/s) na faixa de 10 a 1000 Hz, em zonas A (máquina nova), B (aceitável), C (tolerável por tempo limitado) e D (dano provável).</p>
+            <div class="callout tip">
+              <strong>A tendência vale mais que o valor</strong>
+              Uma máquina estável em 4,0 mm/s há meses está melhor que outra que saiu de 1,5 para 3,0 mm/s em duas semanas. A manutenção preditiva acompanha a <em>taxa de variação</em>; é ela que dá o tempo de planejar a parada.
+            </div>
+            <div class="callout warn">
+              <strong>Vibração torcional não aparece na carcaça</strong>
+              Em conjuntos motor–acoplamento–máquina, a oscilação torcional do eixo pode estar em ressonância sem nenhum sinal perceptível no acelerômetro montado no mancal. Mede-se com encoder ou telemetria de deformação, e o projeto é verificado por análise torcional, obrigatória em compressores alternativos e grandes acionamentos com inversor.
             </div>
           </div>
         </details>

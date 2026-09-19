@@ -191,6 +191,15 @@
               </tbody>
             </table>
             </div>
+            <h4>Processos transientes: enchimento e esvaziamento de tanques</h4>
+            <p>Quando o volume de controle acumula massa e energia, a primeira lei volta à forma geral. Para um tanque rígido e adiabático que se enche a partir de uma linha:</p>
+            <div class="formula"><span data-tex="m_{2}u_{2} - m_{1}u_{1} = m_{e}h_{e}"></span><span class="where">m_e: massa que entrou; h_e: entalpia na linha, constante</span></div>
+            <p>Se o tanque estava evacuado, m₁ = 0 e m₂ = m_e, de modo que <strong>u₂ = h_e</strong>. Para gás ideal com calores específicos constantes, isso dá um resultado que costuma surpreender:</p>
+            <div class="formula"><span data-tex="c_{v}T_{2} = c_{p}T_{\text{linha}} \;\Rightarrow\; T_{2} = k\,T_{\text{linha}}"></span><span class="where">o gás dentro do tanque fica mais quente que na linha</span></div>
+            <div class="callout note">
+              <strong>Exemplo — carregando um tanque evacuado</strong>
+              Ar a 500 kPa e 300 K, tanque rígido e isolado: T₂ = 1,4 × 300 = <strong>420 K</strong>. O trabalho de escoamento que empurrou o ar para dentro (Pv na entalpia) vira energia interna, e a temperatura sobe. No esvaziamento acontece o contrário: o gás que fica no tanque se expande e esfria.
+            </div>
             <div class="callout tip">
               <strong>Por que entalpia aparece sozinha</strong>
               Empurrar massa para dentro do volume de controle custa trabalho Pv. Somando-o à energia interna, h = u + Pv, esse termo some da equação — é toda a razão de a entalpia existir.
@@ -208,6 +217,10 @@
             </div>
             <div class="formula"><span data-tex="\eta = \frac{W_{\text{líq}}}{Q_{H}} = 1 - \frac{Q_{C}}{Q_{H}} \quad \eta_{\text{Carnot}} = 1 - \frac{T_{C}}{T_{H}}"></span></div>
             <div class="formula"><span data-tex="\mathrm{COP}_{\text{refrig}} = \frac{T_{C}}{T_{H} - T_{C}} \quad \mathrm{COP}_{\text{bomba}} = \frac{T_{H}}{T_{H} - T_{C}} = \mathrm{COP}_{\text{refrig}} + 1"></span></div>
+            <div class="callout note">
+              <strong>Exemplo — máquinas acopladas</strong>
+              Uma máquina reversível entre 800 K e 300 K recebe 1000 kJ e produz <span data-tex-inline="W = 1000\,(1 - 300/800) = 625"></span> kJ. Todo esse trabalho aciona um refrigerador reversível entre 250 K e 300 K, cujo <span data-tex-inline="COP = 250/(300-250) = 5"></span>. O calor retirado do ambiente frio é <span data-tex-inline="Q_{L} = 5 \times 625 = 3125"></span> kJ — cinco vezes mais do que a máquina consumiu em trabalho, e nada disso viola a segunda lei: o calor rejeitado ao ambiente é a soma de tudo.
+            </div>
             <div class="callout tip">
               <strong>COP maior que 1 não viola nada</strong>
               O coeficiente de desempenho não é rendimento: ele compara calor <em>movido</em> com trabalho <em>gasto</em>, e não energia produzida com energia consumida. Uma bomba de calor com COP 4 move quatro unidades de calor por unidade de trabalho — e é por isso que aquecer com bomba de calor é melhor que com resistência elétrica.

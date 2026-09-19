@@ -36,7 +36,7 @@
     <h1>Ciência dos Materiais II</h1>
     <p class="lead">Onde o diagrama de equilíbrio para, esta disciplina começa. Resfriando rápido, a difusão não acompanha e surgem bainita e martensita — estruturas que não existem no Fe-C e que respondem por praticamente toda a engenharia de aços tratados.</p>
     <div class="btn-row">
-      <span class="tag accent">9 tópicos</span>
+      <span class="tag accent">10 tópicos</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">4 simuladores animados</span>
       <span class="tag">normas</span>
@@ -302,6 +302,9 @@
                 <tr><td>Intergranular</td><td>Sensitização: precipitação de Cr₂₃C₆ nos contornos</td><td>Baixo carbono (304L) ou estabilizado com Ti/Nb</td></tr>
                 <tr><td>Sob tensão (CST)</td><td>Tensão trativa + meio específico</td><td>Alívio de tensões; trocar material</td></tr>
                 <tr><td>Erosão-corrosão</td><td>Fluxo remove a película protetora</td><td>Limitar velocidade; usar material mais duro</td></tr>
+                <tr><td>Seletiva</td><td>Um componente da liga é removido (dezincificação do latão, grafitização do ferro fundido)</td><td>Latão almirantado com arsênio; trocar a liga</td></tr>
+                <tr><td>Sob isolamento (CUI)</td><td>Água retida no isolamento térmico, em ciclos de molha e secagem</td><td>Pintura sob o isolamento, barreira de vapor, inspeção por pontos críticos</td></tr>
+                <tr><td>Microbiológica (MIC)</td><td>Bactérias redutoras de sulfato (BRS) em meio anaeróbico, sob depósitos e água parada</td><td>Drenar fundo de tanques, biocida, limpeza (pigagem) de dutos</td></tr>
               </tbody>
             </table>
             </div>
@@ -310,6 +313,34 @@
               Entre 425 e 815 °C, o carbono do inox austenítico reage com o cromo formando Cr₂₃C₆ nos contornos de grão. A região vizinha fica empobrecida em cromo, cai abaixo dos 10,5 % necessários e perde a passividade: o inox corrói ao longo dos contornos, justamente na zona termicamente afetada da solda. As soluções são o <strong>304L</strong> (carbono abaixo de 0,03 %) ou os graus <strong>estabilizados</strong> com titânio (321) ou nióbio (347), que capturam o carbono antes do cromo.
             </div>
             <div class="formula"><span data-tex="I_{prot} = i_{prot}\cdot A \qquad t = \frac{m\cdot \text{capacidade}}{I_{prot}}"></span><span class="where">proteção catódica: Zn rende 780 A·h/kg · Al-Zn-In 2600 · Mg 1230</span></div>
+            <h4>Proteção catódica × proteção anódica</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th></th><th>Proteção catódica</th><th>Proteção anódica</th></tr></thead>
+              <tbody>
+                <tr><td>O que faz</td><td>Desloca o potencial para a região <strong>imune</strong> (mais negativo)</td><td>Desloca o potencial para a região <strong>passiva</strong> (mais positivo)</td></tr>
+                <tr><td>Como</td><td>Anodos de sacrifício (Zn, Al, Mg) ou corrente impressa</td><td>Potenciostato, com corrente pequena e controle fino</td></tr>
+                <tr><td>Onde se usa</td><td>Dutos enterrados, cascos, tanques, plataformas</td><td>Metais passiváveis (inox, titânio) em meios muito agressivos, como tanques de ácido sulfúrico</td></tr>
+                <tr><td>Risco</td><td>Sobreproteção gera hidrogênio e descola a pintura</td><td>Perder o controle do potencial ativa a corrosão em vez de impedi-la</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Serviço ácido: danos por H₂S úmido</h4>
+            <p>Na presença de H₂S com água, o hidrogênio atômico gerado pela corrosão entra no aço em vez de formar H₂ na superfície. Dentro do metal ele se acumula e causa três danos distintos, cobertos pela <strong>NACE MR0175 / ISO 15156</strong>:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Dano</th><th>Mecanismo</th><th>Controle</th></tr></thead>
+              <tbody>
+                <tr><td><strong>HIC</strong> (trincas induzidas por hidrogênio)</td><td>O hidrogênio se acumula em inclusões alongadas de MnS e gera trincas paralelas à superfície da chapa</td><td>Aço limpo, baixo enxofre, inclusões globulizadas com cálcio</td></tr>
+                <tr><td><strong>SOHIC</strong></td><td>HIC orientado pela tensão, formando escada de trincas</td><td>Alívio de tensões e aço com requisito HIC</td></tr>
+                <tr><td><strong>SSC</strong> (sulfide stress cracking)</td><td>Trinca sob tensão em material duro</td><td>Limitar dureza (≤ 22 HRC na maioria dos aços), TTPS após soldagem</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>CUI: o inimigo invisível</strong>
+              A corrosão sob isolamento é mais severa entre cerca de 50 e 175 °C, sobretudo em regime cíclico, quando a água condensa e evapora alternadamente. Em inox austenítico, os cloretos lixiviados do próprio isolante podem provocar corrosão sob tensão. Como fica escondida sob a manta, só aparece na inspeção — ou no vazamento.
+            </div>
           </div>
         </details>
 
@@ -328,6 +359,7 @@
                 <tr><td>Titânio</td><td>Liga α-β temperável (Ti-6Al-4V)</td><td>Resistência específica altíssima; biocompatível</td></tr>
                 <tr><td>Superligas de níquel</td><td>Precipitação de γ′ (Ni₃Al,Ti)</td><td>Resistem à fluência acima de 800 °C — pás de turbina</td></tr>
                 <tr><td>Magnésio</td><td>Solução sólida e precipitação</td><td>O metal estrutural mais leve; HC, pouco dúctil a frio</td></tr>
+                <tr><td>Bronze-alumínio e bronze-estanho</td><td>Solução sólida</td><td>Coroas de sem-fim, buchas, hélices: baixo atrito contra aço</td></tr>
               </tbody>
             </table>
             </div>
@@ -338,6 +370,47 @@
             <div class="callout note">
               <strong>Envelhecimento natural e artificial</strong>
               Ligas Al-Cu endurecem à temperatura ambiente ao longo de dias — o envelhecimento <em>natural</em>. Foi descoberto por acaso em 1906, quando Alfred Wilm notou que uma liga que havia deixado sobre a bancada no fim de semana estava mais dura na segunda-feira. O envelhecimento <em>artificial</em>, a 120 a 190 °C, faz o mesmo em horas — mas tem um tempo ótimo: passar dele superenvelhece e amolece.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>10. Seleção de materiais para equipamentos e tubulação</summary>
+          <div class="topic-body">
+            <p>A seleção parte do serviço, não do catálogo: fluido, temperatura e pressão, esforços, e só então resistência mecânica, resistência à corrosão, soldabilidade, disponibilidade e custo.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Especificação</th><th>O que é</th><th>Onde se usa</th></tr></thead>
+              <tbody>
+                <tr><td><strong>ASTM A106 Gr. B</strong></td><td>Tubo de aço-carbono sem costura para alta temperatura</td><td>Tubulação de processo e de vapor</td></tr>
+                <tr><td><strong>API 5L Gr. B / X52 / X65</strong></td><td>Tubo para dutos de petróleo e gás; o grau indica o escoamento em ksi</td><td>Oleodutos e gasodutos</td></tr>
+                <tr><td><strong>ASTM A333 Gr. 6</strong></td><td>Aço-carbono com requisito de impacto a baixa temperatura</td><td>Serviço criogênico moderado (até −45 °C)</td></tr>
+                <tr><td><strong>AISI 316L</strong></td><td>Inox austenítico com molibdênio e baixo carbono</td><td>Meios com cloretos; resistente a pites e à sensitização</td></tr>
+                <tr><td><strong>Duplex 2205</strong></td><td>Estrutura mista ferrita-austenita</td><td>Dobro da resistência mecânica do 316 e melhor contra CST por cloretos</td></tr>
+                <tr><td><strong>Ligas de níquel (Inconel 625, Incoloy 825)</strong></td><td>Alta resistência a meios ácidos e a temperatura</td><td>Serviço ácido severo, permutadores, revestimento (cladding)</td></tr>
+                <tr><td><strong>PRFV</strong></td><td>Plástico reforçado com fibra de vidro</td><td>Tanques e tubulações de meios corrosivos; anisotrópico e leve</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Elastômeros de vedação</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Elastômero</th><th>Faixa de temperatura</th><th>Compatibilidade</th></tr></thead>
+              <tbody>
+                <tr><td>NBR (nitrílica)</td><td>−30 a 100 °C</td><td>O padrão para óleos minerais e derivados de petróleo</td></tr>
+                <tr><td>FKM (fluorelastômero)</td><td>−20 a 200 °C</td><td>Temperatura alta, combustíveis e muitos químicos</td></tr>
+                <tr><td>EPDM</td><td>−50 a 150 °C</td><td>Água quente e vapor; <strong>não</strong> serve para óleo</td></tr>
+                <tr><td>PTFE</td><td>−200 a 260 °C</td><td>Quase inerte; usado em gaxetas e sedes de válvula</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Cladding em vez de liga maciça</strong>
+              Quando só a superfície precisa resistir ao meio, reveste-se um costado de aço-carbono com uma camada fina de inox ou liga de níquel — por chapa colaminada ou por deposição de solda (weld overlay). Custa uma fração do equipamento maciço e mantém a resistência estrutural do aço.
+            </div>
+            <div class="callout note">
+              <strong>Índice de mérito</strong>
+              Para escolher entre materiais com o mesmo desempenho funcional, compara-se o índice adequado à restrição: <span data-tex-inline="\sigma_{y}/\rho"></span> para barra leve sob tração, <span data-tex-inline="\sigma_{y}^{2/3}/\rho"></span> para viga leve em flexão, <span data-tex-inline="E^{1/2}/\rho"></span> para viga rígida. É a base dos mapas de Ashby.
             </div>
           </div>
         </details>

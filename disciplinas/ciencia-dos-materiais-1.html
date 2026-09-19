@@ -36,7 +36,7 @@
     <h1>Ciência dos Materiais I</h1>
     <p class="lead">A disciplina que explica <em>por que</em> o aço tem as propriedades que tem. Tudo se resume a duas perguntas: quais fases existem em cada composição e temperatura, e o que impede as discordâncias de escorregarem.</p>
     <div class="btn-row">
-      <span class="tag accent">11 tópicos</span>
+      <span class="tag accent">12 tópicos</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">6 simuladores animados</span>
       <span class="tag">normas</span>
@@ -483,6 +483,32 @@
             <div class="callout tip">
               <strong>O que este diagrama NÃO prevê</strong>
               Bainita e martensita não aparecem em lugar nenhum aqui, porque não são fases de equilíbrio: são produtos de resfriamento rápido, em que a difusão não teve tempo de acontecer. Prevê-las exige as curvas TTT e CCT, que são assunto de Ciência dos Materiais II. O diagrama de equilíbrio continua indispensável, porém, porque é ele que diz de onde se parte: a temperatura de austenitização.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>12. Fratura: dúctil, frágil e a análise de falhas</summary>
+          <div class="topic-body">
+            <p>A superfície de fratura guarda o registro do que aconteceu. A <strong>fractografia</strong> lê esse registro e distingue os modos:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Modo</th><th>Aspecto macroscópico</th><th>Aspecto microscópico</th><th>Mecanismo</th></tr></thead>
+              <tbody>
+                <tr><td>Dúctil</td><td>Estricção, aspecto fibroso e acinzentado, lábios de cisalhamento a 45°</td><td>Microcavidades (<em>dimples</em>)</td><td>Nucleação, crescimento e coalescimento de microvazios em inclusões</td></tr>
+                <tr><td>Frágil transgranular</td><td>Plana, brilhante, com marcas em leque apontando para a origem</td><td>Facetas de clivagem, "rios"</td><td>Separação de planos cristalográficos, sem deformação plástica apreciável</td></tr>
+                <tr><td>Frágil intergranular</td><td>Plana, aspecto granular ("açúcar")</td><td>Contornos de grão descobertos</td><td>Fragilização por impurezas, hidrogênio ou sensitização</td></tr>
+                <tr><td>Fadiga</td><td>Marcas de praia concêntricas + zona final rugosa</td><td>Estrias, uma por ciclo</td><td>Propagação lenta de trinca sob carga cíclica</td></tr>
+                <tr><td>Fluência</td><td>Deformação generalizada, trincas em cunha</td><td>Vazios nos contornos de grão</td><td>Alta temperatura e tempo sob carga</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Transição dúctil-frágil e tenacidade</h4>
+            <p>Nos aços de estrutura CCC a energia absorvida no ensaio <strong>Charpy</strong> cai bruscamente abaixo de uma temperatura de transição; nos CFC, como o inox austenítico, não há transição. Já a mecânica da fratura trata a trinca existente:</p>
+            <div class="formula"><span data-tex="K_{I} = Y\,\sigma\sqrt{\pi a} \qquad \text{falha quando } K_{I} \ge K_{IC}"></span><span class="where">a: tamanho da trinca; Y: fator geométrico; K_IC: tenacidade à fratura do material</span></div>
+            <div class="callout note">
+              <strong>Os três fatores da fratura frágil</strong>
+              Tensão de tração elevada, trinca ou entalhe agudo e material de baixa tenacidade (ou temperatura baixa, ou carregamento rápido, ou seção espessa, que impõe estado plano de deformação). Retirando qualquer um deles, a fratura frágil não acontece.
             </div>
           </div>
         </details>

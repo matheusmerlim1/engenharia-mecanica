@@ -36,7 +36,7 @@
     <h1>Mecânica dos Fluidos</h1>
     <p class="lead">Do empuxo de um casco à perda de carga de uma adutora: a disciplina que responde qual pressão o fluido exerce, quanta energia ele perde no caminho e que bomba é preciso para vencê-la.</p>
     <div class="btn-row">
-      <span class="tag accent">9 tópicos</span>
+      <span class="tag accent">10 tópicos</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">4 simuladores</span>
       <span class="tag warn">normas</span>
@@ -111,6 +111,30 @@
         </details>
 
         <details class="topic">
+          <summary>2-bis. Empuxo e estabilidade de corpos flutuantes</summary>
+          <div class="topic-body">
+            <p>O empuxo é o peso do volume de fluido deslocado e age no <strong>centro de carena</strong> B, o centroide do volume submerso — que não coincide com o centro de gravidade G do corpo.</p>
+            <div class="formula"><span data-tex="E = \rho\,g\,V_{\text{desl}}"></span><span class="where">princípio de Arquimedes; um corpo flutua quando desloca um volume cujo peso iguala o seu</span></div>
+            <p>Quando o corpo inclina de um pequeno ângulo, a carena muda de forma e B se desloca lateralmente. A vertical que passa pelo novo B cruza o eixo de simetria no <strong>metacentro</strong> M:</p>
+            <div class="formula"><span data-tex="\overline{MB} = \frac{I_{\text{linha d'água}}}{V_{\text{desl}}} \qquad \overline{GM} = \overline{MB} - \overline{GB}"></span><span class="where">I: momento de inércia da área da linha d'água em relação ao eixo de inclinação</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Situação</th><th>Condição</th><th>Comportamento</th></tr></thead>
+              <tbody>
+                <tr><td>Corpo flutuante estável</td><td>M acima de G (<span data-tex-inline="\overline{GM} > 0"></span>)</td><td>O empuxo gera momento restaurador: o corpo volta à posição</td></tr>
+                <tr><td>Corpo flutuante instável</td><td>M abaixo de G</td><td>O momento amplia a inclinação: o corpo emborca</td></tr>
+                <tr><td>Corpo totalmente submerso</td><td>B acima de G</td><td>Submarinos e balões: o lastro fica embaixo de propósito</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>GM grande nem sempre é bom</strong>
+              Quanto maior a altura metacêntrica, mais rígida é a embarcação — e mais curto e desconfortável fica o período de balanço, <span data-tex-inline="T \approx 2\pi k/\sqrt{g\,\overline{GM}}"></span>. Navios de passageiros são projetados com GM moderado justamente para balançar devagar.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
           <summary>3. Força sobre superfícies submersas</summary>
           <div class="topic-body">
             <p>Como a pressão cresce com a profundidade, a resultante não passa pelo centroide da área: ela desce para o <strong>centro de pressão</strong>.</p>
@@ -154,6 +178,20 @@
                 <tr><td>Linha piezométrica (LP)</td><td><span data-tex-inline="\frac{p}{\gamma } + z"></span></td><td>Sobe e desce conforme a velocidade diminui ou aumenta.</td></tr>
               </tbody>
             </table>
+            </div>
+            <h4>Duas aplicações clássicas</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Dispositivo</th><th>Princípio</th><th>Resultado</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Tubo de Pitot</strong></td><td>Uma tomada de estagnação (v = 0) e outra estática, no mesmo ponto</td><td><span data-tex-inline="v = \sqrt{2g\,\Delta h}"></span> — com Δh = 0,50 m de coluna do próprio líquido, v = 3,13 m/s</td></tr>
+                <tr><td><strong>Sifão</strong></td><td>Bernoulli da superfície livre até a saída, passando pelo ponto alto</td><td><span data-tex-inline="v = \sqrt{2gH}"></span>, com H medido do nível livre até a saída</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>O ponto alto do sifão trabalha em vácuo</strong>
+              Com a saída 2,0 m abaixo do nível livre e o topo do tubo 1,5 m acima dele: <span data-tex-inline="v = \sqrt{2 \times 9{,}81 \times 2{,}0} = 6{,}26"></span> m/s e, no topo, <span data-tex-inline="p/\gamma = -1{,}5 - v^{2}/2g = -3{,}5"></span> m, ou seja cerca de <strong>−34 kPa</strong>. Se a pressão absoluta nesse ponto chegar à pressão de vapor, o líquido ferve e o sifão perde a escorva — é o mesmo limite da altura de sucção de uma bomba.
             </div>
             <div class="callout warn">
               <strong>Quando Bernoulli não vale</strong>

@@ -354,6 +354,24 @@
         <details class="topic">
           <summary>8. Carregamento combinado e tensão admissível</summary>
           <div class="topic-body">
+            <h4>Concentração de tensões</h4>
+            <p>Toda mudança brusca de seção — furo, rasgo, entalhe, mudança de diâmetro — distorce o fluxo de tensões e cria um pico local:</p>
+            <div class="formula"><span data-tex="\sigma_{\max} = K_{t}\,\sigma_{\text{nom}}"></span><span class="where">K_t é geométrico, tabelado (Peterson); σ_nom usa a seção líquida, já descontado o furo</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Detalhe</th><th>K_t típico</th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td>Furo circular central em chapa tracionada</td><td>≈ 3,0</td><td>Valor clássico, para furo pequeno em chapa larga</td></tr>
+                <tr><td>Filete de mudança de diâmetro em eixo</td><td>1,5 a 2,5</td><td>Cai rápido quando o raio do filete aumenta</td></tr>
+                <tr><td>Rasgo de chaveta em eixo</td><td>2 a 3</td><td>Na flexão e na torção</td></tr>
+                <tr><td>Entalhe em V agudo</td><td>&gt; 4</td><td>Quanto menor o raio, maior o pico</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Onde K_t realmente importa</strong>
+              Em material dúctil sob carga estática, o pico escoa localmente, redistribui a carga e K_t pode ser ignorado. Em <strong>material frágil</strong> ou sob <strong>fadiga</strong>, não há essa acomodação: é ali que a trinca nasce. Por isso todo projeto contra fadiga começa suavizando raios e eliminando cantos vivos.
+            </div>
             <p>Peças reais raramente sofrem uma solicitação só. Um eixo de transmissão tem torção, flexão e às vezes carga axial ao mesmo tempo. As tensões normais se somam algebricamente; as de cisalhamento também — mas cada uma no seu plano.</p>
             <div class="formula"><span data-tex="\sigma = \frac{N}{A} \pm M\cdot \frac{y}{I} \quad \tau = T\cdot \frac{\rho }{J} + V\cdot \frac{Q}{I\cdot t}"></span></div>
             <div class="callout tip">
