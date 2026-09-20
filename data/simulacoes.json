@@ -777,6 +777,46 @@
       "titulo": "Processamento primário — separar óleo, gás e água no convés",
       "resumo": "Do poço chega uma mistura de óleo, gás, água e areia.",
       "ordem": 4
+    },
+    {
+      "id": "sim-motor",
+      "slug": "motores-de-combustao-interna",
+      "disciplina": "Motores de Combustão Interna",
+      "periodo": "0",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Mecanismo biela-manivela e os quatro tempos",
+      "resumo": "O pistão não se move harmonicamente: a biela finita distorce o movimento, e é por isso que a aceleração no PMS é maior que no PMI.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-ciclos-mci",
+      "slug": "motores-de-combustao-interna",
+      "disciplina": "Motores de Combustão Interna",
+      "periodo": "0",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Ciclos teóricos — Otto, Diesel e misto (Sabathé)",
+      "resumo": "Os três ciclos padrão a ar frio diferem apenas em como o calor entra: a volume constante (Otto), a pressão constante (Diesel) ou em duas partes (misto, o que mais se parece com o motor real).",
+      "ordem": 1
+    },
+    {
+      "id": "sim-desempenho",
+      "slug": "motores-de-combustao-interna",
+      "disciplina": "Motores de Combustão Interna",
+      "periodo": "0",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Curvas características, rendimentos e balanço energético",
+      "resumo": "Torque e potência não sobem juntos: o torque acompanha o rendimento volumétrico e cai quando o motor não consegue mais respirar, enquanto a potência ainda cresce com a rotação até o atrito vencer.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-combustao",
+      "slug": "motores-de-combustao-interna",
+      "disciplina": "Motores de Combustão Interna",
+      "periodo": "0",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "Combustão — relação ar-combustível, λ e emissões",
+      "resumo": "A relação ar-combustível estequiométrica sai direto do balanço químico e muda muito de um combustível para outro: 15,1 para a gasolina, 9,0 para o etanol.",
+      "ordem": 3
     }
   ]
 }

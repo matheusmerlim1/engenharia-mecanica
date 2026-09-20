@@ -1,0 +1,525 @@
+{
+ "disciplina": "Motores de Combustão Interna",
+ "slug": "motores-de-combustao-interna",
+ "topicos": [
+  {
+   "id": "classificacao",
+   "nome": "Classificação e funcionamento"
+  },
+  {
+   "id": "geometria",
+   "nome": "Parâmetros geométricos e cinemática"
+  },
+  {
+   "id": "ciclos",
+   "nome": "Ciclos teóricos e reais"
+  },
+  {
+   "id": "desempenho",
+   "nome": "Desempenho e rendimentos"
+  },
+  {
+   "id": "combustao",
+   "nome": "Combustíveis e combustão"
+  },
+  {
+   "id": "sobrealimentacao",
+   "nome": "Sobrealimentação"
+  },
+  {
+   "id": "emissoes",
+   "nome": "Emissões"
+  },
+  {
+   "id": "maritimos",
+   "nome": "Motores marítimos"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "mci-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "classificacao",
+   "enunciado": "<p>A diferença essencial entre o motor de ignição por centelha (Otto) e o de ignição por compressão (Diesel) é que, no Diesel:</p>",
+   "alternativas": [
+    "comprime-se apenas ar, e o combustível é injetado no fim da compressão, autoinflamando-se pela alta temperatura.",
+    "a vela produz a centelha em um ponto mais avançado do ciclo.",
+    "a mistura ar-combustível é preparada no carburador e comprimida.",
+    "o combustível é queimado a volume constante, e no Otto a pressão constante."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Como só há ar na compressão, não existe risco de detonação da mistura: por isso o Diesel pode usar taxas de compressão de 16 a 22:1, contra 9 a 12:1 do Otto. É dessa taxa maior que vem a vantagem de rendimento. Idealmente o Otto queima a volume constante e o Diesel a pressão constante — o contrário do que diz a última alternativa.</p>"
+  },
+  {
+   "id": "mci-002",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "classificacao",
+   "enunciado": "<p>Um motor de dois tempos, comparado a um de quatro tempos de mesma cilindrada e rotação, na prática:</p>",
+   "alternativas": [
+    "tem exatamente o dobro da potência, por ter o dobro de ciclos.",
+    "não produz potência em rotação baixa.",
+    "tem mais potência específica, mas bem menos que o dobro, porque a lavagem é imperfeita e parte da carga fresca escapa pelo escape.",
+    "tem o mesmo número de ciclos por volta do virabrequim."
+   ],
+   "correta": 2,
+   "explicacao": "<p>O 2 tempos completa um ciclo por volta, contra um a cada duas voltas do 4 tempos. O ganho real fica bem abaixo do dobro: parte do curso é gasta com as janelas abertas, a carga fresca se mistura com gases queimados e um pouco dela escapa (curto-circuito). Em contrapartida é mais simples, mais leve e, nos grandes marítimos com lavagem uniflow, muito eficiente.</p>"
+  },
+  {
+   "id": "mci-003",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "classificacao",
+   "enunciado": "<p>O cruzamento de válvulas é o período em que:</p>",
+   "alternativas": [
+    "as duas válvulas estão fechadas, durante a compressão.",
+    "a válvula de admissão abre duas vezes por ciclo.",
+    "admissão e escape estão abertas ao mesmo tempo, perto do PMS, o que ajuda a limpar a câmara em alta rotação e piora a marcha lenta.",
+    "o comando gira na mesma rotação do virabrequim."
+   ],
+   "correta": 2,
+   "explicacao": "<p>A inércia dos gases é aproveitada: a coluna de gás de escape em movimento ajuda a puxar a carga fresca. Em rotação baixa, porém, o cruzamento deixa gases queimados voltarem para a admissão, o que piora a marcha lenta. É exatamente esse compromisso que o comando variável resolve.</p>"
+  },
+  {
+   "id": "mci-004",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "geometria",
+   "enunciado": "<p>Um motor de <span class=\"dado\">4 cilindros</span> tem diâmetro de <span class=\"dado\">80 mm</span> e curso de <span class=\"dado\">90 mm</span>. Sua cilindrada total é de aproximadamente:</p>",
+   "alternativas": [
+    "452 cm³",
+    "1810 cm³",
+    "905 cm³",
+    "2 262 cm³"
+   ],
+   "correta": 1,
+   "formulas": [
+    "V_d = π D²/4 · S",
+    "V_total = z · V_d"
+   ],
+   "explicacao": "<div class=\"passo\">V<sub>d</sub> = π × 8,0²/4 × 9,0 = 452,4 cm³ (com D e S em cm)</div><div class=\"passo\">V<sub>total</sub> = 4 × 452,4 = <strong>1810 cm³</strong></div><p>452 cm³ é a cilindrada de um cilindro só; 905 cm³ conta dois cilindros; 2 262 cm³ usaria 5 cilindros. Um motor com essa cilindrada é comercialmente chamado de \"1.8\".</p>"
+  },
+  {
+   "id": "mci-005",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "geometria",
+   "enunciado": "<p>Para o mesmo cilindro (452,4 cm³ de cilindrada unitária), qual deve ser o volume da câmara de combustão para uma taxa de compressão de <span class=\"dado\">10:1</span>?</p>",
+   "alternativas": [
+    "45,24 cm³",
+    "55,24 cm³",
+    "50,27 cm³",
+    "41,13 cm³"
+   ],
+   "correta": 2,
+   "formulas": [
+    "r_c = (V_d + V_c)/V_c"
+   ],
+   "explicacao": "<div class=\"passo\">10 = (452,4 + V<sub>c</sub>)/V<sub>c</sub> → 10 V<sub>c</sub> − V<sub>c</sub> = 452,4</div><div class=\"passo\">V<sub>c</sub> = 452,4/9 = <strong>50,27 cm³</strong></div><p>O erro clássico é dividir por r<sub>c</sub> em vez de (r<sub>c</sub> − 1), o que dá 45,24 cm³. A taxa de compressão compara o volume total (V<sub>d</sub> + V<sub>c</sub>) com o volume da câmara, não com a cilindrada.</p>"
+  },
+  {
+   "id": "mci-006",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "geometria",
+   "enunciado": "<p>Um motor com curso de <span class=\"dado\">90 mm</span> gira a <span class=\"dado\">5500 rpm</span>. A velocidade média do pistão é:</p>",
+   "alternativas": [
+    "16,5 m/s",
+    "8,25 m/s",
+    "33,0 m/s",
+    "4,13 m/s"
+   ],
+   "correta": 0,
+   "formulas": [
+    "v̄_p = 2 S n / 60"
+   ],
+   "explicacao": "<div class=\"passo\">v̄<sub>p</sub> = 2 × 0,090 × 5500/60 = <strong>16,5 m/s</strong></div><p>O pistão percorre dois cursos por volta. Motores de automóvel trabalham entre 8 e 15 m/s na rotação máxima — é essa grandeza, e não a rotação, que mede o quanto o motor está solicitado. 8,25 m/s esquece o fator 2; 33,0 m/s esquece o 60.</p>"
+  },
+  {
+   "id": "mci-007",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "geometria",
+   "enunciado": "<p>Num motor de curso curto (subquadrado, S/D &lt; 1), comparado a um de curso longo de mesma cilindrada:</p>",
+   "alternativas": [
+    "a velocidade média do pistão é maior na mesma rotação.",
+    "a taxa de compressão é obrigatoriamente maior.",
+    "o torque em baixa rotação é sempre maior.",
+    "a rotação máxima pode ser maior, porque a velocidade média do pistão é menor na mesma rotação."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Com curso menor, o pistão percorre menos caminho por volta: para a mesma velocidade média (que é o limite real), a rotação pode ser mais alta — e potência é torque × rotação. O preço é uma câmara mais achatada e rasa, com combustão um pouco pior, e menos torque em baixa.</p>"
+  },
+  {
+   "id": "mci-008",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "geometria",
+   "enunciado": "<p>Estime a aceleração do pistão no PMS de um motor com curso de <span class=\"dado\">90 mm</span>, biela de <span class=\"dado\">150 mm</span> e rotação de <span class=\"dado\">5000 rpm</span>.</p>",
+   "alternativas": [
+    "12,3 km/s²",
+    "9,25 km/s²",
+    "32,1 km/s²",
+    "16,04 km/s²"
+   ],
+   "correta": 3,
+   "formulas": [
+    "ω = 2πn/60",
+    "λ = r/L",
+    "a_PMS ≈ ω²r(1 + λ)"
+   ],
+   "explicacao": "<div class=\"passo\">ω = 2π × 5000/60 = 523,6 rad/s; r = S/2 = 0,045 m; λ = 0,045/0,150 = 0,30</div><div class=\"passo\">a = 523,6² × 0,045 × 1,30 = 16038 m/s² = <strong>16,04 km/s²</strong></div><p>São cerca de 1600 g. É essa aceleração que fixa a força de inércia sobre a biela e os contrapesos. 9,25 km/s² esquece o fator (1 + λ) e 12,3 km/s² usa (1 − λ), que vale no PMI.</p>"
+  },
+  {
+   "id": "mci-009",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "ciclos",
+   "enunciado": "<p>O rendimento térmico de um ciclo Otto padrão a ar frio com taxa de compressão <span class=\"dado\">10:1</span> e <span class=\"dado\">k = 1,4</span> é de:</p>",
+   "alternativas": [
+    "60,2 %",
+    "39,8 %",
+    "50,2 %",
+    "74,9 %"
+   ],
+   "correta": 0,
+   "formulas": [
+    "η = 1 − 1/r_c^(k−1)"
+   ],
+   "explicacao": "<div class=\"passo\">r_c^(k−1) = 10^0,4 = 2,512</div><div class=\"passo\">η = 1 − 1/2,512 = <strong>0,6019</strong> = 60,2 %</div><p>Depende só da taxa de compressão e de k. 39,8 % é o próprio 1/r_c^(k−1); 74,9 % usaria k = 1,67 (gás monoatômico). O motor real entrega bem menos: 30 a 35 %.</p>"
+  },
+  {
+   "id": "mci-010",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ciclos",
+   "enunciado": "<p>Um ciclo Diesel padrão a ar frio tem taxa de compressão <span class=\"dado\">18:1</span>, razão de corte <span class=\"dado\">2</span> e <span class=\"dado\">k = 1,4</span>. Seu rendimento é:</p>",
+   "alternativas": [
+    "68,2 %",
+    "63,2 %",
+    "58,1 %",
+    "49,0 %"
+   ],
+   "correta": 1,
+   "formulas": [
+    "η = 1 − (1/r_c^(k−1))·[(r_corte^k − 1)/(k(r_corte − 1))]"
+   ],
+   "explicacao": "<div class=\"passo\">1/18^0,4 = 0,3180</div><div class=\"passo\">(2^1,4 − 1)/(1,4 × 1) = (2,639 − 1)/1,4 = 1,171</div><div class=\"passo\">η = 1 − 0,3180 × 1,171 = <strong>0,6316</strong> = 63,2 %</div><p>68,2 % é o rendimento de um Otto com a mesma taxa de compressão — sempre maior, porque o termo entre colchetes é sempre superior a 1. O Diesel compensa podendo usar taxas que o Otto não suporta.</p>"
+  },
+  {
+   "id": "mci-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ciclos",
+   "enunciado": "<p>Comparando os ciclos Otto e Diesel padrão a ar frio com a <strong>mesma taxa de compressão</strong>:</p>",
+   "alternativas": [
+    "o Diesel é mais eficiente, porque queima a pressão constante.",
+    "o Otto é mais eficiente; o Diesel só leva vantagem na prática porque admite taxas de compressão muito maiores.",
+    "os dois têm exatamente o mesmo rendimento.",
+    "o Diesel é mais eficiente apenas quando a razão de corte tende a 1."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Fornecer calor a volume constante é termodinamicamente melhor: a temperatura média de fornecimento é maior. Quando a razão de corte tende a 1, o Diesel tende ao Otto — e o rendimento tende a se igualar, nunca a superar. A vantagem prática do Diesel vem de r_c de 16 a 22 contra 9 a 12 do Otto.</p>"
+  },
+  {
+   "id": "mci-012",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ciclos",
+   "enunciado": "<p>O ciclo misto (Sabathé) representa melhor o motor real porque:</p>",
+   "alternativas": [
+    "despreza o trabalho de bombeamento.",
+    "supõe que a combustão ocorre inteiramente após o PMI.",
+    "considera o calor fornecido em duas etapas — parte a volume constante e parte a pressão constante — o que se aproxima da combustão real, que não é nem instantânea nem isobárica.",
+    "usa k variável com a temperatura."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Na combustão real há uma fase rápida, quase a volume constante, logo após a ignição, e outra mais lenta enquanto o pistão desce. Com α = 1 o ciclo misto recai no Diesel; com razão de corte igual a 1, no Otto. Os desvios do ciclo real (troca de calor, k variável, bombeamento) continuam fora de todos eles.</p>"
+  },
+  {
+   "id": "mci-013",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ciclos",
+   "enunciado": "<p>O trabalho de bombeamento (laço negativo do diagrama indicado) é especialmente importante:</p>",
+   "alternativas": [
+    "no motor Diesel em plena carga.",
+    "apenas em motores de dois tempos.",
+    "em qualquer motor na rotação de torque máximo.",
+    "no motor Otto em carga parcial, porque a borboleta fechada cria depressão na admissão."
+   ],
+   "correta": 3,
+   "explicacao": "<p>O motor Otto controla a potência estrangulando o ar, e o pistão precisa vencer o vácuo na admissão. O Diesel dosa apenas o combustível, sem borboleta, e por isso mantém bom rendimento em carga parcial. Injeção direta com carga estratificada e desativação de cilindros são formas de reduzir essa perda no motor Otto.</p>"
+  },
+  {
+   "id": "mci-014",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "desempenho",
+   "enunciado": "<p>Um motor <span class=\"dado\">4 tempos</span> de <span class=\"dado\">2,0 litros</span> opera com pressão média efetiva de <span class=\"dado\">10 bar</span> a <span class=\"dado\">4000 rpm</span>. Sua potência é de:</p>",
+   "alternativas": [
+    "66,67 kW",
+    "133,3 kW",
+    "33,3 kW",
+    "80,0 kW"
+   ],
+   "correta": 0,
+   "formulas": [
+    "P = pme · V_total · n / x, com x = 2 no 4 tempos"
+   ],
+   "explicacao": "<div class=\"passo\">n = 4000/60 = 66,67 rev/s</div><div class=\"passo\">P = 10 × 10⁵ × 2,0 × 10⁻³ × 66,67/2 = <strong>66667 W ≈ 66,67 kW</strong></div><p>133,3 kW esquece de dividir por 2 (seria a potência de um motor 2 tempos equivalente); 33,3 kW divide por 4. Em cavalos, 66,7 kW equivalem a cerca de 91 cv.</p>"
+  },
+  {
+   "id": "mci-015",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "desempenho",
+   "enunciado": "<p>Qual é o torque desse motor (66,7 kW a 4000 rpm)?</p>",
+   "alternativas": [
+    "265 N·m",
+    "159,2 N·m",
+    "16,7 N·m",
+    "1000 N·m"
+   ],
+   "correta": 1,
+   "formulas": [
+    "P = 2π n T"
+   ],
+   "explicacao": "<div class=\"passo\">ω = 2π × 66,67 = 418,9 rad/s</div><div class=\"passo\">T = 66 670/418,9 = <strong>159,2 N·m</strong></div><p>Repare que T = pme·V/(2π·x) não depende da rotação: é a pme que manda no torque. 265 N·m esquece o fator 2 do ciclo de 4 tempos; 16,7 N·m usa a rotação em rpm sem converter.</p>"
+  },
+  {
+   "id": "mci-016",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "desempenho",
+   "enunciado": "<p>Um motor tem consumo específico de <span class=\"dado\">250 g/kWh</span> queimando combustível de PCI <span class=\"dado\">44 000 kJ/kg</span>. Seu rendimento térmico efetivo é de:</p>",
+   "alternativas": [
+    "22,7 %",
+    "45,5 %",
+    "32,7 %",
+    "18,2 %"
+   ],
+   "correta": 2,
+   "formulas": [
+    "η_t = 3,6×10⁶ / (ce · PCI)",
+    "ce em g/kWh e PCI em kJ/kg"
+   ],
+   "explicacao": "<div class=\"passo\">Em 1 hora, para 1 kW de saída: energia útil = 3600 kJ; combustível = 0,250 kg → energia = 0,250 × 44 000 = 11 000 kJ</div><div class=\"passo\">η<sub>t</sub> = 3600/11 000 = <strong>0,3273</strong> = 32,7 %</div><p>É um valor típico de motor Otto. Um Diesel de caminhão, com ce de 200 g/kWh e PCI de 42 500 kJ/kg, chega a 42 %. 22,7 % inverte alguma conversão; 45,5 % usaria ce de 125 g/kWh.</p>"
+  },
+  {
+   "id": "mci-017",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "desempenho",
+   "enunciado": "<p>Por que o pico de potência ocorre em rotação mais alta que o pico de torque?</p>",
+   "alternativas": [
+    "Porque a potência é torque × rotação: mesmo com o torque já caindo, o produto ainda cresce até que a queda vença o aumento da rotação.",
+    "Porque o torque é proporcional ao quadrado da rotação.",
+    "Porque o rendimento volumétrico cresce indefinidamente com a rotação.",
+    "Porque o atrito diminui em rotação alta."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O torque acompanha a pme e, portanto, o rendimento volumétrico, que tem máximo numa rotação de sintonia da admissão. Depois dele o torque cai, mas a potência (P = 2πnT) continua subindo por um tempo. O atrito, que cresce com o quadrado da rotação, é quem acaba fechando a curva.</p>"
+  },
+  {
+   "id": "mci-018",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "desempenho",
+   "enunciado": "<p>O rendimento volumétrico de um motor mede:</p>",
+   "alternativas": [
+    "a fração do combustível que queima completamente.",
+    "a razão entre a massa de ar realmente admitida e a que caberia no cilindro nas condições da admissão.",
+    "a razão entre trabalho útil e trabalho indicado.",
+    "a razão entre a cilindrada e o volume da câmara."
+   ],
+   "correta": 1,
+   "explicacao": "<p>É a medida da capacidade de respirar do motor. Em aspirados fica entre 75 e 90 %, com máximo na rotação em que a admissão está sintonizada; com sobrealimentação passa de 100 %, porque o ar entra a pressão maior que a atmosférica.</p>"
+  },
+  {
+   "id": "mci-019",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "desempenho",
+   "enunciado": "<p>O rendimento mecânico de um motor cai com o aumento da rotação porque:</p>",
+   "alternativas": [
+    "o rendimento volumétrico sempre cresce.",
+    "o combustível queima menos completamente.",
+    "a taxa de compressão diminui.",
+    "as perdas por atrito crescem aproximadamente com o quadrado da rotação, enquanto a potência indicada cresce mais devagar."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A correlação usual (Heywood) para a pressão média de atrito é pmf = 0,97 + 0,15(N/1000) + 0,05(N/1000)², em bar. Como η_m = pme/pmi = 1 − pmf/pmi, ele despenca em rotação alta — e é por isso que a curva de potência acaba caindo.</p>"
+  },
+  {
+   "id": "mci-020",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "combustao",
+   "enunciado": "<p>Calcule a relação ar-combustível estequiométrica, em massa, para o octano (C₈H₁₈, M = 114,2 g/mol).</p>",
+   "alternativas": [
+    "12,5 : 1",
+    "15,1 : 1",
+    "9,0 : 1",
+    "17,2 : 1"
+   ],
+   "correta": 1,
+   "formulas": [
+    "a = n + m/4",
+    "AFR = (a/0,21)·(28,97/M_comb)"
+   ],
+   "explicacao": "<div class=\"passo\">a = 8 + 18/4 = 12,5 mols de O₂ por mol de combustível</div><div class=\"passo\">mols de ar = 12,5/0,21 = 59,52 → massa de ar = 59,52 × 28,97 = 1724 g</div><div class=\"passo\">AFR = 1724/114,2 = <strong>15,1</strong></div><p>12,5 é o próprio coeficiente a (mols de O₂), não a relação mássica; 9,0 é a AFR do etanol e 17,2 a do metano. Para cada litro de gasolina o motor precisa de cerca de 10 m³ de ar.</p>"
+  },
+  {
+   "id": "mci-021",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "combustao",
+   "enunciado": "<p>O etanol tem PCI cerca de 40 % menor que o da gasolina, mas um motor flex costuma render potência igual ou maior com etanol. A razão principal é:</p>",
+   "alternativas": [
+    "o etanol exigir muito menos ar por kg de combustível (AFR 9,0 contra 15,1): por kg de ar admitido, a energia disponível é praticamente a mesma — e ainda permite maior taxa de compressão.",
+    "o etanol ter octanagem menor.",
+    "o etanol queimar mais devagar, aumentando o tempo de expansão.",
+    "a densidade do etanol ser menor que a da gasolina."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O motor é limitado pela massa de ar que consegue admitir, não pela de combustível. PCI/AFR dá cerca de 2,9 MJ por kg de ar nos dois casos. Some a isso o resfriamento da mistura pela evaporação (calor latente alto) e a octanagem de 109, que permite taxa de compressão maior e avanço mais agressivo.</p>"
+  },
+  {
+   "id": "mci-022",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "combustao",
+   "enunciado": "<p>Uma mistura com λ = 0,9 é:</p>",
+   "alternativas": [
+    "pobre, com 10 % de excesso de ar.",
+    "estequiométrica, dentro da tolerância da sonda lambda.",
+    "rica, com falta de ar em relação à estequiométrica — condição usada em plena carga, onde a potência é máxima.",
+    "impossível: λ não pode ser menor que 1."
+   ],
+   "correta": 2,
+   "explicacao": "<p>λ = AFR real/AFR estequiométrica. Abaixo de 1 há falta de ar: sobra combustível, formam-se CO e H₂, e a queima é mais rápida — por isso a potência máxima aparece em λ ≈ 0,85 a 0,9. O consumo e as emissões pioram, e o catalisador de três vias deixa de funcionar.</p>"
+  },
+  {
+   "id": "mci-023",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "combustao",
+   "enunciado": "<p>O catalisador de três vias exige que o motor opere com λ muito próximo de 1 porque:</p>",
+   "alternativas": [
+    "abaixo de λ = 1 o catalisador derrete.",
+    "ele precisa simultaneamente de oxigênio para oxidar CO e HC e de falta de oxigênio para reduzir NOx — condição que só existe numa janela estreitíssima em torno da estequiometria.",
+    "a sonda lambda só funciona com mistura pobre.",
+    "em mistura pobre não há NOx a reduzir."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Fora da janela, uma das três reações não acontece: com mistura rica sobra CO e HC não oxidados; com mistura pobre, o excesso de oxigênio impede a redução de NOx. Daí o controle em malha fechada com a sonda lambda, que oscila em torno de λ = 1 várias vezes por segundo.</p>"
+  },
+  {
+   "id": "mci-024",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "combustao",
+   "enunciado": "<p>A detonação (knock) em motores Otto consiste em:</p>",
+   "alternativas": [
+    "a autoignição da mistura ainda não queimada, comprimida pelo avanço da chama, gerando ondas de pressão e ruído metálico.",
+    "a queima iniciar antes da centelha, num ponto quente da câmara.",
+    "a falha de ignição por mistura pobre demais.",
+    "um excesso de combustível que lava o óleo do cilindro."
+   ],
+   "correta": 0,
+   "explicacao": "<p>A parte final da carga (end gas) é comprimida e aquecida pela chama que avança; se atingir a autoignição antes de ser alcançada, queima quase instantaneamente. Isso gera picos de pressão e ondas que podem furar o pistão. Combatem-se com octanagem maior, menos avanço, menor taxa de compressão, ar de admissão mais frio e melhor turbulência. A pré-ignição é fenômeno distinto: a mistura acende antes da centelha.</p>"
+  },
+  {
+   "id": "mci-025",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "combustao",
+   "enunciado": "<p>Octanagem alta e número de cetano alto são características:</p>",
+   "alternativas": [
+    "desejáveis simultaneamente no mesmo combustível.",
+    "que medem o poder calorífico do combustível.",
+    "opostas: a octanagem mede a resistência à autoignição (desejável no Otto) e o cetano, a facilidade de autoignição (desejável no Diesel).",
+    "relacionadas apenas à volatilidade."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Por isso combustíveis de octanagem alta têm cetano baixo. No Otto a autoignição é o inimigo (detonação); no Diesel, é o mecanismo de funcionamento, e o atraso de ignição curto (cetano alto) reduz o ruído e o pico de pressão.</p>"
+  },
+  {
+   "id": "mci-026",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sobrealimentacao",
+   "enunciado": "<p>O intercooler (resfriador de ar de admissão) é usado em motores sobrealimentados porque:</p>",
+   "alternativas": [
+    "reduz o atrito do turbocompressor.",
+    "permite dispensar a wastegate.",
+    "aumenta a pressão de admissão.",
+    "ao resfriar o ar comprimido, aumenta sua densidade — mais massa de ar no mesmo volume — e ainda reduz o risco de detonação."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A compressão aquece o ar, e ar quente é menos denso: parte do ganho de pressão se perde. O intercooler recupera boa parte disso. Como bônus, a temperatura menor no fim da compressão afasta a detonação, permitindo mais avanço de ignição.</p>"
+  },
+  {
+   "id": "mci-027",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sobrealimentacao",
+   "enunciado": "<p>Comparando turbocompressor e compressor mecânico (supercharger):</p>",
+   "alternativas": [
+    "o turbocompressor consome potência do virabrequim por correia.",
+    "o turbo aproveita a energia dos gases de escape e por isso é mais eficiente, mas tem resposta atrasada (turbo lag); o mecânico responde na hora, ao custo de consumir potência do motor.",
+    "o compressor mecânico só funciona em rotação alta.",
+    "os dois são acionados pelos gases de escape."
+   ],
+   "correta": 1,
+   "explicacao": "<p>A wastegate limita a pressão desviando gases da turbina; a geometria variável (VGT) reduz o lag ajustando a passagem dos gases. Em Diesel de caminhão o turbo é praticamente universal, porque o escape tem muita energia disponível e não há risco de detonação.</p>"
+  },
+  {
+   "id": "mci-028",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "emissoes",
+   "enunciado": "<p>A recirculação de gases de escape (EGR) reduz a emissão de NOx porque:</p>",
+   "alternativas": [
+    "aumenta o excesso de ar na câmara.",
+    "aumenta a turbulência e acelera a queima.",
+    "oxida o NOx a N₂O₅, que é retido no filtro.",
+    "os gases recirculados são inertes e têm alto calor específico: diluem a carga e baixam a temperatura de pico da chama, que é onde o N₂ se oxida."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A formação de NOx térmico é fortemente dependente da temperatura (mecanismo de Zeldovich). Baixando o pico de temperatura, cai o NOx — mas a combustão fica mais lenta e incompleta, o que aumenta o particulado e o consumo. Esse é o dilema NOx × MP dos motores Diesel.</p>"
+  },
+  {
+   "id": "mci-029",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "emissoes",
+   "enunciado": "<p>Num motor Diesel moderno que atende a limites severos de emissão, o conjunto típico de pós-tratamento inclui:</p>",
+   "alternativas": [
+    "catalisador de oxidação, filtro de particulado (DPF) e redução catalítica seletiva (SCR) com ureia.",
+    "apenas catalisador de três vias.",
+    "somente EGR.",
+    "catalisador de três vias e sonda lambda de banda estreita."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O catalisador de três vias não serve para o Diesel, que trabalha sempre com excesso de ar (λ &gt; 1): nessas condições não há como reduzir NOx sobre ele. Por isso a estratégia é outra: oxidação de CO e HC, retenção e queima da fuligem no DPF e redução do NOx com amônia no SCR (o ARLA 32).</p>"
+  },
+  {
+   "id": "mci-030",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "maritimos",
+   "enunciado": "<p>Os grandes motores marítimos de propulsão são tipicamente Diesel de dois tempos, de cruzeta e rotação baixa (60 a 120 rpm) porque:</p>",
+   "alternativas": [
+    "a baixa rotação reduz o rendimento, mas simplifica o motor.",
+    "acoplam-se diretamente ao hélice, sem redutor, e a rotação e a velocidade média de pistão baixas permitem grande porte, alto rendimento (acima de 50 %) e queima de combustíveis pesados.",
+    "não precisam de sistema de lubrificação.",
+    "são os únicos que atendem à MARPOL Anexo VI."
+   ],
+   "correta": 1,
+   "explicacao": "<p>O hélice tem rendimento máximo em rotação baixa, o que dispensa redutor. A cruzeta separa o cárter da câmara de combustão, permitindo lubrificação separada do cilindro — necessária para neutralizar o enxofre do combustível pesado. Quanto à MARPOL, ela se aplica a todos, e os níveis Tier III exigem SCR ou EGR mesmo nesses motores.</p>"
+  }
+ ]
+}

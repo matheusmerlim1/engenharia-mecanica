@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motores de Combustão Interna — Engenharia Mecânica</title>
+<meta name="description" content="Motores Otto e Diesel: ciclos teóricos e reais, parâmetros geométricos, curvas características, combustão e relação ar-combustível, sobrealimentação, emissões e motores marítimos — com simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">Optativa · Engenharia Mecânica</p>
+    <h1>Motores de Combustão Interna</h1>
+    <p class="lead">O motor alternativo é a aplicação mais difundida da termodinâmica: converte a energia química do combustível em trabalho por meio de um ciclo que nunca fecha — o fluido entra, queima e sai. Aqui a teoria dos ciclos encontra a mecânica do mecanismo biela-manivela, a química da combustão e os limites reais de respiração, atrito e emissões.</p>
+    <div class="btn-row">
+      <span class="tag accent">10 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">4 simuladores animados</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Um motor de combustão interna é uma máquina térmica em que a combustão acontece dentro do próprio fluido de trabalho. O que se estuda aqui é a cadeia completa: quanto ar entra, quanta energia química vem junto com o combustível, quanto dessa energia vira trabalho no pistão e quanto sobra no eixo depois do atrito.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Etapa</th><th>Grandeza que a mede</th><th>O que a limita</th></tr></thead>
+          <tbody>
+            <tr><td>Admitir ar</td><td>Rendimento volumétrico η<sub>v</sub></td><td>Perda de carga, tempo de abertura de válvula, ressonância na admissão</td></tr>
+            <tr><td>Misturar combustível</td><td>Relação ar-combustível e λ</td><td>Estequiometria e limites de inflamabilidade</td></tr>
+            <tr><td>Queimar e expandir</td><td>Rendimento indicado η<sub>i</sub></td><td>Taxa de compressão, detonação, tempo de queima</td></tr>
+            <tr><td>Entregar no eixo</td><td>Rendimento mecânico η<sub>m</sub></td><td>Atrito, que cresce com o quadrado da rotação</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="formula"><span data-tex="\eta_{total} = \eta_v \cdot \eta_i \cdot \eta_m \qquad P = \frac{pme \cdot V_{total} \cdot n}{x}"></span><span class="where">x = 2 no motor de 4 tempos e 1 no de 2 tempos</span></div>
+        <div class="callout note">
+          <strong>Os ciclos já apareceram em Termodinâmica</strong>
+          Otto, Diesel e misto foram vistos como ciclos-padrão a ar. Aqui eles reaparecem com o que a termodinâmica idealizada deixa de fora: a respiração do motor, o atrito, a combustão com tempo finito, a detonação e as emissões.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Classificação e princípio de funcionamento</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Critério</th><th>Tipos</th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td>Ignição</td><td>Por centelha (ICE, ciclo Otto) e por compressão (ICO, ciclo Diesel)</td><td>No ICE a mistura é preparada antes e a vela inicia a chama; no ICO o ar é comprimido até autoinflamar o combustível injetado</td></tr>
+                <tr><td>Ciclo mecânico</td><td>Quatro tempos e dois tempos</td><td>No 2 tempos há um ciclo por volta — o dobro de ciclos, mas com lavagem imperfeita</td></tr>
+                <tr><td>Alimentação</td><td>Aspirado ou sobrealimentado (turbo, compressor mecânico)</td><td>A sobrealimentação aumenta a massa de ar por ciclo</td></tr>
+                <tr><td>Arranjo</td><td>Em linha, em V, boxer, radial</td><td>Afeta equilíbrio, tamanho e custo</td></tr>
+                <tr><td>Arrefecimento</td><td>A água (com radiador) ou a ar</td><td>A água controla melhor a temperatura e permite maior potência específica</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Os quatro tempos</h4>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tempo</th><th>Movimento</th><th>Válvulas</th><th>O que acontece</th></tr></thead>
+              <tbody>
+                <tr><td>Admissão</td><td>PMS → PMI</td><td>Admissão aberta</td><td>Entra ar (Diesel) ou mistura (Otto)</td></tr>
+                <tr><td>Compressão</td><td>PMI → PMS</td><td>Ambas fechadas</td><td>Pressão e temperatura sobem; a ignição começa antes do PMS</td></tr>
+                <tr><td>Expansão</td><td>PMS → PMI</td><td>Ambas fechadas</td><td>Único tempo que produz trabalho</td></tr>
+                <tr><td>Escape</td><td>PMI → PMS</td><td>Escape aberta</td><td>Expulsa os gases queimados</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Por que o 2 tempos não tem o dobro da potência</strong>
+              Em teoria deveria: há um ciclo por volta em vez de um a cada duas. Na prática, parte do curso é perdida com as janelas abertas, a lavagem mistura gases queimados com a carga fresca e parte da mistura escapa pelo escape. O motor 2 tempos sobrevive onde a simplicidade e a relação peso/potência importam mais que o consumo — e nos grandes motores marítimos, onde a lavagem uniflow com válvula de escape no cabeçote é muito eficiente.
+            </div>
+            <div class="callout note">
+              <strong>Diagrama de válvulas e cruzamento</strong>
+              As válvulas não abrem e fecham exatamente nos pontos mortos: a admissão abre antes do PMS e fecha depois do PMI, aproveitando a inércia dos gases. O intervalo em que as duas ficam abertas ao mesmo tempo é o <strong>cruzamento</strong>, que ajuda a limpar a câmara em alta rotação, mas piora a marcha lenta — daí o comando variável.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Componentes e sistemas</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Componente</th><th>Função</th><th>Ponto crítico</th></tr></thead>
+              <tbody>
+                <tr><td>Bloco e cabeçote</td><td>Estrutura, cilindros e câmara de combustão</td><td>Junta do cabeçote e empenamento por superaquecimento</td></tr>
+                <tr><td>Pistão e anéis</td><td>Receber a pressão; vedar a câmara e raspar o óleo</td><td>Anéis desgastados = consumo de óleo e perda de compressão</td></tr>
+                <tr><td>Biela e virabrequim</td><td>Converter movimento alternativo em rotativo</td><td>Fadiga; mancais de deslizamento com filme de óleo</td></tr>
+                <tr><td>Comando de válvulas</td><td>Abrir e fechar na hora certa</td><td>Sincronismo com o virabrequim (correia ou corrente dentada)</td></tr>
+                <tr><td>Volante</td><td>Armazenar energia entre os tempos motores</td><td>Uniformidade de marcha; quanto menos cilindros, maior o volante</td></tr>
+                <tr><td>Turbocompressor</td><td>Comprimir o ar de admissão com a energia do escape</td><td>Temperatura e lubrificação do mancal; resposta (turbo lag)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>A relação virabrequim-comando</strong>
+              Num motor 4 tempos o comando gira à metade da rotação do virabrequim: cada válvula abre uma vez a cada dois giros. Num 2 tempos com válvula de escape, o comando gira na mesma rotação.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Parâmetros geométricos e cinemática</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="V_d = \frac{\pi D^2}{4}S \qquad V_{total} = z\,V_d \qquad r_c = \frac{V_d + V_c}{V_c}"></span><span class="where">D: diâmetro do cilindro · S: curso · z: número de cilindros · V_c: volume da câmara</span></div>
+            <div class="formula"><span data-tex="s(\theta) = r + L - \left(r\cos\theta + \sqrt{L^2 - r^2\,\text{sen}^2\theta}\right) \qquad \lambda = \frac{r}{L}"></span><span class="where">deslocamento do pistão a partir do PMS; r = S/2 é o raio da manivela e L o comprimento da biela</span></div>
+            <p>Como a biela tem comprimento finito, o movimento não é harmônico simples: a aceleração no PMS é maior que no PMI, e é ela que dimensiona as forças de inércia.</p>
+            <div class="formula"><span data-tex="a_{PMS} \approx \omega^2 r\,(1 + \lambda) \qquad a_{PMI} \approx \omega^2 r\,(1 - \lambda) \qquad \bar{v}_p = \frac{2Sn}{60}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Relação S/D</th><th>Nome</th><th>Característica</th></tr></thead>
+              <tbody>
+                <tr><td>&gt; 1</td><td>Supraquadrado (curso longo)</td><td>Mais torque em baixa, combustão melhor, rotação limitada</td></tr>
+                <tr><td>≈ 1</td><td>Quadrado</td><td>Compromisso</td></tr>
+                <tr><td>&lt; 1</td><td>Subquadrado (curso curto)</td><td>Permite rotação alta com a mesma velocidade média de pistão</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>A velocidade média do pistão é o limite real</strong>
+              Motores de automóvel trabalham entre 8 e 15 m/s na rotação máxima; grandes motores marítimos, abaixo de 9 m/s. Dois motores com rotações muito diferentes podem estar igualmente solicitados: o que conta é <span data-tex-inline="\bar{v}_p = 2Sn/60"></span>, porque é ela que governa o atrito, a inércia e o desgaste.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Ciclos teóricos e o ciclo real</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="\eta_{Otto} = 1 - \frac{1}{r_c^{\,k-1}} \qquad \eta_{Diesel} = 1 - \frac{1}{r_c^{\,k-1}}\left[\frac{r_{corte}^{\,k} - 1}{k(r_{corte} - 1)}\right]"></span></div>
+            <div class="formula"><span data-tex="\eta_{misto} = 1 - \frac{1}{r_c^{\,k-1}}\left[\frac{\alpha\,r_{corte}^{\,k} - 1}{(\alpha - 1) + k\,\alpha\,(r_{corte} - 1)}\right]"></span><span class="where">α: razão de pressão da parte a volume constante; corte: razão de volumes da parte a pressão constante</span></div>
+            <p>Com a <strong>mesma taxa de compressão</strong>, o Otto é sempre mais eficiente que o Diesel, porque fornecer calor a volume constante é termodinamicamente melhor. Na prática o Diesel ganha: ele comprime só ar, sem risco de detonação, e chega a r<sub>c</sub> de 16 a 22, contra 9 a 12 do Otto.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Desvio do ciclo real</th><th>Efeito</th></tr></thead>
+              <tbody>
+                <tr><td>Combustão com duração finita</td><td>A pressão máxima acontece depois do PMS; exige avanço de ignição</td></tr>
+                <tr><td>Troca de calor com as paredes</td><td>Compressão e expansão não são adiabáticas (n ≈ 1,3 em vez de k = 1,4)</td></tr>
+                <tr><td>Perda de tempo na abertura das válvulas</td><td>Arredonda os cantos do diagrama</td></tr>
+                <tr><td>Trabalho de bombeamento</td><td>Laço negativo no diagrama, grande em carga parcial no motor Otto (borboleta fechada)</td></tr>
+                <tr><td>Dissociação dos produtos e k variável</td><td>Reduz a temperatura máxima e o trabalho</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Por que o motor Otto gasta mais em carga parcial</strong>
+              Ele controla a potência estrangulando o ar com a borboleta. Isso cria depressão na admissão e o pistão precisa "puxar" contra o vácuo: é o trabalho de bombeamento. O Diesel não tem borboleta — controla a carga só pela quantidade de combustível injetada — e por isso mantém bom rendimento em carga parcial.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Desempenho: pme, torque, potência e consumo</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="P = \frac{pme \cdot V_{total} \cdot n}{x} \qquad T = \frac{P}{2\pi n} = \frac{pme \cdot V_{total}}{2\pi x}"></span><span class="where">pme: pressão média efetiva — a pressão constante que produziria o mesmo trabalho no mesmo curso</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Grandeza</th><th>Definição</th><th>Valores típicos</th></tr></thead>
+              <tbody>
+                <tr><td>pme (efetiva)</td><td>Trabalho útil por ciclo dividido pela cilindrada</td><td>8–11 bar (Otto aspirado); 12–20 bar (Diesel turbo)</td></tr>
+                <tr><td>Rendimento volumétrico</td><td>Massa de ar admitida / massa que caberia no cilindro</td><td>75–90 % (aspirado); acima de 100 % com sobrealimentação</td></tr>
+                <tr><td>Rendimento mecânico</td><td>Potência efetiva / potência indicada</td><td>75–90 %, caindo com a rotação</td></tr>
+                <tr><td>Rendimento térmico efetivo</td><td>Potência no eixo / energia do combustível</td><td>25–35 % (Otto); 35–45 % (Diesel); até 50 % em marítimos lentos</td></tr>
+                <tr><td>Consumo específico (ce)</td><td>Massa de combustível por unidade de trabalho</td><td>250–350 g/kWh (Otto); 190–230 g/kWh (Diesel)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\eta_t = \frac{3{,}6\times10^{6}}{ce\,\cdot\,PCI} \qquad ce\ [\text{g/kWh}],\ PCI\ [\text{kJ/kg}]"></span></div>
+            <div class="callout tip">
+              <strong>Torque e potência: por que os picos não coincidem</strong>
+              O torque é proporcional à pme, isto é, à massa de ar que entrou por ciclo: ele acompanha o rendimento volumétrico e cai quando o motor não consegue mais respirar. A potência é torque × rotação, então continua subindo depois do pico de torque, até que a queda do torque vença o aumento da rotação. O consumo específico mínimo fica perto do pico de torque, onde o atrito ainda é baixo e a respiração é boa.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Combustíveis e combustão</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="C_nH_mO_p + a\,(O_2 + 3{,}76N_2) \to n\,CO_2 + \frac{m}{2}H_2O + 3{,}76a\,N_2, \qquad a = n + \frac{m}{4} - \frac{p}{2}"></span></div>
+            <div class="formula"><span data-tex="AFR = \frac{a}{0{,}21}\cdot\frac{28{,}97}{M_{comb}} \qquad \lambda = \frac{AFR_{real}}{AFR_{esteq}} = \frac{1}{\phi}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Combustível</th><th>PCI (MJ/kg)</th><th>AFR estequiométrica</th><th>Índice antidetonante</th></tr></thead>
+              <tbody>
+                <tr><td>Gasolina</td><td>≈ 44</td><td>15,1</td><td>RON 95</td></tr>
+                <tr><td>Etanol hidratado</td><td>≈ 26,8</td><td>9,0</td><td>RON ≈ 109</td></tr>
+                <tr><td>Diesel</td><td>≈ 42,5</td><td>14,6</td><td>Cetano ≈ 50</td></tr>
+                <tr><td>Gás natural (metano)</td><td>≈ 50</td><td>17,2</td><td>RON ≈ 120</td></tr>
+                <tr><td>Biodiesel</td><td>≈ 37,5</td><td>12,4</td><td>Cetano ≈ 55</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>O que importa é a energia por kg de ar</strong>
+              O motor admite ar, não combustível: a potência é limitada pela massa de ar por ciclo. Dividindo o PCI pela AFR, gasolina e etanol ficam praticamente iguais (≈ 2,9 MJ por kg de ar) — e o etanol ainda resfria a mistura ao evaporar e aceita taxa de compressão maior. É por isso que um motor flex rende um pouco mais com etanol, apesar do PCI 40 % menor.
+            </div>
+            <h4>Detonação e pré-ignição</h4>
+            <p>A <strong>detonação</strong> é a autoignição da mistura ainda não queimada, comprimida à frente da chama: produz ondas de pressão, o ruído metálico característico e pode furar o pistão. Depende da octanagem, da taxa de compressão, do avanço de ignição, da temperatura de admissão e da carga. A <strong>pré-ignição</strong> é diferente: a mistura acende antes da centelha, num ponto quente.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Índice</th><th>Mede</th><th>Ensaio</th></tr></thead>
+              <tbody>
+                <tr><td>Octanagem (RON/MON)</td><td>Resistência à detonação — quanto maior, melhor para o Otto</td><td>ASTM D2699 e D2700</td></tr>
+                <tr><td>Número de cetano</td><td>Facilidade de autoignição — quanto maior, melhor para o Diesel</td><td>ASTM D613</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Octanagem e cetano pedem coisas opostas</strong>
+              O motor Otto precisa de um combustível que resista à autoignição; o Diesel, de um que autoigniza fácil. Por isso combustíveis de octanagem alta têm cetano baixo, e vice-versa.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Sistemas de alimentação, ignição, lubrificação e arrefecimento</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Sistema</th><th>Solução atual</th><th>Função</th></tr></thead>
+              <tbody>
+                <tr><td>Alimentação Otto</td><td>Injeção eletrônica indireta (no coletor) ou direta (GDI)</td><td>Dosar o combustível conforme o ar medido, mantendo λ ≈ 1 com sonda lambda</td></tr>
+                <tr><td>Alimentação Diesel</td><td>Common rail a 1500–2500 bar, com várias injeções por ciclo</td><td>Controlar taxa de liberação de calor, ruído e NOx</td></tr>
+                <tr><td>Ignição</td><td>Bobina por vela, avanço mapeado eletronicamente</td><td>Iniciar a queima antes do PMS, com avanço maior em rotação alta e mistura pobre</td></tr>
+                <tr><td>Lubrificação</td><td>Cárter úmido (ou seco), bomba de engrenagens, filtro, arrefecedor</td><td>Formar filme hidrodinâmico nos mancais, refrigerar e limpar</td></tr>
+                <tr><td>Arrefecimento</td><td>Circuito fechado com bomba, válvula termostática, radiador e ventilador</td><td>Manter a temperatura em 85–95 °C; motor frio consome e desgasta mais</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Por que o avanço de ignição existe</strong>
+              A combustão leva tempo — da ordem de 1 a 2 ms. Para que a pressão máxima ocorra logo depois do PMS (cerca de 10 a 15° depois), a centelha precisa saltar antes dele. Quanto maior a rotação, menos tempo há por grau de virabrequim e maior precisa ser o avanço.
+            </div>
+            <div class="callout warn">
+              <strong>Óleo lubrificante: SAE e API</strong>
+              A classificação SAE J300 (por exemplo 15W-40) indica a viscosidade a frio (W) e a quente; a API (SL, CK-4…) indica o nível de desempenho dos aditivos. Óleo fino demais não forma filme nos mancais; grosso demais aumenta o atrito e o consumo.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Sobrealimentação</summary>
+          <div class="topic-body">
+            <p>Sobrealimentar é aumentar a densidade do ar na admissão — logo, a massa de ar por ciclo e a potência, sem aumentar a cilindrada. O ganho é quase proporcional à razão de pressão, descontado o aquecimento da compressão.</p>
+            <div class="formula"><span data-tex="\rho_{adm} = \frac{P_{adm}}{R\,T_{adm}} \qquad T_{2} = T_{1}\left[1 + \frac{1}{\eta_c}\left(\left(\frac{P_2}{P_1}\right)^{\frac{k-1}{k}} - 1\right)\right]"></span><span class="where">quanto menor o rendimento do compressor, mais quente sai o ar — e menos denso</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Sistema</th><th>Acionamento</th><th>Características</th></tr></thead>
+              <tbody>
+                <tr><td>Turbocompressor</td><td>Turbina movida pelos gases de escape</td><td>Aproveita energia que iria embora; resposta atrasada (turbo lag); precisa de wastegate ou geometria variável</td></tr>
+                <tr><td>Compressor mecânico (supercharger)</td><td>Correia ligada ao virabrequim</td><td>Resposta imediata, mas consome potência do motor</td></tr>
+                <tr><td>Turbo-compound</td><td>Turbina adicional ligada ao eixo</td><td>Recupera energia do escape em motores grandes</td></tr>
+                <tr><td>Intercooler</td><td>Trocador ar-ar ou ar-água depois do compressor</td><td>Resfria o ar comprimido, aumenta a densidade e reduz o risco de detonação</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Turbo e taxa de compressão</strong>
+              Motores turbinados a gasolina usam taxa de compressão menor (9 a 10, contra 11 a 12 dos aspirados) justamente porque a sobrealimentação já eleva a pressão e a temperatura no fim da compressão. No Diesel isso não é problema: não há mistura para detonar antes da injeção.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Emissões e seu controle</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Poluente</th><th>Origem</th><th>Quando piora</th></tr></thead>
+              <tbody>
+                <tr><td>CO</td><td>Combustão incompleta por falta de ar</td><td>Mistura rica (λ &lt; 1)</td></tr>
+                <tr><td>HC (hidrocarbonetos)</td><td>Combustível que escapa da queima: frestas, filme de óleo, apagamento na parede</td><td>Mistura muito rica ou muito pobre (falha de ignição)</td></tr>
+                <tr><td>NOx</td><td>Nitrogênio do ar oxidado nas altas temperaturas da chama</td><td>λ ≈ 1,05–1,1 e temperaturas altas</td></tr>
+                <tr><td>Material particulado</td><td>Fuligem de regiões ricas na chama de difusão</td><td>Motores Diesel, em aceleração</td></tr>
+                <tr><td>CO₂</td><td>Produto inevitável da queima de carbono</td><td>Proporcional ao consumo — só cai com eficiência ou com combustível renovável</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tecnologia</th><th>Como funciona</th><th>Onde se usa</th></tr></thead>
+              <tbody>
+                <tr><td>Catalisador de três vias</td><td>Oxida CO e HC e reduz NOx ao mesmo tempo</td><td>Motores Otto, e só com λ = 1 ± 0,01 (daí a sonda lambda)</td></tr>
+                <tr><td>EGR</td><td>Recircula gases de escape, que diluem a carga e baixam a temperatura de chama</td><td>Redução de NOx em Otto e Diesel</td></tr>
+                <tr><td>SCR com ureia (ARLA 32)</td><td>Reduz NOx a N₂ com amônia sobre catalisador</td><td>Diesel pesado (Euro VI, PROCONVE P-8)</td></tr>
+                <tr><td>Filtro de particulado (DPF)</td><td>Retém fuligem e a queima periodicamente (regeneração)</td><td>Diesel</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>O dilema NOx × particulado</strong>
+              Queimar mais quente e com mais ar reduz a fuligem, mas aumenta o NOx; baixar a temperatura com EGR reduz o NOx e aumenta o particulado e o consumo. Por isso os motores Diesel modernos combinam as duas coisas: EGR para o NOx e DPF para o que sobrar de fuligem, mais SCR quando o limite é muito baixo.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>10. Motores marítimos e estacionários</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Categoria</th><th>Rotação</th><th>Características</th></tr></thead>
+              <tbody>
+                <tr><td>Lentos (2 tempos, cruzeta)</td><td>60–120 rpm</td><td>Propulsão direta de navios; queimam óleo combustível pesado; rendimento acima de 50 %; curso muito longo</td></tr>
+                <tr><td>Médios (4 tempos)</td><td>300–1000 rpm</td><td>Geração a bordo, redutor para o hélice, plataformas</td></tr>
+                <tr><td>Rápidos (4 tempos)</td><td>&gt; 1000 rpm</td><td>Embarcações menores, grupos geradores de emergência</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>O motor de cruzeta separa a câmara de combustão do cárter por uma haste e um prensa-estopas: a lubrificação dos cilindros é independente da do virabrequim, o que permite queimar combustíveis com enxofre usando óleo cilíndrico alcalino.</p>
+            <div class="callout note">
+              <strong>Regulamentação marítima</strong>
+              A <strong>MARPOL Anexo VI</strong> limita o NOx por níveis (Tier I a III, este último exigindo SCR ou EGR nas áreas de controle de emissões) e o teor de enxofre do combustível, que desde 2020 é de 0,50 % em massa no mundo todo e 0,10 % nas áreas de controle — o que levou ao uso de combustíveis de muito baixo enxofre ou de lavadores de gases (<em>scrubbers</em>).
+            </div>
+            <div class="callout tip">
+              <strong>Grupos geradores</strong>
+              Em geração, o motor trabalha em rotação fixa (1800 rpm para 60 Hz com 4 polos), e o que importa é o consumo específico na carga nominal e a capacidade de assumir degraus de carga. A norma ISO 8528 classifica as potências por regime de uso: emergência, principal e contínua.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Quatro modelos interativos e animados, com fórmulas e resolução passo a passo. A cinemática é resolvida na forma exata, os ciclos seguem o padrão a ar frio e as curvas características usam a correlação de atrito de Heywood.</p>
+
+        <div id="sim-motor" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare a aceleração no PMS e no PMI: com biela curta (λ maior) a diferença cresce. Depois escolha o motor marítimo lento: 120 rpm parecem pouco, mas a velocidade média do pistão é maior que a de um motor de carro em marcha lenta.
+        </div>
+
+        <div id="sim-ciclos-mci" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Ponha o Otto com rc 18 (exemplo 4) e compare com o Diesel de mesma taxa: o Otto é mais eficiente. Mas esse Otto não existiria — detonaria. É aí que está a vantagem prática do Diesel.
+        </div>
+
+        <div id="sim-desempenho" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Veja como os picos de torque e de potência não coincidem e como o consumo específico é mínimo perto do pico de torque. Depois ligue a sobrealimentação (exemplo 2) e acompanhe o aumento proporcional da pme.
+        </div>
+
+        <div id="sim-combustao" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Varra λ de 0,8 a 1,3 e acompanhe as três curvas de emissão: CO cai com o excesso de ar, NOx tem pico logo depois de λ = 1 e HC sobe nos dois extremos. A janela em que o catalisador de três vias funciona é estreitíssima.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Cilindrada</td><td><span data-tex="V_{total} = z\,\dfrac{\pi D^2}{4}S"></span></td><td>—</td></tr>
+              <tr><td>Taxa de compressão</td><td><span data-tex="r_c = \dfrac{V_d + V_c}{V_c}"></span></td><td>—</td></tr>
+              <tr><td>Velocidade média do pistão</td><td><span data-tex="\bar{v}_p = \dfrac{2Sn}{60}"></span></td><td>8 a 15 m/s</td></tr>
+              <tr><td>Deslocamento do pistão</td><td><span data-tex="s = r + L - r\cos\theta - \sqrt{L^2 - r^2\text{sen}^2\theta}"></span></td><td>θ a partir do PMS</td></tr>
+              <tr><td>Potência</td><td><span data-tex="P = \dfrac{pme\,V_{total}\,n}{x}"></span></td><td>x = 2 (4T) ou 1 (2T)</td></tr>
+              <tr><td>Torque</td><td><span data-tex="T = \dfrac{pme\,V_{total}}{2\pi x}"></span></td><td>independe de n</td></tr>
+              <tr><td>Rendimento volumétrico</td><td><span data-tex="\eta_v = \dfrac{\dot m_{ar}}{\rho_{adm}V_{total}n/x}"></span></td><td>—</td></tr>
+              <tr><td>Rendimento térmico</td><td><span data-tex="\eta_t = \dfrac{3{,}6\times10^{6}}{ce \cdot PCI}"></span></td><td>ce em g/kWh</td></tr>
+              <tr><td>Otto</td><td><span data-tex="\eta = 1 - r_c^{\,1-k}"></span></td><td>—</td></tr>
+              <tr><td>Diesel</td><td><span data-tex="\eta = 1 - r_c^{\,1-k}\dfrac{r_{corte}^{\,k}-1}{k(r_{corte}-1)}"></span></td><td>—</td></tr>
+              <tr><td>Misto</td><td><span data-tex="\eta = 1 - r_c^{\,1-k}\dfrac{\alpha r_{corte}^{\,k}-1}{(\alpha-1)+k\alpha(r_{corte}-1)}"></span></td><td>—</td></tr>
+              <tr><td>Relação ar-combustível</td><td><span data-tex="AFR = \dfrac{a}{0{,}21}\dfrac{28{,}97}{M_{comb}}"></span></td><td><span data-tex-inline="a = n + m/4 - p/2"></span></td></tr>
+              <tr><td>Lambda</td><td><span data-tex="\lambda = \dfrac{AFR_{real}}{AFR_{esteq}} = \dfrac{1}{\phi}"></span></td><td>—</td></tr>
+              <tr><td>Densidade na admissão</td><td><span data-tex="\rho = \dfrac{P_{adm}}{R\,T_{adm}}"></span></td><td>R = 0,287 kJ/kg·K</td></tr>
+              <tr><td>Atrito (Heywood)</td><td><span data-tex="pmf = 0{,}97 + 0{,}15\dfrac{N}{1000} + 0{,}05\left(\dfrac{N}{1000}\right)^2"></span></td><td>bar; N em rpm</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ABNT NBR ISO 1585 / SAE J1349</strong></td><td>Ensaio de potência líquida de motores</td><td>Como se mede a potência declarada em catálogo</td></tr>
+              <tr><td><strong>ISO 3046</strong></td><td>Motores alternativos de combustão interna — desempenho</td><td>Condições de referência e correção de potência</td></tr>
+              <tr><td><strong>ISO 8528</strong></td><td>Grupos geradores acionados por motor alternativo</td><td>Classes de potência (emergência, principal, contínua)</td></tr>
+              <tr><td><strong>ISO 8178</strong></td><td>Medição de emissões em bancada, por ciclos de ensaio</td><td>Motores não rodoviários, marítimos e estacionários</td></tr>
+              <tr><td><strong>ASTM D2699 / D2700</strong></td><td>Octanagem RON e MON</td><td>Resistência à detonação</td></tr>
+              <tr><td><strong>ASTM D613</strong></td><td>Número de cetano</td><td>Qualidade de ignição do diesel</td></tr>
+              <tr><td><strong>SAE J300</strong></td><td>Classificação de viscosidade de óleos lubrificantes</td><td>Grau 15W-40 e semelhantes</td></tr>
+              <tr><td><strong>PROCONVE (CONAMA)</strong></td><td>Programa de controle da poluição por veículos automotores</td><td>Fases L (leves) e P (pesados) — limites de CO, HC, NOx e MP</td></tr>
+              <tr><td><strong>MARPOL Anexo VI</strong></td><td>Prevenção da poluição do ar por navios</td><td>Níveis Tier de NOx e teor de enxofre do combustível</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre ciclos, parâmetros geométricos, desempenho, combustão, sobrealimentação e emissões.</p>
+        <div id="quiz" data-quiz="motores-de-combustao-interna"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>HEYWOOD, J. B.</strong> <em>Internal Combustion Engine Fundamentals.</em> McGraw-Hill. — A referência da área: respiração, combustão, atrito e emissões.</li>
+          <li><strong>BRUNETTI, F.</strong> <em>Motores de Combustão Interna (v. 1 e 2).</em> Blucher. — Tratamento em português, com a notação usada em concursos brasileiros.</li>
+          <li><strong>MARTINS, J.</strong> <em>Motores de Combustão Interna.</em> Publindústria.</li>
+          <li><strong>ÇENGEL, Y. A.; BOLES, M. A.</strong> <em>Termodinâmica.</em> McGraw-Hill. — Capítulo 9: ciclos Otto, Diesel e misto padrão a ar.</li>
+          <li><strong>TAYLOR, C. F.</strong> <em>The Internal-Combustion Engine in Theory and Practice.</em> MIT Press.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/motores-de-combustao-interna.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  D: ['Diâmetro do cilindro', 'mm'],
+  S: ['Curso do pistão', 'mm'],
+  L: ['Comprimento da biela', 'mm'],
+  r: ['Raio da manivela', 'mm', 'S/2'],
+  z: ['Número de cilindros', '—'],
+  n: ['Rotação', 'rev/s ou rpm'],
+  x: ['Voltas por ciclo', '—', '2 no motor de 4 tempos, 1 no de 2 tempos'],
+  k: ['Razão de calores específicos', '—', '1,4 no padrão a ar frio'],
+  λ: ['Fator lambda', '—', 'AFR real / AFR estequiométrica'],
+  φ: ['Razão de equivalência', '—', '1/λ'],
+  θ: ['Ângulo de virabrequim', '°', 'medido a partir do PMS'],
+  T: ['Torque', 'N·m', 'ou temperatura'],
+  P: ['Potência', 'kW', 'ou pressão'],
+  'PMS': ['Ponto morto superior', '—', 'menor volume do cilindro'],
+  'PMI': ['Ponto morto inferior', '—', 'maior volume do cilindro'],
+  'V_d': ['Cilindrada unitária', 'cm³'],
+  'V_c': ['Volume da câmara de combustão', 'cm³'],
+  'r_c': ['Taxa de compressão', '—'],
+  'pme': ['Pressão média efetiva', 'bar'],
+  'pmi': ['Pressão média indicada', 'bar'],
+  'pmf': ['Pressão média de atrito', 'bar'],
+  'ce': ['Consumo específico', 'g/kWh'],
+  'PCI': ['Poder calorífico inferior', 'kJ/kg'],
+  'AFR': ['Relação ar-combustível', '—', 'em massa'],
+  'η_v': ['Rendimento volumétrico', '—'],
+  'η_m': ['Rendimento mecânico', '—'],
+  'η_i': ['Rendimento indicado', '—'],
+  'η_t': ['Rendimento térmico efetivo', '—'],
+  'EGR': ['Recirculação de gases de escape', '—'],
+  'SCR': ['Redução catalítica seletiva', '—', 'com ureia'],
+  'DPF': ['Filtro de material particulado', '—'],
+  'RON': ['Octanagem pelo método research', '—'],
+  'NOx': ['Óxidos de nitrogênio', '—'],
+  'HC': ['Hidrocarbonetos não queimados', '—']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

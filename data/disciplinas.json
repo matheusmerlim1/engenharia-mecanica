@@ -760,6 +760,24 @@
       "simuladores": true,
       "normas": false,
       "pronta": false
+    },
+    {
+      "slug": "motores-de-combustao-interna",
+      "nome": "Motores de Combustão Interna",
+      "periodo": "0",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "pasta": "",
+      "resumo": "Ciclos Otto e Diesel, parâmetros geométricos, curvas características, combustão, sobrealimentação e emissões.",
+      "temas": [
+        "ciclos Otto e Diesel",
+        "pme e curvas",
+        "combustão e lambda",
+        "sobrealimentação",
+        "emissões"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
     }
   ],
   "materias": [
