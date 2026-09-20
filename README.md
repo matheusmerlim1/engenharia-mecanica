@@ -6,7 +6,7 @@ questões com correção imediata.
 
 **Acesse:** https://matheusmerlim1.github.io/engenharia-mecanica/
 
-Das 45 disciplinas do catálogo, 18 já estão prontas; as demais aparecem como pendentes. A página inicial
+Das 45 disciplinas do catálogo, 19 já estão prontas; as demais aparecem como pendentes. A página inicial
 organiza as disciplinas por período ou por matéria, e a página **Simulações** reúne todos os modelos
 interativos do site para abrir um de cada vez.
 

@@ -1,0 +1,499 @@
+{
+ "disciplina": "Processos de Fabricação",
+ "slug": "processos-de-fabricacao",
+ "topicos": [
+  {
+   "id": "fundicao",
+   "nome": "Fundição e solidificação"
+  },
+  {
+   "id": "conformacao",
+   "nome": "Conformação mecânica"
+  },
+  {
+   "id": "soldagem",
+   "nome": "Processos de soldagem"
+  },
+  {
+   "id": "ciclo",
+   "nome": "Ciclo térmico e metalurgia da solda"
+  },
+  {
+   "id": "ensaios",
+   "nome": "Descontinuidades, ensaios e qualificação"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "pf-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "fundicao",
+   "enunciado": "<p>Na regra de Chvorinov, o tempo de solidificação de uma peça fundida é proporcional a:</p>",
+   "alternativas": [
+    "ao quadrado do módulo de resfriamento V/A.",
+    "ao volume da peça.",
+    "à área superficial da peça.",
+    "à temperatura de vazamento apenas."
+   ],
+   "correta": 0,
+   "explicacao": "<p>t = C(V/A)ⁿ, com n ≈ 2. O módulo V/A é o que realmente importa: duas peças de volumes bem diferentes solidificam no mesmo tempo se tiverem o mesmo módulo. A temperatura de vazamento e o material do molde entram na constante C.</p>"
+  },
+  {
+   "id": "pf-002",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "fundicao",
+   "enunciado": "<p>Uma placa de aço de <span class=\"dado\">200 × 100 × 40 mm</span> é fundida em areia, com constante de molde <span class=\"dado\">C = 2,2 min/cm²</span>. Qual o tempo de solidificação?</p>",
+   "alternativas": [
+    "2,75 min",
+    "3,44 min",
+    "1,56 min",
+    "6,88 min"
+   ],
+   "correta": 1,
+   "formulas": [
+    "M = V/A",
+    "t = C·M²"
+   ],
+   "explicacao": "<div class=\"passo\">V = 20 × 10 × 4 = 800 cm³; A = 2(200 + 80 + 40) = 640 cm²</div><div class=\"passo\">M = 800/640 = 1,25 cm → t = 2,2 × 1,25² = <strong>3,44 min</strong></div><p>Dobrar a espessura da placa quase dobraria o módulo e quadruplicaria o tempo. As alternativas erradas usam M sem elevar ao quadrado, usam M² sem a constante de molde e dobram o resultado.</p>"
+  },
+  {
+   "id": "pf-003",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "fundicao",
+   "enunciado": "<p>O critério de projeto de um massalote é que ele tenha módulo de resfriamento pelo menos 20 % maior que o da peça. A razão é:</p>",
+   "alternativas": [
+    "economizar metal.",
+    "evitar porosidade gasosa.",
+    "garantir que o massalote seja o último a solidificar, alimentando a contração da peça — do contrário o rechupe se forma dentro do fundido.",
+    "reduzir o tempo de solidificação da peça."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Massalote é reserva de metal líquido. Se ele solidificar antes, deixa de alimentar a peça exatamente quando ela mais precisa. Além do módulo, ele precisa ter volume suficiente para repor a contração de solidificação, que no aço chega a cerca de 3 %.</p>"
+  },
+  {
+   "id": "pf-004",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "fundicao",
+   "enunciado": "<p>O ferro fundido cinzento dispensa massalotes grandes em muitas peças porque:</p>",
+   "alternativas": [
+    "solidifica instantaneamente.",
+    "não sofre contração sólida.",
+    "tem baixa temperatura de fusão.",
+    "a grafita se expande ao se formar, compensando boa parte da contração de solidificação."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Na solidificação do ferro cinzento, o carbono precipita como grafita, que ocupa mais volume que o carbono dissolvido. Essa expansão contrabalança a contração — em alguns casos chega a tornar o fundido autoalimentado.</p>"
+  },
+  {
+   "id": "pf-005",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "fundicao",
+   "enunciado": "<p>Um fundido apresenta um vazio interno na seção mais espessa, com paredes dendríticas. Esse defeito é:</p>",
+   "alternativas": [
+    "rechupe, causado por falta de alimentação durante a solidificação.",
+    "porosidade gasosa, causada por hidrogênio dissolvido.",
+    "inclusão de areia.",
+    "junta fria."
+   ],
+   "correta": 0,
+   "explicacao": "<p>A parede dendrítica indica que o vazio se formou entre dendritas ainda crescendo, ou seja, por falta de líquido — é rechupe. A porosidade gasosa dá vazios de paredes lisas e arredondadas, e tende a se distribuir mais uniformemente.</p>"
+  },
+  {
+   "id": "pf-006",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "conformacao",
+   "enunciado": "<p>Comparando o trabalho a quente com o trabalho a frio do mesmo metal:</p>",
+   "alternativas": [
+    "a quente exige força maior, mas dá melhor acabamento.",
+    "a frio não encrua o material.",
+    "a quente exige menos força e permite deformações muito maiores, mas dá pior acabamento e tolerância.",
+    "a quente ocorre abaixo da temperatura de recristalização."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Acima da temperatura de recristalização (≈ 0,5 T_fusão) o material recristaliza durante a própria deformação: não encrua, e a tensão de escoamento cai muito. O preço é a oxidação (carepa), a dilatação térmica e o acabamento ruim — por isso a sequência usual é desbastar a quente e acabar a frio.</p>"
+  },
+  {
+   "id": "pf-007",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "conformacao",
+   "enunciado": "<p>Numa laminação de <span class=\"dado\">25 para 22 mm</span>, com <span class=\"dado\">K = 275 MPa</span> e <span class=\"dado\">n = 0,15</span>, qual é a tensão de escoamento média do passe?</p>",
+   "alternativas": [
+    "202,0 MPa",
+    "175,6 MPa",
+    "239,1 MPa",
+    "275,0 MPa"
+   ],
+   "correta": 1,
+   "formulas": [
+    "ε = ln(t₀/t₁)",
+    "Ȳ = K·εⁿ/(1 + n)"
+   ],
+   "explicacao": "<div class=\"passo\">ε = ln(25/22) = 0,1278</div><div class=\"passo\">Ȳ = 275 × 0,1278^0,15/1,15 = <strong>175,6 MPa</strong></div><p>A divisão por (1 + n) faz a média da tensão ao longo da deformação, já que o material encrua durante o passe. As alternativas erradas esquecem de dividir por (1+n), esquecem o expoente n e usam o próprio K.</p>"
+  },
+  {
+   "id": "pf-008",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "conformacao",
+   "enunciado": "<p>Um laminador tem cilindros de <span class=\"dado\">500 mm</span> de diâmetro e coeficiente de atrito <span class=\"dado\">0,12</span>. Qual a redução máxima por passe?</p>",
+   "alternativas": [
+    "7,20 mm",
+    "3,60 mm",
+    "30,0 mm",
+    "1,80 mm"
+   ],
+   "correta": 1,
+   "formulas": [
+    "d_máx = μ²R"
+   ],
+   "explicacao": "<div class=\"passo\">R = 250 mm → d_máx = 0,12² × 250</div><div class=\"passo\">d_máx = 0,0144 × 250 = <strong>3,60 mm</strong></div><p>Acima dessa redução os cilindros patinam e não conseguem agarrar a chapa. d_máx cresce com o quadrado do atrito: laminar a quente, com μ de 0,3 a 0,4, permite reduções muito maiores. As alternativas erradas usam o diâmetro no lugar do raio, usam μ em vez de μ² e tomam a metade do valor.</p>"
+  },
+  {
+   "id": "pf-009",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "conformacao",
+   "enunciado": "<p>Com Ȳ = 175,6 MPa, largura de <span class=\"dado\">200 mm</span>, cilindros de raio <span class=\"dado\">250 mm</span> e redução de <span class=\"dado\">3 mm</span>, qual a força de laminação?</p>",
+   "alternativas": [
+    "35,1 kN",
+    "962,0 kN",
+    "1924 kN",
+    "481,0 kN"
+   ],
+   "correta": 1,
+   "formulas": [
+    "L = √(R·d)",
+    "F = Ȳ·w·L"
+   ],
+   "explicacao": "<div class=\"passo\">L = √(250 × 3) = 27,39 mm</div><div class=\"passo\">F = 175,6 × 200 × 27,39 = <strong>962038 N ≈ 962,0 kN</strong></div><p>Essa é a força que tenta separar os cilindros e que dimensiona a gaiola do laminador. Reduzir o diâmetro dos cilindros diminui L e, portanto, a força — princípio dos laminadores com cilindros de trabalho finos apoiados por cilindros de encosto. As alternativas erradas esquecem o comprimento de contato, dobram e reduzem à metade o resultado.</p>"
+  },
+  {
+   "id": "pf-010",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "conformacao",
+   "enunciado": "<p>No recalque de um cilindro entre matrizes planas, o fator K_f = 1 + 0,4μd/h aparece para:</p>",
+   "alternativas": [
+    "corrigir o encruamento do material.",
+    "corrigir a velocidade da prensa.",
+    "considerar a dilatação térmica.",
+    "levar em conta o atrito na interface, que impede o escoamento radial e eleva a pressão necessária."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Com atrito, a pressão cresce do bordo para o centro — é a colina de atrito, p(r) = Y_f·exp(2μ(a−r)/h). O fator K_f é a forma simplificada de contabilizar isso. Quanto mais achatada a peça (d/h grande), maior o efeito.</p>"
+  },
+  {
+   "id": "pf-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "conformacao",
+   "enunciado": "<p>A rebarba no forjamento em matriz fechada:</p>",
+   "alternativas": [
+    "é um defeito que indica matriz desgastada.",
+    "é proposital: sua resistência ao escoamento força o material a preencher toda a cavidade.",
+    "serve apenas para facilitar a extração da peça.",
+    "reduz a força necessária."
+   ],
+   "correta": 1,
+   "explicacao": "<p>O canal de rebarba é fino e resfria rápido, o que aumenta muito a resistência ao escoamento naquele ponto. Isso obriga o material a preencher os cantos da cavidade. Em compensação, aumenta a força — e a rebarba é depois removida por rebarbação.</p>"
+  },
+  {
+   "id": "pf-012",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "conformacao",
+   "enunciado": "<p>O retorno elástico (springback) na dobra de chapas ocorre porque:</p>",
+   "alternativas": [
+    "toda deformação plástica vem acompanhada de uma parcela elástica, que se recupera quando a ferramenta abre.",
+    "o material aquece durante a dobra.",
+    "a chapa encrua e se torna mais dura.",
+    "o raio de dobra é menor que o mínimo."
+   ],
+   "correta": 0,
+   "explicacao": "<p>A chapa \"abre\" alguns graus e o raio final é maior que o da ferramenta. Compensa-se sobredobrando, aplicando um golpe de calibração no fim do curso ou dobrando sob tensão. Quanto maior o limite de escoamento e menor o módulo de elasticidade, maior o springback.</p>"
+  },
+  {
+   "id": "pf-013",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "conformacao",
+   "enunciado": "<p>Na extrusão direta, comparada à indireta:</p>",
+   "alternativas": [
+    "a força é menor, porque não há atrito com o contêiner.",
+    "a matriz é que se move contra o tarugo parado.",
+    "a força é maior, porque o tarugo desliza dentro do contêiner e o atrito se soma à resistência da matriz.",
+    "não é possível extrudar perfis ocos."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Na extrusão direta todo o tarugo é empurrado ao longo do contêiner, e o atrito nessa parede é grande — a força cai à medida que o tarugo encurta. Na indireta, a matriz avança e não há movimento relativo com o contêiner: a força é menor e praticamente constante.</p>"
+  },
+  {
+   "id": "pf-014",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "soldagem",
+   "enunciado": "<p>No processo TIG (GTAW), o eletrodo:</p>",
+   "alternativas": [
+    "é consumível e fornece o metal de adição.",
+    "é um arame tubular com fluxo interno.",
+    "é revestido por fluxo que forma escória.",
+    "é de tungstênio e não é consumido; o metal de adição, quando necessário, é alimentado à parte."
+   ],
+   "correta": 3,
+   "explicacao": "<p>É justamente isso que dá ao TIG o controle fino sobre a poça e a qualidade que o torna padrão em passes de raiz, inox e alumínio. O preço é a baixa produtividade. A proteção é feita por gás inerte (argônio ou hélio).</p>"
+  },
+  {
+   "id": "pf-015",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "soldagem",
+   "enunciado": "<p>O arco submerso (SAW) caracteriza-se por:</p>",
+   "alternativas": [
+    "ter o arco coberto por uma camada de fluxo granular, o que dá altíssima taxa de deposição e rendimento térmico próximo de 0,95, mas restringe a soldagem à posição plana.",
+    "soldar em todas as posições com alta portabilidade.",
+    "dispensar metal de adição.",
+    "usar eletrodo de tungstênio."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Como o fluxo cobre o arco, quase nada de calor se perde por radiação — daí o η alto. Por gravidade, o fluxo só se mantém na posição plana ou horizontal. É o processo padrão para costuras longas em chapas grossas, tubos e vasos.</p>"
+  },
+  {
+   "id": "pf-016",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "soldagem",
+   "enunciado": "<p>A brasagem (brazing) difere da soldagem por fusão porque:</p>",
+   "alternativas": [
+    "usa temperaturas mais altas.",
+    "não usa metal de adição.",
+    "não funde o metal base: o metal de adição funde acima de 450 °C e preenche a junta por capilaridade.",
+    "só pode unir metais iguais."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Como o metal base não funde, não há zona fundida nem grandes distorções, e é possível unir materiais diferentes. A resistência depende da folga da junta — pequena o bastante para haver capilaridade. Abaixo de 450 °C o processo se chama soldabrasagem branda (soldering).</p>"
+  },
+  {
+   "id": "pf-017",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "soldagem",
+   "enunciado": "<p>Uma solda é feita com <span class=\"dado\">25 V</span>, <span class=\"dado\">150 A</span> e velocidade de <span class=\"dado\">3 mm/s</span>, com rendimento térmico <span class=\"dado\">0,8</span>. Qual o aporte térmico?</p>",
+   "alternativas": [
+    "1,25 kJ/mm",
+    "9,00 kJ/mm",
+    "1,00 kJ/mm",
+    "0,500 kJ/mm"
+   ],
+   "correta": 2,
+   "formulas": [
+    "H = η·V·I/v"
+   ],
+   "explicacao": "<div class=\"passo\">V·I = 25 × 150 = 3750 W</div><div class=\"passo\">H = 0,8 × 3750/3 = 1000 J/mm = <strong>1,00 kJ/mm</strong></div><p>As alternativas erradas são o aporte bruto (sem o rendimento térmico), o resultado multiplicando pela velocidade em vez de dividir, e a metade do valor. Soldar mais rápido reduz o aporte e acelera o resfriamento; soldar devagar faz o contrário — por isso a velocidade entra na especificação do procedimento.</p>"
+  },
+  {
+   "id": "pf-018",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "soldagem",
+   "enunciado": "<p>Aumentar a velocidade de soldagem, mantendo tensão e corrente, produz:</p>",
+   "alternativas": [
+    "maior aporte térmico e resfriamento mais lento.",
+    "maior penetração e maior aporte.",
+    "nenhuma mudança no ciclo térmico.",
+    "menor aporte térmico, cordão mais estreito e resfriamento mais rápido — com risco de martensita na ZTA."
+   ],
+   "correta": 3,
+   "explicacao": "<p>O aporte é inversamente proporcional à velocidade. Menos energia por milímetro significa poça menor e resfriamento mais rápido, o que reduz o t8/5. Em aços com CE alto isso favorece a formação de martensita e a trinca a frio.</p>"
+  },
+  {
+   "id": "pf-019",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ciclo",
+   "enunciado": "<p>O tempo t8/5 na soldagem é:</p>",
+   "alternativas": [
+    "o tempo total de solidificação do cordão.",
+    "o tempo de resfriamento entre 800 e 500 °C, faixa em que a austenita se transforma e que define a microestrutura da ZTA.",
+    "o tempo de pré-aquecimento necessário.",
+    "o tempo entre dois passes consecutivos."
+   ],
+   "correta": 1,
+   "explicacao": "<p>É o parâmetro-chave do ciclo térmico. Curto demais (abaixo de ~5 s em aços C-Mn) forma martensita; longo demais (acima de ~25 s) engrossa o grão e derruba a tenacidade. Ele cresce com o aporte térmico e com o pré-aquecimento.</p>"
+  },
+  {
+   "id": "pf-020",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ciclo",
+   "enunciado": "<p>Calcule o carbono equivalente (IIW) de um aço com <span class=\"dado\">C 0,18</span>, <span class=\"dado\">Mn 1,30</span>, <span class=\"dado\">Cr 0,10</span>, <span class=\"dado\">Mo 0,02</span>, <span class=\"dado\">Ni 0,10</span> e <span class=\"dado\">Cu 0,20 %</span>.</p>",
+   "alternativas": [
+    "0,421",
+    "0,441",
+    "0,484",
+    "1,52"
+   ],
+   "correta": 1,
+   "formulas": [
+    "CE = C + Mn/6 + (Cr + Mo + V)/5 + (Ni + Cu)/15"
+   ],
+   "explicacao": "<div class=\"passo\">Mn/6 = 0,2167; (Cr+Mo+V)/5 = 0,024; (Ni+Cu)/15 = 0,020</div><div class=\"passo\">CE = 0,18 + 0,2167 + 0,024 + 0,020 = <strong>0,441</strong></div><p>Abaixo de 0,40 a soldabilidade é excelente; entre 0,40 e 0,45 já se recomenda atenção; acima de 0,45 o pré-aquecimento passa a ser regra. As alternativas erradas esquecem o termo do níquel e do cobre, dividem o manganês por 5 e deixam o manganês sem divisor.</p>"
+  },
+  {
+   "id": "pf-021",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ciclo",
+   "enunciado": "<p>A trinca a frio (induzida por hidrogênio) exige a presença simultânea de:</p>",
+   "alternativas": [
+    "microestrutura susceptível (martensita), hidrogênio difusível, tensão de tração e temperatura abaixo de cerca de 150 °C.",
+    "alta temperatura, oxigênio e tensão de compressão.",
+    "apenas hidrogênio dissolvido no metal de adição.",
+    "apenas restrição da junta."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Como são quatro fatores simultâneos, basta eliminar um deles. O pré-aquecimento ataca dois de uma vez: alonga o t8/5 (evitando a martensita) e mantém a junta quente o suficiente para o hidrogênio difundir e escapar. Eletrodos básicos secos atacam o terceiro fator.</p>"
+  },
+  {
+   "id": "pf-022",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ciclo",
+   "enunciado": "<p>A região da zona afetada pelo calor com menor tenacidade costuma ser:</p>",
+   "alternativas": [
+    "a zona fundida.",
+    "a região subcrítica.",
+    "a região de crescimento de grão, adjacente à linha de fusão, que atingiu temperaturas entre 1100 e 1450 °C.",
+    "o metal base não afetado."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Perto da linha de fusão o aço fica tempo suficiente em alta temperatura para o grão austenítico crescer muito, e grão grosseiro significa baixa tenacidade. É por isso que os corpos de prova Charpy de qualificação são entalhados exatamente ali.</p>"
+  },
+  {
+   "id": "pf-023",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ciclo",
+   "enunciado": "<p>A decoesão lamelar (lamellar tearing) ocorre:</p>",
+   "alternativas": [
+    "na zona fundida, durante a solidificação.",
+    "por excesso de hidrogênio no consumível.",
+    "apenas em aços inoxidáveis austeníticos.",
+    "no metal base, em planos paralelos à superfície da chapa, quando há inclusões alongadas e tensão na direção da espessura."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A laminação alonga as inclusões de sulfeto no plano da chapa; uma junta em T muito restringida traz tensão na direção da espessura, e a chapa \"descama\". A solução é aço com baixo enxofre e com propriedades garantidas na direção da espessura (aço grau Z), além de detalhes de junta que reduzam a restrição.</p>"
+  },
+  {
+   "id": "pf-024",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ciclo",
+   "enunciado": "<p>O tratamento térmico pós-soldagem (alívio de tensões) de um aço-carbono é feito tipicamente a:</p>",
+   "alternativas": [
+    "600 a 650 °C.",
+    "200 a 300 °C.",
+    "900 a 950 °C.",
+    "acima de 1100 °C."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Nessa faixa o limite de escoamento cai o suficiente para que as tensões residuais relaxem por fluência, sem alterar a microestrutura de forma significativa. Ela também reveni a martensita da ZTA e ajuda a expulsar o hidrogênio. Acima de 723 °C haveria transformação de fase.</p>"
+  },
+  {
+   "id": "pf-025",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ensaios",
+   "enunciado": "<p>Qual ensaio não destrutivo detecta descontinuidades internas e informa a profundidade em que se encontram?</p>",
+   "alternativas": [
+    "Líquido penetrante.",
+    "Partículas magnéticas.",
+    "Ultrassom.",
+    "Inspeção visual."
+   ],
+   "correta": 2,
+   "explicacao": "<p>O ultrassom mede o tempo de percurso do eco e, com isso, localiza o defeito em profundidade. O líquido penetrante só vê o que está aberto à superfície; as partículas magnéticas alcançam pouca profundidade e exigem material ferromagnético; a radiografia vê o interior, mas sem indicar a profundidade.</p>"
+  },
+  {
+   "id": "pf-026",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ensaios",
+   "enunciado": "<p>Uma descontinuidade em que o metal de adição não se fundiu com a parede do chanfro é chamada de:</p>",
+   "alternativas": [
+    "porosidade.",
+    "inclusão de escória.",
+    "mordedura.",
+    "falta de fusão."
+   ],
+   "correta": 3,
+   "explicacao": "<p>É uma das descontinuidades mais perigosas, porque é planar e age como uma trinca. Costuma vir de energia insuficiente, ângulo de eletrodo errado ou limpeza deficiente entre passes. A falta de penetração é diferente: o cordão não alcança a raiz.</p>"
+  },
+  {
+   "id": "pf-027",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ensaios",
+   "enunciado": "<p>A relação entre EPS (WPS) e RQP (PQR) é:</p>",
+   "alternativas": [
+    "são o mesmo documento com nomes diferentes.",
+    "a EPS diz como soldar, e o RQP é o registro dos ensaios que comprovam que aquele procedimento produz uma junta aprovada.",
+    "o RQP qualifica o soldador, e a EPS qualifica o inspetor.",
+    "a EPS só é exigida em soldas de manutenção."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Pelo ASME IX e pela AWS D1.1, primeiro se solda um corpo de prova seguindo os parâmetros pretendidos e se registram os ensaios (tração, dobramento, impacto) no RQP; aprovado, ele sustenta a EPS, que é o documento entregue ao soldador. Depois, cada soldador é qualificado para executar essa EPS.</p>"
+  },
+  {
+   "id": "pf-028",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ensaios",
+   "enunciado": "<p>O oxicorte não é aplicável a aços inoxidáveis porque:</p>",
+   "alternativas": [
+    "o cromo forma um óxido refratário que impede a reação exotérmica do ferro com o oxigênio.",
+    "o inox tem ponto de fusão baixo demais.",
+    "o inox não é magnético.",
+    "o processo exige corrente elétrica."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O oxicorte depende da queima do ferro no jato de oxigênio, que é fortemente exotérmica. O Cr₂O₃ formado tem ponto de fusão muito acima do metal e bloqueia o processo. Para inox e alumínio usa-se plasma, laser ou jato d’água.</p>"
+  },
+  {
+   "id": "pf-029",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ensaios",
+   "enunciado": "<p>A distorção em estruturas soldadas é causada principalmente por:</p>",
+   "alternativas": [
+    "erro de montagem.",
+    "excesso de metal de adição.",
+    "contração não uniforme do cordão e do metal adjacente durante o resfriamento, restringida pela própria estrutura.",
+    "uso de corrente alternada."
+   ],
+   "correta": 2,
+   "explicacao": "<p>O cordão contrai ao esfriar e \"puxa\" o material em volta. Combate-se com sequência de soldagem alternada (passo a ré), pré-deformação em sentido contrário, gabaritos de fixação e menor aporte térmico — menos energia significa menos contração.</p>"
+  },
+  {
+   "id": "pf-030",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ensaios",
+   "enunciado": "<p>Sobre a sensitização em aços inoxidáveis austeníticos soldados, é correto afirmar que:</p>",
+   "alternativas": [
+    "ocorre na zona fundida, por excesso de ferrita delta.",
+    "só ocorre em aços ferríticos.",
+    "é evitada aumentando o teor de carbono.",
+    "ocorre na ZTA aquecida entre 425 e 815 °C, onde precipita Cr₂₃C₆ nos contornos e empobrece de cromo a região vizinha, que passa a sofrer corrosão intergranular."
+   ],
+   "correta": 3,
+   "explicacao": "<p>O remédio é usar graus de baixo carbono (304L, 316L) ou estabilizados com titânio (321) ou nióbio (347), que capturam o carbono antes do cromo. Também ajuda limitar o aporte térmico, reduzindo o tempo na faixa crítica.</p>"
+  }
+ ]
+}

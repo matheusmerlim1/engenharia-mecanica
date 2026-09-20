@@ -409,16 +409,18 @@
       "periodo": "6",
       "materia": "Fabricação",
       "pasta": "6°- Processos de Fabricação",
-      "resumo": "Fundição, conformação mecânica, soldagem e metalurgia do pó.",
+      "resumo": "Fundição e solidificação, conformação mecânica, soldagem, ciclo térmico, descontinuidades e ensaios.",
       "temas": [
         "fundição",
         "laminação",
         "forjamento",
-        "soldagem"
+        "soldagem",
+        "ciclo térmico",
+        "ensaios não destrutivos"
       ],
       "simuladores": true,
       "normas": true,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "termodinamica-2",

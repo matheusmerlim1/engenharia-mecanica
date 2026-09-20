@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Processos de Fabricação — Engenharia Mecânica</title>
+<meta name="description" content="Fundição e solidificação, conformação mecânica (laminação, forjamento, extrusão e estampagem) e soldagem: processos, aporte térmico, ciclo térmico, metalurgia da solda, descontinuidades e ensaios — com simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">6º período · Engenharia Mecânica</p>
+    <h1>Processos de Fabricação</h1>
+    <p class="lead">Uma peça pode nascer de três caminhos: solidificando a partir do metal líquido, sendo deformada no estado sólido, ou sendo unida a outras. Fundição, conformação e soldagem são exatamente isso — e cada uma imprime na peça uma microestrutura, uma tolerância e um conjunto de defeitos característicos.</p>
+    <div class="btn-row">
+      <span class="tag accent">11 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">4 simuladores animados</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Família</th><th>Princípio</th><th>Forte em</th><th>Limitação</th></tr></thead>
+          <tbody>
+            <tr><td>Fundição</td><td>Solidificação em molde</td><td>Geometrias complexas, peças grandes, baixo custo por peça</td><td>Porosidade, rechupe, tolerâncias largas, propriedades inferiores</td></tr>
+            <tr><td>Conformação</td><td>Deformação plástica no estado sólido</td><td>Alta produtividade, fibra orientada, boas propriedades</td><td>Ferramental caro; limitada pela ductilidade do material</td></tr>
+            <tr><td>Usinagem</td><td>Remoção de material</td><td>Tolerâncias e acabamento apertados</td><td>Gera cavaco (desperdício) e é lenta para grandes volumes</td></tr>
+            <tr><td>Soldagem</td><td>União por fusão ou pressão</td><td>Estruturas grandes, reparos, junções permanentes</td><td>Zona afetada pelo calor, tensões residuais, distorções</td></tr>
+            <tr><td>Metalurgia do pó e aditiva</td><td>Consolidação de partículas / deposição camada a camada</td><td>Geometrias impossíveis, materiais especiais, baixo desperdício</td><td>Custo, tamanho e propriedades anisotrópicas</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>A escolha do processo é econômica antes de ser técnica</strong>
+          Vários processos conseguem fazer a mesma peça. O que decide é o volume de produção: fundição em areia e soldagem ganham em séries pequenas; fundição sob pressão, forjamento em matriz e estampagem exigem ferramental caro que só se paga em grandes séries.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Fundição: processos e moldes</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Processo</th><th>Molde</th><th>Características</th></tr></thead>
+              <tbody>
+                <tr><td>Areia verde</td><td>Descartável, modelo permanente</td><td>O mais usado; barato e versátil; tolerâncias largas e superfície rugosa</td></tr>
+                <tr><td>Shell molding (casca)</td><td>Descartável, areia com resina</td><td>Melhor acabamento e precisão que a areia verde</td></tr>
+                <tr><td>Cera perdida (investment)</td><td>Descartável, modelo também descartável</td><td>Excelente precisão e acabamento; peças pequenas e complexas; caro</td></tr>
+                <tr><td>Fundição sob pressão (die casting)</td><td>Permanente (metálico)</td><td>Alta produtividade e precisão; ligas de baixo ponto de fusão (Al, Zn, Mg)</td></tr>
+                <tr><td>Centrifugada</td><td>Permanente rotativo</td><td>Tubos e anéis; a força centrífuga expulsa escória e gases para o interior</td></tr>
+                <tr><td>Coquilha (molde permanente por gravidade)</td><td>Permanente</td><td>Séries médias; melhores propriedades que a areia</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Modelo não é igual à peça</strong>
+              O modelo é maior que a peça: precisa incluir a contração sólida (régua de contração), o sobremetal para usinagem e os ângulos de saída. Além disso leva os machos, que formam os vazios internos.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Solidificação, massalotes e defeitos</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="t_s = C\left(\frac{V}{A}\right)^{n}, \quad n \approx 2 \qquad M = \frac{V}{A}"></span><span class="where">regra de Chvorinov: o módulo de resfriamento governa o tempo de solidificação</span></div>
+            <p>O metal contrai em três etapas: no líquido, na solidificação e no sólido. A contração de solidificação é a que precisa ser alimentada pelo <strong>massalote</strong> — que só consegue fazer isso se solidificar por último:</p>
+            <div class="formula"><span data-tex="M_{massalote} \ge 1{,}2\,M_{peça}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Defeito</th><th>Causa</th><th>Combate</th></tr></thead>
+              <tbody>
+                <tr><td>Rechupe (vazio de contração)</td><td>Falta de alimentação durante a solidificação</td><td>Massalote com módulo maior, resfriadores, alimentação direcional</td></tr>
+                <tr><td>Porosidade gasosa</td><td>Gases dissolvidos (H₂ no alumínio) ou umidade no molde</td><td>Desgaseificação, molde seco, vazamento calmo</td></tr>
+                <tr><td>Inclusões de areia / escória</td><td>Turbulência no enchimento, erosão do molde</td><td>Canal com filtro, bacia de vazamento, sistema não turbulento</td></tr>
+                <tr><td>Junta fria</td><td>Duas frentes de metal que não se fundem</td><td>Maior temperatura de vazamento, canais mais curtos</td></tr>
+                <tr><td>Trinca a quente</td><td>Contração impedida pelo molde enquanto ainda há filme líquido</td><td>Molde mais colapsável, raios de concordância, projeto sem seções que travam</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Estrutura do fundido</strong>
+              Junto à parede fria formam-se grãos finos equiaxiais (zona coquilhada); depois, grãos colunares crescendo contra o fluxo de calor; e no centro, grãos equiaxiais grosseiros. A segregação empurra impurezas para as últimas regiões a solidificar — que são justamente as mais espessas.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Conformação: fundamentos</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="\sigma = K\,\epsilon^{\,n} \qquad \epsilon = \ln\frac{h_0}{h} \qquad \bar Y = \frac{K\epsilon^n}{1+n}"></span><span class="where">curva de escoamento verdadeira; n é o expoente de encruamento</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th></th><th>Trabalho a frio</th><th>Trabalho a quente</th></tr></thead>
+              <tbody>
+                <tr><td>Temperatura</td><td>Abaixo de ~0,3 T_fusão</td><td>Acima da temperatura de recristalização (~0,5 T_fusão)</td></tr>
+                <tr><td>Encruamento</td><td>Sim — a resistência aumenta com a deformação</td><td>Não — recristaliza continuamente</td></tr>
+                <tr><td>Força necessária</td><td>Alta</td><td>Baixa (K muito menor)</td></tr>
+                <tr><td>Acabamento e tolerância</td><td>Bons</td><td>Ruins (oxidação, carepa, dilatação)</td></tr>
+                <tr><td>Ductilidade disponível</td><td>Limitada</td><td>Grande: permite reduções enormes</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Trabalho morno e a sequência industrial</strong>
+              A prática usual é desbastar a quente (grandes reduções com pouca força) e terminar a frio (precisão, acabamento e encruamento). O trabalho morno, entre as duas faixas, busca um meio-termo entre força e acabamento.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Laminação</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="d = t_0 - t_1 \qquad d_{máx} = \mu^2 R \qquad L = \sqrt{R\,d} \qquad F = \bar Y\,w\,L"></span></div>
+            <div class="formula"><span data-tex="T = \frac{F L}{2} \qquad P = 2\pi N F L \qquad t_0 v_0 = t_1 v_1"></span></div>
+            <p>O atrito é indispensável: sem ele os cilindros não agarram a chapa. Mas atrito demais aumenta a força e o desgaste — daí o uso de lubrificantes e de cilindros de trabalho de pequeno diâmetro apoiados por cilindros maiores (laminador quádruo, Sendzimir).</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Produto</th><th>Processo</th></tr></thead>
+              <tbody>
+                <tr><td>Chapas grossas e bobinas a quente</td><td>Laminação a quente, grandes reduções por passe</td></tr>
+                <tr><td>Chapas finas, folhas</td><td>Laminação a frio, com recozimentos intermediários</td></tr>
+                <tr><td>Perfis, trilhos, vergalhões</td><td>Laminação em cilindros com canais (caliber)</td></tr>
+                <tr><td>Tubos sem costura</td><td>Laminação Mannesmann (perfuração rotativa)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Ponto neutro</strong>
+              Na entrada a chapa é mais lenta que o cilindro; na saída, mais rápida. Entre os dois existe o ponto neutro, onde as velocidades se igualam — e é ali que o atrito muda de sentido, formando a chamada colina de atrito na distribuição de pressão.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Forjamento, extrusão e trefilação</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="F = K_f\,Y_f\,A \qquad K_f = 1 + 0{,}4\,\mu\frac{d}{h} \qquad p(r) = Y_f\,e^{2\mu(a-r)/h}"></span><span class="where">recalque com atrito: a colina de atrito eleva muito a pressão no centro</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Processo</th><th>Descrição</th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td>Forjamento livre</td><td>Matrizes planas; peça se espalha livremente</td><td>Peças grandes e séries pequenas; recalque e estiramento</td></tr>
+                <tr><td>Forjamento em matriz fechada</td><td>Cavidade com rebarba</td><td>A rebarba é proposital: sua resistência força o preenchimento da cavidade</td></tr>
+                <tr><td>Extrusão direta</td><td>Tarugo empurrado contra a matriz, no mesmo sentido</td><td>Atrito com o contêiner exige mais força; sobra o "descarte"</td></tr>
+                <tr><td>Extrusão indireta</td><td>A matriz avança contra o tarugo parado</td><td>Menos força (sem atrito no contêiner), equipamento mais complexo</td></tr>
+                <tr><td>Trefilação</td><td>Barra ou fio puxado através da fieira</td><td>A frio, com redução limitada: o esforço de tração não pode escoar o material que já saiu</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Por que a fibra importa</strong>
+              A deformação alinha inclusões e grãos, criando a fibra de deformação. Uma peça forjada com a fibra acompanhando o contorno resiste muito mais à fadiga do que a mesma peça usinada a partir de um bloco — onde a fibra é cortada.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Conformação de chapas</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Operação</th><th>Grandeza característica</th></tr></thead>
+              <tbody>
+                <tr><td>Corte (punção e matriz)</td><td><span data-tex-inline="F = 0{,}7\,S_{ut}\,t\,L"></span> — L é o perímetro de corte; folga de 4 a 8 % de t</td></tr>
+                <tr><td>Dobra</td><td>Raio mínimo em função de t e da ductilidade; retorno elástico (springback) exige sobredobra</td></tr>
+                <tr><td>Embutimento profundo</td><td><span data-tex-inline="LDR = D_{max}/d_p \approx 2"></span> — razão limite de embutimento</td></tr>
+                <tr><td>Estiramento</td><td>Deformação por tração pura: limitado pela estricção (curva CLC)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Springback</strong>
+              Toda deformação plástica traz junto uma parcela elástica, que volta quando a ferramenta abre. A chapa dobrada a 90° "abre" alguns graus, e o raio cresce. Compensa-se sobredobrando, aplicando um golpe de calibração no fundo ou usando o estiramento sob tensão.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Soldagem: processos</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Processo</th><th>Proteção</th><th>Características</th><th>η</th></tr></thead>
+              <tbody>
+                <tr><td><strong>SMAW</strong> — eletrodo revestido</td><td>Gases e escória do revestimento</td><td>Simples, portátil, todas as posições; baixa produtividade; muita escória</td><td>0,8</td></tr>
+                <tr><td><strong>GMAW</strong> — MIG/MAG</td><td>Gás (Ar, CO₂ ou misturas)</td><td>Alta produtividade, arame contínuo; sensível a corrente de ar</td><td>0,85</td></tr>
+                <tr><td><strong>GTAW</strong> — TIG</td><td>Gás inerte, eletrodo não consumível</td><td>Qualidade máxima, passe de raiz, inox e alumínio; lento</td><td>0,65</td></tr>
+                <tr><td><strong>FCAW</strong> — arame tubular</td><td>Fluxo interno (com ou sem gás)</td><td>Produtividade de arame com tolerância a campo</td><td>0,85</td></tr>
+                <tr><td><strong>SAW</strong> — arco submerso</td><td>Camada de fluxo granular</td><td>Altíssima deposição, só na posição plana; aporte elevado</td><td>0,95</td></tr>
+                <tr><td><strong>Resistência</strong> (ponto, costura)</td><td>—</td><td>Chapas finas em grande série; sem metal de adição</td><td>—</td></tr>
+                <tr><td><strong>Brasagem</strong></td><td>Fluxo</td><td>Não funde o metal base: o metal de adição funde acima de 450 °C e molha a junta por capilaridade</td><td>—</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>Polaridade</strong>
+              Em corrente contínua, a polaridade inversa (CC+, eletrodo positivo) concentra mais calor no eletrodo e dá maior penetração na maioria dos processos com eletrodo consumível; no TIG usa-se CC− para o eletrodo de tungstênio, e corrente alternada no alumínio, para romper a camada de óxido.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Aporte térmico, ciclo térmico e ZTA</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="H = \eta\,\frac{V\,I}{v}"></span><span class="where">aporte térmico, em kJ/mm — a grandeza que resume o efeito térmico da soldagem</span></div>
+            <p>O ponto vizinho à solda passa por um ciclo térmico completo — aquece até perto da fusão e resfria. O trecho entre 800 e 500 °C é o que define a microestrutura, e seu tempo é o <strong>t<sub>8/5</sub></strong>:</p>
+            <div class="formula"><span data-tex="t_{8/5} = (6700 - 5T_0)\,Q\left(\frac{1}{500-T_0} - \frac{1}{800-T_0}\right)"></span><span class="where">fluxo tridimensional (chapa grossa), EN 1011-2</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Região da junta</th><th>Temperatura atingida</th><th>Microestrutura</th></tr></thead>
+              <tbody>
+                <tr><td>Zona fundida</td><td>Acima da fusão</td><td>Estrutura bruta de solidificação, colunar</td></tr>
+                <tr><td>ZTA — crescimento de grão</td><td>1100 a 1450 °C</td><td>Grão grosseiro: a região mais frágil da junta</td></tr>
+                <tr><td>ZTA — refino de grão</td><td>900 a 1100 °C</td><td>Grão fino, boas propriedades</td></tr>
+                <tr><td>ZTA — intercrítica</td><td>723 a 900 °C</td><td>Austenitização parcial</td></tr>
+                <tr><td>ZTA — subcrítica</td><td>Abaixo de 723 °C</td><td>Revenimento de regiões já transformadas</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>O compromisso do aporte térmico</strong>
+              Aporte baixo resfria rápido: risco de martensita e trinca a frio. Aporte alto resfria devagar: grão grosseiro e perda de tenacidade. Para aços C-Mn, t<sub>8/5</sub> entre 5 e 25 s costuma ser a faixa de bom senso.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Metalurgia da soldagem e trincas</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="CE_{IIW} = C + \frac{Mn}{6} + \frac{Cr + Mo + V}{5} + \frac{Ni + Cu}{15}"></span><span class="where">acima de 0,45 o aço já pede cuidados de pré-aquecimento</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Trinca</th><th>Quando ocorre</th><th>Causa</th><th>Combate</th></tr></thead>
+              <tbody>
+                <tr><td><strong>A frio</strong> (induzida por hidrogênio)</td><td>Horas ou dias após soldar, abaixo de 150 °C</td><td>Martensita + hidrogênio difusível + tensão de tração</td><td>Pré-aquecer, eletrodo de baixo hidrogênio seco, aporte adequado, pós-aquecimento</td></tr>
+                <tr><td><strong>A quente</strong> (de solidificação)</td><td>Durante a solidificação da poça</td><td>Filmes líquidos de baixo ponto de fusão (S, P) e contração restringida</td><td>Baixo S e P, controle de diluição, forma do cordão (evitar cordão profundo e estreito)</td></tr>
+                <tr><td><strong>Decoesão lamelar</strong></td><td>No metal base, paralela à superfície</td><td>Inclusões alongadas + tensão na direção da espessura</td><td>Aço com baixo enxofre e propriedades garantidas na espessura (grau Z)</td></tr>
+                <tr><td><strong>Reaquecimento</strong></td><td>No alívio de tensões</td><td>Precipitação na ZTA de grão grosseiro (aços Cr-Mo-V)</td><td>Controle de composição e de temperatura do TTPS</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Os quatro ingredientes da trinca a frio precisam coexistir: microestrutura susceptível, hidrogênio, tensão e temperatura baixa. Retirar qualquer um deles resolve — e o <strong>pré-aquecimento</strong> ataca dois de uma vez, porque alonga o t<sub>8/5</sub> e dá tempo para o hidrogênio escapar.</p>
+            <div class="formula"><span data-tex="T_p = 697\,CET + 160\tanh\frac{d}{35} + 62\,HD^{0,35} + (53\,CET - 32)\,Q - 328"></span><span class="where">método do CET, da EN 1011-2, com d em mm, HD em ml/100 g e Q em kJ/mm</span></div>
+            <div class="callout warn">
+              <strong>Tratamento térmico pós-soldagem (TTPS)</strong>
+              O alívio de tensões (geralmente 600 a 650 °C para aço-carbono) reduz as tensões residuais, revenido a martensita da ZTA e ajuda a difundir o hidrogênio. É exigido em vasos de pressão acima de certas espessuras pelo código ASME.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>10. Descontinuidades, ensaios e qualificação</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Descontinuidade</th><th>Causa típica</th></tr></thead>
+              <tbody>
+                <tr><td>Falta de fusão</td><td>Energia insuficiente ou técnica incorreta; não funde o metal base</td></tr>
+                <tr><td>Falta de penetração</td><td>Chanfro estreito, corrente baixa, velocidade alta</td></tr>
+                <tr><td>Porosidade</td><td>Umidade, óleo, proteção gasosa deficiente (corrente de ar)</td></tr>
+                <tr><td>Inclusão de escória</td><td>Limpeza insuficiente entre passes</td></tr>
+                <tr><td>Mordedura</td><td>Corrente alta, ângulo ou velocidade inadequados</td></tr>
+                <tr><td>Trinca</td><td>A mais grave: rejeitada em qualquer norma</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Ensaio não destrutivo</th><th>Detecta</th><th>Limitação</th></tr></thead>
+              <tbody>
+                <tr><td>Visual (VT)</td><td>Descontinuidades superficiais, geometria do cordão</td><td>Só o que se vê; é sempre o primeiro</td></tr>
+                <tr><td>Líquido penetrante (PT)</td><td>Descontinuidades abertas à superfície</td><td>Só superfície; não serve para material poroso</td></tr>
+                <tr><td>Partículas magnéticas (MT)</td><td>Superficiais e subsuperficiais rasas</td><td>Só materiais ferromagnéticos</td></tr>
+                <tr><td>Ultrassom (UT)</td><td>Descontinuidades internas, com posição e profundidade</td><td>Exige operador qualificado; sensível à orientação do defeito</td></tr>
+                <tr><td>Radiografia (RT)</td><td>Descontinuidades internas, com registro em filme</td><td>Proteção radiológica; ruim para defeitos planares paralelos ao filme</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>EPS e RQP</strong>
+              A Especificação de Procedimento de Soldagem (EPS, ou WPS) diz como soldar: processo, consumível, corrente, posição, pré-aquecimento. Ela é comprovada pelo Registro de Qualificação de Procedimento (RQP/PQR), com os resultados dos ensaios de um corpo de prova soldado. Depois, cada soldador é qualificado para executar aquela EPS — é o que exigem o ASME IX e a AWS D1.1.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>11. Corte térmico e processos especiais</summary>
+          <div class="topic-body">
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Processo</th><th>Princípio</th><th>Aplicação</th></tr></thead>
+              <tbody>
+                <tr><td>Oxicorte</td><td>Oxidação exotérmica do ferro pré-aquecido; o jato de oxigênio expulsa o óxido</td><td>Só aço-carbono e baixa liga (o inox e o alumínio formam óxidos refratários)</td></tr>
+                <tr><td>Corte a plasma</td><td>Jato de plasma funde e expulsa o metal</td><td>Qualquer metal condutor, inclusive inox e alumínio</td></tr>
+                <tr><td>Corte a laser</td><td>Feixe concentrado funde/vaporiza</td><td>Alta precisão em chapas finas e médias</td></tr>
+                <tr><td>Jato d'água abrasivo</td><td>Erosão por abrasivo em alta pressão</td><td>Sem ZTA; corta qualquer material</td></tr>
+                <tr><td>Metalurgia do pó</td><td>Compactação e sinterização</td><td>Buchas autolubrificantes, engrenagens pequenas, metal duro</td></tr>
+                <tr><td>Manufatura aditiva</td><td>Deposição camada a camada (SLM, DED, FDM)</td><td>Geometrias impossíveis, protótipos, reparos</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Por que o oxicorte não corta inox</strong>
+              O processo depende da reação do ferro com o oxigênio gerando calor. O cromo do inox forma Cr₂O₃, de altíssimo ponto de fusão, que bloqueia a reação. Daí o uso de plasma ou laser nesses materiais.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Quatro modelos interativos e animados. Os de laminação e forjamento reproduzem os exemplos clássicos do Groover, e o de soldagem usa as fórmulas de ciclo térmico e pré-aquecimento da EN 1011-2.</p>
+
+        <div id="sim-fundicao" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Reduza o diâmetro do massalote até a razão de módulos cair abaixo de 1,2: a animação passa a mostrar o massalote solidificando antes da peça — e é aí que o rechupe migra para dentro do fundido.
+        </div>
+
+        <div id="sim-laminacao" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Tente reduzir de 25 para 20 mm com μ = 0,12: a redução passa do máximo e os cilindros patinam. Aumente o atrito para 0,25 (laminação a quente) e o passe se torna possível.
+        </div>
+
+        <div id="sim-forjamento" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare a curva com e sem atrito no gráfico de força: no começo do recalque elas quase coincidem; no fim, com a peça achatada, o atrito responde por boa parte da força. Suba μ para 0,4 e veja a colina de atrito crescer.
+        </div>
+
+        <div id="sim-soldagem" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          No exemplo do aço mais ligado, o CE passa de 0,6 e o pré-aquecimento recomendado ultrapassa 200 °C. Aplique esse pré-aquecimento (exemplo 5) e veja o t8/5 quase dobrar — é assim que se evita a trinca a frio.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Chvorinov</td><td><span data-tex="t_s = C\,(V/A)^2"></span></td><td>módulo M = V/A</td></tr>
+              <tr><td>Massalote</td><td><span data-tex="M_m \ge 1{,}2\,M_{peça}"></span></td><td>critério do módulo</td></tr>
+              <tr><td>Curva de escoamento</td><td><span data-tex="\sigma = K\epsilon^n,\quad \bar Y = \dfrac{K\epsilon^n}{1+n}"></span></td><td>ε = ln(h₀/h)</td></tr>
+              <tr><td>Laminação: redução máxima</td><td><span data-tex="d_{máx} = \mu^2 R"></span></td><td>—</td></tr>
+              <tr><td>Laminação: força</td><td><span data-tex="F = \bar Y\,w\sqrt{R\,d}"></span></td><td>—</td></tr>
+              <tr><td>Laminação: potência</td><td><span data-tex="P = 2\pi N F L"></span></td><td>dois cilindros</td></tr>
+              <tr><td>Recalque</td><td><span data-tex="F = K_f Y_f A,\quad K_f = 1 + 0{,}4\mu\dfrac{d}{h}"></span></td><td>—</td></tr>
+              <tr><td>Colina de atrito</td><td><span data-tex="p(r) = Y_f e^{2\mu(a-r)/h}"></span></td><td>pico no centro</td></tr>
+              <tr><td>Corte de chapa</td><td><span data-tex="F = 0{,}7\,S_{ut}\,t\,L"></span></td><td>L: perímetro</td></tr>
+              <tr><td>Aporte térmico</td><td><span data-tex="H = \eta\dfrac{VI}{v}"></span></td><td>kJ/mm</td></tr>
+              <tr><td>t<sub>8/5</sub> (3D)</td><td><span data-tex="(6700 - 5T_0)Q\left(\dfrac{1}{500-T_0} - \dfrac{1}{800-T_0}\right)"></span></td><td>chapa grossa</td></tr>
+              <tr><td>t<sub>8/5</sub> (2D)</td><td><span data-tex="(4300 - 4{,}3T_0)10^5\dfrac{Q^2}{d^2}\left[\left(\dfrac{1}{500-T_0}\right)^2 - \left(\dfrac{1}{800-T_0}\right)^2\right]"></span></td><td>chapa fina</td></tr>
+              <tr><td>Carbono equivalente</td><td><span data-tex="CE = C + \dfrac{Mn}{6} + \dfrac{Cr+Mo+V}{5} + \dfrac{Ni+Cu}{15}"></span></td><td>IIW</td></tr>
+              <tr><td>Pré-aquecimento</td><td><span data-tex="T_p = 697\,CET + 160\tanh\dfrac{d}{35} + 62\,HD^{0,35} + (53\,CET - 32)Q - 328"></span></td><td>EN 1011-2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ASME Seção IX</strong></td><td>Qualificação de procedimentos (EPS/RQP) e de soldadores</td><td>Obrigatória em vasos de pressão e tubulações</td></tr>
+              <tr><td><strong>AWS D1.1</strong></td><td>Código de soldagem estrutural — aço</td><td>Estruturas soldadas, critérios de aceitação e pré-aquecimento</td></tr>
+              <tr><td><strong>AWS A2.4 / ISO 2553</strong></td><td>Simbologia de soldagem</td><td>Leitura e representação das juntas em desenho</td></tr>
+              <tr><td><strong>AWS A5.1 / A5.18 / A5.20</strong></td><td>Classificação de consumíveis (eletrodos e arames)</td><td>Designações como E7018 e ER70S-6</td></tr>
+              <tr><td><strong>EN 1011-2</strong></td><td>Recomendações para a soldagem de aços ferríticos</td><td>Cálculo de t<sub>8/5</sub> e de pré-aquecimento pelo CET</td></tr>
+              <tr><td><strong>ISO 5817</strong></td><td>Níveis de qualidade para descontinuidades em juntas soldadas</td><td>Critérios B, C e D de aceitação</td></tr>
+              <tr><td><strong>ASME Seção V</strong></td><td>Ensaios não destrutivos</td><td>Procedimentos de VT, PT, MT, UT e RT</td></tr>
+              <tr><td><strong>ISO 8062</strong></td><td>Tolerâncias dimensionais e sobremetal de peças fundidas</td><td>Projeto do modelo e do sobremetal de usinagem</td></tr>
+              <tr><td><strong>ABNT NBR 15239 / ISO 9606</strong></td><td>Qualificação de soldadores</td><td>Faixas de qualificação por posição, espessura e processo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre fundição, solidificação, conformação, laminação, forjamento, processos de soldagem, ciclo térmico, trincas e ensaios.</p>
+        <div id="quiz" data-quiz="processos-de-fabricacao"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>GROOVER, M. P.</strong> <em>Introdução aos Processos de Fabricação.</em> LTC. — Base dos modelos de laminação e forjamento desta página.</li>
+          <li><strong>KALPAKJIAN, S.; SCHMID, S. R.</strong> <em>Manufatura, Engenharia e Tecnologia.</em> Pearson.</li>
+          <li><strong>MODENESI, P. J.; MARQUES, P. V.; BRACARENSE, A. Q.</strong> <em>Soldagem: Fundamentos e Tecnologia.</em> Editora UFMG. — Referência brasileira de soldagem.</li>
+          <li><strong>WAINER, E.; BRANDI, S. D.; MELLO, F. D. H.</strong> <em>Soldagem: Processos e Metalurgia.</em> Blucher.</li>
+          <li><strong>CHIAVERINI, V.</strong> <em>Tecnologia Mecânica (v. 1 a 3).</em> McGraw-Hill. — Fundição e conformação.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/processos-de-fabricacao.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  M: ['Módulo de resfriamento', 'cm', 'V/A'],
+  V: ['Volume', 'cm³', 'ou tensão do arco, em V'],
+  A: ['Área de troca de calor', 'cm²'],
+  C: ['Constante de molde', 'min/cm²', 'ou teor de carbono, em %'],
+  K: ['Coeficiente de resistência', 'MPa', 'da curva σ = Kεⁿ'],
+  n: ['Expoente de encruamento', '—'],
+  ε: ['Deformação verdadeira', '—', 'ln(h₀/h)'],
+  μ: ['Coeficiente de atrito', '—'],
+  R: ['Raio do cilindro de laminação', 'mm'],
+  L: ['Comprimento de contato', 'mm', 'ou perímetro de corte'],
+  F: ['Força', 'N ou kN'],
+  d: ['Redução por passe', 'mm', 'ou espessura da chapa na soldagem'],
+  w: ['Largura da chapa', 'mm'],
+  H: ['Aporte térmico', 'kJ/mm'],
+  I: ['Corrente de soldagem', 'A'],
+  v: ['Velocidade de soldagem', 'mm/s'],
+  η: ['Rendimento térmico do processo', '—'],
+  Q: ['Aporte térmico líquido', 'kJ/mm'],
+  'Y_f': ['Tensão de escoamento instantânea', 'MPa'],
+  'Ȳ': ['Tensão de escoamento média', 'MPa'],
+  'K_f': ['Fator de forma (atrito no recalque)', '—'],
+  'd_máx': ['Redução máxima por passe', 'mm', 'μ²R'],
+  't_8/5': ['Tempo de resfriamento entre 800 e 500 °C', 's'],
+  'T_0': ['Temperatura de pré-aquecimento', '°C'],
+  'CE': ['Carbono equivalente (IIW)', '—'],
+  'CET': ['Carbono equivalente da EN 1011-2', '—'],
+  'HD': ['Hidrogênio difusível', 'ml/100 g'],
+  'ZTA': ['Zona termicamente afetada', '—'],
+  'EPS': ['Especificação de procedimento de soldagem', '—', 'WPS'],
+  'RQP': ['Registro de qualificação de procedimento', '—', 'PQR'],
+  'TTPS': ['Tratamento térmico pós-soldagem', '—'],
+  'LDR': ['Razão limite de embutimento', '—']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

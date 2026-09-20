@@ -499,6 +499,46 @@
       "ordem": 4
     },
     {
+      "id": "sim-fundicao",
+      "slug": "processos-de-fabricacao",
+      "disciplina": "Processos de Fabricação I",
+      "periodo": "6",
+      "materia": "Fabricação",
+      "titulo": "Fundição — solidificação, regra de Chvorinov e massalote",
+      "resumo": "O tempo de solidificação depende de quanto volume existe para cada área de troca de calor: é o módulo de resfriamento.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-laminacao",
+      "slug": "processos-de-fabricacao",
+      "disciplina": "Processos de Fabricação I",
+      "periodo": "6",
+      "materia": "Fabricação",
+      "titulo": "Laminação — redução máxima, força e potência",
+      "resumo": "O atrito é quem \"morde\" a chapa e a puxa para dentro dos cilindros — e é ele também que limita a redução possível em um passe.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-forjamento",
+      "slug": "processos-de-fabricacao",
+      "disciplina": "Processos de Fabricação I",
+      "periodo": "6",
+      "materia": "Fabricação",
+      "titulo": "Forjamento — recalque, atrito e colina de atrito",
+      "resumo": "No recalque, o atrito entre a peça e as matrizes impede o material de escoar livremente para fora: a pressão necessária cresce do bordo para o centro, formando a chamada colina de atrito.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-soldagem",
+      "slug": "processos-de-fabricacao",
+      "disciplina": "Processos de Fabricação I",
+      "periodo": "6",
+      "materia": "Fabricação",
+      "titulo": "Soldagem — aporte térmico, ciclo térmico e pré-aquecimento",
+      "resumo": "Toda a metalurgia da soldagem se resume ao ciclo térmico que a junta sofre.",
+      "ordem": 3
+    },
+    {
       "id": "sim-refrigeracao",
       "slug": "termodinamica-2",
       "disciplina": "Termodinâmica II",
