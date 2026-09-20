@@ -41,6 +41,56 @@
       "ordem": 3
     },
     {
+      "id": "sim-bloco",
+      "slug": "dinamica",
+      "disciplina": "Dinâmica",
+      "periodo": "4",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Partícula em plano inclinado — atrito, DCL e energia",
+      "resumo": "O bloco só desliza quando a componente do peso ao longo do plano vence o atrito estático máximo.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-impacto",
+      "slug": "dinamica",
+      "disciplina": "Dinâmica",
+      "periodo": "4",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Impacto direto central — restituição e perda de energia",
+      "resumo": "Num choque a quantidade de movimento do sistema sempre se conserva, porque as forças internas são iguais e opostas.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-rolamento",
+      "slug": "dinamica",
+      "disciplina": "Dinâmica",
+      "periodo": "4",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Rolamento sem deslizamento — quem desce mais rápido",
+      "resumo": "Na descida, a energia potencial se divide entre translação e rotação.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-pendulo",
+      "slug": "dinamica",
+      "disciplina": "Dinâmica",
+      "periodo": "4",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Pêndulo composto — momento de inércia e centro de percussão",
+      "resumo": "Um corpo rígido oscilando em torno de um pivô é um pêndulo composto: o que governa o período é a razão entre o momento de inércia no pivô e o momento do peso.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-veiculo",
+      "slug": "dinamica",
+      "disciplina": "Dinâmica",
+      "periodo": "4",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Dinâmica do veículo — transferência de carga e limites",
+      "resumo": "Ao acelerar, o veículo \"senta\" atrás; ao frear, mergulha para a frente.",
+      "ordem": 4
+    },
+    {
       "id": "sim-cristal",
       "slug": "ciencia-dos-materiais-1",
       "disciplina": "Ciência dos Materiais I",

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dinâmica — Engenharia Mecânica</title>
+<meta name="description" content="Cinemática e cinética da partícula e do corpo rígido: segunda lei, trabalho e energia, impulso e quantidade de movimento, impacto, momento de inércia, rolamento, pêndulo composto e dinâmica do veículo — com simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">4º período · Engenharia Mecânica</p>
+    <h1>Dinâmica</h1>
+    <p class="lead">A Estática estuda corpos em equilíbrio; a Dinâmica, o que acontece quando as forças não se equilibram. São três caminhos para o mesmo problema — a segunda lei de Newton, o teorema do trabalho e energia e o princípio do impulso e da quantidade de movimento — e saber qual deles escolher é metade do trabalho.</p>
+    <div class="btn-row">
+      <span class="tag accent">9 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Todo problema de dinâmica pode ser atacado por três métodos equivalentes. Eles não competem: cada um responde bem a um tipo de pergunta, e o segredo é reconhecer qual usar.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Método</th><th>Equação</th><th>Use quando a pergunta envolve</th></tr></thead>
+          <tbody>
+            <tr><td>Segunda lei (Newton-Euler)</td><td><span data-tex-inline="\sum \vec F = m\vec a_G,\ \sum M_G = I_G\alpha"></span></td><td>Aceleração num instante, forças de contato, reações</td></tr>
+            <tr><td>Trabalho e energia</td><td><span data-tex-inline="W_{1\to2} = \Delta E_c"></span></td><td>Velocidade após um deslocamento, sem interesse no tempo</td></tr>
+            <tr><td>Impulso e quantidade de movimento</td><td><span data-tex-inline="\int \vec F\,dt = \Delta(m\vec v)"></span></td><td>Velocidade após um intervalo de tempo, choques, jatos</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como escolher</strong>
+          Se o enunciado dá <em>distância</em> e pede velocidade, use energia. Se dá <em>tempo</em> ou envolve impacto, use impulso. Se pede <em>força, reação ou aceleração</em>, use a segunda lei. Em muitos problemas vale combinar: energia para achar a velocidade e depois Newton para achar a reação.
+        </div>
+        <div class="callout note">
+          <strong>Onde a Dinâmica reaparece</strong>
+          A equação do pêndulo composto é a mesma das Vibrações Mecânicas; o momento de inércia de massa volta em Elementos de Máquina (volantes, freios e embreagens); a transferência de carga aparece no projeto de suspensões e freios; e o teorema do impulso está por trás do cálculo de forças em jatos e turbomáquinas.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Cinemática da partícula</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="v = \frac{ds}{dt} \qquad a = \frac{dv}{dt} = v\frac{dv}{ds}"></span><span class="where">a terceira forma é a que resolve problemas em que a aceleração depende da posição</span></div>
+            <p>Com aceleração constante valem as três fórmulas conhecidas; fora desse caso é preciso integrar:</p>
+            <div class="formula"><span data-tex="v = v_0 + at \qquad s = s_0 + v_0t + \tfrac12 at^2 \qquad v^2 = v_0^2 + 2a(s - s_0)"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Sistema de coordenadas</th><th>Componentes</th><th>Quando usar</th></tr></thead>
+              <tbody>
+                <tr><td>Retangulares (x, y, z)</td><td><span data-tex-inline="a_x = \ddot x,\ a_y = \ddot y"></span></td><td>Movimentos independentes nos eixos — projéteis</td></tr>
+                <tr><td>Normal-tangencial (n, t)</td><td><span data-tex-inline="a_t = \dot v,\ a_n = v^2/\rho"></span></td><td>Trajetória curva conhecida: curvas, loopings</td></tr>
+                <tr><td>Polares (r, θ)</td><td><span data-tex-inline="a_r = \ddot r - r\dot\theta^2,\ a_\theta = r\ddot\theta + 2\dot r\dot\theta"></span></td><td>Movimento em torno de um centro; o termo 2ṙθ̇ é a aceleração de Coriolis</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\vec v_{B} = \vec v_{A} + \vec v_{B/A} \qquad \vec a_{B} = \vec a_{A} + \vec a_{B/A}"></span><span class="where">movimento relativo com eixos em translação</span></div>
+            <div class="callout note">
+              <strong>Componente normal existe mesmo com velocidade constante</strong>
+              Num movimento circular uniforme a velocidade escalar não muda, mas a direção sim: a aceleração é toda centrípeta, <span data-tex-inline="a_n = v^2/\rho"></span>. Aceleração nula exige trajetória reta <em>e</em> velocidade constante.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Cinética da partícula: segunda lei e d'Alembert</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="\sum \vec F = m\vec a"></span><span class="where">válida em referencial inercial; o diagrama de corpo livre é o começo obrigatório</span></div>
+            <p>O <strong>princípio de d'Alembert</strong> reescreve isso como um equilíbrio, somando a força de inércia fictícia −ma ao diagrama:</p>
+            <div class="formula"><span data-tex="\sum \vec F - m\vec a = 0"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Situação</th><th>Equação característica</th></tr></thead>
+              <tbody>
+                <tr><td>Plano inclinado com atrito</td><td><span data-tex-inline="a = g(\text{sen}\,\theta - \mu\cos\theta)"></span></td></tr>
+                <tr><td>Iminência de escorregamento</td><td><span data-tex-inline="\tan\phi_s = \mu_e"></span> — o ângulo de atrito independe da massa</td></tr>
+                <tr><td>Curva plana (sem sobrelevação)</td><td><span data-tex-inline="v_{max} = \sqrt{\mu g R}"></span></td></tr>
+                <tr><td>Curva com sobrelevação θ, sem atrito</td><td><span data-tex-inline="v = \sqrt{gR\tan\theta}"></span></td></tr>
+                <tr><td>Looping, ponto mais alto</td><td><span data-tex-inline="v_{min} = \sqrt{gR}"></span> — abaixo disso o corpo se descola</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Força centrífuga não existe no referencial inercial</strong>
+              No referencial do solo há apenas a resultante centrípeta, dirigida para o centro. A "força centrífuga" aparece quando se adota o referencial girante — é exatamente a força de inércia de d'Alembert, e usá-la é legítimo desde que se saiba o que se está fazendo.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Trabalho e energia</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="W_{1\to2} = \int_1^2 \vec F\cdot d\vec r = \Delta E_c = \tfrac12 mv_2^2 - \tfrac12 mv_1^2"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Força</th><th>Trabalho</th><th>Conservativa?</th></tr></thead>
+              <tbody>
+                <tr><td>Peso</td><td><span data-tex-inline="-mg\,\Delta h"></span></td><td>Sim — energia potencial mgh</td></tr>
+                <tr><td>Mola</td><td><span data-tex-inline="-\tfrac12 k(x_2^2 - x_1^2)"></span></td><td>Sim — energia potencial ½kx²</td></tr>
+                <tr><td>Atrito cinético</td><td><span data-tex-inline="-f\,|s|"></span></td><td>Não — depende do caminho e sempre dissipa</td></tr>
+                <tr><td>Normal e atrito estático no rolamento</td><td>Zero</td><td>Não realizam trabalho (deslocamento nulo no ponto de aplicação)</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="E_c + E_p = \text{constante (só forças conservativas)} \qquad P = \vec F\cdot\vec v = \frac{dW}{dt} \qquad \eta = \frac{P_{útil}}{P_{fornecida}}"></span></div>
+            <div class="callout tip">
+              <strong>Por que energia costuma ser o caminho mais curto</strong>
+              Ela é escalar: dispensa decompor vetores e não exige conhecer as forças instante a instante. Se o problema liga duas posições e pede velocidade, energia resolve em uma linha o que Newton resolveria em três integrações.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Impulso, quantidade de movimento e impacto</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="\int_{t_1}^{t_2}\vec F\,dt = m\vec v_2 - m\vec v_1"></span><span class="where">se a resultante externa é nula, a quantidade de movimento se conserva</span></div>
+            <p>No impacto entre dois corpos, as forças são internas ao sistema: a quantidade de movimento total se conserva sempre. A energia cinética, não — e o quanto se perde é medido pelo <strong>coeficiente de restituição</strong>:</p>
+            <div class="formula"><span data-tex="e = \frac{v_2' - v_1'}{v_1 - v_2} \qquad 0 \le e \le 1"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>e</th><th>Nome</th><th>Resultado</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Perfeitamente elástico</td><td>Energia cinética se conserva; com massas iguais, as velocidades se trocam</td></tr>
+                <tr><td>0 &lt; e &lt; 1</td><td>Parcialmente elástico</td><td>Caso real: aço-aço ≈ 0,6 a 0,8</td></tr>
+                <tr><td>0</td><td>Perfeitamente plástico</td><td>Os corpos seguem juntos, com a velocidade do centro de massa</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\Delta E = \tfrac12\,\frac{m_1m_2}{m_1+m_2}\,(1 - e^2)(v_1 - v_2)^2"></span><span class="where">energia dissipada no choque</span></div>
+            <div class="callout note">
+              <strong>Impacto oblíquo</strong>
+              Decompõe-se nas direções normal e tangencial ao plano de contato: a restituição se aplica só à componente normal, enquanto a tangencial se conserva (se não houver atrito entre os corpos).
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Sistemas de partículas e centro de massa</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="\sum \vec F_{ext} = M\vec a_G \qquad \vec r_G = \frac{\sum m_i\vec r_i}{\sum m_i}"></span><span class="where">as forças internas se cancelam aos pares (terceira lei)</span></div>
+            <p>Esse resultado é o que permite tratar um corpo extenso — ou um conjunto de corpos — como se toda a massa estivesse no centro de massa, quando o interesse é o movimento de translação.</p>
+            <div class="callout tip">
+              <strong>O centro de massa ignora o que acontece dentro</strong>
+              Numa explosão no ar, os fragmentos voam em todas as direções, mas o centro de massa continua a mesma trajetória parabólica de antes: as forças da explosão são internas. É o mesmo princípio que mantém v_G constante durante um choque.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Cinemática do corpo rígido</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="\vec v_B = \vec v_A + \vec\omega\times\vec r_{B/A} \qquad \vec a_B = \vec a_A + \vec\alpha\times\vec r_{B/A} - \omega^2\vec r_{B/A}"></span><span class="where">movimento plano geral: translação de A mais rotação em torno de A</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Conceito</th><th>Definição</th><th>Utilidade</th></tr></thead>
+              <tbody>
+                <tr><td>Centro instantâneo de rotação (CIR)</td><td>Ponto de velocidade nula no instante</td><td>Reduz o movimento plano a uma rotação pura: v = ω·r_CIR</td></tr>
+                <tr><td>Rolamento sem deslizamento</td><td><span data-tex-inline="v_G = \omega r,\ a_G = \alpha r"></span></td><td>O ponto de contato é o CIR</td></tr>
+                <tr><td>Eixos girantes</td><td><span data-tex-inline="\vec a_B = \vec a_A + \vec\alpha\times\vec r + \vec\omega\times(\vec\omega\times\vec r) + 2\vec\omega\times\vec v_{rel} + \vec a_{rel}"></span></td><td>O termo 2ω×v_rel é a aceleração de Coriolis</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout note">
+              <strong>O ponto de contato de uma roda está parado</strong>
+              Numa roda que rola sem deslizar, o ponto em contato com o solo tem velocidade instantânea nula — por isso o atrito ali é estático e não dissipa energia. O topo da roda, em compensação, anda a 2v.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Cinética do corpo rígido e momento de inércia</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="\sum \vec F = m\vec a_G \qquad \sum M_G = I_G\,\alpha"></span><span class="where">movimento plano; em torno de um ponto fixo O, ΣM_O = I_O α</span></div>
+            <div class="formula"><span data-tex="I = \int r^2\,dm \qquad I_O = I_G + m d^2 \qquad I = m k^2"></span><span class="where">teorema dos eixos paralelos e raio de giração k</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Corpo</th><th>I no centro de massa</th><th>I/(mr²)</th></tr></thead>
+              <tbody>
+                <tr><td>Esfera maciça</td><td><span data-tex-inline="\tfrac25 mR^2"></span></td><td>0,40</td></tr>
+                <tr><td>Cilindro maciço (disco)</td><td><span data-tex-inline="\tfrac12 mR^2"></span></td><td>0,50</td></tr>
+                <tr><td>Casca esférica</td><td><span data-tex-inline="\tfrac23 mR^2"></span></td><td>0,67</td></tr>
+                <tr><td>Aro (parede fina)</td><td><span data-tex-inline="mR^2"></span></td><td>1,00</td></tr>
+                <tr><td>Barra delgada (centro)</td><td><span data-tex-inline="\tfrac{1}{12}mL^2"></span></td><td>—</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Momento de inércia de massa não é momento de inércia de área</strong>
+              O de área (I = ∫y²dA, em m⁴) vem da flexão de vigas; o de massa (I = ∫r²dm, em kg·m²) mede a resistência à aceleração angular. Símbolos parecidos, significados diferentes — e o teorema dos eixos paralelos vale para os dois, cada um na sua forma.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Energia e impulso angular no corpo rígido</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="E_c = \tfrac12 m v_G^2 + \tfrac12 I_G\omega^2 \qquad W_{momento} = \int M\,d\theta"></span><span class="where">a energia cinética se separa em translação e rotação</span></div>
+            <div class="formula"><span data-tex="H_G = I_G\,\omega \qquad \int M_G\,dt = \Delta H_G"></span><span class="where">impulso angular e quantidade de movimento angular</span></div>
+            <p>Quando não há momento externo, H se conserva: é por isso que a patinadora acelera o giro ao recolher os braços — I diminui e ω cresce, de forma que Iω permanece constante.</p>
+            <div class="formula"><span data-tex="q = \frac{I_O}{m d}"></span><span class="where">centro de percussão: aplicar a força aí não gera reação no pivô</span></div>
+            <div class="callout tip">
+              <strong>O "ponto doce" do taco</strong>
+              Bater exatamente no centro de percussão faz com que a translação produzida pela força e a rotação em torno do centro de massa se cancelem no ponto de apoio: nenhuma reação chega à mão. Fora dele, a pancada volta pelo cabo.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Aplicações: veículos e vibração livre</summary>
+          <div class="topic-body">
+            <h4>Dinâmica longitudinal</h4>
+            <div class="formula"><span data-tex="N_f = \frac{mg(L-b)}{L} - \frac{mah}{L} \qquad N_r = \frac{mg\,b}{L} + \frac{mah}{L} \qquad \Delta N = \frac{mah}{L}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Tração</th><th>Aceleração máxima</th><th>Comentário</th></tr></thead>
+              <tbody>
+                <tr><td>Traseira</td><td><span data-tex-inline="\dfrac{\mu g\,(b/L)}{1 - \mu h/L}"></span></td><td>A transferência ajuda: o eixo motriz ganha carga</td></tr>
+                <tr><td>Dianteira</td><td><span data-tex-inline="\dfrac{\mu g\,((L-b)/L)}{1 + \mu h/L}"></span></td><td>A transferência atrapalha</td></tr>
+                <tr><td>Integral</td><td><span data-tex-inline="\mu g"></span></td><td>Limite absoluto do atrito</td></tr>
+                <tr><td>Frenagem</td><td><span data-tex-inline="-\mu g"></span>, com <span data-tex-inline="d = v^2/2\mu g"></span></td><td>Distância cresce com o quadrado da velocidade</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <h4>Vibração livre — a ponte para a próxima disciplina</h4>
+            <div class="formula"><span data-tex="m\ddot x + kx = 0 \Rightarrow \omega_n = \sqrt{k/m} \qquad I_O\ddot\theta + mgd\,\theta = 0 \Rightarrow \omega_n = \sqrt{\frac{mgd}{I_O}}"></span></div>
+            <p>O pêndulo composto é o primeiro sistema vibratório do curso: a mesma equação diferencial, com o momento de inércia no lugar da massa e o momento do peso no lugar da rigidez.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Cinco modelos interativos e animados, com diagrama de corpo livre, balanço de energia e resolução passo a passo.</p>
+
+        <div id="sim-bloco" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Com μe = 0,4 o ângulo de atrito é 21,8°. Compare 10°, 22° e 30°: o bloco só se move quando a inclinação passa do ângulo de atrito, e isso não depende da massa. Depois incline a força aplicada e veja a normal — e o atrito — diminuírem.
+        </div>
+
+        <div id="sim-impacto" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Com massas iguais e e = 1 as velocidades se trocam (é o berço de Newton). Com e = 0 os dois seguem juntos e a perda de energia é máxima. Em todos os casos a barra da quantidade de movimento antes e depois é idêntica.
+        </div>
+
+        <div id="sim-rolamento" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Na corrida, a ordem de chegada é sempre esfera, cilindro, casca e aro — e não muda se você alterar massa ou raio. Depois reduza o atrito: abaixo do μ necessário a esfera escorrega em vez de rolar, e passa a perder energia.
+        </div>
+
+        <div id="sim-pendulo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Mude o pivô da barra e acompanhe o gráfico do período: existe uma posição de período mínimo, em d = L/√12. Aumente a amplitude para 45° e compare o período real com o de pequenas oscilações.
+        </div>
+
+        <div id="sim-veiculo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Na frenagem de emergência o eixo dianteiro chega a suportar quase 80 % do peso — por isso os freios dianteiros são maiores. Depois eleve o centro de massa (exemplo do SUV) e veja a transferência crescer na mesma proporção.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Cinemática</td><td><span data-tex="v = \dfrac{ds}{dt},\quad a = \dfrac{dv}{dt} = v\dfrac{dv}{ds}"></span></td><td>—</td></tr>
+              <tr><td>Aceleração constante</td><td><span data-tex="v^2 = v_0^2 + 2a\Delta s"></span></td><td>—</td></tr>
+              <tr><td>Componentes n-t</td><td><span data-tex="a_t = \dot v,\quad a_n = \dfrac{v^2}{\rho}"></span></td><td>ρ: raio de curvatura</td></tr>
+              <tr><td>Coordenadas polares</td><td><span data-tex="a_\theta = r\ddot\theta + 2\dot r\dot\theta"></span></td><td>Coriolis</td></tr>
+              <tr><td>Segunda lei</td><td><span data-tex="\sum \vec F = m\vec a"></span></td><td>d'Alembert: ΣF − ma = 0</td></tr>
+              <tr><td>Plano inclinado</td><td><span data-tex="a = g(\text{sen}\,\theta - \mu\cos\theta)"></span></td><td><span data-tex-inline="\tan\phi = \mu"></span></td></tr>
+              <tr><td>Trabalho-energia</td><td><span data-tex="W = \Delta E_c"></span></td><td>escalar</td></tr>
+              <tr><td>Potência</td><td><span data-tex="P = \vec F\cdot\vec v"></span></td><td>—</td></tr>
+              <tr><td>Impulso</td><td><span data-tex="\int F\,dt = \Delta(mv)"></span></td><td>—</td></tr>
+              <tr><td>Restituição</td><td><span data-tex="e = \dfrac{v_2' - v_1'}{v_1 - v_2}"></span></td><td>0 a 1</td></tr>
+              <tr><td>Perda no choque</td><td><span data-tex="\Delta E = \tfrac12\dfrac{m_1m_2}{m_1+m_2}(1-e^2)(v_1-v_2)^2"></span></td><td>—</td></tr>
+              <tr><td>Centro de massa</td><td><span data-tex="\vec r_G = \dfrac{\sum m_i \vec r_i}{\sum m_i}"></span></td><td>—</td></tr>
+              <tr><td>Corpo rígido</td><td><span data-tex="\sum M_G = I_G\alpha,\quad \sum F = ma_G"></span></td><td>movimento plano</td></tr>
+              <tr><td>Eixos paralelos</td><td><span data-tex="I_O = I_G + md^2"></span></td><td>—</td></tr>
+              <tr><td>Energia do corpo rígido</td><td><span data-tex="E_c = \tfrac12 mv_G^2 + \tfrac12 I_G\omega^2"></span></td><td>—</td></tr>
+              <tr><td>Rolamento na rampa</td><td><span data-tex="a = \dfrac{g\,\text{sen}\,\theta}{1 + I_G/mr^2}"></span></td><td><span data-tex-inline="\mu_{nec} = \frac{k}{1+k}\tan\theta"></span></td></tr>
+              <tr><td>Pêndulo composto</td><td><span data-tex="T = 2\pi\sqrt{\dfrac{I_O}{mgd}}"></span></td><td><span data-tex-inline="q = I_O/md"></span></td></tr>
+              <tr><td>Transferência de carga</td><td><span data-tex="\Delta N = \dfrac{mah}{L}"></span></td><td>—</td></tr>
+              <tr><td>Frenagem</td><td><span data-tex="d = \dfrac{v^2}{2\mu g}"></span></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ISO 80000-3 e 80000-4</strong></td><td>Grandezas e unidades — espaço, tempo e mecânica</td><td>Definições formais de velocidade, aceleração, momento de inércia e quantidade de movimento</td></tr>
+              <tr><td><strong>ISO 8855 / SAE J670</strong></td><td>Dinâmica veicular — vocabulário e sistemas de referência</td><td>Convenções de eixos, transferência de carga e estabilidade</td></tr>
+              <tr><td><strong>ISO 611 / ABNT NBR 10966</strong></td><td>Frenagem de veículos rodoviários</td><td>Desaceleração, distância de frenagem e repartição entre eixos</td></tr>
+              <tr><td><strong>ISO 1940-1 / ISO 21940</strong></td><td>Qualidade de balanceamento de rotores rígidos</td><td>Desbalanceamento residual admissível — força centrípeta em rotores</td></tr>
+              <tr><td><strong>ISO 2631-1</strong></td><td>Exposição humana à vibração de corpo inteiro</td><td>Limite das acelerações transmitidas a operadores</td></tr>
+              <tr><td><strong>ASTM E23 / ISO 148</strong></td><td>Ensaio de impacto Charpy</td><td>Aplicação direta de energia e pêndulo composto na medida de tenacidade</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre cinemática, segunda lei, trabalho e energia, impulso e impacto, corpo rígido, rolamento e aplicações.</p>
+        <div id="quiz" data-quiz="dinamica"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>HIBBELER, R. C.</strong> <em>Dinâmica: Mecânica para Engenharia.</em> Pearson. — O texto mais usado; farto em exemplos resolvidos.</li>
+          <li><strong>BEER, F. P.; JOHNSTON, E. R.</strong> <em>Mecânica Vetorial para Engenheiros: Dinâmica.</em> McGraw-Hill.</li>
+          <li><strong>MERIAM, J. L.; KRAIGE, L. G.</strong> <em>Mecânica para Engenharia: Dinâmica.</em> LTC.</li>
+          <li><strong>TENENBAUM, R. A.</strong> <em>Dinâmica Aplicada.</em> Manole. — Tratamento mais formal, com dinâmica de sistemas.</li>
+          <li><strong>GILLESPIE, T. D.</strong> <em>Fundamentals of Vehicle Dynamics.</em> SAE. — Transferência de carga, tração e frenagem.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/dinamica.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  v: ['Velocidade', 'm/s'],
+  a: ['Aceleração', 'm/s²'],
+  s: ['Posição ao longo da trajetória', 'm'],
+  m: ['Massa', 'kg'],
+  F: ['Força', 'N'],
+  M: ['Momento (torque)', 'N·m'],
+  I: ['Momento de inércia de massa', 'kg·m²'],
+  ω: ['Velocidade angular', 'rad/s'],
+  α: ['Aceleração angular', 'rad/s²'],
+  θ: ['Ângulo', 'rad ou °'],
+  ρ: ['Raio de curvatura', 'm'],
+  μ: ['Coeficiente de atrito', '—'],
+  e: ['Coeficiente de restituição', '—'],
+  k: ['Raio de giração', 'm', 'ou rigidez de mola'],
+  d: ['Distância do pivô ao centro de massa', 'm'],
+  T: ['Período', 's'],
+  W: ['Trabalho', 'J'],
+  P: ['Potência', 'W'],
+  η: ['Rendimento', '—'],
+  'E_c': ['Energia cinética', 'J', '½mv² + ½Iω²'],
+  'E_p': ['Energia potencial', 'J'],
+  'a_n': ['Aceleração normal (centrípeta)', 'm/s²', 'v²/ρ'],
+  'a_t': ['Aceleração tangencial', 'm/s²'],
+  'v_G': ['Velocidade do centro de massa', 'm/s'],
+  'I_G': ['Momento de inércia no centro de massa', 'kg·m²'],
+  'I_O': ['Momento de inércia no pivô', 'kg·m²'],
+  'H_G': ['Quantidade de movimento angular', 'kg·m²/s'],
+  'CIR': ['Centro instantâneo de rotação', '—'],
+  'N_f': ['Carga no eixo dianteiro', 'N'],
+  'N_r': ['Carga no eixo traseiro', 'N'],
+  'ω_n': ['Frequência natural', 'rad/s'],
+  'q': ['Centro de percussão', 'm', 'I_O/(m·d)']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

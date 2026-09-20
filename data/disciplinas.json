@@ -142,6 +142,24 @@
       "pronta": true
     },
     {
+      "slug": "dinamica",
+      "nome": "Dinâmica",
+      "periodo": "4",
+      "materia": "Mecânica dos Sólidos",
+      "pasta": "",
+      "resumo": "Cinemática e cinética da partícula e do corpo rígido, trabalho e energia, impulso, impacto e rolamento.",
+      "temas": [
+        "segunda lei e d'Alembert",
+        "trabalho e energia",
+        "impulso e impacto",
+        "corpo rígido",
+        "rolamento"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
       "slug": "introducao-ciencia-materiais",
       "nome": "Introdução à Ciência dos Materiais",
       "periodo": "3",

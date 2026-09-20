@@ -1,0 +1,527 @@
+{
+ "disciplina": "Dinâmica",
+ "slug": "dinamica",
+ "topicos": [
+  {
+   "id": "cinematica",
+   "nome": "Cinemática da partícula"
+  },
+  {
+   "id": "newton",
+   "nome": "Segunda lei e d’Alembert"
+  },
+  {
+   "id": "energia",
+   "nome": "Trabalho e energia"
+  },
+  {
+   "id": "impulso",
+   "nome": "Impulso, quantidade de movimento e impacto"
+  },
+  {
+   "id": "corpo",
+   "nome": "Corpo rígido"
+  },
+  {
+   "id": "rolamento",
+   "nome": "Rolamento"
+  },
+  {
+   "id": "veiculo",
+   "nome": "Dinâmica do veículo"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "din-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "cinematica",
+   "enunciado": "<p>Um automóvel percorre uma curva de raio constante com velocidade escalar constante. Sobre sua aceleração, é correto afirmar que:</p>",
+   "alternativas": [
+    "é puramente normal (centrípeta), de módulo v²/ρ, apontando para o centro da curva.",
+    "é nula, porque a velocidade escalar não muda.",
+    "é puramente tangencial.",
+    "aponta para fora da curva."
+   ],
+   "correta": 0,
+   "explicacao": "<p>A aceleração tem duas componentes: a tangencial mede a mudança do módulo da velocidade e a normal, a mudança de direção. Com velocidade escalar constante, a_t = 0 e sobra a_n = v²/ρ, sempre dirigida para o centro de curvatura.</p>"
+  },
+  {
+   "id": "din-002",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "cinematica",
+   "enunciado": "<p>Um veículo a <span class=\"dado\">25 m/s</span> freia com desaceleração constante de <span class=\"dado\">4 m/s²</span>. Que distância percorre até parar?</p>",
+   "alternativas": [
+    "6,25 m",
+    "78,12 m",
+    "156,2 m",
+    "39,06 m"
+   ],
+   "correta": 1,
+   "formulas": [
+    "v² = v₀² + 2a·Δs"
+   ],
+   "explicacao": "<div class=\"passo\">0 = 25² + 2(−4)Δs → Δs = 625/8</div><div class=\"passo\">Δs = <strong>78,12 m</strong>, em t = v₀/|a| = 6,25 s</div><p>A distância cresce com o quadrado da velocidade: a 50 m/s seriam quatro vezes mais. As alternativas erradas são o tempo de frenagem em vez da distância, o resultado sem o fator 2 do denominador e a metade do valor correto.</p>"
+  },
+  {
+   "id": "din-003",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "cinematica",
+   "enunciado": "<p>Num movimento em coordenadas polares, o termo 2ṙθ̇ que aparece na aceleração transversal é:</p>",
+   "alternativas": [
+    "a aceleração centrípeta.",
+    "a aceleração tangencial.",
+    "a aceleração de Coriolis, que aparece quando o ponto se afasta ou se aproxima do centro enquanto gira.",
+    "um erro de dedução, sem significado físico."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Se você caminha do centro para a borda de um carrossel em movimento, sua velocidade tangencial precisa aumentar — e é a aceleração de Coriolis que responde por isso. Ela aparece sempre que há velocidade radial num referencial girante, e é o que desvia ventos e correntes na escala planetária.</p>"
+  },
+  {
+   "id": "din-004",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "cinematica",
+   "enunciado": "<p>Dois trens se movem em trilhos paralelos, A a 20 m/s e B a 30 m/s, no mesmo sentido. A velocidade de B em relação a A é:</p>",
+   "alternativas": [
+    "50 m/s no sentido do movimento.",
+    "nula, porque os dois se movem.",
+    "10 m/s no sentido contrário.",
+    "10 m/s no sentido do movimento de B."
+   ],
+   "correta": 3,
+   "explicacao": "<p>v_B/A = v_B − v_A = 30 − 20 = 10 m/s. Para um observador em A, B se afasta a 10 m/s. Se estivessem em sentidos opostos, a velocidade relativa seria 50 m/s — e é por isso que colisões frontais são muito mais severas.</p>"
+  },
+  {
+   "id": "din-005",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "newton",
+   "enunciado": "<p>Um bloco desce um plano inclinado de <span class=\"dado\">30°</span> com coeficiente de atrito cinético <span class=\"dado\">0,25</span>. Sua aceleração é:</p>",
+   "alternativas": [
+    "4,90 m/s²",
+    "3,68 m/s²",
+    "7,27 m/s²",
+    "2,78 m/s²"
+   ],
+   "correta": 3,
+   "formulas": [
+    "a = g(sen θ − μ cos θ)"
+   ],
+   "explicacao": "<div class=\"passo\">a = 9,81 (sen 30° − 0,25 · cos 30°)</div><div class=\"passo\">a = 9,81 (0,500 − 0,2165) = <strong>2,78 m/s²</strong></div><p>Note que a massa não aparece: dois blocos de massas diferentes descem juntos, e o atrito freia mas não impede a descida (30° está acima do ângulo de atrito, que aqui é 14°). As alternativas erradas ignoram o atrito, usam sen θ no termo do atrito e trocam seno por cosseno.</p>"
+  },
+  {
+   "id": "din-006",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "newton",
+   "enunciado": "<p>O ângulo de atrito φ de uma superfície é definido por tan φ = μe. Seu significado físico é:</p>",
+   "alternativas": [
+    "a inclinação do plano em que um corpo fica na iminência de escorregar, independentemente da sua massa.",
+    "o ângulo em que a força de atrito é máxima em valor absoluto.",
+    "o ângulo entre a força normal e o peso.",
+    "o ângulo de abertura do cone de atrito estático em repouso absoluto."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Igualando mg sen θ = μe mg cos θ, a massa cancela e sobra tan θ = μe. É por isso que o ângulo de repouso de um monte de areia mede diretamente o coeficiente de atrito entre os grãos.</p>"
+  },
+  {
+   "id": "din-007",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "newton",
+   "enunciado": "<p>Qual a velocidade máxima em uma curva plana (sem sobrelevação) de raio <span class=\"dado\">80 m</span>, com coeficiente de atrito <span class=\"dado\">0,7</span>?</p>",
+   "alternativas": [
+    "23,44 m/s (84,38 km/h)",
+    "549,4 m/s",
+    "84,38 m/s",
+    "16,57 m/s"
+   ],
+   "correta": 0,
+   "formulas": [
+    "O atrito fornece a resultante centrípeta: μmg = mv²/R",
+    "v = √(μ g R)"
+   ],
+   "explicacao": "<div class=\"passo\">v = √(0,7 × 9,81 × 80) = √549,4</div><div class=\"passo\">v = <strong>23,44 m/s = 84,38 km/h</strong></div><p>Como a massa cancela, o limite é o mesmo para um carro e para um caminhão (com pneus de mesmo μ). As alternativas erradas são o valor antes de extrair a raiz, o resultado já em km/h apresentado como m/s, e o valor com metade do produto μgR.</p>"
+  },
+  {
+   "id": "din-008",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "newton",
+   "enunciado": "<p>No ponto mais alto de um looping vertical de raio R, a velocidade mínima para que o corpo não perca o contato com a pista é:</p>",
+   "alternativas": [
+    "zero, desde que haja atrito suficiente.",
+    "√(2gR)",
+    "√(gR)",
+    "2√(gR)"
+   ],
+   "correta": 2,
+   "explicacao": "<p>No limite, a normal se anula e o peso sozinho fornece a resultante centrípeta: mg = mv²/R, logo v = √(gR). Abaixo disso o corpo descola da pista antes de chegar ao topo.</p>"
+  },
+  {
+   "id": "din-009",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "newton",
+   "enunciado": "<p>O princípio de d’Alembert consiste em:</p>",
+   "alternativas": [
+    "desprezar as forças de atrito para simplificar o problema.",
+    "aplicar a segunda lei apenas em referenciais não inerciais.",
+    "substituir a massa pelo momento de inércia.",
+    "acrescentar ao diagrama de corpo livre a força de inércia −ma, transformando o problema dinâmico num de equilíbrio estático."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Escrevendo ΣF − ma = 0, o problema passa a ser resolvido com as mesmas ferramentas da Estática. A \"força centrífuga\" percebida num carro em curva é exatamente essa força de inércia, vista do referencial que gira com o veículo.</p>"
+  },
+  {
+   "id": "din-010",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "energia",
+   "enunciado": "<p>Um corpo de <span class=\"dado\">2 kg</span> é solto de <span class=\"dado\">5 m</span> de altura. Desprezando a resistência do ar, com que velocidade chega ao solo?</p>",
+   "alternativas": [
+    "98,10 m/s",
+    "7,004 m/s",
+    "9,905 m/s",
+    "4,952 m/s"
+   ],
+   "correta": 2,
+   "formulas": [
+    "mgh = ½mv²",
+    "v = √(2gh)"
+   ],
+   "explicacao": "<div class=\"passo\">v = √(2 × 9,81 × 5) = √98,1</div><div class=\"passo\">v = <strong>9,905 m/s</strong></div><p>A massa cancela: todos os corpos chegam com a mesma velocidade no vácuo. As alternativas erradas são o valor antes da raiz, o resultado sem o fator 2 e a metade do valor correto.</p>"
+  },
+  {
+   "id": "din-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "energia",
+   "enunciado": "<p>Uma força é chamada conservativa quando:</p>",
+   "alternativas": [
+    "tem módulo constante ao longo do movimento.",
+    "o trabalho que realiza entre dois pontos não depende do caminho percorrido, e é nulo num percurso fechado.",
+    "é sempre perpendicular ao deslocamento.",
+    "não realiza trabalho."
+   ],
+   "correta": 1,
+   "explicacao": "<p>O peso e a força elástica são conservativos, e por isso admitem energia potencial. O atrito cinético não: quanto mais longo o caminho, mais energia ele dissipa — e num percurso fechado o trabalho dele é claramente negativo.</p>"
+  },
+  {
+   "id": "din-012",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "energia",
+   "enunciado": "<p>Um motor fornece <span class=\"dado\">15 kW</span> a um veículo que se move a <span class=\"dado\">20 m/s</span>, com rendimento de transmissão de <span class=\"dado\">85 %</span>. Qual é a força de tração nas rodas?</p>",
+   "alternativas": [
+    "750,0 N",
+    "637,5 N",
+    "882,4 N",
+    "12750 N"
+   ],
+   "correta": 1,
+   "formulas": [
+    "P_útil = η P_fornecida",
+    "P = F·v → F = P/v"
+   ],
+   "explicacao": "<div class=\"passo\">P_útil = 0,85 × 15 000 = 12 750 W</div><div class=\"passo\">F = 12 750/20 = <strong>637,5 N</strong></div><p>As alternativas erradas esquecem o rendimento, dividem por ele em vez de multiplicar e esquecem de dividir pela velocidade. Em regime permanente essa força equilibra exatamente o arrasto e o atrito de rolamento.</p>"
+  },
+  {
+   "id": "din-013",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "energia",
+   "enunciado": "<p>Um bloco desliza por uma rampa com atrito e chega ao fim com velocidade v. Se a mesma rampa fosse percorrida por um caminho mais longo, com a mesma altura e o mesmo coeficiente de atrito:</p>",
+   "alternativas": [
+    "a velocidade final seria menor, porque o trabalho do atrito é proporcional à distância percorrida.",
+    "a velocidade final seria a mesma, porque a altura é a mesma.",
+    "a velocidade final seria maior.",
+    "não é possível comparar sem saber a massa."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O trabalho do peso depende só da altura (força conservativa), mas o do atrito é −μN·s: quanto maior o caminho, maior a perda. É por isso que uma estrada de serra longa é mais segura na descida do que uma rampa curta e íngreme.</p>"
+  },
+  {
+   "id": "din-014",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "impulso",
+   "enunciado": "<p>Um carrinho de <span class=\"dado\">3 kg</span> a <span class=\"dado\">8 m/s</span> colide e engata em outro de <span class=\"dado\">5 kg</span>, parado. Qual a velocidade do conjunto após o choque?</p>",
+   "alternativas": [
+    "4,80 m/s",
+    "3,00 m/s",
+    "1,60 m/s",
+    "8,00 m/s"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Conservação da quantidade de movimento",
+    "m₁v₁ = (m₁ + m₂)v"
+   ],
+   "explicacao": "<div class=\"passo\">3 × 8 = (3 + 5) v → v = 24/8</div><div class=\"passo\">v = <strong>3,00 m/s</strong></div><p>É um choque perfeitamente plástico (e = 0): os dois seguem com a velocidade do centro de massa. A energia cinética cai de 96 J para 36 J — 62,5 % viram deformação e calor. As alternativas erradas dividem pela massa errada ou supõem que o carrinho segue como se nada tivesse acontecido.</p>"
+  },
+  {
+   "id": "din-015",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "impulso",
+   "enunciado": "<p>Num choque entre dois corpos isolados, o que se conserva sempre é:</p>",
+   "alternativas": [
+    "a energia cinética.",
+    "a velocidade do corpo mais pesado.",
+    "a quantidade de movimento total do sistema.",
+    "o coeficiente de restituição."
+   ],
+   "correta": 2,
+   "explicacao": "<p>As forças do choque são internas ao sistema: aparecem aos pares, iguais e opostas (terceira lei), e seus impulsos se cancelam. A energia cinética só se conserva no caso perfeitamente elástico (e = 1).</p>"
+  },
+  {
+   "id": "din-016",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "impulso",
+   "enunciado": "<p>Duas esferas de <span class=\"dado\">2 kg</span> colidem: a primeira a <span class=\"dado\">10 m/s</span>, a segunda parada, com coeficiente de restituição <span class=\"dado\">0,6</span>. Quais são as velocidades finais?</p>",
+   "alternativas": [
+    "0 e 10,0 m/s",
+    "5,00 e 5,00 m/s",
+    "3,00 e 7,00 m/s",
+    "2,00 e 8,00 m/s"
+   ],
+   "correta": 3,
+   "formulas": [
+    "m₁v₁ + m₂v₂ = m₁v₁′ + m₂v₂′",
+    "e = (v₂′ − v₁′)/(v₁ − v₂)"
+   ],
+   "explicacao": "<div class=\"passo\">Conservação: 2(10) + 0 = 2v₁′ + 2v₂′ → v₁′ + v₂′ = 10</div><div class=\"passo\">Restituição: v₂′ − v₁′ = 0,6 × 10 = 6</div><div class=\"passo\">Somando: v₂′ = 8 e v₁′ = <strong>2,00 m/s</strong>; logo v₂′ = <strong>8,00 m/s</strong></div><p>A energia perdida é ½·(m₁m₂/(m₁+m₂))(1 − e²)v² = 32,0 J. \"0 e 10\" seria o caso perfeitamente elástico (e = 1), \"5 e 5\" o perfeitamente plástico (e = 0) e \"3 e 7\" corresponderia a e = 0,4.</p>"
+  },
+  {
+   "id": "din-017",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "impulso",
+   "enunciado": "<p>Um airbag reduz as lesões num acidente porque:</p>",
+   "alternativas": [
+    "diminui a variação de quantidade de movimento do ocupante.",
+    "aumenta o coeficiente de restituição do impacto.",
+    "elimina o impulso transmitido.",
+    "aumenta o tempo da desaceleração, reduzindo a força média — já que o impulso necessário é o mesmo."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A variação de quantidade de movimento é imposta pela velocidade inicial: FΔt = mΔv. Como Δv não muda, alongar Δt é a única forma de reduzir F. É o mesmo princípio da zona de deformação programada e do capacete.</p>"
+  },
+  {
+   "id": "din-018",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "corpo",
+   "enunciado": "<p>O momento de inércia de massa mede:</p>",
+   "alternativas": [
+    "a resistência do corpo à aceleração angular, e depende de como a massa se distribui em relação ao eixo.",
+    "a resistência do corpo à aceleração linear.",
+    "a quantidade de matéria do corpo.",
+    "a energia armazenada na rotação."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Na rotação, I faz o papel da massa: ΣM = Iα, tal como ΣF = ma. Dois corpos de mesma massa podem ter I muito diferentes: o aro (I = mR²) é 2,5 vezes mais difícil de acelerar que a esfera maciça (I = 0,4mR²) de mesmo raio.</p>"
+  },
+  {
+   "id": "din-019",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "corpo",
+   "enunciado": "<p>Uma barra delgada de <span class=\"dado\">4 kg</span> e <span class=\"dado\">1,5 m</span> gira em torno de uma extremidade. Qual seu momento de inércia nesse eixo?</p>",
+   "alternativas": [
+    "0,750 kg·m²",
+    "9,00 kg·m²",
+    "3,000 kg·m²",
+    "2,25 kg·m²"
+   ],
+   "correta": 2,
+   "formulas": [
+    "I_G = mL²/12",
+    "I_O = I_G + m d², com d = L/2"
+   ],
+   "explicacao": "<div class=\"passo\">I_G = 4 × 1,5²/12 = 0,7500 kg·m²</div><div class=\"passo\">I_O = 0,7500 + 4 × 0,75² = 0,7500 + 2,25 = <strong>3,000 kg·m²</strong></div><p>Equivale a mL²/3, a forma tabelada. 0,750 kg·m² é I_G; 2,25 kg·m² é só a parcela md² do teorema dos eixos paralelos; 9,00 kg·m² usaria mL².</p>"
+  },
+  {
+   "id": "din-020",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "corpo",
+   "enunciado": "<p>O teorema dos eixos paralelos (I = I_G + md²) só pode ser aplicado:</p>",
+   "alternativas": [
+    "entre dois eixos paralelos quaisquer.",
+    "a eixos perpendiculares entre si.",
+    "a partir do eixo que passa pelo centro de massa, para outro eixo paralelo a ele.",
+    "a corpos homogêneos de seção circular."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Para passar de um eixo A qualquer para outro eixo B, é preciso voltar primeiro ao centro de massa: I_B = I_A − m d_A² + m d_B². Aplicar o teorema direto entre dois eixos quaisquer é um erro clássico.</p>"
+  },
+  {
+   "id": "din-021",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "corpo",
+   "enunciado": "<p>Uma patinadora gira com os braços abertos e os recolhe junto ao corpo. Sem torque externo:</p>",
+   "alternativas": [
+    "a velocidade angular não muda, porque a massa é a mesma.",
+    "o momento de inércia diminui e a velocidade angular aumenta, mantendo Iω constante — e a energia cinética aumenta, à custa do trabalho muscular.",
+    "a quantidade de movimento angular aumenta.",
+    "a energia cinética se conserva e a velocidade angular diminui."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Sem momento externo, H = Iω se conserva. Como I cai, ω sobe na mesma proporção. Já a energia cinética, ½Iω² = H²/2I, aumenta quando I diminui: quem forneceu essa energia foi o músculo, puxando os braços contra a força centrífuga.</p>"
+  },
+  {
+   "id": "din-022",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "rolamento",
+   "enunciado": "<p>Uma esfera maciça rola sem deslizar por uma rampa de <span class=\"dado\">25°</span>. Sua aceleração é:</p>",
+   "alternativas": [
+    "4,15 m/s²",
+    "2,96 m/s²",
+    "2,07 m/s²",
+    "1,66 m/s²"
+   ],
+   "correta": 1,
+   "formulas": [
+    "a = g sen θ/(1 + I/mr²), com I/mr² = 2/5 para a esfera"
+   ],
+   "explicacao": "<div class=\"passo\">a = 9,81 × sen 25°/(1 + 0,4)</div><div class=\"passo\">a = 4,146/1,4 = <strong>2,96 m/s²</strong></div><p>Equivale a 5g·senθ/7. As alternativas erradas são a aceleração de um bloco deslizando sem atrito (g sen θ), a de um aro (k = 1) e o valor dividido por 2,5 em vez de 1,4.</p>"
+  },
+  {
+   "id": "din-023",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "rolamento",
+   "enunciado": "<p>Esfera maciça, cilindro, casca esférica e aro de mesma massa e mesmo raio são soltos juntos no alto de uma rampa e rolam sem deslizar. A ordem de chegada é:</p>",
+   "alternativas": [
+    "todos chegam juntos, porque a massa e o raio são iguais.",
+    "depende da massa de cada um.",
+    "aro, casca, cilindro e esfera.",
+    "esfera, cilindro, casca e aro — quem tem menos inércia de rotação relativa chega primeiro."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A aceleração é g·senθ/(1 + k), com k = I/mr²: 0,4 na esfera, 0,5 no cilindro, 0,67 na casca e 1,0 no aro. Quanto maior k, mais energia fica na rotação e menor a aceleração. Massa e raio cancelam — só a forma importa.</p>"
+  },
+  {
+   "id": "din-024",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "rolamento",
+   "enunciado": "<p>No rolamento sem deslizamento, a força de atrito no ponto de contato:</p>",
+   "alternativas": [
+    "é estática e não realiza trabalho, porque o ponto de contato tem velocidade instantânea nula.",
+    "é cinética e dissipa energia.",
+    "é nula em qualquer situação.",
+    "aponta sempre no sentido do movimento."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O ponto de contato é o centro instantâneo de rotação: sua velocidade é zero. Como o trabalho é força vezes deslocamento do ponto de aplicação, esse atrito não consome energia — mas é ele que fornece o torque que faz o corpo girar.</p>"
+  },
+  {
+   "id": "din-025",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "corpo",
+   "enunciado": "<p>Uma barra delgada de <span class=\"dado\">3 kg</span> e <span class=\"dado\">1,2 m</span> oscila em torno de uma extremidade. Qual o período das pequenas oscilações?</p>",
+   "alternativas": [
+    "2,198 s",
+    "1,794 s",
+    "1,554 s",
+    "3,589 s"
+   ],
+   "correta": 1,
+   "formulas": [
+    "I_O = mL²/3",
+    "T = 2π√(I_O/(mgd)), com d = L/2"
+   ],
+   "explicacao": "<div class=\"passo\">I_O = 3 × 1,2²/3 = 1,44 kg·m²; d = 0,60 m</div><div class=\"passo\">T = 2π√(1,44/(3 × 9,81 × 0,60)) = 2π√(0,08155) = <strong>1,794 s</strong></div><p>Equivale a T = 2π√(2L/3g): a barra oscila como um pêndulo simples de 0,80 m, e não de 1,2 m nem de 0,6 m. As alternativas erradas tratam a barra como pêndulo simples de comprimento L, como pêndulo simples de L/2 (a posição do centro de massa) e dobram o período.</p>"
+  },
+  {
+   "id": "din-026",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "corpo",
+   "enunciado": "<p>O centro de percussão de um corpo que gira em torno de um pivô é o ponto onde:</p>",
+   "alternativas": [
+    "o momento de inércia é máximo.",
+    "a velocidade é nula.",
+    "uma força aplicada não produz reação no pivô — é o \"ponto doce\" de um taco ou raquete.",
+    "o corpo se equilibra estaticamente."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Ele fica a q = I_O/(m·d) do pivô — a mesma distância do pêndulo simples equivalente. Nesse ponto, a translação causada pela força e a rotação em torno do centro de massa se cancelam exatamente no pivô.</p>"
+  },
+  {
+   "id": "din-027",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "veiculo",
+   "enunciado": "<p>Durante uma frenagem, a carga sobre o eixo dianteiro de um veículo:</p>",
+   "alternativas": [
+    "permanece igual à estática, porque a massa não muda.",
+    "depende apenas do coeficiente de atrito.",
+    "diminui na mesma proporção.",
+    "aumenta, em ΔN = m·a·h/L, por causa do momento da força de inércia em torno do contato dos pneus."
+   ],
+   "correta": 3,
+   "explicacao": "<p>É a transferência de carga: proporcional à desaceleração e à altura do centro de massa, e inversamente proporcional ao entre-eixos. Numa frenagem de emergência o eixo dianteiro pode suportar 70 a 80 % do peso — por isso os freios dianteiros são maiores.</p>"
+  },
+  {
+   "id": "din-028",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "veiculo",
+   "enunciado": "<p>Um carro de <span class=\"dado\">1400 kg</span>, entre-eixos <span class=\"dado\">2,6 m</span> e centro de massa a <span class=\"dado\">0,55 m</span> de altura, freia com <span class=\"dado\">μ = 0,9</span>. Qual é a transferência de carga entre os eixos?</p>",
+   "alternativas": [
+    "1,307 kN",
+    "2,615 kN",
+    "5,229 kN",
+    "6,798 kN"
+   ],
+   "correta": 1,
+   "formulas": [
+    "a = μg",
+    "ΔN = m·a·h/L"
+   ],
+   "explicacao": "<div class=\"passo\">a = 0,9 × 9,81 = 8,829 m/s²</div><div class=\"passo\">ΔN = 1400 × 8,829 × 0,55/2,6 = <strong>2614,7 N = 2,615 kN</strong></div><p>O eixo dianteiro ganha esse valor e o traseiro perde o mesmo tanto. Abaixar o centro de massa ou alongar o entre-eixos reduz a transferência — é por isso que carros esportivos são baixos e caminhões carregados em cima freiam mal. As alternativas erradas usam metade da altura, dobram o resultado e esquecem de dividir pelo entre-eixos.</p>"
+  },
+  {
+   "id": "din-029",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "veiculo",
+   "enunciado": "<p>Por que um veículo com tração traseira consegue, em geral, acelerar mais que um de tração dianteira, com o mesmo atrito?</p>",
+   "alternativas": [
+    "Porque o motor traseiro é mais potente.",
+    "Porque a transferência de carga durante a aceleração aumenta a carga sobre o eixo motriz traseiro, aumentando o atrito disponível.",
+    "Porque o eixo traseiro tem pneus maiores.",
+    "Porque a tração dianteira tem maior momento de inércia."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Acelerando, a carga migra para trás: quem traciona atrás ganha aderência exatamente quando precisa. Na tração dianteira acontece o contrário — o eixo motriz perde carga justo no momento da arrancada.</p>"
+  },
+  {
+   "id": "din-030",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "veiculo",
+   "enunciado": "<p>Um veículo empina (levanta as rodas dianteiras) quando a aceleração supera:</p>",
+   "alternativas": [
+    "g(L − b)/h, em que a carga no eixo dianteiro se anula.",
+    "μg, o limite do atrito.",
+    "g·h/L.",
+    "metade da aceleração da gravidade, sempre."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Fazendo N_f = 0 na equação da transferência de carga chega-se a a = g(L − b)/h. Em motos, com entre-eixos curto e centro de massa alto, esse limite é atingido antes do limite de atrito — por isso empinam em vez de patinar.</p>"
+  }
+ ]
+}
