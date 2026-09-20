@@ -1,0 +1,527 @@
+{
+ "disciplina": "Mecânica dos Fluidos II",
+ "slug": "mecanica-dos-fluidos-2",
+ "topicos": [
+  {
+   "id": "equacoes",
+   "nome": "Equações do movimento"
+  },
+  {
+   "id": "semelhanca",
+   "nome": "Análise dimensional e semelhança"
+  },
+  {
+   "id": "camada",
+   "nome": "Camada limite"
+  },
+  {
+   "id": "separacao",
+   "nome": "Separação"
+  },
+  {
+   "id": "arrasto",
+   "nome": "Arrasto"
+  },
+  {
+   "id": "sustentacao",
+   "nome": "Sustentação e asas"
+  },
+  {
+   "id": "canais",
+   "nome": "Canais abertos"
+  },
+  {
+   "id": "compressivel",
+   "nome": "Fanno e Rayleigh"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "mf2-001",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "equacoes",
+   "enunciado": "<p>O termo que torna as equações de Navier-Stokes não lineares — e que está na raiz da dificuldade da turbulência — é:</p>",
+   "alternativas": [
+    "o termo convectivo (V·∇)V da aceleração.",
+    "o termo viscoso μ∇²V.",
+    "o gradiente de pressão ∇p.",
+    "a força de campo ρg."
+   ],
+   "correta": 0,
+   "explicacao": "<p>A aceleração material é DV/Dt = ∂V/∂t + (V·∇)V. O segundo termo multiplica a velocidade por seu próprio gradiente: é quadrático em V. Por isso não vale superposição, e é dele que nascem as instabilidades e a transição para a turbulência.</p>"
+  },
+  {
+   "id": "mf2-002",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "equacoes",
+   "enunciado": "<p>As soluções exatas de Navier-Stokes (Couette, Poiseuille, filme descendente) são possíveis porque, nesses casos:</p>",
+   "alternativas": [
+    "a viscosidade é desprezível.",
+    "o escoamento é irrotacional.",
+    "o escoamento é plenamente desenvolvido e paralelo, o que anula o termo convectivo e reduz o problema a uma equação diferencial ordinária.",
+    "o número de Reynolds é muito alto."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Com uma única componente de velocidade que não varia na direção do escoamento, (V·∇)V = 0. Sobra um balanço entre pressão e viscosidade, integrável analiticamente. São exatamente os casos em que a simplificação é rigorosa, e não aproximada.</p>"
+  },
+  {
+   "id": "mf2-003",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "equacoes",
+   "enunciado": "<p>Um óleo de viscosidade <span class=\"dado\">0,1 Pa·s</span> escoa em regime laminar por um tubo de <span class=\"dado\">20 mm</span> de diâmetro, com gradiente de pressão de <span class=\"dado\">2000 Pa/m</span>. A vazão é de:</p>",
+   "alternativas": [
+    "1,26 L/s",
+    "0,0785 L/s",
+    "0,628 L/s",
+    "0,0393 L/s"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Q = πR⁴(−dp/dx)/(8μ)  (Hagen-Poiseuille)"
+   ],
+   "explicacao": "<div class=\"passo\">R = 0,010 m → R⁴ = 1,0 × 10⁻⁸ m⁴</div><div class=\"passo\">Q = π × 1,0 × 10⁻⁸ × 2000/(8 × 0,1) = 0,0000785 m³/s = <strong>0,0785 L/s</strong></div><p>A vazão varia com a quarta potência do raio: dobrar o diâmetro multiplica a vazão por 16. 1,26 L/s usa o diâmetro no lugar do raio (16 vezes maior); 0,628 L/s esquece o 8 do denominador; 0,0393 L/s usa 16 em vez de 8.</p>"
+  },
+  {
+   "id": "mf2-004",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "semelhanca",
+   "enunciado": "<p>Pelo teorema dos Π de Buckingham, um problema com 7 variáveis relevantes e 3 dimensões fundamentais independentes se reduz a:</p>",
+   "alternativas": [
+    "7 grupos adimensionais.",
+    "21 grupos adimensionais.",
+    "3 grupos adimensionais.",
+    "4 grupos adimensionais."
+   ],
+   "correta": 3,
+   "explicacao": "<p>São n − m = 7 − 3 = 4 grupos. A escolha de quais grupos formar não é única, mas o número deles é. É essa redução que torna viável levantar uma curva experimental: em vez de varrer 7 variáveis, varre-se 4 grupos — muitas vezes apenas 1 ou 2 relevantes.</p>"
+  },
+  {
+   "id": "mf2-005",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "semelhanca",
+   "enunciado": "<p>Por que, no ensaio de um modelo de navio, não é possível satisfazer simultaneamente as semelhanças de Froude e de Reynolds com o mesmo fluido?</p>",
+   "alternativas": [
+    "Porque Froude exige velocidade proporcional a √λ e Reynolds exige velocidade proporcional a 1/λ: as duas condições só coincidiriam com um fluido de viscosidade muito diferente.",
+    "Porque o modelo é pequeno demais para medir forças.",
+    "Porque o número de Froude não se aplica a corpos flutuantes.",
+    "Porque a semelhança geométrica já garante as duas."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Com escala λ = L_m/L_p, Froude pede U_m/U_p = √λ e Reynolds pede U_m/U_p = 1/λ. Na prática ensaia-se em semelhança de Froude — que governa a resistência de onda — e calcula-se separadamente a resistência de atrito, extrapolando pelo método da ITTC.</p>"
+  },
+  {
+   "id": "mf2-006",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "semelhanca",
+   "enunciado": "<p>A chamada \"independência de Reynolds\" permite:</p>",
+   "alternativas": [
+    "ignorar a viscosidade em qualquer escoamento.",
+    "usar o mesmo C_D para qualquer forma de corpo.",
+    "ensaiar corpos rombudos em Reynolds menor que o real, desde que se esteja na faixa em que C_D praticamente não varia com Re.",
+    "dispensar a semelhança geométrica."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Em corpos com pontos de separação fixos por quinas (edifícios, caminhões, placas), o C_D fica quase constante acima de Re ≈ 10⁴. É o que viabiliza o ensaio de edificações em túnel de vento — desde que não se caia na faixa da crise do arrasto, onde a dependência volta a ser forte.</p>"
+  },
+  {
+   "id": "mf2-007",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "camada",
+   "enunciado": "<p>Ar a 20 °C (ν = 1,516×10⁻⁵ m²/s) escoa a <span class=\"dado\">5 m/s</span> sobre uma placa plana. Qual a espessura da camada limite a <span class=\"dado\">1,0 m</span> do bordo de ataque, supondo escoamento laminar?</p>",
+   "alternativas": [
+    "8,55 mm",
+    "2,99 mm",
+    "26,0 mm",
+    "1,16 mm"
+   ],
+   "correta": 0,
+   "formulas": [
+    "Re_x = Ux/ν",
+    "δ = 4,91x/√Re_x"
+   ],
+   "explicacao": "<div class=\"passo\">Re_x = 5 × 1,0/1,516×10⁻⁵ = 329815</div><div class=\"passo\">δ = 4,91 × 1,0/√329815 = 0,00855 m = <strong>8,55 mm</strong></div><p>Note que Re = 3,3×10⁵ está abaixo do crítico de 5×10⁵, o que justifica a hipótese laminar. As alternativas erradas são a espessura de deslocamento δ* = 1,72x/√Re, a espessura de quantidade de movimento θ = 0,664x/√Re e o resultado da correlação turbulenta δ = 0,16x/Re^(1/7), que não se aplica aqui.</p>"
+  },
+  {
+   "id": "mf2-008",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "camada",
+   "enunciado": "<p>A espessura de deslocamento δ* representa fisicamente:</p>",
+   "alternativas": [
+    "a distância em que a velocidade atinge 99 % da corrente livre.",
+    "a distância em que a tensão de cisalhamento se anula.",
+    "a espessura da subcamada viscosa.",
+    "o deslocamento das linhas de corrente externas causado pelo déficit de vazão dentro da camada limite."
+   ],
+   "correta": 3,
+   "explicacao": "<p>δ* = ∫(1 − u/U)dy é o quanto a parede teria de ser deslocada para fora, num escoamento sem atrito, para produzir o mesmo déficit de vazão. É por isso que, no projeto de bocais e asas, a geometria efetiva é a geométrica somada a δ*.</p>"
+  },
+  {
+   "id": "mf2-009",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "camada",
+   "enunciado": "<p>Comparando a camada limite turbulenta com a laminar, sobre a mesma placa e mesmo Reynolds:</p>",
+   "alternativas": [
+    "a turbulenta é mais fina e tem menos atrito.",
+    "a turbulenta é mais espessa, tem perfil mais cheio, maior atrito na parede e resiste mais à separação.",
+    "as duas têm o mesmo fator de forma H.",
+    "a turbulenta tem gradiente de velocidade menor na parede."
+   ],
+   "correta": 1,
+   "explicacao": "<p>A mistura turbulenta transporta quantidade de movimento para junto da parede: o perfil fica cheio (H cai de 2,59 para ~1,3), o gradiente na parede aumenta — e com ele o atrito — mas essa mesma energia junto à parede é o que permite vencer gradientes adversos sem separar. É o dilema clássico: mais atrito, menos separação.</p>"
+  },
+  {
+   "id": "mf2-010",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "camada",
+   "enunciado": "<p>Numa camada limite laminar com <span class=\"dado\">Re_x = 10⁵</span>, a razão entre a espessura de quantidade de movimento θ e a posição x vale:</p>",
+   "alternativas": [
+    "0,0155",
+    "0,00210",
+    "0,00544",
+    "0,0210"
+   ],
+   "correta": 1,
+   "formulas": [
+    "θ/x = 0,664/√Re_x"
+   ],
+   "explicacao": "<div class=\"passo\">√Re_x = √10⁵ = 316,2</div><div class=\"passo\">θ/x = 0,664/316,2 = <strong>0,00210</strong></div><p>Com δ/x = 4,91/√Re = 0,0155 e δ*/x = 1,72/√Re = 0,00544, valem as razões H = δ*/θ = 2,59 e θ ≈ δ/7,4. As alternativas são justamente δ/x e δ*/x.</p>"
+  },
+  {
+   "id": "mf2-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "camada",
+   "enunciado": "<p>A equação integral de von Kármán, na forma τ_w = ρU²(dθ/dx), é útil porque:</p>",
+   "alternativas": [
+    "fornece a solução exata para qualquer gradiente de pressão.",
+    "só vale para escoamento turbulento.",
+    "permite estimar o atrito a partir de um perfil de velocidades arbitrado, sem resolver a equação diferencial da camada limite.",
+    "dispensa a hipótese de camada limite fina."
+   ],
+   "correta": 2,
+   "explicacao": "<p>Arbitrando um perfil razoável (parabólico, senoidal ou de 1/7) e integrando, obtêm-se δ(x) e c_f(x) com erro de poucos por cento em relação a Blasius. É o método aproximado clássico, e o único caminho simples quando há gradiente de pressão.</p>"
+  },
+  {
+   "id": "mf2-012",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "separacao",
+   "enunciado": "<p>A separação da camada limite ocorre quando:</p>",
+   "alternativas": [
+    "o número de Reynolds ultrapassa o valor crítico.",
+    "a pressão dinâmica supera a pressão estática.",
+    "a espessura da camada limite excede o diâmetro do corpo.",
+    "o gradiente de pressão adverso desacelera tanto o fluido junto à parede que o gradiente de velocidade na parede se anula e o escoamento inverte."
+   ],
+   "correta": 3,
+   "explicacao": "<p>Com dp/dx > 0, a curvatura do perfil na parede muda de sinal e o perfil ganha inflexão. O fluido mais lento, junto à parede, é o primeiro a não conseguir avançar: ele para e depois volta, empurrando a camada limite para longe da superfície. A partir daí existe esteira e arrasto de forma.</p>"
+  },
+  {
+   "id": "mf2-013",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "arrasto",
+   "enunciado": "<p>Numa esfera lisa, a chamada \"crise do arrasto\" em torno de Re ≈ 3×10⁵ consiste em:</p>",
+   "alternativas": [
+    "uma queda brusca do C_D porque a camada limite passa a turbulenta antes da separação, que é adiada, estreitando a esteira.",
+    "um aumento súbito do C_D por causa da compressibilidade.",
+    "o desaparecimento da esteira.",
+    "a transição do escoamento para o regime de Stokes."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O C_D cai de cerca de 0,5 para 0,1. As covinhas da bola de golfe provocam o mesmo efeito em Reynolds bem menor: por isso uma bola com covinhas voa quase o dobro da distância de uma lisa.</p>"
+  },
+  {
+   "id": "mf2-014",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "arrasto",
+   "enunciado": "<p>Um automóvel com <span class=\"dado\">C_D = 0,30</span> e área frontal de <span class=\"dado\">2,2 m²</span> trafega a <span class=\"dado\">30 m/s</span> em ar de <span class=\"dado\">1,204 kg/m³</span>. A força de arrasto vale aproximadamente:</p>",
+   "alternativas": [
+    "715,2 N",
+    "162,5 N",
+    "357,6 N",
+    "1192 N"
+   ],
+   "correta": 2,
+   "formulas": [
+    "D = C_D · ½ρU²A"
+   ],
+   "explicacao": "<div class=\"passo\">½ρU² = 0,5 × 1,204 × 30² = 541,8 Pa</div><div class=\"passo\">D = 0,30 × 541,8 × 2,2 = <strong>357,6 N</strong></div><p>A potência para vencer esse arrasto é D·U = 10,7 kW. Como P cresce com U³, a 120 km/h o carro gasta o dobro da potência que gastaria a 95 km/h. As alternativas erradas esquecem o fator ½, esquecem a área frontal e esquecem o C_D, respectivamente.</p>"
+  },
+  {
+   "id": "mf2-015",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "arrasto",
+   "enunciado": "<p>Uma esfera de aço (<span class=\"dado\">7800 kg/m³</span>) de <span class=\"dado\">3 mm</span> cai em glicerina (<span class=\"dado\">1260 kg/m³</span>, <span class=\"dado\">μ = 1,49 Pa·s</span>). Qual a velocidade terminal, pela lei de Stokes?</p>",
+   "alternativas": [
+    "0,0646 m/s",
+    "0,00718 m/s",
+    "0,0257 m/s",
+    "0,0215 m/s"
+   ],
+   "correta": 3,
+   "formulas": [
+    "Peso aparente = arrasto de Stokes",
+    "(ρs − ρ)g πd³/6 = 3πμUd",
+    "U = (ρs − ρ)gd²/(18μ)"
+   ],
+   "explicacao": "<div class=\"passo\">U = (7800 − 1260) × 9,81 × 0,003²/(18 × 1,49)</div><div class=\"passo\">U = 6540 × 9,81 × 9×10⁻⁶/(26,82) = <strong>0,0215 m/s</strong></div><p>Conferindo a hipótese: Re = ρUd/μ = 0,0546 ≪ 1, então a lei de Stokes vale. É assim que funciona o viscosímetro de queda de esfera. As alternativas erradas trocam o 18 por 6 ou por 54 e usam a massa específica do aço sem subtrair a do fluido (esquecendo o empuxo).</p>"
+  },
+  {
+   "id": "mf2-016",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "arrasto",
+   "enunciado": "<p>Um cabo cilíndrico de 20 mm exposto a vento de 12 m/s pode entrar em ressonância. A frequência de desprendimento de vórtices é, com St ≈ 0,21:</p>",
+   "alternativas": [
+    "1,3 Hz",
+    "0,35 Hz",
+    "126 Hz",
+    "2500 Hz"
+   ],
+   "correta": 2,
+   "explicacao": "<p>f = St·U/D = 0,21 × 12/0,020 = 126 Hz. Quando essa frequência se aproxima da natural da estrutura, aparece a vibração induzida por vórtices — o mecanismo que faz cabos \"cantarem\", chaminés balançarem e que exige supressores helicoidais em risers.</p>"
+  },
+  {
+   "id": "mf2-017",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sustentacao",
+   "enunciado": "<p>O paradoxo de d’Alembert afirma que, no escoamento potencial permanente em torno de um corpo:</p>",
+   "alternativas": [
+    "a sustentação é sempre nula.",
+    "o arrasto é nulo, porque a distribuição de pressão é simétrica — resultado que contraria a experiência e só se explica pela viscosidade.",
+    "a pressão é constante em toda a superfície.",
+    "a circulação é necessariamente nula."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Sem viscosidade não há camada limite nem separação, e a pressão recuperada na parte de trás compensa exatamente a da frente. A sustentação, ao contrário, pode existir: basta haver circulação. O paradoxo foi resolvido por Prandtl com o conceito de camada limite.</p>"
+  },
+  {
+   "id": "mf2-018",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "sustentacao",
+   "enunciado": "<p>Um perfil bidimensional em ar (<span class=\"dado\">1,204 kg/m³</span>) a <span class=\"dado\">30 m/s</span> desenvolve circulação de <span class=\"dado\">12 m²/s</span>. A sustentação por metro de envergadura é:</p>",
+   "alternativas": [
+    "14,45 N/m",
+    "433,4 N/m",
+    "360,0 N/m",
+    "866,9 N/m"
+   ],
+   "correta": 1,
+   "formulas": [
+    "L' = ρUΓ  (Kutta-Joukowski)"
+   ],
+   "explicacao": "<div class=\"passo\">L' = 1,204 × 30 × 12 = <strong>433,4 N/m</strong></div><p>O teorema vale para qualquer forma bidimensional: o que importa é a circulação em torno dela. Numa asa real, a condição de Kutta — escoamento saindo suavemente pelo bordo de fuga — é o que fixa o valor de Γ. As alternativas erradas esquecem a velocidade, esquecem a massa específica e dobram o resultado.</p>"
+  },
+  {
+   "id": "mf2-019",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "sustentacao",
+   "enunciado": "<p>Uma asa com alongamento <span class=\"dado\">AR = 7</span> e fator de eficiência <span class=\"dado\">e = 0,85</span> opera com <span class=\"dado\">c_L = 0,9</span>. O coeficiente de arrasto induzido é:</p>",
+   "alternativas": [
+    "0,0433",
+    "0,0368",
+    "0,0481",
+    "0,0867"
+   ],
+   "correta": 0,
+   "formulas": [
+    "c_Di = c_L²/(π e AR)"
+   ],
+   "explicacao": "<div class=\"passo\">c_Di = 0,9²/(π × 0,85 × 7) = 0,81/18,69 = <strong>0,0433</strong></div><p>O induzido cresce com o quadrado da sustentação e cai com o alongamento: dobrar AR corta o induzido pela metade. É por isso que planadores têm asas longas e finas, e aviões comerciais usam winglets. As alternativas erradas esquecem o fator e, esquecem o quadrado de c_L e dobram o resultado.</p>"
+  },
+  {
+   "id": "mf2-020",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sustentacao",
+   "enunciado": "<p>Comparada ao aerofólio bidimensional, a curva c_L × α de uma asa finita:</p>",
+   "alternativas": [
+    "tem a mesma inclinação, mas estola antes.",
+    "não depende do alongamento.",
+    "tem inclinação maior, por causa do arrasto induzido.",
+    "tem inclinação menor, porque a velocidade induzida pelos vórtices de ponta reduz o ângulo de ataque efetivo."
+   ],
+   "correta": 3,
+   "explicacao": "<p>A inclinação passa de 2π para a_3D = 2π/(1 + 2/AR·…): quanto menor o alongamento, menor a inclinação e maior o ângulo necessário para o mesmo c_L. O downwash induzido também inclina a força resultante para trás — e essa componente é exatamente o arrasto induzido.</p>"
+  },
+  {
+   "id": "mf2-021",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "sustentacao",
+   "enunciado": "<p>O estol de uma asa acontece porque:</p>",
+   "alternativas": [
+    "acima de certo ângulo de ataque o gradiente adverso no extradorso separa a camada limite, derrubando a sustentação e disparando o arrasto.",
+    "a velocidade do ar excede a velocidade do som sobre o extradorso.",
+    "a circulação se inverte.",
+    "a pressão no intradorso se torna negativa."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O ângulo típico de estol fica entre 12° e 16° em perfis convencionais. Como c_L máximo limita a sustentação, é ele que define a velocidade mínima de voo — e por isso flapes e slats, que aumentam o arqueamento e a área, são usados no pouso e na decolagem.</p>"
+  },
+  {
+   "id": "mf2-022",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "canais",
+   "enunciado": "<p>Um canal retangular de <span class=\"dado\">4 m</span> de largura transporta <span class=\"dado\">12 m³/s</span>. A profundidade crítica é:</p>",
+   "alternativas": [
+    "1,46 m",
+    "2,45 m",
+    "0,972 m",
+    "0,917 m"
+   ],
+   "correta": 2,
+   "formulas": [
+    "q = Q/b",
+    "y_c = (q²/g)^(1/3)"
+   ],
+   "explicacao": "<div class=\"passo\">q = 12/4 = 3,0 m²/s</div><div class=\"passo\">y_c = (3,0²/9,81)^(1/3) = (0,9174)^(1/3) = <strong>0,972 m</strong></div><p>Nessa profundidade a energia específica é mínima (E = 1,5·y_c = 1,46 m) e Fr = 1. É a condição que medidores de vazão em canais — vertedores e calhas Parshall — procuram impor. As alternativas erradas são a própria energia mínima, o resultado com a vazão total em vez da vazão por metro, e o valor sem a raiz cúbica.</p>"
+  },
+  {
+   "id": "mf2-023",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "canais",
+   "enunciado": "<p>No mesmo canal (q = 3 m²/s), a água chega a jusante de uma comporta com profundidade de <span class=\"dado\">0,35 m</span>. Qual é a profundidade conjugada do ressalto hidráulico?</p>",
+   "alternativas": [
+    "2,30 m",
+    "2,12 m",
+    "0,972 m",
+    "4,24 m"
+   ],
+   "correta": 1,
+   "formulas": [
+    "v₁ = q/y₁",
+    "Fr₁ = v₁/√(g y₁)",
+    "y₂/y₁ = ½(√(1 + 8Fr₁²) − 1)"
+   ],
+   "explicacao": "<div class=\"passo\">v₁ = 3,0/0,35 = 8,571 m/s → Fr₁ = 8,571/√(9,81 × 0,35) = 4,626</div><div class=\"passo\">y₂ = (0,35/2)(√(1 + 8 × 4,626²) − 1) = <strong>2,12 m</strong></div><p>A perda de energia no ressalto é ΔE = (y₂ − y₁)³/(4y₁y₂) = 1,87 m, ou seja, boa parte da energia com que a água saiu da comporta. É para conter essa dissipação que se constrói a bacia, protegendo o leito do rio. As alternativas erradas esquecem o −1 da fórmula, dão a profundidade crítica e dobram o resultado.</p>"
+  },
+  {
+   "id": "mf2-024",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "canais",
+   "enunciado": "<p>Num escoamento subcrítico (Fr &lt; 1) em canal aberto:</p>",
+   "alternativas": [
+    "as ondas superficiais não conseguem se propagar para montante, e o controle é a montante.",
+    "a profundidade é sempre menor que a crítica.",
+    "as ondas conseguem subir o canal, e o escoamento é controlado por jusante.",
+    "a energia específica é mínima."
+   ],
+   "correta": 2,
+   "explicacao": "<p>A velocidade das ondas de gravidade rasas é √(gy). Se v < √(gy), a onda sobe o canal — e uma alteração a jusante (uma comporta, um vertedor) faz sentir seu efeito a montante. No supercrítico (Fr > 1), o contrário: nada sobe, e a transição para fluvial só ocorre por ressalto.</p>"
+  },
+  {
+   "id": "mf2-025",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "canais",
+   "enunciado": "<p>Na equação de Manning, Q = (1/n)A R_h^{2/3} S^{1/2}, o raio hidráulico R_h é definido como:</p>",
+   "alternativas": [
+    "a metade da profundidade.",
+    "o raio do círculo de mesma área.",
+    "a razão entre o perímetro molhado e a área.",
+    "a razão entre a área molhada e o perímetro molhado."
+   ],
+   "correta": 3,
+   "explicacao": "<p>R_h = A/P. Num canal retangular largo (b ≫ y) ele tende à própria profundidade. O coeficiente n cresce com a rugosidade: 0,013 em concreto liso, 0,025 a 0,035 em canais de terra — e um n maior exige maior profundidade para a mesma vazão e declividade.</p>"
+  },
+  {
+   "id": "mf2-026",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "compressivel",
+   "enunciado": "<p>No escoamento de Fanno (duto de área constante, adiabático, com atrito), o efeito do atrito sobre um escoamento inicialmente subsônico é:</p>",
+   "alternativas": [
+    "desacelerá-lo, reduzindo o número de Mach.",
+    "acelerá-lo, empurrando o Mach em direção a 1, até que o escoamento bloqueie.",
+    "manter o Mach constante, apenas reduzindo a pressão.",
+    "levá-lo diretamente ao regime supersônico."
+   ],
+   "correta": 1,
+   "explicacao": "<p>Parece contraintuitivo, mas a segunda lei exige que a entropia cresça, e sobre a linha de Fanno isso só pode acontecer na direção de M = 1. No subsônico a queda de pressão faz o gás se expandir e acelerar; no supersônico o efeito é o inverso, desacelerando até M = 1.</p>"
+  },
+  {
+   "id": "mf2-027",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "compressivel",
+   "enunciado": "<p>Num escoamento de Rayleigh (área constante, sem atrito, com troca de calor) que entra subsônico, fornecer calor:</p>",
+   "alternativas": [
+    "aumenta a temperatura de estagnação e empurra o Mach para 1; entre Ma = 1/√k e 1 a temperatura estática chega a cair.",
+    "sempre aumenta a temperatura estática do gás.",
+    "reduz a temperatura de estagnação.",
+    "não altera o número de Mach."
+   ],
+   "correta": 0,
+   "explicacao": "<p>Todo o calor aparece em T₀ (q = c_p ΔT₀). Mas o gás também acelera, e na faixa entre Ma = 1/√k ≈ 0,845 e 1, essa aceleração consome mais energia do que o calor fornecido: a temperatura estática cai, embora T₀ suba. Fornecer calor além de q* bloqueia o escoamento.</p>"
+  },
+  {
+   "id": "mf2-028",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "compressivel",
+   "enunciado": "<p>Comparando as linhas de Fanno e de Rayleigh no diagrama T-s, é correto dizer que:</p>",
+   "alternativas": [
+    "ambas têm entropia máxima em Ma = 1, e os dois ramos (subsônico e supersônico) se encontram nesse ponto.",
+    "a linha de Fanno tem T₀ variável.",
+    "a linha de Rayleigh é adiabática.",
+    "as duas coincidem para k = 1,4."
+   ],
+   "correta": 0,
+   "explicacao": "<p>O ponto de entropia máxima corresponde a Ma = 1 nas duas linhas: é por isso que ambos os processos levam ao bloqueio. Fanno é adiabático (T₀ constante) e Rayleigh conserva a quantidade de movimento (P + ρV²); a interseção das duas curvas dá, justamente, os estados antes e depois de um choque normal.</p>"
+  },
+  {
+   "id": "mf2-029",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "compressivel",
+   "enunciado": "<p>Ar entra a <span class=\"dado\">Ma = 0,5</span> num duto de <span class=\"dado\">50 mm</span> com fator de atrito de Fanning <span class=\"dado\">f = 0,005</span>. Qual o comprimento máximo antes do bloqueio? (4fL*/D = 1,0691 para Ma = 0,5)</p>",
+   "alternativas": [
+    "2,67 m",
+    "10,7 m",
+    "1,34 m",
+    "5,35 m"
+   ],
+   "correta": 0,
+   "formulas": [
+    "4fL*/D = 1,0691",
+    "L* = (4fL*/D)·D/(4f)"
+   ],
+   "explicacao": "<div class=\"passo\">L* = 1,0691 × 0,050/(4 × 0,005)</div><div class=\"passo\">L* = 1,0691 × 0,050/0,020 = <strong>2,67 m</strong></div><p>Se o duto for mais longo que isso, o escoamento não \"trava\": a vazão se reduz até que o novo Mach de entrada corresponda ao comprimento real. As alternativas erradas esquecem o fator 4 (confundindo o atrito de Fanning com o de Darcy), usam o raio no lugar do diâmetro e dobram o resultado.</p>"
+  },
+  {
+   "id": "mf2-030",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "compressivel",
+   "enunciado": "<p>O que significa dizer que um escoamento em duto está \"bloqueado\" (choked)?</p>",
+   "alternativas": [
+    "Que o duto está obstruído por sujeira.",
+    "Que a pressão na saída é igual à de estagnação.",
+    "Que o Mach atingiu 1 na saída: aumentar o comprimento, o atrito ou o calor fornecido não aumenta a vazão — ela se reajusta.",
+    "Que o escoamento se tornou incompressível."
+   ],
+   "correta": 2,
+   "explicacao": "<p>É o mesmo fenômeno do bocal com garganta sônica: a informação não consegue subir o escoamento a partir do ponto em que Ma = 1. Em Fanno o limite é geométrico (L*), em Rayleigh é energético (q*), e nos dois casos a resposta do sistema é reduzir a vazão mássica.</p>"
+  }
+ ]
+}

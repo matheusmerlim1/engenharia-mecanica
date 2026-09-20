@@ -589,6 +589,56 @@
       "ordem": 9
     },
     {
+      "id": "sim-camada-limite",
+      "slug": "mecanica-dos-fluidos-2",
+      "disciplina": "Mecânica dos Fluidos II",
+      "periodo": "7",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Camada limite sobre placa plana",
+      "resumo": "Junto à parede a velocidade cai a zero: é aí que vive o atrito.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-arrasto",
+      "slug": "mecanica-dos-fluidos-2",
+      "disciplina": "Mecânica dos Fluidos II",
+      "periodo": "7",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Arrasto de corpos e velocidade terminal",
+      "resumo": "Em corpos rombudos quase todo o arrasto vem da pressão: a camada limite se separa, forma-se uma esteira e a pressão atrás nunca se recupera.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-sustentacao",
+      "slug": "mecanica-dos-fluidos-2",
+      "disciplina": "Mecânica dos Fluidos II",
+      "periodo": "7",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Sustentação — circulação, Kutta-Joukowski e polar da asa",
+      "resumo": "No escoamento potencial sem circulação um corpo não sofre arrasto nem sustentação: é o paradoxo de d\\u2019Alembert.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-canal",
+      "slug": "mecanica-dos-fluidos-2",
+      "disciplina": "Mecânica dos Fluidos II",
+      "periodo": "7",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Canais abertos — energia específica e ressalto hidráulico",
+      "resumo": "Num canal a superfície é livre, e o número de Froude cumpre o papel que o Mach tem no escoamento compressível: abaixo de 1 as perturbações sobem o canal, acima de 1 não conseguem.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-fanno",
+      "slug": "mecanica-dos-fluidos-2",
+      "disciplina": "Mecânica dos Fluidos II",
+      "periodo": "7",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Escoamento compressível em duto — Fanno e Rayleigh",
+      "resumo": "Num duto de área constante, tanto o atrito (linha de Fanno) quanto a troca de calor (linha de Rayleigh) empurram o escoamento na direção de Mach 1.",
+      "ordem": 4
+    },
+    {
       "id": "sim-parede",
       "slug": "transferencia-de-calor",
       "disciplina": "Transferência de Calor",

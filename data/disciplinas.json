@@ -464,16 +464,17 @@
       "periodo": "7",
       "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
       "pasta": "7°- Mecânica dos fluidos 2",
-      "resumo": "Camada limite, escoamento compressível, turbomáquinas e escoamento externo.",
+      "resumo": "Navier-Stokes, semelhança, camada limite e Blasius, separação, arrasto e sustentação, canais abertos, Fanno e Rayleigh.",
       "temas": [
         "camada limite",
-        "arrasto",
-        "escoamento compressível",
-        "turbomáquinas"
+        "arrasto e sustentação",
+        "canais abertos",
+        "Fanno e Rayleigh",
+        "semelhança"
       ],
       "simuladores": true,
       "normas": false,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "controle-de-sistemas",

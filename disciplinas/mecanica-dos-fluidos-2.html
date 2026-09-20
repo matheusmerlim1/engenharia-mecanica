@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mecânica dos Fluidos II — Engenharia Mecânica</title>
+<meta name="description" content="Navier-Stokes e soluções exatas, análise dimensional, camada limite e solução de Blasius, separação, arrasto e sustentação, escoamento compressível de Fanno e Rayleigh e canais abertos — com simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">7º período · Engenharia Mecânica</p>
+    <h1>Mecânica dos Fluidos II</h1>
+    <p class="lead">Mecânica dos Fluidos I resolve o escoamento por balanços globais em volumes de controle. Aqui se olha para dentro: as equações diferenciais do movimento, a fina região junto à parede onde mora todo o atrito, o descolamento que cria a esteira e o arrasto, e os escoamentos em que a compressibilidade ou a superfície livre mudam completamente o comportamento.</p>
+    <div class="btn-row">
+      <span class="tag accent">9 tópicos</span>
+      <span class="tag ok">30 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="visao-geral">
+        <h2>Visão geral</h2>
+        <p>Três ideias organizam a disciplina inteira. A primeira: o escoamento real pode quase sempre ser dividido em uma região externa, praticamente invíscida, e uma camada limite fina junto à parede, onde a viscosidade manda. A segunda: o comportamento não depende de cada variável isoladamente, e sim de grupos adimensionais. A terceira: quando o escoamento atinge uma condição crítica — Mach 1 ou Froude 1 — ele bloqueia, e a física muda de lado.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Adimensional</th><th>Razão entre</th><th>Governa</th></tr></thead>
+          <tbody>
+            <tr><td>Reynolds <span data-tex-inline="Re = \rho U L/\mu"></span></td><td>Inércia e viscosidade</td><td>Regime laminar ou turbulento, camada limite, arrasto</td></tr>
+            <tr><td>Mach <span data-tex-inline="Ma = U/c"></span></td><td>Inércia e compressibilidade</td><td>Bloqueio sônico, choques, bocais</td></tr>
+            <tr><td>Froude <span data-tex-inline="Fr = U/\sqrt{gL}"></span></td><td>Inércia e gravidade</td><td>Superfície livre, ondas, ressalto hidráulico</td></tr>
+            <tr><td>Euler / cavitação <span data-tex-inline="\sigma = (p - p_v)/\tfrac12\rho U^2"></span></td><td>Pressão e inércia</td><td>Cavitação em bombas e hélices</td></tr>
+            <tr><td>Strouhal <span data-tex-inline="St = fL/U"></span></td><td>Tempo de escoamento e período</td><td>Desprendimento de vórtices, vibração induzida</td></tr>
+            <tr><td>Weber <span data-tex-inline="We = \rho U^2 L/\sigma"></span></td><td>Inércia e tensão superficial</td><td>Atomização, gotas, borbulhamento</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Onde esta disciplina encontra as outras</strong>
+          A camada limite térmica é a irmã da camada limite de velocidade vista em Transferência de Calor, e a analogia entre elas é o que dá os números de Nusselt. As turbomáquinas aparecem em Bombas e Compressores; o escoamento compressível em bocais, em Termodinâmica II. Aqui o foco é o que ainda não foi tratado: camada limite, separação, arrasto e sustentação, Fanno, Rayleigh e canais.
+        </div>
+      </section>
+
+      <section class="section" id="conteudo-teoria">
+        <h2>Conteúdo</h2>
+
+        <details class="topic" open>
+          <summary>1. Equações do movimento e soluções exatas</summary>
+          <div class="topic-body">
+            <p>As equações de Navier-Stokes são a segunda lei de Newton escrita para uma partícula de fluido newtoniano incompressível, somadas à continuidade:</p>
+            <div class="formula"><span data-tex="\nabla\cdot\vec V = 0 \qquad \rho\frac{D\vec V}{Dt} = -\nabla p + \mu\nabla^2\vec V + \rho\vec g"></span><span class="where">à esquerda, inércia (com o termo convectivo não linear); à direita, pressão, viscosidade e peso</span></div>
+            <p>A derivada material <span data-tex-inline="D/Dt = \partial/\partial t + (\vec V\cdot\nabla)"></span> traz o termo convectivo, não linear — a razão de não existir solução geral e de a turbulência continuar em aberto. Há, porém, alguns casos em que o termo convectivo se anula e a solução é exata:</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Caso</th><th>Perfil de velocidade</th><th>Resultado</th></tr></thead>
+              <tbody>
+                <tr><td>Couette (placa móvel, sem gradiente)</td><td>Linear</td><td><span data-tex-inline="u = U y/h"></span>; τ constante = μU/h</td></tr>
+                <tr><td>Poiseuille entre placas</td><td>Parabólico</td><td><span data-tex-inline="u_{max} = \tfrac{h^2}{8\mu}\left(-\tfrac{dp}{dx}\right)"></span>; <span data-tex-inline="\bar u = \tfrac23 u_{max}"></span></td></tr>
+                <tr><td>Hagen-Poiseuille (tubo)</td><td>Parabólico</td><td><span data-tex-inline="Q = \tfrac{\pi R^4}{8\mu}\left(-\tfrac{dp}{dx}\right)"></span>; <span data-tex-inline="\bar u = \tfrac12 u_{max}"></span>; f = 64/Re</td></tr>
+                <tr><td>Filme descendo um plano</td><td>Parabólico</td><td><span data-tex-inline="u = \tfrac{\rho g \text{sen}\theta}{2\mu}(2hy - y^2)"></span></td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>As hipóteses que tornam o problema solúvel</strong>
+              Escoamento plenamente desenvolvido (<span data-tex-inline="\partial u/\partial x = 0"></span>), permanente, paralelo e com uma única componente de velocidade. Aí o termo convectivo desaparece e sobra uma equação diferencial ordinária. Fora desses casos, ou se simplifica (camada limite) ou se resolve numericamente.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>2. Análise dimensional e semelhança</summary>
+          <div class="topic-body">
+            <p>O teorema dos Π de Buckingham diz que um problema com <em>n</em> variáveis e <em>m</em> dimensões independentes se reduz a <em>n − m</em> grupos adimensionais. É o que permite ensaiar um modelo em escala e transportar o resultado para o protótipo.</p>
+            <div class="formula"><span data-tex="\text{n variáveis} - \text{m dimensões} = \text{número de grupos } \Pi"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Semelhança</th><th>Exige</th></tr></thead>
+              <tbody>
+                <tr><td>Geométrica</td><td>Mesma forma, escala única em todas as dimensões — inclusive rugosidade</td></tr>
+                <tr><td>Cinemática</td><td>Mesma razão de velocidades em pontos correspondentes</td></tr>
+                <tr><td>Dinâmica</td><td>Mesmos adimensionais dominantes (Re, Fr, Ma…) no modelo e no protótipo</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout warn">
+              <strong>Quando não dá para ter tudo</strong>
+              Um navio exige semelhança de Froude (ondas) <em>e</em> de Reynolds (atrito). Com o mesmo fluido, as duas são incompatíveis: Froude pede <span data-tex-inline="U_m = U_p\sqrt{\lambda}"></span> e Reynolds pede <span data-tex-inline="U_m = U_p/\lambda"></span>. A saída, usada até hoje nos tanques de prova, é o método de Froude: ensaia-se em semelhança de Froude e corrige-se o atrito por cálculo (ITTC).
+            </div>
+            <div class="callout note">
+              <strong>Independência de Reynolds</strong>
+              Acima de certo Reynolds, o C<sub>D</sub> de corpos rombudos praticamente não varia. É por isso que se pode ensaiar um edifício em túnel de vento com Reynolds muito menor que o real: basta estar na mesma faixa de comportamento.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>3. Camada limite e a solução de Blasius</summary>
+          <div class="topic-body">
+            <p>Prandtl (1904) percebeu que, em Reynolds alto, os efeitos viscosos ficam confinados a uma camada fina junto à parede. Dentro dela, Navier-Stokes se simplifica: a pressão é imposta pelo escoamento externo e não varia através da camada.</p>
+            <div class="formula"><span data-tex="u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} = -\frac{1}{\rho}\frac{dp}{dx} + \nu\frac{\partial^2 u}{\partial y^2}, \qquad \frac{\partial p}{\partial y} \approx 0"></span></div>
+            <p>Para placa plana sem gradiente de pressão, a variável de semelhança <span data-tex-inline="\eta = y\sqrt{U/\nu x}"></span> transforma isso numa equação ordinária — a equação de Blasius:</p>
+            <div class="formula"><span data-tex="f''' + \tfrac{1}{2}f f'' = 0, \qquad f(0) = f'(0) = 0, \quad f'(\infty) = 1 \qquad\Rightarrow\qquad f''(0) = 0{,}332"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Grandeza</th><th>Laminar (Blasius)</th><th>Turbulenta (lei de 1/7)</th></tr></thead>
+              <tbody>
+                <tr><td>Espessura δ</td><td><span data-tex-inline="4{,}91x/\sqrt{Re_x}"></span></td><td><span data-tex-inline="0{,}16x/Re_x^{1/7}"></span></td></tr>
+                <tr><td>Deslocamento δ*</td><td><span data-tex-inline="1{,}72x/\sqrt{Re_x}"></span></td><td><span data-tex-inline="\approx \delta/8"></span></td></tr>
+                <tr><td>Quantidade de movimento θ</td><td><span data-tex-inline="0{,}664x/\sqrt{Re_x}"></span></td><td><span data-tex-inline="\approx 7\delta/72"></span></td></tr>
+                <tr><td>Atrito local c<sub>f</sub></td><td><span data-tex-inline="0{,}664/\sqrt{Re_x}"></span></td><td><span data-tex-inline="0{,}0592/Re_x^{1/5}"></span></td></tr>
+                <tr><td>Arrasto médio C<sub>D</sub></td><td><span data-tex-inline="1{,}328/\sqrt{Re_L}"></span></td><td><span data-tex-inline="0{,}074/Re_L^{1/5}"></span></td></tr>
+                <tr><td>Fator de forma H = δ*/θ</td><td>2,59</td><td>≈ 1,3</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>A equação integral de von Kármán liga o atrito diretamente à espessura de quantidade de movimento, e é a base dos métodos aproximados:</p>
+            <div class="formula"><span data-tex="\frac{\tau_w}{\rho U^2} = \frac{d\theta}{dx} \qquad\text{(sem gradiente de pressão)}"></span></div>
+            <div class="callout note">
+              <strong>Transição</strong>
+              Em placa lisa com baixa turbulência da corrente, a transição ocorre em <span data-tex-inline="Re_x \approx 5\times10^5"></span> (podendo chegar a 3×10⁶ em condições muito limpas). Rugosidade, ruído, vibração e gradiente adverso antecipam a transição; sucção e aceleração a retardam.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>4. Gradiente de pressão e separação</summary>
+          <div class="topic-body">
+            <p>Dentro da camada limite, a curvatura do perfil na parede é imposta pelo gradiente de pressão externo:</p>
+            <div class="formula"><span data-tex="\mu\left.\frac{\partial^2 u}{\partial y^2}\right|_{y=0} = \frac{dp}{dx}"></span><span class="where">com dp/dx > 0 (adverso), o perfil ganha um ponto de inflexão e fica instável</span></div>
+            <p>A separação acontece quando o fluido junto à parede, já desacelerado pelo atrito, não tem energia para vencer a pressão crescente: o perfil inverte e <span data-tex-inline="(\partial u/\partial y)_{y=0} = 0"></span>. A partir daí forma-se uma esteira, e a pressão atrás do corpo nunca se recupera — é daí que vem o arrasto de forma.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Situação</th><th>Efeito na camada limite</th></tr></thead>
+              <tbody>
+                <tr><td>Gradiente favorável (dp/dx &lt; 0)</td><td>Perfil cheio, estável, sem separação — escoamento acelerando</td></tr>
+                <tr><td>Gradiente nulo</td><td>Blasius; só transição por instabilidade</td></tr>
+                <tr><td>Gradiente adverso</td><td>Perfil com inflexão, transição antecipada e risco de separação</td></tr>
+                <tr><td>Camada limite turbulenta</td><td>Mistura traz energia para junto da parede: resiste muito mais à separação</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="callout tip">
+              <strong>Por que a bola de golfe tem covinhas</strong>
+              Elas disparam a transição para turbulento antes da separação. A camada limite turbulenta gruda mais tempo na superfície, a separação vai para trás, a esteira encolhe e o C<sub>D</sub> cai de cerca de 0,5 para 0,25 — a bola voa quase o dobro da distância. É o mesmo mecanismo da crise do arrasto da esfera lisa, só que antecipado de propósito.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>5. Escoamento externo: arrasto</summary>
+          <div class="topic-body">
+            <div class="formula"><span data-tex="D = C_D\,\tfrac12\rho U^2 A \qquad C_D = C_{D,\text{atrito}} + C_{D,\text{pressão}}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Corpo</th><th>C<sub>D</sub></th><th>Observação</th></tr></thead>
+              <tbody>
+                <tr><td>Esfera (10³ &lt; Re &lt; 2×10⁵)</td><td>≈ 0,45</td><td>Cai para ≈ 0,1 depois da crise do arrasto</td></tr>
+                <tr><td>Cilindro (10⁴ &lt; Re &lt; 2×10⁵)</td><td>≈ 1,1</td><td>Esteira de von Kármán, St ≈ 0,21</td></tr>
+                <tr><td>Placa normal ao escoamento</td><td>1,98</td><td>Separação fixa nas bordas: independe do Reynolds</td></tr>
+                <tr><td>Perfil aerodinâmico (gota)</td><td>0,04</td><td>Quase todo arrasto de atrito</td></tr>
+                <tr><td>Automóvel moderno</td><td>0,28–0,35</td><td>Área frontal típica de 2,2 m²</td></tr>
+                <tr><td>Paraquedas</td><td>≈ 1,3</td><td>—</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="Re \ll 1: \quad C_D = \frac{24}{Re} \quad\Rightarrow\quad D = 3\pi\mu U d"></span><span class="where">lei de Stokes — base do viscosímetro de queda de esfera e da sedimentação de partículas</span></div>
+            <div class="callout note">
+              <strong>Vibração induzida por vórtices</strong>
+              Entre Re ≈ 250 e 2×10⁵, um cilindro desprende vórtices alternados com <span data-tex-inline="f = St\,U/D"></span> e St ≈ 0,21. Se essa frequência coincidir com a natural da estrutura, aparece a ressonância: é o que faz cabos "cantarem", chaminés balançarem e risers vibrarem — e por isso se usam supressores helicoidais.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>6. Sustentação, circulação e asas</summary>
+          <div class="topic-body">
+            <p>No escoamento potencial em torno de um cilindro sem circulação, a distribuição de pressão é perfeitamente simétrica e a resultante é nula nas duas direções: é o <strong>paradoxo de d'Alembert</strong>. Acrescentando circulação, a simetria vertical se quebra:</p>
+            <div class="formula"><span data-tex="L' = \rho\,U\,\Gamma"></span><span class="where">teorema de Kutta-Joukowski; vale para qualquer forma bidimensional</span></div>
+            <p>Num aerofólio, a circulação não é arbitrária: a <strong>condição de Kutta</strong> — o escoamento deixa o bordo de fuga suavemente — fixa seu valor. A teoria do aerofólio fino dá então:</p>
+            <div class="formula"><span data-tex="c_l = 2\pi(\alpha - \alpha_0) \qquad\text{(asa infinita)} \qquad a_{3D} = \frac{2\pi}{1 + 2\pi/(\pi e AR)}"></span></div>
+            <div class="formula"><span data-tex="c_{D_i} = \frac{c_L^2}{\pi e AR} \qquad AR = \frac{b^2}{S}"></span><span class="where">arrasto induzido: consequência direta dos vórtices de ponta de asa</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Fenômeno</th><th>Descrição</th></tr></thead>
+              <tbody>
+                <tr><td>Estol</td><td>Acima de 12° a 16°, o escoamento se separa do extradorso: c<sub>L</sub> cai e c<sub>D</sub> dispara</td></tr>
+                <tr><td>Vórtices de ponta</td><td>A diferença de pressão entre as faces contorna a ponta, criando os vórtices que geram o arrasto induzido</td></tr>
+                <tr><td>Winglets</td><td>Dificultam esse contorno, reduzindo o induzido sem aumentar a envergadura</td></tr>
+                <tr><td>Dispositivos hipersustentadores</td><td>Flapes e slats aumentam o arqueamento e a área, subindo o c<sub>L máx</sub> para pouso e decolagem</td></tr>
+                <tr><td>Efeito Magnus</td><td>Cilindro ou bola girando gera circulação — a bola "com efeito" curva a trajetória</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>7. Escoamento compressível: Fanno e Rayleigh</summary>
+          <div class="topic-body">
+            <p>Em dutos longos, nem o atrito nem a troca de calor podem ser desprezados. Cada efeito, isolado, define uma curva no diagrama T-s.</p>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th></th><th>Fanno</th><th>Rayleigh</th></tr></thead>
+              <tbody>
+                <tr><td>Hipóteses</td><td>Área constante, adiabático, com atrito</td><td>Área constante, sem atrito, com troca de calor</td></tr>
+                <tr><td>O que se conserva</td><td>Vazão mássica e T₀ (entalpia de estagnação)</td><td>Vazão mássica e quantidade de movimento (P + ρV²)</td></tr>
+                <tr><td>Efeito no Mach</td><td>Sempre em direção a 1</td><td>Aquecer: em direção a 1. Resfriar: afastando de 1</td></tr>
+                <tr><td>Limite</td><td>Comprimento máximo L*</td><td>Calor máximo q*</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="\frac{4fL^*}{D} = \frac{1 - Ma^2}{k\,Ma^2} + \frac{k+1}{2k}\ln\frac{(k+1)Ma^2}{2 + (k-1)Ma^2}"></span><span class="where">Fanno: f é o fator de atrito de Fanning (f de Darcy dividido por 4)</span></div>
+            <div class="formula"><span data-tex="\frac{T_0}{T_0^*} = \frac{(k+1)Ma^2\left[2 + (k-1)Ma^2\right]}{(1 + k\,Ma^2)^2} \qquad q = c_p\,(T_{02} - T_{01})"></span><span class="where">Rayleigh: todo o calor aparece na temperatura de estagnação</span></div>
+            <div class="callout warn">
+              <strong>Bloqueio não significa parede</strong>
+              Se o duto for mais longo que L*, o escoamento não "para" na metade: a vazão se reduz até que o novo Mach de entrada dê exatamente o L* do duto. Num combustor, fornecer mais calor que q* faz a mesma coisa. É o análogo do bloqueio na garganta de um bocal.
+            </div>
+            <div class="callout tip">
+              <strong>Uma curiosidade do Rayleigh</strong>
+              Entre <span data-tex-inline="Ma = 1/\sqrt{k} \approx 0{,}845"></span> e 1, fornecer calor faz a temperatura <em>estática</em> cair: a aceleração do escoamento consome mais energia do que o calor fornecido, embora T₀ sempre suba.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>8. Escoamento em canais abertos</summary>
+          <div class="topic-body">
+            <p>Com superfície livre, quem manda é a gravidade, e o adimensional relevante passa a ser o número de Froude — que faz na hidráulica o papel do Mach na aerodinâmica:</p>
+            <div class="formula"><span data-tex="Fr = \frac{v}{\sqrt{g y}} \qquad E = y + \frac{q^2}{2gy^2} \qquad y_c = \sqrt[3]{q^2/g}"></span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Regime</th><th>Froude</th><th>Comportamento</th></tr></thead>
+              <tbody>
+                <tr><td>Subcrítico (fluvial)</td><td>Fr &lt; 1</td><td>Profundidade grande, velocidade baixa; as ondas sobem o canal e o controle é a jusante</td></tr>
+                <tr><td>Crítico</td><td>Fr = 1</td><td>Energia específica mínima; é onde se instalam medidores (vertedores, calhas Parshall)</td></tr>
+                <tr><td>Supercrítico (torrencial)</td><td>Fr &gt; 1</td><td>Raso e rápido; o controle é a montante e a passagem para fluvial exige ressalto</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="formula"><span data-tex="Q = \frac{1}{n}A R_h^{2/3} S^{1/2} \qquad \frac{y_2}{y_1} = \frac{1}{2}\left(\sqrt{1 + 8Fr_1^2} - 1\right) \qquad \Delta E = \frac{(y_2 - y_1)^3}{4y_1y_2}"></span><span class="where">Manning para o escoamento uniforme e as conjugadas do ressalto hidráulico</span></div>
+            <div class="callout note">
+              <strong>O ressalto é projetado, não evitado</strong>
+              A jusante de um vertedouro a água chega rápida e rasa; deixá-la assim destrói o leito do rio. Constrói-se então uma bacia de dissipação que força o ressalto a acontecer ali, dissipando até 85 % da energia em poucos metros.
+            </div>
+          </div>
+        </details>
+
+        <details class="topic">
+          <summary>9. Turbulência e uma palavra sobre CFD</summary>
+          <div class="topic-body">
+            <p>Decompondo cada variável em média e flutuação (<span data-tex-inline="u = \bar u + u'"></span>) e promediando Navier-Stokes, aparecem termos extras — as tensões de Reynolds:</p>
+            <div class="formula"><span data-tex="-\rho\,\overline{u'v'} \qquad \tau_{total} = \mu\frac{d\bar u}{dy} - \rho\,\overline{u'v'}"></span><span class="where">o problema de fechamento: são incógnitas novas, que precisam de um modelo</span></div>
+            <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Abordagem</th><th>O que resolve</th><th>Custo</th></tr></thead>
+              <tbody>
+                <tr><td>RANS (k-ε, k-ω SST)</td><td>Só o escoamento médio; modela toda a turbulência</td><td>Baixo — o padrão da engenharia</td></tr>
+                <tr><td>LES</td><td>Resolve os grandes turbilhões, modela os pequenos</td><td>Alto</td></tr>
+                <tr><td>DNS</td><td>Resolve todas as escalas</td><td>Proibitivo fora da pesquisa</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p>Junto à parede, o perfil turbulento tem estrutura universal em unidades de parede: subcamada viscosa (<span data-tex-inline="u^+ = y^+"></span> até y⁺ ≈ 5) e a lei logarítmica (<span data-tex-inline="u^+ = \tfrac{1}{0{,}41}\ln y^+ + 5{,}0"></span> acima de y⁺ ≈ 30).</p>
+            <div class="callout warn">
+              <strong>Malha e y⁺</strong>
+              Modelos com função de parede pedem o primeiro nó em y⁺ entre 30 e 300; modelos que resolvem a parede exigem y⁺ &lt; 1. Malha errada nessa região produz resultados plausíveis e errados — daí a importância dos procedimentos de verificação e validação (ASME V&amp;V 20) e do estudo de convergência de malha.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Simuladores</h2>
+        <p>Cinco modelos interativos e animados. A equação de Blasius é resolvida numericamente por Runge-Kutta com tiro (f''(0) = 0,33206, conferido com a literatura) e as relações de Fanno e Rayleigh reproduzem as tabelas com cinco algarismos.</p>
+
+        <div id="sim-camada-limite" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare o perfil de Blasius com o turbulento de 1/7 no segundo gráfico: o turbulento é muito mais cheio junto à parede — daí o atrito maior e a resistência à separação. Depois troque o fluido para óleo e veja a camada limite engrossar.
+        </div>
+
+        <div id="sim-arrasto" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Use o exemplo 1 e depois o 2: a mesma esfera, com velocidade maior, atravessa a crise do arrasto e o C<sub>D</sub> despenca — a força de arrasto quase não cresce, apesar da velocidade quase cinco vezes maior.
+        </div>
+
+        <div id="sim-sustentacao" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Comece com o cilindro sem circulação: o C<sub>p</sub> é simétrico e não há sustentação nem arrasto. Acrescente Γ e veja os pontos de estagnação descerem. Depois passe para a asa e compare polares com AR 4, 8 e 16.
+        </div>
+
+        <div id="sim-canal" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Reduza a profundidade a montante mantendo a vazão: o Froude cresce, o ressalto fica mais forte e a perda de energia passa de alguns por cento para mais da metade da energia específica.
+        </div>
+
+        <div id="sim-fanno" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          No modo Fanno, aumente o comprimento até o duto bloquear (com M₁ = 0,3 e este duto, L* = 13,2 m). Depois passe para Rayleigh e aumente o calor: o Mach caminha para 1 nos dois casos, mas pelas razões opostas — num é irreversibilidade, no outro é energia.
+        </div>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Formulário</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td>Navier-Stokes</td><td><span data-tex="\rho\dfrac{D\vec V}{Dt} = -\nabla p + \mu\nabla^2\vec V + \rho\vec g"></span></td><td>incompressível, newtoniano</td></tr>
+              <tr><td>Hagen-Poiseuille</td><td><span data-tex="Q = \dfrac{\pi R^4\Delta p}{8\mu L}"></span></td><td>laminar, f = 64/Re</td></tr>
+              <tr><td>Blasius</td><td><span data-tex="f''' + \tfrac12 f f'' = 0,\ f''(0) = 0{,}332"></span></td><td>η = y√(U/νx)</td></tr>
+              <tr><td>Espessura laminar</td><td><span data-tex="\delta = \dfrac{4{,}91x}{\sqrt{Re_x}}"></span></td><td><span data-tex-inline="\delta^* = 1{,}72x/\sqrt{Re_x}"></span></td></tr>
+              <tr><td>Atrito laminar</td><td><span data-tex="c_f = \dfrac{0{,}664}{\sqrt{Re_x}},\quad C_D = \dfrac{1{,}328}{\sqrt{Re_L}}"></span></td><td>placa plana</td></tr>
+              <tr><td>Camada turbulenta</td><td><span data-tex="\delta = \dfrac{0{,}16x}{Re_x^{1/7}},\quad c_f = \dfrac{0{,}0592}{Re_x^{1/5}}"></span></td><td>lei de 1/7</td></tr>
+              <tr><td>Von Kármán</td><td><span data-tex="\dfrac{\tau_w}{\rho U^2} = \dfrac{d\theta}{dx}"></span></td><td>sem gradiente</td></tr>
+              <tr><td>Arrasto</td><td><span data-tex="D = C_D\tfrac12\rho U^2 A"></span></td><td>A frontal</td></tr>
+              <tr><td>Stokes</td><td><span data-tex="D = 3\pi\mu U d,\quad C_D = 24/Re"></span></td><td>Re ≪ 1</td></tr>
+              <tr><td>Strouhal</td><td><span data-tex="St = \dfrac{fD}{U} \approx 0{,}21"></span></td><td>cilindro</td></tr>
+              <tr><td>Kutta-Joukowski</td><td><span data-tex="L' = \rho U\Gamma"></span></td><td>2D</td></tr>
+              <tr><td>Asa finita</td><td><span data-tex="c_{D_i} = \dfrac{c_L^2}{\pi e AR}"></span></td><td>AR = b²/S</td></tr>
+              <tr><td>Energia específica</td><td><span data-tex="E = y + \dfrac{q^2}{2gy^2},\quad y_c = \sqrt[3]{q^2/g}"></span></td><td>canal retangular</td></tr>
+              <tr><td>Manning</td><td><span data-tex="Q = \dfrac{1}{n}AR_h^{2/3}S^{1/2}"></span></td><td>uniforme</td></tr>
+              <tr><td>Ressalto</td><td><span data-tex="\dfrac{y_2}{y_1} = \tfrac12\left(\sqrt{1+8Fr_1^2}-1\right)"></span></td><td><span data-tex-inline="\Delta E = (y_2-y_1)^3/(4y_1y_2)"></span></td></tr>
+              <tr><td>Fanno</td><td><span data-tex="\dfrac{4fL^*}{D} = \dfrac{1-Ma^2}{kMa^2} + \dfrac{k+1}{2k}\ln\dfrac{(k+1)Ma^2}{2+(k-1)Ma^2}"></span></td><td>T₀ constante</td></tr>
+              <tr><td>Rayleigh</td><td><span data-tex="\dfrac{P}{P^*} = \dfrac{1+k}{1+kMa^2}"></span></td><td>q = c_p ΔT₀</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Normas técnicas</h2>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
+            <tbody>
+              <tr><td><strong>ISO 5167</strong></td><td>Medição de vazão por dispositivos de pressão diferencial</td><td>Placas de orifício, bocais e Venturi, inclusive em escoamento compressível</td></tr>
+              <tr><td><strong>ISO 3966</strong></td><td>Medição de vazão por exploração do campo de velocidades com tubo de Pitot</td><td>Número e posição dos pontos de medição</td></tr>
+              <tr><td><strong>ISO 748</strong></td><td>Medição de vazão em canais abertos pelo método velocidade-área</td><td>Hidrometria de rios e canais</td></tr>
+              <tr><td><strong>ISO 1438</strong></td><td>Medição de vazão em canais abertos com vertedores de parede delgada</td><td>Seção crítica como medidor</td></tr>
+              <tr><td><strong>ISO 4359</strong></td><td>Calhas medidoras de vazão em canais (tipo Parshall)</td><td>Controle crítico imposto por estrangulamento</td></tr>
+              <tr><td><strong>ASME V&amp;V 20</strong></td><td>Verificação e validação em mecânica dos fluidos e transferência de calor computacionais</td><td>Convergência de malha e estimativa de incerteza em CFD</td></tr>
+              <tr><td><strong>ITTC — Recommended Procedures</strong></td><td>Procedimentos de ensaio em tanques de prova navais</td><td>Extrapolação modelo-protótipo pelo método de Froude</td></tr>
+              <tr><td><strong>ISO 80000-11</strong></td><td>Grandezas e unidades — números característicos</td><td>Definição formal de Reynolds, Froude, Mach, Strouhal e afins</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Simulado</h2>
+        <p>30 questões sobre Navier-Stokes, semelhança, camada limite, separação, arrasto e sustentação, canais abertos e escoamento compressível com atrito e calor.</p>
+        <div id="quiz" data-quiz="mecanica-dos-fluidos-2"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Referências</h2>
+        <ul>
+          <li><strong>WHITE, F. M.</strong> <em>Mecânica dos Fluidos.</em> McGraw-Hill. — Camada limite, escoamento externo e compressível.</li>
+          <li><strong>FOX, R. W.; McDONALD, A. T.; PRITCHARD, P. J.</strong> <em>Introdução à Mecânica dos Fluidos.</em> LTC.</li>
+          <li><strong>MUNSON, B. R. et al.</strong> <em>Fundamentos da Mecânica dos Fluidos.</em> Blucher.</li>
+          <li><strong>SCHLICHTING, H.; GERSTEN, K.</strong> <em>Boundary-Layer Theory.</em> Springer. — A referência sobre camada limite.</li>
+          <li><strong>ANDERSON, J. D.</strong> <em>Fundamentals of Aerodynamics.</em> McGraw-Hill. — Escoamento potencial, asas e compressível.</li>
+          <li><strong>CHOW, V. T.</strong> <em>Open-Channel Hydraulics.</em> McGraw-Hill. — Canais abertos e ressalto hidráulico.</li>
+          <li><strong>ÇENGEL, Y. A.; CIMBALA, J. M.</strong> <em>Mecânica dos Fluidos.</em> McGraw-Hill. — Tabelas de Fanno e Rayleigh.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/sim/mecanica-dos-fluidos-2.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  U: ['Velocidade da corrente livre', 'm/s'],
+  u: ['Velocidade local', 'm/s'],
+  ν: ['Viscosidade cinemática', 'm²/s', 'μ/ρ'],
+  μ: ['Viscosidade dinâmica', 'Pa·s'],
+  ρ: ['Massa específica', 'kg/m³'],
+  δ: ['Espessura da camada limite', 'm', 'onde u = 0,99U'],
+  θ: ['Espessura de quantidade de movimento', 'm'],
+  η: ['Variável de semelhança de Blasius', '—', 'y√(U/νx)'],
+  Γ: ['Circulação', 'm²/s'],
+  τ: ['Tensão de cisalhamento', 'Pa'],
+  q: ['Vazão por unidade de largura', 'm²/s', 'em canais; ou calor específico'],
+  y: ['Profundidade do escoamento', 'm', 'em canais'],
+  n: ['Coeficiente de Manning', '—'],
+  k: ['Razão de calores específicos', '—'],
+  f: ['Fator de atrito', '—', 'de Fanning em Fanno; de Darcy = 4× o de Fanning'],
+  e: ['Fator de eficiência de envergadura', '—'],
+  'Re': ['Número de Reynolds', '—', 'ρUL/μ'],
+  'Fr': ['Número de Froude', '—', 'v/√(gy)'],
+  'Ma': ['Número de Mach', '—', 'U/c'],
+  'St': ['Número de Strouhal', '—', 'fD/U'],
+  'We': ['Número de Weber', '—'],
+  'δ*': ['Espessura de deslocamento', 'm'],
+  'H': ['Fator de forma', '—', 'δ*/θ'],
+  'c_f': ['Coeficiente de atrito local', '—'],
+  'C_D': ['Coeficiente de arrasto', '—'],
+  'c_L': ['Coeficiente de sustentação', '—'],
+  'AR': ['Alongamento da asa', '—', 'b²/S'],
+  'y_c': ['Profundidade crítica', 'm'],
+  'y_n': ['Profundidade normal', 'm'],
+  'R_h': ['Raio hidráulico', 'm', 'A/P'],
+  'E': ['Energia específica', 'm'],
+  'L*': ['Comprimento de bloqueio', 'm', 'escoamento de Fanno'],
+  'T_0': ['Temperatura de estagnação', 'K'],
+  'P_0': ['Pressão de estagnação', 'kPa'],
+  'y+': ['Distância adimensional da parede', '—']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>
