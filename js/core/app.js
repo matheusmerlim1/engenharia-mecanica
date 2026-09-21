@@ -102,6 +102,12 @@
     '5': 'ok', '6': 'ok', '7': 'warn', '9': 'warn', '10': 'err', '0': ''
   };
 
+  /* slugs das disciplinas da última atualização (campo "novidades" de disciplinas.json) */
+  var NOVIDADES = [];
+  function estrelaNovidade() {
+    return '<span class="estrela-novo" title="Adicionada recentemente" aria-label="Adicionada recentemente">★</span>';
+  }
+
   function cardDisciplina(d, base) {
     var pronta = d.pronta !== false;
     var a = document.createElement(pronta ? 'a' : 'div');
@@ -116,11 +122,14 @@
     } else {
       extras += '<span class="tag" title="Página ainda não construída">em breve</span>';
     }
+    var novo = pronta && NOVIDADES.indexOf(d.slug) >= 0;
+    if (novo) a.className += ' card-novo';
     a.innerHTML =
+      (novo ? estrelaNovidade() : '') +
       '<div class="card-top">' + tags + extras + '</div>' +
       '<h3>' + d.nome + '</h3>' +
       '<p>' + (d.resumo || '') + '</p>';
-    a.dataset.busca = (d.nome + ' ' + (d.resumo || '') + ' ' + (d.temas || []).join(' ')).toLowerCase();
+    a.dataset.busca = (d.nome + ' ' + (d.resumo || '') + ' ' + (d.temas || []).join(' ') + (novo ? ' novo novidade' : '')).toLowerCase();
     return a;
   }
 
@@ -226,6 +235,8 @@
       .then(function (r) { return r.json(); })
       .then(function (dados) {
         var lista = dados.disciplinas || dados;
+        NOVIDADES = dados.novidades || [];
+        legendaNovidades(host, lista);
         var aplicarBusca = ligarBusca(host);
         function render(modo) {
           host.innerHTML = '';
@@ -245,6 +256,22 @@
           '<p style="font-size:.9rem;color:var(--text-muted)">Rode o site por um servidor local ' +
           '(<code>python -m http.server</code>) ou publique no GitHub Pages.</p></div>';
       });
+  }
+
+  /* aviso acima do catálogo: "★ novidades: A e B" (só uma vez por página) */
+  function legendaNovidades(host, lista) {
+    if (!NOVIDADES.length || document.getElementById('legenda-novidades')) return;
+    var nomes = NOVIDADES.map(function (slug) {
+      var d = (lista || []).filter(function (x) { return x.slug === slug; })[0];
+      return d ? d.nome : null;
+    }).filter(Boolean);
+    if (!nomes.length) return;
+    var p = document.createElement('p');
+    p.id = 'legenda-novidades';
+    p.className = 'legenda-novidades';
+    p.innerHTML = '<span class="estrela-mini" aria-hidden="true">★</span> Novidades da última atualização: <strong>' +
+      nomes.join('</strong> e <strong>') + '</strong>';
+    host.parentNode.insertBefore(p, host);
   }
 
   /* ---------- catálogo de simulações (simulacoes.html) ---------- */
