@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dinâmica — Engenharia Mecânica</title>
-<meta name="description" content="Cinemática e cinética da partícula e do corpo rígido: segunda lei, trabalho e energia, impulso e quantidade de movimento, impacto, momento de inércia, rolamento, pêndulo composto e dinâmica do veículo — com simuladores animados e simulado.">
+<meta name="description" content="Cinemática e cinética da partícula e do corpo rígido: segunda lei, trabalho e energia, impulso e quantidade de movimento, impacto, momento de inércia, rolamento, pêndulo composto e dinâmica do veículo — organizado em capítulos, com exemplos resolvidos, simuladores animados e simulado.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/quiz.css">
@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,9 +35,10 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">4º período · Engenharia Mecânica</p>
     <h1>Dinâmica</h1>
-    <p class="lead">A Estática estuda corpos em equilíbrio; a Dinâmica, o que acontece quando as forças não se equilibram. São três caminhos para o mesmo problema — a segunda lei de Newton, o teorema do trabalho e energia e o princípio do impulso e da quantidade de movimento — e saber qual deles escolher é metade do trabalho.</p>
+    <p class="lead">A Estática estuda corpos em equilíbrio; a Dinâmica, o que acontece quando as forças não se equilibram. Este texto está organizado como um livro: nove capítulos em sequência, cada um construído sobre o anterior, com a teoria explicada passo a passo, exemplos resolvidos, o simulador no ponto em que o conceito aparece e questões para praticar ao final.</p>
     <div class="btn-row">
-      <span class="tag accent">9 tópicos</span>
+      <span class="tag accent">9 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">5 simuladores animados</span>
       <span class="tag warn">normas</span>
@@ -47,242 +49,890 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>Todo problema de dinâmica pode ser atacado por três métodos equivalentes. Eles não competem: cada um responde bem a um tipo de pergunta, e o segredo é reconhecer qual usar.</p>
+      <section class="section" id="sumario">
+        <h2>Sumário</h2>
+        <p>Os capítulos seguem a ordem clássica dos livros de Dinâmica: primeiro a partícula (um ponto com massa, sem dimensões), depois o corpo rígido, em que a rotação passa a importar, e por fim duas aplicações que ligam a disciplina ao resto do curso. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao">
+        <h2>Introdução: três caminhos para o mesmo problema</h2>
+        <p>Toda a Dinâmica clássica cabe numa única lei — a segunda lei de Newton — mas ela pode ser usada de três maneiras. Na forma direta, <span data-tex-inline="\sum \vec F = m\vec a"></span>, relaciona forças e aceleração <em>num instante</em>. Multiplicada escalarmente pelo deslocamento e integrada ao longo da trajetória, vira o <strong>teorema do trabalho e energia</strong>, que liga duas <em>posições</em>. Integrada no tempo, vira o <strong>princípio do impulso e da quantidade de movimento</strong>, que liga dois <em>instantes</em>. Os três métodos são equivalentes — nenhum sabe mais física que o outro —, mas cada um elimina variáveis diferentes, e escolher bem encurta a solução de uma página para três linhas.</p>
         <div class="table-scroll">
         <table class="data">
-          <thead><tr><th>Método</th><th>Equação</th><th>Use quando a pergunta envolve</th></tr></thead>
+          <thead><tr><th>Método</th><th>Equação</th><th>Elimina</th><th>Use quando a pergunta envolve</th><th>Capítulos</th></tr></thead>
           <tbody>
-            <tr><td>Segunda lei (Newton-Euler)</td><td><span data-tex-inline="\sum \vec F = m\vec a_G,\ \sum M_G = I_G\alpha"></span></td><td>Aceleração num instante, forças de contato, reações</td></tr>
-            <tr><td>Trabalho e energia</td><td><span data-tex-inline="W_{1\to2} = \Delta E_c"></span></td><td>Velocidade após um deslocamento, sem interesse no tempo</td></tr>
-            <tr><td>Impulso e quantidade de movimento</td><td><span data-tex-inline="\int \vec F\,dt = \Delta(m\vec v)"></span></td><td>Velocidade após um intervalo de tempo, choques, jatos</td></tr>
+            <tr><td>Segunda lei (Newton-Euler)</td><td><span data-tex-inline="\sum \vec F = m\vec a_G,\ \sum M_G = I_G\alpha"></span></td><td>—</td><td>Aceleração num instante, forças de contato, reações</td><td>2 e 7</td></tr>
+            <tr><td>Trabalho e energia</td><td><span data-tex-inline="W_{1\to2} = \Delta E_c"></span></td><td>o tempo e as forças que não trabalham</td><td>Velocidade após um deslocamento</td><td>3 e 8</td></tr>
+            <tr><td>Impulso e quantidade de movimento</td><td><span data-tex-inline="\int \vec F\,dt = \Delta(m\vec v)"></span></td><td>o deslocamento e as forças internas</td><td>Velocidade após um intervalo de tempo, choques, jatos</td><td>4 e 8</td></tr>
           </tbody>
         </table>
         </div>
+        <p>Antes de qualquer um deles, porém, é preciso saber <em>descrever</em> o movimento — posição, velocidade e aceleração — sem perguntar o que o causa. Essa é a cinemática, e por isso o livro começa por ela.</p>
         <div class="callout tip">
-          <strong>Como escolher</strong>
-          Se o enunciado dá <em>distância</em> e pede velocidade, use energia. Se dá <em>tempo</em> ou envolve impacto, use impulso. Se pede <em>força, reação ou aceleração</em>, use a segunda lei. Em muitos problemas vale combinar: energia para achar a velocidade e depois Newton para achar a reação.
-        </div>
-        <div class="callout note">
-          <strong>Onde a Dinâmica reaparece</strong>
-          A equação do pêndulo composto é a mesma das Vibrações Mecânicas; o momento de inércia de massa volta em Elementos de Máquina (volantes, freios e embreagens); a transferência de carga aparece no projeto de suspensões e freios; e o teorema do impulso está por trás do cálculo de forças em jatos e turbomáquinas.
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo resolvido antes de abrir a solução; depois use o simulador do capítulo para testar os casos-limite; termine com o "Teste-se" e com as questões do capítulo (botão no rodapé). O Formulário, no apêndice A, serve para revisar — não para começar.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teoria">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Dinâmica da partícula" data-topicos="cinematica">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Cinemática da partícula</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar posição, velocidade e aceleração por derivadas e integrais;</li>
+            <li>resolver movimentos com aceleração dependente do tempo, da velocidade ou da posição;</li>
+            <li>escolher entre coordenadas retangulares, normal-tangencial e polares;</li>
+            <li>descrever o movimento de um ponto visto de outro que também se move.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Derivadas e integrais simples, vetores (soma e decomposição em componentes). Nada de física além disso: a cinemática é pura geometria do movimento.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Cinemática da partícula</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="v = \frac{ds}{dt} \qquad a = \frac{dv}{dt} = v\frac{dv}{ds}"></span><span class="where">a terceira forma é a que resolve problemas em que a aceleração depende da posição</span></div>
-            <p>Com aceleração constante valem as três fórmulas conhecidas; fora desse caso é preciso integrar:</p>
-            <div class="formula"><span data-tex="v = v_0 + at \qquad s = s_0 + v_0t + \tfrac12 at^2 \qquad v^2 = v_0^2 + 2a(s - s_0)"></span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Sistema de coordenadas</th><th>Componentes</th><th>Quando usar</th></tr></thead>
-              <tbody>
-                <tr><td>Retangulares (x, y, z)</td><td><span data-tex-inline="a_x = \ddot x,\ a_y = \ddot y"></span></td><td>Movimentos independentes nos eixos — projéteis</td></tr>
-                <tr><td>Normal-tangencial (n, t)</td><td><span data-tex-inline="a_t = \dot v,\ a_n = v^2/\rho"></span></td><td>Trajetória curva conhecida: curvas, loopings</td></tr>
-                <tr><td>Polares (r, θ)</td><td><span data-tex-inline="a_r = \ddot r - r\dot\theta^2,\ a_\theta = r\ddot\theta + 2\dot r\dot\theta"></span></td><td>Movimento em torno de um centro; o termo 2ṙθ̇ é a aceleração de Coriolis</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="formula"><span data-tex="\vec v_{B} = \vec v_{A} + \vec v_{B/A} \qquad \vec a_{B} = \vec a_{A} + \vec a_{B/A}"></span><span class="where">movimento relativo com eixos em translação</span></div>
-            <div class="callout note">
-              <strong>Componente normal existe mesmo com velocidade constante</strong>
-              Num movimento circular uniforme a velocidade escalar não muda, mas a direção sim: a aceleração é toda centrípeta, <span data-tex-inline="a_n = v^2/\rho"></span>. Aceleração nula exige trajetória reta <em>e</em> velocidade constante.
-            </div>
-          </div>
-        </details>
+        <p>A cinemática responde a uma pergunta modesta: <em>como</em> um ponto se move, sem perguntar <em>por quê</em>. Parece um passo preliminar, mas quase todos os erros de Dinâmica começam aqui — uma aceleração centrípeta esquecida, um sinal trocado num movimento relativo. Por isso vale a pena construí-la com cuidado.</p>
 
-        <details class="topic">
-          <summary>2. Cinética da partícula: segunda lei e d'Alembert</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="\sum \vec F = m\vec a"></span><span class="where">válida em referencial inercial; o diagrama de corpo livre é o começo obrigatório</span></div>
-            <p>O <strong>princípio de d'Alembert</strong> reescreve isso como um equilíbrio, somando a força de inércia fictícia −ma ao diagrama:</p>
-            <div class="formula"><span data-tex="\sum \vec F - m\vec a = 0"></span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Situação</th><th>Equação característica</th></tr></thead>
-              <tbody>
-                <tr><td>Plano inclinado com atrito</td><td><span data-tex-inline="a = g(\text{sen}\,\theta - \mu\cos\theta)"></span></td></tr>
-                <tr><td>Iminência de escorregamento</td><td><span data-tex-inline="\tan\phi_s = \mu_e"></span> — o ângulo de atrito independe da massa</td></tr>
-                <tr><td>Curva plana (sem sobrelevação)</td><td><span data-tex-inline="v_{max} = \sqrt{\mu g R}"></span></td></tr>
-                <tr><td>Curva com sobrelevação θ, sem atrito</td><td><span data-tex-inline="v = \sqrt{gR\tan\theta}"></span></td></tr>
-                <tr><td>Looping, ponto mais alto</td><td><span data-tex-inline="v_{min} = \sqrt{gR}"></span> — abaixo disso o corpo se descola</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="callout warn">
-              <strong>Força centrífuga não existe no referencial inercial</strong>
-              No referencial do solo há apenas a resultante centrípeta, dirigida para o centro. A "força centrífuga" aparece quando se adota o referencial girante — é exatamente a força de inércia de d'Alembert, e usá-la é legítimo desde que se saiba o que se está fazendo.
-            </div>
-          </div>
-        </details>
+        <h3 id="s1-1"><span class="num">1.1</span>Posição, velocidade e aceleração</h3>
+        <p>Considere uma partícula que se move ao longo de uma trajetória. Sua posição num instante <em>t</em> é dada pelo vetor <span data-tex-inline="\vec r(t)"></span>, medido a partir de uma origem fixa. A <strong>velocidade</strong> é a taxa de variação da posição, e a <strong>aceleração</strong>, a taxa de variação da velocidade:</p>
+        <div class="formula"><span data-tex="\vec v = \frac{d\vec r}{dt} \qquad \vec a = \frac{d\vec v}{dt} = \frac{d^2\vec r}{dt^2}"></span><span class="where">a velocidade é sempre tangente à trajetória; a aceleração, em geral, não</span></div>
+        <p>No movimento retilíneo os vetores têm uma só componente e basta trabalhar com a coordenada <em>s</em> ao longo da reta. Há uma terceira forma da aceleração, obtida pela regra da cadeia, que aparece com frequência e é muitas vezes esquecida:</p>
+        <div class="formula"><span data-tex="a = \frac{dv}{dt} = \frac{dv}{ds}\,\frac{ds}{dt} = v\,\frac{dv}{ds}"></span><span class="where">é a forma que resolve problemas em que a aceleração depende da posição — e é a origem do teorema do trabalho e energia (capítulo 3)</span></div>
 
-        <details class="topic">
-          <summary>3. Trabalho e energia</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="W_{1\to2} = \int_1^2 \vec F\cdot d\vec r = \Delta E_c = \tfrac12 mv_2^2 - \tfrac12 mv_1^2"></span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Força</th><th>Trabalho</th><th>Conservativa?</th></tr></thead>
-              <tbody>
-                <tr><td>Peso</td><td><span data-tex-inline="-mg\,\Delta h"></span></td><td>Sim — energia potencial mgh</td></tr>
-                <tr><td>Mola</td><td><span data-tex-inline="-\tfrac12 k(x_2^2 - x_1^2)"></span></td><td>Sim — energia potencial ½kx²</td></tr>
-                <tr><td>Atrito cinético</td><td><span data-tex-inline="-f\,|s|"></span></td><td>Não — depende do caminho e sempre dissipa</td></tr>
-                <tr><td>Normal e atrito estático no rolamento</td><td>Zero</td><td>Não realizam trabalho (deslocamento nulo no ponto de aplicação)</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="formula"><span data-tex="E_c + E_p = \text{constante (só forças conservativas)} \qquad P = \vec F\cdot\vec v = \frac{dW}{dt} \qquad \eta = \frac{P_{útil}}{P_{fornecida}}"></span></div>
-            <div class="callout tip">
-              <strong>Por que energia costuma ser o caminho mais curto</strong>
-              Ela é escalar: dispensa decompor vetores e não exige conhecer as forças instante a instante. Se o problema liga duas posições e pede velocidade, energia resolve em uma linha o que Newton resolveria em três integrações.
-            </div>
-          </div>
-        </details>
+        <h3 id="s1-2"><span class="num">1.2</span>Movimento retilíneo: integrar a aceleração</h3>
+        <p>Quando a aceleração é conhecida, a velocidade e a posição vêm por integração. O caso mais simples — aceleração constante — leva às três fórmulas que todo mundo conhece do ensino médio:</p>
+        <div class="formula"><span data-tex="v = v_0 + at \qquad s = s_0 + v_0t + \tfrac12 at^2 \qquad v^2 = v_0^2 + 2a(s - s_0)"></span><span class="where">válidas <strong>somente</strong> com a constante</span></div>
+        <p>Fora desse caso é preciso separar variáveis, e a forma da aceleração indica qual das três relações usar:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>A aceleração é dada como</th><th>Parta de</th><th>Integre</th></tr></thead>
+          <tbody>
+            <tr><td><span data-tex-inline="a = f(t)"></span></td><td><span data-tex-inline="dv = a\,dt"></span></td><td>primeiro v(t), depois s(t) com ds = v dt</td></tr>
+            <tr><td><span data-tex-inline="a = f(v)"></span></td><td><span data-tex-inline="dt = dv/a"></span> ou <span data-tex-inline="ds = v\,dv/a"></span></td><td>conforme se queira o tempo ou a distância</td></tr>
+            <tr><td><span data-tex-inline="a = f(s)"></span></td><td><span data-tex-inline="v\,dv = a\,ds"></span></td><td>dá v(s) diretamente</td></tr>
+          </tbody>
+        </table>
+        </div>
 
-        <details class="topic">
-          <summary>4. Impulso, quantidade de movimento e impacto</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="\int_{t_1}^{t_2}\vec F\,dt = m\vec v_2 - m\vec v_1"></span><span class="where">se a resultante externa é nula, a quantidade de movimento se conserva</span></div>
-            <p>No impacto entre dois corpos, as forças são internas ao sistema: a quantidade de movimento total se conserva sempre. A energia cinética, não — e o quanto se perde é medido pelo <strong>coeficiente de restituição</strong>:</p>
-            <div class="formula"><span data-tex="e = \frac{v_2' - v_1'}{v_1 - v_2} \qquad 0 \le e \le 1"></span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>e</th><th>Nome</th><th>Resultado</th></tr></thead>
-              <tbody>
-                <tr><td>1</td><td>Perfeitamente elástico</td><td>Energia cinética se conserva; com massas iguais, as velocidades se trocam</td></tr>
-                <tr><td>0 &lt; e &lt; 1</td><td>Parcialmente elástico</td><td>Caso real: aço-aço ≈ 0,6 a 0,8</td></tr>
-                <tr><td>0</td><td>Perfeitamente plástico</td><td>Os corpos seguem juntos, com a velocidade do centro de massa</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="formula"><span data-tex="\Delta E = \tfrac12\,\frac{m_1m_2}{m_1+m_2}\,(1 - e^2)(v_1 - v_2)^2"></span><span class="where">energia dissipada no choque</span></div>
-            <div class="callout note">
-              <strong>Impacto oblíquo</strong>
-              Decompõe-se nas direções normal e tangencial ao plano de contato: a restituição se aplica só à componente normal, enquanto a tangencial se conserva (se não houver atrito entre os corpos).
-            </div>
-          </div>
-        </details>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Frenagem com desaceleração constante</div>
+          <p>Um carro a 90 km/h freia com desaceleração constante de 6 m/s². Quanto tempo leva e que distância percorre até parar?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Converter a velocidade: <span data-tex-inline="v_0 = 90/3{,}6 = 25\ \text{m/s}"></span>; a aceleração é <span data-tex-inline="a = -6\ \text{m/s}^2"></span>.</li>
+              <li>Tempo, de <span data-tex-inline="v = v_0 + at"></span> com v = 0: <span data-tex-inline="t = 25/6 = 4{,}17\ \text{s}"></span>.</li>
+              <li>Distância, de <span data-tex-inline="v^2 = v_0^2 + 2a\Delta s"></span>: <span data-tex-inline="\Delta s = \dfrac{25^2}{2\cdot 6} = 52{,}1\ \text{m}"></span>.</li>
+            </ol>
+            <p class="resposta">t = 4,17 s e Δs = 52,1 m. Repare que a distância cresce com o quadrado da velocidade: a 45 km/h seriam só 13 m.</p>
+          </details>
+        </div>
 
-        <details class="topic">
-          <summary>5. Sistemas de partículas e centro de massa</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="\sum \vec F_{ext} = M\vec a_G \qquad \vec r_G = \frac{\sum m_i\vec r_i}{\sum m_i}"></span><span class="where">as forças internas se cancelam aos pares (terceira lei)</span></div>
-            <p>Esse resultado é o que permite tratar um corpo extenso — ou um conjunto de corpos — como se toda a massa estivesse no centro de massa, quando o interesse é o movimento de translação.</p>
-            <div class="callout tip">
-              <strong>O centro de massa ignora o que acontece dentro</strong>
-              Numa explosão no ar, os fragmentos voam em todas as direções, mas o centro de massa continua a mesma trajetória parabólica de antes: as forças da explosão são internas. É o mesmo princípio que mantém v_G constante durante um choque.
-            </div>
-          </div>
-        </details>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.2</span>Aceleração que depende da velocidade</div>
+          <p>Um barco desliga o motor a 20 m/s e passa a ser freado pela água com <span data-tex-inline="a = -k v^2"></span>, k = 0,01 m⁻¹. Qual a velocidade depois de percorrer 50 m, e quanto tempo isso leva?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A pergunta envolve distância, então use <span data-tex-inline="v\,dv = a\,ds"></span>: <span data-tex-inline="v\,dv = -kv^2\,ds \Rightarrow \dfrac{dv}{v} = -k\,ds"></span>.</li>
+              <li>Integrando de v₀ a v e de 0 a s: <span data-tex-inline="\ln(v/v_0) = -ks \Rightarrow v = v_0\,e^{-ks} = 20\,e^{-0{,}5} = 12{,}1\ \text{m/s}"></span>.</li>
+              <li>Para o tempo, use <span data-tex-inline="dt = dv/a"></span>: <span data-tex-inline="dt = -\dfrac{dv}{kv^2} \Rightarrow t = \dfrac1k\left(\dfrac1v - \dfrac1{v_0}\right) = 100\,(0{,}0824 - 0{,}05) = 3{,}24\ \text{s}"></span>.</li>
+            </ol>
+            <p class="resposta">v = 12,1 m/s após 3,24 s. As fórmulas de aceleração constante dariam resultados errados aqui — a aceleração cai à medida que o barco perde velocidade.</p>
+          </details>
+        </div>
 
-        <details class="topic">
-          <summary>6. Cinemática do corpo rígido</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="\vec v_B = \vec v_A + \vec\omega\times\vec r_{B/A} \qquad \vec a_B = \vec a_A + \vec\alpha\times\vec r_{B/A} - \omega^2\vec r_{B/A}"></span><span class="where">movimento plano geral: translação de A mais rotação em torno de A</span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Conceito</th><th>Definição</th><th>Utilidade</th></tr></thead>
-              <tbody>
-                <tr><td>Centro instantâneo de rotação (CIR)</td><td>Ponto de velocidade nula no instante</td><td>Reduz o movimento plano a uma rotação pura: v = ω·r_CIR</td></tr>
-                <tr><td>Rolamento sem deslizamento</td><td><span data-tex-inline="v_G = \omega r,\ a_G = \alpha r"></span></td><td>O ponto de contato é o CIR</td></tr>
-                <tr><td>Eixos girantes</td><td><span data-tex-inline="\vec a_B = \vec a_A + \vec\alpha\times\vec r + \vec\omega\times(\vec\omega\times\vec r) + 2\vec\omega\times\vec v_{rel} + \vec a_{rel}"></span></td><td>O termo 2ω×v_rel é a aceleração de Coriolis</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="callout note">
-              <strong>O ponto de contato de uma roda está parado</strong>
-              Numa roda que rola sem deslizar, o ponto em contato com o solo tem velocidade instantânea nula — por isso o atrito ali é estático e não dissipa energia. O topo da roda, em compensação, anda a 2v.
-            </div>
-          </div>
-        </details>
+        <h3 id="s1-3"><span class="num">1.3</span>Movimento curvilíneo em coordenadas retangulares</h3>
+        <p>No plano, a posição tem componentes x e y, e cada uma pode ser tratada como um movimento retilíneo independente: <span data-tex-inline="a_x = \ddot x"></span>, <span data-tex-inline="a_y = \ddot y"></span>. Esse sistema é o natural quando as acelerações nos dois eixos são conhecidas separadamente — o exemplo clássico é o <strong>projétil</strong>, em que, desprezada a resistência do ar, <span data-tex-inline="a_x = 0"></span> e <span data-tex-inline="a_y = -g"></span>. O movimento horizontal é uniforme; o vertical, uniformemente variado; e o tempo é o elo entre os dois.</p>
+        <div class="formula"><span data-tex="x = v_0\cos\theta\,t \qquad y = v_0\,\text{sen}\,\theta\,t - \tfrac12 g t^2 \qquad R = \frac{v_0^2\,\text{sen}\,2\theta}{g} \qquad h_{max} = \frac{(v_0\,\text{sen}\,\theta)^2}{2g}"></span><span class="where">alcance R e altura máxima para lançamento e chegada no mesmo nível</span></div>
 
-        <details class="topic">
-          <summary>7. Cinética do corpo rígido e momento de inércia</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="\sum \vec F = m\vec a_G \qquad \sum M_G = I_G\,\alpha"></span><span class="where">movimento plano; em torno de um ponto fixo O, ΣM_O = I_O α</span></div>
-            <div class="formula"><span data-tex="I = \int r^2\,dm \qquad I_O = I_G + m d^2 \qquad I = m k^2"></span><span class="where">teorema dos eixos paralelos e raio de giração k</span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Corpo</th><th>I no centro de massa</th><th>I/(mr²)</th></tr></thead>
-              <tbody>
-                <tr><td>Esfera maciça</td><td><span data-tex-inline="\tfrac25 mR^2"></span></td><td>0,40</td></tr>
-                <tr><td>Cilindro maciço (disco)</td><td><span data-tex-inline="\tfrac12 mR^2"></span></td><td>0,50</td></tr>
-                <tr><td>Casca esférica</td><td><span data-tex-inline="\tfrac23 mR^2"></span></td><td>0,67</td></tr>
-                <tr><td>Aro (parede fina)</td><td><span data-tex-inline="mR^2"></span></td><td>1,00</td></tr>
-                <tr><td>Barra delgada (centro)</td><td><span data-tex-inline="\tfrac{1}{12}mL^2"></span></td><td>—</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="callout warn">
-              <strong>Momento de inércia de massa não é momento de inércia de área</strong>
-              O de área (I = ∫y²dA, em m⁴) vem da flexão de vigas; o de massa (I = ∫r²dm, em kg·m²) mede a resistência à aceleração angular. Símbolos parecidos, significados diferentes — e o teorema dos eixos paralelos vale para os dois, cada um na sua forma.
-            </div>
-          </div>
-        </details>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.3</span>Projétil</div>
+          <p>Uma bola é lançada do solo a 20 m/s, 30° acima da horizontal. Determine a altura máxima, o tempo de voo e o alcance.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Componentes iniciais: <span data-tex-inline="v_{0x} = 20\cos30° = 17{,}3\ \text{m/s}"></span> e <span data-tex-inline="v_{0y} = 20\,\text{sen}\,30° = 10\ \text{m/s}"></span>.</li>
+              <li>Altura máxima (v_y = 0): <span data-tex-inline="h = \dfrac{10^2}{2\cdot 9{,}81} = 5{,}10\ \text{m}"></span>.</li>
+              <li>Tempo de voo (y volta a zero): <span data-tex-inline="t = \dfrac{2v_{0y}}{g} = 2{,}04\ \text{s}"></span>.</li>
+              <li>Alcance: <span data-tex-inline="R = v_{0x}\,t = 17{,}3\cdot 2{,}04 = 35{,}3\ \text{m}"></span> (o mesmo que <span data-tex-inline="v_0^2\,\text{sen}\,60°/g"></span>).</li>
+            </ol>
+            <p class="resposta">h = 5,10 m, t = 2,04 s, R = 35,3 m. O alcance máximo sairia com 45°; 30° e 60° dão o mesmo alcance.</p>
+          </details>
+        </div>
 
-        <details class="topic">
-          <summary>8. Energia e impulso angular no corpo rígido</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="E_c = \tfrac12 m v_G^2 + \tfrac12 I_G\omega^2 \qquad W_{momento} = \int M\,d\theta"></span><span class="where">a energia cinética se separa em translação e rotação</span></div>
-            <div class="formula"><span data-tex="H_G = I_G\,\omega \qquad \int M_G\,dt = \Delta H_G"></span><span class="where">impulso angular e quantidade de movimento angular</span></div>
-            <p>Quando não há momento externo, H se conserva: é por isso que a patinadora acelera o giro ao recolher os braços — I diminui e ω cresce, de forma que Iω permanece constante.</p>
-            <div class="formula"><span data-tex="q = \frac{I_O}{m d}"></span><span class="where">centro de percussão: aplicar a força aí não gera reação no pivô</span></div>
-            <div class="callout tip">
-              <strong>O "ponto doce" do taco</strong>
-              Bater exatamente no centro de percussão faz com que a translação produzida pela força e a rotação em torno do centro de massa se cancelem no ponto de apoio: nenhuma reação chega à mão. Fora dele, a pancada volta pelo cabo.
-            </div>
-          </div>
-        </details>
+        <h3 id="s1-4"><span class="num">1.4</span>Componentes normal e tangencial</h3>
+        <p>Quando a trajetória é conhecida — uma curva de estrada, um trilho, uma pista circular —, é mais útil decompor a aceleração em duas direções que acompanham a partícula: a <strong>tangente</strong> à trajetória, no sentido do movimento, e a <strong>normal</strong>, apontando para o centro de curvatura. A velocidade é sempre puramente tangencial (<span data-tex-inline="\vec v = v\,\vec e_t"></span>); ao derivá-la, aparecem dois termos, porque tanto o módulo v quanto a direção <span data-tex-inline="\vec e_t"></span> variam:</p>
+        <div class="formula"><span data-tex="\vec a = \dot v\,\vec e_t + v\,\dot{\vec e}_t = \underbrace{\dot v}_{a_t}\,\vec e_t + \underbrace{\frac{v^2}{\rho}}_{a_n}\,\vec e_n"></span><span class="where">ρ é o raio de curvatura; a_t muda o módulo da velocidade, a_n muda a direção</span></div>
+        <p>A consequência mais importante está em <span data-tex-inline="a_n = v^2/\rho"></span>: <em>qualquer</em> trajetória curva exige aceleração, mesmo com velocidade escalar constante. No movimento circular uniforme a aceleração é toda normal (centrípeta). Aceleração nula exige trajetória reta <em>e</em> velocidade constante.</p>
 
-        <details class="topic">
-          <summary>9. Aplicações: veículos e vibração livre</summary>
-          <div class="topic-body">
-            <h4>Dinâmica longitudinal</h4>
-            <div class="formula"><span data-tex="N_f = \frac{mg(L-b)}{L} - \frac{mah}{L} \qquad N_r = \frac{mg\,b}{L} + \frac{mah}{L} \qquad \Delta N = \frac{mah}{L}"></span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Tração</th><th>Aceleração máxima</th><th>Comentário</th></tr></thead>
-              <tbody>
-                <tr><td>Traseira</td><td><span data-tex-inline="\dfrac{\mu g\,(b/L)}{1 - \mu h/L}"></span></td><td>A transferência ajuda: o eixo motriz ganha carga</td></tr>
-                <tr><td>Dianteira</td><td><span data-tex-inline="\dfrac{\mu g\,((L-b)/L)}{1 + \mu h/L}"></span></td><td>A transferência atrapalha</td></tr>
-                <tr><td>Integral</td><td><span data-tex-inline="\mu g"></span></td><td>Limite absoluto do atrito</td></tr>
-                <tr><td>Frenagem</td><td><span data-tex-inline="-\mu g"></span>, com <span data-tex-inline="d = v^2/2\mu g"></span></td><td>Distância cresce com o quadrado da velocidade</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <h4>Vibração livre — a ponte para a próxima disciplina</h4>
-            <div class="formula"><span data-tex="m\ddot x + kx = 0 \Rightarrow \omega_n = \sqrt{k/m} \qquad I_O\ddot\theta + mgd\,\theta = 0 \Rightarrow \omega_n = \sqrt{\frac{mgd}{I_O}}"></span></div>
-            <p>O pêndulo composto é o primeiro sistema vibratório do curso: a mesma equação diferencial, com o momento de inércia no lugar da massa e o momento do peso no lugar da rigidez.</p>
-          </div>
-        </details>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.4</span>Carro acelerando numa curva</div>
+          <p>Um carro passa a 15 m/s por uma curva de raio 50 m e, nesse instante, acelera à taxa de 2 m/s². Qual o módulo da aceleração total?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Tangencial: é a taxa de variação do módulo da velocidade, <span data-tex-inline="a_t = 2\ \text{m/s}^2"></span>.</li>
+              <li>Normal: <span data-tex-inline="a_n = v^2/\rho = 15^2/50 = 4{,}5\ \text{m/s}^2"></span>.</li>
+              <li>As duas são perpendiculares: <span data-tex-inline="a = \sqrt{2^2 + 4{,}5^2} = 4{,}92\ \text{m/s}^2"></span>.</li>
+            </ol>
+            <p class="resposta">a = 4,92 m/s² — mais que o dobro do que o velocímetro "sente". É essa aceleração total que o atrito do pneu precisa fornecer (capítulo 2).</p>
+          </details>
+        </div>
+
+        <h3 id="s1-5"><span class="num">1.5</span>Coordenadas polares e a aceleração de Coriolis</h3>
+        <p>Para movimentos descritos em torno de um centro — um cursor deslizando numa haste que gira, um braço de robô, um radar acompanhando um avião —, usa-se a distância r ao centro e o ângulo θ. Derivando <span data-tex-inline="\vec r = r\,\vec e_r"></span> duas vezes, lembrando que os unitários giram com θ, obtém-se:</p>
+        <div class="formula"><span data-tex="\vec v = \dot r\,\vec e_r + r\dot\theta\,\vec e_\theta \qquad \vec a = (\ddot r - r\dot\theta^2)\,\vec e_r + (r\ddot\theta + 2\dot r\dot\theta)\,\vec e_\theta"></span><span class="where">−rθ̇² é a aceleração centrípeta; 2ṙθ̇ é a aceleração de Coriolis</span></div>
+        <p>O termo <span data-tex-inline="2\dot r\dot\theta"></span> costuma surpreender: aparece sempre que a partícula se afasta ou se aproxima do centro enquanto o raio gira. Fisicamente, quem se afasta do eixo precisa ganhar velocidade transversal (o raio maior anda mais rápido), e isso exige aceleração lateral.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.5</span>Cursor numa haste girante</div>
+          <p>Uma haste gira a ω = 2 rad/s constante. Um cursor desliza sobre ela para fora, com velocidade relativa de 1 m/s constante. Qual a aceleração do cursor quando está a 0,5 m do eixo?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Dados: <span data-tex-inline="r = 0{,}5,\ \dot r = 1,\ \ddot r = 0,\ \dot\theta = 2,\ \ddot\theta = 0"></span>.</li>
+              <li>Radial: <span data-tex-inline="a_r = 0 - 0{,}5\cdot 2^2 = -2\ \text{m/s}^2"></span> (para dentro).</li>
+              <li>Transversal: <span data-tex-inline="a_\theta = 0 + 2\cdot 1\cdot 2 = 4\ \text{m/s}^2"></span> — só Coriolis.</li>
+              <li>Módulo: <span data-tex-inline="\sqrt{2^2 + 4^2} = 4{,}47\ \text{m/s}^2"></span>.</li>
+            </ol>
+            <p class="resposta">a = 4,47 m/s², dominada pela parcela de Coriolis — que é a força que o cursor exerce de lado sobre a haste.</p>
+          </details>
+        </div>
+
+        <h3 id="s1-6"><span class="num">1.6</span>Movimento relativo</h3>
+        <p>Muitas vezes é mais fácil descrever o movimento de B a partir de um ponto A que também se move — um passageiro dentro do trem, a água saindo de um irrigador que gira. Se os eixos presos a A apenas <em>transladam</em> (não giram), as grandezas simplesmente se somam:</p>
+        <div class="formula"><span data-tex="\vec r_B = \vec r_A + \vec r_{B/A} \qquad \vec v_B = \vec v_A + \vec v_{B/A} \qquad \vec a_B = \vec a_A + \vec a_{B/A}"></span></div>
+        <p>Se os eixos também giram, surgem termos adicionais — os mesmos centrípeto e de Coriolis da seção anterior. Esse caso volta no capítulo 6, quando o ponto A for parte de um corpo rígido.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="v = ds/dt"></span>, <span data-tex-inline="a = dv/dt = v\,dv/ds"></span>; as fórmulas de aceleração constante são um caso particular.</li>
+          <li>Escolha a forma de integrar pela variável da qual a aceleração depende: t, v ou s.</li>
+          <li>Retangulares para eixos independentes (projéteis); n-t para trajetórias conhecidas; polares para movimentos em torno de um centro.</li>
+          <li>Trajetória curva ⇒ <span data-tex-inline="a_n = v^2/\rho \neq 0"></span>, mesmo com velocidade escalar constante.</li>
+          <li>Coriolis, <span data-tex-inline="2\dot r\dot\theta"></span>, surge quando o raio varia enquanto gira.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um carro faz uma curva com o velocímetro parado em 60 km/h. A aceleração dele é nula?</summary><p>Não. A direção da velocidade muda, e isso exige a aceleração normal v²/ρ, dirigida para o centro da curva. Só a componente tangencial é nula.</p></details>
+          <details><summary>A aceleração de uma partícula é a = −kx (depende da posição). Qual relação você usa para achar v(x)?</summary><p><span data-tex-inline="v\,dv = a\,dx"></span>. Integrando: <span data-tex-inline="v^2 = v_0^2 - k(x^2 - x_0^2)"></span> — é o movimento harmônico, que reaparece no capítulo 9.</p></details>
+          <details><summary>No projétil sem resistência do ar, em que ponto a velocidade é mínima?</summary><p>No topo da trajetória, onde a componente vertical se anula e sobra só a horizontal, v₀ cos θ, que é constante durante todo o voo.</p></details>
+        </div>
       </section>
 
-      <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Cinco modelos interativos e animados, com diagrama de corpo livre, balanço de energia e resolução passo a passo.</p>
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Dinâmica da partícula" data-topicos="newton">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Cinética da partícula: a segunda lei de Newton</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar ΣF = ma com um método sistemático (diagrama de corpo livre + diagrama cinético);</li>
+            <li>tratar o atrito estático e o cinético sem confundir os dois;</li>
+            <li>resolver curvas, sobrelevação e looping com as componentes n-t;</li>
+            <li>usar o princípio de d'Alembert e entender o que é a "força centrífuga".</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 (componentes da aceleração) e o diagrama de corpo livre da Estática. Toda a novidade deste capítulo é que o lado direito da equação deixa de ser zero.</p></div>
+        </div>
 
+        <p>A cinemática descreve o movimento; a cinética o explica. A ligação entre as duas é a segunda lei de Newton, e este capítulo é, no fundo, um treino de como aplicá-la sem errar: identificar todas as forças, escolher bem os eixos e lembrar que a aceleração a ser usada é exatamente aquela calculada no capítulo anterior.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>As leis de Newton e o referencial inercial</h3>
+        <p>A segunda lei diz que a resultante das forças sobre uma partícula é igual à massa vezes a aceleração:</p>
+        <div class="formula"><span data-tex="\sum \vec F = m\,\vec a"></span><span class="where">vetorial: vale em cada componente — x e y, ou n e t, ou r e θ</span></div>
+        <p>Ela tem uma condição de validade que costuma ficar implícita: a aceleração precisa ser medida num <strong>referencial inercial</strong> — um referencial que não acelera nem gira. Para quase todos os problemas de engenharia, o solo serve. Um referencial preso a um carro que freia ou a uma plataforma que gira <em>não</em> serve, e aplicar ΣF = ma nele leva a erros, a menos que se acrescentem as forças de inércia da seção 2.5.</p>
+        <p>A terceira lei — ação e reação — é a que permite separar sistemas: a força que a corda faz no bloco A é igual e oposta à que o bloco A faz na corda. Ela é a razão de as forças internas se cancelarem num sistema de partículas (capítulo 5).</p>
+
+        <h3 id="s2-2"><span class="num">2.2</span>O método: dois diagramas lado a lado</h3>
+        <p>O procedimento que evita a maior parte dos erros tem quatro passos:</p>
+        <ol>
+          <li><strong>Diagrama de corpo livre (DCL):</strong> isole o corpo e desenhe todas as forças externas — peso, normais, atritos, cabos, molas. Nenhuma força "de movimento": se não há um agente físico que a exerça, ela não existe.</li>
+          <li><strong>Diagrama cinético:</strong> ao lado, desenhe o vetor <span data-tex-inline="m\vec a"></span>, no sentido que você supõe. É o "resultado" das forças.</li>
+          <li><strong>Eixos:</strong> escolha eixos em que a aceleração tenha uma única componente — por exemplo, paralelo ao plano inclinado, e não horizontal.</li>
+          <li><strong>Equações:</strong> iguale, componente a componente, a soma das forças do DCL ao diagrama cinético. Se sobrarem incógnitas, a cinemática (vínculos como cordas inextensíveis) fornece as equações que faltam.</li>
+        </ol>
+
+        <h3 id="s2-3"><span class="num">2.3</span>Atrito e plano inclinado</h3>
+        <p>O atrito seco tem dois regimes, e confundi-los é o erro mais comum do capítulo. Enquanto não há escorregamento, a força de atrito estático é <em>a que for necessária</em> para manter o equilíbrio relativo, limitada por <span data-tex-inline="f \le \mu_e N"></span>. Só na iminência ela vale exatamente <span data-tex-inline="\mu_e N"></span>. Uma vez em movimento, o atrito cinético vale <span data-tex-inline="f = \mu_c N"></span>, com sentido oposto ao da velocidade relativa, e em geral <span data-tex-inline="\mu_c < \mu_e"></span>.</p>
+        <p>Para um bloco num plano inclinado de ângulo θ, a normal é <span data-tex-inline="N = mg\cos\theta"></span> (se não houver outras forças perpendiculares ao plano) e a componente do peso ao longo do plano é <span data-tex-inline="mg\,\text{sen}\,\theta"></span>. O bloco começa a deslizar quando esta supera o atrito máximo, isto é, quando</p>
+        <div class="formula"><span data-tex="mg\,\text{sen}\,\theta > \mu_e\, mg\cos\theta \iff \tan\theta > \mu_e = \tan\phi_s"></span><span class="where">φ_s é o ângulo de atrito — independe da massa</span></div>
+        <p>e, deslizando para baixo, a aceleração é</p>
+        <div class="formula"><span data-tex="a = g\,(\text{sen}\,\theta - \mu_c\cos\theta)"></span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Bloco numa rampa</div>
+          <p>Um bloco de 10 kg está numa rampa de 30°, com μ<sub>e</sub> = 0,3 e μ<sub>c</sub> = 0,2. Ele permanece parado? Se não, qual a aceleração?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Teste de escorregamento: <span data-tex-inline="\tan30° = 0{,}577 > \mu_e = 0{,}3"></span> — o atrito estático não segura; o bloco desliza.</li>
+              <li>Normal: <span data-tex-inline="N = 10\cdot 9{,}81\cos30° = 85{,}0\ \text{N}"></span>; atrito cinético <span data-tex-inline="f = 0{,}2\cdot 85{,}0 = 17{,}0\ \text{N}"></span>.</li>
+              <li>Ao longo do plano: <span data-tex-inline="ma = mg\,\text{sen}\,30° - f \Rightarrow a = 9{,}81(0{,}5 - 0{,}2\cdot 0{,}866) = 3{,}21\ \text{m/s}^2"></span>.</li>
+            </ol>
+            <p class="resposta">Desliza, com a = 3,21 m/s². Note que a massa se cancelou: qualquer bloco do mesmo material teria a mesma aceleração.</p>
+          </details>
+        </div>
+
+        <p>O simulador abaixo reproduz esse problema com todas as variações: inclinação, coeficientes de atrito e uma força aplicada que pode ser inclinada. Acompanhe no diagrama de corpo livre como o atrito estático "se ajusta" até o limite e só então o bloco parte.</p>
         <div id="sim-bloco" class="sim"></div>
         <div class="callout tip">
           <strong>O que testar</strong>
           Com μe = 0,4 o ângulo de atrito é 21,8°. Compare 10°, 22° e 30°: o bloco só se move quando a inclinação passa do ângulo de atrito, e isso não depende da massa. Depois incline a força aplicada e veja a normal — e o atrito — diminuírem.
         </div>
 
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.2</span>Dois corpos ligados por um fio (máquina de Atwood)</div>
+          <p>Duas massas, de 5 kg e 3 kg, pendem dos lados de uma polia ideal (sem massa e sem atrito). Determine a aceleração e a tração no fio.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>O fio inextensível dá o vínculo cinemático: as duas massas têm a mesma aceleração a, uma descendo e a outra subindo.</li>
+              <li>Massa de 5 kg (desce): <span data-tex-inline="5g - T = 5a"></span>. Massa de 3 kg (sobe): <span data-tex-inline="T - 3g = 3a"></span>.</li>
+              <li>Somando: <span data-tex-inline="2g = 8a \Rightarrow a = g/4 = 2{,}45\ \text{m/s}^2"></span>.</li>
+              <li>Tração: <span data-tex-inline="T = 3(g + a) = 36{,}8\ \text{N}"></span> — entre os dois pesos (29,4 N e 49,1 N), como deveria.</li>
+            </ol>
+            <p class="resposta">a = 2,45 m/s² e T = 36,8 N. Um erro típico é supor T = 5g: se fosse, a massa maior não aceleraria.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-4"><span class="num">2.4</span>Movimento curvilíneo: curvas, sobrelevação e looping</h3>
+        <p>Nas trajetórias curvas, a segunda lei é escrita nas direções n e t, e a equação normal é a que traz a informação nova: a resultante das forças na direção do centro deve valer <span data-tex-inline="m v^2/\rho"></span>. Não há uma força "centrípeta" a mais no DCL — o nome designa a <em>resultante</em> normal, fornecida por forças que já existem (atrito, normal, tração, peso).</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Situação</th><th>Quem fornece a resultante normal</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Curva plana</td><td>Atrito lateral dos pneus, <span data-tex-inline="f \le \mu N"></span></td><td><span data-tex-inline="v_{max} = \sqrt{\mu g R}"></span></td></tr>
+            <tr><td>Curva sobrelevada θ, sem atrito</td><td>Componente horizontal da normal</td><td><span data-tex-inline="v = \sqrt{gR\tan\theta}"></span> (velocidade de projeto)</td></tr>
+            <tr><td>Looping, ponto mais alto</td><td>Peso + normal da pista</td><td><span data-tex-inline="v_{min} = \sqrt{gR}"></span>, quando N = 0</td></tr>
+            <tr><td>Pêndulo cônico</td><td>Componente horizontal da tração</td><td><span data-tex-inline="\tan\theta = v^2/(gR)"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.3</span>Velocidade máxima numa curva</div>
+          <p>Uma curva plana tem raio de 80 m e o atrito lateral disponível é μ = 0,6. (a) Qual a velocidade máxima? (b) Se a curva fosse sobrelevada de 10° e sem atrito, qual seria a velocidade de projeto?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) Direção normal: <span data-tex-inline="f = mv^2/R"></span>; vertical: N = mg. No limite, <span data-tex-inline="\mu mg = mv^2/R \Rightarrow v = \sqrt{0{,}6\cdot 9{,}81\cdot 80} = 21{,}7\ \text{m/s}"></span> (78 km/h).</li>
+              <li>(b) Vertical: <span data-tex-inline="N\cos\theta = mg"></span>; normal: <span data-tex-inline="N\,\text{sen}\,\theta = mv^2/R"></span>. Dividindo: <span data-tex-inline="v = \sqrt{gR\tan10°} = 11{,}8\ \text{m/s}"></span> (42 km/h).</li>
+            </ol>
+            <p class="resposta">(a) 21,7 m/s; (b) 11,8 m/s. A sobrelevação sozinha resolve pouco a essa inclinação; na prática ela se soma ao atrito.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-5"><span class="num">2.5</span>O princípio de d'Alembert e as forças de inércia</h3>
+        <p>Passando <span data-tex-inline="m\vec a"></span> para o outro lado da equação, a segunda lei ganha a aparência de um equilíbrio:</p>
+        <div class="formula"><span data-tex="\sum \vec F + (-m\vec a) = 0"></span><span class="where">−ma é a força de inércia de d'Alembert</span></div>
+        <p>A vantagem é poder usar todas as ferramentas da Estática — inclusive somar momentos em torno de qualquer ponto — tratando a força de inércia como mais uma força aplicada. Ela aparece naturalmente quando se descreve o problema num referencial acelerado: quem está dentro de um carro que faz uma curva "sente" uma força para fora — a centrífuga — que é exatamente <span data-tex-inline="-m\vec a_n"></span>.</p>
+        <div class="callout warn">
+          <strong>Erro comum: pôr a força centrífuga no DCL do referencial do solo</strong>
+          No referencial inercial há apenas as forças reais, e a resultante delas aponta para o centro. Se você também desenhar a centrífuga, a conta dará "equilíbrio" e a aceleração centrípeta sumirá. Use uma ou outra descrição — nunca as duas ao mesmo tempo.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.4</span>Pêndulo dentro de um vagão que acelera</div>
+          <p>Um pêndulo está pendurado no teto de um vagão que acelera a 2 m/s². Que ângulo o fio faz com a vertical, em regime?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>No referencial do vagão, o pêndulo está em equilíbrio sob o peso mg, a tração T e a força de inércia ma, para trás.</li>
+              <li>Horizontal: <span data-tex-inline="T\,\text{sen}\,\theta = ma"></span>; vertical: <span data-tex-inline="T\cos\theta = mg"></span>.</li>
+              <li><span data-tex-inline="\tan\theta = a/g = 2/9{,}81 \Rightarrow \theta = 11{,}5°"></span>, inclinado para trás.</li>
+            </ol>
+            <p class="resposta">θ = 11,5°. É o princípio do acelerômetro de pêndulo — e a mesma conta, feita no referencial do solo, dá o mesmo resultado.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>ΣF = ma vale em referencial inercial; desenhe sempre o DCL e o diagrama cinético.</li>
+          <li>Atrito estático é o necessário, até μ<sub>e</sub>N; cinético vale μ<sub>c</sub>N. O bloco desliza quando tan θ &gt; μ<sub>e</sub>.</li>
+          <li>Em curvas, a resultante normal vale mv²/ρ e é fornecida por forças reais.</li>
+          <li>d'Alembert transforma dinâmica em estática somando −ma; a centrífuga é essa força vista do referencial girante.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um bloco está parado numa rampa de 15°, com μe = 0,5. Qual é a força de atrito?</summary><p>É mg sen 15° — a necessária para o equilíbrio —, e não μe·N. Como tan 15° = 0,27 &lt; 0,5, há folga: o atrito está abaixo do máximo.</p></details>
+          <details><summary>No ponto mais alto de um looping, com v = √(gR), qual é a força normal da pista?</summary><p>Zero. O peso sozinho fornece a resultante centrípeta mv²/R = mg. Abaixo dessa velocidade o carrinho perde contato.</p></details>
+          <details><summary>Por que o ângulo de atrito independe da massa?</summary><p>Porque tanto a componente do peso que puxa para baixo quanto a normal (e com ela o atrito máximo) são proporcionais a mg; a massa se cancela na razão.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Dinâmica da partícula" data-topicos="energia">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Trabalho e energia</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir o teorema do trabalho e energia a partir da segunda lei;</li>
+            <li>calcular o trabalho do peso, de molas e do atrito;</li>
+            <li>usar a conservação da energia mecânica e saber quando ela não vale;</li>
+            <li>relacionar potência, força e velocidade, e calcular rendimentos.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2 (DCL e atrito) e a relação <span data-tex-inline="a = v\,dv/ds"></span> da seção 1.1, que é o ponto de partida da dedução.</p></div>
+        </div>
+
+        <p>No capítulo 2 a segunda lei deu a aceleração num instante. Mas muitas perguntas de engenharia não são sobre instantes, e sim sobre <em>posições</em>: com que velocidade o bloco chega ao fim da rampa? Quanto a mola se comprime? Responder a isso com ΣF = ma exige integrar; o método da energia faz essa integração uma vez, de forma geral, e entrega o resultado pronto.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Trabalho de uma força</h3>
+        <p>Uma força realiza trabalho quando seu ponto de aplicação se desloca na direção dela. O trabalho elementar é o produto escalar da força pelo deslocamento, e o trabalho entre duas posições é a integral ao longo do caminho:</p>
+        <div class="formula"><span data-tex="dW = \vec F\cdot d\vec r = F\cos\alpha\,ds \qquad W_{1\to2} = \int_1^2 \vec F\cdot d\vec r"></span><span class="where">α é o ângulo entre a força e o deslocamento; unidade: joule (N·m)</span></div>
+        <p>Três casos resolvem quase todos os problemas:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Força</th><th>Trabalho de 1 a 2</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Peso</td><td><span data-tex-inline="-mg\,(y_2 - y_1)"></span></td><td>Só importa a variação de altura, não o caminho</td></tr>
+            <tr><td>Mola linear</td><td><span data-tex-inline="-\tfrac12 k\,(x_2^2 - x_1^2)"></span></td><td>x é a deformação a partir do comprimento livre</td></tr>
+            <tr><td>Atrito cinético</td><td><span data-tex-inline="-\mu_c N\,s"></span></td><td>s é o comprimento percorrido; sempre negativo</td></tr>
+            <tr><td>Normal, atrito no rolamento puro</td><td>0</td><td>Perpendicular ao movimento ou aplicada num ponto parado</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A última linha é a que mais economiza trabalho: forças que não trabalham simplesmente não aparecem na equação da energia, mesmo que sejam desconhecidas. Numa montanha-russa sem atrito, a normal da pista varia o tempo todo e nunca precisa ser calculada.</p>
+
+        <h3 id="s3-2"><span class="num">3.2</span>O teorema do trabalho e energia</h3>
+        <p>Parta da segunda lei na direção tangencial, <span data-tex-inline="F_t = m a_t"></span>, e use a forma <span data-tex-inline="a_t = v\,dv/ds"></span>:</p>
+        <div class="formula"><span data-tex="F_t\,ds = m\,v\,dv \;\Rightarrow\; \int_1^2 F_t\,ds = \tfrac12 m v_2^2 - \tfrac12 m v_1^2"></span></div>
+        <p>O lado esquerdo é o trabalho total de todas as forças; o direito, a variação da grandeza <span data-tex-inline="E_c = \tfrac12 mv^2"></span>, a <strong>energia cinética</strong>:</p>
+        <div class="formula"><span data-tex="E_{c1} + W_{1\to2} = E_{c2}"></span><span class="where">equação escalar: nada de componentes, nada de tempo</span></div>
+        <p>É por isso que energia costuma ser o caminho mais curto: a equação é escalar, dispensa conhecer as forças instante a instante e ignora as que não trabalham. O preço é que ela dá uma equação só — com duas incógnitas, será preciso complementá-la com a segunda lei.</p>
+
+        <h3 id="s3-3"><span class="num">3.3</span>Forças conservativas e conservação da energia</h3>
+        <p>O peso e a força de mola têm uma propriedade especial: o trabalho delas só depende das posições inicial e final, não do caminho. Forças assim são <strong>conservativas</strong>, e seu trabalho pode ser escrito como a diminuição de uma <strong>energia potencial</strong>:</p>
+        <div class="formula"><span data-tex="W_{cons} = -(E_{p2} - E_{p1}) \qquad E_p^{peso} = mgy \qquad E_p^{mola} = \tfrac12 kx^2"></span></div>
+        <p>Separando o trabalho total em conservativo e não conservativo (atrito, forças aplicadas por motores), o teorema toma a forma mais útil na prática:</p>
+        <div class="formula"><span data-tex="E_{c1} + E_{p1} + W_{nc} = E_{c2} + E_{p2}"></span><span class="where">se W_nc = 0, a energia mecânica E_c + E_p se conserva</span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Bloco que desce uma rampa e comprime uma mola</div>
+          <p>Um bloco de 2 kg parte do repouso a 1,5 m de altura, desce uma rampa lisa e, no plano, comprime uma mola de rigidez 2000 N/m. Qual a compressão máxima?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Sem atrito, W<sub>nc</sub> = 0: a energia mecânica se conserva. A normal da rampa não trabalha — não precisa ser calculada.</li>
+              <li>Estado 1 (topo, repouso): <span data-tex-inline="E = mgh = 2\cdot 9{,}81\cdot 1{,}5 = 29{,}4\ \text{J}"></span>.</li>
+              <li>Estado 2 (compressão máxima, bloco parado, no nível do plano): <span data-tex-inline="E = \tfrac12 kx^2"></span>.</li>
+              <li><span data-tex-inline="x = \sqrt{2\cdot 29{,}4/2000} = 0{,}172\ \text{m}"></span>.</li>
+            </ol>
+            <p class="resposta">x = 17,2 cm. O formato da rampa não entrou na conta — só a altura.</p>
+          </details>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.2</span>Distância de parada com atrito</div>
+          <p>Uma caixa de 5 kg é empurrada e solta a 6 m/s sobre um piso com μ<sub>c</sub> = 0,3. Que distância ela percorre até parar?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Única força que trabalha: o atrito, <span data-tex-inline="W = -\mu_c mg\,s"></span>.</li>
+              <li><span data-tex-inline="\tfrac12 mv^2 - \mu_c mg\,s = 0 \Rightarrow s = \dfrac{v^2}{2\mu_c g} = \dfrac{36}{2\cdot 0{,}3\cdot 9{,}81} = 6{,}12\ \text{m}"></span>.</li>
+              <li>Energia dissipada: toda a cinética inicial, <span data-tex-inline="\tfrac12\cdot 5\cdot 36 = 90\ \text{J}"></span>, virou calor no contato.</li>
+            </ol>
+            <p class="resposta">s = 6,12 m. É a mesma fórmula da distância de frenagem de um veículo (capítulo 9).</p>
+          </details>
+        </div>
+
+        <h3 id="s3-4"><span class="num">3.4</span>Potência e rendimento</h3>
+        <p>O trabalho não diz nada sobre a rapidez com que é realizado. Para isso define-se a <strong>potência</strong>, a taxa de trabalho, que para uma força aplicada a um ponto que se move a velocidade v é simplesmente o produto escalar dos dois:</p>
+        <div class="formula"><span data-tex="P = \frac{dW}{dt} = \vec F\cdot\vec v \qquad \eta = \frac{P_{útil}}{P_{fornecida}} < 1"></span><span class="where">unidade: watt (J/s); em rotação, P = Mω (capítulo 8)</span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.3</span>Potência de um elevador</div>
+          <p>Um elevador de 800 kg (cabine + carga) sobe a 2 m/s constantes. O conjunto motor-redutor tem rendimento de 80 %. Qual a potência que o motor retira da rede?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Velocidade constante ⇒ a tração do cabo iguala o peso: <span data-tex-inline="F = 800\cdot 9{,}81 = 7848\ \text{N}"></span>.</li>
+              <li>Potência útil: <span data-tex-inline="P = Fv = 7848\cdot 2 = 15{,}7\ \text{kW}"></span>.</li>
+              <li>Potência fornecida: <span data-tex-inline="15{,}7/0{,}8 = 19{,}6\ \text{kW}"></span>.</li>
+            </ol>
+            <p class="resposta">19,6 kW. Na partida, com aceleração, a tração — e a potência — seriam maiores.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="W = \int \vec F\cdot d\vec r"></span>; forças perpendiculares ao movimento ou aplicadas em pontos parados não trabalham.</li>
+          <li>Teorema: <span data-tex-inline="E_{c1} + W_{1\to2} = E_{c2}"></span> — vem de integrar ΣF = ma com a = v dv/ds.</li>
+          <li>Peso e mola são conservativos (E<sub>p</sub> = mgy, ½kx²); atrito não é.</li>
+          <li>Potência <span data-tex-inline="P = \vec F\cdot\vec v"></span>; rendimento é a razão útil/fornecida.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Duas bolas descem de uma mesma altura, uma por uma rampa reta e outra por uma curva, ambas sem atrito. Qual chega mais rápido ao fim?</summary><p>As duas chegam com a mesma velocidade, √(2gh) — a energia só enxerga a altura. Os <em>tempos</em> é que podem ser diferentes, e para isso a energia não serve.</p></details>
+          <details><summary>A força normal pode realizar trabalho?</summary><p>Pode, se o apoio se mover: a normal do piso de um elevador que sobe realiza trabalho positivo sobre o passageiro. Ela não trabalha quando a superfície está parada, porque é perpendicular ao deslocamento.</p></details>
+          <details><summary>Dobrar a velocidade de uma caixa que desliza até parar muda a distância de parada em quanto?</summary><p>Quadruplica: s = v²/(2μg).</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — Dinâmica da partícula" data-topicos="impulso">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Impulso, quantidade de movimento e impacto</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir o princípio do impulso e da quantidade de movimento;</li>
+            <li>reconhecer quando a quantidade de movimento se conserva;</li>
+            <li>resolver choques centrais e oblíquos com o coeficiente de restituição;</li>
+            <li>calcular a energia perdida num impacto e a força média de um choque.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 3. Este é o terceiro caminho da Introdução — e o único que funciona quando as forças são enormes, curtíssimas e desconhecidas, como numa colisão.</p></div>
+        </div>
+
+        <p>Numa colisão, a força de contato sobe de zero a milhares de newtons e volta a zero em milésimos de segundo, de um jeito que ninguém sabe descrever. A segunda lei, aplicada instante a instante, é inútil aqui; a energia também, porque parte dela se perde em deformação e calor. Resta integrar a segunda lei no <em>tempo</em> — e isso, surpreendentemente, basta.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Impulso e quantidade de movimento</h3>
+        <p>Escrevendo a segunda lei como <span data-tex-inline="\sum\vec F = d(m\vec v)/dt"></span> e integrando entre dois instantes:</p>
+        <div class="formula"><span data-tex="m\vec v_1 + \int_{t_1}^{t_2}\sum\vec F\,dt = m\vec v_2"></span><span class="where">o produto mv é a quantidade de movimento (ou momento linear); a integral da força é o impulso</span></div>
+        <p>A equação é vetorial — vale em cada direção separadamente — e dispensa conhecer a forma exata da força: basta sua integral. Isso permite definir uma <strong>força média</strong> durante um contato de duração Δt: <span data-tex-inline="F_{med} = \Delta(mv)/\Delta t"></span>.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Força média numa rebatida</div>
+          <p>Uma bola de 0,15 kg chega ao taco a 30 m/s e sai, em sentido oposto, a 40 m/s. O contato dura 5 ms. Qual o impulso e a força média?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Adote positivo o sentido de saída: <span data-tex-inline="v_1 = -30"></span>, <span data-tex-inline="v_2 = +40\ \text{m/s}"></span>.</li>
+              <li>Impulso: <span data-tex-inline="I = m(v_2 - v_1) = 0{,}15\,(40 + 30) = 10{,}5\ \text{N·s}"></span>.</li>
+              <li>Força média: <span data-tex-inline="F = 10{,}5/0{,}005 = 2100\ \text{N}"></span> — cerca de 1400 vezes o peso da bola.</li>
+            </ol>
+            <p class="resposta">I = 10,5 N·s e F<sub>méd</sub> = 2,1 kN. O erro típico é usar 40 − 30: a velocidade inverte de sentido.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>Conservação da quantidade de movimento</h3>
+        <p>Se a resultante das forças <em>externas</em> sobre um sistema é nula — ou desprezível durante o intervalo considerado —, o impulso é zero e a quantidade de movimento total se conserva. Numa colisão entre dois corpos, as forças de contato são internas (a que A faz em B é igual e oposta à que B faz em A) e o peso, finito, produz um impulso desprezível no intervalo curtíssimo do choque. Por isso:</p>
+        <div class="formula"><span data-tex="m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'"></span><span class="where">vale em todo choque, elástico ou não</span></div>
+
+        <h3 id="s4-3"><span class="num">4.3</span>Impacto central e coeficiente de restituição</h3>
+        <p>A conservação dá uma equação para duas incógnitas (as velocidades depois do choque). A segunda vem do comportamento dos materiais, resumido no <strong>coeficiente de restituição</strong> — a razão entre a velocidade com que os corpos se separam e a velocidade com que se aproximavam:</p>
+        <div class="formula"><span data-tex="e = \frac{v_2' - v_1'}{v_1 - v_2} \qquad 0 \le e \le 1"></span></div>
+        <p>Resolvendo as duas equações juntas:</p>
+        <div class="formula"><span data-tex="v_1' = \frac{(m_1 - e\,m_2)\,v_1 + (1+e)\,m_2 v_2}{m_1 + m_2} \qquad v_2' = \frac{(m_2 - e\,m_1)\,v_2 + (1+e)\,m_1 v_1}{m_1 + m_2}"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>e</th><th>Nome</th><th>O que acontece</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Perfeitamente elástico</td><td>A energia cinética se conserva; com massas iguais, as velocidades se trocam</td></tr>
+            <tr><td>0 &lt; e &lt; 1</td><td>Parcialmente elástico</td><td>Caso real: aço-aço ≈ 0,6 a 0,8; madeira ≈ 0,5</td></tr>
+            <tr><td>0</td><td>Perfeitamente plástico</td><td>Os corpos seguem juntos, com a velocidade do centro de massa</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A energia perdida pode ser calculada diretamente:</p>
+        <div class="formula"><span data-tex="\Delta E = \tfrac12\,\frac{m_1m_2}{m_1+m_2}\,(1 - e^2)\,(v_1 - v_2)^2"></span><span class="where">máxima para e = 0; nula para e = 1</span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.2</span>Choque central parcialmente elástico</div>
+          <p>Um carrinho de 2 kg a 5 m/s atinge outro, de 3 kg, parado. Com e = 0,5, determine as velocidades depois do choque e a energia perdida.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Quantidade de movimento: <span data-tex-inline="2\cdot 5 = 2v_1' + 3v_2'"></span>.</li>
+              <li>Restituição: <span data-tex-inline="v_2' - v_1' = 0{,}5\,(5 - 0) = 2{,}5"></span>.</li>
+              <li>Resolvendo: <span data-tex-inline="v_1' = 0{,}5\ \text{m/s}"></span> e <span data-tex-inline="v_2' = 3{,}0\ \text{m/s}"></span>. Conferência: 1 + 9 = 10 ✓.</li>
+              <li>Energia: antes 25 J; depois <span data-tex-inline="\tfrac12\cdot2\cdot0{,}25 + \tfrac12\cdot3\cdot9 = 13{,}75\ \text{J}"></span>; perdidos 11,25 J (45 %), o mesmo que dá a fórmula de ΔE.</li>
+            </ol>
+            <p class="resposta">v₁' = 0,5 m/s, v₂' = 3,0 m/s, ΔE = 11,25 J.</p>
+          </details>
+        </div>
+
+        <p>No simulador, as barras da quantidade de movimento antes e depois são sempre iguais; a da energia, só quando e = 1. Faça os casos-limite e compare com a tabela.</p>
         <div id="sim-impacto" class="sim"></div>
         <div class="callout tip">
           <strong>O que testar</strong>
           Com massas iguais e e = 1 as velocidades se trocam (é o berço de Newton). Com e = 0 os dois seguem juntos e a perda de energia é máxima. Em todos os casos a barra da quantidade de movimento antes e depois é idêntica.
         </div>
 
+        <h3 id="s4-4"><span class="num">4.4</span>Impacto oblíquo</h3>
+        <p>Quando as velocidades não estão na linha que une os centros, decompõe-se o problema em duas direções: a <strong>normal</strong> ao plano de contato, onde agem as forças de impacto, e a <strong>tangencial</strong>. Sem atrito entre os corpos, não há impulso tangencial, e cada corpo conserva sua própria componente tangencial. Na direção normal valem a conservação e a restituição, como no choque central.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.3</span>Bola contra uma parede lisa</div>
+          <p>Uma bola atinge uma parede lisa a 10 m/s, fazendo 30° com a normal à parede. Com e = 0,6, com que velocidade e ângulo ela volta?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Componentes antes: normal <span data-tex-inline="10\cos30° = 8{,}66"></span>, tangencial <span data-tex-inline="10\,\text{sen}\,30° = 5{,}0\ \text{m/s}"></span>.</li>
+              <li>Parede fixa e massiva: a normal se inverte multiplicada por e: <span data-tex-inline="0{,}6\cdot 8{,}66 = 5{,}20\ \text{m/s}"></span>.</li>
+              <li>Tangencial conservada: 5,0 m/s.</li>
+              <li><span data-tex-inline="v' = \sqrt{5{,}20^2 + 5{,}0^2} = 7{,}21\ \text{m/s}"></span>, a <span data-tex-inline="\arctan(5{,}0/5{,}20) = 43{,}9°"></span> da normal.</li>
+            </ol>
+            <p class="resposta">7,21 m/s a 43,9° da normal: a bola volta "mais rasante" do que chegou, porque perdeu só a componente normal.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-5"><span class="num">4.5</span>Escoamentos: a mesma ideia aplicada a fluxos de massa</h3>
+        <p>Um jato que incide numa pá, a água que muda de direção numa curva de tubulação, os gases que saem de um foguete: nesses casos não há um corpo, e sim um fluxo contínuo de massa. Aplicando o princípio do impulso à massa que atravessa um volume em um intervalo dt, chega-se a</p>
+        <div class="formula"><span data-tex="\sum\vec F = \dot m\,(\vec v_{saída} - \vec v_{entrada})"></span><span class="where">ṁ é a vazão em massa (kg/s)</span></div>
+        <p>É a equação que dá o empuxo de motores a jato, as forças nas curvas de tubulação e o torque nas turbinas e bombas — assunto que volta em Mecânica dos Fluidos e em Máquinas de Fluxo.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="m\vec v_1 + \int\sum\vec F\,dt = m\vec v_2"></span>: vetorial, e só precisa da integral da força.</li>
+          <li>Sem impulso externo, a quantidade de movimento se conserva — em todo choque.</li>
+          <li>O coeficiente e fornece a segunda equação; a energia só se conserva com e = 1.</li>
+          <li>Impacto oblíquo: restituição na normal, conservação da tangencial (sem atrito).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Num choque perfeitamente plástico, a quantidade de movimento se conserva?</summary><p>Sim. A conservação da quantidade de movimento não depende de e. O que se perde é energia cinética, que vira deformação permanente e calor.</p></details>
+          <details><summary>Uma bola cai de 1 m e quica até 0,36 m. Qual é o e?</summary><p><span data-tex-inline="e = v'/v = \sqrt{h'/h} = \sqrt{0{,}36} = 0{,}6"></span>.</p></details>
+          <details><summary>Por que o airbag reduz a lesão, se o impulso para parar a pessoa é o mesmo?</summary><p>Porque ele aumenta o tempo de contato Δt; com o mesmo impulso, a força média, Δ(mv)/Δt, cai na mesma proporção.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte I — Dinâmica da partícula" data-topicos="impulso">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Sistemas de partículas e centro de massa</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>mostrar que as forças internas não afetam o movimento do centro de massa;</li>
+            <li>calcular a posição do centro de massa de conjuntos de corpos;</li>
+            <li>aplicar a conservação da quantidade de movimento a recuos e deslocamentos internos;</li>
+            <li>preparar a passagem da partícula para o corpo rígido.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 4 — em especial a terceira lei e a conservação da quantidade de movimento.</p></div>
+        </div>
+
+        <p>Até aqui, cada corpo foi tratado como um ponto. Mas um carro, uma biela ou um canhão têm dimensões, e suas partes se movem de formas diferentes. Este capítulo curto é a ponte entre as duas metades do livro: ele mostra que, para a <em>translação</em>, qualquer conjunto de massas se comporta como uma partícula única, localizada no centro de massa.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Centro de massa</h3>
+        <p>Para um conjunto de partículas de massas m<sub>i</sub> nas posições <span data-tex-inline="\vec r_i"></span>, o centro de massa é a média das posições ponderada pelas massas:</p>
+        <div class="formula"><span data-tex="\vec r_G = \frac{\sum m_i\,\vec r_i}{\sum m_i} \qquad \text{(corpo contínuo: } \vec r_G = \tfrac1M\!\int \vec r\,dm\text{)}"></span><span class="where">em campo gravitacional uniforme, coincide com o centro de gravidade</span></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>O movimento do centro de massa</h3>
+        <p>Escreva a segunda lei para cada partícula, separando as forças externas das internas (as que as outras partículas do sistema exercem sobre ela), e some todas as equações:</p>
+        <div class="formula"><span data-tex="\sum_i \vec F_i^{ext} + \underbrace{\sum_i\sum_j \vec f_{ij}}_{=\,0} = \sum_i m_i\vec a_i = M\,\vec a_G"></span><span class="where">as forças internas se cancelam aos pares pela terceira lei</span></div>
+        <p>O resultado, <span data-tex-inline="\sum\vec F^{ext} = M\vec a_G"></span>, é um dos mais poderosos da mecânica: o centro de massa se move como se toda a massa estivesse concentrada nele e todas as forças externas fossem aplicadas ali — não importa o que aconteça por dentro. Numa explosão no ar, os fragmentos voam em todas as direções, mas o centro de massa segue a mesma parábola de antes.</p>
+
+        <h3 id="s5-3"><span class="num">5.3</span>Conservação: recuo e deslocamentos internos</h3>
+        <p>Se não há força externa numa direção, a quantidade de movimento total nessa direção se conserva — e, se o sistema partiu do repouso, o centro de massa não se move nessa direção.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Recuo de um canhão</div>
+          <p>Um canhão de 1000 kg, livre para recuar, dispara um projétil de 10 kg a 400 m/s. Qual a velocidade de recuo? Como se divide a energia?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Horizontal, sem forças externas durante o disparo: <span data-tex-inline="0 = 10\cdot 400 - 1000\,V \Rightarrow V = 4\ \text{m/s}"></span>.</li>
+              <li>Energias: projétil <span data-tex-inline="\tfrac12\cdot10\cdot400^2 = 800\ \text{kJ}"></span>; canhão <span data-tex-inline="\tfrac12\cdot1000\cdot4^2 = 8\ \text{kJ}"></span>.</li>
+            </ol>
+            <p class="resposta">V = 4 m/s. As quantidades de movimento são iguais, mas a energia vai quase toda para o corpo leve — por isso o recuo é suportável.</p>
+          </details>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.2</span>Pessoa andando num barco</div>
+          <p>Uma pessoa de 80 kg anda 3 m da popa à proa de um barco de 120 kg, inicialmente parado na água (despreze o atrito da água). Quanto o barco se desloca?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Sem força horizontal externa e partindo do repouso, o centro de massa do sistema fica parado.</li>
+              <li>Se o barco anda d para trás, a pessoa anda (3 − d) para a frente em relação à água: <span data-tex-inline="80\,(3 - d) = 120\,d \Rightarrow d = 1{,}2\ \text{m}"></span>.</li>
+            </ol>
+            <p class="resposta">O barco recua 1,2 m, e a pessoa avança 1,8 m em relação à água.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-4"><span class="num">5.4</span>Energia de um sistema: translação mais movimento relativo</h3>
+        <p>A energia cinética de um sistema pode ser separada em duas parcelas: a do centro de massa, como se toda a massa andasse com ele, e a do movimento de cada partícula <em>em relação</em> ao centro de massa:</p>
+        <div class="formula"><span data-tex="E_c = \tfrac12 M v_G^2 + \sum \tfrac12 m_i\,v_{i/G}^2"></span></div>
+        <p>Para um corpo rígido, o movimento relativo ao centro de massa só pode ser uma rotação, e a segunda parcela vira <span data-tex-inline="\tfrac12 I_G\,\omega^2"></span>. É esse o caminho que leva ao capítulo 8 — e a razão pela qual precisamos, antes, aprender a descrever rotações.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\sum\vec F^{ext} = M\vec a_G"></span>: forças internas não movem o centro de massa.</li>
+          <li>Sem força externa numa direção, o CM parado continua parado nessa direção.</li>
+          <li>E<sub>c</sub> = translação do CM + movimento relativo ao CM (no corpo rígido: rotação).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um astronauta parado no espaço consegue se deslocar sem empurrar nada?</summary><p>Pode mexer braços e pernas e mudar de orientação, mas seu centro de massa não sai do lugar: sem força externa, não há como acelerá-lo. Por isso se usam jatos de gás.</p></details>
+          <details><summary>No exemplo do canhão, a força do disparo é interna ou externa?</summary><p>Interna ao sistema canhão + projétil: os gases empurram os dois com forças iguais e opostas. Por isso a quantidade de movimento total continua nula.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Dinâmica do corpo rígido" data-topicos="corpo">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Cinemática do corpo rígido</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>classificar os movimentos planos: translação, rotação em eixo fixo e movimento plano geral;</li>
+            <li>relacionar velocidades e acelerações de dois pontos do mesmo corpo;</li>
+            <li>usar o centro instantâneo de rotação para achar velocidades sem álgebra vetorial;</li>
+            <li>descrever o rolamento sem deslizamento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 (componentes n-t e movimento relativo) e produto vetorial. Aqui a partícula ganha tamanho, e com ele uma nova grandeza: a velocidade angular.</p></div>
+        </div>
+
+        <p>Um corpo rígido é um conjunto de partículas cujas distâncias mútuas não mudam. Essa restrição é forte: se soubermos como se movem dois pontos, sabemos como se move o corpo inteiro. Toda a cinemática do corpo rígido plano se resume a uma velocidade angular ω, uma aceleração angular α e o movimento de um ponto de referência.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Os três tipos de movimento plano</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Característica</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>Translação</td><td>Todo segmento do corpo mantém a direção; todos os pontos têm a mesma velocidade (ω = 0)</td><td>Pistão; biela de uma locomotiva a vapor (translação curvilínea)</td></tr>
+            <tr><td>Rotação em eixo fixo</td><td>Os pontos descrevem círculos em torno do eixo</td><td>Polia, volante, engrenagem, manivela</td></tr>
+            <tr><td>Movimento plano geral</td><td>Combinação de translação com rotação</td><td>Biela de motor; roda que rola</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Rotação em torno de um eixo fixo</h3>
+        <p>Cada ponto a uma distância r do eixo descreve um círculo. Aplicando as componentes n-t do capítulo 1 com ρ = r:</p>
+        <div class="formula"><span data-tex="v = \omega\,r \qquad a_t = \alpha\,r \qquad a_n = \omega^2 r = \frac{v^2}{r}"></span><span class="where">ω = dθ/dt, α = dω/dt; com α constante valem as fórmulas do movimento uniformemente variado, trocando s por θ</span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Partida de um motor</div>
+          <p>Um rotor acelera uniformemente do repouso a 1800 rpm em 3 s. Determine a aceleração angular, o número de voltas até atingir a rotação e, no fim, a velocidade e a aceleração normal de um ponto a 100 mm do eixo.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\omega = 1800\cdot 2\pi/60 = 188{,}5\ \text{rad/s}"></span>; <span data-tex-inline="\alpha = 188{,}5/3 = 62{,}8\ \text{rad/s}^2"></span>.</li>
+              <li><span data-tex-inline="\theta = \tfrac12\alpha t^2 = 282{,}7\ \text{rad} = 45\ \text{voltas}"></span>.</li>
+              <li><span data-tex-inline="v = \omega r = 18{,}8\ \text{m/s}"></span>; <span data-tex-inline="a_n = \omega^2 r = 3553\ \text{m/s}^2"></span> (≈ 360 g), enquanto <span data-tex-inline="a_t = \alpha r = 6{,}3\ \text{m/s}^2"></span>.</li>
+            </ol>
+            <p class="resposta">α = 62,8 rad/s², 45 voltas, v = 18,8 m/s, a<sub>n</sub> ≈ 3550 m/s². Em máquinas rápidas a aceleração centrípeta domina — é ela que carrega os rotores e exige balanceamento.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-3"><span class="num">6.3</span>Movimento plano geral: velocidade relativa</h3>
+        <p>Como a distância entre dois pontos A e B do corpo é fixa, B só pode se mover em relação a A girando em torno dele. Somando a translação de A com essa rotação:</p>
+        <div class="formula"><span data-tex="\vec v_B = \vec v_A + \vec\omega\times\vec r_{B/A} \qquad \vec a_B = \vec a_A + \vec\alpha\times\vec r_{B/A} - \omega^2\,\vec r_{B/A}"></span><span class="where">a velocidade relativa é perpendicular a AB; a aceleração relativa tem parcela tangencial (α) e normal (ω²)</span></div>
+        <p>Na prática, escreve-se essa equação vetorial em x e y e resolvem-se duas incógnitas — tipicamente a velocidade de um ponto que só pode se mover numa direção conhecida (um pistão, um cursor) e a velocidade angular de uma barra.</p>
+
+        <h3 id="s6-4"><span class="num">6.4</span>Centro instantâneo de rotação</h3>
+        <p>Em cada instante do movimento plano existe um ponto — no corpo ou fora dele — com velocidade nula. Em relação a ele, o corpo está apenas <em>girando</em> naquele instante, e a velocidade de qualquer ponto é <span data-tex-inline="v = \omega\,r_{CIR}"></span>, perpendicular à linha que o liga ao CIR. Para encontrá-lo, basta traçar perpendiculares às velocidades de dois pontos: o CIR está na interseção.</p>
+        <div class="callout warn">
+          <strong>Erro comum: usar o CIR para acelerações</strong>
+          O CIR tem velocidade nula, mas em geral <em>não</em> tem aceleração nula — o ponto de contato de uma roda, por exemplo, tem aceleração ω²r para cima. O CIR serve para velocidades; acelerações exigem a equação da seção 6.3.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.2</span>Biela-manivela na posição vertical</div>
+          <p>Num mecanismo biela-manivela, a manivela de 100 mm gira a 100 rad/s e a biela mede 300 mm. Qual a velocidade do pistão quando a manivela está perpendicular à linha do cilindro?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>O pino da manivela tem velocidade <span data-tex-inline="\omega r = 100\cdot 0{,}1 = 10\ \text{m/s}"></span>, perpendicular à manivela — portanto paralela à linha do cilindro.</li>
+              <li>O pistão também se move paralelamente ao cilindro. As perpendiculares às duas velocidades são paralelas: o CIR da biela está no infinito.</li>
+              <li>CIR no infinito ⇒ a biela está em translação instantânea (ω<sub>biela</sub> = 0) e todos os seus pontos têm a mesma velocidade.</li>
+            </ol>
+            <p class="resposta">v<sub>pistão</sub> = 10 m/s, sem nenhuma conta vetorial. É aproximadamente a velocidade máxima do pistão.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-5"><span class="num">6.5</span>Rolamento sem deslizamento</h3>
+        <p>Uma roda que rola sem deslizar é o caso mais importante de movimento plano geral. O ponto de contato não escorrega em relação ao solo, então é o CIR. Daí:</p>
+        <div class="formula"><span data-tex="v_G = \omega\,r \qquad a_G = \alpha\,r \qquad v_{topo} = 2\,v_G"></span></div>
+        <p>O ponto de contato está parado, por isso o atrito que age ali é <em>estático</em> e não dissipa energia — um fato que simplifica muito o capítulo 8.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.3</span>Velocidades numa roda</div>
+          <p>Uma roda de raio 0,3 m rola a 10 m/s. Determine ω, a velocidade do topo e a de um ponto da borda na altura do centro.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\omega = v_G/r = 33{,}3\ \text{rad/s}"></span>.</li>
+              <li>Topo, a 2r do CIR: <span data-tex-inline="v = 2\cdot 10 = 20\ \text{m/s}"></span>.</li>
+              <li>Ponto lateral, a <span data-tex-inline="r\sqrt2"></span> do CIR: <span data-tex-inline="v = \omega\,r\sqrt2 = 14{,}1\ \text{m/s}"></span>, inclinada 45°.</li>
+            </ol>
+            <p class="resposta">ω = 33,3 rad/s; topo a 20 m/s; lateral a 14,1 m/s.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-6"><span class="num">6.6</span>Eixos girantes e Coriolis</h3>
+        <p>Quando um ponto se move <em>em relação</em> a um corpo que gira — o cursor numa haste, a água num rotor de bomba —, a aceleração absoluta ganha dois termos além dos da seção 6.3:</p>
+        <div class="formula"><span data-tex="\vec a_B = \vec a_A + \vec\alpha\times\vec r + \vec\omega\times(\vec\omega\times\vec r) + 2\,\vec\omega\times\vec v_{rel} + \vec a_{rel}"></span><span class="where">2ω×v_rel é a aceleração de Coriolis, a mesma da seção 1.5 escrita em forma vetorial</span></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Rotação em eixo fixo: v = ωr, a<sub>t</sub> = αr, a<sub>n</sub> = ω²r.</li>
+          <li>Movimento plano: <span data-tex-inline="\vec v_B = \vec v_A + \vec\omega\times\vec r_{B/A}"></span>.</li>
+          <li>O CIR resolve velocidades por geometria; não serve para acelerações.</li>
+          <li>Rolamento puro: v<sub>G</sub> = ωr, contato parado, atrito estático sem dissipação.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A biela de um motor está em translação, rotação ou movimento plano geral?</summary><p>Movimento plano geral: uma ponta gira com a manivela e a outra translada com o pistão. Só em instantes particulares (exemplo 6.2) ela está em translação instantânea.</p></details>
+          <details><summary>Qual ponto de uma roda que rola tem a maior velocidade?</summary><p>O topo, a 2v<sub>G</sub> — é o mais distante do CIR.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Dinâmica do corpo rígido" data-topicos="corpo,rolamento">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Cinética do corpo rígido: forças e momentos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>entender o momento de inércia de massa como a "massa da rotação";</li>
+            <li>usar o teorema dos eixos paralelos e o raio de giração;</li>
+            <li>escrever e resolver as equações de Newton-Euler do movimento plano;</li>
+            <li>determinar reações em pinos e a condição de rolamento numa rampa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5 (<span data-tex-inline="\sum F = Ma_G"></span>) e capítulo 6 (ω, α e o rolamento). Da Estática: somatório de momentos.</p></div>
+        </div>
+
+        <p>O capítulo 5 mostrou que a translação de qualquer corpo é governada por <span data-tex-inline="\sum\vec F = m\vec a_G"></span>. Falta a equação da rotação — e com ela uma propriedade nova do corpo, que diz quão difícil é fazê-lo girar.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Momento de inércia de massa</h3>
+        <p>Um corpo que gira com α tem cada partícula com aceleração tangencial αr, que exige uma força dm·αr e produz, em torno do eixo, um momento r·(dm αr). Somando sobre o corpo:</p>
+        <div class="formula"><span data-tex="\sum M = \alpha\int r^2\,dm = I\,\alpha \qquad I = \int r^2\,dm = m\,k^2"></span><span class="where">I em kg·m²; k é o raio de giração — a distância à qual toda a massa, concentrada, daria o mesmo I</span></div>
+        <p>O momento de inércia depende não só da massa, mas de <em>como ela está distribuída</em>: massa longe do eixo pesa ao quadrado. Um aro e um disco de mesma massa e raio têm momentos de inércia na razão 2 para 1.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Corpo</th><th>I no centro de massa</th><th>k² / r²</th></tr></thead>
+          <tbody>
+            <tr><td>Esfera maciça</td><td><span data-tex-inline="\tfrac25 mR^2"></span></td><td>0,40</td></tr>
+            <tr><td>Cilindro maciço (disco)</td><td><span data-tex-inline="\tfrac12 mR^2"></span></td><td>0,50</td></tr>
+            <tr><td>Casca esférica</td><td><span data-tex-inline="\tfrac23 mR^2"></span></td><td>0,67</td></tr>
+            <tr><td>Aro ou tubo de parede fina</td><td><span data-tex-inline="mR^2"></span></td><td>1,00</td></tr>
+            <tr><td>Barra delgada, eixo no centro</td><td><span data-tex-inline="\tfrac{1}{12}mL^2"></span></td><td>—</td></tr>
+            <tr><td>Placa retangular a × b, eixo normal no centro</td><td><span data-tex-inline="\tfrac{1}{12}m(a^2+b^2)"></span></td><td>—</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Para um eixo paralelo ao do centro de massa, a uma distância d, vale o <strong>teorema dos eixos paralelos</strong>:</p>
+        <div class="formula"><span data-tex="I_O = I_G + m\,d^2"></span><span class="where">I_G é sempre o menor momento de inércia entre todos os eixos paralelos</span></div>
+        <div class="callout warn">
+          <strong>Erro comum: confundir com o momento de inércia de área</strong>
+          O de área (<span data-tex-inline="\int y^2\,dA"></span>, em m⁴) vem da flexão de vigas, em Mecânica dos Materiais; o de massa (<span data-tex-inline="\int r^2\,dm"></span>, em kg·m²) mede a resistência à aceleração angular. Símbolos parecidos, significados diferentes.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Barra girando pela ponta</div>
+          <p>Uma barra delgada de 2 kg e 1 m gira em torno de uma das extremidades. Qual o momento de inércia?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="I_G = \tfrac1{12}\cdot 2\cdot 1^2 = 0{,}167\ \text{kg·m}^2"></span>; a ponta está a d = 0,5 m do centro.</li>
+              <li><span data-tex-inline="I_O = 0{,}167 + 2\cdot 0{,}5^2 = 0{,}667\ \text{kg·m}^2 = \tfrac13 mL^2"></span>.</li>
+            </ol>
+            <p class="resposta">I<sub>O</sub> = 0,667 kg·m² — quatro vezes o valor no centro.</p>
+          </details>
+        </div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>As equações do movimento plano</h3>
+        <p>Juntando a translação do centro de massa com a rotação em torno dele, o movimento plano de um corpo rígido é governado por três equações escalares:</p>
+        <div class="formula"><span data-tex="\sum F_x = m\,a_{Gx} \qquad \sum F_y = m\,a_{Gy} \qquad \sum M_G = I_G\,\alpha"></span><span class="where">equações de Newton-Euler; os momentos são tomados em torno do centro de massa</span></div>
+        <p>Se o corpo gira em torno de um pino fixo O, é mais prático somar momentos em O, porque as reações do pino desaparecem da equação: <span data-tex-inline="\sum M_O = I_O\,\alpha"></span>. Somar momentos em outro ponto qualquer é possível, mas exige incluir o momento de <span data-tex-inline="m\vec a_G"></span> — a forma mais segura é pensar no diagrama cinético, com <span data-tex-inline="m\vec a_G"></span> aplicado em G e o binário <span data-tex-inline="I_G\alpha"></span>.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.2</span>Barra articulada liberada da horizontal</div>
+          <p>A barra do exemplo 7.1 é mantida na horizontal, articulada numa ponta, e solta do repouso. Determine a aceleração angular e a reação no pino no instante inicial.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Momentos no pino: <span data-tex-inline="mg\,\tfrac L2 = I_O\,\alpha \Rightarrow \alpha = \dfrac{2\cdot 9{,}81\cdot 0{,}5}{0{,}667} = 14{,}7\ \text{rad/s}^2"></span> (= 3g/2L).</li>
+              <li>Com ω = 0, o centro de massa só tem aceleração tangencial, vertical: <span data-tex-inline="a_G = \alpha\,\tfrac L2 = 7{,}36\ \text{m/s}^2"></span>.</li>
+              <li>Vertical: <span data-tex-inline="mg - R = m\,a_G \Rightarrow R = 2(9{,}81 - 7{,}36) = 4{,}91\ \text{N}"></span>.</li>
+            </ol>
+            <p class="resposta">α = 14,7 rad/s² e R = 4,91 N = mg/4. No instante em que se solta, o pino passa a sustentar só um quarto do peso — o resto "está caindo".</p>
+          </details>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.3</span>Torque para frear um volante</div>
+          <p>Um volante em forma de disco maciço, com 50 kg e raio 0,3 m, gira a 600 rpm. Que torque de frenagem constante o para em 10 s?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="I = \tfrac12\cdot 50\cdot 0{,}3^2 = 2{,}25\ \text{kg·m}^2"></span>; <span data-tex-inline="\omega_0 = 62{,}8\ \text{rad/s}"></span>.</li>
+              <li><span data-tex-inline="\alpha = 62{,}8/10 = 6{,}28\ \text{rad/s}^2"></span>.</li>
+              <li><span data-tex-inline="M = I\alpha = 2{,}25\cdot 6{,}28 = 14{,}1\ \text{N·m}"></span>.</li>
+            </ol>
+            <p class="resposta">M = 14,1 N·m. Em Elementos de Máquina, esse é o torque que o freio precisa desenvolver.</p>
+          </details>
+        </div>
+
+        <h3 id="s7-3"><span class="num">7.3</span>Rolamento numa rampa</h3>
+        <p>Um corpo de revolução rola sem deslizar por uma rampa de ângulo θ. As forças são o peso, a normal e o atrito estático f no contato, que aponta rampa acima. Com <span data-tex-inline="a_G = \alpha r"></span> e <span data-tex-inline="I_G = mk^2"></span>:</p>
+        <div class="formula"><span data-tex="mg\,\text{sen}\,\theta - f = m\,a \qquad f\,r = I_G\,\frac{a}{r} \;\Rightarrow\; a = \frac{g\,\text{sen}\,\theta}{1 + I_G/(mr^2)}"></span></div>
+        <p>A aceleração não depende da massa nem do raio, só da <em>forma</em> — da razão <span data-tex-inline="I_G/mr^2"></span>. Quanto mais massa longe do eixo, maior a parcela da energia que vai para a rotação e mais devagar o corpo desce. Para que o atrito consiga produzir a rotação sem deslizar, é preciso</p>
+        <div class="formula"><span data-tex="\mu_e \ge \frac{I_G/mr^2}{1 + I_G/mr^2}\,\tan\theta"></span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.4</span>Cilindro rolando</div>
+          <p>Um cilindro maciço rola por uma rampa de 30°. Qual a aceleração e o atrito mínimo para não deslizar?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="I_G/mr^2 = 0{,}5"></span>: <span data-tex-inline="a = 9{,}81\cdot 0{,}5/1{,}5 = 3{,}27\ \text{m/s}^2"></span> — dois terços do que teria deslizando sem atrito.</li>
+              <li><span data-tex-inline="\mu_e \ge (0{,}5/1{,}5)\tan30° = 0{,}192"></span>.</li>
+            </ol>
+            <p class="resposta">a = 3,27 m/s²; μ<sub>e</sub> ≥ 0,19.</p>
+          </details>
+        </div>
+
+        <p>A corrida do simulador compara esfera, cilindro, casca e aro. Antes de soltar, tente prever a ordem de chegada pela tabela de k²/r².</p>
         <div id="sim-rolamento" class="sim"></div>
         <div class="callout tip">
           <strong>O que testar</strong>
           Na corrida, a ordem de chegada é sempre esfera, cilindro, casca e aro — e não muda se você alterar massa ou raio. Depois reduza o atrito: abaixo do μ necessário a esfera escorrega em vez de rolar, e passa a perder energia.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="I = \int r^2 dm = mk^2"></span>; eixos paralelos: <span data-tex-inline="I_O = I_G + md^2"></span>.</li>
+          <li><span data-tex-inline="\sum F = ma_G"></span> e <span data-tex-inline="\sum M_G = I_G\alpha"></span>; com pino fixo, <span data-tex-inline="\sum M_O = I_O\alpha"></span>.</li>
+          <li>Rolando: <span data-tex-inline="a = g\,\text{sen}\,\theta/(1 + I_G/mr^2)"></span>, independente de m e r.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um aro e um disco de mesma massa e raio descem a mesma rampa rolando. Qual chega primeiro?</summary><p>O disco: k²/r² = 0,5 contra 1,0 do aro, logo acelera mais (g sen θ/1,5 contra g sen θ/2).</p></details>
+          <details><summary>Qual eixo dá o menor momento de inércia de um corpo, entre todos os paralelos?</summary><p>O que passa pelo centro de massa — qualquer outro soma md².</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte II — Dinâmica do corpo rígido" data-topicos="corpo,rolamento">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Energia e impulso angular no corpo rígido</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>escrever a energia cinética de um corpo que translada e gira;</li>
+            <li>aplicar a conservação da energia a corpos que rolam e pêndulos;</li>
+            <li>usar a quantidade de movimento angular e sua conservação;</li>
+            <li>entender o centro de percussão e o pêndulo composto.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 4 (os métodos integrais) e capítulo 7 (momento de inércia). Este capítulo aplica ao corpo rígido os mesmos atalhos que os capítulos 3 e 4 deram à partícula.</p></div>
+        </div>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Energia cinética do corpo rígido</h3>
+        <p>A seção 5.4 separou a energia de um sistema em translação do centro de massa mais movimento relativo a ele. No corpo rígido, o movimento relativo é uma rotação, cada partícula anda a ωr em relação a G, e a soma de ½dm(ωr)² é ½I<sub>G</sub>ω²:</p>
+        <div class="formula"><span data-tex="E_c = \tfrac12\,m\,v_G^2 + \tfrac12\,I_G\,\omega^2"></span><span class="where">em rotação pura em torno de um pino fixo O, basta ½ I_O ω²</span></div>
+        <p>O trabalho de um momento M constante ao girar o corpo de um ângulo Δθ é <span data-tex-inline="M\,\Delta\theta"></span>, e a potência transmitida por um eixo é <span data-tex-inline="P = M\,\omega"></span> — a relação que dimensiona todo eixo, acoplamento e redutor.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Esfera rolando rampa abaixo</div>
+          <p>Uma esfera maciça parte do repouso e rola sem deslizar, descendo 2 m de altura. Com que velocidade chega? E se deslizasse sem atrito?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>O atrito estático não trabalha (contato parado): a energia se conserva.</li>
+              <li><span data-tex-inline="mgh = \tfrac12 mv^2 + \tfrac12\cdot\tfrac25 mr^2\,(v/r)^2 = \tfrac12 mv^2\,(1{,}4)"></span>.</li>
+              <li><span data-tex-inline="v = \sqrt{2gh/1{,}4} = 5{,}29\ \text{m/s}"></span>; deslizando, <span data-tex-inline="\sqrt{2gh} = 6{,}26\ \text{m/s}"></span>.</li>
+            </ol>
+            <p class="resposta">5,29 m/s rolando contra 6,26 m/s deslizando: 2/7 da energia ficou na rotação.</p>
+          </details>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.2</span>A barra que cai (continuação do exemplo 7.2)</div>
+          <p>A barra de 1 m, articulada na ponta, cai da horizontal. Qual a velocidade angular ao passar pela vertical?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>O centro de massa desce L/2; o pino não trabalha.</li>
+              <li><span data-tex-inline="mg\,\tfrac L2 = \tfrac12\cdot\tfrac13 mL^2\,\omega^2 \Rightarrow \omega = \sqrt{3g/L} = 5{,}42\ \text{rad/s}"></span>.</li>
+            </ol>
+            <p class="resposta">ω = 5,42 rad/s. Com a segunda lei seria preciso integrar α(θ) — a energia faz isso de uma vez.</p>
+          </details>
+        </div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Quantidade de movimento angular</h3>
+        <p>Assim como <span data-tex-inline="\sum F = d(mv)/dt"></span> leva ao impulso linear, <span data-tex-inline="\sum M_G = d(I_G\omega)/dt"></span> leva ao impulso angular:</p>
+        <div class="formula"><span data-tex="H_G = I_G\,\omega \qquad H_{G1} + \int \sum M_G\,dt = H_{G2}"></span></div>
+        <p>Sem momento externo, H se conserva. Um corpo que muda sua distribuição de massa muda I, e ω compensa: a patinadora que recolhe os braços gira mais rápido; o mergulhador que se encolhe dá mais voltas no ar.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.3</span>Patinadora</div>
+          <p>Com os braços abertos, uma patinadora tem I = 4,0 kg·m² e gira a 1 volta/s. Recolhendo os braços, I cai para 1,2 kg·m². Qual a nova rotação?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Sem momento externo relevante (patins no gelo): <span data-tex-inline="I_1\omega_1 = I_2\omega_2"></span>.</li>
+              <li><span data-tex-inline="\omega_2 = 4{,}0\cdot 1/1{,}2 = 3{,}33\ \text{voltas/s}"></span>.</li>
+            </ol>
+            <p class="resposta">3,33 voltas/s. A energia cinética <em>aumenta</em> (de ½·4·ω² para ½·1,2·(3,33ω)²): quem paga é o trabalho muscular de puxar os braços.</p>
+          </details>
+        </div>
+
+        <h3 id="s8-3"><span class="num">8.3</span>Centro de percussão</h3>
+        <p>Uma pancada aplicada a um corpo pivotado produz, em geral, uma reação impulsiva no pivô. Existe, porém, um ponto especial, à distância</p>
+        <div class="formula"><span data-tex="q = \frac{I_O}{m\,d}"></span><span class="where">d é a distância do pivô ao centro de massa</span></div>
+        <p>em que a translação provocada pela força e a rotação em torno do centro de massa se cancelam exatamente no pivô: nenhuma reação chega a ele. É o "ponto doce" do taco de beisebol ou da raquete, e é por isso que o martelo do pêndulo Charpy é projetado para bater no corpo de prova no seu centro de percussão. Para uma barra pivotada na ponta, <span data-tex-inline="q = (\tfrac13 mL^2)/(m\tfrac L2) = \tfrac23 L"></span>.</p>
+
+        <h3 id="s8-4"><span class="num">8.4</span>Pêndulo composto</h3>
+        <p>Um corpo rígido qualquer oscilando em torno de um pivô é um pêndulo composto. Somando momentos no pivô, com o peso a uma distância d:</p>
+        <div class="formula"><span data-tex="I_O\,\ddot\theta = -mgd\,\text{sen}\,\theta \;\approx\; -mgd\,\theta \qquad T = 2\pi\sqrt{\frac{I_O}{mgd}}"></span><span class="where">pequenas oscilações; o comprimento do pêndulo simples equivalente é I_O/(md) = q</span></div>
+        <p>O comprimento equivalente coincide com o centro de percussão — não por acaso: os dois vêm da mesma razão I<sub>O</sub>/(md). Variando a posição do pivô, o período passa por um mínimo quando <span data-tex-inline="d = k_G"></span>, o raio de giração.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.4</span>Período de uma barra oscilante</div>
+          <p>Uma barra de 1 m oscila em torno de uma extremidade. Qual o período? Onde ficaria o pivô para o período mínimo, e quanto valeria?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Pivô na ponta: <span data-tex-inline="I_O/(md) = \tfrac23 L = 0{,}667\ \text{m}"></span>; <span data-tex-inline="T = 2\pi\sqrt{0{,}667/9{,}81} = 1{,}64\ \text{s}"></span>.</li>
+              <li>Mínimo em <span data-tex-inline="d = k_G = L/\sqrt{12} = 0{,}289\ \text{m}"></span> do centro; aí <span data-tex-inline="I_O/(md) = 2d = 0{,}577\ \text{m}"></span>.</li>
+              <li><span data-tex-inline="T_{min} = 2\pi\sqrt{0{,}577/9{,}81} = 1{,}52\ \text{s}"></span>.</li>
+            </ol>
+            <p class="resposta">T = 1,64 s na ponta; mínimo de 1,52 s com o pivô a 0,289 m do centro.</p>
+          </details>
         </div>
 
         <div id="sim-pendulo" class="sim"></div>
@@ -291,74 +941,177 @@
           Mude o pivô da barra e acompanhe o gráfico do período: existe uma posição de período mínimo, em d = L/√12. Aumente a amplitude para 45° e compare o período real com o de pequenas oscilações.
         </div>
 
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="E_c = \tfrac12 mv_G^2 + \tfrac12 I_G\omega^2"></span>; P = Mω.</li>
+          <li><span data-tex-inline="H_G = I_G\omega"></span> se conserva sem momento externo.</li>
+          <li>Centro de percussão e comprimento equivalente do pêndulo: q = I<sub>O</sub>/(md).</li>
+          <li>Pêndulo composto: <span data-tex-inline="T = 2\pi\sqrt{I_O/mgd}"></span>, mínimo com d = k<sub>G</sub>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um eixo transmite 15 kW a 1500 rpm. Qual o torque?</summary><p><span data-tex-inline="M = P/\omega = 15000/157{,}1 = 95{,}5\ \text{N·m}"></span>.</p></details>
+          <details><summary>Por que um gato cai sempre de pé, se não pode criar momento angular no ar?</summary><p>H total continua zero, mas o gato gira partes do corpo com I diferentes em sentidos opostos — dianteira encolhida (I pequeno, gira muito) e traseira esticada (I grande, gira pouco) —, e depois inverte. A orientação muda sem que H deixe de ser nulo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Aplicações" data-topicos="veiculo">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Aplicações: dinâmica do veículo e vibração livre</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a transferência de carga entre eixos na aceleração e na frenagem;</li>
+            <li>determinar a aceleração máxima limitada pela aderência para cada tipo de tração;</li>
+            <li>reconhecer a equação do oscilador livre, ponto de partida de Vibrações Mecânicas.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 7 (equações de Newton-Euler) e capítulo 8 (pêndulo composto). Aqui não há teoria nova: são os mesmos princípios aplicados a dois problemas reais de engenharia.</p></div>
+        </div>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Transferência de carga</h3>
+        <p>Um carro que acelera é um corpo rígido em translação (α = 0). As forças de tração ou frenagem agem no solo, mas a força de inércia <span data-tex-inline="ma"></span> age no centro de massa, a uma altura h. O binário resultante "tira" carga de um eixo e a passa para o outro. Somando momentos em torno do contato de cada eixo (com b = distância horizontal do eixo dianteiro ao centro de massa e L = entre-eixos):</p>
+        <div class="formula"><span data-tex="N_f = \frac{mg\,(L-b)}{L} - \frac{m\,a\,h}{L} \qquad N_r = \frac{mg\,b}{L} + \frac{m\,a\,h}{L} \qquad \Delta N = \frac{m\,a\,h}{L}"></span><span class="where">a &gt; 0 acelerando (carga vai para trás); a &lt; 0 freando (carga vai para a frente)</span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Frenagem de emergência</div>
+          <p>Um carro de 1200 kg tem entre-eixos de 2,6 m, centro de massa a 1,1 m do eixo dianteiro e a 0,55 m do solo. Ele freia com 0,8 g a partir de 100 km/h. Determine as cargas nos eixos parado e freando, e a distância de parada.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Parado: <span data-tex-inline="N_f = 11772\cdot 1{,}5/2{,}6 = 6792\ \text{N}"></span> (58 %); <span data-tex-inline="N_r = 4980\ \text{N}"></span>.</li>
+              <li>Transferência: <span data-tex-inline="\Delta N = 1200\cdot 7{,}85\cdot 0{,}55/2{,}6 = 1992\ \text{N}"></span>.</li>
+              <li>Freando: <span data-tex-inline="N_f = 8784\ \text{N}"></span> (75 %); <span data-tex-inline="N_r = 2988\ \text{N}"></span>.</li>
+              <li>Distância: <span data-tex-inline="d = v^2/(2\cdot 0{,}8g) = 27{,}8^2/15{,}7 = 49{,}2\ \text{m}"></span>.</li>
+            </ol>
+            <p class="resposta">O eixo dianteiro passa de 58 % para 75 % do peso — por isso os freios dianteiros são maiores e a repartição de frenagem é regulada. Distância: 49 m.</p>
+          </details>
+        </div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>Aceleração limitada pela aderência</h3>
+        <p>A força motriz máxima é μ vezes a carga no eixo motriz — e essa carga depende da própria aceleração. Substituindo na expressão de N<sub>r</sub> (ou N<sub>f</sub>) e isolando a:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tração</th><th>Aceleração máxima</th><th>Efeito da transferência</th></tr></thead>
+          <tbody>
+            <tr><td>Traseira</td><td><span data-tex-inline="\dfrac{\mu g\,(b/L)}{1 - \mu h/L}"></span></td><td>Ajuda: o eixo motriz ganha carga</td></tr>
+            <tr><td>Dianteira</td><td><span data-tex-inline="\dfrac{\mu g\,((L-b)/L)}{1 + \mu h/L}"></span></td><td>Atrapalha: o eixo motriz perde carga</td></tr>
+            <tr><td>Integral</td><td><span data-tex-inline="\mu g"></span></td><td>Todo o peso é aproveitado</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.2</span>Tração traseira ou dianteira?</div>
+          <p>Para o carro do exemplo 9.1 com μ = 0,8, compare a aceleração máxima com tração traseira e dianteira.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\mu h/L = 0{,}8\cdot 0{,}55/2{,}6 = 0{,}169"></span>.</li>
+              <li>Traseira: <span data-tex-inline="a = 0{,}8\cdot 9{,}81\cdot(1{,}1/2{,}6)/(1 - 0{,}169) = 4{,}00\ \text{m/s}^2"></span>.</li>
+              <li>Dianteira: <span data-tex-inline="a = 0{,}8\cdot 9{,}81\cdot(1{,}5/2{,}6)/(1 + 0{,}169) = 3{,}87\ \text{m/s}^2"></span>.</li>
+            </ol>
+            <p class="resposta">4,00 contra 3,87 m/s²: mesmo com só 42 % do peso atrás parado, a tração traseira vence, porque a transferência joga carga sobre ela.</p>
+          </details>
+        </div>
+
         <div id="sim-veiculo" class="sim"></div>
         <div class="callout tip">
           <strong>O que testar</strong>
           Na frenagem de emergência o eixo dianteiro chega a suportar quase 80 % do peso — por isso os freios dianteiros são maiores. Depois eleve o centro de massa (exemplo do SUV) e veja a transferência crescer na mesma proporção.
         </div>
+
+        <h3 id="s9-3"><span class="num">9.3</span>Vibração livre: a ponte para a próxima disciplina</h3>
+        <p>Uma massa presa a uma mola, deslocada do equilíbrio, sofre a força −kx. A segunda lei dá uma equação que já apareceu no pêndulo composto:</p>
+        <div class="formula"><span data-tex="m\ddot x + kx = 0 \;\Rightarrow\; \omega_n = \sqrt{k/m} \qquad I_O\ddot\theta + mgd\,\theta = 0 \;\Rightarrow\; \omega_n = \sqrt{mgd/I_O}"></span><span class="where">a mesma equação: inércia × aceleração + rigidez × deslocamento = 0</span></div>
+        <p>A solução é uma oscilação harmônica de frequência natural ω<sub>n</sub>, que depende só da razão rigidez/inércia. Uma massa de 50 kg sobre uma mola de 20 kN/m, por exemplo, oscila a <span data-tex-inline="\omega_n = \sqrt{20000/50} = 20\ \text{rad/s}"></span>, ou 3,2 Hz. Acrescentando amortecimento e forças externas, chega-se a todo o conteúdo de Vibrações Mecânicas — que começa exatamente onde este livro termina.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\Delta N = mah/L"></span>: acelerar carrega a traseira; frear carrega a dianteira.</li>
+          <li>A aceleração máxima depende de qual eixo é motriz e de como a transferência o afeta.</li>
+          <li>Oscilador livre: <span data-tex-inline="\omega_n = \sqrt{\text{rigidez}/\text{inércia}}"></span>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um carro de centro de massa alto "mergulha" mais na frenagem?</summary><p>Porque a transferência é proporcional a h: mais carga vai para a frente e a suspensão dianteira comprime mais.</p></details>
+          <details><summary>Dobrando a massa de um sistema massa-mola, o que acontece com a frequência natural?</summary><p>Cai por um fator √2 — ω<sub>n</sub> = √(k/m).</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-bloco"><small>Capítulo 2 · Segunda lei</small>Bloco no plano inclinado com atrito</a></li>
+          <li><a href="#sim-impacto"><small>Capítulo 4 · Impacto</small>Choque central entre dois corpos</a></li>
+          <li><a href="#sim-rolamento"><small>Capítulo 7 · Corpo rígido</small>Corrida de corpos rolando na rampa</a></li>
+          <li><a href="#sim-pendulo"><small>Capítulo 8 · Energia e impulso angular</small>Pêndulo composto</a></li>
+          <li><a href="#sim-veiculo"><small>Capítulo 9 · Aplicações</small>Transferência de carga no veículo</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
+        <p>Todas as equações do livro, na ordem dos capítulos, para revisão.</p>
         <div class="table-scroll">
           <table class="data">
-            <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
+            <thead><tr><th>Cap.</th><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
             <tbody>
-              <tr><td>Cinemática</td><td><span data-tex="v = \dfrac{ds}{dt},\quad a = \dfrac{dv}{dt} = v\dfrac{dv}{ds}"></span></td><td>—</td></tr>
-              <tr><td>Aceleração constante</td><td><span data-tex="v^2 = v_0^2 + 2a\Delta s"></span></td><td>—</td></tr>
-              <tr><td>Componentes n-t</td><td><span data-tex="a_t = \dot v,\quad a_n = \dfrac{v^2}{\rho}"></span></td><td>ρ: raio de curvatura</td></tr>
-              <tr><td>Coordenadas polares</td><td><span data-tex="a_\theta = r\ddot\theta + 2\dot r\dot\theta"></span></td><td>Coriolis</td></tr>
-              <tr><td>Segunda lei</td><td><span data-tex="\sum \vec F = m\vec a"></span></td><td>d'Alembert: ΣF − ma = 0</td></tr>
-              <tr><td>Plano inclinado</td><td><span data-tex="a = g(\text{sen}\,\theta - \mu\cos\theta)"></span></td><td><span data-tex-inline="\tan\phi = \mu"></span></td></tr>
-              <tr><td>Trabalho-energia</td><td><span data-tex="W = \Delta E_c"></span></td><td>escalar</td></tr>
-              <tr><td>Potência</td><td><span data-tex="P = \vec F\cdot\vec v"></span></td><td>—</td></tr>
-              <tr><td>Impulso</td><td><span data-tex="\int F\,dt = \Delta(mv)"></span></td><td>—</td></tr>
-              <tr><td>Restituição</td><td><span data-tex="e = \dfrac{v_2' - v_1'}{v_1 - v_2}"></span></td><td>0 a 1</td></tr>
-              <tr><td>Perda no choque</td><td><span data-tex="\Delta E = \tfrac12\dfrac{m_1m_2}{m_1+m_2}(1-e^2)(v_1-v_2)^2"></span></td><td>—</td></tr>
-              <tr><td>Centro de massa</td><td><span data-tex="\vec r_G = \dfrac{\sum m_i \vec r_i}{\sum m_i}"></span></td><td>—</td></tr>
-              <tr><td>Corpo rígido</td><td><span data-tex="\sum M_G = I_G\alpha,\quad \sum F = ma_G"></span></td><td>movimento plano</td></tr>
-              <tr><td>Eixos paralelos</td><td><span data-tex="I_O = I_G + md^2"></span></td><td>—</td></tr>
-              <tr><td>Energia do corpo rígido</td><td><span data-tex="E_c = \tfrac12 mv_G^2 + \tfrac12 I_G\omega^2"></span></td><td>—</td></tr>
-              <tr><td>Rolamento na rampa</td><td><span data-tex="a = \dfrac{g\,\text{sen}\,\theta}{1 + I_G/mr^2}"></span></td><td><span data-tex-inline="\mu_{nec} = \frac{k}{1+k}\tan\theta"></span></td></tr>
-              <tr><td>Pêndulo composto</td><td><span data-tex="T = 2\pi\sqrt{\dfrac{I_O}{mgd}}"></span></td><td><span data-tex-inline="q = I_O/md"></span></td></tr>
-              <tr><td>Transferência de carga</td><td><span data-tex="\Delta N = \dfrac{mah}{L}"></span></td><td>—</td></tr>
-              <tr><td>Frenagem</td><td><span data-tex="d = \dfrac{v^2}{2\mu g}"></span></td><td>—</td></tr>
+              <tr><td>1</td><td>Cinemática</td><td><span data-tex="v = \dfrac{ds}{dt},\quad a = \dfrac{dv}{dt} = v\dfrac{dv}{ds}"></span></td><td>—</td></tr>
+              <tr><td>1</td><td>Aceleração constante</td><td><span data-tex="v^2 = v_0^2 + 2a\Delta s"></span></td><td>—</td></tr>
+              <tr><td>1</td><td>Componentes n-t</td><td><span data-tex="a_t = \dot v,\quad a_n = \dfrac{v^2}{\rho}"></span></td><td>ρ: raio de curvatura</td></tr>
+              <tr><td>1</td><td>Coordenadas polares</td><td><span data-tex="a_r = \ddot r - r\dot\theta^2,\quad a_\theta = r\ddot\theta + 2\dot r\dot\theta"></span></td><td>Coriolis</td></tr>
+              <tr><td>2</td><td>Segunda lei</td><td><span data-tex="\sum \vec F = m\vec a"></span></td><td>d'Alembert: ΣF − ma = 0</td></tr>
+              <tr><td>2</td><td>Plano inclinado</td><td><span data-tex="a = g(\text{sen}\,\theta - \mu\cos\theta)"></span></td><td><span data-tex-inline="\tan\phi = \mu"></span></td></tr>
+              <tr><td>2</td><td>Curva plana</td><td><span data-tex="v_{max} = \sqrt{\mu g R}"></span></td><td>sobrelevada: <span data-tex-inline="\sqrt{gR\tan\theta}"></span></td></tr>
+              <tr><td>3</td><td>Trabalho-energia</td><td><span data-tex="E_{c1} + E_{p1} + W_{nc} = E_{c2} + E_{p2}"></span></td><td>escalar</td></tr>
+              <tr><td>3</td><td>Potência</td><td><span data-tex="P = \vec F\cdot\vec v"></span></td><td>η = útil/fornecida</td></tr>
+              <tr><td>4</td><td>Impulso</td><td><span data-tex="\int F\,dt = \Delta(mv)"></span></td><td>—</td></tr>
+              <tr><td>4</td><td>Restituição</td><td><span data-tex="e = \dfrac{v_2' - v_1'}{v_1 - v_2}"></span></td><td>0 a 1</td></tr>
+              <tr><td>4</td><td>Perda no choque</td><td><span data-tex="\Delta E = \tfrac12\dfrac{m_1m_2}{m_1+m_2}(1-e^2)(v_1-v_2)^2"></span></td><td>—</td></tr>
+              <tr><td>4</td><td>Fluxo de massa</td><td><span data-tex="\sum F = \dot m\,(v_2 - v_1)"></span></td><td>jatos</td></tr>
+              <tr><td>5</td><td>Centro de massa</td><td><span data-tex="\vec r_G = \dfrac{\sum m_i \vec r_i}{\sum m_i},\quad \sum F^{ext} = Ma_G"></span></td><td>—</td></tr>
+              <tr><td>6</td><td>Rotação em eixo fixo</td><td><span data-tex="v = \omega r,\ a_t = \alpha r,\ a_n = \omega^2 r"></span></td><td>—</td></tr>
+              <tr><td>6</td><td>Movimento plano</td><td><span data-tex="\vec v_B = \vec v_A + \vec\omega\times\vec r_{B/A}"></span></td><td>CIR: v = ω r_CIR</td></tr>
+              <tr><td>7</td><td>Corpo rígido</td><td><span data-tex="\sum M_G = I_G\alpha,\quad \sum F = ma_G"></span></td><td>movimento plano</td></tr>
+              <tr><td>7</td><td>Eixos paralelos</td><td><span data-tex="I_O = I_G + md^2"></span></td><td>I = mk²</td></tr>
+              <tr><td>7</td><td>Rolamento na rampa</td><td><span data-tex="a = \dfrac{g\,\text{sen}\,\theta}{1 + I_G/mr^2}"></span></td><td><span data-tex-inline="\mu_{nec} = \frac{k}{1+k}\tan\theta"></span>, k = I<sub>G</sub>/mr²</td></tr>
+              <tr><td>8</td><td>Energia do corpo rígido</td><td><span data-tex="E_c = \tfrac12 mv_G^2 + \tfrac12 I_G\omega^2"></span></td><td>P = Mω</td></tr>
+              <tr><td>8</td><td>Impulso angular</td><td><span data-tex="H_G = I_G\,\omega"></span></td><td>conserva sem momento externo</td></tr>
+              <tr><td>8</td><td>Pêndulo composto</td><td><span data-tex="T = 2\pi\sqrt{\dfrac{I_O}{mgd}}"></span></td><td><span data-tex-inline="q = I_O/md"></span></td></tr>
+              <tr><td>9</td><td>Transferência de carga</td><td><span data-tex="\Delta N = \dfrac{mah}{L}"></span></td><td>—</td></tr>
+              <tr><td>9</td><td>Frenagem</td><td><span data-tex="d = \dfrac{v^2}{2\mu g}"></span></td><td>—</td></tr>
+              <tr><td>9</td><td>Oscilador livre</td><td><span data-tex="\omega_n = \sqrt{k/m}"></span></td><td>—</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas técnicas</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
             <tbody>
-              <tr><td><strong>ISO 80000-3 e 80000-4</strong></td><td>Grandezas e unidades — espaço, tempo e mecânica</td><td>Definições formais de velocidade, aceleração, momento de inércia e quantidade de movimento</td></tr>
-              <tr><td><strong>ISO 8855 / SAE J670</strong></td><td>Dinâmica veicular — vocabulário e sistemas de referência</td><td>Convenções de eixos, transferência de carga e estabilidade</td></tr>
-              <tr><td><strong>ISO 611 / ABNT NBR 10966</strong></td><td>Frenagem de veículos rodoviários</td><td>Desaceleração, distância de frenagem e repartição entre eixos</td></tr>
-              <tr><td><strong>ISO 1940-1 / ISO 21940</strong></td><td>Qualidade de balanceamento de rotores rígidos</td><td>Desbalanceamento residual admissível — força centrípeta em rotores</td></tr>
-              <tr><td><strong>ISO 2631-1</strong></td><td>Exposição humana à vibração de corpo inteiro</td><td>Limite das acelerações transmitidas a operadores</td></tr>
-              <tr><td><strong>ASTM E23 / ISO 148</strong></td><td>Ensaio de impacto Charpy</td><td>Aplicação direta de energia e pêndulo composto na medida de tenacidade</td></tr>
+              <tr><td><strong>ISO 80000-3 e 80000-4</strong></td><td>Grandezas e unidades — espaço, tempo e mecânica</td><td>Definições formais de velocidade, aceleração, momento de inércia e quantidade de movimento (caps. 1 a 8)</td></tr>
+              <tr><td><strong>ISO 8855 / SAE J670</strong></td><td>Dinâmica veicular — vocabulário e sistemas de referência</td><td>Convenções de eixos, transferência de carga e estabilidade (cap. 9)</td></tr>
+              <tr><td><strong>ISO 611 / ABNT NBR 10966</strong></td><td>Frenagem de veículos rodoviários</td><td>Desaceleração, distância de frenagem e repartição entre eixos (cap. 9)</td></tr>
+              <tr><td><strong>ISO 1940-1 / ISO 21940</strong></td><td>Qualidade de balanceamento de rotores rígidos</td><td>Desbalanceamento residual admissível — força centrípeta em rotores (cap. 6)</td></tr>
+              <tr><td><strong>ISO 2631-1</strong></td><td>Exposição humana à vibração de corpo inteiro</td><td>Limite das acelerações transmitidas a operadores (cap. 9)</td></tr>
+              <tr><td><strong>ASTM E23 / ISO 148</strong></td><td>Ensaio de impacto Charpy</td><td>Energia e pêndulo composto na medida de tenacidade (cap. 8)</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
-        <p>30 questões sobre cinemática, segunda lei, trabalho e energia, impulso e impacto, corpo rígido, rolamento e aplicações.</p>
+        <h2>Apêndice C — Simulado</h2>
+        <p>30 questões sobre todos os capítulos. Para treinar um capítulo específico, use o botão "Praticar questões deste capítulo" no rodapé dele — o simulado abre já filtrado.</p>
         <div id="quiz" data-quiz="dinamica"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
-          <li><strong>HIBBELER, R. C.</strong> <em>Dinâmica: Mecânica para Engenharia.</em> Pearson. — O texto mais usado; farto em exemplos resolvidos.</li>
+          <li><strong>HIBBELER, R. C.</strong> <em>Dinâmica: Mecânica para Engenharia.</em> Pearson. — O texto mais usado; farto em exemplos resolvidos. A sequência deste livro segue a dele.</li>
           <li><strong>BEER, F. P.; JOHNSTON, E. R.</strong> <em>Mecânica Vetorial para Engenheiros: Dinâmica.</em> McGraw-Hill.</li>
           <li><strong>MERIAM, J. L.; KRAIGE, L. G.</strong> <em>Mecânica para Engenharia: Dinâmica.</em> LTC.</li>
           <li><strong>TENENBAUM, R. A.</strong> <em>Dinâmica Aplicada.</em> Manole. — Tratamento mais formal, com dinâmica de sistemas.</li>
-          <li><strong>GILLESPIE, T. D.</strong> <em>Fundamentals of Vehicle Dynamics.</em> SAE. — Transferência de carga, tração e frenagem.</li>
+          <li><strong>GILLESPIE, T. D.</strong> <em>Fundamentals of Vehicle Dynamics.</em> SAE. — Transferência de carga, tração e frenagem (cap. 9).</li>
         </ul>
       </section>
 
@@ -420,6 +1173,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">

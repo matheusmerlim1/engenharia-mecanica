@@ -48,11 +48,21 @@
     var alvo = document.getElementById(m[1]);
     var caixa = document.getElementById('simuladores');
     if (!caixa) return null;
-    Array.prototype.slice.call(caixa.querySelectorAll('div[id^="sim-"]')).forEach(function (el) {
-      if (el === alvo || el.parentNode !== caixa) return;
+    /* nas páginas em formato de livro os simuladores ficam dentro dos capítulos:
+       os outros saem e o escolhido (com a sua dica) vem para a caixa de simuladores */
+    Array.prototype.slice.call(document.querySelectorAll('main div.sim[id^="sim-"]')).forEach(function (el) {
       var dica = el.nextElementSibling;
-      if (dica && dica.classList.contains('callout')) dica.parentNode.removeChild(dica);
+      if (!(dica && dica.classList.contains('callout'))) dica = null;
+      if (el === alvo) {
+        if (el.parentNode !== caixa) { caixa.appendChild(el); if (dica) caixa.appendChild(dica); }
+        return;
+      }
+      if (dica) dica.parentNode.removeChild(dica);
       el.parentNode.removeChild(el);
+    });
+    Array.prototype.slice.call(caixa.children).forEach(function (el) {
+      if (el !== alvo && !(el.classList.contains('callout') && el.previousElementSibling === alvo) &&
+          !/^H2$|^P$/.test(el.tagName)) el.parentNode.removeChild(el);
     });
     document.documentElement.classList.add('modo-sim');
     return m[1];
