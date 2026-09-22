@@ -294,7 +294,7 @@ table.data tbody tr:hover { background: var(--bg-sunken); }
 .toc a:hover, .toc a.active { color: var(--accent); border-left-color: var(--accent); background: var(--bg-elev); text-decoration: none; }
 
 @media (max-width: 900px) {
-  .page-layout { grid-template-columns: 1fr; gap: 0; }
+  .page-layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .toc { display: none; }
   .nav-links a { display: none; }
   .nav-links a.always { display: block; }
@@ -316,12 +316,22 @@ table.data tbody tr:hover { background: var(--bg-sunken); }
 
 /* Medida legivel para texto corrido em monitores largos */
 .topic-body > p, .section > p, .hero p.lead, .gabarito p, .explicacao p { max-width: var(--medida); }
-.page-layout { grid-template-columns: var(--toc-w) minmax(0, 1fr); }
+/* só com o índice lateral visível: abaixo de 900 px a página tem uma coluna (regra acima) */
+@media (min-width: 901px) {
+  .page-layout { grid-template-columns: var(--toc-w) minmax(0, 1fr); }
+}
 
 /* ============================================================
    Fórmulas renderizadas (KaTeX)
    ============================================================ */
 .katex { font-size: 1.06em; }
+/* o MathML oculto do KaTeX é position:absolute; sem um ancestral posicionado ele escapava
+   da rolagem das tabelas e alargava a página no celular */
+.katex { position: relative; }
+.tabela-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 420px) {
+  .site-header .bar { gap: 8px; padding-left: 14px; padding-right: 14px; }
+}
 .tex-block { display: block; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
 .tex-block .katex-display { margin: .35em 0; }
 .tex-inline { white-space: nowrap; }
@@ -747,3 +757,83 @@ mark.busca-hit-atual {
 .lab-lista small { display: block; color: var(--text-faint); font-size: .78rem; }
 .modo-sim .lab-lista { display: none; }
 @media print { .cap-rodape, .livro-barra, .sumario-topo { display: none !important; } .exemplo details, .teste-se details { display: block; } }
+
+/* ---------- modo de leitura: completo × resumo ---------- */
+html.modo-resumo .so-completo { display: none !important; }
+.cap-aprofundar { display: none; margin: 4px 0 10px; }
+html.modo-resumo .cap-aprofundar { display: block; }
+/* no resumo, os pontos-chave sobem para logo abaixo do título do capítulo */
+html.modo-resumo .capitulo { display: flex; flex-direction: column; }
+html.modo-resumo .capitulo > .cap-kicker, html.modo-resumo .capitulo > h2 { order: -3; }
+html.modo-resumo .capitulo > .cap-resumo { order: -2; margin-top: 4px; }
+html.modo-resumo .capitulo > .cap-aprofundar { order: -1; }
+html.modo-resumo .capitulo > h3 { margin-top: 20px; }
+html.modo-resumo .capitulo .formula { margin: 8px 0; }
+
+.modo-bloco { margin-top: 18px; }
+.modo-pergunta { margin: 0 0 8px; font-size: .82rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--text-faint); }
+.modo-leitura { display: inline-flex; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev); padding: 3px; gap: 3px; }
+.modo-leitura button {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1px;
+  border: 0; border-radius: calc(var(--radius) - 3px); background: transparent; color: var(--text-muted);
+  padding: 8px 16px; cursor: pointer; font: inherit; text-align: left;
+}
+.modo-leitura button strong { font-size: .95rem; }
+.modo-leitura button small { font-size: .76rem; color: var(--text-faint); }
+.modo-leitura button:hover { color: var(--text); }
+.modo-leitura button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.modo-leitura button[aria-pressed="true"] small { color: rgba(255,255,255,.85); }
+.modo-leitura button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.modo-flutuante {
+  position: fixed; right: 16px; bottom: 16px; z-index: 55; box-shadow: var(--shadow-lg);
+  opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .2s, transform .2s;
+}
+.modo-flutuante.visivel { opacity: 1; transform: none; pointer-events: auto; }
+.modo-flutuante button { padding: 6px 12px; }
+.modo-flutuante button small { display: none; }
+.modo-sim .modo-flutuante, .modo-sim .modo-bloco { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .modo-flutuante { transition: none; } }
+@media print { .modo-flutuante, .modo-bloco { display: none !important; } }
+
+/* ---------- livro paginado: um capítulo por vez ---------- */
+.pag-oculta { display: none !important; }
+.livro-paginado:not(.pag-inicio) .hero { display: none; }
+.livro-paginado .capitulo { border-top: 0; padding-top: 0; }
+.livro-paginado .page-layout .section.pagina:first-child,
+.livro-paginado .section.pagina { margin-top: 18px; }
+html.modo-resumo .capitulo > .pag-topo { order: -4; }
+.pag-topo {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 6px; padding: 6px;
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev);
+}
+.pag-onde { flex: 1; text-align: center; font-size: .86rem; color: var(--text-muted); }
+.pag-onde a { color: var(--text-muted); font-weight: 600; }
+.pag-onde a:hover { color: var(--accent); }
+.pag-seta {
+  flex: none; width: 38px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm); font-size: 1.5rem; line-height: 1; color: var(--accent);
+}
+a.pag-seta:hover { background: var(--accent-soft); text-decoration: none; }
+.cap-rodape { border-top: 1px solid var(--border); padding-top: 18px; margin-top: 30px; }
+
+/* coluna da esquerda do livro */
+.toc-livro { max-height: calc(100vh - 96px); overflow-y: auto; padding-right: 4px; }
+.toc-livro .toc-parte { margin: 14px 0 4px; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint); }
+.toc-livro a.toc-pag { display: flex; gap: 8px; align-items: baseline; border-left: 0; border-radius: var(--radius-sm); padding: 5px 8px; color: var(--text); }
+.toc-livro a.toc-pag.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.toc-livro .toc-num {
+  flex: none; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  font-size: .72rem; font-weight: 700; border: 1px solid var(--border-strong); color: var(--text-muted);
+}
+.toc-livro a.toc-pag.active .toc-num { border-color: var(--accent); color: var(--accent); }
+.toc-livro a.toc-pag.lido .toc-num { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.toc-livro .toc-secoes { margin: 2px 0 6px 18px; border-left: 1px solid var(--border); }
+.toc-livro .toc-secoes a { font-size: .8rem; padding: 3px 10px; border-left: 2px solid transparent; margin-left: -1px; }
+.sumario-extras { display: flex; flex-wrap: wrap; gap: 8px; }
+.sumario-extras a { padding: 8px 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev); color: var(--text); font-weight: 600; font-size: .9rem; }
+.sumario-extras a small { display: block; font-weight: 500; font-size: .74rem; color: var(--text-faint); }
+.sumario-extras a:hover { border-color: var(--accent); text-decoration: none; }
+
+/* fórmula inline mais larga que a tela: rola dentro da linha em vez de alargar a página */
+.capitulo > p, .capitulo li, .exemplo p, .cap-resumo li, .teste-se p,
+.topic-body > p, .topic-body li, .callout { overflow-x: auto; overflow-y: hidden; }

@@ -49,13 +49,13 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="sumario">
+      <section class="section" id="sumario" data-pagina="inicio">
         <h2>Sumário</h2>
-        <p>Os capítulos seguem a ordem clássica dos livros de Dinâmica: primeiro a partícula (um ponto com massa, sem dimensões), depois o corpo rígido, em que a rotação passa a importar, e por fim duas aplicações que ligam a disciplina ao resto do curso. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <p>Os capítulos seguem a ordem clássica dos livros de Dinâmica: primeiro a partícula (um ponto com massa, sem dimensões), depois o corpo rígido, em que a rotação passa a importar, e por fim duas aplicações que ligam a disciplina ao resto do curso. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
         <div id="sumario-lista"></div>
       </section>
 
-      <section class="section" id="introducao">
+      <section class="section" id="introducao" data-pagina="inicio">
         <h2>Introdução: três caminhos para o mesmo problema</h2>
         <p>Toda a Dinâmica clássica cabe numa única lei — a segunda lei de Newton — mas ela pode ser usada de três maneiras. Na forma direta, <span data-tex-inline="\sum \vec F = m\vec a"></span>, relaciona forças e aceleração <em>num instante</em>. Multiplicada escalarmente pelo deslocamento e integrada ao longo da trajetória, vira o <strong>teorema do trabalho e energia</strong>, que liga duas <em>posições</em>. Integrada no tempo, vira o <strong>princípio do impulso e da quantidade de movimento</strong>, que liga dois <em>instantes</em>. Os três métodos são equivalentes — nenhum sabe mais física que o outro —, mas cada um elimina variáveis diferentes, e escolher bem encurta a solução de uma página para três linhas.</p>
         <div class="table-scroll">
@@ -236,7 +236,7 @@
 
         <h3 id="s2-2"><span class="num">2.2</span>O método: dois diagramas lado a lado</h3>
         <p>O procedimento que evita a maior parte dos erros tem quatro passos:</p>
-        <ol>
+        <ol class="essencial">
           <li><strong>Diagrama de corpo livre (DCL):</strong> isole o corpo e desenhe todas as forças externas — peso, normais, atritos, cabos, molas. Nenhuma força "de movimento": se não há um agente físico que a exerça, ela não existe.</li>
           <li><strong>Diagrama cinético:</strong> ao lado, desenhe o vetor <span data-tex-inline="m\vec a"></span>, no sentido que você supõe. É o "resultado" das forças.</li>
           <li><strong>Eixos:</strong> escolha eixos em que a aceleração tenha uma única componente — por exemplo, paralelo ao plano inclinado, e não horizontal.</li>
@@ -526,7 +526,7 @@
         </div>
 
         <h3 id="s4-4"><span class="num">4.4</span>Impacto oblíquo</h3>
-        <p>Quando as velocidades não estão na linha que une os centros, decompõe-se o problema em duas direções: a <strong>normal</strong> ao plano de contato, onde agem as forças de impacto, e a <strong>tangencial</strong>. Sem atrito entre os corpos, não há impulso tangencial, e cada corpo conserva sua própria componente tangencial. Na direção normal valem a conservação e a restituição, como no choque central.</p>
+        <p class="essencial">Quando as velocidades não estão na linha que une os centros, decompõe-se o problema em duas direções: a <strong>normal</strong> ao plano de contato, onde agem as forças de impacto, e a <strong>tangencial</strong>. Sem atrito entre os corpos, não há impulso tangencial, e cada corpo conserva sua própria componente tangencial. Na direção normal valem a conservação e a restituição, como no choque central.</p>
 
         <div class="exemplo">
           <div class="exemplo-cab"><span class="num">Exemplo 4.3</span>Bola contra uma parede lisa</div>
@@ -679,7 +679,7 @@
         <p>Na prática, escreve-se essa equação vetorial em x e y e resolvem-se duas incógnitas — tipicamente a velocidade de um ponto que só pode se mover numa direção conhecida (um pistão, um cursor) e a velocidade angular de uma barra.</p>
 
         <h3 id="s6-4"><span class="num">6.4</span>Centro instantâneo de rotação</h3>
-        <p>Em cada instante do movimento plano existe um ponto — no corpo ou fora dele — com velocidade nula. Em relação a ele, o corpo está apenas <em>girando</em> naquele instante, e a velocidade de qualquer ponto é <span data-tex-inline="v = \omega\,r_{CIR}"></span>, perpendicular à linha que o liga ao CIR. Para encontrá-lo, basta traçar perpendiculares às velocidades de dois pontos: o CIR está na interseção.</p>
+        <p class="essencial">Em cada instante do movimento plano existe um ponto — no corpo ou fora dele — com velocidade nula. Em relação a ele, o corpo está apenas <em>girando</em> naquele instante, e a velocidade de qualquer ponto é <span data-tex-inline="v = \omega\,r_{CIR}"></span>, perpendicular à linha que o liga ao CIR. Para encontrá-lo, basta traçar perpendiculares às velocidades de dois pontos: o CIR está na interseção.</p>
         <div class="callout warn">
           <strong>Erro comum: usar o CIR para acelerações</strong>
           O CIR tem velocidade nula, mas em geral <em>não</em> tem aceleração nula — o ponto de contato de uma roda, por exemplo, tem aceleração ω²r para cima. O CIR serve para velocidades; acelerações exigem a equação da seção 6.3.

@@ -127,6 +127,8 @@
         if (p.nodeName === 'DETAILS' && !p.open) { p.open = true; abertosPorNos.push(p); }
         p = p.parentNode;
       }
+      /* avisa quem esconde conteúdo (o modo resumo do livro) para mostrá-lo antes de rolar */
+      if (!m.getClientRects().length) m.dispatchEvent(new CustomEvent('busca-oculto', { bubbles: true }));
       m.scrollIntoView({ behavior: 'smooth', block: 'center' });
       conta.textContent = (atual + 1) + ' de ' + marcas.length;
     }
