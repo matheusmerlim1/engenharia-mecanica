@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,12 +35,14 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">5º período · Engenharia Mecânica</p>
     <h1>Ciência dos Materiais II</h1>
-    <p class="lead">Onde o diagrama de equilíbrio para, esta disciplina começa. Resfriando rápido, a difusão não acompanha e surgem bainita e martensita — estruturas que não existem no Fe-C e que respondem por praticamente toda a engenharia de aços tratados.</p>
+    <p class="lead">O que acontece quando o aço não é resfriado devagar — e o que fazer com isso. Este texto está organizado como um livro: dez capítulos em sequência, das curvas TTT à seleção de materiais, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">10 tópicos</span>
+      <span class="tag accent">10 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
-      <span class="tag info">4 simuladores animados</span>
-      <span class="tag">normas</span>
+      <span class="tag info">4 simuladores</span>
+      <span class="tag info">11 figuras interativas</span>
+      <span class="tag warn">normas</span>
     </div>
   </div>
 
@@ -47,27 +50,53 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>Em Ciência dos Materiais I, o diagrama ferro-carbono respondia à pergunta "quais fases existem em equilíbrio". Aqui a pergunta muda: <strong>o que se forma quando não há tempo para o equilíbrio</strong>. A resposta depende de uma única variável de processo — a velocidade de resfriamento — e é ela que transforma o mesmo aço em algo mole ou em algo com 60 HRC.</p>
-        <div class="formula"><span data-tex="\text{mesma composição} + \text{velocidade diferente} \;\Rightarrow\; \text{microestruturas completamente diferentes}"></span></div>
-        <div class="callout note">
-          <strong>Os quatro produtos possíveis, do mais lento ao mais rápido</strong>
-          <strong>Perlita grosseira</strong> (~700 °C, ~15 HRC) · <strong>perlita fina</strong> (~600 °C, ~30 HRC) · <strong>bainita</strong> (400 a 550 °C, 40 a 55 HRC, e tenaz) · <strong>martensita</strong> (abaixo de M<sub>s</sub>, até 65 HRC, e frágil). Os três primeiros dependem de difusão; a martensita não.
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O curso começa pelas transformações fora do equilíbrio (TTT e CCT, martensita e bainita), passa aos tratamentos térmicos e aos aços ligados e termina na degradação em serviço e na seleção de materiais. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: o tempo muda tudo</h2>
+        <p>Ciência dos Materiais I terminou no equilíbrio: resfriamento lento, ferrita e perlita, tudo previsível pelo diagrama ferro-carbono. Esta disciplina começa onde o tempo deixa de ser suficiente. Se o resfriamento é rápido, a difusão não acompanha e aparecem microestruturas novas — e com elas todo o repertório do tratamento térmico, que é como a engenharia escolhe as propriedades de uma peça depois de ela estar fabricada.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>O que se forma se eu resfriar assim?</td><td>Curvas TTT e CCT</td><td>1 a 3</td></tr>
+            <tr><td>Como endureço esta peça?</td><td>Têmpera e revenido</td><td>4</td></tr>
+            <tr><td>Vai endurecer até o núcleo?</td><td>Temperabilidade e Jominy</td><td>5</td></tr>
+            <tr><td>Qual tratamento usar?</td><td>Quadro dos tratamentos</td><td>6</td></tr>
+            <tr><td>Que aço especificar?</td><td>Designação SAE/AISI</td><td>7</td></tr>
+            <tr><td>Quanto tempo esta peça dura no meio?</td><td>Corrosão</td><td>8</td></tr>
+            <tr><td>Aço ou outro material?</td><td>Não ferrosos e seleção</td><td>9 e 10</td></tr>
+          </tbody>
+        </table>
         </div>
-        <div class="callout warn">
-          <strong>Dureza e temperabilidade são coisas diferentes</strong>
-          <strong>Dureza máxima</strong> é o quanto a martensita pode ficar dura — e depende <em>só do carbono</em>. <strong>Temperabilidade</strong> é a profundidade até onde se consegue formar martensita — e depende dos <em>elementos de liga</em>. Um 1040 e um 4140 temperados têm quase a mesma dureza na superfície; a diferença aparece no núcleo. Confundir os dois é o erro mais caro da disciplina, porque leva a especificar aço ligado achando que vai ficar mais duro.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo resolvido antes de abrir a solução; mexa nos controles das figuras para ver o efeito de composição, temperatura e tempo; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teoria">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Transformações fora do equilíbrio" data-topicos="ttt">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Curvas TTT e CCT</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>entender por que o diagrama de fases não basta fora do equilíbrio;</li>
+            <li>ler uma curva TTT (isotérmica) e uma CCT (resfriamento contínuo);</li>
+            <li>relacionar a velocidade de resfriamento com o produto formado;</li>
+            <li>identificar a velocidade crítica de têmpera.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>O diagrama ferro-carbono e a reação eutetoide, de Ciência dos Materiais I.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Curvas TTT e CCT</summary>
-          <div class="topic-body">
-            <p>A curva TTT (tempo-temperatura-transformação) responde: mantendo a austenita a uma temperatura fixa, quanto tempo até a transformação começar e terminar. Tem forma de <strong>C</strong>, e o vértice desse C — o <strong>nariz</strong> — é o ponto de transformação mais rápida.</p>
+        <p>O diagrama ferro-carbono descreve o equilíbrio — ou seja, o que acontece quando há tempo de sobra para a difusão. Na prática quase nunca há. Resfriar depressa trava o carbono no lugar e produz microestruturas que o diagrama sequer menciona: bainita e martensita. As curvas TTT e CCT são o mapa desse mundo fora do equilíbrio, e são elas que o tratamento térmico usa.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>O tempo entra no diagrama</h3>
+<p>A curva TTT (tempo-temperatura-transformação) responde: mantendo a austenita a uma temperatura fixa, quanto tempo até a transformação começar e terminar. Tem forma de <strong>C</strong>, e o vértice desse C — o <strong>nariz</strong> — é o ponto de transformação mais rápida.</p>
             <div class="callout note">
               <strong>Por que a curva tem forma de C</strong>
               Duas coisas competem. A <strong>força motriz</strong> da transformação cresce quanto mais abaixo de A₁ se está — logo, favorece temperaturas baixas. A <strong>mobilidade atômica</strong> (difusão) cai exponencialmente com a temperatura — logo, favorece temperaturas altas. O produto das duas tem máximo em algum lugar no meio: é o nariz, tipicamente em torno de 550 °C.
@@ -87,13 +116,41 @@
               <strong>Na prática usa-se a CCT, mas se aprende na TTT</strong>
               Quase nenhum tratamento industrial é isotérmico: a peça vai do forno ao tanque e resfria continuamente. Mas a TTT é mais simples de levantar e de interpretar, e a CCT é sempre uma versão deslocada dela. Um erro comum é ler taxas críticas na TTT — elas são sempre <em>menores</em> na CCT real.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Martensita</summary>
-          <div class="topic-body">
-            <p>É a única transformação da metalurgia dos aços que <strong>não envolve difusão</strong>. A rede CFC da austenita cisalha coletivamente para uma rede TCC, e o carbono fica <em>preso</em> onde estava — supersaturando a estrutura e distorcendo-a violentamente.</p>
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <div id="sim-ttt" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O diagrama de fases vale para o equilíbrio; TTT e CCT acrescentam o tempo.</li>
+          <li>TTT: transformação isotérmica. CCT: resfriamento contínuo — é o caso real da têmpera.</li>
+          <li>O "nariz" da curva é o ponto mais rápido de transformação: passar à esquerda dele dá martensita.</li>
+          <li>Velocidade crítica de têmpera é a mínima que evita o nariz.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a curva CCT fica deslocada para a direita e para baixo em relação à TTT?</summary><p>Porque, no resfriamento contínuo, parte do tempo é gasta em temperaturas mais altas, onde a transformação é lenta: a reação começa mais tarde e mais fria.</p></details>
+          <details><summary>O que define a velocidade crítica de têmpera?</summary><p>A posição do nariz: quanto mais à direita ele estiver (aço mais ligado), menor a velocidade necessária — e menor o risco de trinca.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Transformações fora do equilíbrio" data-topicos="martensita">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Martensita</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar a transformação adifusional e a estrutura TCC;</li>
+            <li>calcular Ms e entender a austenita retida;</li>
+            <li>relacionar dureza com teor de carbono;</li>
+            <li>reconhecer o risco de trinca de têmpera.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>Quando o resfriamento é rápido demais para o carbono difundir, a austenita não consegue se decompor em ferrita e cementita: ela se transforma por cisalhamento, de forma instantânea, numa estrutura supersaturada e distorcida — a martensita. É a fase mais dura do aço comum, e também a mais frágil.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>Transformação sem difusão</h3>
+<p>É a única transformação da metalurgia dos aços que <strong>não envolve difusão</strong>. A rede CFC da austenita cisalha coletivamente para uma rede TCC, e o carbono fica <em>preso</em> onde estava — supersaturando a estrutura e distorcendo-a violentamente.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Característica</th><th>Consequência</th></tr></thead>
@@ -116,13 +173,54 @@
               <strong>O carbono decide a dureza; a liga decide a profundidade</strong>
               Um 4340 temperado tem exatamente a mesma dureza de um 1040 temperado — 57 HRC nos dois, porque os dois têm 0,40 %C. O que a liga faz é permitir <em>alcançar</em> essa dureza numa peça grossa e usando óleo em vez de água. Nada mais.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Bainita</summary>
-          <div class="topic-body">
-            <p>Fica entre os dois mundos: forma-se por difusão, mas em temperatura baixa demais para produzir lamelas. O resultado são ripas de ferrita com carbonetos muito finos dispersos — uma estrutura que combina dureza e tenacidade melhor que qualquer outra.</p>
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Temperatura de início da martensita</div>
+          <p>Estime Ms para um aço 1040 (0,40 %C; 0,80 %Mn) e para um 4140 (0,40 %C; 0,87 %Mn; 0,95 %Cr; 0,20 %Mo), pela equação de Andrews.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="M_s = 539 - 423C - 30{,}4Mn - 17{,}7Ni - 12{,}1Cr - 7{,}5Mo"></span> (°C).</li>
+              <li>1040: <span data-tex-inline="539 - 169{,}2 - 24{,}3 = 345{,}5\ °\text{C}"></span>.</li>
+              <li>4140: <span data-tex-inline="539 - 169{,}2 - 26{,}4 - 11{,}5 - 1{,}5 = 330{,}4\ °\text{C}"></span>.</li>
+            </ol>
+            <p class="resposta">Ms ≈ 346 °C e 330 °C. Os elementos de liga baixam Ms — por isso aços muito ligados retêm mais austenita e costumam exigir tratamento sub-zero.</p>
+          </details>
+        </div>
+
+        <div class="fig-host" id="fig-2-2"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Transformação adifusional: ocorre na velocidade do som, sem tempo envolvido.</li>
+          <li>A estrutura é TCC (tetragonal), distorcida pelo carbono preso nos interstícios.</li>
+          <li>Ms depende da composição; abaixo de Mf tudo transformou — se Mf estiver abaixo da ambiente, sobra austenita retida.</li>
+          <li>A dureza da martensita vem do carbono, não dos elementos de liga.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dois aços, 0,2 %C e 0,6 %C, ambos temperados. Qual fica mais duro?</summary><p>O de 0,6 %C: a dureza da martensita cresce com o carbono e satura perto de 0,6 %.</p></details>
+          <details><summary>Para que serve o tratamento sub-zero?</summary><p>Para completar a transformação quando Mf está abaixo da temperatura ambiente, eliminando a austenita retida que causaria instabilidade dimensional.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Transformações fora do equilíbrio" data-topicos="bainita">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Bainita</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>situar a bainita entre a perlita e a martensita;</li>
+            <li>distinguir bainita superior de inferior;</li>
+            <li>entender o austêmpera e por que ele evita trincas;</li>
+            <li>comparar as propriedades das três microestruturas.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 2.</p></div>
+        </div>
+
+        <p>Entre a transformação lenta por difusão (perlita) e a instantânea por cisalhamento (martensita) existe um território intermediário: a bainita. Ela combina boa dureza com tenacidade razoável, e é obtida por um tratamento isotérmico — o austêmpera — que evita o choque térmico da têmpera convencional.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Entre a perlita e a martensita</h3>
+<p>Fica entre os dois mundos: forma-se por difusão, mas em temperatura baixa demais para produzir lamelas. O resultado são ripas de ferrita com carbonetos muito finos dispersos — uma estrutura que combina dureza e tenacidade melhor que qualquer outra.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th></th><th>Bainita superior</th><th>Bainita inferior</th></tr></thead>
@@ -138,13 +236,37 @@
               <strong>Austêmpera: bainita de propósito</strong>
               Em vez de temperar e revenir, resfria-se rapidamente até uma temperatura acima de M<sub>s</sub> — tipicamente num banho de sal a 300 a 400 °C — e mantém-se até a transformação em bainita se completar. Vantagens: <strong>não há transformação martensítica</strong>, logo não há expansão brusca, não há trinca de têmpera e a distorção é mínima. E não precisa de revenimento. Limitação: só funciona em seções finas, porque a peça inteira precisa chegar ao banho antes de cruzar o nariz.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Têmpera e revenimento</summary>
-          <div class="topic-body">
-            <p>Martensita recém-formada é dura e frágil demais para uso — há casos de peça que trinca sozinha dias após a têmpera. Revenir é obrigatório, e a troca entre dureza e tenacidade é governada por um único número.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Bainita superior (≈ 400-550 °C): aspecto em pena, menos tenaz.</li>
+          <li>Bainita inferior (≈ 250-400 °C): agulhas finas, dureza e tenacidade melhores.</li>
+          <li>Austêmpera: resfriar até o patamar, manter e só então resfriar — sem trinca e com pouca distorção.</li>
+          <li>Entre perlita, bainita e martensita, a bainita é o meio-termo de dureza e tenacidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o austêmpera distorce menos que a têmpera?</summary><p>Porque a transformação ocorre a temperatura constante e sem o gradiente térmico brusco: as tensões internas são muito menores.</p></details>
+          <details><summary>Bainita precisa de revenido?</summary><p>Em geral não: ela já sai com tenacidade razoável, enquanto a martensita recém-formada é frágil demais para uso.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Tratamentos térmicos e aços" data-topicos="revenimento">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Têmpera e revenimento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>definir as etapas da têmpera e os meios de resfriamento;</li>
+            <li>entender o que o revenido faz com a martensita;</li>
+            <li>usar o parâmetro de Hollomon-Jaffe para comparar ciclos;</li>
+            <li>reconhecer a fragilidade de revenido.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 3.</p></div>
+        </div>
+
+        <p>A têmpera por si só raramente produz uma peça utilizável: a martensita recém-formada é dura e frágil, e a peça sai cheia de tensões. O revenido é o segundo tempo obrigatório — reaquecer abaixo de A1 para precipitar carbonetos finos, aliviar tensões e trocar um pouco de dureza por muita tenacidade.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Endurecer e depois devolver tenacidade</h3>
+<p>Martensita recém-formada é dura e frágil demais para uso — há casos de peça que trinca sozinha dias após a têmpera. Revenir é obrigatório, e a troca entre dureza e tenacidade é governada por um único número.</p>
             <div class="formula"><span data-tex="P = T\,(C + \log t)"></span><span class="where">parâmetro de Hollomon-Jaffe · T em KELVIN · t em horas · C ≈ 20 para aços comuns</span></div>
             <div class="callout tip">
               <strong>O tempo entra pelo logaritmo</strong>
@@ -170,13 +292,54 @@
               <strong>Dureza secundária</strong>
               Em aços com Mo, V, W ou muito Cr, a dureza volta a <em>subir</em> por volta de 550 °C, porque carbonetos finíssimos daqueles elementos precipitam. É o que permite ao aço rápido cortar em alta velocidade: a ferramenta esquenta e, em vez de amolecer, revém e endurece.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Temperabilidade e o ensaio Jominy</summary>
-          <div class="topic-body">
-            <p>Temperabilidade é a facilidade de formar martensita em profundidade. Mede-se pelo ensaio Jominy: um corpo de prova de Ø25 × 100 mm é austenitizado e resfriado por um jato de água aplicado só na extremidade. Cada distância ao longo do corpo corresponde a uma taxa de resfriamento conhecida.</p>
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Equivalência tempo-temperatura no revenido</div>
+          <p>Um aço é revenido a 550 °C por 2 h. Que tempo a 600 °C daria a mesma dureza? Use P = T(20 + log t)/1000, com T em kelvin e t em horas.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A 550 °C: <span data-tex-inline="P = 823{,}15\,(20 + \log 2)/1000 = 16{,}71"></span>.</li>
+              <li>A 600 °C, impondo o mesmo P: <span data-tex-inline="20 + \log t = 16\,710/873{,}15 = 19{,}14"></span>.</li>
+              <li><span data-tex-inline="\log t = -0{,}86 \Rightarrow t = 0{,}14\ \text{h}"></span>.</li>
+            </ol>
+            <p class="resposta">Cerca de 8 minutos. Cinquenta graus a mais encurtam o revenido em quinze vezes — e é por isso que o controle de temperatura do forno importa tanto.</p>
+          </details>
+        </div>
+
+        <div id="sim-revenimento" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Têmpera: austenitizar, resfriar acima da velocidade crítica, obter martensita.</li>
+          <li>Meios, do mais severo ao mais brando: salmoura, água, óleo, ar.</li>
+          <li>Revenido: tempo e temperatura são intercambiáveis pelo parâmetro de Hollomon-Jaffe.</li>
+          <li>Evitar as faixas de fragilidade de revenido (≈ 250-400 °C e 450-600 °C em aços susceptíveis).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que peças complexas são temperadas em óleo e não em água?</summary><p>Porque o resfriamento mais brando reduz o gradiente térmico e o risco de trinca e distorção — desde que o aço tenha temperabilidade suficiente.</p></details>
+          <details><summary>Revenir mais quente por menos tempo dá o mesmo resultado?</summary><p>Aproximadamente sim, e o parâmetro de Hollomon-Jaffe quantifica a troca — foi assim que o exemplo 4.1 foi resolvido.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Tratamentos térmicos e aços" data-topicos="temperabilidade">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Temperabilidade e o ensaio Jominy</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir dureza de temperabilidade;</li>
+            <li>ler uma curva Jominy;</li>
+            <li>relacionar diâmetro da peça, meio de têmpera e dureza no núcleo;</li>
+            <li>escolher o aço pela temperabilidade necessária.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1, 2 e 4.</p></div>
+        </div>
+
+        <p>Dureza e temperabilidade são coisas diferentes, e confundi-las custa caro. A dureza máxima depende só do carbono; a <em>temperabilidade</em> — a profundidade até onde a martensita se forma — depende dos elementos de liga. Um 1045 e um 4140 atingem dureza parecida na superfície, mas o núcleo de uma barra grossa só endurece no segundo.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Até que profundidade endurece</h3>
+<p>Temperabilidade é a facilidade de formar martensita em profundidade. Mede-se pelo ensaio Jominy: um corpo de prova de Ø25 × 100 mm é austenitizado e resfriado por um jato de água aplicado só na extremidade. Cada distância ao longo do corpo corresponde a uma taxa de resfriamento conhecida.</p>
             <div class="formula"><span data-tex="D_I = D_{I,\text{base}}(\%C, \text{grão}) \times f_{Mn} \times f_{Si} \times f_{Ni} \times f_{Cr} \times f_{Mo}"></span><span class="where">diâmetro ideal de Grossmann: o que teria 50 % de martensita no centro em meio de severidade infinita</span></div>
             <div class="table-scroll">
             <table class="data">
@@ -212,13 +375,41 @@
               <strong>Por que se paga por elemento de liga</strong>
               Não é para ficar mais duro — é para poder temperar em <strong>óleo</strong>. Meio menos severo significa menos choque térmico, menos distorção e muito menos trinca. Em peça grande e de geometria complexa, isso é a diferença entre produzir e refugar.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Tratamentos térmicos: o quadro completo</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <div id="sim-temperabilidade" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Dureza máxima ← carbono. Temperabilidade ← elementos de liga (Cr, Mo, Mn, Ni).</li>
+          <li>Ensaio Jominy: barra padronizada resfriada numa ponta; dureza × distância.</li>
+          <li>Peça grande ou meio brando → menor velocidade no núcleo → menos martensita.</li>
+          <li>Projetar é casar a temperabilidade do aço com o diâmetro da peça e o meio de têmpera.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um 4140 é preferido a um 1045 em eixos de 80 mm?</summary><p>Porque o 1045, nessa espessura, não forma martensita no núcleo: a dureza cai muito poucos milímetros abaixo da superfície.</p></details>
+          <details><summary>Aumentar o carbono aumenta a temperabilidade?</summary><p>Pouco: ele aumenta a dureza máxima. Quem desloca o nariz da curva e dá profundidade são os elementos de liga.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Tratamentos térmicos e aços" data-topicos="tratamentos">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. O quadro completo dos tratamentos térmicos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar recozimento, normalização, têmpera, revenido e alívio de tensões;</li>
+            <li>relacionar cada tratamento à microestrutura que produz;</li>
+            <li>reconhecer os tratamentos termoquímicos de superfície;</li>
+            <li>escolher o tratamento pelo objetivo de projeto.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 a 5.</p></div>
+        </div>
+
+        <p>Com as transformações entendidas, o quadro dos tratamentos fica simples: cada um é uma combinação de temperatura, tempo e velocidade de resfriamento escolhida para chegar a uma microestrutura. Este capítulo reúne todos lado a lado — inclusive os de superfície, que endurecem só a casca e deixam o núcleo tenaz.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Qual tratamento para qual objetivo</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Tratamento</th><th>Temperatura</th><th>Resfriamento</th><th>Resultado</th><th>Objetivo</th></tr></thead>
               <tbody>
@@ -238,13 +429,39 @@
               <strong>Recozimento contra normalização</strong>
               Os dois austenitizam; a diferença é só o resfriamento. Forno dá perlita grosseira e o material mais mole possível. Ar calmo dá perlita fina, grão mais refinado e resistência uns 20 % maior — e é mais barato, porque não ocupa o forno durante o resfriamento. Para a maioria dos aços estruturais, normalizar basta.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Aços ligados e a designação SAE/AISI</summary>
-          <div class="topic-body">
-            <p>A designação de quatro dígitos é direta: os dois primeiros identificam a família de liga, os dois últimos dão o teor de carbono em <strong>centésimos de por cento</strong>.</p>
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Recozimento: forno, microestrutura grosseira, máxima usinabilidade.</li>
+          <li>Normalização: ar, grão refinado e propriedades uniformes.</li>
+          <li>Têmpera + revenido: a combinação de resistência com tenacidade.</li>
+          <li>Cementação, nitretação e têmpera por indução: casca dura, núcleo tenaz.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Qual tratamento usar antes de usinar um aço de médio carbono?</summary><p>Recozimento ou normalização: deixam a peça mole e uniforme. A têmpera vem depois da usinagem de desbaste.</p></details>
+          <details><summary>Por que engrenagens são cementadas em vez de temperadas por inteiro?</summary><p>Porque interessa casca dura, resistente ao desgaste e à fadiga de contato, com núcleo tenaz para suportar o impacto.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Tratamentos térmicos e aços" data-topicos="acos">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Aços ligados e a designação SAE/AISI</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>decodificar a numeração SAE/AISI;</li>
+            <li>saber o que cada elemento de liga acrescenta;</li>
+            <li>reconhecer as famílias mais usadas em mecânica;</li>
+            <li>relacionar a designação às propriedades esperadas.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5 e os elementos de liga de Ciência dos Materiais I.</p></div>
+        </div>
+
+        <p>A designação SAE/AISI é um código curto que diz muito: os dois primeiros dígitos indicam a família de liga e os dois últimos, o teor de carbono em centésimos de por cento. Saber lê-la já adianta metade da conversa sobre temperabilidade, soldabilidade e tratamento térmico.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Lendo a designação</h3>
+<p>A designação de quatro dígitos é direta: os dois primeiros identificam a família de liga, os dois últimos dão o teor de carbono em <strong>centésimos de por cento</strong>.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Prefixo</th><th>Família</th><th>Exemplo</th></tr></thead>
@@ -278,13 +495,39 @@
               <strong>Inoxidáveis, em três famílias</strong>
               <strong>Austeníticos</strong> (304, 316): CFC, não temperáveis, não magnéticos, ótima tenacidade a frio, endurecem só por encruamento. <strong>Ferríticos</strong> (430): CCC, não temperáveis, magnéticos, mais baratos. <strong>Martensíticos</strong> (410, 420): temperáveis, usados em cutelaria e válvulas. Todos dependem de pelo menos 10,5 % de Cr para formar a película passiva de Cr₂O₃.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Corrosão</summary>
-          <div class="topic-body">
-            <p>Corrosão é um processo <strong>eletroquímico</strong>: exige ânodo, cátodo, eletrólito e contato elétrico. Falta um dos quatro, não há corrosão — e é assim que se combate.</p>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Dois primeiros dígitos: família (10xx carbono, 41xx Cr-Mo, 43xx Ni-Cr-Mo, 52xxx Cr alto).</li>
+          <li>Dois últimos: carbono em centésimos de %.</li>
+          <li>Cr e Mo dão temperabilidade e resistência a quente; Ni dá tenacidade.</li>
+          <li>Carbono equivalente alto piora a soldabilidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O que é um SAE 4140?</summary><p>Aço Cr-Mo com 0,40 %C — o aço de construção mecânica mais comum para eixos e peças temperadas e revenidas.</p></details>
+          <details><summary>E um 52100?</summary><p>Aço cromo de alto carbono (1,0 %C), usado em rolamentos: dureza elevada e boa resistência ao desgaste.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Degradação e seleção" data-topicos="corrosao">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Corrosão</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>descrever a corrosão como processo eletroquímico;</li>
+            <li>identificar as formas de corrosão mais comuns;</li>
+            <li>escolher entre proteção catódica e anódica, revestimento e inibidor;</li>
+            <li>estimar a taxa de corrosão a partir da densidade de corrente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Noções de eletroquímica e os capítulos anteriores sobre microestrutura.</p></div>
+        </div>
+
+        <p>Corrosão não é desgaste: é reação eletroquímica. Sempre que existem ânodo, cátodo, eletrólito e um caminho elétrico, o metal menos nobre se dissolve. Entender esse circuito é o que permite interrompê-lo — e é por isso que proteção catódica, revestimento e inibidor são, todos, formas de atacar um dos quatro elementos.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>A pilha que destrói a peça</h3>
+<p>Corrosão é um processo <strong>eletroquímico</strong>: exige ânodo, cátodo, eletrólito e contato elétrico. Falta um dos quatro, não há corrosão — e é assim que se combate.</p>
             <div class="formula"><span data-tex="\text{ânodo: } M \to M^{n+} + n\,e^- \qquad \text{cátodo: } O_2 + 2H_2O + 4e^- \to 4\,OH^-"></span><span class="where">a semirreação catódica em meio neutro aerado; em meio ácido é 2H⁺ + 2e⁻ → H₂</span></div>
             <div class="formula"><span data-tex="CR\ [\mathrm{mm/ano}] = \frac{3{,}27\times10^{-3}\cdot i\cdot EW}{\rho}"></span><span class="where">lei de Faraday · i em µA/cm² · EW = massa atômica/valência · ρ em g/cm³ · para o aço, 1 µA/cm² = 0,0116 mm/ano</span></div>
             <div class="callout warn">
@@ -313,7 +556,28 @@
               Entre 425 e 815 °C, o carbono do inox austenítico reage com o cromo formando Cr₂₃C₆ nos contornos de grão. A região vizinha fica empobrecida em cromo, cai abaixo dos 10,5 % necessários e perde a passividade: o inox corrói ao longo dos contornos, justamente na zona termicamente afetada da solda. As soluções são o <strong>304L</strong> (carbono abaixo de 0,03 %) ou os graus <strong>estabilizados</strong> com titânio (321) ou nióbio (347), que capturam o carbono antes do cromo.
             </div>
             <div class="formula"><span data-tex="I_{prot} = i_{prot}\cdot A \qquad t = \frac{m\cdot \text{capacidade}}{I_{prot}}"></span><span class="where">proteção catódica: Zn rende 780 A·h/kg · Al-Zn-In 2600 · Mg 1230</span></div>
-            <h4>Proteção catódica × proteção anódica</h4>
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Vida útil pela taxa de corrosão</div>
+          <p>Um trecho de tubulação de aço-carbono apresenta densidade de corrente de corrosão de 10 µA/cm². Qual a taxa de perda de espessura e a vida de uma sobreespessura de 3 mm?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Peso equivalente do ferro: <span data-tex-inline="EW = 55{,}85/2 = 27{,}93"></span>; ρ = 7,87 g/cm³.</li>
+              <li><span data-tex-inline="CR = 3{,}27\times10^{-3}\cdot 10\cdot 27{,}93/7{,}87 = 0{,}116\ \text{mm/ano}"></span>.</li>
+              <li>Vida: <span data-tex-inline="3/0{,}116 = 25{,}9\ \text{anos}"></span>.</li>
+            </ol>
+            <p class="resposta">0,116 mm/ano e cerca de 26 anos — desde que a corrosão continue uniforme. Um pite pode furar a mesma parede em meses.</p>
+          </details>
+        </div>
+
+        <div class="fig-host" id="fig-8-2"></div>
+
+        <div id="sim-corrosao" class="sim"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Proteção catódica × proteção anódica</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th></th><th>Proteção catódica</th><th>Proteção anódica</th></tr></thead>
@@ -325,7 +589,9 @@
               </tbody>
             </table>
             </div>
-            <h4>Serviço ácido: danos por H₂S úmido</h4>
+
+        <h3 id="s8-3"><span class="num">8.3</span>Serviço ácido: danos por H₂S úmido</h3>
+
             <p>Na presença de H₂S com água, o hidrogênio atômico gerado pela corrosão entra no aço em vez de formar H₂ na superfície. Dentro do metal ele se acumula e causa três danos distintos, cobertos pela <strong>NACE MR0175 / ISO 15156</strong>:</p>
             <div class="table-scroll">
             <table class="data">
@@ -341,13 +607,37 @@
               <strong>CUI: o inimigo invisível</strong>
               A corrosão sob isolamento é mais severa entre cerca de 50 e 175 °C, sobretudo em regime cíclico, quando a água condensa e evapora alternadamente. Em inox austenítico, os cloretos lixiviados do próprio isolante podem provocar corrosão sob tensão. Como fica escondida sob a manta, só aparece na inspeção — ou no vazamento.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>9. Materiais não ferrosos</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Quatro elementos: ânodo, cátodo, eletrólito e contato elétrico. Falte um, não há corrosão.</li>
+          <li>Formas: uniforme, galvânica, por frestas, por pite, intergranular, sob tensão e erosão-corrosão.</li>
+          <li>Proteção catódica (anodo de sacrifício ou corrente impressa) é a mais usada em tubulação e casco.</li>
+          <li>Taxa de corrosão: <span data-tex-inline="CR\ (\text{mm/ano}) = 3{,}27\times10^{-3}\,i\,EW/\rho"></span>, com i em µA/cm².</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o zinco protege o aço mesmo quando o revestimento é arranhado?</summary><p>Porque ele é menos nobre: continua sendo o ânodo e se sacrifica, protegendo o aço exposto — ao contrário do estanho, que inverteria o papel.</p></details>
+          <details><summary>Aço inox enferruja?</summary><p>Pode: a camada passiva de óxido de cromo protege, mas em meio com cloretos e frestas ela se rompe localmente e surge o pite, que é mais perigoso que a corrosão uniforme.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Degradação e seleção">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Materiais não ferrosos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar alumínio, cobre, titânio e níquel com os aços;</li>
+            <li>relacionar resistência específica e corrosão à escolha;</li>
+            <li>reconhecer as ligas mais usadas e seus tratamentos;</li>
+            <li>saber onde cada família falha.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos anteriores, em especial corrosão.</p></div>
+        </div>
+
+        <p>Nem sempre o aço é a melhor escolha: há casos em que peso, condutividade ou resistência à corrosão mandam mais que custo. Este capítulo percorre as famílias não ferrosas que aparecem na engenharia mecânica e diz, de cada uma, o que ela resolve e onde ela falha.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Quando o aço não é a resposta</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Família</th><th>Endurecimento</th><th>Característica marcante</th></tr></thead>
               <tbody>
@@ -371,13 +661,39 @@
               <strong>Envelhecimento natural e artificial</strong>
               Ligas Al-Cu endurecem à temperatura ambiente ao longo de dias — o envelhecimento <em>natural</em>. Foi descoberto por acaso em 1906, quando Alfred Wilm notou que uma liga que havia deixado sobre a bancada no fim de semana estava mais dura na segunda-feira. O envelhecimento <em>artificial</em>, a 120 a 190 °C, faz o mesmo em horas — mas tem um tempo ótimo: passar dele superenvelhece e amolece.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>10. Seleção de materiais para equipamentos e tubulação</summary>
-          <div class="topic-body">
-            <p>A seleção parte do serviço, não do catálogo: fluido, temperatura e pressão, esforços, e só então resistência mecânica, resistência à corrosão, soldabilidade, disponibilidade e custo.</p>
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Alumínio: leve, boa resistência específica, endurece por precipitação; perde resistência a quente.</li>
+          <li>Cobre e latões: condutividade e usinabilidade; atenção à corrosão sob tensão.</li>
+          <li>Titânio: excelente resistência específica e à corrosão; caro e difícil de usinar.</li>
+          <li>Ligas de níquel: resistência a quente e a meios agressivos — a escolha de refino e turbinas.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o alumínio é usado em estruturas aeronáuticas e não em panelas de pressão industriais a 300 °C?</summary><p>Porque acima de ~150 °C as ligas endurecidas por precipitação superenvelhecem e perdem resistência rapidamente.</p></details>
+          <details><summary>O que torna o titânio atraente em implantes e em permutadores?</summary><p>A combinação de alta resistência específica com a camada passiva de TiO₂, estável inclusive em água do mar.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Degradação e seleção">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Seleção de materiais</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>estruturar a seleção por requisitos, restrições e objetivo;</li>
+            <li>usar índices de mérito;</li>
+            <li>considerar fabricação, disponibilidade e custo;</li>
+            <li>ligar a seleção às normas de equipamento e tubulação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Todos os capítulos anteriores — seleção é onde tudo se junta.</p></div>
+        </div>
+
+        <p>Selecionar material não é escolher o melhor: é escolher o que atende a todas as restrições ao menor custo. O método é sempre o mesmo — função, restrições, objetivo e variáveis livres —, e o índice de mérito é o que transforma esse raciocínio num número comparável.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Decidir com critério</h3>
+<p>A seleção parte do serviço, não do catálogo: fluido, temperatura e pressão, esforços, e só então resistência mecânica, resistência à corrosão, soldabilidade, disponibilidade e custo.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Especificação</th><th>O que é</th><th>Onde se usa</th></tr></thead>
@@ -392,7 +708,11 @@
               </tbody>
             </table>
             </div>
-            <h4>Elastômeros de vedação</h4>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Elastômeros de vedação</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Elastômero</th><th>Faixa de temperatura</th><th>Compatibilidade</th></tr></thead>
@@ -412,22 +732,32 @@
               <strong>Índice de mérito</strong>
               Para escolher entre materiais com o mesmo desempenho funcional, compara-se o índice adequado à restrição: <span data-tex-inline="\sigma_{y}/\rho"></span> para barra leve sob tração, <span data-tex-inline="\sigma_{y}^{2/3}/\rho"></span> para viga leve em flexão, <span data-tex-inline="E^{1/2}/\rho"></span> para viga rígida. É a base dos mapas de Ashby.
             </div>
-          </div>
-        </details>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Função, restrições, objetivo e variáveis livres: a estrutura da decisão.</li>
+          <li>Índices de mérito: σ/ρ para barras leves, E<sup>1/2</sup>/ρ para vigas leves, E<sup>1/3</sup>/ρ para placas.</li>
+          <li>Fabricação e disponibilidade eliminam candidatos tanto quanto as propriedades.</li>
+          <li>Em equipamentos e tubulação, a norma restringe a lista antes de qualquer cálculo.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a fibra de carbono vence em resistência específica e mesmo assim não substitui o aço em estruturas comuns?</summary><p>Por custo, fabricação, reparabilidade e comportamento ao impacto — a seleção não é decidida por uma propriedade só.</p></details>
+          <details><summary>O que muda no índice entre uma barra tracionada e uma viga?</summary><p>A barra pede σ/ρ; a viga, E<sup>1/2</sup>/ρ, porque a rigidez à flexão depende de I e a geometria é variável livre.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Quatro modelos interativos e animados, todos com as fórmulas e a resolução passo a passo.</p>
-
-        <div id="sim-ttt" class="sim"></div>
-        <div id="sim-temperabilidade" class="sim"></div>
-        <div id="sim-revenimento" class="sim"></div>
-        <div id="sim-corrosao" class="sim"></div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os quatro simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-ttt"><small>Capítulo 1 · TTT e CCT</small>Curvas de transformação</a></li>
+          <li><a href="#sim-revenimento"><small>Capítulo 4 · Revenido</small>Dureza após têmpera e revenido</a></li>
+          <li><a href="#sim-temperabilidade"><small>Capítulo 5 · Jominy</small>Temperabilidade e dureza no núcleo</a></li>
+          <li><a href="#sim-corrosao"><small>Capítulo 8 · Corrosão</small>Pilha eletroquímica e taxa de perda</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="tabela-wrap">
           <table>
             <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
@@ -453,7 +783,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <div class="tabela-wrap">
           <table>
             <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
@@ -475,13 +805,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões sobre curvas TTT e CCT, martensita, bainita, têmpera, revenimento, temperabilidade, aços ligados e corrosão.</p>
         <div id="quiz" data-quiz="ciencia-dos-materiais-2"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>CALLISTER, W. D.; RETHWISCH, D. G.</strong> <em>Ciência e Engenharia de Materiais.</em> LTC. — Caps. 10 (transformações de fase), 11 (aplicações e processamento de ligas) e 17 (corrosão).</li>
           <li><strong>CHIAVERINI, V.</strong> <em>Tratamentos Térmicos das Ligas Metálicas.</em> ABM. — A referência brasileira para esta disciplina; excelente em curvas TTT e prática de forno.</li>
@@ -510,7 +840,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/ciencia-dos-materiais-2.js"></script>
+<script src="../js/fig/ciencia-dos-materiais-2.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -542,6 +874,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
