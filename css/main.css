@@ -837,3 +837,27 @@ a.pag-seta:hover { background: var(--accent-soft); text-decoration: none; }
 /* fórmula inline mais larga que a tela: rola dentro da linha em vez de alargar a página */
 .capitulo > p, .capitulo li, .exemplo p, .cap-resumo li, .teste-se p,
 .topic-body > p, .topic-body li, .callout { overflow-x: auto; overflow-y: hidden; }
+
+/* ---------- figuras ilustrativas (js/core/figura.js) ---------- */
+.fig {
+  margin: 20px 0; padding: 10px 12px 8px;
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev);
+}
+.fig-tela { width: 100%; }
+.fig canvas { display: block; margin: 0 auto; max-width: 100%; border-radius: var(--radius-sm); }
+.fig-ctrl {
+  display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center;
+  margin: 8px 0 2px; padding-top: 8px; border-top: 1px solid var(--border);
+}
+.fig-campo { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--text-muted); flex: 1 1 260px; }
+.fig-campo .fig-rot { white-space: nowrap; }
+.fig-campo input[type="range"] { flex: 1; min-width: 90px; accent-color: var(--accent); }
+.fig-campo .fig-val { min-width: 62px; text-align: right; font-variant-numeric: tabular-nums; color: var(--text); font-weight: 600; }
+.fig-play { flex: none; }
+.fig figcaption { margin-top: 8px; font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
+.fig figcaption strong { color: var(--text); }
+@media (max-width: 560px) {
+  .fig { padding: 8px 10px 6px; }
+  .fig-campo { flex: 1 1 100%; font-size: .78rem; }
+}
+@media print { .fig-ctrl { display: none; } }
