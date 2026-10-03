@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -32,13 +33,15 @@
 
 <main id="conteudo" class="wrap">
   <div class="hero" style="padding-bottom:18px">
-    <p class="kicker">5º período · Engenharia Mecânica</p>
-    <h1>Vibrações</h1>
-    <p class="lead">Toda máquina vibra. A disciplina ensina a prever com que frequência, com que amplitude, e como evitar que essa amplitude destrua o equipamento — ou o edifício em que ele está apoiado.</p>
+    <p class="kicker">7º período · Engenharia Mecânica</p>
+    <h1>Vibrações Mecânicas</h1>
+    <p class="lead">Por que as máquinas vibram, quando isso vira problema e o que fazer a respeito. Este texto está organizado como um livro: dez capítulos em sequência, do modelo massa-mola ao diagnóstico de máquinas, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">9 tópicos</span>
+      <span class="tag accent">10 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
-      <span class="tag info">4 simuladores</span>
+      <span class="tag info">5 simuladores</span>
+      <span class="tag info">12 figuras interativas</span>
       <span class="tag warn">normas</span>
     </div>
   </div>
@@ -47,37 +50,53 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>Um único parâmetro organiza quase toda a disciplina: a <strong>razão entre a frequência de excitação e a frequência natural</strong>, r = ω/ω<sub>n</sub>. Onde o sistema opera nessa escala decide se ele é seguro, se amplifica ou se isola.</p>
-        <div class="grid cols-3">
-          <div class="card">
-            <h3 style="margin-top:0">r &lt; 0,7 — zona rígida</h3>
-            <p style="color:var(--text-muted);font-size:.9rem">A massa acompanha a excitação. A resposta é praticamente a deflexão estática. Projeto rígido: aumentar k.</p>
-          </div>
-          <div class="card">
-            <h3 style="margin-top:0">r ≈ 1 — ressonância</h3>
-            <p style="color:var(--text-muted);font-size:.9rem">A amplitude é limitada só pelo amortecimento. Zona proibida em regime — mas toda máquina a atravessa na partida.</p>
-          </div>
-          <div class="card">
-            <h3 style="margin-top:0">r &gt; √2 — isolamento</h3>
-            <p style="color:var(--text-muted);font-size:.9rem">A inércia não acompanha e a transmissão cai. É onde se projeta o coxim. Molas mais macias aumentam r.</p>
-          </div>
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O curso vai do sistema mais simples ao mais real: primeiro um grau de liberdade (livre, amortecido e forçado), depois as máquinas rotativas (desbalanceamento, balanceamento e isolamento) e por fim vários graus de liberdade e o diagnóstico em campo. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: uma frequência que importa</h2>
+        <p>Toda estrutura tem frequências naturais. Enquanto a excitação ficar longe delas, a vibração é pequena e ninguém percebe. Perto delas, a amplitude cresce até o limite que o amortecimento permitir — e aí trincam fundações, quebram eixos e queimam mancais. A disciplina inteira gira em torno de três perguntas: qual é a frequência natural, quão perto a excitação está dela e o que fazer quando estão perto demais.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Qual a frequência natural?</td><td>Modelagem e vibração livre</td><td>1 e 2</td></tr>
+            <tr><td>Quanto tempo a vibração dura?</td><td>Amortecimento</td><td>3</td></tr>
+            <tr><td>Qual a amplitude em regime?</td><td>Vibração forçada</td><td>4</td></tr>
+            <tr><td>De onde vem a excitação?</td><td>Desbalanceamento e balanceamento</td><td>5 e 6</td></tr>
+            <tr><td>Como reduzir o que chega à base?</td><td>Isolamento</td><td>7</td></tr>
+            <tr><td>E quando há mais de uma massa?</td><td>2 GDL e absorvedor</td><td>8 e 9</td></tr>
+            <tr><td>O que esta máquina tem?</td><td>Diagnóstico pelo espectro</td><td>10</td></tr>
+          </tbody>
+        </table>
         </div>
-        <div class="callout note">
-          <strong>O roteiro de qualquer problema</strong>
-          1) modelar como massa-mola-amortecedor · 2) achar ω<sub>n</sub> = √(k/m) · 3) achar ζ ·
-          4) identificar a excitação e calcular r · 5) ler a amplitude ou a transmissibilidade na curva correspondente.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras, varie ζ e a razão de frequências para ver a ressonância e o isolamento aparecerem; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teorico">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Um grau de liberdade" data-topicos="modelagem">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Modelagem e graus de liberdade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reduzir uma máquina real a massa, mola e amortecedor;</li>
+            <li>contar graus de liberdade;</li>
+            <li>associar molas em série e em paralelo;</li>
+            <li>calcular rigidez equivalente de vigas e eixos.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Dinâmica (segunda lei e pêndulo composto) e Mecânica dos Materiais (rigidez de vigas).</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Modelagem e graus de liberdade</summary>
-          <div class="topic-body">
-            <p>Grau de liberdade é o número de coordenadas independentes necessárias para descrever o movimento. Um sistema com n GDL tem exatamente <strong>n frequências naturais</strong> e n modos de vibrar.</p>
+        <p>Nenhuma máquina é uma massa pendurada numa mola — mas quase toda vibração pode ser entendida assim. Modelar é decidir o que importa: que massas se movem, que elementos armazenam energia elástica e onde há dissipação. Errar essa escolha compromete tudo o que vier depois; acertá-la resolve metade do problema.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Do desenho ao modelo</h3>
+<p>Grau de liberdade é o número de coordenadas independentes necessárias para descrever o movimento. Um sistema com n GDL tem exatamente <strong>n frequências naturais</strong> e n modos de vibrar.</p>
             <div class="formula"><span data-tex="m\ddot{x} + c\dot{x} + kx = F(t)"></span><span class="where">equação do movimento de 1 grau de liberdade: inércia + amortecimento + rigidez = excitação</span></div>
             <p>Molas em associação seguem regras opostas às dos resistores elétricos:</p>
             <div class="table-scroll">
@@ -111,26 +130,92 @@
               A frequência natural pode ser obtida sem conhecer k nem m separadamente: basta medir quanto a estrutura afunda sob o próprio peso.
             </div>
             <div class="formula"><span data-tex="\omega_n = \sqrt{\frac{g}{\delta_{\text{est}}}} \qquad f_n \approx \frac{15{,}76}{\sqrt{\delta_{\text{est}}\,[\text{mm}]}}"></span><span class="where">δ<sub>est</sub> = deflexão estática sob o peso próprio; f<sub>n</sub> em Hz</span></div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Vibração livre não amortecida</summary>
-          <div class="topic-body">
-            <p>Sem amortecimento o sistema oscila indefinidamente com amplitude constante, na sua frequência natural.</p>
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Graus de liberdade = coordenadas independentes necessárias para descrever o movimento.</li>
+          <li>Molas em paralelo somam rigidez; em série, somam flexibilidades.</li>
+          <li>Rigidez equivalente de viga e de eixo vem de Mecânica dos Materiais (δ = F/k).</li>
+          <li>Amortecimento viscoso equivalente representa dissipações diversas.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma viga em balanço com um motor na ponta tem quantos graus de liberdade?</summary><p>No modelo mais simples, um: o deslocamento vertical da ponta. A massa da viga é desprezada ou somada parcialmente à do motor.</p></details>
+          <details><summary>Duas molas iguais em série dão que rigidez?</summary><p>Metade da rigidez de uma: as flexibilidades é que se somam.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Um grau de liberdade" data-topicos="livre">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Vibração livre não amortecida</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir a equação do movimento livre;</li>
+            <li>calcular frequência natural e período;</li>
+            <li>relacionar amplitude e condições iniciais;</li>
+            <li>entender por que a frequência não depende da amplitude.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>Tire um sistema do equilíbrio e solte: ele oscila numa frequência que é só dele, determinada pela razão entre rigidez e inércia. Essa é a frequência natural, o número mais importante da disciplina — porque é nela que a ressonância acontece.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>A frequência natural</h3>
+<p>Sem amortecimento o sistema oscila indefinidamente com amplitude constante, na sua frequência natural.</p>
             <div class="formula"><span data-tex="\omega_n = \sqrt{\frac{k}{m}} \qquad f_n = \frac{\omega_n}{2\pi} \qquad T_n = \frac{1}{f_n}"></span><span class="where">ω<sub>n</sub> em rad/s; f<sub>n</sub> em Hz; T<sub>n</sub> = período, em s</span></div>
             <div class="formula"><span data-tex="x(t) = A\cos(\omega_n t) + B\sin(\omega_n t) = X\sin(\omega_n t + \varphi)"></span><span class="where">A = x₀ e B = v₀/ω<sub>n</sub>, pelas condições iniciais</span></div>
             <div class="callout warn">
               <strong>ω<sub>n</sub> não depende das condições iniciais</strong>
               Bater mais forte na estrutura aumenta a amplitude, não a frequência. Frequência natural é propriedade do sistema (k e m), não da excitação.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Amortecimento e os três regimes</summary>
-          <div class="topic-body">
-            <p>O fator de amortecimento ζ compara o amortecimento real com o valor crítico, e decide o comportamento inteiro.</p>
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Frequência natural de um conjunto</div>
+          <p>Uma máquina de 50 kg está sobre coxins com rigidez total de 20 kN/m. Qual a frequência natural e o período?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\omega_n = \sqrt{k/m} = \sqrt{20\,000/50} = 20\ \text{rad/s}"></span>.</li>
+              <li><span data-tex-inline="f_n = 20/2\pi = 3{,}18\ \text{Hz}"></span>; <span data-tex-inline="T = 0{,}314\ \text{s}"></span>.</li>
+            </ol>
+            <p class="resposta">3,18 Hz. Se a máquina girar perto de 190 rpm (3,18 Hz), estará em ressonância — e é justamente isso que o capítulo 7 ensina a evitar.</p>
+          </details>
+        </div>
+
+        <div id="sim-livre" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="m\ddot x + kx = 0 \Rightarrow \omega_n = \sqrt{k/m}"></span>.</li>
+          <li><span data-tex-inline="f_n = \omega_n/2\pi"></span> e <span data-tex-inline="T = 1/f_n"></span>.</li>
+          <li>A amplitude depende das condições iniciais; a frequência, não.</li>
+          <li>Com deflexão estática δ: <span data-tex-inline="\omega_n = \sqrt{g/\delta}"></span> — atalho útil em campo.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dobrar a massa muda a frequência natural em quanto?</summary><p>Divide por √2. Dobrar a rigidez multiplica por √2.</p></details>
+          <details><summary>Por que a frequência natural independe da amplitude?</summary><p>Porque o sistema é linear: força de mola proporcional ao deslocamento. Em sistemas não lineares isso deixa de valer.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Um grau de liberdade" data-topicos="amortecimento">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Amortecimento e os três regimes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>classificar sub, crítico e superamortecido;</li>
+            <li>calcular o fator de amortecimento ζ;</li>
+            <li>obter ζ pelo decremento logarítmico;</li>
+            <li>relacionar ζ com a frequência amortecida.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+
+        <p>Todo sistema real dissipa energia, e é por isso que a oscilação livre morre. O quanto ela morre depressa é medido por um número adimensional, ζ, que separa três comportamentos qualitativamente diferentes — e que também é o parâmetro que controla a altura do pico de ressonância, no capítulo seguinte.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>O que o amortecimento faz</h3>
+<p>O fator de amortecimento ζ compara o amortecimento real com o valor crítico, e decide o comportamento inteiro.</p>
             <div class="formula"><span data-tex="c_c = 2\sqrt{km} = 2m\omega_n \qquad \zeta = \frac{c}{c_c}"></span></div>
             <div class="table-scroll">
             <table class="data">
@@ -150,13 +235,54 @@
               <strong>Por que ζ = 1 é o alvo de instrumentos</strong>
               É o retorno mais rápido possível sem ultrapassagem. Abaixo disso o ponteiro oscila em torno da leitura; acima, demora demais para chegar.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Vibração forçada e ressonância</summary>
-          <div class="topic-body">
-            <p>Com excitação harmônica, a resposta permanente tem a mesma frequência da força, mas amplitude e fase diferentes.</p>
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Fator de amortecimento pelo decremento</div>
+          <p>No sistema do exemplo 2.1, o amortecedor tem c = 200 N·s/m. Calcule ζ, a frequência amortecida e a razão entre duas amplitudes consecutivas.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="c_c = 2\sqrt{km} = 2\sqrt{20\,000\cdot50} = 2000\ \text{N·s/m}"></span>; <span data-tex-inline="\zeta = 0{,}10"></span>.</li>
+              <li><span data-tex-inline="\omega_d = 20\sqrt{1-0{,}01} = 19{,}9\ \text{rad/s}"></span>.</li>
+              <li><span data-tex-inline="\delta = 2\pi\cdot0{,}1/\sqrt{0{,}99} = 0{,}632"></span>; razão <span data-tex-inline="e^{0{,}632} = 1{,}88"></span>.</li>
+            </ol>
+            <p class="resposta">ζ = 0,10, ω_d = 19,9 rad/s e cada ciclo reduz a amplitude a 53 % da anterior. Medir duas amplitudes num registro é o jeito prático de obter ζ.</p>
+          </details>
+        </div>
+
+        <div class="fig-host" id="fig-3-2"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\zeta = c/c_c"></span>, com <span data-tex-inline="c_c = 2\sqrt{km}"></span>.</li>
+          <li>ζ < 1 subamortecido (oscila), ζ = 1 crítico (volta mais rápido sem oscilar), ζ > 1 superamortecido.</li>
+          <li><span data-tex-inline="\omega_d = \omega_n\sqrt{1-\zeta^2}"></span>.</li>
+          <li>Decremento logarítmico: <span data-tex-inline="\delta = \ln(x_1/x_2) = 2\pi\zeta/\sqrt{1-\zeta^2}"></span>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Amortecimento crítico é o que para mais rápido?</summary><p>Sim: é o menor amortecimento que leva o sistema ao repouso sem oscilar. Mais que isso só torna o retorno mais lento.</p></details>
+          <details><summary>Com ζ = 0,1, quanto a frequência amortecida difere da natural?</summary><p>Meio por cento: ω_d = 0,995 ω_n. Em máquinas, com ζ baixo, as duas se confundem.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — Um grau de liberdade" data-topicos="forcada,ressonancia">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Vibração forçada e ressonância</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>obter a resposta permanente a uma força harmônica;</li>
+            <li>usar o fator de amplificação e a razão de frequências;</li>
+            <li>entender o papel de ζ perto da ressonância;</li>
+            <li>interpretar o ângulo de fase.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 3.</p></div>
+        </div>
+
+        <p>Máquinas não vibram sozinhas: alguma coisa as excita — desbalanceamento, engrenamento, fluxo pulsante. Quando a excitação é harmônica, a resposta também é, com a mesma frequência, mas com amplitude e fase que dependem de quão perto se está da frequência natural. Perto demais, a amplitude explode: é a ressonância.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Resposta a uma excitação harmônica</h3>
+<p>Com excitação harmônica, a resposta permanente tem a mesma frequência da força, mas amplitude e fase diferentes.</p>
             <div class="formula"><span data-tex="M = \frac{X}{F_0/k} = \frac{1}{\sqrt{(1-r^2)^2 + (2\zeta r)^2}} \qquad r = \frac{\omega}{\omega_n}"></span><span class="where">M = fator de amplificação dinâmica; F₀/k = deflexão estática</span></div>
             <div class="formula"><span data-tex="\varphi = \arctan\!\left(\frac{2\zeta r}{1-r^2}\right)"></span><span class="where">atraso da resposta em relação à força</span></div>
             <div class="table-scroll">
@@ -177,25 +303,105 @@
               <strong>Como identificar a ressonância na bancada</strong>
               Pela <strong>fase</strong>, não pela amplitude: em r = 1 o atraso é exatamente 90°, qualquer que seja ζ. O pico de amplitude, esse, se desloca com o amortecimento.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Desbalanceamento rotativo</summary>
-          <div class="topic-body">
-            <p>Em máquina rotativa a força de excitação não é constante: cresce com o quadrado da rotação, porque é força centrífuga.</p>
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Amplificação fora e na ressonância</div>
+          <p>Para ζ = 0,10, compare a amplificação em r = 0,9 e em r = 1.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="M(0{,}9) = 1/\sqrt{(1-0{,}81)^2 + (2\cdot0{,}1\cdot0{,}9)^2} = 3{,}82"></span>.</li>
+              <li><span data-tex-inline="M(1) = 1/(2\zeta) = 5{,}00"></span>.</li>
+            </ol>
+            <p class="resposta">3,82 contra 5,00: basta afastar 10 % da frequência natural para reduzir a amplitude em um quarto. Afastar é sempre melhor que amortecer.</p>
+          </details>
+        </div>
+
+        <div class="fig-host" id="fig-4-2"></div>
+
+        <div id="sim-forcada" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="M = \dfrac{1}{\sqrt{(1-r^2)^2 + (2\zeta r)^2}}"></span>, com <span data-tex-inline="r = \omega/\omega_n"></span>.</li>
+          <li>Na ressonância (r = 1), <span data-tex-inline="M = 1/2\zeta"></span> — só o amortecimento limita.</li>
+          <li>A fase passa por 90° em r = 1 e tende a 180° acima dela.</li>
+          <li>Longe da ressonância, a resposta é governada pela rigidez (r ≪ 1) ou pela massa (r ≫ 1).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Com ζ = 0,05, qual a amplificação na ressonância?</summary><p>M = 1/(2·0,05) = 10: dez vezes a deflexão estática.</p></details>
+          <details><summary>Por que a passagem pela ressonância na partida costuma ser aceitável?</summary><p>Porque a amplitude leva tempo para crescer; acelerando rápido pela faixa crítica, não há tempo de atingir o regime permanente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Máquinas rotativas" data-topicos="desbalanceamento">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Desbalanceamento rotativo</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a força de desbalanceamento;</li>
+            <li>entender por que ela cresce com o quadrado da rotação;</li>
+            <li>relacionar amplitude e rotação acima e abaixo da crítica;</li>
+            <li>reconhecer a assinatura 1× no espectro.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 a 4.</p></div>
+        </div>
+
+        <p>Massa fora do eixo gera força centrífuga que gira com o rotor — e essa é, de longe, a causa mais comum de vibração em máquinas. A força cresce com o quadrado da rotação, o que explica por que um desbalanceamento tolerável em baixa rotação vira um problema sério quando a máquina acelera.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>A excitação mais comum</h3>
+<p>Em máquina rotativa a força de excitação não é constante: cresce com o quadrado da rotação, porque é força centrífuga.</p>
             <div class="formula"><span data-tex="F_0 = m_e\,e\,\omega^2 \qquad \frac{MX}{m_e e} = \frac{r^2}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}"></span><span class="where">m<sub>e</sub> = massa desbalanceada; e = excentricidade</span></div>
             <div class="callout tip">
               <strong>Consequência prática</strong>
               Como F cresce com ω², em alta rotação a amplitude tende a um valor constante m<sub>e</sub>e/M, e não a zero. Por isso o balanceamento é obrigatório em rotores rápidos — não adianta apenas fugir da ressonância.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5-bis. Balanceamento estático e dinâmico</summary>
-          <div class="topic-body">
-            <p>Balancear é acrescentar (ou retirar) massa até que as forças e os momentos centrífugos do rotor se anulem. Há dois níveis, e confundi-los é a causa mais comum de um rotor "balanceado" que continua vibrando.</p>
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Força de desbalanceamento</div>
+          <p>Um rotor a 3000 rpm tem 20 g de desbalanceamento a 100 mm do eixo. Qual a força gerada?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\omega = 3000\cdot2\pi/60 = 314{,}2\ \text{rad/s}"></span>.</li>
+              <li><span data-tex-inline="F = m e\omega^2 = 0{,}02\cdot0{,}1\cdot314{,}2^2 = 197\ \text{N}"></span>.</li>
+            </ol>
+            <p class="resposta">197 N girando com o rotor — cerca de 20 kgf de força alternada nos mancais, só por causa de 20 gramas mal posicionados.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="F = m_e\,e\,\omega^2"></span>: quadrática na rotação.</li>
+          <li>A resposta tem a forma <span data-tex-inline="X = \dfrac{m_e e}{M}\,\dfrac{r^2}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}"></span>.</li>
+          <li>Muito acima da crítica, a amplitude tende a m_e·e/M — o rotor se autocentraliza.</li>
+          <li>No espectro, o desbalanceamento aparece como pico em 1× a rotação.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dobrar a rotação multiplica a força de desbalanceamento por quanto?</summary><p>Por quatro, porque F é proporcional a ω².</p></details>
+          <details><summary>Por que máquinas que operam acima da crítica vibram pouco em regime?</summary><p>Porque, com r ≫ 1, o rotor gira em torno do seu centro de massa: a amplitude tende ao próprio valor da excentricidade.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Máquinas rotativas" data-topicos="desbalanceamento">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Balanceamento estático e dinâmico</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir desbalanceamento estático de dinâmico;</li>
+            <li>aplicar as duas condições de balanceamento;</li>
+            <li>usar o critério da ISO 1940 para o residual admissível;</li>
+            <li>entender o método dos coeficientes de influência.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5.</p></div>
+        </div>
+
+        <p>Balancear é acrescentar ou tirar massa até que a resultante das forças centrífugas e o momento delas se anulem. Em rotores curtos basta a primeira condição; em rotores longos, as duas — e a norma ISO 1940 diz quanto desbalanceamento residual é aceitável para cada tipo de máquina.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Corrigir o rotor</h3>
+<p>Balancear é acrescentar (ou retirar) massa até que as forças e os momentos centrífugos do rotor se anulem. Há dois níveis, e confundi-los é a causa mais comum de um rotor "balanceado" que continua vibrando.</p>
 
             <div class="table-scroll">
             <table class="data">
@@ -215,12 +421,31 @@
               Basta ter duas massas iguais, diametralmente opostas, mas em planos <strong>diferentes</strong> ao longo do eixo. A resultante das forças centrífugas é zero — o rotor fica parado em qualquer posição — mas as duas forças formam um <strong>binário</strong> que faz o eixo "chicotear", carregando alternadamente cada mancal. Isso é desbalanceamento de <em>conjugado</em>, e só o balanceamento dinâmico em dois planos resolve.
             </div>
 
-            <h4>As duas condições</h4>
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Desbalanceamento residual admissível</div>
+          <p>Um rotor de 50 kg gira a 3000 rpm e deve atender ao grau G 6,3. Qual o desbalanceamento residual permitido?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\omega = 314{,}2\ \text{rad/s}"></span>.</li>
+              <li><span data-tex-inline="e_{per} = G\cdot1000/\omega = 6{,}3\cdot1000/314{,}2 = 20{,}1\ \mu\text{m}"></span>.</li>
+              <li><span data-tex-inline="U_{per} = m\,e_{per} = 50\cdot20{,}1 = 1003\ \text{g·mm}"></span>.</li>
+            </ol>
+            <p class="resposta">Cerca de 1000 g·mm, ou 1 g a 1 m do eixo. Quanto mais rápido o rotor, menor a tolerância — e é por isso que turbinas exigem G 2,5 ou melhor.</p>
+          </details>
+        </div>
+
+        <div id="sim-balanceamento" class="sim"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>As duas condições</h3>
+
             <div class="formula"><span data-tex="\sum m_i\,r_i\,\vec{e}_i = 0"></span><span class="where">equilíbrio de FORÇAS — é o balanceamento estático; anula a resultante centrífuga</span></div>
             <div class="formula"><span data-tex="\sum m_i\,r_i\,z_i\,\vec{e}_i = 0"></span><span class="where">equilíbrio de MOMENTOS em relação a um plano de referência — completa o balanceamento dinâmico</span></div>
             <p>Como cada equação é vetorial no plano do rotor, elas valem por quatro equações escalares. Por isso são necessários exatamente <strong>dois planos de correção</strong>, com duas incógnitas cada (massa e ângulo).</p>
 
-            <h4>Desbalanceamento residual e o critério da ISO 1940</h4>
+        <h3 id="s6-3"><span class="num">6.3</span>Desbalanceamento residual e o critério da ISO 1940</h3>
+
             <div class="formula"><span data-tex="U = m_e\,e \qquad e_{\text{perm}} = \frac{G \cdot 1000}{\omega}"></span><span class="where">U em g·mm · e_perm em μm · G = grau de qualidade em mm/s · ω em rad/s</span></div>
             <div class="table-scroll">
             <table class="data">
@@ -237,7 +462,8 @@
             </div>
             <p>Note que a tolerância é <strong>inversamente proporcional à rotação</strong>: dobrar a rotação corta a excentricidade admissível pela metade. É a consequência direta de F = m<sub>e</sub>eω².</p>
 
-            <h4>Método dos coeficientes de influência</h4>
+        <h3 id="s6-4"><span class="num">6.4</span>Método dos coeficientes de influência</h3>
+
             <p>É o procedimento usado na máquina de balanceamento e em campo. Não exige conhecer o desbalanceamento — mede-se a resposta a massas conhecidas e resolve-se o sistema:</p>
             <div class="callout note">
               <strong>Roteiro em dois planos</strong>
@@ -252,13 +478,37 @@
               <strong>Nem toda vibração 1× é desbalanceamento</strong>
               Desalinhamento, eixo empenado, folga em mancal e pé manco também aparecem na frequência de rotação. O que distingue: desbalanceamento dá vibração predominantemente <strong>radial</strong>, com fase estável e amplitude crescendo com ω²; desalinhamento acrescenta forte componente <strong>axial</strong> e costuma exibir 2× a rotação. Balancear um rotor desalinhado não resolve nada.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Isolamento de vibração</summary>
-          <div class="topic-body">
-            <p>Transmissibilidade é a fração da excitação que chega à fundação (ou ao equipamento, no caso inverso).</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Estático: resultante das forças nula (uma só correção).</li>
+          <li>Dinâmico: resultante e momento nulos — correção em dois planos.</li>
+          <li>ISO 1940: <span data-tex-inline="e_{per} = G\cdot1000/\omega"></span>, em µm, com G em mm/s.</li>
+          <li>Coeficientes de influência: medir, acrescentar massa de teste, medir de novo e resolver o sistema.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um rotor balanceado estaticamente pode vibrar?</summary><p>Pode: se houver duas massas iguais em planos diferentes e lados opostos, a resultante é nula mas o momento não — é o desbalanceamento de binário, só detectado girando.</p></details>
+          <details><summary>O que significa grau G 6,3?</summary><p>Velocidade de desbalanceamento de 6,3 mm/s: a classe típica de motores elétricos e bombas industriais.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Máquinas rotativas" data-topicos="isolamento">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Isolamento de vibração</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a transmissibilidade;</li>
+            <li>reconhecer que só há isolamento acima de r = √2;</li>
+            <li>projetar a rigidez do apoio a partir da frequência de excitação;</li>
+            <li>entender o papel ambíguo do amortecimento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 a 4.</p></div>
+        </div>
+
+        <p>Isolar é desacoplar: apoiar a máquina em elementos flexíveis para que a força transmitida à base seja menor que a força gerada. Funciona — mas só acima de uma razão de frequências bem definida. Abaixo dela, o isolador <em>amplifica</em>, e é esse o erro de projeto mais comum da área.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Quando isolar funciona</h3>
+<p>Transmissibilidade é a fração da excitação que chega à fundação (ou ao equipamento, no caso inverso).</p>
             <div class="formula"><span data-tex="\mathrm{TR} = \frac{F_{\text{transmitida}}}{F_0} = \frac{\sqrt{1+(2\zeta r)^2}}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}"></span></div>
             <div class="callout warn">
               <strong>Só há isolamento acima de r = √2</strong>
@@ -269,24 +519,92 @@
               Na zona útil (r &gt; √2), <strong>mais amortecimento piora o isolamento</strong>: o amortecedor cria um caminho extra para a força. Mas ele continua indispensável, porque a máquina atravessa r = 1 toda vez que parte. Compromisso usual: ζ entre 0,03 e 0,10.
             </div>
             <p>Regra prática de projeto: buscar r ≥ 3, o que dá TR ≈ 0,13, ou seja, cerca de 87 % de isolamento.</p>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Sistemas de dois graus de liberdade</summary>
-          <div class="topic-body">
-            <p>Cada grau de liberdade acrescenta uma frequência natural e um modo — uma forma característica de deformação.</p>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Grau de isolamento</div>
+          <p>Uma máquina opera com r = 3 sobre isoladores com ζ = 0,05. Qual a transmissibilidade e o isolamento obtido?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="T = \dfrac{\sqrt{1+(2\cdot0{,}05\cdot3)^2}}{\sqrt{(1-9)^2+(0{,}3)^2}} = \dfrac{1{,}044}{8{,}006}"></span>.</li>
+              <li><span data-tex-inline="T = 0{,}130"></span>; isolamento = 1 − T = 87 %.</li>
+            </ol>
+            <p class="resposta">T = 0,13: apenas 13 % da força chega à base. Para chegar a r = 3, a frequência natural precisa ser um terço da de operação.</p>
+          </details>
+        </div>
+
+        <div id="sim-isolamento" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="T = \dfrac{\sqrt{1+(2\zeta r)^2}}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}"></span>.</li>
+          <li>Só há isolamento (T < 1) para <span data-tex-inline="r > \sqrt2"></span>.</li>
+          <li>Para isolar bem, o apoio precisa ser flexível: ω_n baixa, deflexão estática alta.</li>
+          <li>Mais amortecimento reduz o pico na partida, mas piora o isolamento em regime.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma máquina a 1800 rpm sobre coxins com f_n de 25 Hz: isola?</summary><p>Não: 1800 rpm são 30 Hz e r = 1,2, abaixo de √2. O coxim amplifica. Seria preciso f_n abaixo de 21 Hz.</p></details>
+          <details><summary>Por que o amortecimento atrapalha o isolamento?</summary><p>Porque o amortecedor liga mecanicamente a máquina à base; em alta razão de frequências, ele transmite força que a mola sozinha não transmitiria.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Vários graus e diagnóstico" data-topicos="2gdl">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Sistemas de dois graus de liberdade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>montar as equações acopladas de um sistema 2 GDL;</li>
+            <li>obter as duas frequências naturais;</li>
+            <li>interpretar os modos de vibração;</li>
+            <li>reconhecer o acoplamento entre coordenadas.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 4, e álgebra de autovalores.</p></div>
+        </div>
+
+        <p>Com dois graus de liberdade aparecem duas frequências naturais e dois modos — padrões de movimento em que todas as partes oscilam em fase ou em oposição. Esse é o salto conceitual da disciplina: a partir daqui, vibração deixa de ser um número e passa a ser um conjunto de formas.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Dois modos, duas frequências</h3>
+<p>Cada grau de liberdade acrescenta uma frequência natural e um modo — uma forma característica de deformação.</p>
             <div class="formula"><span data-tex="[M]\{\ddot{x}\} + [K]\{x\} = \{F\} \qquad \det([K] - \omega^2[M]) = 0"></span><span class="where">as raízes da equação característica são as frequências naturais</span></div>
             <p>No caso clássico de duas massas e duas molas iguais, o resultado é elegante:</p>
             <div class="formula"><span data-tex="\omega_1 = 0{,}618\sqrt{k/m} \qquad \omega_2 = 1{,}618\sqrt{k/m} \qquad \frac{\omega_2}{\omega_1} = 2{,}618 = \varphi^2"></span><span class="where">φ é a razão áurea — resultado exato deste sistema</span></div>
             <p>No <strong>1º modo</strong> as massas se movem em fase; no <strong>2º modo</strong>, em oposição de fase, com um nó entre elas.</p>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Absorvedor dinâmico de vibração</summary>
-          <div class="topic-body">
-            <p>Acopla-se uma segunda massa sintonizada exatamente na frequência da excitação. O resultado é que a massa principal fica <em>parada</em>.</p>
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <div id="sim-2gdl" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Duas equações acopladas; a solução dá dois autovalores (frequências) e dois autovetores (modos).</li>
+          <li>No primeiro modo as massas andam juntas; no segundo, em oposição.</li>
+          <li>O acoplamento pode ser elástico ou inercial, conforme as coordenadas escolhidas.</li>
+          <li>Modos são ortogonais: é isso que permite a superposição modal.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quantas frequências naturais tem um sistema com n graus de liberdade?</summary><p>n frequências e n modos.</p></details>
+          <details><summary>Por que o segundo modo tem frequência mais alta?</summary><p>Porque as massas se movem em oposição e a mola entre elas se deforma mais: o sistema fica efetivamente mais rígido.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Vários graus e diagnóstico" data-topicos="2gdl">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Absorvedor dinâmico de vibração</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>entender o princípio do absorvedor sintonizado;</li>
+            <li>dimensionar massa e rigidez do absorvedor;</li>
+            <li>reconhecer o surgimento de duas novas ressonâncias;</li>
+            <li>avaliar quando o absorvedor é a solução certa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 8.</p></div>
+        </div>
+
+        <p>Se a frequência de excitação é fixa, existe uma solução elegante: acoplar à máquina um segundo sistema massa-mola sintonizado nessa frequência. Ele vibra no lugar da máquina e a força que ele devolve cancela a excitação. O preço é que o conjunto passa a ter duas ressonâncias, uma de cada lado da frequência cancelada.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Cancelar a vibração com outra massa</h3>
+<p>Acopla-se uma segunda massa sintonizada exatamente na frequência da excitação. O resultado é que a massa principal fica <em>parada</em>.</p>
             <div class="formula"><span data-tex="\omega_2 = \sqrt{\frac{k_2}{m_2}} = \omega_{\text{excitação}} \;\Rightarrow\; X_1 = 0"></span><span class="where">condição de sintonia; o absorvedor assume toda a vibração</span></div>
             <div class="formula"><span data-tex="X_2 = -\frac{F_0}{k_2} \qquad \mu = \frac{m_2}{m_1}"></span><span class="where">quanto menor k₂, maior o curso que o absorvedor precisa ter</span></div>
             <div class="callout warn">
@@ -297,13 +615,39 @@
               <strong>Onde se usa</strong>
               Amortecedores de massa sintonizada em arranha-céus e passarelas, absorvedores em linhas de transmissão (os pesos em forma de haltere nos cabos) e em motores.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>9. Diagnóstico de máquinas e manutenção preditiva</summary>
-          <div class="topic-body">
-            <p>O espectro de vibração identifica a causa pela <strong>frequência</strong> em que a energia aparece, e não pelo nível global. Cada defeito tem sua assinatura, relacionada à rotação do eixo (1×).</p>
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Sintonia: <span data-tex-inline="\sqrt{k_2/m_2} = \omega_{excitação}"></span>.</li>
+          <li>Na sintonia, a massa principal fica praticamente parada.</li>
+          <li>Surgem duas novas frequências naturais em torno da original.</li>
+          <li>Funciona bem com excitação de frequência fixa; com rotação variável, é arriscado.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O absorvedor reduz a vibração em qualquer rotação?</summary><p>Não: só na frequência de sintonia. Fora dela pode até piorar, porque as duas novas ressonâncias ficam próximas.</p></details>
+          <details><summary>Que massa costuma ter o absorvedor?</summary><p>Entre 5 % e 20 % da massa principal — o suficiente para separar bem as duas novas frequências.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Vários graus e diagnóstico">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Diagnóstico e manutenção preditiva</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar defeitos típicos às frequências características;</li>
+            <li>escolher o transdutor adequado;</li>
+            <li>interpretar níveis globais e as faixas da ISO 10816;</li>
+            <li>planejar a rotina de medição.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 4 a 9.</p></div>
+        </div>
+
+        <p>Vibração é o sinal vital da máquina rotativa: cada defeito deixa uma assinatura própria no espectro. Saber lê-la permite trocar um rolamento antes que ele destrua o eixo — e esse é o fundamento econômico da manutenção preditiva.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Ler o espectro</h3>
+<p>O espectro de vibração identifica a causa pela <strong>frequência</strong> em que a energia aparece, e não pelo nível global. Cada defeito tem sua assinatura, relacionada à rotação do eixo (1×).</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Frequência</th><th>Causa típica</th><th>Pista adicional</th></tr></thead>
@@ -319,7 +663,11 @@
               </tbody>
             </table>
             </div>
-            <h4>Transdutores</h4>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Transdutores</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Sensor</th><th>Mede</th><th>Faixa útil</th></tr></thead>
@@ -339,39 +687,33 @@
               <strong>Vibração torcional não aparece na carcaça</strong>
               Em conjuntos motor–acoplamento–máquina, a oscilação torcional do eixo pode estar em ressonância sem nenhum sinal perceptível no acelerômetro montado no mancal. Mede-se com encoder ou telemetria de deformação, e o projeto é verificado por análise torcional, obrigatória em compressores alternativos e grandes acionamentos com inversor.
             </div>
-          </div>
-        </details>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Desbalanceamento: pico em 1×, radial. Desalinhamento: 2× (e axial alto).</li>
+          <li>Folga: harmônicos múltiplos. Rolamento: frequências BPFO, BPFI, BSF e envelope.</li>
+          <li>Acelerômetro para alta frequência, velocidade para níveis globais, deslocamento para mancais de deslizamento.</li>
+          <li>ISO 10816 define as faixas A-D de severidade por classe de máquina.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Pico forte em 2× a rotação, com vibração axial alta. O que é mais provável?</summary><p>Desalinhamento — especialmente angular. Desbalanceamento daria 1× predominantemente radial.</p></details>
+          <details><summary>Por que medir em velocidade (mm/s) e não em deslocamento?</summary><p>Porque a velocidade pondera igualmente uma faixa ampla de frequências, e é a grandeza em que as normas de severidade são escritas.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Quatro modelos interativos, com fórmulas e resolução passo a passo.</p>
-
-        <div id="sim-livre"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Percorra os exemplos 1, 3 e 4 (ζ = 0,05 · 1 · 2) e compare o tempo de retorno ao equilíbrio. O criticamente amortecido chega primeiro — é isso que "crítico" significa.
-        </div>
-
-        <div id="sim-forcada"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Ponha ζ = 0,05 e arraste r até 1: a amplificação salta para 10. Depois aumente ζ para 0,707 e veja o pico desaparecer completamente.
-        </div>
-
-        <div id="sim-isolamento"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Repare que todas as curvas de ζ se cruzam exatamente em r = √2. À direita desse ponto, a curva de menor ζ é a que fica <em>por baixo</em> — mais amortecimento piora o isolamento.
-        </div>
-
-        <div id="sim-2gdl"></div>
-
-        <div id="sim-balanceamento"></div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-livre"><small>Capítulo 2 · Vibração livre</small>Resposta livre e amortecida</a></li>
+          <li><a href="#sim-forcada"><small>Capítulo 4 · Forçada</small>Curva de ressonância</a></li>
+          <li><a href="#sim-balanceamento"><small>Capítulo 6 · Balanceamento</small>Coeficientes de influência</a></li>
+          <li><a href="#sim-isolamento"><small>Capítulo 7 · Isolamento</small>Transmissibilidade</a></li>
+          <li><a href="#sim-2gdl"><small>Capítulo 8 · Dois graus</small>Modos de vibração</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="grid cols-2">
           <div class="card">
             <h4 style="margin-top:0">Parâmetros</h4>
@@ -400,7 +742,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <div class="table-scroll">
         <table class="data">
           <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra no projeto</th></tr></thead>
@@ -451,13 +793,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões sobre modelagem, vibração livre e forçada, ressonância, isolamento e sistemas de 2 GDL — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
         <div id="quiz" data-quiz="vibracoes"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>RAO, S. S.</strong> <em>Vibrações Mecânicas.</em> Pearson. — Bibliografia principal. Caps. 2 (livre), 3 (forçada), 5 (2 GDL), 9 (controle de vibração).</li>
           <li><strong>THOMSON, W. T.</strong> <em>Teoria da Vibração com Aplicações.</em> — Referência clássica, muito boa em isolamento e transmissibilidade.</li>
@@ -485,7 +827,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/vibracoes.js"></script>
+<script src="../js/fig/vibracoes.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -512,6 +856,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
