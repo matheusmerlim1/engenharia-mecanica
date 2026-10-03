@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,11 +35,13 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">3º período · Engenharia Mecânica</p>
     <h1>Estática</h1>
-    <p class="lead">A base de tudo que vem depois. Antes de calcular tensão, deflexão ou fadiga, é preciso saber quais forças realmente chegam a cada peça — e isso sai de três equações de equilíbrio bem aplicadas.</p>
+    <p class="lead">Tudo o que não se move obedece a duas condições: a resultante das forças é nula e a resultante dos momentos também. Este texto está organizado como um livro — oito capítulos em sequência, do conceito de momento até o momento de inércia de área —, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">8 tópicos</span>
+      <span class="tag accent">8 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">4 simuladores</span>
+      <span class="tag info">13 figuras interativas</span>
     </div>
   </div>
 
@@ -46,228 +49,752 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>Corpo em repouso: a resultante das forças e a resultante dos momentos são nulas. No plano isso dá três equações — e praticamente toda a disciplina é aprender a escolher bem o corpo livre e o polo dos momentos.</p>
-        <div class="formula"><span data-tex="\sum \vec{F} = 0 \qquad \sum \vec{M}_O = 0"></span><span class="where">no plano: ΣFx = 0, ΣFy = 0 e ΣM = 0</span></div>
-        <div class="callout note">
-          <strong>O roteiro que resolve quase tudo</strong>
-          1) isolar o corpo e desenhar o <strong>diagrama de corpo livre</strong> · 2) marcar todas as forças, inclusive as reações · 3) escolher o polo que elimina mais incógnitas · 4) aplicar as três equações · 5) conferir com uma equação não usada.
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>A Estática é a base de toda a mecânica dos sólidos: as reações que você calcula aqui são os dados de entrada de Mecânica dos Materiais, e o diagrama de corpo livre volta em Dinâmica, em Elementos de Máquina e em qualquer projeto estrutural. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: duas equações e um desenho</h2>
+        <p>Um corpo está em equilíbrio quando não acelera — nem sua translação nem sua rotação mudam. Newton escreve isso em duas linhas:</p>
+        <div class="formula"><span data-tex="\sum \vec{F} = 0 \qquad \sum \vec{M}_O = 0"></span><span class="where">no plano sobram três equações escalares: ΣFx = 0, ΣFy = 0 e ΣM = 0</span></div>
+        <p>Três equações resolvem três incógnitas, e é só isso que a Estática oferece. A dificuldade nunca está na álgebra: está em <em>escolher o corpo</em> que se vai isolar, <em>enxergar todas as forças</em> que agem sobre ele e <em>escolher o polo</em> dos momentos que faz as incógnitas indesejadas desaparecerem. Por isso o diagrama de corpo livre ocupa um capítulo inteiro deste livro, e não um parágrafo.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulo</th></tr></thead>
+          <tbody>
+            <tr><td>Quanto vale a reação neste apoio?</td><td>Corpo livre do conjunto + três equações</td><td>2 e 3</td></tr>
+            <tr><td>Qual a força nesta barra da treliça?</td><td>Método dos nós ou das seções</td><td>4</td></tr>
+            <tr><td>Que força a pinça aplica na peça?</td><td>Desmembrar a máquina em partes</td><td>5</td></tr>
+            <tr><td>Vai escorregar?</td><td>Comparar o atrito necessário com μ<sub>s</sub>N</td><td>6</td></tr>
+            <tr><td>Onde age o peso desta peça?</td><td>Centroide da área ou do volume</td><td>7</td></tr>
+            <tr><td>Esta seção é rígida o bastante?</td><td>Momento de inércia de área</td><td>8</td></tr>
+          </tbody>
+        </table>
         </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo resolvido antes de abrir a solução; mexa nos controles das figuras para ver o que muda quando a geometria muda; termine com o "Teste-se" e com as questões do capítulo, pelo botão no rodapé. O Formulário, no apêndice A, serve para revisar — não para começar.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Forças e equilíbrio" data-topicos="momentos">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Forças, momentos e binários</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular o momento de uma força pelo braço de alavanca e pelo produto vetorial;</li>
+            <li>usar o teorema de Varignon para trocar trigonometria por decomposição;</li>
+            <li>entender por que o momento de um binário é o mesmo em torno de qualquer ponto;</li>
+            <li>somar forças e momentos para obter o sistema equivalente mais simples.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Vetores: soma, decomposição em componentes e produto vetorial. Trigonometria básica. Nada de cálculo ainda.</p></div>
+        </div>
+
+        <p>Uma força faz duas coisas ao mesmo tempo: empurra e, em geral, gira. A primeira é medida pelo próprio vetor força; a segunda, pelo <strong>momento</strong>. Separar esses dois efeitos é o primeiro passo da Estática, porque as duas condições de equilíbrio tratam de um e de outro.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Momento de uma força</h3>
+        <p>O momento de uma força <span data-tex-inline="\vec F"></span> em relação a um ponto O mede a tendência que ela tem de girar o corpo em torno desse ponto. O que vale não é a distância até o ponto de aplicação, e sim a <em>distância perpendicular</em> da linha de ação ao polo — o chamado braço de alavanca:</p>
+        <div class="formula"><span data-tex="M_O = F \cdot d \qquad \vec{M}_O = \vec{r} \times \vec{F}"></span><span class="where">d é a distância perpendicular; a forma vetorial resolve também o caso tridimensional</span></div>
+        <p>Duas consequências imediatas, e muito usadas:</p>
+        <ul>
+          <li>uma força cuja linha de ação <em>passa pelo polo</em> tem momento nulo, por maior que seja;</li>
+          <li>deslizar a força ao longo da própria linha de ação não muda nada — nem a resultante, nem o momento. É o princípio da transmissibilidade.</li>
+        </ul>
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>Teorema de Varignon</h3>
+        <p>Achar a distância perpendicular de uma força inclinada costuma dar trabalho. O teorema de Varignon evita isso: <strong>o momento de uma força é igual à soma dos momentos de suas componentes</strong>. Decompondo a força em x e y e aplicando cada componente no ponto de aplicação:</p>
+        <div class="formula"><span data-tex="M_O = x\,F_y - y\,F_x"></span><span class="where">o sinal segue a convenção adotada: aqui, anti-horário positivo</span></div>
+        <p>Quase sempre é mais rápido: as coordenadas do ponto de aplicação já são conhecidas, e as componentes saem de um seno e um cosseno.</p>
+        <div class="fig-host" id="fig-1-2"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Momento pelos dois caminhos</div>
+          <p>Uma força de 500 N, inclinada de 53,13° acima da horizontal, é aplicada no ponto (0,4 m; 0,2 m) a partir de O. Qual o momento em relação a O?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Componentes: <span data-tex-inline="F_x = 500\cos53{,}13° = 300\ \text{N}"></span> e <span data-tex-inline="F_y = 500\,\text{sen}\,53{,}13° = 400\ \text{N}"></span>.</li>
+              <li>Varignon: <span data-tex-inline="M_O = x\,F_y - y\,F_x = 0{,}4\cdot400 - 0{,}2\cdot300 = 100\ \text{N·m}"></span>, anti-horário.</li>
+              <li>Conferência pelo braço: a distância perpendicular vale <span data-tex-inline="d = M_O/F = 100/500 = 0{,}2\ \text{m}"></span> — o mesmo resultado, com mais trabalho geométrico.</li>
+            </ol>
+            <p class="resposta">M<sub>O</sub> = 100 N·m no sentido anti-horário.</p>
+          </details>
+        </div>
+
+        <h3 id="s1-3"><span class="num">1.3</span>Binário: giro sem empurrão</h3>
+        <p>Um <strong>binário</strong> é um par de forças iguais, opostas e com linhas de ação distintas, separadas por uma distância d. A resultante é nula — ele não empurra nada —, mas o momento não é:</p>
+        <div class="formula"><span data-tex="M_{\text{binário}} = F \cdot d"></span><span class="where">é um vetor livre: o mesmo valor em relação a qualquer polo</span></div>
+        <p>Essa última propriedade é o que torna o binário útil. Como seu momento não depende do polo, ele pode ser transferido para qualquer lugar do corpo sem alterar o equilíbrio — e é exatamente o que acontece quando se desloca uma força para outro ponto: aparece um binário de compensação.</p>
+        <div class="fig-host" id="fig-1-3"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.2</span>Mover uma força de lugar</div>
+          <p>Uma força vertical de 200 N age na ponta de uma barra horizontal, a 0,3 m do engaste. Substitua-a por um sistema equivalente aplicado no engaste.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Some, no engaste, duas forças de 200 N opostas: nada muda, porque elas se cancelam.</li>
+              <li>A força original e a nova força oposta formam um binário de <span data-tex-inline="200 \cdot 0{,}3 = 60\ \text{N·m}"></span>.</li>
+              <li>Sobram: uma força de 200 N no engaste <em>mais</em> um binário de 60 N·m.</li>
+            </ol>
+            <p class="resposta">Força de 200 N aplicada no engaste e binário de 60 N·m. É assim que se reduz qualquer sistema de forças a uma força e um binário num ponto escolhido.</p>
+          </details>
+        </div>
+
+        <h3 id="s1-4"><span class="num">1.4</span>Momentos em três dimensões</h3>
+        <p>No espaço, o braço de alavanca deixa de ser evidente e o produto vetorial passa a ser o caminho natural:</p>
+        <div class="formula"><span data-tex="\vec{M}_O = \vec{r} \times \vec{F} = \begin{vmatrix} \vec i & \vec j & \vec k \\ r_x & r_y & r_z \\ F_x & F_y & F_z \end{vmatrix}"></span><span class="where">r é o vetor do polo até qualquer ponto da linha de ação</span></div>
+        <p>Para saber quanto esse momento gira em torno de um <em>eixo</em> específico (o eixo de um parafuso, de um eixo-árvore), projeta-se o momento na direção do eixo: <span data-tex-inline="M_a = \vec u_a \cdot (\vec r \times \vec F)"></span>, o chamado produto misto.</p>
         <div class="callout warn">
-          <strong>O diagrama de corpo livre não é formalidade</strong>
-          É onde a maioria dos erros nasce: reação esquecida, sentido invertido, força interna desenhada como externa. Vale mais gastar tempo nele do que na álgebra.
+          <strong>Erro comum: usar a distância até o ponto de aplicação</strong>
+          O braço de alavanca é a distância <em>perpendicular</em> da linha de ação ao polo, não a distância até onde a força é aplicada. Uma força aplicada a 1 m do polo, mas apontando para ele, tem momento zero.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="M_O = F\,d = \vec r \times \vec F"></span>; d é a distância perpendicular da linha de ação ao polo.</li>
+          <li>Varignon: <span data-tex-inline="M_O = x F_y - y F_x"></span> — decompor costuma ser mais rápido que achar d.</li>
+          <li>Binário: resultante nula, momento <span data-tex-inline="F\,d"></span> igual em relação a qualquer ponto.</li>
+          <li>Mover uma força para outro ponto exige acrescentar o binário correspondente.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma força de 1 kN é aplicada a 2 m do polo, mas sua linha de ação passa por ele. Qual o momento?</summary><p>Zero: o braço de alavanca é nulo. A distância até o ponto de aplicação não importa.</p></details>
+          <details><summary>Por que o momento de um binário não muda com o polo?</summary><p>Porque as duas forças são iguais e opostas: ao mudar o polo, o que se soma ao momento de uma se subtrai do momento da outra. Sobra sempre F·d.</p></details>
+          <details><summary>Ao apertar um parafuso com uma chave inclinada, o que muda?</summary><p>Só a componente perpendicular ao braço gera momento no parafuso. Inclinar a força reduz o braço efetivo e, portanto, o torque.</p></details>
         </div>
       </section>
 
-      <section class="section" id="conteudo-teorico">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Forças e equilíbrio" data-topicos="corpo-livre">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Diagrama de corpo livre e vinculações</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>montar um diagrama de corpo livre sem esquecer nem inventar forças;</li>
+            <li>reconhecer que reação cada tipo de apoio gera;</li>
+            <li>classificar a estrutura em isostática, hiperestática ou hipostática;</li>
+            <li>usar os casos especiais de duas e de três forças para resolver quase sem conta.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 (momentos). Este é o capítulo mais importante do livro: quase todo erro de Estática nasce de um corpo livre malfeito, não da álgebra.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Forças, momentos e binários</summary>
-          <div class="topic-body">
-            <p>Momento mede a tendência de girar. O que conta é a distância <em>perpendicular</em> da linha de ação ao polo — o braço de alavanca.</p>
-            <div class="formula"><span data-tex="M_O = F \cdot d \qquad \vec{M}_O = \vec{r} \times \vec{F}"></span><span class="where">d = distância perpendicular; a forma vetorial resolve o caso tridimensional</span></div>
-            <div class="callout tip">
-              <strong>Teorema de Varignon</strong>
-              O momento de uma força é igual à soma dos momentos de suas componentes. Decompor a força em x e y quase sempre é mais rápido do que achar a distância perpendicular por trigonometria.
-            </div>
-            <p>Um <strong>binário</strong> é um par de forças iguais e opostas, com linhas de ação distintas. Ele tem resultante nula, mas momento não nulo — e esse momento é o mesmo em relação a qualquer polo.</p>
-            <div class="formula"><span data-tex="M_{\text{binário}} = F \cdot d"></span><span class="where">independe do ponto escolhido: é um vetor livre</span></div>
-          </div>
-        </details>
+        <p>Isolar um corpo é um ato de recorte: você escolhe uma fronteira imaginária, apaga tudo o que está fora dela e substitui cada contato apagado pela força que ele exercia. O desenho que resta — o <strong>diagrama de corpo livre</strong> — é o único lugar onde as equações de equilíbrio podem ser aplicadas.</p>
 
-        <details class="topic">
-          <summary>2. Diagrama de corpo livre e vinculações</summary>
-          <div class="topic-body">
-            <p>Cada tipo de apoio impede certos movimentos e, por isso, gera certas reações. O número de reações define se o problema sai só por equilíbrio.</p>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Vinculação</th><th class="num">Reações</th><th>O que impede</th></tr></thead>
-              <tbody>
-                <tr><td>Rolete / apoio simples</td><td class="num">1</td><td>Translação normal à superfície</td></tr>
-                <tr><td>Cabo ou barra biarticulada</td><td class="num">1</td><td>Translação na direção do cabo (só tração)</td></tr>
-                <tr><td>Pino / articulação</td><td class="num">2</td><td>As duas translações; permite girar</td></tr>
-                <tr><td>Engaste</td><td class="num">3</td><td>Translações e rotação</td></tr>
-                <tr><td>Superfície lisa</td><td class="num">1</td><td>Penetração; reação normal à superfície</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="callout warn">
-              <strong>Contagem de incógnitas</strong>
-              No plano há 3 equações. Com 3 incógnitas o problema é <strong>isostático</strong>; com mais, hiperestático (precisa de compatibilidade de deslocamentos); com menos, hipostático — e o corpo é um mecanismo, não uma estrutura.
-            </div>
-          </div>
-        </details>
+        <h3 id="s2-1"><span class="num">2.1</span>O método, em quatro passos</h3>
+        <ol class="essencial">
+          <li><strong>Escolha o corpo.</strong> Pode ser a estrutura inteira, uma peça ou um pedaço cortado. A escolha é estratégica: isole o corpo em que a incógnita que você quer apareça como força <em>externa</em>.</li>
+          <li><strong>Apague o entorno e desenhe as forças.</strong> Peso no centro de gravidade, cargas aplicadas, e uma reação para cada movimento impedido pelos apoios.</li>
+          <li><strong>Marque o sentido suposto e as dimensões.</strong> Se o sinal sair negativo, o sentido real é o contrário — e isso não é erro.</li>
+          <li><strong>Escreva as três equações.</strong> Escolhendo o polo dos momentos num ponto onde duas incógnitas se cruzem, cada equação sai com uma incógnita só.</li>
+        </ol>
+        <div class="callout warn">
+          <strong>Erro comum: desenhar forças internas</strong>
+          A força que uma parte do corpo faz na outra é interna ao recorte e não entra. Se ela interessa, mude o recorte: corte o corpo ali e ela passa a ser externa — é exatamente o que faz o método das seções, no capítulo 4.
+        </div>
 
-        <details class="topic">
-          <summary>3. Sistemas equivalentes e redução de cargas</summary>
-          <div class="topic-body">
-            <p>Uma carga distribuída pode ser substituída por uma força concentrada igual à <strong>área</strong> do diagrama, aplicada no <strong>centroide</strong> desse diagrama.</p>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Distribuição</th><th class="num">Resultante</th><th>Ponto de aplicação</th></tr></thead>
-              <tbody>
-                <tr><td>Uniforme q em L</td><td class="num"><span data-tex-inline="q L"></span></td><td>No meio do trecho</td></tr>
-                <tr><td>Triangular, máximo q</td><td class="num"><span data-tex-inline="\tfrac{1}{2} q L"></span></td><td>A 1/3 da base maior</td></tr>
-                <tr><td>Trapezoidal</td><td class="num">Soma das duas</td><td>Decomponha em retângulo + triângulo</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="callout tip">
-              <strong>Cuidado com o uso</strong>
-              A resultante equivalente vale para calcular <em>reações externas</em>. Para traçar diagramas de esforços internos, a carga precisa continuar distribuída — substituí-la pela resultante dá diagramas errados.
-            </div>
-          </div>
-        </details>
+        <h3 id="s2-2"><span class="num">2.2</span>Apoios e as reações que eles produzem</h3>
+        <p>A regra é simples: <em>cada movimento impedido corresponde a uma reação</em>. Um apoio que impede uma translação gera uma força nessa direção; um que impede a rotação gera um momento.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Vinculação</th><th class="num">Reações</th><th>O que impede</th></tr></thead>
+          <tbody>
+            <tr><td>Rolete / apoio simples</td><td class="num">1</td><td>Translação normal à superfície</td></tr>
+            <tr><td>Cabo ou barra biarticulada</td><td class="num">1</td><td>Translação na direção do cabo (só tração)</td></tr>
+            <tr><td>Pino / articulação</td><td class="num">2</td><td>As duas translações; permite girar</td></tr>
+            <tr><td>Engaste</td><td class="num">3</td><td>As duas translações e a rotação</td></tr>
+            <tr><td>Superfície lisa</td><td class="num">1</td><td>Penetração; reação normal à superfície</td></tr>
+            <tr><td>Superfície com atrito</td><td class="num">2</td><td>Penetração e escorregamento (capítulo 6)</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-2-1"></div>
 
-        <details class="topic">
-          <summary>4. Treliças planas</summary>
-          <div class="topic-body">
-            <p>Treliça ideal supõe nós rotulados, barras retas biarticuladas e cargas aplicadas <em>apenas nos nós</em>. Sob essas hipóteses, toda barra trabalha só à tração ou à compressão.</p>
-            <div class="formula"><span data-tex="m + r = 2n"></span><span class="where">m = barras, r = reações, n = nós. Igualdade → isostática</span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Método</th><th>Quando usar</th><th>Como funciona</th></tr></thead>
-              <tbody>
-                <tr><td>Dos nós</td><td>Quando se quer <em>todas</em> as barras</td><td>ΣFx = ΣFy = 0 em cada nó; comece por um nó com 2 incógnitas</td></tr>
-                <tr><td>Das seções</td><td>Quando se quer <em>algumas</em> barras</td><td>Corte a treliça e aplique as 3 equações ao trecho</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="callout tip">
-              <strong>Barras de força nula</strong>
-              Nó com duas barras não colineares e sem carga: ambas são nulas. Nó com três barras, duas colineares e sem carga: a terceira é nula. Identificá-las antes de calcular economiza muito tempo — e elas existem para dar estabilidade, não para carregar.
-            </div>
-            <div class="callout warn">
-              <strong>Compressão é mais perigosa que tração</strong>
-              Barra tracionada falha por resistência; comprimida falha por <em>flambagem</em>, quase sempre antes. É por isso que a treliça Pratt, com diagonais tracionadas, é preferida em aço, e a Howe em madeira.
-            </div>
-          </div>
-        </details>
+        <h3 id="s2-3"><span class="num">2.3</span>Isostático, hiperestático, hipostático</h3>
+        <p>No plano há três equações. Comparando-as com o número de reações:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Caso</th><th>Reações × equações</th><th>Consequência</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Isostático</strong></td><td>3 incógnitas, 3 equações</td><td>Resolve só com equilíbrio — é o escopo desta disciplina</td></tr>
+            <tr><td><strong>Hiperestático</strong></td><td>mais incógnitas que equações</td><td>Precisa das deformações (Mecânica dos Materiais, Métodos de Energia)</td></tr>
+            <tr><td><strong>Hipostático</strong></td><td>menos incógnitas que equações</td><td>Não é estrutura: é mecanismo, e se move</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A contagem é necessária, mas não suficiente: três reações mal dispostas — todas paralelas, ou todas concorrentes num mesmo ponto — deixam a estrutura instável mesmo com o número certo de incógnitas.</p>
 
-        <details class="topic">
-          <summary>5. Atrito seco</summary>
-          <div class="topic-body">
-            <p>O atrito estático não é um valor fixo: ele vale exatamente o necessário para equilibrar, até um teto.</p>
-            <div class="formula"><span data-tex="f \le f_{\text{max}} = \mu_s N \qquad f_{\text{cinético}} = \mu_k N"></span><span class="where">μk é sempre menor que μs — daí o solavanco ao iniciar o movimento</span></div>
-            <div class="formula"><span data-tex="\phi = \arctan \mu_s"></span><span class="where">ângulo de atrito: define o autotravamento</span></div>
-            <div class="callout tip">
-              <strong>Autotravamento não depende do peso</strong>
-              Um bloco escorrega quando tan θ &gt; μs. A massa aparece dos dois lados da inequação e se cancela — um bloco de 1 kg e outro de 1 tonelada escorregam no mesmo ângulo. É o mesmo princípio do parafuso que não afrouxa sozinho e da rampa de caminhão.
-            </div>
-            <div class="callout warn">
-              <strong>Erro clássico</strong>
-              Usar f = μN quando o corpo está <em>parado</em>. Enquanto não há iminência de movimento, o atrito vale só o necessário para equilibrar, e pode ser bem menor que μN.
-            </div>
-          </div>
-        </details>
+        <h3 id="s2-4"><span class="num">2.4</span>Corpos sujeitos a duas e a três forças</h3>
+        <p>Dois casos particulares resolvem muitos problemas quase sem álgebra:</p>
+        <ul class="essencial">
+          <li><strong>Corpo de duas forças</strong> (uma barra biarticulada sem carga no meio): para haver equilíbrio, as duas forças têm de ser iguais, opostas e ter a mesma linha de ação — a reta que une os dois pinos. É por isso que as barras de uma treliça só trabalham na direção delas.</li>
+          <li><strong>Corpo de três forças</strong>: as três linhas de ação têm de ser concorrentes num ponto (ou todas paralelas). Achar esse ponto no desenho dá a direção da reação desconhecida de graça.</li>
+        </ul>
 
-        <details class="topic">
-          <summary>6. Centroides e centro de gravidade</summary>
-          <div class="topic-body">
-            <p>Centroide é o centro geométrico da área; centro de gravidade é o ponto de aplicação do peso. Coincidem quando o material é homogêneo.</p>
-            <div class="formula"><span data-tex="\bar{x} = \frac{\sum A_i \bar{x}_i}{\sum A_i} \qquad \bar{y} = \frac{\sum A_i \bar{y}_i}{\sum A_i}"></span><span class="where">média das posições ponderada pelas áreas; furos entram com área negativa</span></div>
-            <div class="table-scroll">
-            <table class="data">
-              <thead><tr><th>Figura</th><th class="num">Área</th><th class="num">Centroide</th></tr></thead>
-              <tbody>
-                <tr><td>Retângulo b×h</td><td class="num">bh</td><td class="num">h/2 da base</td></tr>
-                <tr><td>Triângulo b×h</td><td class="num">bh/2</td><td class="num">h/3 da base</td></tr>
-                <tr><td>Semicírculo raio r</td><td class="num">πr²/2</td><td class="num">4r/(3π) do diâmetro</td></tr>
-                <tr><td>Quarto de círculo</td><td class="num">πr²/4</td><td class="num">4r/(3π) de cada lado</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="callout tip">
-              <strong>Simetria resolve metade do problema</strong>
-              O centroide sempre está sobre qualquer eixo de simetria. Com dois eixos, ele está na interseção — e não há conta a fazer.
-            </div>
-          </div>
-        </details>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Viga biapoiada</div>
+          <p>Uma viga de 6 m, apoiada nas duas pontas, recebe uma carga vertical de 12 kN a 2 m do apoio A. Determine as reações.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Corpo livre da viga inteira: reações verticais R<sub>A</sub> e R<sub>B</sub> (o apoio móvel não resiste na horizontal).</li>
+              <li>Momentos em A — assim R<sub>A</sub> some da equação: <span data-tex-inline="6R_B = 12\cdot 2 \Rightarrow R_B = 4\ \text{kN}"></span>.</li>
+              <li>Vertical: <span data-tex-inline="R_A = 12 - 4 = 8\ \text{kN}"></span>.</li>
+              <li>Conferência com os momentos em B: <span data-tex-inline="6\cdot 8 = 12\cdot 4"></span> ✓.</li>
+            </ol>
+            <p class="resposta">R<sub>A</sub> = 8 kN e R<sub>B</sub> = 4 kN: a carga se reparte na razão inversa das distâncias.</p>
+          </details>
+        </div>
+        <div class="fig-host" id="fig-2-2"></div>
 
-        <details class="topic">
-          <summary>7. Momento de inércia de área</summary>
-          <div class="topic-body">
-            <p>Mede como a área se distribui em relação a um eixo. É a grandeza que decide a rigidez à flexão e a resistência à flambagem.</p>
-            <div class="formula"><span data-tex="I_x = \int y^2\,\mathrm{d}A \qquad I_{\text{ret}} = \frac{b h^3}{12}"></span><span class="where">o expoente 3 na altura é o que torna a viga alta tão eficiente</span></div>
-            <div class="formula"><span data-tex="I = I_c + A d^2"></span><span class="where">teorema dos eixos paralelos (Steiner): transporta a inércia para um eixo afastado de d</span></div>
-            <div class="callout warn">
-              <strong>Steiner só parte do eixo centroidal</strong>
-              A fórmula I = I<sub>c</sub> + Ad² exige que I<sub>c</sub> seja o momento de inércia em relação ao eixo que passa pelo <em>centroide da própria figura</em>. Aplicá-la a partir de um eixo qualquer dá resultado errado.
-            </div>
-            <div class="formula"><span data-tex="J_O = I_x + I_y \qquad r = \sqrt{\frac{I}{A}}"></span><span class="where">momento polar e raio de giração</span></div>
-          </div>
-        </details>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.2</span>Viga em balanço</div>
+          <p>Uma viga engastada de 3 m recebe 5 kN na ponta livre e, além disso, 2 kN/m distribuídos em todo o comprimento. Quais são as reações no engaste?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A carga distribuída equivale a <span data-tex-inline="2\cdot3 = 6\ \text{kN}"></span> no meio do vão, a 1,5 m do engaste (capítulo 3).</li>
+              <li>Vertical: <span data-tex-inline="V = 5 + 6 = 11\ \text{kN}"></span>.</li>
+              <li>Momento no engaste: <span data-tex-inline="M = 5\cdot3 + 6\cdot1{,}5 = 24\ \text{kN·m}"></span>.</li>
+            </ol>
+            <p class="resposta">V = 11 kN e M = 24 kN·m. O engaste tem três reações, mas aqui a horizontal é nula porque não há carga nessa direção.</p>
+          </details>
+        </div>
 
-        <details class="topic">
-          <summary>8. Máquinas, estruturas e cabos</summary>
-          <div class="topic-body">
-            <p>Diferente da treliça, os elementos de <strong>pórticos e máquinas</strong> recebem cargas fora dos nós e, portanto, sofrem flexão além de força axial.</p>
-            <div class="callout tip">
-              <strong>Estratégia</strong>
-              Analise primeiro o conjunto todo para achar as reações externas; depois desmembre e faça um diagrama de corpo livre de cada peça, lembrando que nas conexões as forças aparecem aos pares, iguais e opostas (3ª lei de Newton).
-            </div>
-            <p>Em <strong>cabos</strong> com carga distribuída ao longo do vão horizontal, a forma é parabólica; sob peso próprio, é uma catenária.</p>
-            <div class="formula"><span data-tex="T_{\text{max}} = \sqrt{H^2 + V^2} \qquad H = \frac{qL^2}{8f}"></span><span class="where">H = componente horizontal, constante em todo o cabo; f = flecha</span></div>
-          </div>
-        </details>
+        <div id="sim-equilibrio" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Cada movimento impedido gera uma reação: rolete 1, pino 2, engaste 3.</li>
+          <li>Isostático = 3 incógnitas e 3 equações; a disposição também tem de ser estável.</li>
+          <li>Corpo de duas forças: forças na linha que une os pinos. De três forças: linhas concorrentes.</li>
+          <li>Escolha o polo onde duas incógnitas se cruzam e resolva uma incógnita por equação.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma viga com dois engastes é isostática?</summary><p>Não: são 6 incógnitas para 3 equações. É hiperestática de grau 3 e exige as deformações para ser resolvida.</p></details>
+          <details><summary>Por que a reação de um rolete é sempre perpendicular à superfície?</summary><p>Porque o rolete só impede a penetração; ele é livre para rolar na direção tangente, e não resiste nessa direção.</p></details>
+          <details><summary>O que significa uma reação dar valor negativo?</summary><p>Que o sentido real é o oposto do suposto no desenho. O módulo está certo; basta inverter a seta.</p></details>
+        </div>
       </section>
 
-      <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Quatro modelos interativos, com fórmulas e resolução passo a passo.</p>
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Forças e equilíbrio" data-topicos="equilibrio,distribuidas">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Equilíbrio e cargas distribuídas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>escolher o polo dos momentos de modo que cada equação tenha uma incógnita só;</li>
+            <li>reduzir qualquer sistema de forças a uma força e um binário;</li>
+            <li>substituir cargas distribuídas pela resultante equivalente;</li>
+            <li>saber quando essa substituição <em>não</em> pode ser feita.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 2. A partir daqui as contas aparecem — mas sempre depois do desenho.</p></div>
+        </div>
 
-        <div id="sim-trelica"></div>
+        <h3 id="s3-1"><span class="num">3.1</span>As três equações e a escolha do polo</h3>
+        <p>No plano, o equilíbrio dá três equações independentes. O que muitos não percebem é que <em>o polo é livre</em>: a equação de momentos pode ser escrita em torno de qualquer ponto, inclusive fora do corpo. Essa liberdade é a principal ferramenta de cálculo da Estática.</p>
+        <div class="formula"><span data-tex="\sum F_x = 0 \qquad \sum F_y = 0 \qquad \sum M_P = 0 \;\;(\text{P qualquer})"></span></div>
+        <p>A regra prática: <strong>tome os momentos no ponto onde se cruzam as incógnitas que você não quer calcular</strong>. Elas têm braço nulo e desaparecem da equação, deixando uma incógnita sozinha. Em vez de resolver um sistema 3×3, resolvem-se três equações de uma incógnita cada.</p>
+        <div class="callout tip">
+          <strong>Três equações de momento também servem</strong>
+          Em lugar de ΣFx, ΣFy e ΣM, é legítimo usar momentos em três pontos não alinhados. Às vezes é o caminho mais curto, e a equação de forças vira a conferência.
+        </div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Sistemas equivalentes</h3>
+        <p>Qualquer conjunto de forças e binários pode ser reduzido, em um ponto escolhido P, a <strong>uma única força</strong> (a resultante das forças) <strong>mais um binário</strong> (a soma dos momentos em torno de P). Dois sistemas são equivalentes quando têm a mesma resultante e o mesmo momento em relação a um mesmo ponto — e aí produzem exatamente as mesmas reações de apoio.</p>
+        <div class="formula"><span data-tex="\vec R = \sum \vec F_i \qquad \vec M_P = \sum (\vec r_i \times \vec F_i) + \sum \vec C_j"></span></div>
+        <p>Quando a resultante não é nula, é possível ir além e achar a linha de ação em que ela sozinha substitui tudo: basta deslocá-la da distância <span data-tex-inline="d = M_P/R"></span>.</p>
+
+        <h3 id="s3-3"><span class="num">3.3</span>Cargas distribuídas</h3>
+        <p>O peso do próprio concreto, a pressão do vento, a carga de um silo: nenhuma delas age num ponto. Uma carga distribuída q(x), em N/m, equivale a uma força concentrada igual à <strong>área</strong> do diagrama de carga, aplicada no <strong>centroide</strong> desse diagrama:</p>
+        <div class="formula"><span data-tex="R = \int_0^L q(x)\,dx \qquad \bar x = \frac{\int_0^L x\,q(x)\,dx}{\int_0^L q(x)\,dx}"></span><span class="where">na prática, basta decompor o diagrama em retângulos e triângulos</span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Distribuição</th><th class="num">Resultante</th><th>Ponto de aplicação</th></tr></thead>
+          <tbody>
+            <tr><td>Uniforme q em L</td><td class="num"><span data-tex-inline="q L"></span></td><td>No meio do trecho</td></tr>
+            <tr><td>Triangular, máximo q</td><td class="num"><span data-tex-inline="\tfrac{1}{2} q L"></span></td><td>A 1/3 da base, do lado do máximo</td></tr>
+            <tr><td>Trapezoidal</td><td class="num">Soma das duas</td><td>Decomponha em retângulo + triângulo</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-3-1"></div>
+        <div class="callout warn">
+          <strong>A resultante equivalente só vale para as reações</strong>
+          Para calcular reações de apoio, trocar a carga distribuída pela resultante é exato. Para traçar os diagramas de esforço cortante e momento fletor, não: ali a carga precisa continuar distribuída, ou os diagramas saem errados. Essa distinção reaparece em Mecânica dos Materiais.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Viga com carga triangular</div>
+          <p>Uma viga de 4 m, apoiada nas pontas, recebe carga triangular que vai de zero em A até 6 kN/m em B. Determine as reações.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Resultante: área do triângulo, <span data-tex-inline="R = \tfrac12\cdot 6\cdot 4 = 12\ \text{kN}"></span>.</li>
+              <li>Ponto de aplicação: no centroide do triângulo, a <span data-tex-inline="\tfrac23\cdot 4 = 2{,}67\ \text{m}"></span> de A (ou seja, a 1/3 de B, o lado carregado).</li>
+              <li>Momentos em A: <span data-tex-inline="4R_B = 12\cdot 2{,}67 \Rightarrow R_B = 8\ \text{kN}"></span>.</li>
+              <li>Vertical: <span data-tex-inline="R_A = 12 - 8 = 4\ \text{kN}"></span>.</li>
+            </ol>
+            <p class="resposta">R<sub>A</sub> = 4 kN e R<sub>B</sub> = 8 kN — o apoio do lado carregado recebe o dobro.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O polo dos momentos é livre: escolha-o onde as incógnitas indesejadas se cruzam.</li>
+          <li>Todo sistema de forças se reduz a uma força mais um binário num ponto.</li>
+          <li>Carga distribuída → resultante = área do diagrama, aplicada no centroide dele.</li>
+          <li>A substituição vale para reações, não para esforços internos.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma carga uniforme de 10 kN/m atua em 5 m. Qual a resultante e onde age?</summary><p>50 kN, no meio do trecho (2,5 m).</p></details>
+          <details><summary>Por que tomar momentos num apoio ajuda?</summary><p>Porque a reação daquele apoio tem braço nulo e some da equação, deixando a outra reação sozinha.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Estruturas" data-topicos="trelicas">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Treliças planas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer as hipóteses que fazem uma barra trabalhar só à tração ou à compressão;</li>
+            <li>verificar a isostaticidade com m + r = 2n;</li>
+            <li>resolver pelo método dos nós e pelo das seções, escolhendo o mais curto;</li>
+            <li>identificar barras de força nula antes de calcular qualquer coisa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2 — em especial o corpo sujeito a duas forças, que é a razão de uma barra de treliça só trabalhar na própria direção.</p></div>
+        </div>
+
+        <p>Treliça é a estrutura que leva carga com o mínimo de material: triângulos de barras que só tracionam ou comprimem, sem flexão. Pontes, torres de transmissão, coberturas de galpão e braços de guindaste são treliças — e todas funcionam por três hipóteses idealizadas.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>As hipóteses da treliça ideal</h3>
+        <ul class="essencial">
+          <li>os nós são <strong>rotulados</strong> (pinos sem atrito), e não transmitem momento;</li>
+          <li>as barras são retas e biarticuladas, logo são corpos de duas forças;</li>
+          <li>as cargas são aplicadas <strong>apenas nos nós</strong>.</li>
+        </ul>
+        <p>Sob essas hipóteses, cada barra fica com força na própria direção: tração (puxa o nó) ou compressão (empurra o nó). Na prática os nós são soldados ou parafusados e há alguma flexão, mas ela é pequena o bastante para ser desprezada no dimensionamento principal.</p>
+
+        <h3 id="s4-2"><span class="num">4.2</span>Isostaticidade</h3>
+        <p>Cada nó dá duas equações de equilíbrio (ΣFx e ΣFy); cada barra e cada reação é uma incógnita. Comparando:</p>
+        <div class="formula"><span data-tex="m + r = 2n"></span><span class="where">m = barras, r = reações, n = nós. Igualdade → isostática; m + r &gt; 2n → hiperestática; &lt; → mecanismo</span></div>
+
+        <h3 id="s4-3"><span class="num">4.3</span>Método dos nós</h3>
+        <p>Isola-se um nó por vez e aplicam-se ΣFx = 0 e ΣFy = 0. Como cada nó dá só duas equações, a ordem importa: <strong>comece por um nó com no máximo duas barras desconhecidas</strong> — em geral um apoio — e avance pela treliça.</p>
+        <div class="callout tip">
+          <strong>Convenção que evita confusão de sinais</strong>
+          Suponha todas as barras <em>tracionadas</em>, isto é, puxando o nó. Resultado positivo confirma tração; negativo indica compressão. Assim nunca é preciso adivinhar o sentido antes.
+        </div>
+
+        <h3 id="s4-4"><span class="num">4.4</span>Barras de força nula</h3>
+        <p>Duas regras identificam, só de olhar, barras com força zero:</p>
+        <ul class="essencial">
+          <li>nó com <strong>duas barras não colineares</strong> e sem carga externa: as duas são nulas;</li>
+          <li>nó com <strong>três barras</strong>, duas delas colineares, e sem carga externa: a terceira é nula.</li>
+        </ul>
+        <p>Elas não são inúteis: existem para travar o comprimento de flambagem das barras comprimidas e para carregar outras combinações de carga. Mas, naquele caso de carregamento, não trabalham — e marcá-las antes encurta muito o cálculo.</p>
+        <div class="fig-host" id="fig-4-2"></div>
+
+        <h3 id="s4-5"><span class="num">4.5</span>Método das seções</h3>
+        <p>Quando se quer a força de <em>uma</em> barra no meio da treliça, percorrer nó a nó é desperdício. Corte a treliça por um plano que atravesse no máximo três barras desconhecidas, isole um dos lados e aplique as três equações do corpo rígido. Tomando momentos no ponto onde duas das barras cortadas se cruzam, a terceira sai sozinha:</p>
+        <div class="formula"><span data-tex="F_{\text{banzo}} = \pm\frac{M}{h} \qquad F_{\text{diagonal}} = \pm\frac{V}{\text{sen}\,\theta}"></span><span class="where">M e V são o momento fletor e o cortante da seção; h é a altura da treliça</span></div>
+        <p>Essas duas expressões explicam o comportamento das treliças: os <strong>banzos</strong> respondem ao momento fletor (e por isso crescem no meio do vão), enquanto as <strong>diagonais</strong> respondem ao cortante (e crescem perto dos apoios). Dobrar a altura h reduz à metade a força nos banzos — é por isso que treliça alta é treliça leve.</p>
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Método das seções numa treliça de ponte</div>
+          <p>Uma treliça de 12 m de vão e 3 m de altura, com painéis de 3 m, recebe 20 kN no nó central do banzo inferior. Determine a força no banzo inferior e na diagonal do segundo painel.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Reações, por simetria: <span data-tex-inline="R_A = R_B = 10\ \text{kN}"></span>.</li>
+              <li>Corte no meio do segundo painel, a 4,5 m de A; isole o lado esquerdo.</li>
+              <li>Momentos no nó superior do corte (onde se cruzam o banzo superior e a diagonal): <span data-tex-inline="F_{inf}\cdot 3 = 10\cdot 4{,}5 \Rightarrow F_{inf} = 15\ \text{kN}"></span>, tração.</li>
+              <li>Vertical: o cortante de 10 kN é equilibrado pela componente vertical da diagonal, a 45°: <span data-tex-inline="F_{diag} = 10/\text{sen}\,45° = 14{,}1\ \text{kN}"></span>.</li>
+            </ol>
+            <p class="resposta">Banzo inferior 15 kN tracionado; diagonal 14,1 kN. Pelo método dos nós seriam necessários quatro nós para chegar ao mesmo resultado.</p>
+          </details>
+        </div>
+
+        <div class="callout warn">
+          <strong>Compressão é mais perigosa que tração</strong>
+          Barra tracionada falha por resistência; comprimida falha por <em>flambagem</em>, quase sempre antes. É por isso que a treliça Pratt, com diagonais tracionadas, é preferida em aço, e a Howe em madeira.
+        </div>
+
+        <div id="sim-trelica" class="sim"></div>
         <div class="callout tip">
           <strong>O que testar</strong>
           Carregue o exemplo 1 (Pratt) e depois o 2 (Howe): as diagonais trocam de sinal — na Pratt tracionam, na Howe comprimem. Depois abra o exemplo 4 e veja a força nos banzos dobrar ao reduzir a altura pela metade.
         </div>
 
-        <div id="sim-equilibrio"></div>
-        <div id="sim-atrito"></div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Treliça ideal: nós rotulados, barras biarticuladas, cargas só nos nós.</li>
+          <li><span data-tex-inline="m + r = 2n"></span> indica isostaticidade.</li>
+          <li>Nós para todas as barras; seções para algumas. Banzos ← momento; diagonais ← cortante.</li>
+          <li>Barras de força nula: duas não colineares sem carga, ou a terceira entre duas colineares.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma treliça tem 13 barras, 8 nós e 3 reações. É isostática?</summary><p>m + r = 16 e 2n = 16: sim, isostática — desde que a disposição das barras seja estável.</p></details>
+          <details><summary>Dobrando a altura de uma treliça, o que acontece com a força nos banzos?</summary><p>Cai pela metade: F = M/h. É a razão de treliças de ponte serem tão altas.</p></details>
+          <details><summary>Por que uma carga aplicada no meio de uma barra quebra a hipótese da treliça?</summary><p>Porque a barra deixa de ser um corpo de duas forças: aparece flexão, e ela passa a ser uma viga, não uma barra de treliça.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Estruturas" data-topicos="equilibrio">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Pórticos, máquinas e cabos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir treliça de pórtico e de máquina;</li>
+            <li>desmembrar um conjunto em peças sem errar o par ação-reação;</li>
+            <li>calcular a vantagem mecânica de alavancas e polias;</li>
+            <li>analisar cabos sob carga distribuída (parábola) e sob peso próprio (catenária).</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 4. A diferença essencial: aqui as peças recebem carga fora dos nós e, por isso, também fletem.</p></div>
+        </div>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Pórticos e máquinas</h3>
+        <p>Um <strong>pórtico</strong> é uma estrutura fixa cujas peças recebem cargas em qualquer ponto — e, portanto, sofrem flexão além de força axial. Uma <strong>máquina</strong> é o mesmo, mas com peças móveis, feita para transmitir ou ampliar forças: alicates, prensas, garras, elevadores.</p>
+        <p>A estratégia é sempre a mesma:</p>
+        <ol class="essencial">
+          <li>analise o <strong>conjunto inteiro</strong> como um corpo rígido só, e ache as reações externas;</li>
+          <li><strong>desmembre</strong> e faça um diagrama de corpo livre de cada peça;</li>
+          <li>nas conexões, as forças aparecem <strong>aos pares, iguais e opostas</strong> (terceira lei de Newton) — desenhe-as com sentidos opostos nas duas peças, sob pena de obter equações inconsistentes;</li>
+          <li>identifique os corpos de duas forças: a direção da força deles já é conhecida, e isso reduz as incógnitas.</li>
+        </ol>
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Vantagem mecânica de um alicate</div>
+          <p>Um alicate tem 150 mm do pino até a mão e 30 mm do pino até a mandíbula. Com 100 N em cada cabo, qual a força na peça?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Corpo livre de um braço, momentos no pino: <span data-tex-inline="F_{mão}\cdot 150 = F_{peça}\cdot 30"></span>.</li>
+              <li><span data-tex-inline="F_{peça} = 100\cdot(150/30) = 500\ \text{N}"></span>.</li>
+            </ol>
+            <p class="resposta">500 N — vantagem mecânica de 5. A relação é puramente geométrica, dada pela razão dos braços.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Polias e talhas</h3>
+        <p>Numa polia ideal (sem atrito e sem massa), a tração é a mesma dos dois lados do cabo. A conta da vantagem mecânica se reduz a contar quantos trechos de cabo sustentam a carga: com <em>n</em> trechos, a força necessária é <span data-tex-inline="F = W/n"></span>. O preço é o deslocamento: para subir a carga 1 m, é preciso puxar <em>n</em> metros de cabo — o trabalho não muda.</p>
+
+        <h3 id="s5-3"><span class="num">5.3</span>Cabos</h3>
+        <p>Um cabo não resiste à flexão: ele toma a forma que equilibra a carga apenas com tração. A componente <strong>horizontal</strong> da tração, H, é a mesma em todo o cabo — não há força horizontal que a altere entre os apoios. A componente vertical cresce dos pontos baixos para os apoios.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Carga</th><th>Forma</th><th>Relação</th></tr></thead>
+          <tbody>
+            <tr><td>Distribuída no vão horizontal (ponte pênsil)</td><td>Parábola</td><td><span data-tex-inline="H = \dfrac{qL^2}{8f}"></span></td></tr>
+            <tr><td>Peso próprio (linha de transmissão)</td><td>Catenária</td><td><span data-tex-inline="y = \dfrac{H}{q}\cosh\dfrac{qx}{H}"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="formula"><span data-tex="T_{\text{max}} = \sqrt{H^2 + V^2}"></span><span class="where">a tração máxima está nos apoios, onde a inclinação é maior</span></div>
+        <p>A flecha f tem um papel contraintuitivo: <strong>quanto mais esticado o cabo, maior a tração</strong>. Reduzir a flecha à metade dobra H — é por isso que linhas de transmissão são montadas com barriga, e não retas.</p>
+        <div class="fig-host" id="fig-5-2"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.2</span>Cabo de uma passarela</div>
+          <p>Um cabo vence 40 m de vão com flecha de 4 m e sustenta 2 kN/m distribuídos na horizontal. Determine H e a tração máxima.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="H = \dfrac{qL^2}{8f} = \dfrac{2\cdot 40^2}{8\cdot 4} = 100\ \text{kN}"></span>.</li>
+              <li>Vertical em cada apoio: metade da carga total, <span data-tex-inline="V = qL/2 = 40\ \text{kN}"></span>.</li>
+              <li><span data-tex-inline="T_{max} = \sqrt{100^2 + 40^2} = 107{,}7\ \text{kN}"></span>.</li>
+            </ol>
+            <p class="resposta">H = 100 kN e T<sub>máx</sub> = 107,7 kN. Com flecha de 2 m, H subiria para 200 kN.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Pórticos e máquinas: peças com carga fora dos nós, logo com flexão.</li>
+          <li>Desmembrar exige pares ação-reação com sentidos opostos nas duas peças.</li>
+          <li>Alavancas e polias: vantagem mecânica é geometria; o trabalho se conserva.</li>
+          <li>Cabo: H constante, <span data-tex-inline="H = qL^2/8f"></span>, e menos flecha significa mais tração.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Numa talha com 4 trechos de cabo sustentando a carga, quanto se puxa para erguer 800 N?</summary><p>200 N, puxando 4 m de cabo para cada metro de subida.</p></details>
+          <details><summary>Por que um cabo nunca fica perfeitamente horizontal?</summary><p>Porque H = qL²/8f tenderia ao infinito com f → 0: seria preciso tração infinita para anular a flecha.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte III — Atrito e propriedades de área" data-topicos="atrito">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Atrito seco</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>tratar o atrito estático como uma força que vale "o necessário, até um teto";</li>
+            <li>usar o ângulo de atrito e entender o autotravamento;</li>
+            <li>resolver escadas, cunhas e blocos na iminência do escorregamento;</li>
+            <li>aplicar a equação das correias, e^<sup>μθ</sup>.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 3. O atrito acrescenta uma incógnita e, em compensação, uma condição: a de iminência.</p></div>
+        </div>
+
+        <p>Até aqui as superfícies eram lisas. Com atrito, o contato passa a ter duas componentes — a normal N e a tangencial f —, e o problema ganha uma sutileza: o valor de f não é dado por uma fórmula, exceto num caso particular.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>As leis de Coulomb</h3>
+        <div class="formula"><span data-tex="f \le f_{\text{max}} = \mu_s N \qquad f_{\text{cinético}} = \mu_k N"></span><span class="where">μk é sempre menor que μs — daí o solavanco ao iniciar o movimento</span></div>
+        <p>Enquanto o corpo está parado, <strong>o atrito estático vale exatamente o necessário para equilibrar</strong>, podendo ser bem menor que μ<sub>s</sub>N. Só na <em>iminência</em> do escorregamento ele atinge o teto μ<sub>s</sub>N. Já com o corpo deslizando, vale μ<sub>k</sub>N, no sentido oposto ao do movimento relativo.</p>
+        <div class="callout warn">
+          <strong>Erro clássico</strong>
+          Escrever f = μN para um corpo parado. Faça o contrário: calcule o f necessário pelo equilíbrio e <em>compare</em> com μ<sub>s</sub>N. Se couber, o corpo fica; se não couber, ele escorrega e aí sim f = μ<sub>k</sub>N.
+        </div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Ângulo de atrito e autotravamento</h3>
+        <p>Compondo N e f<sub>max</sub>, a reação total do apoio fica inclinada de um ângulo φ em relação à normal:</p>
+        <div class="formula"><span data-tex="\phi = \arctan \mu_s"></span><span class="where">ângulo de atrito: o limite de inclinação da reação de contato</span></div>
+        <p>Isso dá uma leitura geométrica bonita: enquanto a força resultante aplicada cair <em>dentro do cone</em> de semiângulo φ em torno da normal, o contato segura. Fora dele, escorrega. O caso do plano inclinado é imediato: o bloco desliza quando tan θ &gt; μ<sub>s</sub>, independentemente do peso — a massa aparece dos dois lados e se cancela.</p>
+        <div class="fig-host" id="fig-6-1"></div>
+        <p>É o mesmo princípio do <strong>autotravamento</strong>: um parafuso de rosca cujo ângulo de hélice é menor que o ângulo de atrito não afrouxa sozinho; uma cunha com ângulo pequeno fica no lugar depois de cravada; uma rampa de caminhão com inclinação menor que φ não deixa a carga escorregar.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Empurrar um bloco rampa acima</div>
+          <p>Um bloco de 500 N está numa rampa de 10°, com μ<sub>s</sub> = 0,30. Qual a força paralela à rampa necessária para iniciar a subida?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Normal: <span data-tex-inline="N = W\cos10° = 492{,}4\ \text{N}"></span>.</li>
+              <li>Na iminência de subir, o atrito atua para baixo, no valor máximo: <span data-tex-inline="f = 0{,}3\cdot 492{,}4 = 147{,}7\ \text{N}"></span>.</li>
+              <li>Paralelo à rampa: <span data-tex-inline="F = W\,\text{sen}\,10° + f = 86{,}8 + 147{,}7 = 234{,}5\ \text{N}"></span>.</li>
+            </ol>
+            <p class="resposta">F = 234,5 N. Para <em>descer</em> de forma controlada bastariam 86,8 − 147,7 &lt; 0: o bloco nem desce sozinho, porque tan 10° = 0,18 &lt; 0,30.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-3"><span class="num">6.3</span>A escada: o problema clássico</h3>
+        <p>Escada apoiada numa parede lisa e num piso com atrito: três incógnitas (N<sub>piso</sub>, f, N<sub>parede</sub>) e três equações. Na iminência de escorregar, f = μN<sub>piso</sub>, e a condição de equilíbrio dá o ângulo mínimo:</p>
+        <div class="formula"><span data-tex="\tan\theta_{min} = \frac{1}{2\mu_s}"></span><span class="where">para escada homogênea, com o peso no meio e parede sem atrito</span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.2</span>Ângulo mínimo da escada</div>
+          <p>Uma escada homogênea apoia-se numa parede lisa e num piso com μ<sub>s</sub> = 0,30. Qual a menor inclinação segura?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Vertical: <span data-tex-inline="N_{piso} = W"></span>. Horizontal: <span data-tex-inline="N_{parede} = f = \mu W"></span>.</li>
+              <li>Momentos no pé da escada: <span data-tex-inline="N_{parede}\,L\,\text{sen}\,\theta = W\,\tfrac{L}{2}\cos\theta"></span>.</li>
+              <li><span data-tex-inline="\tan\theta = \dfrac{1}{2\mu} = 1{,}667 \Rightarrow \theta = 59{,}0°"></span>.</li>
+            </ol>
+            <p class="resposta">59° com a horizontal. Note que nem o peso nem o comprimento entram: só μ.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-4"><span class="num">6.4</span>Correias e cabos em tambores</h3>
+        <p>Quando um cabo se enrola num tambor, o atrito se acumula ao longo do contato. Integrando o equilíbrio de um elemento de arco chega-se a uma relação exponencial — e exponencial cresce depressa:</p>
+        <div class="formula"><span data-tex="\frac{T_1}{T_2} = e^{\mu\beta}"></span><span class="where">β é o ângulo abraçado, em radianos; T₁ é o lado tenso</span></div>
+        <p>Com μ = 0,3 e meia volta (β = π), a razão já é 2,57; com três voltas completas, passa de 280. É por isso que basta segurar levemente a ponta de uma corda enrolada num poste para sustentar uma carga enorme — e também a base do funcionamento de freios de cinta e de transmissões por correia.</p>
+
+        <div id="sim-atrito" class="sim"></div>
         <div class="callout tip">
           <strong>O que testar</strong>
           Fixe μs = 0,30 e aumente a inclinação: em 16,7° (o ângulo de atrito) o bloco começa a escorregar. Mude o peso para qualquer valor — o ângulo não muda.
         </div>
 
-        <div id="sim-centroide"></div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Parado: f é o necessário, com teto μ<sub>s</sub>N. Deslizando: f = μ<sub>k</sub>N.</li>
+          <li><span data-tex-inline="\phi = \arctan\mu_s"></span>; escorrega quando tan θ &gt; μ<sub>s</sub>, independentemente do peso.</li>
+          <li>Escada homogênea com parede lisa: <span data-tex-inline="\tan\theta_{min} = 1/2\mu"></span>.</li>
+          <li>Correia: <span data-tex-inline="T_1/T_2 = e^{\mu\beta}"></span>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um bloco de 10 N em repouso precisa de 2 N de atrito para equilibrar, e μ<sub>s</sub>N vale 5 N. Qual é a força de atrito?</summary><p>2 N — o necessário. O valor 5 N é apenas o limite disponível.</p></details>
+          <details><summary>Dois blocos, um de 1 kg e outro de 1 t, na mesma rampa. Qual escorrega primeiro?</summary><p>Nenhum: escorregam no mesmo ângulo, porque a condição tan θ &gt; μ<sub>s</sub> não depende da massa.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Atrito e propriedades de área" data-topicos="centroide">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Centroides e centro de gravidade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir centroide, centro de massa e centro de gravidade;</li>
+            <li>localizar o centroide de figuras compostas, inclusive com furos;</li>
+            <li>usar a simetria para evitar contas;</li>
+            <li>aplicar os teoremas de Pappus-Guldin a superfícies e volumes de revolução.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 3 (a resultante de uma carga distribuída já era um centroide — o do diagrama de carga).</p></div>
+        </div>
+
+        <p>O <strong>centroide</strong> é o centro geométrico de uma área ou de um volume; o <strong>centro de massa</strong> leva em conta a densidade; o <strong>centro de gravidade</strong> é o ponto onde se pode considerar aplicado o peso. Em material homogêneo e campo gravitacional uniforme — o caso de praticamente toda peça de engenharia — os três coincidem.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Figuras compostas</h3>
+        <p>A posição do centroide é a média das posições ponderada pelas áreas:</p>
+        <div class="formula"><span data-tex="\bar{x} = \frac{\sum A_i \bar{x}_i}{\sum A_i} \qquad \bar{y} = \frac{\sum A_i \bar{y}_i}{\sum A_i}"></span><span class="where">furos entram com área negativa — e o método continua idêntico</span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Figura</th><th class="num">Área</th><th class="num">Centroide</th></tr></thead>
+          <tbody>
+            <tr><td>Retângulo b×h</td><td class="num">bh</td><td class="num">h/2 da base</td></tr>
+            <tr><td>Triângulo b×h</td><td class="num">bh/2</td><td class="num">h/3 da base</td></tr>
+            <tr><td>Semicírculo raio r</td><td class="num">πr²/2</td><td class="num">4r/(3π) do diâmetro</td></tr>
+            <tr><td>Quarto de círculo</td><td class="num">πr²/4</td><td class="num">4r/(3π) de cada lado</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Simetria resolve metade do problema</strong>
+          O centroide está sempre sobre qualquer eixo de simetria. Com dois eixos, ele está na interseção — e não há conta a fazer.
+        </div>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Centroide de uma seção em L</div>
+          <p>Uma cantoneira é formada por um retângulo vertical de 20 × 100 mm e outro horizontal de 60 × 20 mm na base, encostados pelo canto inferior esquerdo. Onde está o centroide?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Parte 1 (vertical): <span data-tex-inline="A_1 = 2000\ \text{mm}^2"></span>, centroide em (10; 50) mm.</li>
+              <li>Parte 2 (horizontal): <span data-tex-inline="A_2 = 1200\ \text{mm}^2"></span>, centroide em (50; 10) mm.</li>
+              <li><span data-tex-inline="\bar x = \dfrac{2000\cdot10 + 1200\cdot50}{3200} = 25\ \text{mm}"></span>.</li>
+              <li><span data-tex-inline="\bar y = \dfrac{2000\cdot50 + 1200\cdot10}{3200} = 35\ \text{mm}"></span>.</li>
+            </ol>
+            <p class="resposta">G em (25; 35) mm — mais perto da parte de maior área, como deve ser. Essa seção reaparece no exemplo 8.1.</p>
+          </details>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.2</span>Chapa com furo</div>
+          <p>Uma chapa de 200 × 100 mm tem um furo de raio 30 mm centrado em (60; 50) mm. Onde fica o centroide?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Áreas: chapa <span data-tex-inline="20\,000\ \text{mm}^2"></span>; furo <span data-tex-inline="\pi\cdot30^2 = 2827\ \text{mm}^2"></span>, com sinal negativo.</li>
+              <li><span data-tex-inline="\bar x = \dfrac{20\,000\cdot100 - 2827\cdot60}{20\,000 - 2827} = 106{,}6\ \text{mm}"></span>.</li>
+              <li>Em y, chapa e furo têm o mesmo centro: <span data-tex-inline="\bar y = 50\ \text{mm}"></span>.</li>
+            </ol>
+            <p class="resposta">G em (106,6; 50) mm: o centroide se afasta do furo, para o lado de mais material.</p>
+          </details>
+        </div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>Teoremas de Pappus-Guldin</h3>
+        <p>Dois resultados antigos que economizam integrais inteiras ao tratar de peças de revolução — eixos, polias, tanques:</p>
+        <div class="formula"><span data-tex="A = 2\pi\,\bar y\,L \qquad V = 2\pi\,\bar y\,A"></span><span class="where">ȳ é a distância do centroide da linha (ou da área) ao eixo de revolução</span></div>
+        <p>Girando uma linha de comprimento L em torno de um eixo, a área gerada é a do caminho percorrido pelo centroide vezes L; girando uma área A, o volume é o caminho do centroide vezes A.</p>
+
+        <div id="sim-centroide" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\bar x = \sum A_i\bar x_i/\sum A_i"></span>; furos entram com área negativa.</li>
+          <li>O centroide está sobre todo eixo de simetria.</li>
+          <li>Pappus-Guldin: <span data-tex-inline="A = 2\pi\bar y L"></span> e <span data-tex-inline="V = 2\pi\bar y A"></span>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O centroide precisa estar dentro da figura?</summary><p>Não. Num anel ou num perfil em U, ele cai fora do material — o que não impede nenhum cálculo.</p></details>
+          <details><summary>Qual o volume de um toro de raio da seção r e raio médio R?</summary><p>V = 2πR·(πr²) = 2π²Rr², direto por Pappus-Guldin.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Atrito e propriedades de área" data-topicos="inercia">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Momento de inércia de área</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>entender o momento de inércia de área como medida de distribuição de material;</li>
+            <li>aplicar o teorema dos eixos paralelos sem o erro mais comum;</li>
+            <li>calcular I de seções compostas;</li>
+            <li>usar o momento polar e o raio de giração.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 7: todo cálculo de inércia começa pela localização do centroide.</p></div>
+        </div>
+
+        <p>Duas vigas com a mesma área de seção podem ter rigidezes muito diferentes: o que decide é <em>onde</em> o material está. O momento de inércia de área mede exatamente isso, e é a grandeza que governa a flexão (em Mecânica dos Materiais) e a flambagem (em Elementos de Máquina).</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Definição</h3>
+        <div class="formula"><span data-tex="I_x = \int y^2\,\mathrm{d}A \qquad I_{\text{ret}} = \frac{b h^3}{12}"></span><span class="where">a distância entra ao quadrado: material longe do eixo vale muito mais</span></div>
+        <p>O expoente 3 na altura do retângulo é a consequência prática mais importante do curso: <strong>dobrar a altura de uma viga multiplica sua inércia por oito</strong>, enquanto dobrar a largura só a dobra. É por isso que as seções são altas e estreitas, e que os perfis I concentram material nas abas, longe do centro.</p>
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Teorema dos eixos paralelos</h3>
+        <div class="formula"><span data-tex="I = I_c + A\,d^2"></span><span class="where">transporta a inércia do eixo centroidal para um eixo paralelo, afastado de d</span></div>
+        <div class="callout warn">
+          <strong>Steiner só parte do eixo centroidal</strong>
+          A parcela I<sub>c</sub> tem de ser o momento de inércia em relação ao eixo que passa pelo <em>centroide da própria figura</em>. Aplicar a fórmula a partir de um eixo qualquer dá resultado errado — e, pior, sempre a favor da segurança aparente.
+        </div>
+
+        <h3 id="s8-3"><span class="num">8.3</span>Seções compostas</h3>
+        <p>O procedimento é mecânico, e sempre o mesmo:</p>
+        <ol class="essencial">
+          <li>divida a seção em figuras simples (furos com área negativa);</li>
+          <li>ache o centroide do conjunto (capítulo 7);</li>
+          <li>para cada parte, calcule I<sub>c</sub> próprio e transporte com A·d², sendo d a distância do centroide da parte ao centroide do conjunto;</li>
+          <li>some tudo.</li>
+        </ol>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Inércia da seção em L</div>
+          <p>Para a cantoneira do exemplo 7.1 (G em ȳ = 35 mm), calcule I<sub>x</sub> em relação ao eixo centroidal horizontal.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Parte 1 (20 × 100): <span data-tex-inline="I_c = \dfrac{20\cdot100^3}{12} = 1{,}667\times10^6"></span>; d = 50 − 35 = 15 mm; <span data-tex-inline="A d^2 = 2000\cdot225 = 0{,}45\times10^6"></span>.</li>
+              <li>Parte 2 (60 × 20): <span data-tex-inline="I_c = \dfrac{60\cdot20^3}{12} = 0{,}04\times10^6"></span>; d = 35 − 10 = 25 mm; <span data-tex-inline="A d^2 = 1200\cdot625 = 0{,}75\times10^6"></span>.</li>
+              <li>Soma: <span data-tex-inline="I_x = (1{,}667 + 0{,}45 + 0{,}04 + 0{,}75)\times10^6 = 2{,}91\times10^6\ \text{mm}^4"></span>.</li>
+            </ol>
+            <p class="resposta">I<sub>x</sub> = 2,91 × 10⁶ mm⁴. Repare que as parcelas de transporte (1,2 × 10⁶) pesam quase tanto quanto as próprias inércias.</p>
+          </details>
+        </div>
+
+        <h3 id="s8-4"><span class="num">8.4</span>Momento polar e raio de giração</h3>
+        <div class="formula"><span data-tex="J_O = I_x + I_y \qquad r = \sqrt{\frac{I}{A}}"></span><span class="where">J governa a torção de seções circulares; r é usado na flambagem, pelo índice de esbeltez</span></div>
+        <p>O raio de giração é a distância em que toda a área, concentrada, daria a mesma inércia. Para a seção do exemplo 8.1, <span data-tex-inline="r = \sqrt{2{,}91\times10^6/3200} = 30{,}1\ \text{mm}"></span>.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="I = \int y^2 dA"></span>; retângulo: <span data-tex-inline="bh^3/12"></span> — a altura entra ao cubo.</li>
+          <li>Eixos paralelos: <span data-tex-inline="I = I_c + Ad^2"></span>, sempre a partir do eixo centroidal.</li>
+          <li>Seções compostas: centroide primeiro, transporte depois, soma no fim.</li>
+          <li><span data-tex-inline="J_O = I_x + I_y"></span> e <span data-tex-inline="r = \sqrt{I/A}"></span>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Deitar uma viga retangular (trocar b por h) muda o quê?</summary><p>A inércia cai na razão (b/h)². Com 50 × 150 mm, de pé I = 14,1 × 10⁶ mm⁴; deitada, 1,56 × 10⁶ — nove vezes menos.</p></details>
+          <details><summary>Por que o perfil I é eficiente?</summary><p>Porque põe quase toda a área nas abas, longe do eixo neutro, onde o y² rende mais. A alma só precisa resistir ao cortante e manter as abas separadas.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os quatro simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-equilibrio"><small>Capítulo 2 · Corpo livre</small>Equilíbrio de uma viga</a></li>
+          <li><a href="#sim-trelica"><small>Capítulo 4 · Treliças</small>Treliça plana pelos métodos dos nós e das seções</a></li>
+          <li><a href="#sim-atrito"><small>Capítulo 6 · Atrito</small>Bloco na iminência do escorregamento</a></li>
+          <li><a href="#sim-centroide"><small>Capítulo 7 · Centroides</small>Centroide e inércia de figuras compostas</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="grid cols-2">
           <div class="card">
-            <h4 style="margin-top:0">Equilíbrio</h4>
+            <h4 style="margin-top:0">Equilíbrio (caps. 1 a 3)</h4>
             <div class="formula"><span data-tex="\sum F_x = 0 \quad \sum F_y = 0 \quad \sum M = 0"></span></div>
-            <div class="formula"><span data-tex="M_O = F \cdot d"></span></div>
+            <div class="formula"><span data-tex="M_O = F \cdot d = x F_y - y F_x"></span></div>
+            <div class="formula"><span data-tex="R = \int q\,dx \quad \text{no centroide do diagrama}"></span></div>
           </div>
           <div class="card">
-            <h4 style="margin-top:0">Treliças</h4>
+            <h4 style="margin-top:0">Treliças e cabos (caps. 4 e 5)</h4>
             <div class="formula"><span data-tex="m + r = 2n"></span></div>
-            <div class="formula"><span data-tex="F_{\text{banzo}} = \pm \frac{M}{h}"></span></div>
+            <div class="formula"><span data-tex="F_{\text{banzo}} = \pm \frac{M}{h} \qquad F_{\text{diag}} = \pm\frac{V}{\text{sen}\,\theta}"></span></div>
+            <div class="formula"><span data-tex="H = \frac{qL^2}{8f} \qquad T_{max} = \sqrt{H^2+V^2}"></span></div>
           </div>
           <div class="card">
-            <h4 style="margin-top:0">Atrito</h4>
+            <h4 style="margin-top:0">Atrito (cap. 6)</h4>
             <div class="formula"><span data-tex="f_{\text{max}} = \mu_s N \qquad \phi = \arctan\mu_s"></span></div>
-            <div class="formula"><span data-tex="F = W(\sin\theta + \mu_s\cos\theta)"></span></div>
+            <div class="formula"><span data-tex="F = W(\text{sen}\,\theta + \mu_s\cos\theta)"></span></div>
+            <div class="formula"><span data-tex="T_1/T_2 = e^{\mu\beta}"></span></div>
           </div>
           <div class="card">
-            <h4 style="margin-top:0">Centroide e inércia</h4>
+            <h4 style="margin-top:0">Centroide e inércia (caps. 7 e 8)</h4>
             <div class="formula"><span data-tex="\bar{y} = \frac{\sum A_i \bar{y}_i}{\sum A_i}"></span></div>
-            <div class="formula"><span data-tex="I = I_c + A d^2 \qquad r = \sqrt{I/A}"></span></div>
+            <div class="formula"><span data-tex="I = I_c + A d^2 \qquad I_{ret} = \frac{bh^3}{12}"></span></div>
+            <div class="formula"><span data-tex="J_O = I_x + I_y \qquad r = \sqrt{I/A}"></span></div>
           </div>
         </div>
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
-        <p>30 questões sobre momentos, corpo livre, treliças, atrito, centroides e momento de inércia — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
+        <h2>Apêndice B — Simulado</h2>
+        <p>30 questões sobre todos os capítulos. Para treinar um capítulo específico, use o botão "Praticar questões deste capítulo" no rodapé dele — o simulado abre já filtrado.</p>
         <div id="quiz" data-quiz="estatica"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice C — Referências</h2>
         <ul>
           <li><strong>HIBBELER, R. C.</strong> <em>Estática: Mecânica para Engenharia.</em> Pearson. — Bibliografia principal. Caps. 4 (momentos), 5 (equilíbrio), 6 (treliças), 8 (atrito), 9 e 10 (centroides e inércia).</li>
           <li><strong>BEER, F. P.; JOHNSTON, E. R.</strong> <em>Mecânica Vetorial para Engenheiros: Estática.</em> McGraw-Hill. — Excelente no tratamento vetorial e em problemas tridimensionais.</li>
@@ -294,7 +821,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/estatica.js"></script>
+<script src="../js/fig/estatica.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -319,6 +848,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
