@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,11 +35,14 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">5º período · Engenharia Mecânica</p>
     <h1>Mecânica dos Materiais</h1>
-    <p class="lead">Dada uma peça e o carregamento que ela sofre, descobrir onde a tensão é máxima, quanto ela deforma e se isso é aceitável. É a disciplina que transforma um esforço externo em uma decisão de dimensionamento.</p>
+    <p class="lead">A disciplina que responde se a peça aguenta. Este texto está organizado como um livro: oito capítulos em sequência, da definição de tensão ao projeto sob carregamento combinado, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">8 tópicos</span>
+      <span class="tag accent">8 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">4 simuladores</span>
+      <span class="tag info">12 figuras interativas</span>
+      <span class="tag warn">normas</span>
     </div>
   </div>
 
@@ -46,33 +50,51 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>A Estática para no cálculo das reações. A Mecânica dos Materiais continua de onde ela parou: corta a peça, olha o que acontece <em>dentro</em> dela e responde a duas perguntas de projeto.</p>
-        <div class="grid cols-2">
-          <div class="card">
-            <h3 style="margin-top:0">Resistência</h3>
-            <p style="color:var(--text-muted);font-size:.92rem">A tensão atuante fica abaixo da admissível? Envolve identificar a seção crítica, o tipo de solicitação e a fibra mais carregada dessa seção.</p>
-          </div>
-          <div class="card">
-            <h3 style="margin-top:0">Rigidez</h3>
-            <p style="color:var(--text-muted);font-size:.92rem">A peça deforma pouco o bastante para funcionar? Um eixo pode estar longe de romper e mesmo assim ser inútil por fletir demais.</p>
-          </div>
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O curso vai do simples ao combinado: primeiro barras sob tração e eixos sob torção, depois vigas — esforços internos, flexão, deflexão e hiperestaticidade —, e por fim o projeto, somando esforços e aplicando critérios de falha. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: da força à tensão</h2>
+        <p>Na Estática a pergunta era <em>quais são as forças</em>. Aqui ela muda: <strong>a peça aguenta, e deforma quanto?</strong> Entre uma pergunta e outra entram três ideias — tensão (força distribuída pela área), deformação (alongamento relativo) e a lei que liga as duas, Hooke. Todo o resto do curso é aplicar essas três ideias a esforços diferentes.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Esforço</th><th>Tensão que produz</th><th>Deformação</th><th>Capítulo</th></tr></thead>
+          <tbody>
+            <tr><td>Normal (tração/compressão)</td><td><span data-tex-inline="\sigma = N/A"></span></td><td><span data-tex-inline="\delta = NL/AE"></span></td><td>1 e 2</td></tr>
+            <tr><td>Torção</td><td><span data-tex-inline="\tau = Tr/J"></span></td><td><span data-tex-inline="\theta = TL/GJ"></span></td><td>3</td></tr>
+            <tr><td>Flexão</td><td><span data-tex-inline="\sigma = My/I"></span></td><td>linha elástica <span data-tex-inline="EIy'' = M"></span></td><td>4 a 7</td></tr>
+            <tr><td>Cortante na flexão</td><td><span data-tex-inline="\tau = VQ/It"></span></td><td>—</td><td>5</td></tr>
+            <tr><td>Combinados</td><td>soma ponto a ponto</td><td>critério de falha</td><td>8</td></tr>
+          </tbody>
+        </table>
         </div>
-        <div class="callout note">
-          <strong>O roteiro que resolve quase toda questão</strong>
-          1) equilíbrio externo → reações · 2) corte na seção de interesse → esforços internos N, V, M, T ·
-          3) fórmula da solicitação → distribuição de tensão · 4) ponto crítico → comparação com o critério de falha.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução — os exemplos 4.1, 5.1 e 6.1 tratam da mesma viga, de três ângulos diferentes. Mexa nos controles das figuras e termine com o "Teste-se" e as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teorico">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Tensão, deformação e torção" data-topicos="tensao">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Tensão e deformação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir tensão normal de cisalhante e deformação específica de deslocamento;</li>
+            <li>aplicar a lei de Hooke e calcular o alongamento de uma barra;</li>
+            <li>usar o coeficiente de Poisson;</li>
+            <li>reconhecer quando a hipótese de distribuição uniforme vale.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Estática: equilíbrio e esforços internos. Aqui a pergunta muda — não é mais se a peça fica parada, e sim se ela aguenta.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Tensão e deformação</summary>
-          <div class="topic-body">
-            <p>Tensão é esforço interno distribuído por unidade de área. A distinção que importa é a direção em relação ao plano de corte: <strong>normal</strong> (σ, perpendicular) ou <strong>de cisalhamento</strong> (τ, no plano).</p>
+        <p>A Estática termina onde esta disciplina começa. Lá, bastava saber a força; aqui, interessa como ela se distribui pela área e quanto o material se deforma por causa dela. Duas grandezas novas dão conta disso: a tensão, que é força por unidade de área, e a deformação específica, que é alongamento por unidade de comprimento. Toda a Mecânica dos Materiais é a relação entre as duas.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Os conceitos que sustentam tudo</h3>
+<p>Tensão é esforço interno distribuído por unidade de área. A distinção que importa é a direção em relação ao plano de corte: <strong>normal</strong> (σ, perpendicular) ou <strong>de cisalhamento</strong> (τ, no plano).</p>
             <div class="formula"><span data-tex="\sigma =\frac{N}{A} \quad \tau_{\text{méd}} =\frac{V}{A}"></span><span class="where">N = força normal [N]; V = força cortante [N]; A = área da seção [m²]. 1 Pa = 1 N/m², 1 MPa = 1 N/mm²</span></div>
             <p>Deformação normal é adimensional, definida como variação relativa de comprimento:</p>
             <div class="formula"><span data-tex="\varepsilon =\frac{\Delta L}{L_{0}} \quad \gamma = \text{deformação angular }[\text{rad}]"></span></div>
@@ -88,13 +110,55 @@
               <strong>Pegadinha clássica</strong>
               Tensão admissível não é o limite de resistência. σ<sub>adm</sub> = σ<sub>e</sub>/n (ou σ<sub>u</sub>/n, conforme o critério do enunciado) — leia qual dos dois a questão manda usar antes de dividir.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Propriedades do ensaio de tração</summary>
-          <div class="topic-body">
-            <p>A curva σ×ε de engenharia (calculada sempre com a área inicial A₀) concentra quase todas as propriedades mecânicas que se usa em projeto.</p>
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Barra tracionada</div>
+          <p>Uma barra de aço de 20 mm de diâmetro e 2 m de comprimento suporta 50 kN. Com E = 200 GPa, calcule a tensão, a deformação e o alongamento.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Área: <span data-tex-inline="A = \pi d^2/4 = 314{,}2\ \text{mm}^2"></span>.</li>
+              <li>Tensão: <span data-tex-inline="\sigma = 50\,000/314{,}2 = 159{,}2\ \text{MPa}"></span>.</li>
+              <li>Deformação: <span data-tex-inline="\varepsilon = \sigma/E = 159{,}2/200\,000 = 7{,}96\times10^{-4}"></span>.</li>
+              <li>Alongamento: <span data-tex-inline="\delta = \varepsilon L = 1{,}59\ \text{mm}"></span>.</li>
+            </ol>
+            <p class="resposta">σ = 159,2 MPa, ε = 0,0008 e δ = 1,59 mm — bem abaixo do escoamento de um aço comum (250 MPa).</p>
+          </details>
+        </div>
+
+        <div class="fig-host" id="fig-1-2"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\sigma = N/A"></span> e <span data-tex-inline="\tau = V/A"></span>; deformação <span data-tex-inline="\varepsilon = \delta/L"></span>.</li>
+          <li>Lei de Hooke: <span data-tex-inline="\sigma = E\varepsilon"></span>, logo <span data-tex-inline="\delta = NL/(AE)"></span>.</li>
+          <li>Poisson: a contração lateral vale <span data-tex-inline="-\nu\varepsilon"></span>; para metais, ν ≈ 0,3.</li>
+          <li>A tensão uniforme supõe carga centrada e seção longe de pontos de aplicação (Saint-Venant).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Duas barras do mesmo material, uma com o dobro da área, sob a mesma força. Qual alonga mais?</summary><p>A de menor área: a tensão é maior, e δ = NL/AE é inversamente proporcional à área.</p></details>
+          <details><summary>Tensão depende do material?</summary><p>Não: ela só depende da força e da área. O material entra na deformação, por E.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Tensão, deformação e torção" data-topicos="ensaio">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. O ensaio de tração</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>ler a curva tensão-deformação de engenharia;</li>
+            <li>identificar limite de proporcionalidade, escoamento, resistência e ruptura;</li>
+            <li>usar o método do offset de 0,2 %;</li>
+            <li>distinguir material dúctil de frágil e calcular resiliência e tenacidade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e a noção de estrutura cristalina de Ciência dos Materiais.</p></div>
+        </div>
+
+        <p>Um ensaio simples — puxar um corpo de prova até romper — fornece quase todos os números que o projeto usa: módulo de elasticidade, limite de escoamento, limite de resistência e alongamento. Saber ler essa curva é saber o que se pode pedir de um material.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>A curva que define o material</h3>
+<p>A curva σ×ε de engenharia (calculada sempre com a área inicial A₀) concentra quase todas as propriedades mecânicas que se usa em projeto.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Propriedade</th><th>Onde está na curva</th><th>Significado em projeto</th></tr></thead>
@@ -113,13 +177,51 @@
               <strong>Rígido ≠ resistente ≠ tenaz</strong>
               Aço e alumínio de mesma resistência têm E bem diferente. O ferro fundido é rígido e frágil; o cobre recozido é mole e muito tenaz. Confundir esses três eixos é o erro conceitual mais cobrado.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Torção de eixos circulares</summary>
-          <div class="topic-body">
-            <p>Em eixo circular, seções planas permanecem planas e a deformação angular cresce linearmente com o raio. Daí a distribuição de tensão também é linear, nula no centro e máxima na superfície.</p>
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Módulo de resiliência</div>
+          <p>Um aço tem limite de escoamento de 250 MPa e E = 200 GPa. Qual a energia elástica que ele armazena por unidade de volume?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>O módulo de resiliência é a área do triângulo elástico: <span data-tex-inline="u_r = \sigma_e^2/(2E)"></span>.</li>
+              <li><span data-tex-inline="u_r = 250^2/(2\cdot 200\,000) = 0{,}156\ \text{MPa} = 156\ \text{kJ/m}^3"></span>.</li>
+            </ol>
+            <p class="resposta">156 kJ/m³. Molas são projetadas justamente para maximizar esse valor: alto escoamento e E moderado.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Região elástica: reta de inclinação E, e a deformação volta ao zero.</li>
+          <li>Escoamento convencional: offset de 0,2 % para materiais sem patamar definido.</li>
+          <li>Limite de resistência é o pico da curva; depois vem a estricção.</li>
+          <li>Resiliência = área elástica; tenacidade = área total até a ruptura.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a curva de engenharia cai depois do pico?</summary><p>Porque a tensão é calculada com a área inicial. Com a estricção, a área real diminui muito, e a tensão verdadeira continua subindo.</p></details>
+          <details><summary>Um material frágil tem baixa resistência?</summary><p>Não necessariamente: pode ser muito resistente, mas rompe com pouca deformação. Frágil é o oposto de dúctil, não de resistente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Tensão, deformação e torção" data-topicos="torcao">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Torção de eixos circulares</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a tensão de cisalhamento na torção;</li>
+            <li>usar o momento polar de inércia de seções maciças e vazadas;</li>
+            <li>determinar o ângulo de torção;</li>
+            <li>entender por que o eixo vazado é mais eficiente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e o momento polar de inércia da Estática.</p></div>
+        </div>
+
+        <p>Num eixo que transmite potência, as seções giram umas em relação às outras e aparece cisalhamento puro. A hipótese é simples e verificada na prática: seções circulares permanecem planas e circulares, e a distorção cresce linearmente com o raio — por isso o material do centro quase não trabalha.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Cisalhamento que cresce com o raio</h3>
+<p>Em eixo circular, seções planas permanecem planas e a deformação angular cresce linearmente com o raio. Daí a distribuição de tensão também é linear, nula no centro e máxima na superfície.</p>
             <div class="formula"><span data-tex="\tau =\frac{T\cdot \rho }{J} \quad \tau_{\text{máx}} =\frac{T\cdot c}{J} \quad \phi =\frac{T\cdot L}{G\cdot J}"></span><span class="where">T = torque [N·m]; ρ = raio genérico; c = raio externo; J = momento polar de inércia [m⁴]; φ = ângulo de torção [rad]</span></div>
             <div class="formula"><span data-tex="J_{\text{maciço}} = \frac{\pi d^{4}}{32} \quad J_{\text{vazado}} = \pi \frac{d_{e}^{4} - d_{i}^{4}}{32}"></span></div>
             <p>Como J cresce com a quarta potência do raio e a massa só com o quadrado, o material próximo ao centro contribui muito pouco. Um eixo vazado com d<sub>i</sub>/d<sub>e</sub> = 0,7 perde só 24 % da rigidez e quase metade da massa.</p>
@@ -129,13 +231,56 @@
               <strong>Só vale para seção circular</strong>
               Seções quadradas, retangulares ou abertas empenam sob torção. τ = T·ρ/J não se aplica e o τ máximo passa a ocorrer no <em>meio do lado maior</em>, não no canto — que é o ponto de tensão nula.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Esforços internos: N, V e M</summary>
-          <div class="topic-body">
-            <p>Antes de qualquer tensão de flexão vem o diagrama. As relações diferenciais entre carga, cortante e momento economizam muito tempo:</p>
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Eixo maciço sob torque</div>
+          <p>Um eixo maciço de 50 mm transmite 1,2 kN·m. Com G = 80 GPa e 1,5 m de comprimento, calcule a tensão máxima e o ângulo de torção.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="J = \pi\cdot50^4/32 = 6{,}14\times10^{5}\ \text{mm}^4"></span>.</li>
+              <li><span data-tex-inline="\tau_{max} = Tr/J = 1{,}2\times10^6\cdot25/6{,}14\times10^5 = 48{,}9\ \text{MPa}"></span>.</li>
+              <li><span data-tex-inline="\theta = TL/(GJ) = 0{,}0367\ \text{rad} = 2{,}10°"></span>.</li>
+            </ol>
+            <p class="resposta">τ = 48,9 MPa e θ = 2,10°. Em projeto de eixos costuma-se limitar θ a cerca de 1° por metro — aqui, 1,4°/m, no limite.</p>
+          </details>
+        </div>
+
+        <div class="fig-host" id="fig-3-2"></div>
+
+        <div id="sim-torcao" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\tau = Tr/J"></span>, máxima na superfície.</li>
+          <li><span data-tex-inline="J = \pi d^4/32"></span> (maciço) e <span data-tex-inline="\pi(d_e^4-d_i^4)/32"></span> (vazado).</li>
+          <li><span data-tex-inline="\theta = TL/(GJ)"></span>, em radianos.</li>
+          <li>Potência: <span data-tex-inline="P = T\omega"></span> — a ligação com Dinâmica e com o projeto de eixos.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que eixos de transmissão costumam ser vazados?</summary><p>Porque o material perto do centro contribui pouco para J e muito para a massa. Tirá-lo quase não reduz a resistência e alivia bastante o peso.</p></details>
+          <details><summary>Dobrar o diâmetro de um eixo maciço reduz a tensão em quanto?</summary><p>Oito vezes: τ = 16T/πd³.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Vigas" data-topicos="esforcos">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Esforços internos: N, V e M</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>obter N, V e M em qualquer seção pelo método das seções;</li>
+            <li>traçar os diagramas de esforço cortante e momento fletor;</li>
+            <li>usar as relações dV/dx = −q e dM/dx = V;</li>
+            <li>localizar o momento máximo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Estática (reações) e capítulo 1.</p></div>
+        </div>
+
+        <p>Antes de calcular tensões numa viga é preciso saber o que acontece dentro dela. O método é o mesmo da Estática: corta-se a viga numa seção, isola-se um lado e aplicam-se as equações de equilíbrio. O que aparece no corte são os esforços internos — normal, cortante e momento fletor —, e os diagramas deles mostram de uma vez onde a viga sofre mais.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Cortar para enxergar</h3>
+<p>Antes de qualquer tensão de flexão vem o diagrama. As relações diferenciais entre carga, cortante e momento economizam muito tempo:</p>
             <div class="formula"><span data-tex="\frac{\mathrm{d}V}{\mathrm{d}x} = - q(x) \quad \frac{\mathrm{d}M}{\mathrm{d}x} = V(x)"></span><span class="where">q = carga distribuída (positiva para baixo)</span></div>
             <p>Consequências que valem como regra de traçado:</p>
             <div class="table-scroll">
@@ -158,18 +303,79 @@
               <strong>Hiperestático não sai só por equilíbrio</strong>
               Viga biengastada tem 6 reações e apenas 3 equações. É preciso uma condição de compatibilidade (deflexão ou rotação nula no apoio redundante). O simulador abaixo resolve esses casos por elementos finitos.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Flexão: tensão normal e cisalhante</summary>
-          <div class="topic-body">
-            <p>Na flexão, a seção gira em torno da <strong>linha neutra</strong>, que passa pelo centroide da seção. Fibras de um lado tracionam, do outro comprimem, e a tensão varia linearmente com a distância à LN.</p>
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Viga biapoiada com carga central</div>
+          <p>Uma viga de 4 m, apoiada nas pontas, recebe 20 kN no meio do vão. Determine V e M máximos.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Reações, por simetria: 10 kN em cada apoio.</li>
+              <li>Cortante: constante e igual a +10 kN à esquerda da carga, −10 kN à direita.</li>
+              <li>Momento máximo no meio: <span data-tex-inline="M = PL/4 = 20\cdot4/4 = 20\ \text{kN·m}"></span>.</li>
+            </ol>
+            <p class="resposta">V = ±10 kN e M = 20 kN·m. O momento é máximo exatamente onde o cortante troca de sinal.</p>
+          </details>
+        </div>
+
+        <div id="sim-viga" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Esforços internos saem do equilíbrio de um trecho da viga.</li>
+          <li><span data-tex-inline="dV/dx = -q"></span> e <span data-tex-inline="dM/dx = V"></span>: a área de um diagrama é o salto do outro.</li>
+          <li>O momento é máximo onde o cortante passa por zero.</li>
+          <li>Carga concentrada dá salto em V; momento aplicado dá salto em M.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Numa viga biapoiada com carga uniforme, onde está o momento máximo?</summary><p>No meio do vão, onde o cortante cruza o zero. Vale qL²/8.</p></details>
+          <details><summary>O que significa um trecho com V constante?</summary><p>Que não há carga distribuída ali, e o momento varia linearmente nesse trecho.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Vigas" data-topicos="flexao">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Flexão: tensão normal e cisalhante</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar σ = My/I e o módulo de resistência W;</li>
+            <li>calcular a tensão de cisalhamento por VQ/(It);</li>
+            <li>entender o papel do momento estático Q;</li>
+            <li>tratar seções com dois materiais pela seção homogeneizada.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 4 e o momento de inércia de área da Estática.</p></div>
+        </div>
+
+        <p>Na flexão, as fibras de um lado alongam e as do outro encurtam; entre elas existe a linha neutra, que passa pelo centroide. A tensão cresce linearmente com a distância a essa linha — e é por isso que o momento de inércia, que pesa o material pelo quadrado da distância, decide a resistência da seção.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>A fórmula da flexão</h3>
+<p>Na flexão, a seção gira em torno da <strong>linha neutra</strong>, que passa pelo centroide da seção. Fibras de um lado tracionam, do outro comprimem, e a tensão varia linearmente com a distância à LN.</p>
             <div class="formula"><span data-tex="\sigma =\frac{M\cdot y}{I} \quad \sigma_{\text{máx}} =\frac{M\cdot c}{I}=\frac{M}{W}"></span><span class="where">I = momento de inércia da seção [m⁴]; c = distância da LN à fibra extrema; W = I/c = módulo resistente [m³]</span></div>
             <p>O cisalhamento transversal não é uniforme: é nulo nas bordas e máximo na linha neutra.</p>
             <div class="formula"><span data-tex="\tau =\frac{V\cdot Q}{I\cdot t}"></span><span class="where">Q = momento estático da área acima da fibra analisada; t = largura da seção nessa fibra</span></div>
 
-            <h4>Como se calcula o momento estático Q</h4>
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Seção retangular sob flexão</div>
+          <p>A viga do exemplo 4.1 tem seção retangular de 100 × 200 mm (altura 200). Calcule a tensão máxima de flexão e a de cisalhamento.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="I = bh^3/12 = 66{,}7\times10^6\ \text{mm}^4"></span>; <span data-tex-inline="c = 100\ \text{mm}"></span>.</li>
+              <li><span data-tex-inline="\sigma = Mc/I = 20\times10^6\cdot100/66{,}7\times10^6 = 30{,}0\ \text{MPa}"></span>.</li>
+              <li><span data-tex-inline="\tau_{max} = 1{,}5\,V/A = 1{,}5\cdot10\,000/20\,000 = 0{,}75\ \text{MPa}"></span>.</li>
+            </ol>
+            <p class="resposta">σ = 30 MPa e τ = 0,75 MPa: na flexão de vigas esbeltas, o cisalhamento costuma ser desprezível diante da tensão normal.</p>
+          </details>
+        </div>
+
+        <div class="fig-host" id="fig-5-2"></div>
+
+        <div id="sim-flexao" class="sim"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Como se calcula o momento estático Q</h3>
+
             <p>Q é o momento de primeira ordem, em relação à linha neutra, da parte da seção que fica <strong>de um lado só</strong> da fibra onde se quer a tensão. Ele mede quanta área existe além daquele corte e a que distância — é essa área que "quer escorregar" e que o cisalhamento longitudinal precisa segurar.</p>
             <div class="formula"><span data-tex="Q = \int_{A'} y\,\mathrm{d}A = A'\,\bar{y}'"></span><span class="where">A′ = área acima (ou abaixo) da fibra · ȳ′ = distância do centroide DESSA área até a linha neutra</span></div>
             <div class="callout note">
@@ -196,7 +402,8 @@
               Usar a área <em>inteira</em> da seção em vez de só a parte acima do corte · medir ȳ′ a partir da borda em vez da <strong>linha neutra</strong> · esquecer que t é a largura da seção <em>na fibra analisada</em>, e não a largura máxima — é justamente essa troca de t que faz τ saltar na junção entre a mesa e a alma de um perfil I.
             </div>
 
-            <h4>Seção com dois materiais: a seção homogeneizada</h4>
+        <h3 id="s5-3"><span class="num">5.3</span>Seção com dois materiais: a seção homogeneizada</h3>
+
             <p>Quando a seção tem dois materiais com módulos diferentes — concreto e aço, madeira e aço, um sanduíche —, nem σ = My/I nem τ = VQ/(It) valem diretamente, porque I e Q supõem material único. A saída é o <strong>método da seção transformada</strong>: converte-se um material no outro pela razão de módulos.</p>
             <div class="formula"><span data-tex="n = \frac{E_{2}}{E_{1}}"></span><span class="where">razão modular: quantas vezes o material 2 é mais rígido que o material de referência</span></div>
             <p>Multiplica-se a <strong>largura</strong> da parte feita do material 2 por n, mantendo a altura. A seção fictícia resultante é toda do material 1, e nela se calculam normalmente o centroide, I e Q. Só a leitura da tensão muda:</p>
@@ -229,13 +436,37 @@
               <strong>Viga deitada</strong>
               Girar uma seção retangular 90° troca b por h no termo cúbico. Uma seção 50×100 deitada perde 75 % do momento de inércia (I cai 4×) e metade do módulo resistente — mesmo material, mesma área, o dobro da tensão e quatro vezes a flecha.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Deflexão e linha elástica</summary>
-          <div class="topic-body">
-            <p>A curvatura da viga se relaciona ao momento fletor pela equação da linha elástica. Integrando duas vezes chega-se à flecha:</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\sigma = My/I"></span>, máxima nas fibras extremas; <span data-tex-inline="W = I/c"></span>.</li>
+          <li>Cisalhamento na flexão: <span data-tex-inline="\tau = VQ/(It)"></span>, máximo na linha neutra.</li>
+          <li>Q é o momento estático da área acima do ponto considerado.</li>
+          <li>Seções mistas: homogeneíze pela razão n = E₁/E₂ antes de aplicar a fórmula.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o perfil I é tão usado em vigas?</summary><p>Porque concentra área longe da linha neutra, onde a tensão de flexão é maior — e a alma, fina, basta para o cortante.</p></details>
+          <details><summary>Onde a tensão de cisalhamento é máxima numa seção retangular?</summary><p>Na linha neutra, e vale 1,5 V/A — justamente onde a tensão de flexão é nula.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Vigas" data-topicos="deflexao">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Deflexão e linha elástica</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar curvatura, momento e deflexão;</li>
+            <li>integrar a linha elástica com as condições de contorno certas;</li>
+            <li>usar as fórmulas prontas dos casos clássicos;</li>
+            <li>reconhecer quando a rigidez, e não a resistência, governa o projeto.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5.</p></div>
+        </div>
+
+        <p>Uma viga pode estar longe de romper e ainda assim ser inadequada: piso que vibra, porta que não fecha, eixo que desalinha o mancal. O critério aqui não é tensão, e sim deslocamento — e ele depende de EI, a rigidez à flexão.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Quanto a viga desce</h3>
+<p>A curvatura da viga se relaciona ao momento fletor pela equação da linha elástica. Integrando duas vezes chega-se à flecha:</p>
             <div class="formula"><span data-tex="EI \cdot \frac{\mathrm{d}^{2}v}{\mathrm{d}x^{2}} = M(x)"></span><span class="where">v = deflexão [m]; as constantes de integração saem das condições de contorno dos apoios</span></div>
             <p>Tabela completa dos casos fundamentais. É a que resolve a maior parte das questões de prova — e é a mesma que o simulador exibe, já avaliada com os seus números.</p>
             <div class="table-scroll">
@@ -330,13 +561,52 @@
               Engastar as duas pontas reduz a flecha da viga com carga uniforme por um fator 5 (de 5qL⁴/384 para qL⁴/384) e o momento máximo por 1,5. É a razão de se engastar sempre que a vinculação permitir.
             </div>
             <p>A dependência de L⁴ é o que domina o dimensionamento por rigidez: dobrar o vão multiplica a flecha por 16. Critérios usuais de serviço limitam a flecha a L/250 a L/500.</p>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Superposição e vigas hiperestáticas</summary>
-          <div class="topic-body">
-            <p>Enquanto o material é elástico linear e as deflexões são pequenas, os efeitos se somam. Isso permite resolver carregamentos compostos por partes tabeladas e, mais importante, destravar os casos hiperestáticos.</p>
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Flecha da viga biapoiada</div>
+          <p>Para a viga dos exemplos anteriores (4 m, 20 kN no meio, 100 × 200 mm, aço), calcule a flecha máxima e compare com L/250.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\delta = \dfrac{PL^3}{48EI} = \dfrac{20\,000\cdot4000^3}{48\cdot200\,000\cdot66{,}7\times10^6}"></span>.</li>
+              <li><span data-tex-inline="\delta = 2{,}0\ \text{mm}"></span>.</li>
+              <li>Limite usual: <span data-tex-inline="L/250 = 16\ \text{mm}"></span>.</li>
+            </ol>
+            <p class="resposta">δ = 2,0 mm, bem abaixo do limite: aqui quem governa é a tensão, não a rigidez.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="EI\,y'' = M(x)"></span>: integrar duas vezes dá a linha elástica.</li>
+          <li>Casos clássicos: biapoiada com carga central, <span data-tex-inline="PL^3/48EI"></span>; em balanço, <span data-tex-inline="PL^3/3EI"></span>.</li>
+          <li>A deflexão cresce com o cubo do vão: dobrar L multiplica por oito.</li>
+          <li>Norma costuma limitar a flecha a L/250 a L/500.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Trocar aço por alumínio na mesma viga muda o quê?</summary><p>A deflexão triplica, porque E cai de 200 para 70 GPa. A tensão, essa não muda.</p></details>
+          <details><summary>Por que dobrar a altura da seção ajuda tanto?</summary><p>Porque I cresce com h³: a flecha cai para 1/8.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Vigas" data-topicos="superposicao">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Superposição e vigas hiperestáticas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar o princípio da superposição;</li>
+            <li>resolver vigas hiperestáticas por compatibilidade de deslocamentos;</li>
+            <li>escolher a reação redundante;</li>
+            <li>entender por que o apoio extra reduz o momento máximo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 6 — é dele que vêm as fórmulas de flecha usadas aqui.</p></div>
+        </div>
+
+        <p>Quando as equações de equilíbrio não bastam, a solução vem das deformações: remove-se um apoio, calcula-se o deslocamento que apareceria ali e exige-se que a reação removida o anule. É o método da compatibilidade, e ele só funciona porque, no regime elástico, as soluções se somam.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Somar soluções conhecidas</h3>
+<p>Enquanto o material é elástico linear e as deflexões são pequenas, os efeitos se somam. Isso permite resolver carregamentos compostos por partes tabeladas e, mais importante, destravar os casos hiperestáticos.</p>
             <p><strong>Método da superposição para hiperestáticos:</strong></p>
             <ol>
               <li>Remova o apoio redundante → estrutura isostática (sistema primário).</li>
@@ -348,13 +618,76 @@
               <strong>Exemplo</strong>
               Viga engastada-apoiada com q uniforme: removendo o rolete sobra um balanço. Sob a carga a ponta desce δ<sub>carga</sub> = qL⁴/(8EI); a reação incógnita R levanta δ<sub>R</sub> = RL³/(3EI). Compatibilidade δ<sub>carga</sub> = δ<sub>R</sub> → qL⁴/(8EI) = RL³/(3EI) → R = 3qL/8, exatamente o valor que o simulador devolve.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Carregamento combinado e tensão admissível</summary>
-          <div class="topic-body">
-            <h4>Concentração de tensões</h4>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Viga engastada e apoiada</div>
+          <p>Uma viga de 4 m, engastada numa ponta e apoiada na outra, recebe 10 kN/m. Determine a reação no apoio e o momento no engaste.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Remova o apoio: a flecha da viga em balanço sob q é <span data-tex-inline="qL^4/8EI"></span>.</li>
+              <li>A reação R no apoio produz <span data-tex-inline="-RL^3/3EI"></span>.</li>
+              <li>Compatibilidade (flecha nula): <span data-tex-inline="R = 3qL/8 = 15\ \text{kN}"></span>.</li>
+              <li>Momento no engaste: <span data-tex-inline="qL^2/8 = 20\ \text{kN·m}"></span>.</li>
+            </ol>
+            <p class="resposta">R = 15 kN e M = 20 kN·m. Na mesma viga em balanço o momento seria qL²/2 = 80 kN·m: o apoio extra reduz o momento a um quarto.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Superposição vale enquanto o material é elástico-linear e os deslocamentos, pequenos.</li>
+          <li>Hiperestática: escolha a redundante, calcule a flecha livre e imponha compatibilidade.</li>
+          <li>Engastada-apoiada com carga uniforme: <span data-tex-inline="R = 3qL/8"></span> e momento no engaste <span data-tex-inline="qL^2/8"></span>.</li>
+          <li>Apoios extras reduzem flecha e momento, mas introduzem tensões térmicas e por recalque.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que uma viga hiperestática pode falhar por recalque de apoio?</summary><p>Porque o deslocamento imposto gera esforços que não existiriam na isostática: a estrutura "briga" com o apoio.</p></details>
+          <details><summary>A superposição vale depois do escoamento?</summary><p>Não: o comportamento deixa de ser linear e as soluções não podem mais ser somadas.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Projeto" data-topicos="combinado">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Carregamento combinado e tensão admissível</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>somar tensões de esforços diferentes no mesmo ponto;</li>
+            <li>usar critérios de falha (von Mises e Tresca) em estado plano;</li>
+            <li>aplicar fator de segurança e tensão admissível;</li>
+            <li>levar em conta a concentração de tensões.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1, 3 e 5. Este capítulo fecha o curso: é onde o cálculo vira projeto.</p></div>
+        </div>
+
+        <p>Na prática, um eixo raramente só torce ou só flete: ele faz as duas coisas ao mesmo tempo, muitas vezes com carga axial junto. Como o regime é elástico, as tensões de cada esforço se somam ponto a ponto — e o que decide se a peça aguenta é um critério de falha aplicado ao estado resultante.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Quando os esforços se somam</h3>
+
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Eixo sob flexão e torção</div>
+          <p>Um eixo maciço de 40 mm sofre momento fletor de 800 N·m e torque de 600 N·m. Compare a tensão equivalente com um aço de escoamento 250 MPa e fator de segurança 2.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="W = \pi d^3/32 = 6283\ \text{mm}^3"></span>; <span data-tex-inline="W_t = 2W = 12\,566\ \text{mm}^3"></span>.</li>
+              <li><span data-tex-inline="\sigma = M/W = 127{,}3\ \text{MPa}"></span> e <span data-tex-inline="\tau = T/W_t = 47{,}7\ \text{MPa}"></span>.</li>
+              <li>von Mises: <span data-tex-inline="\sigma' = \sqrt{127{,}3^2 + 3\cdot47{,}7^2} = 151{,}8\ \text{MPa}"></span>.</li>
+              <li>Admissível: <span data-tex-inline="250/2 = 125\ \text{MPa}"></span>.</li>
+            </ol>
+            <p class="resposta">σ′ = 151,8 MPa > 125 MPa: reprovado. Subindo o diâmetro para 45 mm, σ′ cai para 106 MPa e o eixo passa.</p>
+          </details>
+        </div>
+
+        <div class="fig-host" id="fig-8-2"></div>
+
+        <div id="sim-tensao" class="sim"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Concentração de tensões</h3>
+
             <p>Toda mudança brusca de seção — furo, rasgo, entalhe, mudança de diâmetro — distorce o fluxo de tensões e cria um pico local:</p>
             <div class="formula"><span data-tex="\sigma_{\max} = K_{t}\,\sigma_{\text{nom}}"></span><span class="where">K_t é geométrico, tabelado (Peterson); σ_nom usa a seção líquida, já descontado o furo</span></div>
             <div class="table-scroll">
@@ -380,39 +713,32 @@
             </div>
             <p>Com σ e τ no mesmo ponto, o passo seguinte (visto em Mecânica dos Materiais II) é combiná-los pelo círculo de Mohr e aplicar um critério de falha. Para dimensionamento rápido em material dúctil usa-se a tensão equivalente:</p>
             <div class="formula"><span data-tex="\sigma_{\text{eq}} = \sqrt{\sigma^{2} + 3\tau^{2}} \le \frac{\sigma_{e}}{n}"></span><span class="where">critério da energia de distorção (von Mises) no estado plano com σ e τ</span></div>
-          </div>
-        </details>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Tensões normais somam-se com sinal; cisalhantes, idem — sempre no mesmo ponto e na mesma face.</li>
+          <li>von Mises: <span data-tex-inline="\sigma' = \sqrt{\sigma^2 + 3\tau^2}"></span> no caso de flexão com torção.</li>
+          <li><span data-tex-inline="\sigma_{adm} = \sigma_e/n"></span>: o fator de segurança cobre incertezas, não erros.</li>
+          <li>Concentração de tensões: <span data-tex-inline="\sigma_{max} = K_t\,\sigma_{nom}"></span>, decisiva em fadiga.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o ponto crítico de um eixo fletido e torcido fica na superfície?</summary><p>Porque ali a tensão de flexão e a de torção são máximas ao mesmo tempo.</p></details>
+          <details><summary>Fator de segurança 2 significa que a peça aguenta o dobro?</summary><p>Significa que a tensão de trabalho é metade da de escoamento. A margem cobre variações de carga, material e geometria — não licença para sobrecarregar.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Quatro modelos interativos. Todos recalculam ao vivo — mexa nos controles e observe o que muda de comportamento, não só de valor.</p>
-
-        <div id="sim-viga"></div>
-        <div class="callout note">
-          <strong>Como ler o coeficiente de segurança deste simulador</strong>
-          Ele é <code>n = f<sub>y</sub> / σ</code>, com <code>σ = M<sub>máx</sub>·c/I = M<sub>máx</sub>/W</code> — ou seja, depende diretamente da <strong>seção</strong> e do <strong>material</strong> escolhidos no fim do painel de controles. Trocar de W 150×13 para W 310×28 muda o W de 85,8 para 355,8 cm³ e o <em>n</em> mais que quadruplica, sem mexer em nenhuma carga.
-          É uma verificação de <em>escoamento por flexão</em> apenas: não cobre cisalhamento na alma, flambagem lateral com torção, instabilidade local nem fadiga. Por isso a NBR 8800 trabalha com φ = 0,90 sobre o momento resistente, e não com um <em>n</em> global.
-        </div>
-        <div class="callout tip">
-          <strong>O que testar na viga</strong>
-          Comece pelos <strong>exemplos resolvidos</strong> no topo do painel — cada um carrega um caso clássico e a resolução passo a passo aparece no fim do simulador.
-          Carregue o exemplo 2 (biapoiada, q = 15 kN/m) e depois o exemplo 4 (mesma carga, biengastada): o momento cai de qL²/8 = 67,5 para qL²/12 = 45 kN·m e a flecha despenca de 23,0 para 4,6 mm — os mesmos 5× da tabela acima.
-          Depois abra o exemplo 6 e veja o que acontece quando a seção é pequena demais: n = 0,18 e flecha L/13.
-        </div>
-
-        <div id="sim-tensao"></div>
-        <div id="sim-torcao"></div>
-        <div class="callout tip">
-          <strong>O que testar na torção</strong>
-          Aumente a razão d<sub>i</sub>/d<sub>e</sub> e acompanhe a curva de rigidez específica: ela cresce continuamente, mas a massa despenca — é o argumento a favor do eixo vazado. Passe de 0,9 e veja τ disparar.
-        </div>
-
-        <div id="sim-flexao"></div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os quatro simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-torcao"><small>Capítulo 3 · Torção</small>Eixo sob torque</a></li>
+          <li><a href="#sim-viga"><small>Capítulo 4 · Esforços internos</small>Diagramas de cortante e momento</a></li>
+          <li><a href="#sim-flexao"><small>Capítulo 5 · Flexão</small>Tensões na seção</a></li>
+          <li><a href="#sim-tensao"><small>Capítulo 8 · Projeto</small>Estado de tensão e critérios</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="grid cols-2">
           <div class="card">
             <h4 style="margin-top:0">Solicitações simples</h4>
@@ -442,7 +768,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <p>A disciplina é teórica, mas os valores de propriedade e os procedimentos de ensaio que alimentam as contas vêm de norma. Vale saber de onde sai cada número.</p>
         <div class="table-scroll">
         <table class="data">
@@ -494,13 +820,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões cobrindo os oito tópicos, entre conceituais e de cálculo (estas abrem espaço para desenvolver a conta). Escolha o recorte e a dificuldade.</p>
         <div id="quiz" data-quiz="mecanica-dos-materiais"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>HIBBELER, R. C.</strong> <em>Resistência dos Materiais.</em> 7ª ed. Pearson. — Caps. 1 a 12. Bibliografia principal da disciplina; o PDF e o manual de soluções estão na pasta do curso.</li>
           <li><strong>BEER, F. P.; JOHNSTON, E. R.</strong> <em>Mecânica dos Materiais.</em> McGraw-Hill. — Caps. 1–9. Excelente no cisalhamento em seção transversal e em carregamento combinado.</li>
@@ -528,7 +854,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/mecanica-dos-materiais.js"></script>
+<script src="../js/fig/mecanica-dos-materiais.js"></script>
 <script>
 /* glossário específico desta disciplina — sobrepõe o significado
    padrão dos símbolos que mudam de sentido conforme a matéria */
@@ -572,6 +900,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
