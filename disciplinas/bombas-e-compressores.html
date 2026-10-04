@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -32,14 +33,16 @@
 
 <main id="conteudo" class="wrap">
   <div class="hero" style="padding-bottom:18px">
-    <p class="kicker">Engenharia Mecânica · máquinas de fluxo</p>
+    <p class="kicker">Eletiva · Engenharia Mecânica</p>
     <h1>Bombas e Compressores</h1>
-    <p class="lead">Máquinas que trocam energia com um fluido em escoamento. A bomba entrega energia ao líquido, o compressor entrega ao gás, a turbina retira — e as três obedecem à mesma equação de Euler, mudando apenas o sinal.</p>
+    <p class="lead">As máquinas que movem fluido e a instalação em que elas vivem. Este texto está organizado como um livro: nove capítulos em sequência, da equação de Euler à seleção e operação, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">9 tópicos</span>
+      <span class="tag accent">9 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">5 simuladores animados</span>
-      <span class="tag">normas</span>
+      <span class="tag info">11 figuras interativas</span>
+      <span class="tag warn">normas</span>
     </div>
   </div>
 
@@ -47,27 +50,55 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>Uma máquina de fluxo tem sempre a mesma anatomia: um <strong>rotor</strong> que gira e troca quantidade de movimento angular com o fluido, e um <strong>difusor ou voluta</strong> que converte parte da velocidade em pressão. Tudo que se calcula sai daí.</p>
-        <div class="formula"><span data-tex="H = \frac{u_2 c_{u2} - u_1 c_{u1}}{g}"></span><span class="where">equação de Euler: positiva na bomba (entrega energia), negativa na turbina (retira)</span></div>
-        <div class="callout note">
-          <strong>O roteiro de qualquer problema de bomba</strong>
-          1) levantar a <strong>curva do sistema</strong> H = Δz + CQ² · 2) sobrepor a <strong>curva da bomba</strong> do catálogo · 3) o cruzamento é o ponto de operação · 4) ler o rendimento e calcular a potência · 5) <strong>verificar o NPSH</strong> — esta última etapa é a que mais se esquece e a que mais destrói bomba.
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O curso vai do rotor para fora: primeiro como a máquina gera altura, depois como ela se comporta dentro de uma instalação real, e por fim as máquinas aparentadas — compressores e turbinas. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: a máquina e a instalação</h2>
+        <p>Uma bomba sozinha não tem ponto de operação. Ela tem uma curva — uma promessa de quanto consegue entregar para cada vazão — e é a instalação que escolhe, nessa curva, onde a máquina vai viver. Metade dos problemas de campo vem de esquecer isso: bomba superdimensionada operando longe do melhor rendimento, cavitação por sucção mal feita, paralelo que não dobra vazão.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Que tipo de máquina usar?</td><td>Deslocamento positivo ou turbomáquina</td><td>1</td></tr>
+            <tr><td>Quanta altura o rotor gera?</td><td>Euler e triângulos de velocidade</td><td>2</td></tr>
+            <tr><td>Quanta potência o motor precisa?</td><td>Escorregamento e rendimentos</td><td>3</td></tr>
+            <tr><td>Onde a bomba vai operar?</td><td>Curva do sistema</td><td>4</td></tr>
+            <tr><td>Vai cavitar?</td><td>NPSH disponível e requerido</td><td>5</td></tr>
+            <tr><td>Duas bombas resolvem?</td><td>Associação e semelhança</td><td>6</td></tr>
+            <tr><td>E se o fluido for gás?</td><td>Politrópica e estágios</td><td>7</td></tr>
+            <tr><td>E para extrair energia?</td><td>Turbinas hidráulicas</td><td>8</td></tr>
+            <tr><td>Qual bomba comprar?</td><td>Seleção e operação</td><td>9</td></tr>
+          </tbody>
+        </table>
         </div>
-        <div class="callout warn">
-          <strong>A bomba não escolhe a vazão</strong>
-          Ela só sabe entregar pares (Q, H) da sua curva. Quem determina em qual desses pares ela vai operar é a instalação. Trocar a bomba por uma "mais forte" sem mexer na tubulação costuma render bem menos do que se espera.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras e nos simuladores, mude o ângulo da pá, o desnível e a rotação para ver a curva e o ponto de operação reagirem; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teoria">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Como a máquina de fluxo funciona" data-topicos="classificacao">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Classificação das máquinas de fluido</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>separar deslocamento positivo de turbomáquina;</li>
+            <li>prever o comportamento de cada uma quando a pressão sobe;</li>
+            <li>reconhecer o risco de estrangular a descarga de uma bomba volumétrica;</li>
+            <li>escolher a família certa para cada serviço.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Mecânica dos Fluidos I (Bernoulli e perda de carga).</p></div>
+        </div>
 
-        <details class="acc" open>
-          <summary>1. Classificação das máquinas de fluido</summary>
-          <div class="acc-body">
-            <p>A primeira divisão separa <strong>máquinas de deslocamento positivo</strong> de <strong>turbomáquinas</strong>, e ela muda tudo no comportamento.</p>
+        <p>Antes de qualquer cálculo há uma escolha de família, e ela decide tudo o que vem depois: como a máquina reage à pressão, o que acontece se a descarga fechar, se ela precisa de escorva e até que viscosidade aceita. Confundir as duas famílias não é um detalhe de projeto — é a origem de boa parte dos acidentes com tubulação rompida.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Deslocamento positivo contra turbomáquina</h3>
+<p>A primeira divisão separa <strong>máquinas de deslocamento positivo</strong> de <strong>turbomáquinas</strong>, e ela muda tudo no comportamento.</p>
             <div class="tabela-wrap">
               <table>
                 <thead><tr><th>Característica</th><th>Deslocamento positivo</th><th>Turbomáquina (centrífuga, axial)</th></tr></thead>
@@ -81,22 +112,73 @@
                 </tbody>
               </table>
             </div>
-            <div class="callout warn">
+
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>A regra que não se discute</h3>
+
+<div class="callout warn">
               <strong>Nunca estrangule a descarga de uma bomba de deslocamento positivo</strong>
               Ela vai insistir em deslocar o mesmo volume, e a pressão sobe até algo romper. A proteção é uma válvula de alívio na descarga, não uma instrução de operação.
             </div>
-          </div>
-        </details>
 
-        <details class="acc">
-          <summary>2. Equação de Euler e triângulos de velocidade</summary>
-          <div class="acc-body">
-            <p>No rotor, a velocidade absoluta do fluido <span data-tex-inline="\vec{c}"></span> é a soma da velocidade relativa à pá <span data-tex-inline="\vec{w}"></span> com a velocidade de arrasto da pá <span data-tex-inline="\vec{u}"></span>. Desenhar esse triângulo na entrada e na saída resolve o rotor inteiro.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Deslocamento positivo confina um volume e o desloca: a vazão quase não depende da pressão.</li>
+          <li>Turbomáquina troca quantidade de movimento no rotor: a vazão cai quando a pressão sobe.</li>
+          <li>Fechar a descarga de uma volumétrica rompe a tubulação; de uma centrífuga, leva ao shutoff.</li>
+          <li>Volumétrica é autoescorvante e aceita viscosidade; centrífuga quer grandes vazões.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que uma bomba de engrenagens não se controla estrangulando a descarga?</summary><p>Porque ela insiste em deslocar o mesmo volume: a pressão sobe até algo romper. O controle é por variação de rotação ou retorno.</p></details>
+          <details><summary>Por que a centrífuga precisa estar cheia de líquido para partir?</summary><p>Porque ela trabalha por troca de quantidade de movimento com o líquido; com ar dentro, a densidade é mil vezes menor e a altura gerada é desprezível.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Como a máquina de fluxo funciona" data-topicos="euler">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Equação de Euler e triângulos de velocidade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>desenhar os triângulos de entrada e de saída do rotor;</li>
+            <li>aplicar a equação de Euler;</li>
+            <li>entender por que só a componente tangencial gera altura;</li>
+            <li>relacionar o ângulo da pá com a forma da curva.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e quantidade de movimento angular.</p></div>
+        </div>
+
+        <p>A equação de Euler é a única equação da disciplina que vem direto da mecânica: é a conservação de momento angular aplicada ao rotor. Tudo o que uma bomba, um ventilador, um compressor centrífugo ou uma turbina fazem está contido nela — o resto do curso é corrigir o que ela idealiza.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>O triângulo de velocidades</h3>
+<p>No rotor, a velocidade absoluta do fluido <span data-tex-inline="\vec{c}"></span> é a soma da velocidade relativa à pá <span data-tex-inline="\vec{w}"></span> com a velocidade de arrasto da pá <span data-tex-inline="\vec{u}"></span>. Desenhar esse triângulo na entrada e na saída resolve o rotor inteiro.</p>
             <div class="formula"><span data-tex="\vec{c} = \vec{w} + \vec{u} \qquad u = \frac{\pi D n}{60}"></span><span class="where">u é a velocidade da pá naquele diâmetro</span></div>
-            <p>Aplicando a conservação de momento angular entre entrada e saída chega-se à equação que dá nome ao capítulo:</p>
+
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <h3 id="s2-2"><span class="num">2.2</span>A equação de Euler</h3>
+
+<p>Aplicando a conservação de momento angular entre entrada e saída chega-se à equação que dá nome ao capítulo:</p>
             <div class="formula"><span data-tex="H_\infty = \frac{u_2 c_{u2} - u_1 c_{u1}}{g}"></span><span class="where">só a componente TANGENCIAL da velocidade absoluta gera altura</span></div>
             <p>Como a maioria dos rotores é projetada com entrada radial, <span data-tex-inline="c_{u1} = 0"></span> e a expressão colapsa para <span data-tex-inline="H_\infty = u_2 c_{u2}/g"></span>. A componente meridional <span data-tex-inline="c_{m2}"></span> não aparece: ela transporta a vazão, mas não entrega energia.</p>
-            <div class="tabela-wrap">
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Altura teórica de um rotor</div>
+          <p>Um rotor de 300 mm gira a 1750 rpm com pás de saída a β₂ = 30°, largura de saída de 20 mm e vazão de 0,05 m³/s. Calcule a altura de Euler.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="u_2 = \pi D_2 n/60 = \pi(0{,}3)(1750)/60 = 27{,}5"></span> m/s.</li>
+              <li><span data-tex-inline="c_{m2} = Q/(\pi D_2 b_2) = 0{,}05/(\pi\cdot0{,}3\cdot0{,}02) = 2{,}65"></span> m/s.</li>
+              <li><span data-tex-inline="c_{u2} = u_2 - c_{m2}/\tan\beta_2 = 27{,}5 - 4{,}60 = 22{,}9"></span> m/s.</li>
+              <li><span data-tex-inline="H_\infty = u_2c_{u2}/g = 27{,}5(22{,}9)/9{,}81"></span>.</li>
+            </ol>
+            <p class="resposta">H∞ = 64,2 m. É a altura que o rotor entregaria com infinitas pás e sem perda nenhuma — o teto teórico, bem acima do que a bomba realmente entrega, como o capítulo seguinte mostra.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-3"><span class="num">2.3</span>O ângulo da pá decide a forma da curva</h3>
+
+<div class="tabela-wrap">
               <table>
                 <thead><tr><th>Ângulo da pá β₂</th><th>Curva teórica H × Q</th><th>Onde se usa</th></tr></thead>
                 <tbody>
@@ -110,15 +192,50 @@
               <strong>Por que pás para a frente são instáveis</strong>
               Se a curva sobe com a vazão e o sistema também sobe, os dois podem se cruzar em mais de um ponto. A bomba fica alternando entre eles — é o fenômeno de <em>surge</em>, que sacode a tubulação inteira.
             </div>
-          </div>
-        </details>
 
-        <details class="acc">
-          <summary>3. Do rotor ideal à bomba real: escorregamento e rendimentos</summary>
-          <div class="acc-body">
-            <p>A equação de Euler supõe infinitas pás infinitamente finas, guiando o líquido perfeitamente. Com um número finito de pás o líquido <strong>escorrega</strong>: dentro do canal ele tende a manter a direção, e sai com componente tangencial menor do que a pá manda.</p>
+        <div id="sim-rotor" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Mude β₂ de 20° para 120° e veja a curva teórica virar de decrescente para crescente; acompanhe o triângulo de saída mudar de forma.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\vec c = \vec w + \vec u"></span>, com <span data-tex-inline="u = \pi D n/60"></span>.</li>
+          <li><span data-tex-inline="H_\infty = (u_2c_{u2} - u_1c_{u1})/g"></span>; com entrada radial, <span data-tex-inline="H_\infty = u_2c_{u2}/g"></span>.</li>
+          <li>A componente meridional transporta a vazão, mas não entrega energia.</li>
+          <li>Pá para trás dá curva decrescente e estável; para a frente, curva crescente e instável.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que praticamente toda bomba centrífuga tem pá para trás?</summary><p>Porque a curva decrescente é estável: cada vazão corresponde a uma única altura, e o ponto de operação é único.</p></details>
+          <details><summary>O que muda na altura se a vazão aumentar, mantendo a rotação?</summary><p>Cresce c_m2, o que reduz c_u2 em pá para trás — e a altura cai. É a origem física da curva descendente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Como a máquina de fluxo funciona" data-topicos="potencia">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Do rotor ideal à bomba real</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>corrigir a altura de Euler pelo escorregamento;</li>
+            <li>distinguir escorregamento de perda por atrito;</li>
+            <li>compor os rendimentos hidráulico, volumétrico e mecânico;</li>
+            <li>calcular a potência de eixo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+
+        <p>Entre a altura de Euler e a que aparece no manômetro há duas coisas diferentes, e confundi-las é comum. A primeira é o escorregamento: com um número finito de pás, o líquido simplesmente não sai na direção que a pá manda, e o trabalho nunca é transferido. A segunda são as perdas propriamente ditas, que transformam em calor energia que já tinha sido entregue.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Escorregamento: o trabalho que nunca chegou ao fluido</h3>
+<p>A equação de Euler supõe infinitas pás infinitamente finas, guiando o líquido perfeitamente. Com um número finito de pás o líquido <strong>escorrega</strong>: dentro do canal ele tende a manter a direção, e sai com componente tangencial menor do que a pá manda.</p>
             <div class="formula"><span data-tex="\Delta c_{u2} = \frac{\pi\,u_2 \sin\beta_2}{z}"></span><span class="where">correção de Stodola — z é o número de pás</span></div>
-            <p>Esta não é uma perda por atrito: é uma <strong>perda de troca de energia</strong>. O trabalho simplesmente nunca chegou ao fluido. Depois dela é que entram as perdas propriamente ditas:</p>
+
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Os três rendimentos</h3>
+
+<p>Esta não é uma perda por atrito: é uma <strong>perda de troca de energia</strong>. O trabalho simplesmente nunca chegou ao fluido. Depois dela é que entram as perdas propriamente ditas:</p>
             <div class="tabela-wrap">
               <table>
                 <thead><tr><th>Rendimento</th><th>O que desconta</th><th>Faixa típica</th></tr></thead>
@@ -131,28 +248,123 @@
               </table>
             </div>
             <div class="formula"><span data-tex="\eta = \eta_h\,\eta_v\,\eta_m \qquad P_{\text{eixo}} = \frac{\rho g Q H}{\eta}"></span><span class="where">a potência sempre se divide pelo rendimento</span></div>
-          </div>
-        </details>
 
-        <details class="acc">
-          <summary>4. Altura manométrica e curva do sistema</summary>
-          <div class="acc-body">
-            <p>Aplicando Bernoulli entre a superfície do reservatório de sucção e a de descarga, o que a bomba precisa fornecer é:</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Da altura de Euler à potência de eixo</div>
+          <p>O rotor do exemplo 2.1 tem 6 pás, η_h = 0,85, η_v = 0,97 e η_m = 0,95. Calcule a altura real e a potência de eixo.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Escorregamento: <span data-tex-inline="\Delta c_{u2} = \pi u_2\sin\beta_2/z = \pi(27{,}5)(0{,}5)/6 = 7{,}20"></span> m/s.</li>
+              <li><span data-tex-inline="c_{u2}' = 22{,}9 - 7{,}20 = 15{,}7"></span> m/s, de modo que H teórico = 44,0 m.</li>
+              <li>Com η_h: <span data-tex-inline="H = 0{,}85(44{,}0) = 37{,}4"></span> m.</li>
+              <li><span data-tex-inline="\eta = 0{,}85(0{,}97)(0{,}95) = 0{,}783"></span> e <span data-tex-inline="P = \rho gQH/\eta"></span>.</li>
+            </ol>
+            <p class="resposta">H = 37,4 m e P = 23,4 kW. Dos 64,2 m de Euler sobraram 37,4 m — 42 % se perderam, e mais de dois terços dessa perda vêm do escorregamento, não do atrito. É por isso que o número de pás é uma decisão de projeto, não um detalhe.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Stodola: <span data-tex-inline="\Delta c_{u2} = \pi u_2\sin\beta_2/z"></span>.</li>
+          <li>Escorregamento é perda de troca de energia, não de atrito.</li>
+          <li><span data-tex-inline="\eta = \eta_h\eta_v\eta_m"></span>, tipicamente de 0,60 a 0,85.</li>
+          <li><span data-tex-inline="P_{eixo} = \rho g Q H/\eta"></span>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Aumentar o número de pás sempre melhora a bomba?</summary><p>Reduz o escorregamento, mas acrescenta área molhada e bloqueio na saída: há um ótimo, em geral entre 5 e 8 pás.</p></details>
+          <details><summary>Onde entra o rendimento volumétrico?</summary><p>Na recirculação pelas folgas do anel de desgaste: parte da vazão volta para a sucção e é bombeada de novo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — A bomba dentro da instalação" data-topicos="curvas">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Altura manométrica e curva do sistema</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>escrever a altura manométrica a partir de Bernoulli;</li>
+            <li>traçar a curva do sistema;</li>
+            <li>achar o ponto de operação;</li>
+            <li>relacionar a inclinação do sistema ao comportamento da instalação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Mecânica dos Fluidos I e capítulo 3.</p></div>
+        </div>
+
+        <p>A bomba não escolhe sozinha onde vai operar: quem decide é o encontro entre o que ela pode entregar e o que a instalação exige. A curva do sistema é uma parábola que parte do desnível geométrico e sobe com o quadrado da vazão — e o ponto de operação é simplesmente onde as duas curvas se cruzam.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>O que a instalação exige da bomba</h3>
+<p>Aplicando Bernoulli entre a superfície do reservatório de sucção e a de descarga, o que a bomba precisa fornecer é:</p>
             <div class="formula"><span data-tex="H_{\text{man}} = \Delta z + \frac{p_d - p_s}{\rho g} + \frac{v_d^2 - v_s^2}{2g} + h_f + h_m"></span><span class="where">com reservatórios abertos e grandes, os termos de pressão e velocidade somem</span></div>
-            <p>Sobra então a forma prática, que é a que se usa em quase todo projeto:</p>
-            <div class="formula"><span data-tex="H_{\text{sis}} = \Delta z + \left(f\frac{L}{D} + \sum K\right)\frac{v^2}{2g} = \Delta z + C\,Q^2"></span><span class="where">parábola com vértice em Δz</span></div>
-            <p>A inclinação dessa parábola diz muito sobre a instalação. Um sistema <strong>pouco inclinado</strong> (Δz grande, perda pequena) reage pouco à vazão; um sistema <strong>muito inclinado</strong> (perda dominante) resiste fortemente a qualquer aumento de vazão — e é nele que associar bombas em paralelo decepciona.</p>
-          </div>
-        </details>
 
-        <details class="acc">
-          <summary>5. NPSH e cavitação</summary>
-          <div class="acc-body">
-            <p>Cavitação é a formação de bolhas de vapor onde a pressão local cai abaixo da pressão de vapor do líquido, seguida da <strong>implosão</strong> dessas bolhas quando elas chegam a uma região de pressão maior, já dentro do rotor. As implosões são localizadas e violentíssimas: arrancam material da pá.</p>
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>A curva do sistema é uma parábola</h3>
+
+<p>Sobra então a forma prática, que é a que se usa em quase todo projeto:</p>
+            <div class="formula"><span data-tex="H_{\text{sis}} = \Delta z + \left(f\frac{L}{D} + \sum K\right)\frac{v^2}{2g} = \Delta z + C\,Q^2"></span><span class="where">parábola com vértice em Δz</span></div>
+
+        <h3 id="s4-3"><span class="num">4.3</span>Sistemas rasos e sistemas íngremes</h3>
+
+<p>A inclinação dessa parábola diz muito sobre a instalação. Um sistema <strong>pouco inclinado</strong> (Δz grande, perda pequena) reage pouco à vazão; um sistema <strong>muito inclinado</strong> (perda dominante) resiste fortemente a qualquer aumento de vazão — e é nele que associar bombas em paralelo decepciona.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Ponto de operação</div>
+          <p>Uma bomba tem curva <span data-tex-inline="H = 64 - 8000\,Q^2"></span> (SI) e a instalação tem 20 m de desnível e perda de 10 m a 0,05 m³/s. Ache o ponto de operação.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Da perda conhecida: <span data-tex-inline="C = 10/0{,}05^2 = 4000"></span>, de modo que H_sis = 20 + 4000 Q².</li>
+              <li>Igualando: 64 − 8000Q² = 20 + 4000Q².</li>
+              <li><span data-tex-inline="Q = \sqrt{44/12\,000} = 0{,}0606"></span> m³/s = 218 m³/h.</li>
+              <li>H = 20 + 4000(0,0606)² = 34,7 m.</li>
+            </ol>
+            <p class="resposta">Q = 218 m³/h a 34,7 m. Note que a bomba não entrega os 64 m do shutoff nem a vazão que daria em sistema sem perda: o ponto de operação é sempre um compromisso imposto pela instalação.</p>
+          </details>
+        </div>
+
+        <div id="sim-instalacao" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Aumente o desnível e depois a perda de carga: no primeiro caso a parábola sobe inteira, no segundo ela só fica mais íngreme — e o ponto de operação anda de modos diferentes.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="H_{man} = \Delta z + \Delta p/\rho g + \Delta v^2/2g + h_f + h_m"></span>.</li>
+          <li>Na forma prática: <span data-tex-inline="H_{sis} = \Delta z + CQ^2"></span>.</li>
+          <li>O ponto de operação é a interseção das duas curvas.</li>
+          <li>Sistema raso reage pouco à vazão; sistema íngreme resiste a qualquer aumento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Fechar parcialmente a válvula de recalque faz o quê com o ponto de operação?</summary><p>Aumenta C: a parábola do sistema fica mais íngreme e o ponto escorrega para a esquerda, com menos vazão e mais altura.</p></details>
+          <details><summary>Por que a altura estática não depende da vazão?</summary><p>Porque é só o desnível geométrico mais a diferença de pressão entre os reservatórios — nada ali muda quando a vazão muda.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — A bomba dentro da instalação" data-topicos="npsh">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. NPSH e cavitação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular o NPSH disponível;</li>
+            <li>comparar com o requerido e aplicar a margem;</li>
+            <li>explicar o limite físico da altura de sucção;</li>
+            <li>listar as medidas que evitam cavitação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 4 e pressão de vapor.</p></div>
+        </div>
+
+        <p>Cavitação é o problema que destrói bombas sem que nada esteja sobrecarregado. Ela não vem de excesso de pressão, e sim de falta: se em algum ponto da entrada a pressão cai abaixo da pressão de vapor, o líquido ferve ali mesmo, e as bolhas implodem adiante, arrancando metal. A conta que previne isso é uma só, e é simples.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>O que é cavitação</h3>
+<p>Cavitação é a formação de bolhas de vapor onde a pressão local cai abaixo da pressão de vapor do líquido, seguida da <strong>implosão</strong> dessas bolhas quando elas chegam a uma região de pressão maior, já dentro do rotor. As implosões são localizadas e violentíssimas: arrancam material da pá.</p>
             <div class="formula"><span data-tex="\mathrm{NPSH}_{\text{disp}} = \frac{p_{\text{atm}} - p_v}{\rho g} + z_s - h_{f,\text{succ}}"></span><span class="where">energia disponível na entrada da bomba ACIMA da pressão de vapor</span></div>
             <div class="formula"><span data-tex="\mathrm{NPSH}_{\text{disp}} \ge \mathrm{NPSH}_{\text{req}} + 0{,}5\ \mathrm{m}"></span><span class="where">critério de projeto — o requerido vem da curva do fabricante</span></div>
             <p>O termo <span data-tex-inline="(p_{\text{atm}} - p_v)/\rho g"></span> vale cerca de <strong>10,1 m</strong> para água fria ao nível do mar. É de lá que sai o limite físico da altura de sucção: nenhuma bomba aspira água a mais de 10 m, e na prática o limite útil fica em 6 a 7 m depois de descontar perdas e margem.</p>
-            <div class="tabela-wrap">
+
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Como escapar da cavitação</h3>
+
+<div class="tabela-wrap">
               <table>
                 <thead><tr><th>O que fazer para escapar da cavitação</th><th>Efeito no NPSH disponível</th></tr></thead>
                 <tbody>
@@ -165,38 +377,155 @@
                 </tbody>
               </table>
             </div>
-            <div class="callout warn">
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>A mesma bomba com água fria e quente</div>
+          <p>Uma bomba fica 3 m acima do nível do reservatório, com 1,2 m de perda na sucção e NPSH requerido de 4,5 m. Verifique com água a 20 °C e a 80 °C.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A 20 °C: <span data-tex-inline="(p_{atm}-p_v)/\rho g = (101\,325-2339)/(998\cdot9{,}81) = 10{,}11"></span> m.</li>
+              <li>NPSH_disp = 10,11 − 3 − 1,2 = 5,91 m — acima de 4,5 + 0,5.</li>
+              <li>A 80 °C, p_v = 47,4 kPa e ρ = 972: o termo cai para 5,66 m.</li>
+              <li>NPSH_disp = 5,66 − 3 − 1,2 = 1,46 m.</li>
+            </ol>
+            <p class="resposta">Com água fria há 5,91 m contra os 5,0 m exigidos: opera bem. Com água a 80 °C sobram 1,46 m e a bomba cavita — a mesma instalação, o mesmo ponto de operação, só a temperatura mudou. Por isso bombas de água quente trabalham quase sempre afogadas.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-3"><span class="num">5.3</span>Como se reconhece uma bomba cavitando</h3>
+
+<div class="callout warn">
               <strong>Como se reconhece uma bomba cavitando</strong>
               Ruído de cascalho passando pela carcaça, vibração, queda de vazão e de altura, e erosão característica no lado de baixa pressão das pás. Estrangular a válvula de <em>sucção</em> para "controlar" a vazão é a receita mais rápida de provocar cavitação — o controle se faz sempre no recalque.
             </div>
-          </div>
-        </details>
 
-        <details class="acc">
-          <summary>6. Associação e leis de semelhança</summary>
-          <div class="acc-body">
-            <p>Em <strong>paralelo</strong>, as bombas compartilham a mesma altura e somam vazões. Em <strong>série</strong>, passam a mesma vazão e somam alturas. A curva resultante se sobrepõe à do sistema exatamente como antes.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="NPSH_{disp} = (p_{atm}-p_v)/\rho g + z_s - h_{f,succ}"></span>.</li>
+          <li>Critério de projeto: <span data-tex-inline="NPSH_{disp} \ge NPSH_{req} + 0{,}5"></span> m.</li>
+          <li>Para água fria ao nível do mar, o primeiro termo vale 10,1 m — daí o limite de sucção.</li>
+          <li>Líquido quente derruba o NPSH disponível porque p_v sobe depressa.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que nenhuma bomba aspira água a mais de 10 m?</summary><p>Porque esse é o valor de (p_atm − p_v)/ρg: não há mais energia disponível para vencer o desnível e as perdas.</p></details>
+          <details><summary>Estrangular a sucção para reduzir a vazão é aceitável?</summary><p>Nunca: aumenta h_f na sucção e derruba o NPSH disponível. O controle se faz sempre no recalque.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — A bomba dentro da instalação" data-topicos="associacao">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Associação e leis de semelhança</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>montar a curva equivalente em série e em paralelo;</li>
+            <li>prever quando o paralelo decepciona;</li>
+            <li>aplicar as leis de semelhança;</li>
+            <li>usar a rotação específica para classificar o rotor.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 4.</p></div>
+        </div>
+
+        <p>Duas bombas iguais em paralelo não dobram a vazão — e entender por que não é um bom teste de quem realmente compreendeu a curva do sistema. As leis de semelhança, por sua vez, são o que torna o inversor de frequência tão eficaz: reduzir 20 % da rotação corta quase metade da potência.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Série e paralelo</h3>
+<p>Em <strong>paralelo</strong>, as bombas compartilham a mesma altura e somam vazões. Em <strong>série</strong>, passam a mesma vazão e somam alturas. A curva resultante se sobrepõe à do sistema exatamente como antes.</p>
             <div class="formula"><span data-tex="\text{paralelo: } Q = \textstyle\sum Q_i \quad H \text{ comum} \qquad \text{série: } H = \textstyle\sum H_i \quad Q \text{ comum}"></span></div>
-            <p>As leis de semelhança relacionam a mesma bomba operando em rotações diferentes, e são a base do acionamento por inversor de frequência:</p>
+
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>As leis de semelhança</h3>
+
+<p>As leis de semelhança relacionam a mesma bomba operando em rotações diferentes, e são a base do acionamento por inversor de frequência:</p>
             <div class="formula"><span data-tex="\frac{Q_2}{Q_1} = \frac{n_2}{n_1} \qquad \frac{H_2}{H_1} = \left(\frac{n_2}{n_1}\right)^{2} \qquad \frac{P_2}{P_1} = \left(\frac{n_2}{n_1}\right)^{3}"></span><span class="where">vazão linear, altura quadrática, potência cúbica</span></div>
             <div class="callout note">
               <strong>De onde vem a economia do inversor</strong>
               Estrangulando a válvula, a bomba continua na sua curva: a altura sobe junto com a perda inserida, e a potência quase não cai. Reduzindo a rotação, a curva inteira desce, o ponto pousa sobre a curva do sistema real e a potência cai com o <strong>cubo</strong>. Reduzir 20 % da rotação corta cerca de metade da potência.
             </div>
-            <p>A rotação específica classifica o rotor independentemente do tamanho:</p>
-            <div class="formula"><span data-tex="n_s = \frac{n\sqrt{Q}}{H^{3/4}}"></span><span class="where">baixo: rotor radial · médio: fluxo misto · alto: axial</span></div>
-          </div>
-        </details>
 
-        <details class="acc">
-          <summary>7. Compressores: tipos, politrópica e múltiplos estágios</summary>
-          <div class="acc-body">
-            <p>Comprimir um gás aquece. É esse aquecimento que domina o projeto: ele encarece o trabalho, degrada o lubrificante e limita a razão de pressão por estágio.</p>
+        <h3 id="s6-3"><span class="num">6.3</span>Rotação específica</h3>
+
+<p>A rotação específica classifica o rotor independentemente do tamanho:</p>
+            <div class="formula"><span data-tex="n_s = \frac{n\sqrt{Q}}{H^{3/4}}"></span><span class="where">baixo: rotor radial · médio: fluxo misto · alto: axial</span></div>
+
+        <div class="fig-host" id="fig-6-2"></div>
+
+        <div id="sim-associacao" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare duas bombas em paralelo num sistema raso e num sistema íngreme: no segundo, a segunda bomba quase não acrescenta vazão.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Reduzir a rotação com inversor</div>
+          <p>A bomba do exemplo 4.1 passa a girar a 80 % da rotação. O que acontece com o ponto de operação e com a potência?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A curva escala com n²: <span data-tex-inline="H = 0{,}8^2(64) - 8000Q^2 = 41{,}0 - 8000Q^2"></span>.</li>
+              <li>Igualando ao sistema: 41,0 − 8000Q² = 20 + 4000Q².</li>
+              <li><span data-tex-inline="Q = \sqrt{21{,}0/12\,000} = 0{,}0418"></span> m³/s = 150 m³/h.</li>
+              <li>H = 20 + 4000(0,0418)² = 27,0 m.</li>
+            </ol>
+            <p class="resposta">A vazão cai de 218 para 150 m³/h (31 % menos) e a altura, de 34,7 para 27,0 m. Como a potência útil vai com QH, ela cai para cerca de metade — e sem estrangular nada. É esse o argumento econômico do inversor contra o controle por válvula.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Paralelo soma vazões a mesma altura; série soma alturas a mesma vazão.</li>
+          <li>Em sistema íngreme, a segunda bomba em paralelo acrescenta pouca vazão.</li>
+          <li><span data-tex-inline="Q \propto n"></span>, <span data-tex-inline="H \propto n^2"></span>, <span data-tex-inline="P \propto n^3"></span>.</li>
+          <li><span data-tex-inline="n_s = n\sqrt Q/H^{3/4}"></span> classifica o rotor: radial, misto ou axial.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a potência cai com o cubo da rotação?</summary><p>Porque P ∝ QH e Q ∝ n enquanto H ∝ n²; o produto vai com n³.</p></details>
+          <details><summary>Quando o paralelo compensa de verdade?</summary><p>Em sistema raso, dominado pelo desnível: ali a curva do sistema é quase horizontal e a vazão realmente se aproxima do dobro.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Compressores e turbinas" data-topicos="compressores">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Compressores: politrópica e múltiplos estágios</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar razão de pressão e temperatura de descarga;</li>
+            <li>calcular o trabalho politrópico;</li>
+            <li>dividir a compressão em estágios com razão igual;</li>
+            <li>calcular o rendimento volumétrico com espaço nocivo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Termodinâmica I e capítulo 2.</p></div>
+        </div>
+
+        <p>Em bomba, o fluido é incompressível e a conta é geométrica. Em compressor, comprimir aquece, e o aquecimento encarece o próprio trabalho: o gás quente resiste mais. Daí vêm as três decisões do projeto — quanto resfriar durante a compressão, em quantos estágios dividir e quanto espaço nocivo tolerar.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Comprimir aquece — e o aquecimento custa caro</h3>
+<p>Comprimir um gás aquece. É esse aquecimento que domina o projeto: ele encarece o trabalho, degrada o lubrificante e limita a razão de pressão por estágio.</p>
             <div class="formula"><span data-tex="p V^{\,n} = \mathrm{const} \qquad \frac{T_2}{T_1} = \left(\frac{p_2}{p_1}\right)^{\frac{n-1}{n}}"></span><span class="where">a temperatura de descarga depende da RAZÃO de pressão, não da diferença</span></div>
             <div class="formula"><span data-tex="w = \frac{n}{n-1}RT_1\left[\left(\frac{p_2}{p_1}\right)^{\frac{n-1}{n}} - 1\right]"></span><span class="where">trabalho específico em regime permanente; para n = 1 vale w = RT₁ln(p₂/p₁)</span></div>
-            <p>Quanto mais o gás for resfriado durante a compressão, menor n e menor o trabalho. O limite inferior é a compressão isotérmica, inatingível na prática — mas de que se aproxima com <strong>inter-resfriamento entre estágios</strong>.</p>
+
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>Múltiplos estágios e inter-resfriamento</h3>
+
+<p>Quanto mais o gás for resfriado durante a compressão, menor n e menor o trabalho. O limite inferior é a compressão isotérmica, inatingível na prática — mas de que se aproxima com <strong>inter-resfriamento entre estágios</strong>.</p>
             <div class="formula"><span data-tex="r_{\text{est}} = \left(\frac{p_2}{p_1}\right)^{1/N} \qquad p_{\text{int}} = \sqrt{p_1 p_2}\ \ (N = 2)"></span><span class="where">a divisão que minimiza o trabalho total é a razão IGUAL em todos os estágios</span></div>
-            <p>No compressor alternativo, o volume que sobra quando o pistão chega ao ponto morto superior — o <strong>espaço nocivo</strong> — guarda gás comprimido que reexpande no curso seguinte e rouba parte da admissão:</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Um estágio contra dois</div>
+          <p>Ar a 1 bar e 300 K é comprimido até 8 bar, com n = 1,3. Compare um estágio com dois estágios inter-resfriados até 300 K.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Um estágio: <span data-tex-inline="T_2 = 300(8)^{0{,}3/1{,}3} = 485"></span> K = 212 °C.</li>
+              <li><span data-tex-inline="w = \frac{n}{n-1}RT_1[(r)^{(n-1)/n}-1] = 4{,}33(287)(300)(0{,}616)"></span> = 229,8 kJ/kg.</li>
+              <li>Dois estágios: <span data-tex-inline="r_{est} = \sqrt8 = 2{,}83"></span> e T₂ = 381 K = 108 °C em cada um.</li>
+              <li>w total = 2 × 101,2 = 202,3 kJ/kg.</li>
+            </ol>
+            <p class="resposta">229,8 contra 202,3 kJ/kg: 12 % de economia, e a temperatura de descarga cai de 212 °C para 108 °C. A isotérmica, inatingível, custaria 179 kJ/kg — é dela que o inter-resfriamento aproxima a máquina.</p>
+          </details>
+        </div>
+
+        <h3 id="s7-3"><span class="num">7.3</span>Espaço nocivo e rendimento volumétrico</h3>
+
+<p>No compressor alternativo, o volume que sobra quando o pistão chega ao ponto morto superior — o <strong>espaço nocivo</strong> — guarda gás comprimido que reexpande no curso seguinte e rouba parte da admissão:</p>
             <div class="formula"><span data-tex="\eta_v = 1 + c - c\left(\frac{p_2}{p_1}\right)^{1/n}"></span><span class="where">quando η_v chega a zero, o compressor deixa de aspirar</span></div>
             <div class="tabela-wrap">
               <table>
@@ -209,13 +538,45 @@
                 </tbody>
               </table>
             </div>
-          </div>
-        </details>
 
-        <details class="acc">
-          <summary>8. Turbinas hidráulicas</summary>
-          <div class="acc-body">
-            <p>É a mesma equação de Euler com o sinal trocado: agora o fluido entrega energia ao rotor. A divisão fundamental é entre <strong>ação</strong> e <strong>reação</strong>.</p>
+        <div id="sim-compressor" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Aumente a razão de pressão e veja o espaço nocivo comer a admissão: há uma razão em que o rendimento volumétrico zera e a máquina para de aspirar.
+        </div>
+
+        <div class="fig-host" id="fig-7-2"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="T_2/T_1 = (p_2/p_1)^{(n-1)/n}"></span>: depende da razão, não da diferença.</li>
+          <li>Quanto mais resfriado, menor n e menor o trabalho; o limite é a isotérmica.</li>
+          <li>A divisão ótima é razão igual em todos os estágios: <span data-tex-inline="r_{est} = (p_2/p_1)^{1/N}"></span>.</li>
+          <li><span data-tex-inline="\eta_v = 1 + c - c(p_2/p_1)^{1/n}"></span>: zerou, o compressor deixa de aspirar.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que inter-resfriar reduz o trabalho?</summary><p>Porque o segundo estágio comprime gás frio, mais denso: o trabalho específico de cada estágio cai.</p></details>
+          <details><summary>O que limita a razão de pressão por estágio?</summary><p>A temperatura de descarga — pelo lubrificante, pelas válvulas e pelo risco de ignição de óleo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Compressores e turbinas" data-topicos="turbinas">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Turbinas hidráulicas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir turbinas de ação e de reação;</li>
+            <li>deduzir a condição de rendimento máximo da Pelton;</li>
+            <li>usar a rotação específica em potência;</li>
+            <li>escolher o tipo de turbina pela queda e pela vazão.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+
+        <p>Uma turbina é uma bomba ao contrário, e a equação de Euler continua valendo — só muda o sinal. O resultado mais bonito do capítulo é a condição de rendimento máximo da Pelton: a concha deve andar exatamente à metade da velocidade do jato, nem mais nem menos.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>A mesma equação com o sinal trocado</h3>
+<p>É a mesma equação de Euler com o sinal trocado: agora o fluido entrega energia ao rotor. A divisão fundamental é entre <strong>ação</strong> e <strong>reação</strong>.</p>
             <div class="tabela-wrap">
               <table>
                 <thead><tr><th></th><th>Ação (Pelton)</th><th>Reação (Francis, Kaplan)</th></tr></thead>
@@ -228,20 +589,69 @@
                 </tbody>
               </table>
             </div>
-            <div class="formula"><span data-tex="V_1 = k_v\sqrt{2gH} \qquad \eta_h = \frac{2u(V_1-u)(1-\cos\beta_2)}{V_1^{\,2}}"></span><span class="where">Pelton: rendimento máximo em u = V₁/2, com β₂ próximo de 180°</span></div>
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Pelton: a concha a meia velocidade do jato</h3>
+
+<div class="formula"><span data-tex="V_1 = k_v\sqrt{2gH} \qquad \eta_h = \frac{2u(V_1-u)(1-\cos\beta_2)}{V_1^{\,2}}"></span><span class="where">Pelton: rendimento máximo em u = V₁/2, com β₂ próximo de 180°</span></div>
             <p>O resultado <span data-tex-inline="u = V_1/2"></span> é um dos mais elegantes da disciplina: a concha deve andar à <strong>metade</strong> da velocidade do jato. Mais devagar, sobra energia cinética na água que sai; mais rápido, o jato mal alcança a concha.</p>
             <div class="formula"><span data-tex="n_s = \frac{n\sqrt{P}}{H^{5/4}}"></span><span class="where">rotação específica em potência — é ela que escolhe o tipo de máquina</span></div>
             <div class="callout note">
               <strong>O tubo de sucção da turbina de reação</strong>
               Ele não é apenas um duto de saída: ao expandir gradualmente, recupera energia cinética que sairia perdida e cria uma depressão logo abaixo do rotor, aumentando a queda efetivamente aproveitada. É por isso que uma Francis não pode ser instalada muito acima do canal de fuga — cavitaria.
             </div>
-          </div>
-        </details>
 
-        <details class="acc">
-          <summary>9. Seleção, instalação e operação</summary>
-          <div class="acc-body">
-            <p>Selecionar bomba é escolher a curva que passa pelo ponto de operação desejado <strong>com o melhor rendimento possível</strong>, e não a que tem mais folga.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Uma Pelton de 400 m de queda</div>
+          <p>Uma turbina Pelton opera com 400 m de queda e k_v = 0,98, com rodas de 1,2 m e conchas com β₂ = 165°. Calcule a velocidade do jato, a rotação ótima e o rendimento hidráulico.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="V_1 = 0{,}98\sqrt{2(9{,}81)(400)} = 86{,}8"></span> m/s.</li>
+              <li>Rendimento máximo em <span data-tex-inline="u = V_1/2 = 43{,}4"></span> m/s.</li>
+              <li><span data-tex-inline="n = 60u/\pi D = 60(43{,}4)/(\pi\cdot1{,}2) = 691"></span> rpm.</li>
+              <li><span data-tex-inline="\eta_h = 2u(V_1-u)(1-\cos\beta_2)/V_1^2 = 0{,}983"></span>.</li>
+            </ol>
+            <p class="resposta">691 rpm e η_h = 98,3 %. O ângulo de 165° em vez de 180° existe por necessidade mecânica — a água precisa sair sem bater na concha seguinte — e custa menos de 2 % de rendimento.</p>
+          </details>
+        </div>
+
+        <div id="sim-turbina" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Varie a razão u/V₁ e veja o rendimento desenhar a parábola com máximo exatamente em 0,5.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Ação: a pressão cai toda no injetor (Pelton). Reação: cai também no rotor (Francis, Kaplan).</li>
+          <li><span data-tex-inline="V_1 = k_v\sqrt{2gH}"></span> e o rendimento é máximo em <span data-tex-inline="u = V_1/2"></span>.</li>
+          <li>β₂ próximo de 180° recupera quase toda a energia do jato.</li>
+          <li><span data-tex-inline="n_s = n\sqrt P/H^{5/4}"></span> escolhe o tipo: Pelton baixa, Kaplan alta.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que u = V₁/2 e não u = V₁?</summary><p>Com u = V₁ a água não alcança a concha e não há força; com u = 0 a água sai com toda a energia cinética. O ótimo está no meio.</p></details>
+          <details><summary>Por que Kaplan em rio de planície e Pelton em montanha?</summary><p>Porque a rotação específica é alta com muita vazão e pouca queda (Kaplan) e baixa com pouca vazão e muita queda (Pelton).</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Compressores e turbinas">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Seleção, instalação e operação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>selecionar pela curva com melhor rendimento no ponto desejado;</li>
+            <li>respeitar a vazão mínima contínua;</li>
+            <li>reconhecer os efeitos de operar longe do BEP;</li>
+            <li>executar partida e parada corretamente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 4 a 6.</p></div>
+        </div>
+
+        <p>Entre duas bombas que atendem ao ponto pedido, a melhor não é a que sobra mais: é a que opera perto do ponto de melhor rendimento. Fora dele a máquina não só gasta mais — ela sofre, por recirculação, empuxo e vibração. E a ordem de abertura das válvulas na partida é oposta entre centrífuga e volumétrica.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Selecionar é escolher o rendimento</h3>
+<p>Selecionar bomba é escolher a curva que passa pelo ponto de operação desejado <strong>com o melhor rendimento possível</strong>, e não a que tem mais folga.</p>
             <div class="callout note">
               <strong>Faixa recomendada de operação</strong>
               Entre 70 % e 120 % da vazão de melhor rendimento. Abaixo disso há recirculação interna, aquecimento e vibração; acima, o NPSH requerido dispara e a bomba pode cavitar mesmo com sucção afogada.
@@ -259,7 +669,11 @@
                 </tbody>
               </table>
             </div>
-            <h4>Vazão mínima, empuxo axial e desgaste</h4>
+
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>Vazão mínima, empuxo axial e desgaste</h3>
+
             <div class="tabela-wrap">
               <table>
                 <thead><tr><th>Assunto</th><th>O que acontece</th><th>Solução de projeto</th></tr></thead>
@@ -275,24 +689,37 @@
               <strong>Operar à esquerda do BEP custa caro</strong>
               Recirculação na entrada e na saída do rotor, carga radial alta, vibração em frequências não síncronas e aquecimento. A falha aparece no mancal e no selo — mas a causa está no ponto de operação, não no componente que quebrou.
             </div>
-            <p>Na partida, a sequência usual em bomba centrífuga é: escorvar, abrir a sucção totalmente, partir com o <strong>recalque fechado ou quase fechado</strong> — a potência no shutoff é a menor — e abrir progressivamente até o ponto de operação. Em bomba de deslocamento positivo a regra é o oposto: <strong>nunca</strong> partir com a descarga fechada.</p>
-          </div>
-        </details>
+
+        <h3 id="s9-3"><span class="num">9.3</span>Partida e parada</h3>
+
+<p>Na partida, a sequência usual em bomba centrífuga é: escorvar, abrir a sucção totalmente, partir com o <strong>recalque fechado ou quase fechado</strong> — a potência no shutoff é a menor — e abrir progressivamente até o ponto de operação. Em bomba de deslocamento positivo a regra é o oposto: <strong>nunca</strong> partir com a descarga fechada.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Selecione pela curva que passa no ponto desejado perto do BEP.</li>
+          <li>Há uma vazão mínima contínua abaixo da qual a bomba recircula e aquece.</li>
+          <li>Operar longe do BEP traz empuxo axial, vibração e desgaste.</li>
+          <li>Centrífuga parte com o recalque quase fechado; volumétrica, nunca.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que partir a centrífuga com o recalque fechado?</summary><p>Porque no shutoff a potência de uma centrífuga é a menor — reduz a corrente de partida do motor.</p></details>
+          <details><summary>O que acontece operando a 30 % do BEP?</summary><p>Recirculação na entrada e na saída do rotor, aquecimento do líquido, vibração e cavitação de recirculação.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Cinco modelos interativos e animados, todos com as fórmulas e a resolução passo a passo.</p>
-
-        <div id="sim-rotor" class="sim"></div>
-        <div id="sim-instalacao" class="sim"></div>
-        <div id="sim-associacao" class="sim"></div>
-        <div id="sim-compressor" class="sim"></div>
-        <div id="sim-turbina" class="sim"></div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-rotor"><small>Capítulo 2 · Euler</small>Triângulos de velocidade no rotor</a></li>
+          <li><a href="#sim-instalacao"><small>Capítulo 4 · Instalação</small>Curva do sistema e ponto de operação</a></li>
+          <li><a href="#sim-associacao"><small>Capítulo 6 · Associação</small>Série, paralelo e semelhança</a></li>
+          <li><a href="#sim-compressor"><small>Capítulo 7 · Compressores</small>Politrópica, estágios e espaço nocivo</a></li>
+          <li><a href="#sim-turbina"><small>Capítulo 8 · Turbinas</small>Pelton e rotação específica</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="tabela-wrap">
           <table>
             <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
@@ -322,7 +749,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <p>As normas abaixo são referenciadas pelo número e pelo que definem. Os textos completos são obras protegidas e comercializadas pelas entidades emissoras — o que está aqui é a função de cada uma no projeto, não o seu conteúdo literal.</p>
         <div class="tabela-wrap">
           <table>
@@ -350,13 +777,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões sobre Euler e triângulos de velocidade, curva do sistema, ponto de operação, NPSH e cavitação, associação, leis de semelhança, compressores e turbinas — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
         <div id="quiz" data-quiz="bombas-e-compressores"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>MACINTYRE, A. J.</strong> <em>Bombas e Instalações de Bombeamento.</em> LTC. — A referência brasileira clássica da disciplina; excelente em instalação, NPSH e casos práticos.</li>
           <li><strong>WHITE, F. M.</strong> <em>Mecânica dos Fluidos.</em> McGraw-Hill. — Cap. 11 traz turbomáquinas com um tratamento conciso e muito claro das leis de semelhança.</li>
@@ -385,7 +812,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/bombas-e-compressores.js"></script>
+<script src="../js/fig/bombas-e-compressores.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -419,6 +848,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
