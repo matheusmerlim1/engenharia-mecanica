@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,11 +35,13 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">Eletiva · Engenharia Mecânica</p>
     <h1>Instalações e Offshore</h1>
-    <p class="lead">Produzir petróleo no mar é construir uma planta de processo, uma usina elétrica e um alojamento para centenas de pessoas sobre uma estrutura que o vento, a onda e a corrente tentam derrubar ou arrastar — ligada a poços a milhares de metros de profundidade. Esta disciplina é o conjunto de ideias que torna isso possível.</p>
+    <p class="lead">Como se produz petróleo no mar: a estrutura, o ambiente que a castiga, a ancoragem que a mantém no lugar e o sistema submarino que liga tudo ao poço. Este texto está organizado como um livro: dez capítulos em sequência, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">10 tópicos</span>
+      <span class="tag accent">10 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">11 figuras interativas</span>
       <span class="tag warn">normas</span>
     </div>
   </div>
@@ -47,27 +50,54 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>Toda decisão de engenharia offshore parte de três perguntas: <strong>qual a lâmina d’água</strong>, <strong>o que o mar faz ali</strong> e <strong>para onde vai o óleo</strong>. A lâmina d’água separa estruturas que se apoiam no fundo das que flutuam; o mar define as cargas e os movimentos; o destino do óleo decide se a plataforma precisa estocar. Da resposta sai o conceito — jaqueta, semissubmersível, TLP, spar ou FPSO — e dele saem a ancoragem, os risers, o arranjo submarino e o topside.</p>
-        <div class="formula"><span data-tex="\text{reservatório} \to \text{poço} \to \text{sistema submarino} \to \text{riser} \to \text{plataforma} \to \text{escoamento}"></span></div>
-        <div class="callout note">
-          <strong>Resistir ou ceder</strong>
-          Uma plataforma fixa é rígida: resiste à onda e precisa ter período natural bem abaixo do das ondas (5 a 20 s). Uma flutuante faz o oposto: é “complacente” — cede às forças horizontais e usa a ancoragem só para limitar a deriva, com períodos naturais fora da faixa das ondas. A escolha entre as duas filosofias muda com a lâmina d’água, porque a estrutura fixa fica cada vez mais alta, flexível e cara.
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O curso sobe do fundo para a superfície e volta: primeiro o campo e a plataforma, depois o ambiente que impõe as cargas, então a ancoragem e o convés, e por fim o sistema submarino e a decisão de conceito. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: engenharia sob restrição</h2>
+        <p>Offshore é engenharia mecânica levada ao limite por três restrições simultâneas: o ambiente não negocia, o acesso é caro e demorado, e qualquer falha tem consequência ambiental. Daí vêm as características da área — projeto por estados limites, redundância, inspeção programada e uma obsessão com o que acontece na interface entre a estrutura e o mar.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Como se desenvolve um campo?</td><td>Cadeia e fases do projeto</td><td>1</td></tr>
+            <tr><td>Que estrutura cabe nesta lâmina?</td><td>História e classificação</td><td>2 e 3</td></tr>
+            <tr><td>Que ambiente a estrutura enfrenta?</td><td>Vento, onda e corrente</td><td>4</td></tr>
+            <tr><td>Que força isso gera?</td><td>Morison e estados limites</td><td>5</td></tr>
+            <tr><td>Como ela fica no lugar?</td><td>Ancoragem e fundações</td><td>6</td></tr>
+            <tr><td>O que acontece no convés?</td><td>Processamento primário</td><td>7</td></tr>
+            <tr><td>E no fundo do mar?</td><td>Sistema submarino e risers</td><td>8 e 9</td></tr>
+            <tr><td>Qual conceito escolher?</td><td>Matriz de seleção</td><td>10</td></tr>
+          </tbody>
+        </table>
         </div>
-        <div class="callout warn">
-          <strong>Classificação da lâmina d’água</strong>
-          No Brasil usa-se: <strong>rasa</strong> até 300 m, <strong>profunda</strong> de 300 a 1 500 m e <strong>ultraprofunda</strong> acima de 1 500 m. O pré-sal está em 2 000 a 2 300 m de lâmina d’água, com mais 5 000 m de rocha e sal até o reservatório.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras e nos simuladores, mude período de onda, diâmetro do membro e lâmina d'água para ver as forças e as trações reagirem; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teoria">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — O campo offshore" data-topicos="operacoes">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Operações offshore e o desenvolvimento de um campo</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>percorrer a cadeia do reservatório até o escoamento;</li>
+            <li>ordenar as fases de desenvolvimento de um campo;</li>
+            <li>situar as jurisdições no mar;</li>
+            <li>entender o peso do CAPEX na decisão offshore.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Noções de produção de petróleo e Mecânica dos Fluidos I.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Operações offshore e desenvolvimento de um campo</summary>
-          <div class="topic-body">
-            <p>Um campo marítimo passa por etapas bem definidas, e cada uma pede um tipo de instalação diferente.</p>
+        <p>Produzir petróleo no mar é, antes de tudo, um problema de logística e de prazo: cada decisão custa anos e bilhões, e é tomada com informação incompleta sobre o que há embaixo. Este capítulo monta o quadro geral — quem faz o quê, em que ordem e sob que jurisdição — para que os capítulos técnicos tenham onde se encaixar.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Do reservatório ao escoamento</h3>
+<p>Um campo marítimo passa por etapas bem definidas, e cada uma pede um tipo de instalação diferente.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Etapa</th><th>O que se decide</th><th>Instalações típicas</th></tr></thead>
@@ -84,7 +114,11 @@
               <strong>O que pesa na viabilidade econômica</strong>
               Tamanho das reservas, preço do petróleo, lâmina d’água, distância da costa e da infraestrutura existente, regime fiscal e risco político. Plataformas “novas” só aparecem quando os conceitos conhecidos deixam de ser viáveis — foi assim que a água profunda criou a TLP, a spar e o FPSO de produção.
             </div>
-            <h4>Jurisdição no mar (Convenção da ONU sobre o Direito do Mar)</h4>
+
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>Jurisdição no mar (Convenção da ONU sobre o Direito do Mar)</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Faixa</th><th>Distância da linha de base</th><th>Direitos do país costeiro</th></tr></thead>
@@ -96,13 +130,51 @@
               </tbody>
             </table>
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Desenvolvimento histórico das estruturas offshore</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Curva de produção de um campo</div>
+          <p>Um campo tem pico de 150 mil bpd mantido por 4 anos de platô e depois declina exponencialmente a 12 % ao ano. Qual a reserva recuperável associada a esse perfil?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Produção no platô: 150 000 × 365 × 4 = 219 milhões de barris.</li>
+              <li>No declínio exponencial, o volume restante é <span data-tex-inline="Q_p/D"></span>.</li>
+              <li>150 000 × 365 / 0,12 = 456 milhões de barris.</li>
+              <li>Total ≈ 675 milhões de barris.</li>
+            </ol>
+            <p class="resposta">Cerca de 675 milhões de barris. Note que dois terços do volume vêm da longa cauda de declínio, não do platô — é ela que paga o investimento, e é por isso que o custo operacional de uma unidade com décadas de vida pesa tanto na decisão.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A cadeia é sempre a mesma: reservatório, poço, sistema submarino, riser, plataforma, escoamento.</li>
+          <li>O desenvolvimento vai da exploração à declaração de comercialidade, projeto, instalação e produção.</li>
+          <li>Mar territorial, zona econômica exclusiva e plataforma continental têm regimes diferentes.</li>
+          <li>O CAPEX offshore é dominado por unidade de produção, poços e sistema submarino.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um campo offshore entra em produção por fases?</summary><p>Porque antecipar receita paga o investimento: produz-se primeiro pelos poços mais produtivos, muitas vezes com um sistema antecipado, enquanto o definitivo é construído.</p></details>
+          <details><summary>O que muda da zona econômica exclusiva para a plataforma continental?</summary><p>A ZEE vai a 200 milhas e trata da coluna d'água e dos recursos; a plataforma continental pode ir além e trata do leito e do subsolo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — O campo offshore" data-topicos="historico">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Desenvolvimento histórico das estruturas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar lâmina d'água e tipo de estrutura;</li>
+            <li>explicar por que a jaqueta tem limite de profundidade;</li>
+            <li>situar TLP, semissubmersível, spar e FPSO;</li>
+            <li>entender o papel do pré-sal nessa evolução.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>A história das estruturas offshore é a história de uma restrição: a cada salto de lâmina d'água, a solução anterior deixa de fazer sentido. A jaqueta cresce com o cubo da profundidade e logo se torna inviável; o flutuante resolve o peso, mas traz movimento — e o movimento é o que o resto do curso tenta controlar.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>Da plataforma fixa ao flutuante</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Marco</th><th>Por que importa</th></tr></thead>
               <tbody>
@@ -117,17 +189,51 @@
               </tbody>
             </table>
             </div>
-            <div class="callout tip">
+
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <h3 id="s2-2"><span class="num">2.2</span>Para onde a indústria foi</h3>
+
+<div class="callout tip">
               <strong>O “triângulo de ouro”</strong>
               Golfo do México, costa do Brasil e oeste da África concentram a produção em águas profundas do mundo — as três regiões compartilham bacias formadas na abertura do Atlântico e, por isso, reservatórios parecidos.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Componentes e classificação das plataformas</summary>
-          <div class="topic-body">
-            <h4>Componentes de uma jaqueta típica</h4>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Jaqueta fixa domina até cerca de 400 m; acima disso o custo explode.</li>
+          <li>Complacentes, TLP, spar e semissubmersíveis foram a resposta à água profunda.</li>
+          <li>O FPSO acrescenta estocagem e dispensa duto de escoamento de óleo.</li>
+          <li>O pré-sal empurrou o Brasil para FPSOs em lâminas acima de 2000 m.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a jaqueta não serve em 1500 m?</summary><p>Porque o peso e o momento na base crescem muito mais rápido que a profundidade: a estrutura ficaria absurdamente cara e difícil de instalar.</p></details>
+          <details><summary>O que a TLP resolve que a semissubmersível não resolve?</summary><p>O movimento vertical: os tendões tracionados praticamente eliminam o heave, o que permite árvore de natal seca no convés.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — O campo offshore" data-topicos="componentes">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Componentes e classificação das plataformas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>nomear os componentes de uma jaqueta;</li>
+            <li>classificar plataformas por configuração;</li>
+            <li>listar os seis graus de liberdade de um flutuante;</li>
+            <li>relacionar movimento e operabilidade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+
+        <p>Uma plataforma é um conjunto de funções empilhadas: sustentar, abrigar, processar e exportar. Separar os componentes ajuda a entender o que cada tipo de unidade faz bem — e o vocabulário dos seis graus de liberdade é o que permite discutir movimento de forma precisa, em vez de dizer que a unidade "balança".</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>As partes de uma plataforma</h3>
+
+
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Componentes de uma jaqueta típica</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Componente</th><th>Função</th></tr></thead>
@@ -140,7 +246,9 @@
               </tbody>
             </table>
             </div>
-            <h4>Classificação pela configuração</h4>
+
+        <h3 id="s3-3"><span class="num">3.3</span>Classificação pela configuração</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Grupo</th><th>Tipos</th><th>Lâmina d’água usual</th><th>Árvore de natal</th></tr></thead>
@@ -157,7 +265,9 @@
               <strong>MODU e FPSO</strong>
               <strong>MODU</strong> é <em>Mobile Offshore Drilling Unit</em>: unidade móvel de perfuração — jack-up, semissubmersível de perfuração e navio-sonda. <strong>FPSO</strong> é <em>Floating Production, Storage and Offloading</em>: produz, estoca e transfere o óleo para um navio aliviador. <strong>FSO</strong> é o mesmo sem a planta de produção. TLP e spar são unidades de produção, não MODUs.
             </div>
-            <h4>Os seis graus de liberdade de um flutuante</h4>
+
+        <h3 id="s3-4"><span class="num">3.4</span>Os seis graus de liberdade de um flutuante</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Translação</th><th>Rotação</th></tr></thead>
@@ -172,16 +282,67 @@
               <strong>A ancoragem não elimina os seis movimentos</strong>
               Ancoragem convencional restringe principalmente os movimentos horizontais lentos (surge, sway, yaw). Heave, roll e pitch continuam governados pela hidrostática do casco. Só a TLP, com seus tendões verticais, restringe fortemente heave, roll e pitch.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Ambiente oceânico</summary>
-          <div class="topic-body">
-            <h4>Vento</h4>
+        <div id="sim-plataformas" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare os tipos pelo movimento em cada grau de liberdade e veja por que a TLP permite árvore seca enquanto a semissubmersível não.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Jaqueta: estacas, pernas, contraventamentos, convés e módulos.</li>
+          <li>Fixas, complacentes, flutuantes ancoradas e posicionamento dinâmico.</li>
+          <li>Seis graus de liberdade: surge, sway, heave, roll, pitch e yaw.</li>
+          <li>Heave e pitch são os que mais limitam operação de riser e de guindaste.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o heave importa tanto para um riser rígido?</summary><p>Porque o movimento vertical se transfere direto para a tração e a fadiga do riser; é ele que exige tensionadores ou configurações em catenária.</p></details>
+          <details><summary>O que é posicionamento dinâmico?</summary><p>Manter a posição por propulsores comandados por computador, sem ancoragem — usado em sondas e em navios de instalação.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Ambiente e cargas" data-topicos="ambiente">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. O ambiente oceânico</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>usar o perfil de vento com a altura;</li>
+            <li>aplicar a teoria linear de ondas e a relação de dispersão;</li>
+            <li>distinguir águas profundas, intermediárias e rasas;</li>
+            <li>reconhecer os demais agentes ambientais.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Mecânica dos Fluidos I e capítulo 3.</p></div>
+        </div>
+
+        <p>Tudo o que uma estrutura offshore sofre vem do ambiente, e o ambiente é descrito por estatística: não existe "a onda", existe um estado de mar com altura significativa e período de pico, e existe a onda centenária que o projeto precisa suportar. Este capítulo monta a descrição física; o seguinte transforma isso em força.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Três agentes: vento, onda e corrente</h3>
+<p>O projeto offshore trata três agentes separadamente — vento, onda e corrente — e depois os combina em estados de mar de projeto. Cada um tem sua descrição física e seu perfil com a altura ou com a profundidade.</p>
+
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>Vento</h3>
+
             <p>O vento global é organizado em três células de circulação por hemisfério — <strong>Hadley</strong> (equador a ~30°), <strong>Ferrel</strong> (30° a 60°) e <strong>polar</strong>. Localmente ele é turbulento: suas componentes variam aleatoriamente, e por isso é descrito estatisticamente — velocidade média, rajada e distribuição de ocorrência (Weibull).</p>
             <div class="formula"><span data-tex="V(z) = V_{10}\left(\frac{z}{10}\right)^{\alpha}, \quad \alpha \approx 0{,}11\text{ a }0{,}14"></span><span class="where">perfil de velocidade com a altura sobre o mar</span></div>
-            <h4>Ondas</h4>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Comprimento e energia de uma onda</div>
+          <p>Uma onda de 10 s de período e 3 m de altura chega a uma lâmina de 20 m. Calcule o comprimento, a celeridade e a energia, e classifique a profundidade.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Em águas profundas valeria <span data-tex-inline="L_0 = gT^2/2\pi = 156"></span> m.</li>
+              <li>Resolvendo <span data-tex-inline="\omega^2 = gk\tanh(kd)"></span> com d = 20 m, chega-se a L = 121 m.</li>
+              <li>Celeridade: c = L/T = 12,1 m/s.</li>
+              <li>d/L = 0,165, entre 0,05 e 0,5: água intermediária. Energia: <span data-tex-inline="E = \rho gH^2/8 = 11{,}3"></span> kJ/m².</li>
+            </ol>
+            <p class="resposta">L = 121 m contra os 156 m que teria em água profunda: o fundo já freia a onda. É esse encurtamento que concentra energia e explica por que a mesma onda é bem mais severa sobre o talude do que no mar aberto.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-3"><span class="num">4.3</span>Ondas</h3>
+
             <p>O mar real é irregular: a soma de muitas ondas de alturas, períodos e direções diferentes. Ele é caracterizado por um <strong>estado de mar</strong> — altura significativa H<sub>s</sub> (média do terço maior das ondas) e período de pico T<sub>p</sub> — e por um espectro de energia.</p>
             <div class="formula"><span data-tex="\omega^2 = g\,k\,\tanh(kd), \qquad L_0 = \frac{gT^2}{2\pi}, \qquad E = \frac{\rho g H^2}{8}"></span><span class="where">dispersão, comprimento em águas profundas e energia (teoria linear de Airy)</span></div>
             <div class="table-scroll">
@@ -197,7 +358,11 @@
               <strong>Onda de projeto e período de retorno</strong>
               As estruturas são verificadas para condições com período de retorno de 100 anos (a onda que tem 1 % de chance de ocorrer em qualquer ano). Isso não quer dizer que ocorre uma vez a cada século: numa vida útil de 25 anos, a chance de encontrá-la é de 22 %.
             </div>
-            <h4>Outros agentes</h4>
+
+        <div class="fig-host" id="fig-4-2"></div>
+
+        <h3 id="s4-4"><span class="num">4.4</span>Outros agentes</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Agente</th><th>Efeito</th></tr></thead>
@@ -210,13 +375,43 @@
               </tbody>
             </table>
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Forças ambientais e cargas de projeto</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div id="sim-ondas" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Varie período e lâmina d'água e veja o comprimento de onda e as órbitas das partículas mudarem; observe a transição de água profunda para rasa.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="V(z) = V_{10}(z/10)^{\alpha}"></span>, com α entre 0,11 e 0,14 no mar.</li>
+          <li>Dispersão: <span data-tex-inline="\omega^2 = gk\tanh(kd)"></span>; em águas profundas, <span data-tex-inline="L_0 = gT^2/2\pi"></span>.</li>
+          <li>Energia da onda: <span data-tex-inline="E = \rho g H^2/8"></span>.</li>
+          <li>Correnteza, maré, gelo e sísmica completam o quadro.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que uma onda de 14 s "sente" o fundo a 2000 m?</summary><p>Não sente: com L₀ = 306 m e d/L acima de 0,5, o movimento orbital já decaiu praticamente a zero no fundo — é água profunda.</p></details>
+          <details><summary>Dobrar a altura da onda multiplica a energia por quanto?</summary><p>Por quatro: a energia vai com o quadrado da altura.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Ambiente e cargas" data-topicos="cargas">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Forças ambientais e cargas de projeto</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar a equação de Morison;</li>
+            <li>usar o número de Keulegan-Carpenter para saber o que domina;</li>
+            <li>calcular força de vento e de corrente;</li>
+            <li>organizar o projeto por estados limites.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 4.</p></div>
+        </div>
+
+        <p>A equação de Morison é a ponte entre o mar e a estrutura: ela separa a força em duas parcelas de naturezas diferentes — o arrasto, que segue a velocidade, e a inércia, que segue a aceleração — e elas não são máximas ao mesmo tempo. Saber qual domina é o que decide se o membro precisa de mais área ou de mais rigidez.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>De onde vêm as cargas</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Categoria</th><th>Exemplos</th></tr></thead>
               <tbody>
@@ -228,12 +423,34 @@
               </tbody>
             </table>
             </div>
-            <h4>Força de onda em membros esbeltos — Morison</h4>
+
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Força de onda em membros esbeltos — Morison</h3>
+
             <div class="formula"><span data-tex="f = \frac{1}{2}\rho\,C_D\,D\,|u|\,u + \rho\,C_M\,\frac{\pi D^2}{4}\,\dot u"></span><span class="where">arrasto + inércia, por metro de membro · válido para D/L &lt; 0,2</span></div>
             <div class="formula"><span data-tex="KC = \frac{u_{máx}\,T}{D}"></span><span class="where">KC &lt; 5: inércia domina · KC &gt; 25: arrasto domina</span></div>
-            <h4>Vento e corrente</h4>
+
+        <h3 id="s5-3"><span class="num">5.3</span>Vento e corrente</h3>
+
             <div class="formula"><span data-tex="F = \frac{1}{2}\,\rho\,C_s\,A\,V^2"></span><span class="where">ρ do ar ≈ 1,225 kg/m³ · C<sub>s</sub> coeficiente de forma · A área projetada</span></div>
-            <h4>Estados limites</h4>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Força de onda numa perna de jaqueta</div>
+          <p>Uma perna de 1,0 m de diâmetro recebe onda com velocidade máxima de 2 m/s e período de 10 s, com C_D = 1,0 e C_M = 2,0. Compare arrasto e inércia.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="KC = u_{máx}T/D = 2(10)/1 = 20"></span> — faixa em que as duas parcelas contam.</li>
+              <li>Arrasto máximo: <span data-tex-inline="\tfrac12\rho C_D D u^2 = 0{,}5(1025)(1)(1)(4) = 2050"></span> N/m.</li>
+              <li>Aceleração máxima: <span data-tex-inline="\dot u = 2\pi u/T = 1{,}26"></span> m/s².</li>
+              <li>Inércia máxima: <span data-tex-inline="\rho C_M \tfrac{\pi D^2}{4}\dot u = 1025(2)(0{,}785)(1{,}26) = 2023"></span> N/m.</li>
+            </ol>
+            <p class="resposta">Arrasto 2050 N/m e inércia 2023 N/m: praticamente iguais, como KC = 20 antecipava. Como estão defasados de 90°, a força máxima não é a soma: é preciso compor as duas parcelas ao longo do ciclo, e é isso que a figura 5.1 faz.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-4"><span class="num">5.4</span>Estados limites</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Estado limite</th><th>Pergunta</th></tr></thead>
@@ -249,13 +466,43 @@
               <strong>Fadiga é o modo de falha dominante das jaquetas</strong>
               Uma plataforma recebe ~5 milhões de ciclos de onda por ano. As juntas tubulares soldadas concentram tensão (fatores de 3 a 10), e é ali que as trincas nascem. O acidente de Alexander Kielland (1980) começou numa trinca de fadiga num contraventamento.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Sistemas de ancoragem e fundações</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div id="sim-morison" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Varie o diâmetro e veja o KC mudar de faixa: em membro fino o arrasto domina, em perna grossa é a inércia que manda.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="f = \tfrac12\rho C_D D|u|u + \rho C_M \tfrac{\pi D^2}{4}\dot u"></span>, por metro de membro.</li>
+          <li>Vale para membros esbeltos: D/L < 0,2.</li>
+          <li><span data-tex-inline="KC = u_{máx}T/D"></span>: abaixo de 5 domina a inércia, acima de 25 domina o arrasto.</li>
+          <li>Projeto por estados limites: ELU, ELS, fadiga e acidental.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que arrasto e inércia não somam seus máximos?</summary><p>Porque estão defasados de 90°: quando a velocidade é máxima a aceleração é nula, e vice-versa.</p></details>
+          <details><summary>Um riser fino em corrente forte: que parcela manda?</summary><p>O arrasto — KC alto, porque o diâmetro é pequeno e o deslocamento da partícula, grande.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte III — Estrutura e instalações" data-topicos="ancoragem">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Ancoragem e fundações</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir ancoragem em catenária, taut-leg e tendões;</li>
+            <li>calcular tração e comprimento suspenso pela catenária;</li>
+            <li>relacionar raio de ancoragem e lâmina d'água;</li>
+            <li>escolher o tipo de fundação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 5; Estática.</p></div>
+        </div>
+
+        <p>Manter no lugar uma unidade de dezenas de milhares de toneladas, com onda, vento e corrente empurrando, é um problema de rigidez: a ancoragem precisa ser mole o bastante para acompanhar o movimento sem arrebentar e dura o bastante para não deixar a unidade sair do raio de operação. A catenária resolve isso com a própria geometria — o peso da linha é a mola.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Como a unidade fica no lugar</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Sistema</th><th>Geometria</th><th>Raio de ancoragem</th><th>Âncora</th></tr></thead>
               <tbody>
@@ -283,7 +530,11 @@
               </tbody>
             </table>
             </div>
-            <h4>Fundações</h4>
+
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Fundações</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Tipo</th><th>Como funciona</th></tr></thead>
@@ -295,13 +546,57 @@
               </tbody>
             </table>
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Topsides — instalações de superfície</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Catenária em 1000 m</div>
+          <p>Uma linha de amarração com 980 N/m de peso submerso trabalha com 1500 kN de tração horizontal em lâmina de 1000 m. Calcule a tração no fairlead e o comprimento suspenso.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="T = H + wh = 1500 + 0{,}98(1000)"></span> kN.</li>
+              <li>T = 2480 kN no fairlead.</li>
+              <li><span data-tex-inline="s = \sqrt{h^2 + 2hH/w} = \sqrt{10^6 + 2(1000)(1500/0{,}98)}"></span>.</li>
+              <li>s = 2015 m de linha suspensa, com ângulo de 33° no topo.</li>
+            </ol>
+            <p class="resposta">T = 2480 kN e 2015 m suspensos. Repare que o peso próprio responde por 40 % da tração no topo: em lâmina profunda, a linha carrega principalmente a si mesma — e é esse o argumento para fibra sintética, que é neutra na água.</p>
+          </details>
+        </div>
+
+        <div id="sim-ancoragem" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Afaste a unidade do centro e veja a tração subir pela geometria da catenária, sem que nada tenha esticado.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Catenária usa o peso da linha; taut-leg trabalha esticada, com âncora que resiste a tração.</li>
+          <li><span data-tex-inline="T = H + wh"></span> e <span data-tex-inline="s = \sqrt{h^2 + 2hH/w}"></span>.</li>
+          <li>Catenária exige raio grande; taut-leg encurta o campo de ancoragem.</li>
+          <li>Fundações: estaca cravada, torpedo, sucção e gravidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a catenária funciona como mola?</summary><p>Porque quando a unidade se afasta, mais linha sai do fundo e o peso suspenso aumenta: a restauração cresce com o deslocamento.</p></details>
+          <details><summary>Que âncora serve para taut-leg?</summary><p>Uma que resista a carga inclinada e de tração — torpedo, sucção ou estaca — e não a âncora de arrasto convencional.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Estrutura e instalações" data-topicos="topside">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Topsides: as instalações de superfície</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>descrever o processamento primário;</li>
+            <li>fazer o balanço de um separador;</li>
+            <li>situar as utilidades e a geração de energia;</li>
+            <li>reconhecer os sistemas de segurança.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e Termodinâmica.</p></div>
+        </div>
+
+        <p>A plataforma é, acima de tudo, uma planta de processo em cima do mar — com a restrição de que tudo precisa caber, pesar pouco e funcionar sem parar. O processamento primário separa o que o poço entrega em três correntes e deixa cada uma dentro da especificação de exportação ou de descarte.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>O que acontece no convés</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Construção do convés</th><th>Vantagens</th><th>Limitações</th></tr></thead>
               <tbody>
@@ -310,7 +605,11 @@
               </tbody>
             </table>
             </div>
-            <h4>Processamento primário</h4>
+
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>Processamento primário</h3>
+
             <p>Do poço chega uma mistura de óleo, gás, água e areia. O processamento primário separa as fases e as condiciona:</p>
             <div class="table-scroll">
             <table class="data">
@@ -328,7 +627,23 @@
               <strong>A água produzida nunca vai direto ao mar</strong>
               Após o separador ela ainda tem centenas a milhares de mg/L de óleo. Só depois dos hidrociclones e do flotador — e comprovado o teor de óleo e graxas — ela pode ser descartada.
             </div>
-            <h4>Utilidades, energia e segurança</h4>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Balanço de um separador</div>
+          <p>Um separador recebe 20 000 bpd de líquido com BSW de 40 %. Quanto sai de óleo e de água, e o que isso significa para o tratamento?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Óleo: 20 000 × 0,60 = 12 000 bpd.</li>
+              <li>Água: 20 000 × 0,40 = 8000 bpd, ou cerca de 1270 m³/dia.</li>
+              <li>Essa água precisa chegar ao descarte dentro do teor de óleo permitido.</li>
+              <li>Com limite de 29 mg/L de média mensal, o arraste admissível é de apenas 37 kg de óleo por dia.</li>
+            </ol>
+            <p class="resposta">12 000 bpd de óleo e 1270 m³/dia de água. O número que impressiona é o último: toda a planta de tratamento de água existe para evitar que 37 kg de óleo por dia escapem — menos de um barril.</p>
+          </details>
+        </div>
+
+        <h3 id="s7-3"><span class="num">7.3</span>Utilidades, energia e segurança</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Sistema</th><th>Observação</th></tr></thead>
@@ -347,13 +662,43 @@
               <strong>Arranjo: afastar o que queima de quem mora</strong>
               O convés é dividido em áreas de risco. Alojamento, sala de controle e baleeiras ficam do lado seguro, afastados dos poços, da planta e do queimador, e protegidos por paredes corta-fogo. Após Piper Alpha (1988), onde uma explosão no módulo de gás destruiu o alojamento, esse princípio virou exigência de projeto.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Panorama da engenharia submarina</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div id="sim-processo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Aumente o BSW ao longo da vida do campo e veja a planta de água crescer enquanto a produção de óleo cai.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Separação em três fases: óleo, gás e água produzida.</li>
+          <li>O óleo sai com BSW especificado; a água, com teor de óleo limitado por norma.</li>
+          <li>O gás é comprimido para exportação, reinjeção ou gas lift.</li>
+          <li>Utilidades, geração e segurança ocupam boa parte do convés.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a água produzida é um problema crescente?</summary><p>Porque a razão água-óleo sobe com a vida do campo: no fim, trata-se muito mais água do que óleo.</p></details>
+          <details><summary>O que é gas lift?</summary><p>Injetar gás na coluna para reduzir a densidade da mistura e fazer o poço produzir por mais tempo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte IV — Sistemas submarinos e escolha do conceito" data-topicos="submarina">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Panorama da engenharia submarina</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>nomear os equipamentos do sistema submarino;</li>
+            <li>distinguir as configurações de riser;</li>
+            <li>relacionar riser e movimento da unidade;</li>
+            <li>entender o papel do umbilical e dos ROVs.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 6.</p></div>
+        </div>
+
+        <p>Em água profunda, a maior parte da engenharia fica onde ninguém vai: árvore de natal molhada, manifolds, jumpers, umbilicais e risers, instalados e operados por veículos remotos. O riser é o componente crítico, porque é por ele que o movimento da unidade chega ao poço.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>O que fica no fundo do mar</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Equipamento</th><th>Função</th><th>Fundação e instalação</th></tr></thead>
               <tbody>
@@ -366,7 +711,11 @@
               </tbody>
             </table>
             </div>
-            <h4>Risers</h4>
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Risers</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Tipo</th><th>Característica</th></tr></thead>
@@ -383,13 +732,37 @@
               <strong>O custo cresce com a lâmina d’água</strong>
               Mais profundidade significa risers mais longos e pesados, maior pressão externa (colapso), fluido mais frio (hidratos e parafina) e embarcações de instalação maiores. A engenharia submarina é hoje uma fração crescente do custo de um desenvolvimento.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>9. Desenvolvimento de sistemas submarinos</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Árvore de natal molhada, manifold, jumper, PLET e umbilical.</li>
+          <li>Risers rígidos verticais, em catenária livre (SCR) e flexíveis em lazy wave.</li>
+          <li>O movimento da unidade entra no riser como tração e fadiga no touchdown.</li>
+          <li>ROVs fazem a instalação, a inspeção e a intervenção.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a configuração lazy wave existe?</summary><p>Porque os flutuadores desacoplam o movimento da unidade do trecho de fundo, reduzindo a fadiga no ponto de toque.</p></details>
+          <details><summary>O que o umbilical leva?</summary><p>Potência, sinal, fluido hidráulico e produtos químicos de injeção para a árvore e o manifold.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte IV — Sistemas submarinos e escolha do conceito" data-topicos="desenvolvimento">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Desenvolvimento de sistemas submarinos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar os métodos de instalação de dutos;</li>
+            <li>relacionar lâmina d'água e método;</li>
+            <li>entender overbend e sagbend;</li>
+            <li>situar o arranjo submarino do campo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 8.</p></div>
+        </div>
+
+        <p>Instalar um duto no fundo do mar é um problema de forma: enquanto desce, a tubulação precisa curvar duas vezes sem passar da deformação admissível — uma para sair do navio e outra para assentar no leito. O método escolhido define essa forma e, com ela, a profundidade que se alcança.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Como o sistema é instalado</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Arranjo</th><th>Vantagens</th><th>Desvantagens</th></tr></thead>
               <tbody>
@@ -400,7 +773,11 @@
               </tbody>
             </table>
             </div>
-            <h4>Instalação de dutos</h4>
+
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>Instalação de dutos</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Método</th><th>Uso</th></tr></thead>
@@ -420,15 +797,44 @@
               <strong>Garantia de escoamento</strong>
               Fluido quente saindo do poço esfria no duto a 4 °C: formam-se hidratos (gelo com gás) e parafina. As defesas são isolamento térmico, aquecimento, injeção de inibidores pelo umbilical e procedimentos de parada e partida — é a disciplina chamada <em>flow assurance</em>.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>10. Sistemas marítimos de produção e seleção do conceito</summary>
-          <div class="topic-body">
-            <p>A escolha do conceito segue um fluxo: dados do reservatório e do local → conceitos tecnicamente possíveis → estimativa de custo e cronograma → comparação econômica → requisitos de capital.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>S-lay é rápido e limitado em lâmina; J-lay alcança água profunda.</li>
+          <li>Reel-lay instala rápido, com o duto enrolado em carretel.</li>
+          <li>Overbend no stinger e sagbend perto do fundo são os pontos críticos.</li>
+          <li>A tração de topo controla a curvatura do sagbend.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o J-lay serve melhor em água profunda?</summary><p>Porque o duto sai quase vertical: não há overbend severo e a tração necessária é menor.</p></details>
+          <details><summary>O que acontece se a tração de topo cair durante o lançamento?</summary><p>O raio do sagbend diminui, a deformação cresce e o duto pode flambar — é o parâmetro mais vigiado da operação.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte IV — Sistemas submarinos e escolha do conceito">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Seleção do conceito de produção</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>listar os critérios de seleção de conceito;</li>
+            <li>relacionar lâmina d'água, estocagem e árvore;</li>
+            <li>comparar CAPEX e OPEX entre conceitos;</li>
+            <li>justificar a predominância do FPSO no Brasil.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Todos os capítulos anteriores.</p></div>
+        </div>
+
+        <p>Todo o curso converge para uma decisão: que conceito usar neste campo. Ela depende do reservatório, da lâmina d'água, do meteoceano, da existência ou não de escoamento por duto e, no fim, da conta entre investimento e custo operacional ao longo de décadas. Não há resposta geral — há uma matriz de critérios e um projeto que a aplica.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>A decisão que define o campo</h3>
+<p>A escolha do conceito segue um fluxo: dados do reservatório e do local → conceitos tecnicamente possíveis → estimativa de custo e cronograma → comparação econômica → requisitos de capital.</p>
             <div class="formula"><span data-tex="\text{reservatório} \to \text{LDA e meteoceano} \to \text{estocagem?} \to \text{árvore seca ou molhada?} \to \text{CAPEX + OPEX} \to \text{conceito}"></span></div>
-            <div class="table-scroll">
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Os conceitos disponíveis</h3>
+
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Condição</th><th>Favorece</th></tr></thead>
               <tbody>
@@ -446,51 +852,40 @@
               <strong>Escoamento: oleoduto ou navio aliviador</strong>
               Oleoduto tem custo alto de instalação e baixo de operação, e prende o campo a uma rota. Navio aliviador dispensa infraestrutura e serve campos afastados, mas exige estocagem na plataforma e operação de transferência em mar aberto. O gás, que não é estocável a bordo, precisa de gasoduto, reinjeção ou consumo local.
             </div>
-            <div class="callout warn">
+
+        <h3 id="s10-3"><span class="num">10.3</span>O que decide na prática</h3>
+
+<div class="callout warn">
               <strong>Descomissionamento é parte do projeto</strong>
               A unidade um dia será removida. A regulação exige plano de descomissionamento, tamponamento definitivo dos poços e destinação das estruturas. Projetar pensando na remoção reduz um custo que chega ao fim da vida do campo, quando a receita já é pequena.
             </div>
-          </div>
-        </details>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Fixa em lâmina rasa; flutuante com ancoragem em profunda.</li>
+          <li>Sem duto de óleo disponível, a estocagem decide: FPSO.</li>
+          <li>Árvore seca exige unidade com pouco heave (TLP ou spar).</li>
+          <li>CAPEX e OPEX ao longo da vida decidem entre conceitos tecnicamente viáveis.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o FPSO domina no Brasil?</summary><p>Lâmina profunda, campos distantes da costa e ausência de malha de dutos: a estocagem a bordo e o alívio por navio resolvem o escoamento do óleo.</p></details>
+          <details><summary>Quando a TLP compensa?</summary><p>Quando a árvore seca traz ganho de intervenção suficiente para pagar os tendões — tipicamente em lâminas intermediárias e reservatórios que exigem muita intervenção.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Cinco modelos interativos e animados, com fórmulas e resolução passo a passo. Os modelos físicos foram conferidos contra formas fechadas e valores de referência.</p>
-
-        <div id="sim-plataformas" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Com o mesmo mar (exemplos 2, 3 e 4), compare semissubmersível, FPSO e TLP. A TLP quase não se mexe porque o período natural dela (~3 s) está abaixo das ondas; a semi, porque o dela (~18 s) está acima. Agora carregue o exemplo 8: swell de 18 s colocando a semi em ressonância.
-        </div>
-
-        <div id="sim-ondas" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Mantenha T = 10 s e reduza a profundidade de 1 500 m para 3 m. O comprimento de onda cai de 156 m para ~53 m e as órbitas das partículas passam de círculos que somem com a profundidade a elipses achatadas que varrem o fundo.
-        </div>
-
-        <div id="sim-morison" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Compare o exemplo 1 (perna de jaqueta, KC ≈ 30) com o 2 (monoestaca, KC ≈ 4): na perna, a força total acompanha a velocidade; na monoestaca, acompanha a aceleração e atinge o máximo um quarto de período antes da crista.
-        </div>
-
-        <div id="sim-ancoragem" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Carregue o exemplo 2: amarra de aço pura a 1 500 m. O peso da própria linha passa da pré-tensão e o sistema não fecha. Troque para o exemplo 4, taut-leg de poliéster: raio de ancoragem igual à lâmina d’água e offset abaixo de 1 %.
-        </div>
-
-        <div id="sim-processo" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Do exemplo 1 para o 3, só a razão gás-óleo sobe — e o separador passa a ser dimensionado pelo gás. Depois suba a pressão de operação (exemplo 4): o gás fica mais denso, o vaso encolhe e a compressão fica mais barata.
-        </div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-plataformas"><small>Capítulo 3 · Plataformas</small>Tipos e graus de liberdade</a></li>
+          <li><a href="#sim-ondas"><small>Capítulo 4 · Ambiente</small>Teoria de ondas e órbitas</a></li>
+          <li><a href="#sim-morison"><small>Capítulo 5 · Cargas</small>Arrasto, inércia e KC</a></li>
+          <li><a href="#sim-ancoragem"><small>Capítulo 6 · Ancoragem</small>Catenária e restauração</a></li>
+          <li><a href="#sim-processo"><small>Capítulo 7 · Topsides</small>Processamento primário</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
@@ -518,7 +913,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
@@ -547,13 +942,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões sobre tipos de plataforma, ambiente oceânico, cargas, ancoragem, topsides, equipamentos submarinos e seleção de conceito.</p>
         <div id="quiz" data-quiz="instalacoes-e-offshore"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>CHAKRABARTI, S. K. (ed.)</strong> <em>Handbook of Offshore Engineering</em>, vols. 1 e 2. Elsevier. — Referência central da disciplina: ambiente, cargas, tipos de plataforma, ancoragem e topsides.</li>
           <li><strong>BAI, Y.; BAI, Q.</strong> <em>Subsea Engineering Handbook.</em> Gulf Professional Publishing. — Equipamentos e desenvolvimento de sistemas submarinos.</li>
@@ -583,7 +978,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/instalacoes-e-offshore.js"></script>
+<script src="../js/fig/instalacoes-e-offshore.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -627,6 +1024,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
