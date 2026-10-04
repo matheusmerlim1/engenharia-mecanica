@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,11 +35,13 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">Eletiva · Engenharia Mecânica</p>
     <h1>Refino de Petróleo</h1>
-    <p class="lead">O petróleo cru quase não tem uso direto. O refino o desmonta em frações pela temperatura de ebulição, quebra as moléculas grandes demais, remove o enxofre e mistura o resultado até cada derivado atender à sua especificação — tudo isso gastando o mínimo de energia e sem deixar sobrar o que não se vende.</p>
+    <p class="lead">Do petróleo que chega ao derivado que sai dentro da especificação. Este texto está organizado como um livro: onze capítulos em sequência, da caracterização do cru à recuperação de enxofre, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">11 tópicos</span>
+      <span class="tag accent">11 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">11 figuras interativas</span>
       <span class="tag warn">normas</span>
     </div>
   </div>
@@ -47,27 +50,54 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>Toda a disciplina gira em torno de duas ideias. A primeira é que <strong>não existem dois petróleos iguais</strong>: a densidade, a curva de destilação e os contaminantes de cada cru determinam quanto de cada derivado ele pode dar. A segunda é que o mercado quer uma cesta de produtos que <strong>nunca coincide</strong> com o que a natureza entrega — há sempre fundo demais e gasolina e diesel de menos. O refino é a engenharia de fechar essa diferença.</p>
-        <div class="formula"><span data-tex="\text{separar (destilação)} \;\to\; \text{converter (FCC, coque, hidrocraqueamento)} \;\to\; \text{tratar (HDT, amina)} \;\to\; \text{misturar (blending)}"></span></div>
-        <div class="callout note">
-          <strong>Os quatro grupos de processos</strong>
-          <strong>Separação</strong> — físicos, não mudam as moléculas: destilação, desasfaltação, extração de aromáticos. <strong>Conversão</strong> — químicos, quebram ou rearranjam moléculas: craqueamento térmico e catalítico, coqueamento, hidrocraqueamento, reforma, alquilação. <strong>Tratamento</strong> — removem contaminantes sem mudar muito o resto: hidrotratamento, Merox, lavagem cáustica. <strong>Auxiliares</strong> — sustentam os outros: geração de hidrogênio, recuperação de enxofre, tratamento de águas ácidas, utilidades.
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho é o do próprio barril: caracterizar o petróleo, separar o que já é produto, converter o que é pesado demais, tratar o que está fora de especificação e misturar para entregar. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: o problema do fundo do barril</h2>
+        <p>Refinar é resolver um desencontro. O petróleo entrega moléculas pesadas em quantidade muito maior do que o mercado quer, e moléculas leves em quantidade muito menor. Separar o barril em cortes resolve metade do problema; a outra metade exige quebrar o que é grande demais e completar com hidrogênio o que ficou pobre demais. Toda a complexidade de uma refinaria — e todo o seu custo — vem daí.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Que petróleo é este?</td><td>°API, K_UOP e contaminantes</td><td>1</td></tr>
+            <tr><td>Quanto ele rende de cada corte?</td><td>Curva PEV</td><td>2</td></tr>
+            <tr><td>Que refinaria processa este cru?</td><td>Esquemas e índice de Nelson</td><td>3</td></tr>
+            <tr><td>Como separar sem destruir o equipamento?</td><td>Dessalgação e destilação</td><td>4 e 5</td></tr>
+            <tr><td>Como aproveitar o resíduo?</td><td>Vácuo, FCC e conversão</td><td>6 a 8</td></tr>
+            <tr><td>Como chegar a 10 ppm de enxofre?</td><td>Hidrotratamento</td><td>9</td></tr>
+            <tr><td>Como entregar na especificação?</td><td>Derivados e mistura</td><td>10</td></tr>
+            <tr><td>O que sustenta tudo isso?</td><td>Utilidades, Claus e segurança</td><td>11</td></tr>
+          </tbody>
+        </table>
         </div>
-        <div class="callout warn">
-          <strong>Separar não muda a molécula</strong>
-          Misturando de volta todos os produtos da destilação, reconstitui-se o petróleo original. Nos processos de conversão isso não é verdade: o que sai do FCC tem moléculas que não existiam na carga. Essa distinção explica por que a destilação sozinha nunca resolve o problema do “fundo de barril” — ela só pode dividir o que já está lá.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras e nos simuladores, mude a densidade do cru, a temperatura de corte e a severidade para ver os rendimentos reagirem; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teoria">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — O petróleo e o esquema de refino" data-topicos="petroleo">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. O petróleo: composição e classificação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir parafinas, naftênicos, aromáticos e olefinas;</li>
+            <li>calcular o grau API e classificar o cru;</li>
+            <li>usar o fator de caracterização K_UOP;</li>
+            <li>reconhecer os contaminantes que decidem o processamento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Química orgânica básica e Termodinâmica I.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. O petróleo: composição e classificação</summary>
-          <div class="topic-body">
-            <p>O petróleo é uma mistura de milhares de hidrocarbonetos com pequenas quantidades de compostos de enxofre, nitrogênio, oxigênio e metais. Os hidrocarbonetos se agrupam em três famílias, e a proporção entre elas define o comportamento do cru e o que se consegue fazer com ele.</p>
+        <p>Nenhum petróleo é igual a outro, e essa é a primeira dificuldade do refino: a mesma refinaria recebe cargas diferentes ao longo do ano e precisa continuar entregando produtos dentro da mesma especificação. Antes de qualquer unidade, portanto, vem a caracterização — quais famílias de hidrocarbonetos dominam, quão denso é o cru e o que ele traz de indesejado.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>As famílias de hidrocarbonetos</h3>
+<p>O petróleo é uma mistura de milhares de hidrocarbonetos com pequenas quantidades de compostos de enxofre, nitrogênio, oxigênio e metais. Os hidrocarbonetos se agrupam em três famílias, e a proporção entre elas define o comportamento do cru e o que se consegue fazer com ele.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Família</th><th>Estrutura</th><th>No derivado</th></tr></thead>
@@ -79,7 +109,11 @@
               </tbody>
             </table>
             </div>
-            <h4>Grau API</h4>
+
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>Grau API</h3>
+
             <div class="formula"><span data-tex="{}^\circ API = \frac{141{,}5}{d_{60/60}} - 131{,}5"></span><span class="where">d a 60 °F relativa à água a 60 °F · a água vale 10 °API</span></div>
             <div class="table-scroll">
             <table class="data">
@@ -92,10 +126,28 @@
               </tbody>
             </table>
             </div>
-            <h4>Fator de caracterização K<sub>UOP</sub></h4>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Classificar um petróleo</div>
+          <p>Um cru tem densidade relativa 0,870 a 60 °F e uma fração média que ferve a 300 °C com densidade 0,85. Classifique o cru e diga o caráter da fração.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="^{\circ}API = 141{,}5/0{,}870 - 131{,}5 = 31{,}1"></span>.</li>
+              <li>Está exatamente na fronteira entre leve e médio pela classificação da ANP.</li>
+              <li>Para o K_UOP, a temperatura entra em rankine: 300 °C = 573,15 K = 1031,7 °R.</li>
+              <li><span data-tex-inline="K_{UOP} = \sqrt[3]{1031{,}7}/0{,}85 = 11{,}9"></span>.</li>
+            </ol>
+            <p class="resposta">31,1 °API coloca o cru na fronteira leve/médio, e K_UOP = 11,9 indica caráter naftênico-parafínico. Se a mesma fração tivesse densidade 0,79, o K_UOP subiria para 12,8 — francamente parafínico, ótimo para diesel e ruim para gasolina.</p>
+          </details>
+        </div>
+
+        <h3 id="s1-3"><span class="num">1.3</span>Fator de caracterização KUOP</h3>
+
             <p>Duas frações com o mesmo ponto de ebulição podem ter densidades bem diferentes: a parafínica é leve, a aromática é densa. Watson transformou isso num índice:</p>
             <div class="formula"><span data-tex="K_{UOP} = \frac{\sqrt[3]{T_B}}{d_{60/60}}"></span><span class="where">T<sub>B</sub> em rankine · ≥ 12,5 parafínico · ≈ 11,5 naftênico · ≤ 11 aromático</span></div>
-            <h4>Contaminantes</h4>
+
+        <h3 id="s1-4"><span class="num">1.4</span>Contaminantes</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Contaminante</th><th>Por que importa</th></tr></thead>
@@ -109,15 +161,50 @@
               </tbody>
             </table>
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Avaliação do petróleo: curva PEV e cortes</summary>
-          <div class="topic-body">
-            <p>A <strong>curva PEV</strong> (ponto de ebulição verdadeiro, ou TBP) é o documento de identidade de um petróleo. Destila-se uma amostra numa coluna de laboratório de alta eficiência, anotando a temperatura do vapor contra o volume recolhido. Até ~350 °C a destilação é atmosférica (ASTM D2892); acima disso passa a ser feita sob vácuo (ASTM D5236) e as temperaturas são convertidas para a <strong>temperatura atmosférica equivalente</strong>, porque o resíduo craquearia antes de ferver.</p>
+        <div id="sim-petroleo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Varie a densidade e veja a classe mudar de faixa; compare o K_UOP de duas frações que fervem na mesma temperatura com densidades diferentes.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Parafinas dão bom diesel e péssima gasolina; aromáticos, o contrário.</li>
+          <li><span data-tex-inline="^{\circ}API = 141{,}5/d - 131{,}5"></span>: acima de 31,1 é leve; abaixo de 22,3, pesado.</li>
+          <li>K_UOP separa o caráter: ≥ 12,5 parafínico, ≈ 11,5 naftênico, ≤ 11 aromático.</li>
+          <li>Enxofre, nitrogênio, metais, sais e asfaltenos decidem metade das unidades da refinaria.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um cru parafínico rende gasolina ruim?</summary><p>Porque parafinas de cadeia linear têm octanagem baixa; é por isso que a nafta pesada passa pela reforma catalítica, que as converte em aromáticos.</p></details>
+          <details><summary>Dois cortes fervem na mesma faixa mas têm densidades diferentes. O que isso indica?</summary><p>Caráter químico diferente: o mais denso é mais aromático, o mais leve é mais parafínico — exatamente o que o K_UOP mede.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — O petróleo e o esquema de refino" data-topicos="avaliacao">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Avaliação do petróleo: a curva PEV</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>ler rendimentos de corte numa curva PEV;</li>
+            <li>entender a temperatura atmosférica equivalente;</li>
+            <li>relacionar faixa de ebulição, número de carbonos e destino;</li>
+            <li>prever como o enxofre se distribui entre os cortes.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e destilação (Operações Unitárias).</p></div>
+        </div>
+
+        <p>Comprar um petróleo é comprar uma curva. A PEV diz quanto de cada corte aquele cru pode render e, com isso, se ele cabe no esquema da refinaria e quanto vale. Tudo o que vem depois — carga de cada unidade, perfil de produtos, margem — se decide aqui.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>A curva PEV é a identidade do cru</h3>
+<p>A <strong>curva PEV</strong> (ponto de ebulição verdadeiro, ou TBP) é o documento de identidade de um petróleo. Destila-se uma amostra numa coluna de laboratório de alta eficiência, anotando a temperatura do vapor contra o volume recolhido. Até ~350 °C a destilação é atmosférica (ASTM D2892); acima disso passa a ser feita sob vácuo (ASTM D5236) e as temperaturas são convertidas para a <strong>temperatura atmosférica equivalente</strong>, porque o resíduo craquearia antes de ferver.</p>
             <div class="formula"><span data-tex="R_{corte} = x_{PEV}(T_{fim}) - x_{PEV}(T_{início})"></span><span class="where">rendimento de um corte lido direto na curva, em % volume</span></div>
-            <div class="table-scroll">
+
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <h3 id="s2-2"><span class="num">2.2</span>Os cortes e para onde vão</h3>
+
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Corte</th><th>Faixa PEV típica</th><th>Átomos de C</th><th>Destino</th></tr></thead>
               <tbody>
@@ -131,7 +218,24 @@
               </tbody>
             </table>
             </div>
-            <div class="callout tip">
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Rendimento de destilados</div>
+          <p>Um cru de 31 °API tem, na PEV, 3 % de gás e GLP, 19 % até 175 °C, 11 % entre 175 e 235 °C e 22 % entre 235 e 370 °C. Quanto rende de destilados claros e quanto sobra de resíduo atmosférico?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Claros = GLP + naftas + querosene + diesel = 3 + 19 + 11 + 22.</li>
+              <li>Claros = 55 % em volume.</li>
+              <li>Resíduo atmosférico = 100 − 55 = 45 %.</li>
+              <li>Numa carga de 30 000 m³/dia, isso dá 16 500 m³/dia de claros e 13 500 m³/dia de resíduo.</li>
+            </ol>
+            <p class="resposta">55 % de claros direto da destilação. É esse resíduo de 45 % que justifica a existência das unidades de vácuo e de conversão: sem elas, quase metade do barril viraria óleo combustível, o produto de menor valor da refinaria.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-3"><span class="num">2.3</span>As temperaturas de corte são decisão de operação</h3>
+
+<div class="callout tip">
               <strong>O mesmo corte tem nomes diferentes conforme a refinaria</strong>
               As temperaturas de corte não são leis da natureza: são decisões de operação. Uma refinaria que quer mais querosene de aviação alarga a faixa do QAV para os dois lados; uma que quer mais diesel manda a nafta pesada e o gasóleo leve para o pool de diesel. O limite é sempre a especificação do produto — ponto de fulgor embaixo, ponto de congelamento ou destilação em cima.
             </div>
@@ -139,14 +243,43 @@
               <strong>O enxofre não se distribui por igual</strong>
               Os compostos sulfurados leves (mercaptanas) somem com o gás; os pesados (benzotiofenos, dibenzotiofenos) fervem alto. Resultado: a nafta leve tem pouquíssimo enxofre e o resíduo de vácuo concentra de 2 a 4 vezes o teor do cru. Um petróleo de 0,5 % S pode ter resíduo com 1,5 % — e é o fundo que vai para o óleo combustível marítimo, limitado a 0,5 % S desde 2020 (IMO 2020).
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Objetivos do refino e esquemas de refino</summary>
-          <div class="topic-body">
-            <p>Uma refinaria é planejada para um de dois objetivos: <strong>combustíveis</strong> (GLP, gasolina, QAV, diesel, óleo combustível) ou <strong>lubrificantes básicos e parafinas</strong>. O primeiro grupo é a imensa maioria, porque a demanda por combustível é muito maior; todas as refinarias brasileiras produzem combustíveis, e só algumas também têm trem de lubrificantes.</p>
-            <div class="table-scroll">
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A PEV é levantada em coluna de laboratório de alta eficiência (D2892 e, no vácuo, D5236).</li>
+          <li>Acima de ~350 °C mede-se sob vácuo e converte-se para temperatura atmosférica equivalente.</li>
+          <li>O rendimento de um corte é lido direto na curva, em % volume.</li>
+          <li>O enxofre se concentra no fundo: o resíduo pode ter de 2 a 4 vezes o teor do cru.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que não se destila o resíduo a 1 atm no laboratório?</summary><p>Porque ele craquearia antes de ferver: acima de 350 a 370 °C as moléculas se quebram e a amostra deixa de representar o cru.</p></details>
+          <details><summary>Um cru de 0,5 % S pode gerar óleo combustível fora da IMO 2020?</summary><p>Pode: o resíduo concentra enxofre e pode passar de 1,5 %, bem acima do limite de 0,5 % para bunker.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — O petróleo e o esquema de refino" data-topicos="esquemas">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Objetivos do refino e esquemas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir os quatro esquemas clássicos de refino;</li>
+            <li>relacionar esquema, destino do fundo e complexidade;</li>
+            <li>interpretar o índice de Nelson;</li>
+            <li>entender por que o esquema evolui com o mercado.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 2.</p></div>
+        </div>
+
+        <p>Uma refinaria não é um conjunto arbitrário de unidades: é um arranjo escolhido para transformar um tipo de petróleo em um perfil de produtos. O que separa um esquema simples de um complexo é sempre a mesma pergunta — o que fazer com o fundo do barril, a parte mais pesada e menos valiosa.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Combustíveis ou lubrificantes</h3>
+<p>Uma refinaria é planejada para um de dois objetivos: <strong>combustíveis</strong> (GLP, gasolina, QAV, diesel, óleo combustível) ou <strong>lubrificantes básicos e parafinas</strong>. O primeiro grupo é a imensa maioria, porque a demanda por combustível é muito maior; todas as refinarias brasileiras produzem combustíveis, e só algumas também têm trem de lubrificantes.</p>
+
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Os quatro esquemas</h3>
+
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Esquema</th><th>Unidades</th><th>O que faz com o fundo</th></tr></thead>
               <tbody>
@@ -158,19 +291,51 @@
             </table>
             </div>
             <div class="formula"><span data-tex="\text{Índice de Nelson} = \sum_i \frac{\text{capacidade}_i}{\text{capacidade da destilação}}\times F_i"></span><span class="where">mede a complexidade: topping ≈ 2 · com FCC ≈ 6 · conversão profunda 10 a 14</span></div>
-            <div class="callout note">
+
+        <h3 id="s3-3"><span class="num">3.3</span>Por que o esquema muda com o tempo</h3>
+
+<div class="callout note">
               <strong>Por que o esquema muda com o tempo</strong>
               O mercado de uma região se desloca (mais diesel, menos óleo combustível), a legislação aperta (enxofre no diesel e na gasolina, IMO 2020 no bunker) e o petróleo disponível muda (o pré-sal é mais leve e mais doce que Marlim). A refinaria acompanha com novas unidades. Refino é um processo dinâmico, planejado em horizonte de décadas.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Pré-aquecimento e dessalgação</summary>
-          <div class="topic-body">
-            <p>Antes de chegar ao forno, o cru passa por uma <strong>bateria de preaquecimento</strong>: uma sequência de trocadores em que ele é aquecido pelos próprios produtos e refluxos quentes que saem da torre. É onde está a maior economia de energia da refinaria — cada grau recuperado ali é um grau que o forno não precisa fornecer.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Topping: só separa; o resíduo vira óleo combustível.</li>
+          <li>Conversão: acrescenta vácuo e FCC e transforma o gasóleo em gasolina e GLP.</li>
+          <li>Conversão profunda: coqueamento ou hidrocraqueamento acabam com o óleo combustível.</li>
+          <li>O índice de Nelson mede a complexidade: 2 no topping, 6 com FCC, 10 a 14 na conversão profunda.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que uma refinaria de topping é vulnerável?</summary><p>Porque depende de vender muito óleo combustível, o produto de menor preço e de mercado em queda; a margem fica comprimida.</p></details>
+          <details><summary>O pré-sal muda o esquema necessário?</summary><p>Sim: sendo mais leve e mais doce, exige menos conversão e menos hidrotratamento que os crus pesados do Campos.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Separação" data-topicos="destilacao">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Pré-aquecimento e dessalgação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar a função da bateria de preaquecimento;</li>
+            <li>descrever o funcionamento da dessalgadora;</li>
+            <li>calcular sal residual em estágios;</li>
+            <li>relacionar sal, HCl e corrosão de topo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Transferência de Calor (trocadores) e capítulo 2.</p></div>
+        </div>
+
+        <p>Antes de qualquer separação, o cru precisa ser aquecido e limpo. As duas coisas acontecem na mesma sequência de trocadores, e as duas são decisivas: a bateria de preaquecimento é onde está a maior economia de energia da refinaria, e a dessalgadora é o que impede que a torre de destilação seja destruída por corrosão em poucos meses.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>A bateria de preaquecimento</h3>
+<p>Antes de chegar ao forno, o cru passa por uma <strong>bateria de preaquecimento</strong>: uma sequência de trocadores em que ele é aquecido pelos próprios produtos e refluxos quentes que saem da torre. É onde está a maior economia de energia da refinaria — cada grau recuperado ali é um grau que o forno não precisa fornecer.</p>
             <p>No meio da bateria, entre ~120 e 150 °C, fica a <strong>dessalgadora</strong>. Injeta-se água de lavagem (3 a 8 % do cru), mistura-se numa válvula de mistura e, dentro de um vaso com campo elétrico de alta tensão, as gotas coalescem e decantam levando os sais dissolvidos.</p>
-            <div class="table-scroll">
+
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>O que acontece sem dessalgar</h3>
+
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Sem dessalgação</th><th>Consequência</th></tr></thead>
               <tbody>
@@ -185,15 +350,57 @@
               <strong>Por que a dessalgadora fica no meio da bateria e não no início</strong>
               A viscosidade do cru cai muito com a temperatura, e é a viscosidade que controla a velocidade de decantação das gotas (lei de Stokes). Aquecer ajuda a separar — mas acima de ~150 °C a água vaporizaria na pressão do vaso. O meio da bateria é o compromisso.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Destilação atmosférica</summary>
-          <div class="topic-body">
-            <p>O cru sai do forno a 350–385 °C parcialmente vaporizado e entra na <strong>zona de flash</strong> da torre. O vapor sobe através de 30 a 50 pratos, trocando calor e massa com o líquido que desce; em cada altura a composição é diferente, e é ali que se instalam as retiradas laterais. O líquido que não vaporizou desce, é retificado com vapor d’água e sai como <strong>resíduo atmosférico</strong>.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Dessalgação em dois estágios</div>
+          <p>Um cru entra com 50 lb de sal por 1000 barris. Cada estágio de dessalgação remove 90 %. Quanto sai em um e em dois estágios, e isso atende ao limite usual de 1 lb/1000 bbl?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Um estágio: 50 × (1 − 0,90) = 5 lb/1000 bbl.</li>
+              <li>Dois estágios: 5 × 0,10 = 0,5 lb/1000 bbl.</li>
+              <li>Três estágios levariam a 0,05 lb/1000 bbl.</li>
+            </ol>
+            <p class="resposta">Um estágio não basta (5 contra o limite de 1); dois atendem com folga, a 0,5 lb/1000 bbl. É exatamente por isso que unidades que processam cru pesado ou salgado têm dessalgadoras em série — a eficiência se multiplica, não se soma.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Cada grau recuperado na bateria é um grau que o forno não precisa fornecer.</li>
+          <li>A dessalgadora opera entre 120 e 150 °C, com 3 a 8 % de água de lavagem e campo elétrico.</li>
+          <li>Cloretos de magnésio e cálcio hidrolisam a HCl acima de ~120 °C.</li>
+          <li>Dois estágios em série multiplicam as eficiências.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a água de lavagem precisa ser bem misturada, mas não demais?</summary><p>Mistura insuficiente não lava o sal; mistura excessiva forma emulsão estável que não decanta.</p></details>
+          <details><summary>O que o sódio faz no FCC?</summary><p>Vai para o resíduo, chega ao gasóleo e envenena a zeólita do catalisador.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Separação" data-topicos="destilacao">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Destilação atmosférica</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>descrever o caminho do cru do forno ao topo da torre;</li>
+            <li>explicar o papel do vapor d'água e dos refluxos circulantes;</li>
+            <li>relacionar temperatura de corte e especificação;</li>
+            <li>identificar as alavancas de recuperação de destilado.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 4; destilação multicomponente.</p></div>
+        </div>
+
+        <p>A torre atmosférica é a unidade que define a refinaria: tudo o que vem depois trabalha com o que ela separou. O princípio é o mesmo de qualquer destilação, mas em escala e com uma particularidade — não se separam componentes puros, e sim faixas de ebulição, cada uma retirada num prato diferente ao longo da coluna.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>A zona de flash e o que sobe</h3>
+<p>O cru sai do forno a 350–385 °C parcialmente vaporizado e entra na <strong>zona de flash</strong> da torre. O vapor sobe através de 30 a 50 pratos, trocando calor e massa com o líquido que desce; em cada altura a composição é diferente, e é ali que se instalam as retiradas laterais. O líquido que não vaporizou desce, é retificado com vapor d’água e sai como <strong>resíduo atmosférico</strong>.</p>
             <div class="formula"><span data-tex="p_{HC} = P\,\frac{n_{HC}}{n_{HC} + n_{vapor}}"></span><span class="where">o vapor d’água baixa a pressão parcial dos hidrocarbonetos — um vácuo parcial barato</span></div>
-            <div class="table-scroll">
+
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Os elementos da torre</h3>
+
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Elemento</th><th>Função</th></tr></thead>
               <tbody>
@@ -206,7 +413,10 @@
               </tbody>
             </table>
             </div>
-            <div class="callout warn">
+
+        <h3 id="s5-3"><span class="num">5.3</span>Pressão, vapor e as alavancas de operação</h3>
+
+<div class="callout warn">
               <strong>“Atmosférica” não quer dizer 1 atm</strong>
               O topo opera tipicamente a 1,5 a 2 bar absolutos, para que o vapor vença os pratos e o condensador trabalhe com água de refrigeração comum. Aumentar a pressão de topo esquenta a torre inteira e reduz a vaporização no flash.
             </div>
@@ -214,15 +424,64 @@
               <strong>Três alavancas para recuperar destilado do fundo</strong>
               Subir a temperatura do forno (limitada pelo craqueamento), aumentar o vapor de retificação (limitado pela água ácida gerada e pela carga do condensador) ou baixar a pressão de topo (limitada pelo condensador). Todas mexem na mesma coisa: a pressão parcial e a temperatura na zona de flash.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Destilação a vácuo e tipos de unidade</summary>
-          <div class="topic-body">
-            <p>O resíduo atmosférico ainda contém 40 a 60 % de gasóleo, mas para destilá-lo a 1 atm seria preciso passar de 500 °C. A solução é reduzir a pressão: a 10–60 mmHg absolutos, o mesmo corte ferve abaixo de 420 °C.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Vazões de uma torre atmosférica</div>
+          <p>Uma torre processa 30 000 m³/dia de cru com os rendimentos do exemplo 2.1 (3 % gás e GLP, 19 % nafta, 11 % querosene, 22 % diesel). Calcule as vazões de cada corte e do resíduo.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Gás e GLP: 0,03 × 30 000 = 900 m³/dia.</li>
+              <li>Nafta: 0,19 × 30 000 = 5700 m³/dia.</li>
+              <li>Querosene: 0,11 × 30 000 = 3300 m³/dia; diesel: 0,22 × 30 000 = 6600 m³/dia.</li>
+              <li>Resíduo atmosférico: 30 000 − 16 500 = 13 500 m³/dia.</li>
+            </ol>
+            <p class="resposta">Os 13 500 m³/dia de resíduo são a carga da unidade de vácuo. Uma refinaria de 30 000 m³/dia (cerca de 190 mil barris por dia) de porte médio precisa, portanto, de uma torre de vácuo dimensionada para quase metade da carga da atmosférica.</p>
+          </details>
+        </div>
+
+        <div id="sim-torre" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Suba a temperatura de corte do diesel e veja o rendimento aumentar até o ponto em que o fulgor ou o ponto de névoa saem de especificação.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O cru entra parcialmente vaporizado na zona de flash, a 350–385 °C.</li>
+          <li>Vapor d'água reduz a pressão parcial dos hidrocarbonetos e ajuda a vaporizar sem craquear.</li>
+          <li>Retiradas laterais passam por retificadoras para ajustar o ponto de fulgor.</li>
+          <li>Refluxos circulantes recuperam calor e controlam o tráfego de vapor na torre.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a temperatura do forno não pode passar de ~385 °C?</summary><p>Porque acima disso começa o craqueamento térmico: forma-se coque nos tubos e os produtos saem de especificação.</p></details>
+          <details><summary>Para que servem as retificadoras laterais?</summary><p>Para arrastar os leves que desceram junto com o corte, ajustando o ponto de fulgor do produto.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Separação" data-topicos="vacuo">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Destilação a vácuo</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar por que o resíduo exige vácuo;</li>
+            <li>relacionar pressão e temperatura de ebulição;</li>
+            <li>descrever as diferenças construtivas da torre de vácuo;</li>
+            <li>distinguir operação úmida e seca.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5 e Termodinâmica I (pressão de vapor).</p></div>
+        </div>
+
+        <p>O resíduo atmosférico ainda tem 40 a 60 % de gasóleo aproveitável, mas destilá-lo a 1 atm exigiria temperaturas acima de 500 °C — e a essa altura as moléculas se quebram antes de ferver. A saída é abaixar a pressão: a mesma molécula que ferveria a 565 °C na atmosfera ferve pouco acima de 350 °C sob 25 mmHg, dentro da faixa em que o craqueamento ainda não é significativo.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Por que baixar a pressão</h3>
+<p>O resíduo atmosférico ainda contém 40 a 60 % de gasóleo, mas para destilá-lo a 1 atm seria preciso passar de 500 °C. A solução é reduzir a pressão: a 10–60 mmHg absolutos, o mesmo corte ferve abaixo de 420 °C.</p>
             <div class="formula"><span data-tex="\ln\frac{P_2}{P_1} = -\frac{\Delta H_v}{R}\left(\frac{1}{T_2} - \frac{1}{T_1}\right)"></span><span class="where">Clausius-Clapeyron — para frações de petróleo usa-se a correlação de Maxwell-Bonnell</span></div>
-            <div class="table-scroll">
+
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Como a torre de vácuo é diferente</h3>
+
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Característica da torre de vácuo</th><th>Motivo</th></tr></thead>
               <tbody>
@@ -244,17 +503,64 @@
               </tbody>
             </table>
             </div>
-            <div class="callout note">
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Temperatura real de um corte a vácuo</div>
+          <p>Um corte com temperatura atmosférica equivalente de 565 °C precisa ser vaporizado numa torre que opera a 25 mmHg na zona de flash. Estime a temperatura real necessária.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Pela regra de Trouton, <span data-tex-inline="\Delta H_v \approx 88\,T_b"></span> J/mol com T_b = 838 K, isto é, cerca de 74 kJ/mol.</li>
+              <li>Clausius-Clapeyron: <span data-tex-inline="\ln(P_2/P_1) = -\dfrac{\Delta H_v}{R}\left(\dfrac{1}{T_2}-\dfrac{1}{T_1}\right)"></span>.</li>
+              <li>Com P₂/P₁ = 25/760 = 0,0329 e T₁ = 838 K, resulta T₂ ≈ 634 K.</li>
+              <li>T₂ ≈ 361 °C.</li>
+            </ol>
+            <p class="resposta">Cerca de 360 °C contra os 565 °C que seriam necessários a 1 atm — bem abaixo do limiar de craqueamento. A estimativa é aproximada (Trouton e ΔH_v constante), mas mostra a ordem de grandeza do ganho: cerca de 200 °C de margem térmica comprados apenas com vácuo.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-3"><span class="num">6.3</span>Operação úmida ou seca</h3>
+
+<div class="callout note">
               <strong>Operação úmida ou seca</strong>
               Na operação <em>úmida</em> injeta-se vapor no fundo e no forno para baixar a pressão parcial; na <em>seca</em>, confia-se só nos ejetores, que precisam ser maiores, mas geram menos água ácida. As unidades modernas tendem à operação seca com vácuo profundo (8 a 15 mmHg).
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Craqueamento catalítico fluido (FCC)</summary>
-          <div class="topic-body">
-            <p>O FCC é a principal unidade de conversão do mundo e o coração das refinarias brasileiras. Quebra o gasóleo de vácuo em gasolina, GLP e destilados sobre um catalisador zeolítico em pó, que se comporta como fluido quando aerado.</p>
+        <div id="sim-vacuo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Baixe a pressão e acompanhe a temperatura de corte equivalente subir: é assim que se decide até onde vale a pena puxar o vácuo.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Reduzir a pressão desloca a ebulição para temperaturas em que o craqueamento ainda não ocorre.</li>
+          <li>A torre de vácuo tem diâmetro grande e recheio estruturado para minimizar a perda de carga.</li>
+          <li>Operação úmida injeta vapor; a seca usa ejetores e pressão mais baixa.</li>
+          <li>O gasóleo de vácuo é a carga do FCC e do hidrocraqueamento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o diâmetro da torre de vácuo é tão grande?</summary><p>Porque o volume específico do vapor a 25 mmHg é enorme: para a mesma massa, o tráfego volumétrico é dezenas de vezes maior que na atmosférica.</p></details>
+          <details><summary>Por que recheio estruturado em vez de pratos?</summary><p>Porque cada prato custaria perda de carga, e perda de carga no vácuo significa temperatura mais alta no fundo — justamente o que se quer evitar.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Conversão" data-topicos="fcc">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Craqueamento catalítico fluido (FCC)</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>descrever riser, vaso separador e regenerador;</li>
+            <li>explicar o balanço térmico fechado pelo coque;</li>
+            <li>calcular conversão a partir dos rendimentos;</li>
+            <li>relacionar severidade e perfil de produtos.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 6 e Cinética/Catálise.</p></div>
+        </div>
+
+        <p>Se a destilação define o que a refinaria separa, o FCC define o que ela ganha. É ele que transforma o gasóleo de vácuo — que não serve como combustível automotivo — em gasolina e GLP. E é uma das unidades mais elegantes da engenharia química: o coque que suja o catalisador é exatamente o combustível que fornece o calor da reação.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>A unidade que define a margem</h3>
+<p>O FCC é a principal unidade de conversão do mundo e o coração das refinarias brasileiras. Quebra o gasóleo de vácuo em gasolina, GLP e destilados sobre um catalisador zeolítico em pó, que se comporta como fluido quando aerado.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Seção</th><th>O que acontece</th></tr></thead>
@@ -266,8 +572,16 @@
               </tbody>
             </table>
             </div>
-            <div class="formula"><span data-tex="\frac{C}{O} = \frac{Q_{riser}}{c_{p,cat}\,(T_{reg} - T_{rx})}"></span><span class="where">o catalisador é o próprio fluido que transporta o calor</span></div>
-            <div class="callout warn">
+
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>O balanço térmico fecha pelo coque</h3>
+
+<div class="formula"><span data-tex="\frac{C}{O} = \frac{Q_{riser}}{c_{p,cat}\,(T_{reg} - T_{rx})}"></span><span class="where">o catalisador é o próprio fluido que transporta o calor</span></div>
+
+        <h3 id="s7-3"><span class="num">7.3</span>Conversão, severidade e rendimentos</h3>
+
+<div class="callout warn">
               <strong>O FCC é termicamente balanceado</strong>
               Não há forno de reação: o calor para vaporizar e craquear vem inteiro da queima do coque. Por isso a temperatura do regenerador não é uma variável independente — ela se ajusta até que o coque queimado pague exatamente o calor que o riser pede. Uma carga que faz mais coque esquenta o regenerador, reduz a circulação necessária e derruba a conversão. Acima de ~760 °C, é preciso instalar resfriador de catalisador.
             </div>
@@ -285,13 +599,57 @@
               </tbody>
             </table>
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Outros processos de conversão</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Conversão de um FCC</div>
+          <p>Um FCC apresenta, em % massa: gás combustível 3, GLP 18, gasolina 46, LCO 17, óleo decantado 10 e coque 6. Calcule a conversão e verifique o fechamento do balanço.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Soma: 3 + 18 + 46 + 17 + 10 + 6 = 100 % — o balanço fecha.</li>
+              <li>Conversão = 100 − (LCO + decantado) = 100 − 27.</li>
+              <li>Conversão = 73 % em massa.</li>
+              <li>Rendimento de gasolina sobre a conversão: 46/73 = 63 %.</li>
+            </ol>
+            <p class="resposta">Conversão de 73 %, com 46 % de gasolina. Elevar a severidade levaria a conversão a 78 ou 80 %, mas parte do ganho viria como GLP e coque, não como gasolina — e o regenerador tem um limite de queima que nenhuma operação ultrapassa.</p>
+          </details>
+        </div>
+
+        <div id="sim-fcc" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Aumente a temperatura do riser e acompanhe a gasolina crescer, estabilizar e depois cair enquanto o GLP e o coque sobem.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O craqueamento acontece em segundos, no riser, com catalisador em fase diluída.</li>
+          <li>O coque depositado é queimado no regenerador e devolve o calor ao processo.</li>
+          <li>Conversão = 100 − (LCO + óleo decantado), em % massa.</li>
+          <li>Mais severidade dá mais gasolina até um ponto; depois, mais gás e mais coque.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o FCC não tem forno de reação?</summary><p>Porque a queima do coque no regenerador fornece todo o calor da reação endotérmica — o balanço é fechado pelo próprio processo.</p></details>
+          <details><summary>O que limita a severidade?</summary><p>A sobrecraqueamento: acima de certo ponto a gasolina formada é craqueada a gás, e o coque cresce, sobrecarregando o regenerador.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Conversão" data-topicos="conversao">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Outros processos de conversão</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar coqueamento, hidrocraqueamento, reforma e alquilação;</li>
+            <li>entender a razão H/C como critério de rota;</li>
+            <li>relacionar cada processo ao produto que ele viabiliza;</li>
+            <li>reconhecer o custo de cada rota.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 7.</p></div>
+        </div>
+
+        <p>Converter petróleo pesado em combustível leve é, no fundo, um problema de hidrogênio: as moléculas pesadas têm pouco hidrogênio por carbono, e as leves têm muito. Só existem duas saídas — tirar carbono ou colocar hidrogênio —, e toda unidade de conversão é uma ou outra. A escolha entre elas é econômica: rejeitar carbono é barato e perde rendimento; adicionar hidrogênio rende mais e custa muito mais.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>As quatro rotas de conversão</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Processo</th><th>Carga</th><th>Condições</th><th>Produtos e ideia central</th></tr></thead>
               <tbody>
@@ -304,20 +662,54 @@
               </tbody>
             </table>
             </div>
-            <div class="callout note">
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Rejeitar carbono ou adicionar hidrogênio</h3>
+
+<div class="callout note">
               <strong>Rejeitar carbono ou adicionar hidrogênio</strong>
               Toda conversão de pesado em leve precisa aumentar a razão H/C. Há dois caminhos. <strong>Rejeição de carbono</strong>: tira-se carbono na forma de coque (FCC, coqueamento) — barato, mas perde massa. <strong>Adição de hidrogênio</strong>: acrescenta-se H₂ (hidrocraqueamento) — rende mais de 100 % em volume, mas exige hidrogênio caro e vasos de alta pressão.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>9. Hidrotratamento e tratamentos</summary>
-          <div class="topic-body">
-            <p>O hidrotratamento (HDT) remove enxofre, nitrogênio, oxigênio e metais, e satura olefinas e parte dos aromáticos, reagindo a carga com hidrogênio sobre catalisador de CoMo ou NiMo em alumina, a 300–400 °C e 30–120 bar.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Coqueamento retardado rejeita carbono: produz coque e destilados instáveis.</li>
+          <li>Hidrocraqueamento adiciona hidrogênio: rende destilados de alta qualidade, com alto custo.</li>
+          <li>Reforma catalítica aromatiza a nafta e é a grande fonte de hidrogênio da refinaria.</li>
+          <li>Alquilação junta olefinas leves em gasolina de alta octanagem.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a reforma catalítica é estratégica mesmo não convertendo pesados?</summary><p>Porque produz o hidrogênio que alimenta os hidrotratamentos — sem ela, a refinaria compraria hidrogênio.</p></details>
+          <details><summary>Quando o coqueamento é a escolha certa?</summary><p>Quando o resíduo é muito pesado e contaminado e o investimento em hidrocraqueamento não se paga.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte IV — Tratamento, produtos e utilidades" data-topicos="hdt">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Hidrotratamento e tratamentos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>escrever as reações de HDS, HDN e HDM;</li>
+            <li>usar a cinética de ordem n com LHSV;</li>
+            <li>explicar por que os dibenzotiofenos são o gargalo;</li>
+            <li>situar os tratamentos não hidrogenantes.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 7 e 8.</p></div>
+        </div>
+
+        <p>Especificação de enxofre é o que move o refino moderno. Sair de 500 ppm para 10 ppm no diesel não foi um ajuste de operação: exigiu reatores novos, catalisadores novos e muito mais hidrogênio. A razão está na cinética — os últimos compostos de enxofre a sair são justamente os mais difíceis, e remover cada um deles custa desproporcionalmente mais.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>O que o hidrogênio remove</h3>
+<p>O hidrotratamento (HDT) remove enxofre, nitrogênio, oxigênio e metais, e satura olefinas e parte dos aromáticos, reagindo a carga com hidrogênio sobre catalisador de CoMo ou NiMo em alumina, a 300–400 °C e 30–120 bar.</p>
             <div class="formula"><span data-tex="R{-}S{-}R' + 2H_2 \;\to\; R{-}H + R'{-}H + H_2S"></span><span class="where">hidrodessulfurização (HDS) · exotérmica</span></div>
             <div class="formula"><span data-tex="S_{sai} = \left[S_{entra}^{\,1-n} + (n-1)\frac{k}{LHSV}\right]^{\frac{1}{1-n}}, \quad n \approx 1{,}5"></span><span class="where">cinética de ordem aparente 1,5 — reflexo de muitos compostos com reatividades diferentes</span></div>
-            <div class="table-scroll">
+
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>Nem todo enxofre sai com a mesma facilidade</h3>
+
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Composto sulfurado</th><th>Reatividade</th><th>Onde está</th></tr></thead>
               <tbody>
@@ -329,7 +721,10 @@
               </tbody>
             </table>
             </div>
-            <div class="callout warn">
+
+        <h3 id="s9-3"><span class="num">9.3</span>Os outros tratamentos</h3>
+
+<div class="callout warn">
               <strong>Por que chegar a S-10 custou uma nova geração de unidades</strong>
               Os primeiros 97 % de enxofre saem facilmente. Os últimos compostos só reagem depois de saturar um anel aromático, o que exige catalisador NiMo, alta pressão de hidrogênio e reator muito maior (velocidade espacial menor). Subir a temperatura não resolve: acima de ~380 °C o catalisador coqueia e a saturação de aromáticos esbarra no equilíbrio.
             </div>
@@ -344,13 +739,57 @@
               </tbody>
             </table>
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>10. Derivados e especificações</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Severidade para atingir S-10</div>
+          <p>Um diesel entra com 1,2 % de enxofre (12 000 ppm) e precisa sair com 10 ppm. Qual a redução exigida, e o que acontece se a vazão de carga dobrar?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Redução: 12 000 → 10 ppm, ou 99,92 % do enxofre removido.</li>
+              <li>Em cinética de primeira ordem, <span data-tex-inline="\ln(S_{ent}/S_{sai}) = k/LHSV = \ln(1200) = 7{,}09"></span>.</li>
+              <li>Dobrar a carga dobra o LHSV e divide o expoente por dois: <span data-tex-inline="S = 12\,000\,e^{-3{,}545}"></span>.</li>
+              <li>S ≈ 350 ppm.</li>
+            </ol>
+            <p class="resposta">Dobrar a carga leva o produto de 10 para cerca de 350 ppm — trinta e cinco vezes fora de especificação. Como a dependência é exponencial, a compensação viria por temperatura, e cada grau a mais encurta a vida do catalisador. É por isso que capacidade de HDT é dimensionada com folga.</p>
+          </details>
+        </div>
+
+        <div id="sim-hds" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Reduza o LHSV (menos carga por volume de catalisador) e veja o enxofre cair exponencialmente; depois suba a temperatura e compare o efeito.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>HDS, HDN, HDO e HDM removem enxofre, nitrogênio, oxigênio e metais.</li>
+          <li><span data-tex-inline="S_{sai} = [S_{ent}^{1-n} + (n-1)k/LHSV]^{1/(1-n)}"></span>, com n entre 1,5 e 2.</li>
+          <li>Mercaptanas saem fácil; dibenzotiofenos substituídos são o gargalo.</li>
+          <li>Tratamentos cáusticos e Merox resolvem casos leves sem hidrogênio.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que baixar de 50 para 10 ppm custa mais que de 500 para 50?</summary><p>Porque o que resta nos últimos ppm são as moléculas mais refratárias; a cinética de ordem maior que 1 faz o custo crescer muito mais rápido que a redução.</p></details>
+          <details><summary>O que o hidrotratamento faz além de tirar enxofre?</summary><p>Satura olefinas e aromáticos, melhora cor e estabilidade, e protege os catalisadores das unidades seguintes.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte IV — Tratamento, produtos e utilidades" data-topicos="derivados">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Derivados e especificações</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>associar cada derivado à sua propriedade crítica;</li>
+            <li>distinguir octanagem e número de cetano;</li>
+            <li>calcular propriedades de misturas;</li>
+            <li>entender por que o produto final é sempre um blend.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 7 e 9.</p></div>
+        </div>
+
+        <p>O produto que sai da refinaria não vem de uma unidade só: é uma mistura calculada de várias correntes, ajustada para ficar dentro de todas as especificações ao mesmo tempo e com o menor custo possível. Entender quais propriedades mandam em cada derivado é o que permite fazer essa conta.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Cada derivado tem sua propriedade-chave</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Derivado</th><th>Propriedade-chave</th><th>O que ela garante</th></tr></thead>
               <tbody>
@@ -363,22 +802,68 @@
               </tbody>
             </table>
             </div>
-            <div class="formula"><span data-tex="IAD = \frac{RON + MON}{2}"></span><span class="where">índice antidetonante, o número exposto na bomba em muitos países</span></div>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Octanagem, cetano e as outras propriedades-chave</h3>
+
+<div class="formula"><span data-tex="IAD = \frac{RON + MON}{2}"></span><span class="where">índice antidetonante, o número exposto na bomba em muitos países</span></div>
             <div class="callout tip">
               <strong>Octanagem e cetano são opostos</strong>
               A gasolina precisa <em>resistir</em> à autoignição (motor de centelha): moléculas ramificadas e aromáticas. O diesel precisa <em>autoignir rápido</em> (motor de compressão): parafinas lineares. Por isso o que é ótimo para um é péssimo para o outro, e a reforma catalítica — que produz aromáticos — só serve à gasolina.
             </div>
-            <div class="callout note">
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Mistura de diesel</div>
+          <p>O pool de diesel combina 60 % de uma corrente hidrotratada com 8 ppm de enxofre e 40 % de uma corrente com 300 ppm. O resultado atende ao limite de 10 ppm?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Enxofre se mistura praticamente em proporção mássica.</li>
+              <li>S = 0,60 × 8 + 0,40 × 300 = 4,8 + 120.</li>
+              <li>S = 124,8 ppm.</li>
+              <li>Para chegar a 10 ppm seria preciso 99,3 % da corrente limpa.</li>
+            </ol>
+            <p class="resposta">124,8 ppm, mais de doze vezes o limite. A conta mostra por que não existe diluição possível: a corrente de 300 ppm precisa ser hidrotratada, não misturada. Foi exatamente esse cálculo que obrigou as refinarias a construir novas unidades de HDT quando a especificação caiu para 10 ppm.</p>
+          </details>
+        </div>
+
+        <h3 id="s10-3"><span class="num">10.3</span>O produto final é quase sempre uma mistura</h3>
+
+<div class="callout note">
               <strong>O produto final é quase sempre uma mistura</strong>
               A gasolina vendida é blending de nafta de destilação, reformado, gasolina de FCC, alquilado e isomerizado, mais o etanol anidro adicionado na distribuição. O planejamento da refinaria usa programação linear para escolher o cru e as proporções que atendem todas as especificações ao menor custo.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>11. Processos auxiliares, energia e segurança</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Gasolina: octanagem (IAD = (RON + MON)/2) e pressão de vapor.</li>
+          <li>Diesel: número de cetano, enxofre e ponto de entupimento.</li>
+          <li>QAV: ponto de congelamento e ponto de fulgor.</li>
+          <li>Propriedades que não são lineares na mistura exigem índices de blending.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que uma corrente muito aromática ajuda a gasolina e atrapalha o diesel?</summary><p>Porque aromáticos têm alta octanagem e baixo número de cetano — as duas exigências são opostas.</p></details>
+          <details><summary>Enxofre se mistura linearmente em massa?</summary><p>Praticamente sim, e é isso que torna impossível resolver S-10 por diluição: basta uma corrente alta para estourar a especificação.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte IV — Tratamento, produtos e utilidades">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Processos auxiliares, energia e segurança</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>listar os sistemas auxiliares e seu papel;</li>
+            <li>entender a recuperação de enxofre pelo processo Claus;</li>
+            <li>reconhecer os riscos de materiais a alta temperatura;</li>
+            <li>situar o consumo energético de uma refinaria.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Todos os capítulos anteriores.</p></div>
+        </div>
+
+        <p>Nenhuma unidade de processo funciona sozinha: por trás delas há vapor, água de resfriamento, ar comprimido, tocha, tratamento de efluentes e recuperação de enxofre. Esses sistemas não aparecem no fluxograma de produtos, mas determinam a eficiência, o impacto ambiental e a segurança de toda a refinaria.</p>
+
+        <h3 id="s11-1"><span class="num">11.1</span>As utilidades que sustentam a refinaria</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Sistema</th><th>Papel</th></tr></thead>
               <tbody>
@@ -390,7 +875,12 @@
               </tbody>
             </table>
             </div>
-            <div class="callout warn">
+
+        <div class="fig-host" id="fig-11-1"></div>
+
+        <h3 id="s11-2"><span class="num">11.2</span>Materiais, energia e segurança</h3>
+
+<div class="callout warn">
               <strong>Hidrogênio a alta temperatura ataca o aço</strong>
               Acima de ~200 °C e com pressão parcial de H₂ alta, o hidrogênio difunde no aço-carbono e reage com o carbono formando metano nos contornos de grão — o <em>ataque por hidrogênio a alta temperatura</em>, que trinca o equipamento sem aviso. As curvas de Nelson (API RP 941) definem o limite de temperatura e pressão para cada aço, e é por isso que reatores de HDT são de aço Cr-Mo com clad inoxidável.
             </div>
@@ -398,47 +888,33 @@
               <strong>Onde vai a energia</strong>
               Uma refinaria consome de 5 a 8 % do petróleo processado como combustível. Os fornos respondem pela maior parte. A integração energética — trocar calor entre correntes quentes e frias antes de queimar combustível — é o principal campo de atuação do engenheiro mecânico no refino.
             </div>
-          </div>
-        </details>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O H₂S retirado nos hidrotratamentos vira enxofre elementar no Claus.</li>
+          <li>Cada estágio catalítico aumenta a recuperação, com retorno decrescente.</li>
+          <li>Hidrogênio a alta temperatura e pressão ataca o aço: as curvas de Nelson orientam o material.</li>
+          <li>Uma refinaria consome de 5 a 10 % da energia do petróleo que processa.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o Claus tem vários estágios?</summary><p>Porque a reação é limitada pelo equilíbrio: cada estágio, resfriando e removendo o enxofre formado, desloca a reação e recupera mais.</p></details>
+          <details><summary>O que são as curvas de Nelson?</summary><p>Limites de temperatura e pressão parcial de hidrogênio acima dos quais o aço carbono sofre ataque; orientam a escolha de aços liga.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Cinco modelos interativos e animados, com as fórmulas e a resolução passo a passo. Todos usam correlações publicadas e foram conferidos contra dados de referência.</p>
-
-        <div id="sim-petroleo" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Compare o exemplo 1 (Brent) com o 6 (Marlim). Com as mesmas temperaturas de corte, o resíduo de vácuo sobe de ~18 % para mais de 40 %. É essa diferença que obriga uma refinaria projetada para cru pesado a ter coqueamento retardado.
-        </div>
-
-        <div id="sim-torre" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Carregue o exemplo 2 (forno frio): parte do diesel desce com o resíduo. Agora, em vez de subir o forno, aumente só o vapor de retificação — o diesel volta sem chegar perto da temperatura de craqueamento. É o exemplo 3.
-        </div>
-
-        <div id="sim-vacuo" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Leve a pressão de 25 para 80 mmHg (exemplo 3, ejetor com falha) e acompanhe no gráfico de Maxwell-Bonnell o ponto de operação subindo pela curva: com o mesmo forno, o gasóleo de vácuo cai vários pontos percentuais do cru.
-        </div>
-
-        <div id="sim-fcc" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Suba o resíduo de carbono da carga de 0,5 para 4 % sem mexer em mais nada. A temperatura do regenerador dispara, a circulação de catalisador cai e a conversão despenca — tudo sozinho, pelo balanço térmico. É o dilema do FCC de resíduo.
-        </div>
-
-        <div id="sim-hds" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          No exemplo 1, tente chegar a S-10 só subindo a temperatura: no gráfico “enxofre x temperatura” a curva de LHSV 1,5 cruza S-10 muito além de 380 °C. Depois carregue o exemplo 3 e veja que o caminho real foi trocar o catalisador e aumentar o reator.
-        </div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-petroleo"><small>Capítulo 1 · Caracterização</small>°API, K_UOP e classe do cru</a></li>
+          <li><a href="#sim-torre"><small>Capítulo 5 · Destilação</small>Torre atmosférica e cortes</a></li>
+          <li><a href="#sim-vacuo"><small>Capítulo 6 · Vácuo</small>Pressão e temperatura equivalente</a></li>
+          <li><a href="#sim-fcc"><small>Capítulo 7 · FCC</small>Severidade e rendimentos</a></li>
+          <li><a href="#sim-hds"><small>Capítulo 9 · Hidrotratamento</small>Enxofre residual e severidade</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
@@ -465,7 +941,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas e especificações</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
@@ -494,13 +970,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões sobre caracterização do petróleo, curva PEV, destilação atmosférica e a vácuo, FCC, conversão, hidrotratamento e derivados.</p>
         <div id="quiz" data-quiz="refino"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>SZKLO, A. S.; ULLER, V. C.; BONFÁ, M. H. P.</strong> <em>Fundamentos do Refino de Petróleo: Tecnologia e Economia.</em> Interciência. — A referência nacional; cobre esquemas de refino e cada unidade.</li>
           <li><strong>FARAH, M. A.</strong> <em>Petróleo e seus Derivados.</em> LTC. — Caracterização do petróleo e especificação de derivados.</li>
@@ -530,7 +1006,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/refino.js"></script>
+<script src="../js/fig/refino.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -572,6 +1050,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
