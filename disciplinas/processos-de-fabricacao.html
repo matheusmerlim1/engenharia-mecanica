@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -33,12 +34,14 @@
 <main id="conteudo" class="wrap">
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">6º período · Engenharia Mecânica</p>
-    <h1>Processos de Fabricação</h1>
-    <p class="lead">Uma peça pode nascer de três caminhos: solidificando a partir do metal líquido, sendo deformada no estado sólido, ou sendo unida a outras. Fundição, conformação e soldagem são exatamente isso — e cada uma imprime na peça uma microestrutura, uma tolerância e um conjunto de defeitos característicos.</p>
+    <h1>Processos de Fabricação I</h1>
+    <p class="lead">Como a peça sai do projeto e vira metal com forma. Este texto está organizado como um livro: onze capítulos em sequência, da fundição à qualificação de soldagem, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">11 tópicos</span>
+      <span class="tag accent">11 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
-      <span class="tag info">4 simuladores animados</span>
+      <span class="tag info">4 simuladores</span>
+      <span class="tag info">11 figuras interativas</span>
       <span class="tag warn">normas</span>
     </div>
   </div>
@@ -47,33 +50,52 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>Três famílias organizam o curso: fundição (dar forma ao líquido), conformação (deformar o sólido) e soldagem (unir pela fusão). Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: forma, propriedade e custo</h2>
+        <p>Todo processo de fabricação entrega três coisas ao mesmo tempo: a <strong>forma</strong>, as <strong>propriedades</strong> resultantes e um <strong>custo</strong>. Fundir permite geometrias que a conformação não alcança, mas entrega microestrutura bruta; conformar refina o grão e orienta as fibras, ao preço de ferramental; soldar une o que não dá para fazer inteiro, criando uma região com metalurgia própria. Escolher é equilibrar essas três dimensões.</p>
         <div class="table-scroll">
         <table class="data">
-          <thead><tr><th>Família</th><th>Princípio</th><th>Forte em</th><th>Limitação</th></tr></thead>
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
           <tbody>
-            <tr><td>Fundição</td><td>Solidificação em molde</td><td>Geometrias complexas, peças grandes, baixo custo por peça</td><td>Porosidade, rechupe, tolerâncias largas, propriedades inferiores</td></tr>
-            <tr><td>Conformação</td><td>Deformação plástica no estado sólido</td><td>Alta produtividade, fibra orientada, boas propriedades</td><td>Ferramental caro; limitada pela ductilidade do material</td></tr>
-            <tr><td>Usinagem</td><td>Remoção de material</td><td>Tolerâncias e acabamento apertados</td><td>Gera cavaco (desperdício) e é lenta para grandes volumes</td></tr>
-            <tr><td>Soldagem</td><td>União por fusão ou pressão</td><td>Estruturas grandes, reparos, junções permanentes</td><td>Zona afetada pelo calor, tensões residuais, distorções</td></tr>
-            <tr><td>Metalurgia do pó e aditiva</td><td>Consolidação de partículas / deposição camada a camada</td><td>Geometrias impossíveis, materiais especiais, baixo desperdício</td><td>Custo, tamanho e propriedades anisotrópicas</td></tr>
+            <tr><td>Que processo de fundição usar?</td><td>Molde perdido × permanente</td><td>1</td></tr>
+            <tr><td>Onde colocar o massalote?</td><td>Regra de Chvorinov</td><td>2</td></tr>
+            <tr><td>Que força a prensa precisa?</td><td>Conformação, laminação e forjamento</td><td>3 a 6</td></tr>
+            <tr><td>Que processo de solda?</td><td>Comparação de processos</td><td>7</td></tr>
+            <tr><td>Vai trincar?</td><td>Aporte, ciclo térmico e metalurgia</td><td>8 e 9</td></tr>
+            <tr><td>Como garantir a junta?</td><td>Ensaios e qualificação</td><td>10</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="callout note">
-          <strong>A escolha do processo é econômica antes de ser técnica</strong>
-          Vários processos conseguem fazer a mesma peça. O que decide é o volume de produção: fundição em areia e soldagem ganham em séries pequenas; fundição sob pressão, forjamento em matriz e estampagem exigem ferramental caro que só se paga em grandes séries.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras, mude espessura, redução e aporte para ver força e resfriamento reagirem; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teoria">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Fundição" data-topicos="fundicao">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Fundição: processos e moldes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar molde perdido e molde permanente;</li>
+            <li>reconhecer areia verde, cera perdida, coquilha e sob pressão;</li>
+            <li>relacionar processo, tolerância e acabamento;</li>
+            <li>entender o papel do sistema de canais.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Ciência dos Materiais (solidificação e diagramas de fase).</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Fundição: processos e moldes</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <p>Fundir é dar forma ao metal líquido. A escolha do processo decide tolerância, acabamento, custo de ferramental e quantidade mínima viável — e essa decisão vem antes de qualquer cálculo. Molde de areia serve a peças grandes e lotes pequenos; a injeção sob pressão só se paga em séries grandes, mas entrega peças quase prontas.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Escolhendo o processo</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Processo</th><th>Molde</th><th>Características</th></tr></thead>
               <tbody>
@@ -90,13 +112,39 @@
               <strong>Modelo não é igual à peça</strong>
               O modelo é maior que a peça: precisa incluir a contração sólida (régua de contração), o sobremetal para usinagem e os ângulos de saída. Além disso leva os machos, que formam os vazios internos.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Solidificação, massalotes e defeitos</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="t_s = C\left(\frac{V}{A}\right)^{n}, \quad n \approx 2 \qquad M = \frac{V}{A}"></span><span class="where">regra de Chvorinov: o módulo de resfriamento governa o tempo de solidificação</span></div>
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Molde perdido (areia, cera perdida) × molde permanente (coquilha, sob pressão).</li>
+          <li>Areia verde é o mais usado: barato, flexível, acabamento grosseiro.</li>
+          <li>Cera perdida dá precisão e geometria complexa, a custo alto.</li>
+          <li>O sistema de canais precisa encher o molde sem turbulência e com perda mínima de temperatura.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que peças de alumínio injetadas têm paredes tão finas?</summary><p>Porque a injeção sob pressão enche o molde rapidamente, antes da solidificação, e o molde metálico extrai calor depressa.</p></details>
+          <details><summary>Qual processo escolher para 10 peças grandes de aço?</summary><p>Areia: o ferramental é barato e o lote não justifica molde permanente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Fundição" data-topicos="fundicao">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Solidificação, massalotes e defeitos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar a regra de Chvorinov;</li>
+            <li>dimensionar massalotes pelo módulo;</li>
+            <li>identificar rechupe, porosidade e inclusões;</li>
+            <li>projetar para solidificação direcional.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>Metal líquido contrai ao solidificar, e se não houver alimentação o vazio aparece dentro da peça. Prever onde e quando cada região solidifica é o que permite posicionar massalotes com eficácia — e a regra de Chvorinov transforma essa previsão numa conta de geometria.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>A regra de Chvorinov</h3>
+<div class="formula"><span data-tex="t_s = C\left(\frac{V}{A}\right)^{n}, \quad n \approx 2 \qquad M = \frac{V}{A}"></span><span class="where">regra de Chvorinov: o módulo de resfriamento governa o tempo de solidificação</span></div>
             <p>O metal contrai em três etapas: no líquido, na solidificação e no sólido. A contração de solidificação é a que precisa ser alimentada pelo <strong>massalote</strong> — que só consegue fazer isso se solidificar por último:</p>
             <div class="formula"><span data-tex="M_{massalote} \ge 1{,}2\,M_{peça}"></span></div>
             <div class="table-scroll">
@@ -115,13 +163,55 @@
               <strong>Estrutura do fundido</strong>
               Junto à parede fria formam-se grãos finos equiaxiais (zona coquilhada); depois, grãos colunares crescendo contra o fluxo de calor; e no centro, grãos equiaxiais grosseiros. A segregação empurra impurezas para as últimas regiões a solidificar — que são justamente as mais espessas.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Conformação: fundamentos</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="\sigma = K\,\epsilon^{\,n} \qquad \epsilon = \ln\frac{h_0}{h} \qquad \bar Y = \frac{K\epsilon^n}{1+n}"></span><span class="where">curva de escoamento verdadeira; n é o expoente de encruamento</span></div>
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Tempo de solidificação e massalote</div>
+          <p>Uma placa de 100 × 100 × 20 mm é fundida com B = 2,0 s/mm². Calcule o tempo de solidificação e o diâmetro de um massalote cilíndrico (H = D) com módulo 25 % maior.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Módulo da peça: <span data-tex-inline="V/A = 200\,000/28\,000 = 7{,}14\ \text{mm}"></span>.</li>
+              <li><span data-tex-inline="t_s = 2{,}0\cdot 7{,}14^2 = 102\ \text{s}"></span>.</li>
+              <li>Massalote precisa de módulo <span data-tex-inline="1{,}25\cdot7{,}14 = 8{,}93\ \text{mm}"></span>.</li>
+              <li>Para cilindro com H = D, <span data-tex-inline="V/A = D/5"></span> → <span data-tex-inline="D \approx 45\ \text{mm}"></span>.</li>
+            </ol>
+            <p class="resposta">Solidificação em 102 s e massalote de 45 mm. Note que o massalote vira sucata: o projeto busca o menor que ainda alimente.</p>
+          </details>
+        </div>
+
+        <div id="sim-fundicao" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Chvorinov: <span data-tex-inline="t_s = B\,(V/A)^n"></span>, com n ≈ 2.</li>
+          <li>O módulo V/A manda: regiões com módulo maior solidificam depois.</li>
+          <li>O massalote deve ter módulo pelo menos 1,2 vez o da seção que alimenta.</li>
+          <li>Defeitos típicos: rechupe, porosidade de gás, inclusões e junta fria.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o massalote precisa solidificar depois da peça?</summary><p>Porque só assim ele continua líquido para alimentar a contração da peça; se congelar antes, o rechupe aparece na peça.</p></details>
+          <details><summary>Duas peças com o mesmo volume solidificam juntas?</summary><p>Não necessariamente: quem decide é V/A. A mais compacta tem módulo maior e demora mais.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte II — Conformação mecânica" data-topicos="conformacao">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Conformação: fundamentos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir trabalho a frio, a morno e a quente;</li>
+            <li>usar a curva de escoamento e a tensão de escoamento média;</li>
+            <li>entender o papel do atrito e da lubrificação;</li>
+            <li>relacionar deformação verdadeira e de engenharia.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Mecânica dos Materiais (tensão e deformação) e Ciência dos Materiais (encruamento).</p></div>
+        </div>
+
+        <p>Conformar é mudar a forma pela deformação plástica, sem tirar material. O comportamento depende da temperatura: a frio o metal encrua e ganha resistência; a quente ele recristaliza continuamente e escoa com tensão muito menor. Essa escolha define força, acabamento e propriedades finais.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Deformar sem romper</h3>
+<div class="formula"><span data-tex="\sigma = K\,\epsilon^{\,n} \qquad \epsilon = \ln\frac{h_0}{h} \qquad \bar Y = \frac{K\epsilon^n}{1+n}"></span><span class="where">curva de escoamento verdadeira; n é o expoente de encruamento</span></div>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th></th><th>Trabalho a frio</th><th>Trabalho a quente</th></tr></thead>
@@ -138,13 +228,39 @@
               <strong>Trabalho morno e a sequência industrial</strong>
               A prática usual é desbastar a quente (grandes reduções com pouca força) e terminar a frio (precisão, acabamento e encruamento). O trabalho morno, entre as duas faixas, busca um meio-termo entre força e acabamento.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Laminação</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="d = t_0 - t_1 \qquad d_{máx} = \mu^2 R \qquad L = \sqrt{R\,d} \qquad F = \bar Y\,w\,L"></span></div>
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Curva de escoamento: <span data-tex-inline="Y_f = K\varepsilon^n"></span>; média <span data-tex-inline="\bar Y = K\varepsilon^n/(1+n)"></span>.</li>
+          <li>Deformação verdadeira <span data-tex-inline="\varepsilon = \ln(h_0/h_f)"></span>.</li>
+          <li>A quente: sem encruamento, forças menores, acabamento pior e oxidação.</li>
+          <li>Atrito aumenta a força e cria o efeito barril; lubrificação é parte do processo.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que forjar a quente exige menos força?</summary><p>Porque a recristalização elimina o encruamento continuamente: a tensão de escoamento cai muito com a temperatura.</p></details>
+          <details><summary>Trabalhar a frio melhora o quê?</summary><p>Acabamento, tolerância e resistência — ao custo de ductilidade e de forças maiores.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Conformação mecânica" data-topicos="conformacao">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Laminação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a redução e o comprimento de contato;</li>
+            <li>estimar força e potência de laminação;</li>
+            <li>entender o ângulo de mordida;</li>
+            <li>reconhecer os arranjos de laminador.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 3.</p></div>
+        </div>
+
+        <p>Laminação é o processo que transforma a maior parte do aço produzido no mundo. Dois cilindros comprimem a chapa, reduzem a espessura e alongam o material — e as equações do processo saem de uma geometria simples: o arco de contato e a tensão de escoamento média.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Reduzindo espessura entre cilindros</h3>
+<div class="formula"><span data-tex="d = t_0 - t_1 \qquad d_{máx} = \mu^2 R \qquad L = \sqrt{R\,d} \qquad F = \bar Y\,w\,L"></span></div>
             <div class="formula"><span data-tex="T = \frac{F L}{2} \qquad P = 2\pi N F L \qquad t_0 v_0 = t_1 v_1"></span></div>
             <p>O atrito é indispensável: sem ele os cilindros não agarram a chapa. Mas atrito demais aumenta a força e o desgaste — daí o uso de lubrificantes e de cilindros de trabalho de pequeno diâmetro apoiados por cilindros maiores (laminador quádruo, Sendzimir).</p>
             <div class="table-scroll">
@@ -162,13 +278,55 @@
               <strong>Ponto neutro</strong>
               Na entrada a chapa é mais lenta que o cilindro; na saída, mais rápida. Entre os dois existe o ponto neutro, onde as velocidades se igualam — e é ali que o atrito muda de sentido, formando a chamada colina de atrito na distribuição de pressão.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Forjamento, extrusão e trefilação</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="F = K_f\,Y_f\,A \qquad K_f = 1 + 0{,}4\,\mu\frac{d}{h} \qquad p(r) = Y_f\,e^{2\mu(a-r)/h}"></span><span class="where">recalque com atrito: a colina de atrito eleva muito a pressão no centro</span></div>
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Força e potência de laminação</div>
+          <p>Chapa de 300 mm de largura passa de 25 para 22 mm em cilindros de 250 mm de raio a 50 rpm. Com K = 550 MPa e n = 0,22, estime força e potência.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\varepsilon = \ln(25/22) = 0{,}128"></span>; <span data-tex-inline="\bar Y = 550\cdot0{,}128^{0{,}22}/1{,}22 = 287\ \text{MPa}"></span>.</li>
+              <li><span data-tex-inline="L = \sqrt{250\cdot3} = 27{,}4\ \text{mm}"></span>.</li>
+              <li><span data-tex-inline="F = \bar Y\,w\,L = 2356\ \text{kN}"></span>.</li>
+              <li><span data-tex-inline="P = 2\pi N(2T) = 338\ \text{kW}"></span>.</li>
+            </ol>
+            <p class="resposta">F ≈ 2,4 MN e P ≈ 340 kW — e é por isso que laminadores são equipamentos de grande porte.</p>
+          </details>
+        </div>
+
+        <div id="sim-laminacao" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Comprimento de contato: <span data-tex-inline="L = \sqrt{R\,\Delta h}"></span>.</li>
+          <li>Força: <span data-tex-inline="F = \bar Y\,w\,L"></span>; torque por cilindro: <span data-tex-inline="T = 0{,}5\,F\,L"></span>.</li>
+          <li>Mordida limitada por <span data-tex-inline="\Delta h_{max} = \mu^2 R"></span>.</li>
+          <li>Cilindros menores reduzem a força: daí os laminadores quádruo e Sendzimir.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que cilindros de diâmetro menor reduzem a força?</summary><p>Porque o arco de contato encurta: F é proporcional a √(RΔh).</p></details>
+          <details><summary>O que limita a redução por passe?</summary><p>O atrito: sem ele os cilindros não mordem a chapa. Δh máximo vale μ²R.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Conformação mecânica" data-topicos="conformacao">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Forjamento, extrusão e trefilação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a força de recalque com o fator de forma;</li>
+            <li>distinguir forjamento livre, em matriz e de precisão;</li>
+            <li>estimar a força de extrusão;</li>
+            <li>entender os limites da trefilação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 4.</p></div>
+        </div>
+
+        <p>Três processos, três formas de aplicar a mesma ideia: comprimir entre matrizes (forjamento), empurrar através de uma matriz (extrusão) ou puxar através dela (trefilação). O que muda é o estado de tensão — e, com ele, quanto se pode deformar antes de romper.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Comprimir, empurrar e puxar</h3>
+<div class="formula"><span data-tex="F = K_f\,Y_f\,A \qquad K_f = 1 + 0{,}4\,\mu\frac{d}{h} \qquad p(r) = Y_f\,e^{2\mu(a-r)/h}"></span><span class="where">recalque com atrito: a colina de atrito eleva muito a pressão no centro</span></div>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Processo</th><th>Descrição</th><th>Observação</th></tr></thead>
@@ -185,13 +343,54 @@
               <strong>Por que a fibra importa</strong>
               A deformação alinha inclusões e grãos, criando a fibra de deformação. Uma peça forjada com a fibra acompanhando o contorno resiste muito mais à fadiga do que a mesma peça usinada a partir de um bloco — onde a fibra é cortada.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Conformação de chapas</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Força de recalque</div>
+          <p>Um tarugo de 100 mm de diâmetro e 50 mm de altura é recalcado com Yf = 250 MPa e μ = 0,2. Qual a força?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Área instantânea: <span data-tex-inline="A = \pi\cdot100^2/4 = 7854\ \text{mm}^2"></span>.</li>
+              <li>Fator de forma: <span data-tex-inline="K_f = 1 + 0{,}4\mu D/h = 1{,}16"></span>.</li>
+              <li><span data-tex-inline="F = Y_f A K_f = 2278\ \text{kN}"></span>.</li>
+            </ol>
+            <p class="resposta">Cerca de 2,3 MN — e a força cresce rápido conforme a peça achata, porque A aumenta e h diminui.</p>
+          </details>
+        </div>
+
+        <div id="sim-forjamento" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Recalque: <span data-tex-inline="F = Y_f A\,(1 + 0{,}4\mu D/h)"></span>.</li>
+          <li>Forjamento em matriz fechada gera rebarba, que ajuda a encher a cavidade.</li>
+          <li>Extrusão trabalha em compressão triaxial: permite grandes reduções.</li>
+          <li>Trefilação é limitada pela tração no fio: redução máxima da ordem de 45 % por passe.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a extrusão permite reduções muito maiores que a trefilação?</summary><p>Porque o material é empurrado sob compressão; na trefilação, quem puxa é o próprio fio, que romperia.</p></details>
+          <details><summary>De onde vem o efeito barril no recalque?</summary><p>Do atrito nas faces: o material perto das matrizes escoa menos que o do meio.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Conformação mecânica" data-topicos="conformacao">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Conformação de chapas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a força de dobra e o retorno elástico;</li>
+            <li>determinar o comprimento desenvolvido;</li>
+            <li>estimar a força de corte em puncionamento;</li>
+            <li>reconhecer os limites da estampagem profunda.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 5.</p></div>
+        </div>
+
+        <p>Chapa é o insumo mais usado na indústria, e sua conformação tem particularidades: a deformação é essencialmente plana, o retorno elástico atrapalha a precisão e a falha típica não é ruptura, e sim estricção localizada. Dobra, corte e estampagem cobrem quase tudo o que se faz com chapa.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Dobra, corte e estampagem</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Operação</th><th>Grandeza característica</th></tr></thead>
               <tbody>
@@ -206,13 +405,39 @@
               <strong>Springback</strong>
               Toda deformação plástica traz junto uma parcela elástica, que volta quando a ferramenta abre. A chapa dobrada a 90° "abre" alguns graus, e o raio cresce. Compensa-se sobredobrando, aplicando um golpe de calibração no fundo ou usando o estiramento sob tensão.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Soldagem: processos</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Comprimento desenvolvido usa a linha neutra, deslocada pelo fator K.</li>
+          <li>Retorno elástico: sobredobra-se para compensar.</li>
+          <li>Corte: <span data-tex-inline="F = 0{,}7\,TS\,t\,L"></span>, com L o perímetro.</li>
+          <li>Estampagem profunda: razão de estampagem limitada a cerca de 2.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a chapa volta um pouco depois de dobrada?</summary><p>Porque parte da deformação foi elástica: ao soltar, ela se recupera. A sobredobra compensa.</p></details>
+          <details><summary>Como reduzir a força de corte numa punção grande?</summary><p>Inclinando levemente o punção ou a matriz: o corte passa a ser progressivo, e o pico de força cai.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Soldagem" data-topicos="soldagem">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Soldagem: processos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar eletrodo revestido, MIG/MAG, TIG e arco submerso;</li>
+            <li>relacionar processo, posição e produtividade;</li>
+            <li>entender o papel do gás e do fluxo;</li>
+            <li>escolher o consumível.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Ciência dos Materiais (metalurgia) e capítulos anteriores.</p></div>
+        </div>
+
+        <p>Soldar é unir pela fusão localizada, e cada processo resolve um compromisso diferente entre produtividade, qualidade e flexibilidade. O eletrodo revestido vai a qualquer lugar; o MIG/MAG produz muito; o TIG dá o melhor acabamento; o arco submerso enche juntas grossas em uma passada.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Escolhendo o processo</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Processo</th><th>Proteção</th><th>Características</th><th>η</th></tr></thead>
               <tbody>
@@ -230,13 +455,39 @@
               <strong>Polaridade</strong>
               Em corrente contínua, a polaridade inversa (CC+, eletrodo positivo) concentra mais calor no eletrodo e dá maior penetração na maioria dos processos com eletrodo consumível; no TIG usa-se CC− para o eletrodo de tungstênio, e corrente alternada no alumínio, para romper a camada de óxido.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Aporte térmico, ciclo térmico e ZTA</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="H = \eta\,\frac{V\,I}{v}"></span><span class="where">aporte térmico, em kJ/mm — a grandeza que resume o efeito térmico da soldagem</span></div>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Eletrodo revestido: versátil, portátil, baixa produtividade.</li>
+          <li>MIG/MAG: alta produtividade, exige proteção do vento.</li>
+          <li>TIG: qualidade e controle, lento, ideal para raiz e materiais nobres.</li>
+          <li>Arco submerso: altíssima deposição, só na posição plana.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que não se usa MIG/MAG a céu aberto com vento?</summary><p>Porque o vento dispersa o gás de proteção e a poça contamina — daí o uso de eletrodo revestido ou arame tubular autoprotegido em campo.</p></details>
+          <details><summary>Qual processo para a raiz de uma tubulação de aço inox?</summary><p>TIG, com purga de argônio no lado interno: dá controle da poça e evita oxidação da raiz.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Soldagem" data-topicos="ciclo">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Aporte térmico, ciclo térmico e ZTA</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular o aporte térmico;</li>
+            <li>relacionar aporte, taxa de resfriamento e t8/5;</li>
+            <li>identificar as regiões da ZTA;</li>
+            <li>escolher o pré-aquecimento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 7 e os diagramas CCT de Ciência dos Materiais II.</p></div>
+        </div>
+
+        <p>A solda é um tratamento térmico localizado e violento: a poça passa de líquida a sólida em segundos, e o metal ao redor sofre ciclos que mudam sua microestrutura. O aporte térmico controla a velocidade desse resfriamento — e, com ela, a dureza e o risco de trinca na zona termicamente afetada.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>O calor que fica na junta</h3>
+<div class="formula"><span data-tex="H = \eta\,\frac{V\,I}{v}"></span><span class="where">aporte térmico, em kJ/mm — a grandeza que resume o efeito térmico da soldagem</span></div>
             <p>O ponto vizinho à solda passa por um ciclo térmico completo — aquece até perto da fusão e resfria. O trecho entre 800 e 500 °C é o que define a microestrutura, e seu tempo é o <strong>t<sub>8/5</sub></strong>:</p>
             <div class="formula"><span data-tex="t_{8/5} = (6700 - 5T_0)\,Q\left(\frac{1}{500-T_0} - \frac{1}{800-T_0}\right)"></span><span class="where">fluxo tridimensional (chapa grossa), EN 1011-2</span></div>
             <div class="table-scroll">
@@ -255,13 +506,53 @@
               <strong>O compromisso do aporte térmico</strong>
               Aporte baixo resfria rápido: risco de martensita e trinca a frio. Aporte alto resfria devagar: grão grosseiro e perda de tenacidade. Para aços C-Mn, t<sub>8/5</sub> entre 5 e 25 s costuma ser a faixa de bom senso.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>9. Metalurgia da soldagem e trincas</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="CE_{IIW} = C + \frac{Mn}{6} + \frac{Cr + Mo + V}{5} + \frac{Ni + Cu}{15}"></span><span class="where">acima de 0,45 o aço já pede cuidados de pré-aquecimento</span></div>
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Aporte térmico</div>
+          <p>Uma solda é feita com 200 A, 25 V e velocidade de 5 mm/s, com rendimento térmico de 0,8. Qual o aporte?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="H = \eta\dfrac{VI}{v} = 0{,}8\cdot\dfrac{25\cdot200}{5}"></span>.</li>
+              <li><span data-tex-inline="H = 800\ \text{J/mm} = 0{,}8\ \text{kJ/mm}"></span>.</li>
+            </ol>
+            <p class="resposta">0,8 kJ/mm — valor típico de MIG/MAG em chapa média. Dobrar a velocidade reduziria o aporte à metade e aceleraria o resfriamento.</p>
+          </details>
+        </div>
+
+        <div id="sim-soldagem" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Aporte: <span data-tex-inline="H = \eta\,\dfrac{V I}{v}"></span>, em J/mm.</li>
+          <li>Mais aporte: resfriamento mais lento, menos dureza, mais grão grosseiro.</li>
+          <li>O tempo t8/5 (de 800 a 500 °C) é o parâmetro de controle da microestrutura.</li>
+          <li>ZTA: grão grosseiro, refinado, intercrítico e subcrítico.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que soldar com aporte muito baixo pode trincar?</summary><p>Porque o resfriamento fica rápido demais, forma martensita dura na ZTA e, com hidrogênio presente, surge a trinca a frio.</p></details>
+          <details><summary>E aporte alto demais?</summary><p>Cresce o grão na ZTA e cai a tenacidade — além de aumentar a distorção.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Soldagem" data-topicos="soldagem">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Metalurgia da soldagem e trincas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer trinca a frio, a quente, lamelar e de reaquecimento;</li>
+            <li>usar o carbono equivalente;</li>
+            <li>definir pré-aquecimento e controle de hidrogênio;</li>
+            <li>relacionar composição, restrição e risco.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 8.</p></div>
+        </div>
+
+        <p>Quase toda trinca de solda tem três ingredientes: microestrutura suscetível, tensão de restrição e um agente — hidrogênio, enxofre, ou simplesmente o próprio ciclo térmico. Conhecendo os três, dá para atacar qualquer um deles: mudando o consumível, o pré-aquecimento ou a sequência de soldagem.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Por que a junta trinca</h3>
+<div class="formula"><span data-tex="CE_{IIW} = C + \frac{Mn}{6} + \frac{Cr + Mo + V}{5} + \frac{Ni + Cu}{15}"></span><span class="where">acima de 0,45 o aço já pede cuidados de pré-aquecimento</span></div>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Trinca</th><th>Quando ocorre</th><th>Causa</th><th>Combate</th></tr></thead>
@@ -279,13 +570,39 @@
               <strong>Tratamento térmico pós-soldagem (TTPS)</strong>
               O alívio de tensões (geralmente 600 a 650 °C para aço-carbono) reduz as tensões residuais, revenido a martensita da ZTA e ajuda a difundir o hidrogênio. É exigido em vasos de pressão acima de certas espessuras pelo código ASME.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>10. Descontinuidades, ensaios e qualificação</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Trinca a frio: martensita + hidrogênio + restrição, horas após a solda.</li>
+          <li>Trinca a quente: filmes de baixo ponto de fusão (S, P) na solidificação.</li>
+          <li>Carbono equivalente estima a temperabilidade e orienta o pré-aquecimento.</li>
+          <li>Eletrodo de baixo hidrogênio e secagem são medidas de rotina em aço de maior resistência.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a trinca a frio aparece horas depois?</summary><p>Porque depende da difusão do hidrogênio até as regiões tensionadas — processo lento à temperatura ambiente.</p></details>
+          <details><summary>O que o pré-aquecimento resolve?</summary><p>Reduz a taxa de resfriamento (menos martensita) e dá tempo para o hidrogênio escapar.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Soldagem" data-topicos="ensaios">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Descontinuidades, ensaios e qualificação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>identificar as descontinuidades típicas;</li>
+            <li>escolher o ensaio não destrutivo adequado;</li>
+            <li>entender EPS, RQPS e qualificação de soldador;</li>
+            <li>relacionar critério de aceitação e norma.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 7 a 9.</p></div>
+        </div>
+
+        <p>Solda boa não se garante no fim: garante-se no procedimento. A qualificação define parâmetros, o soldador é qualificado para executá-los e os ensaios verificam o resultado. Cada tipo de descontinuidade tem o ensaio que melhor a revela — e é isso que torna a escolha do método uma decisão técnica, não burocrática.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Garantindo a junta</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Descontinuidade</th><th>Causa típica</th></tr></thead>
               <tbody>
@@ -314,13 +631,39 @@
               <strong>EPS e RQP</strong>
               A Especificação de Procedimento de Soldagem (EPS, ou WPS) diz como soldar: processo, consumível, corrente, posição, pré-aquecimento. Ela é comprovada pelo Registro de Qualificação de Procedimento (RQP/PQR), com os resultados dos ensaios de um corpo de prova soldado. Depois, cada soldador é qualificado para executar aquela EPS — é o que exigem o ASME IX e a AWS D1.1.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>11. Corte térmico e processos especiais</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Descontinuidades: porosidade, inclusão de escória, falta de fusão e de penetração, mordedura, trinca.</li>
+          <li>Ensaios: visual, líquido penetrante, partículas magnéticas, ultrassom e radiografia.</li>
+          <li>Superficiais → PM ou LP; internas → UT ou RT.</li>
+          <li>EPS (procedimento), RQPS (registro de qualificação) e qualificação do soldador.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Qual ensaio detecta falta de fusão lateral?</summary><p>Ultrassom: a descontinuidade é plana e orientada de forma desfavorável à radiografia.</p></details>
+          <details><summary>Por que qualificar o procedimento antes de produzir?</summary><p>Porque é ele que garante a repetibilidade: sem EPS validada, cada junta é um experimento.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte III — Soldagem" data-topicos="soldagem">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Corte térmico e processos especiais</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar oxicorte, plasma e laser;</li>
+            <li>relacionar processo, espessura e qualidade de corte;</li>
+            <li>reconhecer a ZTA do corte;</li>
+            <li>situar os processos especiais de união.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 7 a 10.</p></div>
+        </div>
+
+        <p>Cortar é tão parte da fabricação quanto unir. Oxicorte queima o aço com oxigênio e vai longe em espessura; plasma é mais rápido em chapas médias e corta inoxidável; laser dá a melhor precisão em chapa fina. Cada um deixa uma zona afetada que o projeto precisa considerar.</p>
+
+        <h3 id="s11-1"><span class="num">11.1</span>Cortar com calor</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Processo</th><th>Princípio</th><th>Aplicação</th></tr></thead>
               <tbody>
@@ -337,41 +680,34 @@
               <strong>Por que o oxicorte não corta inox</strong>
               O processo depende da reação do ferro com o oxigênio gerando calor. O cromo do inox forma Cr₂O₃, de altíssimo ponto de fusão, que bloqueia a reação. Daí o uso de plasma ou laser nesses materiais.
             </div>
-          </div>
-        </details>
+
+        <div class="fig-host" id="fig-11-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Oxicorte: só aços-carbono; grande espessura; ZTA larga.</li>
+          <li>Plasma: corta qualquer condutor; bom em espessuras médias; ZTA menor.</li>
+          <li>Laser: precisão e corte estreito; limitado em espessura e refletividade.</li>
+          <li>Processos especiais: atrito (FSW), feixe de elétrons, ultrassom, brasagem.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que oxicorte não corta aço inoxidável?</summary><p>Porque o cromo forma óxido refratário que não queima na faixa do processo; para inox usa-se plasma ou laser.</p></details>
+          <details><summary>O que a solda por atrito (FSW) resolve no alumínio?</summary><p>Elimina a fusão: não há porosidade nem trinca a quente, e as propriedades da junta ficam bem melhores.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Quatro modelos interativos e animados. Os de laminação e forjamento reproduzem os exemplos clássicos do Groover, e o de soldagem usa as fórmulas de ciclo térmico e pré-aquecimento da EN 1011-2.</p>
-
-        <div id="sim-fundicao" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Reduza o diâmetro do massalote até a razão de módulos cair abaixo de 1,2: a animação passa a mostrar o massalote solidificando antes da peça — e é aí que o rechupe migra para dentro do fundido.
-        </div>
-
-        <div id="sim-laminacao" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Tente reduzir de 25 para 20 mm com μ = 0,12: a redução passa do máximo e os cilindros patinam. Aumente o atrito para 0,25 (laminação a quente) e o passe se torna possível.
-        </div>
-
-        <div id="sim-forjamento" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Compare a curva com e sem atrito no gráfico de força: no começo do recalque elas quase coincidem; no fim, com a peça achatada, o atrito responde por boa parte da força. Suba μ para 0,4 e veja a colina de atrito crescer.
-        </div>
-
-        <div id="sim-soldagem" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          No exemplo do aço mais ligado, o CE passa de 0,6 e o pré-aquecimento recomendado ultrapassa 200 °C. Aplique esse pré-aquecimento (exemplo 5) e veja o t8/5 quase dobrar — é assim que se evita a trinca a frio.
-        </div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os quatro simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-fundicao"><small>Capítulo 2 · Fundição</small>Solidificação e massalote</a></li>
+          <li><a href="#sim-laminacao"><small>Capítulo 4 · Laminação</small>Força e potência</a></li>
+          <li><a href="#sim-forjamento"><small>Capítulo 5 · Forjamento</small>Recalque com atrito</a></li>
+          <li><a href="#sim-soldagem"><small>Capítulo 8 · Soldagem</small>Aporte térmico e t8/5</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
@@ -396,7 +732,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
@@ -416,13 +752,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões sobre fundição, solidificação, conformação, laminação, forjamento, processos de soldagem, ciclo térmico, trincas e ensaios.</p>
         <div id="quiz" data-quiz="processos-de-fabricacao"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>GROOVER, M. P.</strong> <em>Introdução aos Processos de Fabricação.</em> LTC. — Base dos modelos de laminação e forjamento desta página.</li>
           <li><strong>KALPAKJIAN, S.; SCHMID, S. R.</strong> <em>Manufatura, Engenharia e Tecnologia.</em> Pearson.</li>
@@ -450,7 +786,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/processos-de-fabricacao.js"></script>
+<script src="../js/fig/processos-de-fabricacao.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -490,6 +828,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
