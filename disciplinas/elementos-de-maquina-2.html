@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,11 +35,13 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">7º período · Engenharia Mecânica</p>
     <h1>Elementos de Máquina II</h1>
-    <p class="lead">Elementos de Máquina I ensinou a não deixar uma peça quebrar; esta disciplina aplica isso aos elementos que transmitem movimento e energia. Engrenagens trocam velocidade por torque, mancais sustentam os eixos, correias e chavetas ligam as peças, molas armazenam energia e freios e embreagens a dissipam ou a acoplam — e cada um tem um modo de falha próprio para dimensionar.</p>
+    <p class="lead">Os componentes que formam uma transmissão: engrenagens, molas, freios, mancais, correias e uniões. Este texto está organizado como um livro: quatorze capítulos em sequência, da lei do engrenamento às vedações, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">14 tópicos</span>
+      <span class="tag accent">14 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">40 questões</span>
       <span class="tag info">10 simuladores animados</span>
+      <span class="tag info">10 figuras interativas</span>
       <span class="tag warn">normas</span>
     </div>
   </div>
@@ -47,35 +50,52 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>O roteiro da disciplina segue o de um projeto de redutor: escolher a geometria das engrenagens, montar o trem que dá a relação pedida, calcular as forças nos dentes e verificar os dentes contra os dois modos de falha — a quebra por flexão e o desgaste da superfície por fadiga de contato. Depois vêm as molas e os freios e embreagens, que completam os elementos de transmissão.</p>
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>Metade do curso é engrenagem — geometria, cinemática, forças e as duas falhas que importam (flexão e contato). A outra metade percorre os componentes que completam a transmissão: molas, freios, mancais, correias e uniões. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: do torque ao componente</h2>
+        <p>Elementos de Máquina I ensinou a decidir se uma peça aguenta. Aqui o objeto muda: são componentes padronizados, com normas próprias e catálogos de fabricante. O caminho é quase sempre o mesmo — do torque transmitido saem as forças, das forças saem as tensões ou as cargas equivalentes, e delas sai a seleção ou o dimensionamento, comparando com a resistência da norma.</p>
         <div class="table-scroll">
         <table class="data">
-          <thead><tr><th>Elemento</th><th>Função</th><th>Falha que governa o projeto</th></tr></thead>
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
           <tbody>
-            <tr><td>Engrenagens</td><td>Transmitir potência com relação de velocidades constante</td><td>Flexão na raiz do dente (quebra) e fadiga superficial (pitting)</td></tr>
-            <tr><td>Molas helicoidais</td><td>Armazenar energia, manter contato, absorver choque</td><td>Fadiga por torção do fio, escoamento ao fechar, flambagem, ressonância</td></tr>
-            <tr><td>Mancais de rolamento</td><td>Sustentar o eixo com atrito baixo</td><td>Fadiga de contato nas pistas — vida estatística L10</td></tr>
-            <tr><td>Mancais de deslizamento</td><td>Sustentar cargas altas sem contato metálico</td><td>Filme de óleo fino demais: regime misto e desgaste</td></tr>
-            <tr><td>Correias, chavetas e acoplamentos</td><td>Transmitir torque entre eixos e entre eixo e cubo</td><td>Escorregamento, cisalhamento e esmagamento</td></tr>
-            <tr><td>Freios e embreagens</td><td>Dissipar energia ou acoplar dois eixos por atrito</td><td>Pressão e temperatura no material de atrito</td></tr>
+            <tr><td>Que engrenagens usar?</td><td>Geometria, razão de contato e trens</td><td>1 a 4</td></tr>
+            <tr><td>O dente aguenta?</td><td>Lewis/AGMA e contato hertziano</td><td>5 a 8</td></tr>
+            <tr><td>Que mola especificar?</td><td>Rigidez, tensão e fadiga</td><td>9</td></tr>
+            <tr><td>Que freio ou embreagem?</td><td>Torque por atrito e energia</td><td>10</td></tr>
+            <tr><td>Que mancal?</td><td>Vida L10 ou filme hidrodinâmico</td><td>11 e 12</td></tr>
+            <tr><td>Como ligar os eixos?</td><td>Correias, correntes e chavetas</td><td>13 e 14</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="callout note">
-          <strong>Continuação de Elementos de Máquina I</strong>
-          Os critérios de falha estática, a fadiga com Goodman e o limite de resistência à fadiga, vistos em Elementos de Máquina I, são usados aqui o tempo todo: a AGMA nada mais é do que uma forma organizada de aplicar essas ideias ao dente de engrenagem.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras e nos simuladores, mude módulo, número de dentes e carga para ver tensões e vidas reagirem; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teoria">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Engrenagens" data-topicos="geometria">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Engrenagens: tipos e lei do engrenamento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer os tipos de engrenagem e suas aplicações;</li>
+            <li>enunciar a lei fundamental do engrenamento;</li>
+            <li>entender por que a evolvente a satisfaz;</li>
+            <li>relacionar ângulo de pressão e linha de ação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Dinâmica (cinemática de corpo rígido) e Elementos de Máquina I.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Engrenagens: tipos e lei do engrenamento</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <p>Transmitir rotação com relação constante não é trivial: se o perfil dos dentes for arbitrário, a velocidade de saída oscila a cada engrenamento. A lei fundamental diz qual condição geométrica garante relação constante — e a evolvente é o perfil que a cumpre mesmo quando a distância entre centros varia um pouco, o que a tornou padrão universal.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Por que o perfil é evolvente</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Tipo</th><th>Eixos</th><th>Características</th></tr></thead>
               <tbody>
@@ -87,23 +107,55 @@
               </tbody>
             </table>
             </div>
-            <h4>Lei fundamental do engrenamento</h4>
+
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <div id="sim-engrenamento" class="sim"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>Lei fundamental do engrenamento</h3>
+
             <p>Para que a relação de velocidades seja constante, a normal comum aos perfis no ponto de contato tem de passar sempre pelo mesmo ponto da linha de centros, o <strong>ponto primitivo</strong>. Os círculos que rolam um sobre o outro sem escorregar nesse ponto são os <strong>círculos primitivos</strong>.</p>
             <div class="formula"><span data-tex="m_V = \frac{\omega_g}{\omega_p} = \frac{r_p}{r_g} = \frac{N_p}{N_g}"></span><span class="where">p = pinhão (a menor), g = coroa; o sinal indica inversão de sentido</span></div>
-            <h4>O perfil evolvente</h4>
+
+        <h3 id="s1-3"><span class="num">1.3</span>O perfil evolvente</h3>
+
             <p>A evolvente é a curva descrita pela ponta de um fio esticado que se desenrola de um cilindro — o <strong>círculo de base</strong>. Duas evolventes em contato têm a normal comum sempre tangente aos dois círculos de base: essa reta fixa é a <strong>linha de ação</strong>, e ela cruza a linha de centros sempre no ponto primitivo. O ângulo entre a linha de ação e a tangente aos círculos primitivos é o <strong>ângulo de pressão</strong> φ.</p>
             <div class="formula"><span data-tex="r_b = r\cos\phi \qquad \text{inv}\,\phi = \tan\phi - \phi"></span></div>
             <div class="callout tip">
               <strong>Por que todo mundo usa a evolvente</strong>
               Ela tolera erro na distância entre centros: se os eixos se afastam um pouco, o ângulo de pressão muda, mas a relação de velocidades continua exata, porque depende só da razão entre os círculos de base. Além disso, uma ferramenta de flancos retos (cremalheira) gera evolventes para qualquer número de dentes.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Nomenclatura e geometria dos dentes</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Lei fundamental: a normal comum no ponto de contato deve passar sempre pelo ponto primitivo.</li>
+          <li>A evolvente satisfaz a lei e tolera variação na distância entre centros.</li>
+          <li>O ângulo de pressão padrão é 20° (há 14,5° e 25°).</li>
+          <li>Cilíndricas retas, helicoidais, cônicas e sem-fim: cada tipo resolve uma geometria de eixos.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O que acontece se os centros se afastarem um pouco?</summary><p>Com evolvente, a relação de transmissão não muda: só aumentam a folga e o ângulo de pressão efetivo.</p></details>
+          <details><summary>Por que engrenagens helicoidais são mais silenciosas?</summary><p>Porque o contato começa num ponto e cresce gradualmente ao longo do dente, em vez de toda a largura entrar de uma vez.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Engrenagens" data-topicos="geometria">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Nomenclatura e geometria dos dentes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>usar módulo, passo e número de dentes;</li>
+            <li>calcular os diâmetros primitivo, de base, externo e de raiz;</li>
+            <li>relacionar distância entre centros e relação de transmissão;</li>
+            <li>ler uma especificação de engrenagem.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>Toda a geometria da engrenagem decorre de dois números: o módulo e o número de dentes. Dominar essa nomenclatura é condição para qualquer cálculo posterior — e também para conversar com o fabricante, porque é nela que a norma e o catálogo falam.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>Módulo, passo e diâmetros</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Grandeza</th><th>Definição</th><th>Profundidade completa</th></tr></thead>
               <tbody>
@@ -123,16 +175,57 @@
               <strong>Folga de engrenamento (backlash)</strong>
               Na prática os dentes são afinados um pouco para que sobre uma folga entre os flancos que não estão em contato. Ela acomoda a dilatação térmica, os erros de fabricação e o filme de lubrificante — e é o que faz um mecanismo “bater” quando o torque inverte.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Razão de contato e interferência</summary>
-          <div class="topic-body">
-            <p>O contato entre um par de dentes começa onde o círculo de adendo da coroa corta a linha de ação e termina onde o círculo de adendo do pinhão a corta. Esse trecho é o <strong>comprimento de ação</strong> Z. Dividido pelo passo de base, dá quantos pares estão em contato em média:</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="d = m\,z"></span> e <span data-tex-inline="p = \pi m"></span>.</li>
+          <li>Diâmetro de base: <span data-tex-inline="d_b = d\cos\phi"></span>.</li>
+          <li>Adendo m e dedendo 1,25 m no sistema padrão.</li>
+          <li>Distância entre centros: <span data-tex-inline="C = m(z_1+z_2)/2"></span>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Duas engrenagens só engrenam se tiverem o quê em comum?</summary><p>O mesmo módulo e o mesmo ângulo de pressão.</p></details>
+          <details><summary>Módulo 4 significa o quê?</summary><p>Que cada dente "ocupa" 4 mm de diâmetro primitivo por dente: uma engrenagem de 20 dentes tem 80 mm de primitivo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Engrenagens" data-topicos="geometria">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Razão de contato e interferência</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a razão de contato;</li>
+            <li>entender por que ela deve ser maior que 1,2;</li>
+            <li>reconhecer interferência e adelgaçamento;</li>
+            <li>usar correção de perfil.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 2.</p></div>
+        </div>
+
+        <p>Se apenas um par de dentes estivesse em contato de cada vez, a transmissão seria ruidosa e o dente, muito solicitado. A razão de contato mede quantos pares dividem a carga em média — e, abaixo de um limite, a engrenagem simplesmente não funciona de forma contínua.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Quantos dentes trabalham juntos</h3>
+<p>O contato entre um par de dentes começa onde o círculo de adendo da coroa corta a linha de ação e termina onde o círculo de adendo do pinhão a corta. Esse trecho é o <strong>comprimento de ação</strong> Z. Dividido pelo passo de base, dá quantos pares estão em contato em média:</p>
             <div class="formula"><span data-tex="Z = \sqrt{r_{ap}^2 - r_{bp}^2} + \sqrt{r_{ag}^2 - r_{bg}^2} - C\,\text{sen}\,\phi \qquad m_p = \frac{Z}{p_b} = \frac{Z}{\pi m \cos\phi}"></span></div>
             <p>Com m<sub>p</sub> = 1,6, por exemplo, há dois pares em contato 60 % do tempo e um par só nos outros 40 %. Recomenda-se m<sub>p</sub> ≥ 1,2; dentes retos comuns ficam entre 1,4 e 2.</p>
-            <h4>Interferência e adelgaçamento</h4>
+
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Razão de contato</div>
+          <p>Um par de dentes retos tem m = 4 mm, z₁ = 20, z₂ = 40 e φ = 20°. Calcule a razão de contato.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Raios: primitivos 40 e 80 mm; externos 44 e 84 mm; de base 37,6 e 75,2 mm.</li>
+              <li><span data-tex-inline="L_{ab} = \sqrt{r_{a1}^2-r_{b1}^2} + \sqrt{r_{a2}^2-r_{b2}^2} - C\,\text{sen}\,\phi"></span>.</li>
+              <li><span data-tex-inline="m_p = L_{ab}/(\pi m\cos\phi) = 1{,}64"></span>.</li>
+            </ol>
+            <p class="resposta">m_p = 1,64: confortavelmente acima do mínimo de 1,2, com dois pares em contato durante 64 % do engrenamento.</p>
+          </details>
+        </div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Interferência e adelgaçamento</h3>
+
             <p>Se o contato começar antes do ponto de tangência com o círculo de base do pinhão, a ponta do dente da coroa encontra o pinhão numa região onde não há evolvente: é a <strong>interferência</strong>. Na fabricação por geração a ferramenta remove esse material e o pé do dente fica <strong>adelgaçado</strong> (undercut), mais fraco. Acontece com pinhões de poucos dentes.</p>
             <div class="formula"><span data-tex="N_p = \frac{2k}{(1+2m_G)\,\text{sen}^2\phi}\left(m_G + \sqrt{m_G^2 + (1+2m_G)\,\text{sen}^2\phi}\right)"></span><span class="where">menor pinhão sem interferência; k = 1 para profundidade completa, m<sub>G</sub> = N<sub>g</sub>/N<sub>p</sub></span></div>
             <div class="table-scroll">
@@ -149,13 +242,37 @@
               <strong>Três saídas para um pinhão pequeno</strong>
               Aumentar o ângulo de pressão para 25°; usar dentes de adendo desigual (pinhão com adendo alongado, coroa com adendo encurtado — a “correção” de perfil); ou aceitar mais dentes com módulo menor.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Trens de engrenagens</summary>
-          <div class="topic-body">
-            <p>O <strong>valor do trem</strong> é a razão entre a velocidade da última e a da primeira engrenagem:</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="m_p = \dfrac{L_{ab}}{p_b}"></span>, com p_b o passo de base.</li>
+          <li>Na prática exige-se m_p ≥ 1,2; valores de 1,4 a 1,7 são comuns em dentes retos.</li>
+          <li>Interferência ocorre quando o pinhão tem poucos dentes: o adendo da coroa invade a raiz do pinhão.</li>
+          <li>Número mínimo de dentes a 20°: 18 (ou 17, arredondando).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Razão de contato 1,6 significa o quê?</summary><p>Que, em média, 1,6 pares de dentes estão em contato: parte do tempo um par, parte do tempo dois.</p></details>
+          <details><summary>Como evitar interferência com pinhão pequeno?</summary><p>Corrigindo o perfil (deslocamento positivo no pinhão) ou aumentando o ângulo de pressão.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — Engrenagens" data-topicos="trens">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Trens de engrenagens</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a relação de trens simples e compostos;</li>
+            <li>usar a fórmula de Willis em trens planetários;</li>
+            <li>identificar o papel da engrenagem intermediária;</li>
+            <li>relacionar torque e rotação ao longo do trem.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 a 3.</p></div>
+        </div>
+
+        <p>Uma relação de transmissão grande raramente cabe num par só. Trens compostos resolvem isso em série, e os planetários conseguem relações altas em espaço pequeno — ao custo de uma análise que não é imediata, porque os eixos das planetas se movem. A fórmula de Willis resolve o problema olhando o trem do referencial do braço.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Relação total e trens planetários</h3>
+<p>O <strong>valor do trem</strong> é a razão entre a velocidade da última e a da primeira engrenagem:</p>
             <div class="formula"><span data-tex="e = \frac{\omega_L}{\omega_F} = \pm\frac{\text{produto dos números de dentes das motoras}}{\text{produto dos números de dentes das movidas}}"></span></div>
             <div class="table-scroll">
             <table class="data">
@@ -168,7 +285,13 @@
               </tbody>
             </table>
             </div>
-            <h4>Trens planetários — fórmula de Willis</h4>
+
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <div id="sim-trens" class="sim"></div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>Trens planetários — fórmula de Willis</h3>
+
             <p>Vistas por um observador que gira com o braço, as engrenagens formam um trem comum. Por isso:</p>
             <div class="formula"><span data-tex="e = \frac{\omega_L - \omega_A}{\omega_F - \omega_A}"></span><span class="where">F e L: primeira e última engrenagem do trem, com o braço A parado; e calculado como num trem comum</span></div>
             <p>Para o arranjo sol–planeta–anel interno, <span data-tex-inline="e = -N_s/N_r"></span> (o planeta é intermediário e o anel interno não inverte o sentido). Com três membros e dois graus de liberdade, é preciso fixar um e acionar outro:</p>
@@ -187,28 +310,82 @@
               Com N<sub>s</sub> = 20 e N<sub>r</sub> = 80 e o sol a 100 rpm: <span data-tex-inline="-\tfrac{20}{80} = \tfrac{0 - \omega_A}{100 - \omega_A}"></span> dá ω<sub>A</sub> = 20 rpm no mesmo sentido do sol. O planeta (N<sub>p</sub> = 30) gira, em relação ao chão, a <span data-tex-inline="\omega_A - \tfrac{N_s}{N_p}(\omega_s - \omega_A) = -33{,}3"></span> rpm.
             </div>
             <p>Condições de montagem: <span data-tex-inline="N_r = N_s + 2N_p"></span> (mesmo módulo) e, para n planetas igualmente espaçados, <span data-tex-inline="(N_s + N_r)/n"></span> inteiro.</p>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Análise de forças nas engrenagens</summary>
-          <div class="topic-body">
-            <p>Sem atrito, a força entre os dentes age ao longo da linha de ação. Ela se decompõe em uma componente <strong>tangencial</strong>, que transmite o torque, e uma <strong>radial</strong>, que só tende a separar as engrenagens e carrega os mancais.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Trem simples: a intermediária inverte o sentido e não altera a relação.</li>
+          <li>Trem composto: a relação total é o produto das relações dos pares.</li>
+          <li>Willis: <span data-tex-inline="\dfrac{n_{última} - n_{braço}}{n_{primeira} - n_{braço}} = \pm\dfrac{z_{motoras}}{z_{movidas}}"></span>.</li>
+          <li>A potência se conserva: o que se ganha em torque perde-se em rotação.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Para que serve uma engrenagem "louca"?</summary><p>Só para inverter o sentido ou vencer distância entre eixos: ela não muda a relação de transmissão.</p></details>
+          <details><summary>Por que planetários são usados em câmbios automáticos?</summary><p>Porque, travando ou liberando elementos (sol, braço, anel), obtêm-se várias relações no mesmo conjunto compacto.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte I — Engrenagens" data-topicos="forcas">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Análise de forças</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>decompor a força em tangencial, radial e axial;</li>
+            <li>relacionar torque e força tangencial;</li>
+            <li>tratar helicoidais e cônicas;</li>
+            <li>levar as forças aos mancais.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 4, e Estática.</p></div>
+        </div>
+
+        <p>O dimensionamento do dente, do eixo e do mancal parte da mesma força. Ela age na linha de ação, inclinada do ângulo de pressão, e se decompõe em uma parcela útil — a tangencial, que transmite torque — e parcelas que só carregam a estrutura. Em helicoidais aparece ainda a componente axial, que exige mancal capaz de absorvê-la.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Decompondo a carga no dente</h3>
+<p>Sem atrito, a força entre os dentes age ao longo da linha de ação. Ela se decompõe em uma componente <strong>tangencial</strong>, que transmite o torque, e uma <strong>radial</strong>, que só tende a separar as engrenagens e carrega os mancais.</p>
             <div class="formula"><span data-tex="W_t = \frac{2T}{d} = \frac{H}{V} \qquad V = \frac{\pi d n}{60} \qquad W_r = W_t\tan\phi \qquad W = \frac{W_t}{\cos\phi}"></span><span class="where">H em W, V em m/s, n em rpm, d em m</span></div>
             <div class="callout note">
               <strong>Exemplo da aula — engrenagem intermediária</strong>
               Pinhão de 20 dentes a 1750 rpm transmite 2,5 kW, m = 2,5 mm, φ = 20°: d = 50 mm, V = 4,58 m/s, W<sub>t</sub> = 0,546 kN e W<sub>r</sub> = 0,199 kN. A intermediária recebe a mesma força tangencial dos dois lados, em sentidos que se anulam no torque; com as linhas de centro a 90°, o mancal dela carrega <span data-tex-inline="\sqrt 2\,(0{,}546 + 0{,}199) = 1{,}05"></span> kN.
             </div>
-            <h4>Helicoidais e cônicas</h4>
+
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <div id="sim-intermediaria" class="sim"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Helicoidais e cônicas</h3>
+
             <p>Na helicoidal o dente é inclinado do ângulo de hélice ψ e aparece uma força axial; na cônica, radial e axial dependem do semiângulo do cone:</p>
             <div class="formula"><span data-tex="\text{helicoidal: } W_r = W_t\tan\phi_t,\ W_a = W_t\tan\psi \qquad \text{cônica: } W_r = W_t\tan\phi\cos\gamma,\ W_a = W_t\tan\phi\,\text{sen}\,\gamma"></span></div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Tensões de flexão — Lewis e AGMA</summary>
-          <div class="topic-body">
-            <p><strong>Lewis</strong> modelou o dente como uma viga em balanço de seção variável, com a carga na ponta, e encontrou a parábola de igual resistência inscrita no dente. O resultado cabe num fator de forma adimensional Y:</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="W_t = 2T/d"></span> e <span data-tex-inline="W_r = W_t\tan\phi"></span>.</li>
+          <li>Helicoidais: <span data-tex-inline="W_a = W_t\tan\psi"></span> — carga axial nos mancais.</li>
+          <li>Cônicas: as três componentes dependem do ângulo de passo.</li>
+          <li>As reações nos mancais vêm do equilíbrio do eixo com essas forças.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que engrenagem helicoidal exige mancal axial?</summary><p>Porque a hélice gera componente axial proporcional a tan ψ, que precisa ser absorvida.</p></details>
+          <details><summary>Dobrar o diâmetro primitivo com o mesmo torque faz o quê com a força tangencial?</summary><p>Reduz pela metade: Wt = 2T/d.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte I — Engrenagens" data-topicos="flexao">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Tensões de flexão: Lewis e AGMA</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar a equação de Lewis;</li>
+            <li>entender os fatores da equação AGMA;</li>
+            <li>relacionar módulo, largura e tensão;</li>
+            <li>reconhecer o papel do fator geométrico J.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 5 e Mecânica dos Materiais (flexão).</p></div>
+        </div>
+
+        <p>Lewis tratou o dente como uma viga em balanço e chegou a uma equação simples que ainda serve de referência. A AGMA mantém a estrutura e acrescenta fatores que corrigem a realidade: carga dinâmica, distribuição ao longo da face, tamanho, sobrecarga e concentração de tensão na raiz.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>O dente como viga em balanço</h3>
+<p><strong>Lewis</strong> modelou o dente como uma viga em balanço de seção variável, com a carga na ponta, e encontrou a parábola de igual resistência inscrita no dente. O resultado cabe num fator de forma adimensional Y:</p>
             <div class="formula"><span data-tex="\sigma = \frac{W_t}{F\,m\,Y}"></span><span class="where">F = largura de face, m = módulo; Y cresce com o número de dentes (0,245 para 12 dentes; 0,485 para cremalheira)</span></div>
             <p>A equação <strong>AGMA</strong> mantém essa forma e acrescenta o que Lewis não considera: concentração de tensão na raiz, divisão da carga entre pares, efeitos dinâmicos e de montagem.</p>
             <div class="formula"><span data-tex="\sigma_b = \frac{W_t}{F\,m\,J}\,\frac{K_a K_m}{K_v}\,K_s K_B K_I"></span><span class="where">convenção do Norton; o Shigley escreve o mesmo com K<sub>o</sub>, K<sub>v</sub> ≥ 1 multiplicando e K<sub>H</sub> no lugar de K<sub>m</sub></span></div>
@@ -230,13 +407,53 @@
               <strong>HPSTC: o pior ponto não é a ponta</strong>
               Quando a razão de contato é maior que 1, a carga na ponta do dente é dividida com outro par. O maior momento na raiz ocorre no <em>ponto mais alto de contato de um só par</em> (HPSTC) — por isso as tabelas de J do Norton trazem colunas separadas para carga na ponta e no HPSTC. Combinações marcadas com U têm adelgaçamento e devem ser evitadas.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Tensões de superfície (contato)</summary>
-          <div class="topic-body">
-            <p>No contato os dois flancos rolam e escorregam sob pressão de Hertz. A falha típica é a <strong>fadiga superficial</strong>: trincas logo abaixo da superfície que arrancam pequenas crateras (pitting). Aproximando os flancos por dois cilindros com os raios de curvatura da evolvente:</p>
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Tensão de Lewis</div>
+          <p>Um dente transmite Wt = 1000 N com m = 4 mm, largura 40 mm e Y = 0,322. Qual a tensão de flexão?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\sigma = \dfrac{W_t}{F m Y} = \dfrac{1000}{40\cdot4\cdot0{,}322}"></span>.</li>
+              <li><span data-tex-inline="\sigma = 19{,}4\ \text{MPa}"></span>.</li>
+            </ol>
+            <p class="resposta">19,4 MPa pela equação de Lewis. Os fatores da AGMA costumam elevar esse valor em 50 a 100 % — e é o valor corrigido que se compara com a resistência.</p>
+          </details>
+        </div>
+
+        <div id="sim-agma" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Lewis: <span data-tex-inline="\sigma = \dfrac{W_t}{F\,m\,Y}"></span>.</li>
+          <li>AGMA: <span data-tex-inline="\sigma = W_t K_o K_v K_s \dfrac{1}{F m}\dfrac{K_H K_B}{Y_J}"></span>.</li>
+          <li>O fator J embute geometria do dente e razão de contato.</li>
+          <li>Aumentar o módulo reduz a tensão mais que aumentar a largura.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a tensão de flexão não depende do número de dentes diretamente?</summary><p>Depende, pelo fator de forma Y (ou J): dentes com mais dentes têm perfil mais robusto na raiz.</p></details>
+          <details><summary>Largura de face muito grande resolve?</summary><p>Não: acima de cerca de 1,5 vez o diâmetro primitivo do pinhão, a distribuição de carga piora e o fator K_H penaliza.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte I — Engrenagens" data-topicos="contato">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Tensões de contato</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar a teoria de Hertz ao contato dos dentes;</li>
+            <li>calcular a pressão de contato;</li>
+            <li>entender o papel do coeficiente elástico;</li>
+            <li>relacionar contato e desgaste por pitting.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 6.</p></div>
+        </div>
+
+        <p>Além de fletir, o dente é comprimido no flanco, e é essa pressão que causa o pitting — crateras que arrancam material depois de milhões de ciclos. O modelo é o contato entre cilindros de Hertz, e a resistência vem de ensaios: é a falha mais comum em engrenagens bem dimensionadas à flexão.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Pressão hertziana no flanco</h3>
+<p>No contato os dois flancos rolam e escorregam sob pressão de Hertz. A falha típica é a <strong>fadiga superficial</strong>: trincas logo abaixo da superfície que arrancam pequenas crateras (pitting). Aproximando os flancos por dois cilindros com os raios de curvatura da evolvente:</p>
             <div class="formula"><span data-tex="\sigma_c = C_p\sqrt{\frac{W_t}{F\,I\,d}\,\frac{C_a C_m}{C_v}\,C_s C_f}"></span><span class="where">d = diâmetro primitivo do pinhão; C<sub>a</sub>, C<sub>m</sub>, C<sub>v</sub>, C<sub>s</sub> iguais a K<sub>a</sub>, K<sub>m</sub>, K<sub>v</sub>, K<sub>s</sub>; C<sub>f</sub> = acabamento</span></div>
             <div class="formula"><span data-tex="C_p = \sqrt{\frac{1}{\pi\left(\frac{1-\nu_p^2}{E_p} + \frac{1-\nu_g^2}{E_g}\right)}} \qquad I = \frac{\cos\phi}{\left(\frac{1}{\rho_p} + \frac{1}{\rho_g}\right)d_p}"></span></div>
             <p>C<sub>p</sub> = 191 √MPa para aço contra aço, 174 para aço contra ferro fundido. Os raios de curvatura dos flancos saem da geometria da evolvente:</p>
@@ -245,13 +462,51 @@
               <strong>A tensão de contato cresce com a raiz da carga</strong>
               Dobrar a carga aumenta σ<sub>c</sub> só √2 vezes. Por isso o coeficiente de segurança ao contato costuma ser escrito como <span data-tex-inline="(S_{fc}/\sigma_c)^2"></span>, para ficar comparável ao de flexão como razão entre cargas.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Resistência à fadiga e coeficientes de segurança</summary>
-          <div class="topic-body">
-            <p>A AGMA fornece resistências obtidas em ensaios de engrenagens (já incluem a concentração de tensão), para 10<sup>7</sup> ciclos e 99 % de confiabilidade. Para aço grau 1 endurecido:</p>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Pressão hertziana</div>
+          <p>Dois cilindros de 80 e 160 mm de diâmetro, aço com E = 207 GPa e ν = 0,3, são comprimidos com 1000 N ao longo de 40 mm. Qual a pressão máxima?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Semilargura de contato: <span data-tex-inline="b = 0{,}061\ \text{mm}"></span>.</li>
+              <li><span data-tex-inline="p_{max} = \dfrac{2F}{\pi b L} = 260\ \text{MPa}"></span>.</li>
+            </ol>
+            <p class="resposta">260 MPa numa faixa de 0,12 mm de largura — e é essa concentração que explica o pitting mesmo em dentes com flexão folgada.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Contato hertziano entre cilindros equivalentes aos raios de curvatura do flanco.</li>
+          <li><span data-tex-inline="\sigma_c = Z_E\sqrt{\dfrac{W_t}{F\,d_1\,I}}"></span> na forma AGMA.</li>
+          <li>Z_E embute módulos de elasticidade e coeficientes de Poisson.</li>
+          <li>A falha típica é pitting: fadiga superficial, não ruptura.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a tensão de contato cresce menos que a de flexão quando o torque dobra?</summary><p>Porque σ_c é proporcional à raiz da carga, enquanto σ de flexão é proporcional à carga.</p></details>
+          <details><summary>Como aumentar a resistência ao pitting?</summary><p>Endurecendo a superfície (cementação, nitretação) e melhorando o acabamento e a lubrificação.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte I — Engrenagens" data-topicos="flexao">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Resistência e coeficientes de segurança</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>usar os números de tensão admissível da AGMA;</li>
+            <li>aplicar fatores de vida, temperatura e confiabilidade;</li>
+            <li>calcular os fatores de segurança de flexão e de contato;</li>
+            <li>interpretar qual deles governa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 6 e 7.</p></div>
+        </div>
+
+        <p>Com as duas tensões calculadas, falta compará-las com as resistências — e aqui a AGMA traz uma segunda família de fatores, que ajustam os valores de ensaio para a vida, a temperatura e a confiabilidade desejadas. O par de fatores de segurança resultante diz, de quebra, qual modo de falha governa o projeto.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Comparando tensão e resistência</h3>
+<p>A AGMA fornece resistências obtidas em ensaios de engrenagens (já incluem a concentração de tensão), para 10<sup>7</sup> ciclos e 99 % de confiabilidade. Para aço grau 1 endurecido:</p>
             <div class="formula"><span data-tex="S_t = 0{,}533\,H_B + 88{,}3 \qquad S_c = 2{,}22\,H_B + 200 \qquad (\text{MPa})"></span></div>
             <p>Elas são corrigidas para a vida e a confiabilidade desejadas:</p>
             <div class="formula"><span data-tex="S_{fb} = \frac{Y_N}{K_T K_R}\,S_t \qquad S_{fc} = \frac{Z_N C_H}{K_T K_R}\,S_c"></span><span class="where">Y<sub>N</sub> = 1,3558 N<sup>−0,0178</sup> e Z<sub>N</sub> = 1,4488 N<sup>−0,023</sup> acima de 10<sup>7</sup> ciclos; K<sub>R</sub> = 0,85 (90 %), 1 (99 %), 1,25 (99,9 %), 1,5 (99,99 %)</span></div>
@@ -272,13 +527,37 @@
               <strong>O pinhão sofre mais</strong>
               Ele gira m<sub>G</sub> vezes mais que a coroa, acumula mais ciclos e tem J menor. É comum fazer o pinhão cerca de 40 HB mais duro que a coroa, o que também ajuda no amaciamento por encruamento da coroa.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>9. Molas helicoidais</summary>
-          <div class="topic-body">
-            <p>Na mola helicoidal de compressão a força axial F produz no fio um torque F·D/2 e um cisalhamento direto. A curvatura do fio concentra tensão no lado interno da espira; o fator de Bergsträsser reúne os dois efeitos:</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Fator de segurança de flexão <span data-tex-inline="S_F"></span> e de contato <span data-tex-inline="S_H"></span>.</li>
+          <li>Como σ_c ∝ √W, compara-se <span data-tex-inline="S_H^2"></span> com <span data-tex-inline="S_F"></span>.</li>
+          <li>Fatores de vida (Y_N, Z_N) ajustam para o número de ciclos previsto.</li>
+          <li>Qualidade do aço e tratamento superficial mudam muito a resistência de contato.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Se S_F = 2 e S_H = 1,3, qual falha primeiro?</summary><p>Comparando na mesma base, S_H² = 1,69 < 2: o contato governa, e a falha esperada é pitting.</p></details>
+          <details><summary>Por que a vida muda a resistência admissível?</summary><p>Porque as curvas S-N de flexão e de contato caem com o número de ciclos: 10⁷ ciclos exigem tensão menor que 10⁵.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte II — Molas, freios e mancais" data-topicos="molas">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Molas helicoidais</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular rigidez e tensão com o fator de Wahl;</li>
+            <li>escolher material e verificar a resistência;</li>
+            <li>dimensionar à fadiga com Goodman;</li>
+            <li>verificar flambagem e ressonância.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Elementos de Máquina I (fadiga) e Mecânica dos Materiais (torção).</p></div>
+        </div>
+
+        <p>A mola helicoidal reaparece aqui com o tratamento completo: além da rigidez e da tensão, entram a escolha do arame, a verificação à fadiga e dois modos de falha que o cálculo estático não revela — a flambagem da mola longa e a ressonância em molas rápidas, como as de válvula.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Projeto estático e à fadiga</h3>
+<p>Na mola helicoidal de compressão a força axial F produz no fio um torque F·D/2 e um cisalhamento direto. A curvatura do fio concentra tensão no lado interno da espira; o fator de Bergsträsser reúne os dois efeitos:</p>
             <div class="formula"><span data-tex="\tau = K_B\frac{8FD}{\pi d^3} \qquad K_B = \frac{4C+2}{4C-3} \qquad C = \frac{D}{d}"></span><span class="where">D = diâmetro médio da espira, d = diâmetro do fio; C recomendado entre 4 e 12</span></div>
             <div class="formula"><span data-tex="k = \frac{F}{y} = \frac{d^4 G}{8D^3 N_a}"></span><span class="where">G ≈ 79–82 GPa para aços de mola</span></div>
             <div class="table-scroll">
@@ -292,25 +571,75 @@
               </tbody>
             </table>
             </div>
-            <h4>Materiais e resistência</h4>
+
+        <div id="sim-mola" class="sim"></div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>Materiais e resistência</h3>
+
             <p>Fios de mola são trefilados, e quanto mais finos, mais resistentes: <span data-tex-inline="S_{ut} = A/d^{\,m}"></span>, com A e m tabelados (corda de piano ASTM A228, temperado em óleo A229, cromo-vanádio A232, cromo-silício A401, inox A313). Em torção, <span data-tex-inline="S_{sy} \approx 0{,}45"></span> a <span data-tex-inline="0{,}50\,S_{ut}"></span> e <span data-tex-inline="S_{su} = 0{,}67\,S_{ut}"></span>.</p>
-            <h4>Fadiga</h4>
+
+        <h3 id="s9-3"><span class="num">9.3</span>Fadiga</h3>
+
             <p>Molas trabalham quase sempre com carga flutuante entre F<sub>min</sub> e F<sub>max</sub>. Zimmerli mostrou que, para fios de até 10 mm, a resistência à fadiga por torção quase não depende do material: <span data-tex-inline="S_{sa} = 241"></span> MPa e <span data-tex-inline="S_{sm} = 379"></span> MPa sem jateamento (398 e 534 MPa com jateamento). Com a reta de Goodman em torção:</p>
             <div class="formula"><span data-tex="S_{se} = \frac{S_{sa}}{1 - S_{sm}/S_{su}} \qquad \frac{1}{n_f} = \frac{\tau_a}{S_{se}} + \frac{\tau_m}{S_{su}}"></span></div>
-            <h4>Flambagem e ressonância</h4>
+
+        <h3 id="s9-4"><span class="num">9.4</span>Flambagem e ressonância</h3>
+
             <p>Molas longas flambam: entre placas paralelas, é preciso <span data-tex-inline="L_0 &lt; 2{,}63\,D/\alpha"></span> com α = 0,5; acima disso, guia interna ou externa. E a mola é também um sistema massa-mola distribuído: sua frequência natural <span data-tex-inline="f_n = \tfrac12\sqrt{k/m}"></span> deve ficar 15 a 20 vezes acima da frequência da excitação, senão ondas de compressão percorrem as espiras (<em>surge</em>).</p>
             <div class="callout note">
               <strong>Molas de extensão e de torção</strong>
               A mola de extensão tem pré-tensão enrolada no fio e falha em geral no gancho, onde há flexão e torção combinadas. A de torção trabalha à flexão do fio, com o momento <span data-tex-inline="M = F\,r"></span> e tensão <span data-tex-inline="\sigma = K_i\,32M/(\pi d^3)"></span>.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>10. Freios e embreagens</summary>
-          <div class="topic-body">
-            <p>Os dois são o mesmo dispositivo de atrito: a embreagem acopla dois eixos que giram, o freio acopla um eixo à carcaça parada. A análise sempre envolve a força de acionamento, o torque transmitido, a energia dissipada e o aumento de temperatura.</p>
-            <h4>Embreagens e freios de disco</h4>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="k = \dfrac{Gd^4}{8D^3N_a}"></span> e <span data-tex-inline="\tau = K_w\dfrac{8FD}{\pi d^3}"></span>.</li>
+          <li>Resistência do arame: <span data-tex-inline="S_{ut} = A/d^m"></span>, conforme a norma do material.</li>
+          <li>Fadiga: componentes média e alternada no diagrama de Goodman para torção.</li>
+          <li>Flambagem em molas longas e ressonância quando a frequência de excitação se aproxima da natural.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que molas de válvula falham por ressonância?</summary><p>Porque a excitação do came tem harmônicos que podem coincidir com a frequência natural da mola, gerando ondas internas e tensões muito acima das previstas.</p></details>
+          <details><summary>Jateamento ajuda em quê?</summary><p>Introduz compressão residual na superfície e melhora bastante a vida em fadiga.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte II — Molas, freios e mancais" data-topicos="freios">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Freios e embreagens</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular torque em embreagens e freios de disco;</li>
+            <li>analisar freios de tambor e de cinta;</li>
+            <li>avaliar energia dissipada e temperatura;</li>
+            <li>reconhecer o efeito de auto-energização.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Dinâmica (energia) e capítulos anteriores.</p></div>
+        </div>
+
+        <p>Embreagem e freio são o mesmo dispositivo com finalidades opostas: uma transmite torque por atrito, o outro o dissipa. As equações saem da pressão de contato e do coeficiente de atrito; a parte difícil é térmica, porque toda a energia vira calor numa área pequena.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Transmitir ou dissipar por atrito</h3>
+<p>Os dois são o mesmo dispositivo de atrito: a embreagem acopla dois eixos que giram, o freio acopla um eixo à carcaça parada. A análise sempre envolve a força de acionamento, o torque transmitido, a energia dissipada e o aumento de temperatura.</p>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Torque de um freio a disco</div>
+          <p>Um freio a disco com pastilhas de raio interno 50 mm e externo 100 mm aplica pressão média de 1 MPa, com µ = 0,35, em duas faces. Qual o torque?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Área efetiva por face e braço médio levam a <span data-tex-inline="T = 2\mu p \pi r_i (r_o^2 - r_i^2)"></span> no critério de desgaste uniforme.</li>
+              <li><span data-tex-inline="T = 2\cdot0{,}35\cdot1\cdot\pi\cdot50\cdot(100^2-50^2) = 825\ \text{N·m}"></span>.</li>
+            </ol>
+            <p class="resposta">825 N·m — e a energia dissipada numa frenagem de 1,5 MJ aqueceria o disco em centenas de graus, o que explica a importância da ventilação.</p>
+          </details>
+        </div>
+
+        <div id="sim-freio" class="sim"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Embreagens e freios de disco</h3>
+
             <p>Um disco novo, plano e rígido tem pressão uniforme. Com o uso, a região externa, mais rápida, desgasta mais até que o desgaste se uniformize — o que exige <span data-tex-inline="p\,r"></span> = constante, com a pressão máxima no raio interno.</p>
             <div class="table-scroll">
             <table class="data">
@@ -322,14 +651,20 @@
             </table>
             </div>
             <p>O desgaste uniforme dá um torque um pouco menor para a mesma força e é a hipótese de projeto. Para p<sub>a</sub> e r<sub>o</sub> fixos, o torque é máximo com <span data-tex-inline="r_i = r_o/\sqrt 3"></span>. Com N superfícies de atrito (multidisco), multiplica-se o torque por N.</p>
-            <h4>Freios de tambor com sapatas</h4>
+
+        <h3 id="s10-3"><span class="num">10.3</span>Freios de tambor com sapatas</h3>
+
             <p>Numa sapata articulada, o atrito cria um momento em torno do pino que pode ajudar a apertar a sapata (<strong>autoenergização</strong>) ou atrapalhar. Com a pressão proporcional a sen θ:</p>
             <div class="formula"><span data-tex="F = \frac{M_N - M_f}{c} \qquad M_N = \frac{p_a b r a}{\text{sen}\,\theta_a}\int_{\theta_1}^{\theta_2}\text{sen}^2\theta\,d\theta \qquad M_f = \frac{f p_a b r}{\text{sen}\,\theta_a}\int_{\theta_1}^{\theta_2}\text{sen}\,\theta\,(r - a\cos\theta)\,d\theta"></span></div>
             <p>Se <span data-tex-inline="M_f \ge M_N"></span> a sapata é <strong>autotravante</strong>: agarra sem força externa. Isso é evitado projetando com M<sub>f</sub> bem menor que M<sub>N</sub>.</p>
-            <h4>Freios de cinta</h4>
+
+        <h3 id="s10-4"><span class="num">10.4</span>Freios de cinta</h3>
+
             <p>A cinta abraça o tambor num ângulo θ. Um elemento de cinta em equilíbrio dá a mesma equação do cabrestante:</p>
             <div class="formula"><span data-tex="\frac{P_1}{P_2} = e^{f\theta} \qquad T = (P_1 - P_2)\,r \qquad p_{max} = \frac{P_1}{b\,r}"></span><span class="where">P<sub>1</sub> no lado para onde a superfície do tambor se move</span></div>
-            <h4>Energia e temperatura</h4>
+
+        <h3 id="s10-5"><span class="num">10.5</span>Energia e temperatura</h3>
+
             <div class="formula"><span data-tex="E = \tfrac12 I(\omega_1^2 - \omega_2^2) \qquad \Delta T = \frac{E}{m\,c}"></span><span class="where">c ≈ 500 J/(kg·K) para ferro fundido e aço</span></div>
             <div class="table-scroll">
             <table class="data">
@@ -346,13 +681,37 @@
               <strong>Fading</strong>
               Acima da temperatura admissível o coeficiente de atrito do material cai: o freio que parava o carro no primeiro declive deixa de parar no décimo. O projeto térmico (massa, ventilação, área) é tão importante quanto o de torque.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>11. Mancais de rolamento</summary>
-          <div class="topic-body">
-            <p>O rolamento substitui o escorregamento por rolamento: o atrito cai de 0,1 para cerca de 0,002. Em compensação, o contato entre esfera e pista é pontual, com pressões de Hertz altíssimas — e a falha típica é a <strong>fadiga de contato</strong> das pistas. Como ela é estatística, a vida é definida por probabilidade.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Disco, pressão uniforme ou desgaste uniforme — este último é o critério de projeto.</li>
+          <li>Freio de tambor: sapata primária se auto-energiza; a secundária, não.</li>
+          <li>Cinta: <span data-tex-inline="T_1/T_2 = e^{\mu\theta}"></span>, mesma relação das correias.</li>
+          <li>A energia dissipada aquece: a verificação térmica costuma ser a crítica.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O que é auto-energização?</summary><p>O atrito gera momento que ajuda a aplicar a sapata, aumentando a força normal — ótimo para o torque, ruim para a modulação.</p></details>
+          <details><summary>Por que freios a disco substituíram os de tambor nos carros?</summary><p>Porque dissipam calor melhor, são menos sensíveis ao fading e têm resposta mais linear.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte II — Molas, freios e mancais" data-topicos="mancais">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Mancais de rolamento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar carga, capacidade e vida;</li>
+            <li>calcular a carga equivalente;</li>
+            <li>usar a equação de vida L10;</li>
+            <li>escolher o tipo de rolamento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5 (forças nos mancais).</p></div>
+        </div>
+
+        <p>Rolamento não se dimensiona por tensão: seleciona-se por vida. A norma ISO 281 define a vida nominal L10 — aquela que 90 % dos rolamentos atingem — e a seleção consiste em comparar a carga equivalente com a capacidade de catálogo, levando em conta a rotação e o tipo de serviço.</p>
+
+        <h3 id="s11-1"><span class="num">11.1</span>Seleção pela vida</h3>
+<p>O rolamento substitui o escorregamento por rolamento: o atrito cai de 0,1 para cerca de 0,002. Em compensação, o contato entre esfera e pista é pontual, com pressões de Hertz altíssimas — e a falha típica é a <strong>fadiga de contato</strong> das pistas. Como ela é estatística, a vida é definida por probabilidade.</p>
             <div class="formula"><span data-tex="L_{10} = \left(\frac{C}{P}\right)^{a} \qquad L_{10h} = \frac{10^6}{60\,n}\left(\frac{C}{P}\right)^{a}"></span><span class="where">L₁₀ em milhões de voltas; a = 3 para esferas e 10/3 para rolos; C é a capacidade de carga dinâmica do catálogo</span></div>
             <p><strong>L₁₀</strong> é a vida que 90 % dos rolamentos de um lote ultrapassam. Para outras confiabilidades, multiplica-se pelo fator a₁ (1 para 90 %, 0,64 para 95 %, 0,25 para 99 %).</p>
             <div class="formula"><span data-tex="P = X F_r + Y F_a \qquad P_m = \left(\frac{\sum P_i^{\,a} t_i}{\sum t_i}\right)^{1/a}"></span><span class="where">carga equivalente e carga média de um regime variável</span></div>
@@ -377,17 +736,63 @@
               <strong>A vida cai com o cubo da carga</strong>
               Dobrar a carga divide a vida por 8 num rolamento de esferas. Uma correia apertada demais, um desalinhamento ou um rotor desbalanceado não fazem barulho no começo — mas reduzem a vida do rolamento a uma fração do projeto.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>12. Mancais de deslizamento e lubrificação</summary>
-          <div class="topic-body">
-            <p>No mancal hidrodinâmico não há contato entre metais: o próprio giro do eixo arrasta óleo para dentro de uma folga que se estreita, e a pressão que aparece nesse filme sustenta a carga. A equação que governa isso é a de <strong>Reynolds</strong>, obtida das equações de Navier-Stokes para filmes finos.</p>
+        <div class="fig-host" id="fig-11-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Vida de um rolamento</div>
+          <p>Um rolamento de esferas com C = 25,5 kN trabalha com carga equivalente de 5 kN a 1500 rpm. Qual a vida L10 em horas?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="L_{10} = (25{,}5/5)^3 = 133\ \text{milhões de rotações}"></span>.</li>
+              <li><span data-tex-inline="L_h = \dfrac{133\times10^6}{60\cdot1500} = 1474\ \text{h}"></span>.</li>
+            </ol>
+            <p class="resposta">Cerca de 1500 horas — pouco para serviço contínuo (que pede 20 a 30 mil horas): seria preciso um rolamento maior.</p>
+          </details>
+        </div>
+
+        <div id="sim-rolamento" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="L_{10} = (C/P)^a"></span> milhões de rotações; a = 3 para esferas, 10/3 para rolos.</li>
+          <li>Carga equivalente: <span data-tex-inline="P = XF_r + YF_a"></span>.</li>
+          <li>Em horas: <span data-tex-inline="L_h = \dfrac{10^6}{60n}(C/P)^a"></span>.</li>
+          <li>Esferas para carga leve e alta rotação; rolos para carga alta; cônicos para carga combinada.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dobrar a carga reduz a vida em quanto, num rolamento de esferas?</summary><p>A um oitavo: a vida cai com o cubo da razão de cargas.</p></details>
+          <details><summary>Por que rolamentos cônicos vêm aos pares?</summary><p>Porque geram carga axial induzida; montados em oposição, cada um absorve a reação do outro e permitem pré-carga.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 12 -->
+      <section class="section capitulo" id="cap-12" data-parte="Parte II — Molas, freios e mancais" data-topicos="mancais">
+        <p class="cap-kicker">Capítulo 12</p>
+        <h2>12. Mancais de deslizamento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir os regimes de lubrificação;</li>
+            <li>ler a curva de Stribeck;</li>
+            <li>relacionar viscosidade, rotação e carga;</li>
+            <li>reconhecer o papel da folga e do acabamento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Mecânica dos Fluidos (viscosidade) e capítulo 11.</p></div>
+        </div>
+
+        <p>No mancal hidrodinâmico, o eixo flutua sobre um filme de óleo gerado pelo próprio movimento — não há contato metal-metal e o desgaste é praticamente nulo. O que decide o regime é a combinação de viscosidade, rotação e pressão, resumida no número de Sommerfeld e visualizada na curva de Stribeck.</p>
+
+        <h3 id="s12-1"><span class="num">12.1</span>O filme de óleo</h3>
+<p>No mancal hidrodinâmico não há contato entre metais: o próprio giro do eixo arrasta óleo para dentro de uma folga que se estreita, e a pressão que aparece nesse filme sustenta a carga. A equação que governa isso é a de <strong>Reynolds</strong>, obtida das equações de Navier-Stokes para filmes finos.</p>
             <div class="formula"><span data-tex="\frac{\partial}{\partial x}\left(\frac{h^3}{\mu}\frac{\partial p}{\partial x}\right) + \frac{\partial}{\partial z}\left(\frac{h^3}{\mu}\frac{\partial p}{\partial z}\right) = 6U\frac{\partial h}{\partial x}"></span><span class="where">h: espessura do filme, U: velocidade da superfície, p: pressão</span></div>
             <p>Três condições são necessárias para haver filme: <strong>folga convergente</strong>, <strong>movimento relativo</strong> e <strong>fluido viscoso</strong>. Sem qualquer uma delas, o filme não se forma — é o que acontece na partida, quando o mancal trabalha em regime misto e desgasta.</p>
             <div class="formula"><span data-tex="S = \left(\frac{r}{c}\right)^2\frac{\mu N}{P} \qquad h_0 = c\,(1 - \varepsilon) \qquad f = 2\pi^2\frac{\mu N}{P}\frac{r}{c}"></span><span class="where">número de Sommerfeld, espessura mínima do filme e atrito de Petroff (carga leve)</span></div>
-            <h4>A curva de Stribeck</h4>
+
+        <div class="fig-host" id="fig-12-1"></div>
+
+        <div id="sim-mancal" class="sim"></div>
+
+        <h3 id="s12-2"><span class="num">12.2</span>A curva de Stribeck</h3>
+
             <p>Colocando o coeficiente de atrito em função do número de Hersey μN/P, aparecem três regimes. O mínimo da curva marca a transição: à esquerda, as asperezas se tocam.</p>
             <div class="table-scroll">
             <table class="data">
@@ -404,13 +809,37 @@
               <strong>Óleo quente é óleo fino</strong>
               A viscosidade cai fortemente com a temperatura, e o calor vem do próprio atrito do filme. Se a refrigeração não dá conta, o filme afina, o atrito sobe, aquece mais — e o mancal funde. É por isso que o projeto térmico (vazão de óleo, trocador) faz parte do projeto do mancal.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>13. Transmissão por correias e correntes</summary>
-          <div class="topic-body">
-            <p>Correias transmitem potência por atrito, com eixos afastados, absorvem choques e escorregam em caso de sobrecarga — o que protege a máquina. O limite é o atrito disponível, que segue a mesma equação do cabo enrolado no cabrestante:</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Regimes: limite, misto e hidrodinâmico.</li>
+          <li>Curva de Stribeck: o atrito cai até o mínimo e volta a crescer com a espessura do filme.</li>
+          <li>Número de Sommerfeld reúne viscosidade, rotação, pressão e folga.</li>
+          <li>Partida e parada passam pelo regime limite — daí o desgaste concentrado nesses instantes.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o mancal desgasta mais na partida?</summary><p>Porque o filme ainda não se formou: o regime é limite, com contato entre asperezas.</p></details>
+          <details><summary>Óleo mais viscoso é sempre melhor?</summary><p>Não: ele garante o filme, mas aumenta a perda por atrito viscoso e o aquecimento.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 13 -->
+      <section class="section capitulo" id="cap-13" data-parte="Parte III — Transmissão e união" data-topicos="correias">
+        <p class="cap-kicker">Capítulo 13</p>
+        <h2>13. Correias e correntes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a relação de transmissão e o arco de contato;</li>
+            <li>aplicar a equação das correias;</li>
+            <li>comparar correia plana, em V e sincronizadora;</li>
+            <li>reconhecer as vantagens da corrente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 4 e 10.</p></div>
+        </div>
+
+        <p>Correias e correntes transmitem potência entre eixos afastados, com montagem simples e tolerância a desalinhamento. A correia escorrega um pouco — o que protege a máquina em sobrecarga —, enquanto a corrente mantém a relação exata e suporta mais carga, ao custo de lubrificação e ruído.</p>
+
+        <h3 id="s13-1"><span class="num">13.1</span>Transmissão flexível</h3>
+<p>Correias transmitem potência por atrito, com eixos afastados, absorvem choques e escorregam em caso de sobrecarga — o que protege a máquina. O limite é o atrito disponível, que segue a mesma equação do cabo enrolado no cabrestante:</p>
             <div class="formula"><span data-tex="\frac{F_1 - F_c}{F_2 - F_c} = e^{f\theta} \qquad \text{(em V: } e^{f\theta/\text{sen}(\beta/2)}\text{)} \qquad H = (F_1 - F_2)\,v"></span><span class="where">F_c = m′v² é a tração centrífuga; β ≈ 38° é o ângulo do canal da polia</span></div>
             <div class="formula"><span data-tex="\theta = \pi - 2\,\text{arcsen}\frac{D - d}{2C} \qquad L = 2C + \frac{\pi(D + d)}{2} + \frac{(D - d)^2}{4C}"></span></div>
             <div class="table-scroll">
@@ -428,13 +857,41 @@
               <strong>Existe uma velocidade ótima</strong>
               A tração útil é limitada pelo material: F₁ não pode passar de σ_adm·b·t. Como a centrífuga F_c = m′v² consome parte dessa tração, a potência transmitida cresce com v, passa por um máximo em <span data-tex-inline="v = \sqrt{F_{1,adm}/3m'}"></span> e depois cai. Correias planas industriais trabalham tipicamente entre 15 e 25 m/s.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>14. Chavetas, acoplamentos e vedações</summary>
-          <div class="topic-body">
-            <p>A <strong>chaveta</strong> liga o cubo ao eixo. Ela é dimensionada em duas verificações, e costuma ser projetada de propósito como o elo fraco: é mais barato trocar a chaveta do que o eixo ou a engrenagem.</p>
+        <div class="fig-host" id="fig-13-1"></div>
+
+        <div id="sim-correia" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="T_1/T_2 = e^{\mu\theta}"></span> (plana) e <span data-tex-inline="e^{\mu\theta/\text{sen}(\beta/2)}"></span> (em V).</li>
+          <li>O arco de contato na polia menor limita a capacidade.</li>
+          <li>Correia em V multiplica o atrito efetivo pelo efeito de cunha.</li>
+          <li>Sincronizadora e corrente não escorregam: relação exata.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a correia em V transmite mais que a plana?</summary><p>Porque o efeito de cunha multiplica a força normal: o atrito efetivo é μ/sen(β/2), cerca de três vezes maior.</p></details>
+          <details><summary>Qual a vantagem do escorregamento da correia?</summary><p>Funciona como proteção: em sobrecarga, ela patina em vez de quebrar algum componente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 14 -->
+      <section class="section capitulo" id="cap-14" data-parte="Parte III — Transmissão e união" data-topicos="chavetas">
+        <p class="cap-kicker">Capítulo 14</p>
+        <h2>14. Chavetas, acoplamentos e vedações</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>dimensionar chaveta ao cisalhamento e ao esmagamento;</li>
+            <li>escolher o tipo de acoplamento;</li>
+            <li>entender a função dos elementos de vedação;</li>
+            <li>reconhecer os limites de cada solução.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 5 e Mecânica dos Materiais.</p></div>
+        </div>
+
+        <p>Fecham a disciplina os elementos que ninguém vê e todo mundo precisa: a chaveta que transmite torque do eixo ao cubo, o acoplamento que une dois eixos tolerando desalinhamento e as vedações que mantêm óleo dentro e sujeira fora. São baratos, padronizados — e responsáveis por boa parte das paradas quando mal escolhidos.</p>
+
+        <h3 id="s14-1"><span class="num">14.1</span>Unindo eixo e cubo</h3>
+<p>A <strong>chaveta</strong> liga o cubo ao eixo. Ela é dimensionada em duas verificações, e costuma ser projetada de propósito como o elo fraco: é mais barato trocar a chaveta do que o eixo ou a engrenagem.</p>
             <div class="formula"><span data-tex="\tau = \frac{2T}{d\,b\,L} \qquad \sigma_{esm} = \frac{4T}{d\,h\,L}"></span><span class="where">cisalhamento na seção b × L e esmagamento nas faces, que apoiam só em h/2</span></div>
             <p>A seção b × h é normalizada pelo diâmetro do eixo (DIN 6885 / ISO 773); o que se dimensiona é o comprimento, tipicamente L ≈ 1,5·d. Alternativas: chaveta Woodruff (meia-lua, para eixos cônicos), estriado (vários dentes, para torques altos) e buchas cônicas de aperto, sem rasgo.</p>
             <div class="table-scroll">
@@ -449,7 +906,24 @@
             </table>
             </div>
             <p>Na seleção, o torque nominal é majorado por um <strong>fator de serviço</strong> (1,0 para carga uniforme; 1,75 para choques moderados; 2,5 ou mais para britadores e prensas).</p>
-            <h4>Vedações</h4>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 14.1</span>Dimensionamento de chaveta</div>
+          <p>Um eixo de 40 mm transmite 200 N·m com chaveta 12 × 8 mm e 50 mm de comprimento. Verifique cisalhamento e esmagamento.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Força no raio do eixo: <span data-tex-inline="F = 2T/d = 10\,000\ \text{N}"></span>.</li>
+              <li>Cisalhamento: <span data-tex-inline="\tau = F/(bL) = 10\,000/(12\cdot50) = 16{,}7\ \text{MPa}"></span>.</li>
+              <li>Esmagamento: <span data-tex-inline="\sigma = F/((h/2)L) = 10\,000/(4\cdot50) = 50{,}0\ \text{MPa}"></span>.</li>
+            </ol>
+            <p class="resposta">τ = 16,7 MPa e σ = 50 MPa — folgados para aço 1045, o que é típico: a chaveta costuma ser dimensionada com margem para ser o elo mais fraco previsível.</p>
+          </details>
+        </div>
+
+        <div id="sim-chaveta" class="sim"></div>
+
+        <h3 id="s14-2"><span class="num">14.2</span>Vedações</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Tipo</th><th>Onde se usa</th><th>Característica</th></tr></thead>
@@ -461,73 +935,38 @@
               </tbody>
             </table>
             </div>
-          </div>
-        </details>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Chaveta: verificar cisalhamento (<span data-tex-inline="\tau = 2T/(d\,b\,L)"></span>) e esmagamento.</li>
+          <li>A chaveta costuma ser projetada como elemento fusível.</li>
+          <li>Acoplamentos rígidos, flexíveis e de grade: cada um tolera um tipo de desalinhamento.</li>
+          <li>Vedações: retentores, o-rings e gaxetas, cada um com faixa de pressão e velocidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a chaveta é dimensionada para falhar antes do eixo?</summary><p>Porque é a peça mais barata e fácil de trocar: ela protege eixo, cubo e acoplamento.</p></details>
+          <details><summary>Acoplamento flexível dispensa alinhamento?</summary><p>Não: ele tolera pequenos desvios, mas desalinhamento grosseiro destrói o elemento elástico e sobrecarrega os mancais.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Dez modelos interativos e animados, com fórmulas e resolução passo a passo. As tabelas de fator J e de C<sub>p</sub> são as do Norton, o mancal hidrodinâmico resolve a equação de Reynolds numericamente, e todos os modelos foram conferidos contra exemplos resolvidos.</p>
-
-        <div id="sim-engrenamento" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Com 12 dentes a 20° o trecho de contato fica vermelho: começa antes do ponto de tangência T₁. Troque para 25° e ele volta ao normal. Depois use o zoom e veja os pontos de contato correndo sempre sobre a mesma reta.
-        </div>
-
-        <div id="sim-trens" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          No planetário, troque o membro fixo mantendo o sol como entrada: com o anel fixo o braço gira devagar no mesmo sentido; com o braço fixo o anel gira ao contrário. É exatamente o que uma transmissão automática faz com embreagens e freios que prendem um membro de cada vez.
-        </div>
-
-        <div id="sim-intermediaria" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          O exemplo da aula dá 1,05 kN no mancal da intermediária. Gire a coroa em volta dela: conforme o lado, as duas forças de contato se somam (até 2·W) ou quase se anulam. Depois inverta o giro do pinhão e veja o lado favorável trocar.
-        </div>
-
-        <div id="sim-agma" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          No redutor industrial, estreite a face abaixo de 8m: o coeficiente de contato despenca antes do de flexão. Depois suba a dureza e veja que o ganho no pitting é bem maior que na flexão.
-        </div>
-
-        <div id="sim-rolamento" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Com C = 50 kN e P = 5 kN a 1500 rpm, a vida é de 11 111 h. Dobre a carga radial e veja a vida cair para um oitavo. Depois ligue o regime de dois patamares: a carga média é cúbica, não aritmética.
-        </div>
-
-        <div id="sim-mancal" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Use o exemplo 4 (20 rpm, superfície mais rugosa): a espessura mínima do filme cai à ordem da rugosidade e o mancal entra em regime misto — é exatamente o que acontece em cada partida, antes de a rotação formar o filme. Na curva de Stribeck, o ponto de operação anda para a esquerda.
-        </div>
-
-        <div id="sim-correia" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Troque de correia plana para em V mantendo tudo igual: o atrito efetivo passa de 0,3 para 0,92 e a razão de trações salta. Depois suba a rotação até 4000 rpm e veja a tração centrífuga comer a capacidade.
-        </div>
-
-        <div id="sim-chaveta" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Com a seção normalizada, o esmagamento quase sempre governa o comprimento — compare as duas curvas do gráfico. Aumente o fator de serviço para 1,75 e veja o comprimento necessário subir na mesma proporção.
-        </div>
-
-        <div id="sim-mola" class="sim"></div>
-
-        <div id="sim-freio" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Na embreagem, varie o raio interno com o externo fixo e acompanhe o gráfico: o torque máximo no desgaste uniforme cai em r<sub>i</sub> = 0,577·r<sub>o</sub>. No freio de cinta, passe de 270° para 540°: uma volta a mais multiplica P₁/P₂ por <span data-tex-inline="e^{2\pi f}"></span>.
-        </div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os dez simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-engrenamento"><small>Capítulo 1 · Engrenamento</small>Evolvente e linha de ação</a></li>
+          <li><a href="#sim-trens"><small>Capítulo 4 · Trens</small>Trens simples, compostos e planetários</a></li>
+          <li><a href="#sim-intermediaria"><small>Capítulo 5 · Forças</small>Engrenagem intermediária</a></li>
+          <li><a href="#sim-agma"><small>Capítulo 6 · Flexão</small>Tensão AGMA no dente</a></li>
+          <li><a href="#sim-mola"><small>Capítulo 9 · Molas</small>Projeto de mola helicoidal</a></li>
+          <li><a href="#sim-freio"><small>Capítulo 10 · Freios</small>Freio de tambor e de cinta</a></li>
+          <li><a href="#sim-rolamento"><small>Capítulo 11 · Rolamentos</small>Vida L10</a></li>
+          <li><a href="#sim-mancal"><small>Capítulo 12 · Deslizamento</small>Filme hidrodinâmico</a></li>
+          <li><a href="#sim-correia"><small>Capítulo 13 · Correias</small>Capacidade e escorregamento</a></li>
+          <li><a href="#sim-chaveta"><small>Capítulo 14 · Chavetas</small>Cisalhamento e esmagamento</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
@@ -565,7 +1004,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
@@ -591,13 +1030,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>40 questões sobre geometria de engrenagens, trens, forças, tensões AGMA, mancais, correias, chavetas, molas, freios e embreagens.</p>
         <div id="quiz" data-quiz="elementos-de-maquina-2"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>NORTON, R. L.</strong> <em>Projeto de Máquinas: uma abordagem integrada.</em> Bookman. — Livro-texto da disciplina: engrenagens de dentes retos, tabelas de J e C<sub>p</sub>, molas e freios.</li>
           <li><strong>BUDYNAS, R. G.; NISBETT, J. K.</strong> <em>Elementos de Máquinas de Shigley.</em> McGraw-Hill. — Engrenagens (caps. 13 e 14), molas (cap. 10), embreagens e freios (cap. 16).</li>
@@ -626,7 +1065,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/elementos-de-maquina-2.js"></script>
+<script src="../js/fig/elementos-de-maquina-2.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -691,6 +1132,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
