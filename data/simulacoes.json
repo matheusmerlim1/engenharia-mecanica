@@ -691,16 +691,6 @@
       "ordem": 2
     },
     {
-      "id": "sim-canal",
-      "slug": "mecanica-dos-fluidos-2",
-      "disciplina": "Mecânica dos Fluidos II",
-      "periodo": "7",
-      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
-      "titulo": "Canais abertos — energia específica e ressalto hidráulico",
-      "resumo": "Num canal a superfície é livre, e o número de Froude cumpre o papel que o Mach tem no escoamento compressível: abaixo de 1 as perturbações sobem o canal, acima de 1 não conseguem.",
-      "ordem": 3
-    },
-    {
       "id": "sim-fanno",
       "slug": "mecanica-dos-fluidos-2",
       "disciplina": "Mecânica dos Fluidos II",
@@ -708,6 +698,16 @@
       "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
       "titulo": "Escoamento compressível em duto — Fanno e Rayleigh",
       "resumo": "Num duto de área constante, tanto o atrito (linha de Fanno) quanto a troca de calor (linha de Rayleigh) empurram o escoamento na direção de Mach 1.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-canal",
+      "slug": "mecanica-dos-fluidos-2",
+      "disciplina": "Mecânica dos Fluidos II",
+      "periodo": "7",
+      "materia": "Mecânica dos Fluidos e Máquinas de Fluxo",
+      "titulo": "Canais abertos — energia específica e ressalto hidráulico",
+      "resumo": "Num canal a superfície é livre, e o número de Froude cumpre o papel que o Mach tem no escoamento compressível: abaixo de 1 as perturbações sobem o canal, acima de 1 não conseguem.",
       "ordem": 4
     },
     {
