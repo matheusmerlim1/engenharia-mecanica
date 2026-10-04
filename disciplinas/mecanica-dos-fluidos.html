@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,11 +35,13 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">6º período · Engenharia Mecânica</p>
     <h1>Mecânica dos Fluidos</h1>
-    <p class="lead">Do empuxo de um casco à perda de carga de uma adutora: a disciplina que responde qual pressão o fluido exerce, quanta energia ele perde no caminho e que bomba é preciso para vencê-la.</p>
+    <p class="lead">Do fluido parado ao escoamento com atrito em tubulações. Este texto está organizado como um livro: dez capítulos em sequência, das propriedades à curva do sistema, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">10 tópicos</span>
+      <span class="tag accent">10 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
       <span class="tag info">4 simuladores</span>
+      <span class="tag info">10 figuras interativas</span>
       <span class="tag warn">normas</span>
     </div>
   </div>
@@ -47,32 +50,53 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>A disciplina se organiza em dois blocos. No primeiro o fluido está parado e só a pressão importa. No segundo ele escoa, e aí aparecem a energia, o atrito e a viscosidade.</p>
-        <div class="grid cols-2">
-          <div class="card">
-            <h3 style="margin-top:0">Estática</h3>
-            <p style="color:var(--text-muted);font-size:.92rem">Pressão cresce linearmente com a profundidade. Resolve manômetros, força em comportas e barragens, empuxo e estabilidade de corpos flutuantes.</p>
-          </div>
-          <div class="card">
-            <h3 style="margin-top:0">Dinâmica</h3>
-            <p style="color:var(--text-muted);font-size:.92rem">Conservação de massa, energia e quantidade de movimento em volume de controle. Culmina no dimensionamento de tubulações e na seleção de bombas.</p>
-          </div>
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O curso segue a ordem natural: primeiro o fluido parado (pressão, empuxo, forças em superfícies), depois o fluido em movimento sem atrito (continuidade e Bernoulli) e por fim o escoamento real, com viscosidade, perdas e forças. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: três perguntas</h2>
+        <p>A disciplina responde a três perguntas práticas. <strong>Que força o fluido faz?</strong> — em uma comporta, num casco, numa curva de tubulação. <strong>Com que velocidade ele escoa?</strong> — continuidade e Bernoulli. <strong>Quanta energia se perde no caminho?</strong> — atrito distribuído e localizado, que é o que dimensiona a bomba.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Qual a pressão a esta profundidade?</td><td>Estática dos fluidos</td><td>2</td></tr>
+            <tr><td>Flutua? É estável?</td><td>Empuxo e metacentro</td><td>3</td></tr>
+            <tr><td>Que força na comporta?</td><td>Superfícies submersas</td><td>4</td></tr>
+            <tr><td>Que velocidade e vazão?</td><td>Continuidade e Bernoulli</td><td>5 e 6</td></tr>
+            <tr><td>Laminar ou turbulento?</td><td>Número de Reynolds</td><td>7</td></tr>
+            <tr><td>Quanta perda de carga?</td><td>Darcy-Weisbach, Moody e K</td><td>8 e 9</td></tr>
+            <tr><td>Que força o jato faz?</td><td>Quantidade de movimento</td><td>10</td></tr>
+          </tbody>
+        </table>
         </div>
-        <div class="callout note">
-          <strong>A pergunta que organiza tudo</strong>
-          Praticamente todo exercício se resolve escolhendo o volume de controle certo e aplicando uma das três conservações. Se a resposta pedida é força, use quantidade de movimento; se é pressão ou velocidade, use energia; se é vazão, use continuidade.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras, mude diâmetro, vazão e rugosidade para ver a perda de carga reagir; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teorico">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Fluido parado" data-topicos="propriedades">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Propriedades dos fluidos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir fluido de sólido pela resposta ao cisalhamento;</li>
+            <li>usar massa específica, peso específico e densidade relativa;</li>
+            <li>aplicar a lei de Newton da viscosidade;</li>
+            <li>reconhecer o efeito da temperatura na viscosidade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Nenhum além de física básica. O capítulo define o vocabulário usado no curso inteiro.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Propriedades dos fluidos</summary>
-          <div class="topic-body">
-            <p>A propriedade que define a disciplina é a viscosidade: a resistência do fluido ao cisalhamento. É ela que gera o atrito e, portanto, a perda de carga.</p>
+        <p>Um sólido resiste ao cisalhamento com deformação finita; um fluido se deforma continuamente enquanto a tensão existir. Essa diferença simples explica tudo o que vem depois — e a constante de proporcionalidade entre tensão e taxa de deformação, a viscosidade, é a propriedade que separa óleo de água e define se o escoamento será laminar ou turbulento.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>O que caracteriza um fluido</h3>
+<p>A propriedade que define a disciplina é a viscosidade: a resistência do fluido ao cisalhamento. É ela que gera o atrito e, portanto, a perda de carga.</p>
             <div class="formula"><span data-tex="\tau = \mu \cdot (\frac{\mathrm{d}u}{\mathrm{d}y})"></span><span class="where">Lei de Newton da viscosidade; μ = viscosidade dinâmica [Pa·s]; du/dy = taxa de deformação</span></div>
             <div class="formula"><span data-tex="\nu = \frac{\mu }{\rho }"></span><span class="where">viscosidade cinemática [m²/s] — é ela que aparece no Reynolds</span></div>
             <div class="table-scroll">
@@ -93,13 +117,39 @@
               <strong>Ar é menos viscoso que água? Depende de qual viscosidade</strong>
               A viscosidade <em>dinâmica</em> do ar é 55 vezes menor que a da água. Mas a <em>cinemática</em> do ar é 15 vezes <strong>maior</strong>, porque a densidade é mil vezes menor. Como é ν que entra no Reynolds, o ar escoa em regime laminar mais facilmente do que a intuição sugere.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Estática dos fluidos</summary>
-          <div class="topic-body">
-            <p>Em fluido em repouso não existe tensão de cisalhamento, então a pressão em um ponto é a mesma em todas as direções e varia apenas com a profundidade.</p>
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\tau = \mu\,du/dy"></span>: fluido newtoniano.</li>
+          <li>ρ (massa específica), γ = ρg (peso específico) e densidade relativa à água.</li>
+          <li>Viscosidade cinemática <span data-tex-inline="\nu = \mu/\rho"></span>.</li>
+          <li>Em líquidos a viscosidade cai com a temperatura; em gases, cresce.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o óleo do motor é mais fino quando quente?</summary><p>Porque em líquidos a viscosidade cai rapidamente com a temperatura — daí a classificação SAE multiviscosa.</p></details>
+          <details><summary>Densidade relativa 0,8 significa o quê?</summary><p>Massa específica de 800 kg/m³: 80 % da água. É assim que se compara derivados de petróleo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Fluido parado" data-topicos="estatica">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Estática dos fluidos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar a lei de Stevin;</li>
+            <li>ler manômetros de coluna;</li>
+            <li>distinguir pressão absoluta de manométrica;</li>
+            <li>entender o paradoxo hidrostático.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>Num fluido em repouso não há cisalhamento, e a pressão varia apenas com a profundidade. Dessa afirmação simples saem o manômetro, a prensa hidráulica e o cálculo de empuxo — e também o paradoxo que incomoda todo estudante: a força no fundo não depende do formato do recipiente.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>A pressão só depende da profundidade</h3>
+<p>Em fluido em repouso não existe tensão de cisalhamento, então a pressão em um ponto é a mesma em todas as direções e varia apenas com a profundidade.</p>
             <div class="formula"><span data-tex="\frac{\mathrm{d}p}{\mathrm{d}z} = - \rho \cdot g \quad \to \quad p = p_{0} + \rho \cdot g\cdot h"></span><span class="where">h medido para baixo a partir da superfície livre; γ = ρg = peso específico</span></div>
             <div class="callout tip">
               <strong>Regra do manômetro</strong>
@@ -107,13 +157,53 @@
             </div>
             <p>Pressão absoluta e manométrica diferem pela atmosférica; confundir as duas é o erro mais comum em cavitação e em NPSH.</p>
             <div class="formula"><span data-tex="p_{\text{abs}} = p_{\text{man}} + p_{\text{atm}} \quad p_{\text{atm}} = 101,3 \text{kPa} = 10,33 m.c.a."></span></div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2-bis. Empuxo e estabilidade de corpos flutuantes</summary>
-          <div class="topic-body">
-            <p>O empuxo é o peso do volume de fluido deslocado e age no <strong>centro de carena</strong> B, o centroide do volume submerso — que não coincide com o centro de gravidade G do corpo.</p>
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Pressão a 10 m</div>
+          <p>Qual a pressão manométrica e a absoluta a 10 m de profundidade em água (ρ = 1000 kg/m³)?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="p = \rho g h = 1000\cdot9{,}81\cdot10 = 98{,}1\ \text{kPa}"></span> (manométrica).</li>
+              <li>Absoluta: <span data-tex-inline="98{,}1 + 101{,}3 = 199{,}4\ \text{kPa}"></span>.</li>
+            </ol>
+            <p class="resposta">98,1 kPa manométricos — a cada 10 m de água soma-se praticamente 1 atm.</p>
+          </details>
+        </div>
+
+        <div id="sim-hidrostatica" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="p = p_0 + \rho g h"></span>.</li>
+          <li>Pontos à mesma profundidade num fluido contínuo têm a mesma pressão.</li>
+          <li>Manométrica = absoluta − atmosférica.</li>
+          <li>A força no fundo depende da área e da altura, não do volume contido.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dois recipientes com a mesma altura de água, um cônico e outro cilíndrico. A pressão no fundo é igual?</summary><p>Sim: só a altura importa. A força total, porém, depende da área do fundo.</p></details>
+          <details><summary>Mergulhar 10 m na água acrescenta quanta pressão?</summary><p>Cerca de 98 kPa — praticamente uma atmosfera a cada 10 metros.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Fluido parado" data-topicos="estatica">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Empuxo e estabilidade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular o empuxo pelo volume deslocado;</li>
+            <li>determinar o calado de um corpo flutuante;</li>
+            <li>avaliar a estabilidade pela altura metacêntrica;</li>
+            <li>reconhecer o efeito de superfície livre.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+
+        <p>O empuxo é a resultante das pressões sobre a superfície molhada, e vale o peso do fluido deslocado. Flutuar é fácil; flutuar <em>estável</em> é o que exige cálculo — e a grandeza que decide isso é a altura metacêntrica, a distância entre o metacentro e o centro de gravidade.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Arquimedes e o metacentro</h3>
+<p>O empuxo é o peso do volume de fluido deslocado e age no <strong>centro de carena</strong> B, o centroide do volume submerso — que não coincide com o centro de gravidade G do corpo.</p>
             <div class="formula"><span data-tex="E = \rho\,g\,V_{\text{desl}}"></span><span class="where">princípio de Arquimedes; um corpo flutua quando desloca um volume cujo peso iguala o seu</span></div>
             <p>Quando o corpo inclina de um pequeno ângulo, a carena muda de forma e B se desloca lateralmente. A vertical que passa pelo novo B cruza o eixo de simetria no <strong>metacentro</strong> M:</p>
             <div class="formula"><span data-tex="\overline{MB} = \frac{I_{\text{linha d'água}}}{V_{\text{desl}}} \qquad \overline{GM} = \overline{MB} - \overline{GB}"></span><span class="where">I: momento de inércia da área da linha d'água em relação ao eixo de inclinação</span></div>
@@ -131,13 +221,39 @@
               <strong>GM grande nem sempre é bom</strong>
               Quanto maior a altura metacêntrica, mais rígida é a embarcação — e mais curto e desconfortável fica o período de balanço, <span data-tex-inline="T \approx 2\pi k/\sqrt{g\,\overline{GM}}"></span>. Navios de passageiros são projetados com GM moderado justamente para balançar devagar.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Força sobre superfícies submersas</summary>
-          <div class="topic-body">
-            <p>Como a pressão cresce com a profundidade, a resultante não passa pelo centroide da área: ela desce para o <strong>centro de pressão</strong>.</p>
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="E = \rho_f\,g\,V_{desl}"></span>.</li>
+          <li>Equilíbrio de flutuação: empuxo igual ao peso.</li>
+          <li>Estável se o metacentro estiver acima do centro de gravidade (GM > 0).</li>
+          <li>Tanques parcialmente cheios reduzem GM — é o efeito de superfície livre.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um navio carregado de carga pesada no convés fica mais ou menos estável?</summary><p>Menos: o centro de gravidade sobe, GM diminui e o navio pode emborcar.</p></details>
+          <details><summary>Por que caminhões-tanque usam chicanas internas?</summary><p>Para limitar o efeito de superfície livre: o líquido deslocando-se de um lado para o outro reduz a estabilidade.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — Fluido parado" data-topicos="superficies">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Força sobre superfícies submersas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a força resultante sobre superfícies planas;</li>
+            <li>localizar o centro de pressão;</li>
+            <li>tratar superfícies curvas por componentes;</li>
+            <li>dimensionar comportas e paredes.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e a noção de centroide e momento de inércia (Estática).</p></div>
+        </div>
+
+        <p>A pressão cresce com a profundidade, então a força distribuída sobre uma comporta é triangular. A resultante vale a pressão no centroide vezes a área — mas ela não age no centroide: age mais abaixo, no centro de pressão. Esquecer isso é o erro clássico do capítulo.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Resultante e ponto de aplicação</h3>
+<p>Como a pressão cresce com a profundidade, a resultante não passa pelo centroide da área: ela desce para o <strong>centro de pressão</strong>.</p>
             <div class="formula"><span data-tex="F = p_{c}\cdot A = \rho \cdot g\cdot h_{c}\cdot A"></span><span class="where">h<sub>c</sub> = profundidade do CENTROIDE da área; A = área da superfície</span></div>
             <div class="formula"><span data-tex="y_{\text{cp}} = y_{c} + \frac{I_{\text{xc}}}{y_{c}\cdot A}"></span><span class="where">y medido ao longo da placa desde a superfície livre; I<sub>xc</sub> = momento de inércia próprio</span></div>
             <div class="callout warn">
@@ -148,25 +264,89 @@
             <div class="formula"><span data-tex="F = \rho \cdot g\cdot (\frac{h}{2})\cdot (h\cdot b) \quad y_{\text{cp}} = \frac{2h}{3}"></span></div>
             <p>Empuxo, por sua vez, é o peso do volume deslocado, aplicado no centro de carena:</p>
             <div class="formula"><span data-tex="E = \rho_{\text{fluido}}\cdot g\cdot V_{\text{deslocado}} (\text{Arquimedes})"></span></div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Cinemática e conservação de massa</summary>
-          <div class="topic-body">
-            <p>A equação da continuidade em regime permanente e fluido incompressível é a mais simples e a mais usada da disciplina:</p>
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Comporta retangular</div>
+          <p>Uma comporta vertical de 2 m de largura e 3 m de altura tem o topo na superfície da água. Calcule a força e o ponto de aplicação.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Centroide a <span data-tex-inline="\bar h = 1{,}5\ \text{m}"></span>: <span data-tex-inline="F = \rho g\bar h A = 1000\cdot9{,}81\cdot1{,}5\cdot6 = 88{,}3\ \text{kN}"></span>.</li>
+              <li>Centro de pressão: <span data-tex-inline="y_{cp} = 1{,}5 + \dfrac{2\cdot3^3/12}{1{,}5\cdot6} = 2{,}0\ \text{m}"></span>.</li>
+            </ol>
+            <p class="resposta">F = 88,3 kN aplicada a 2,0 m da superfície — ou seja, a 1 m do fundo, e não no meio da comporta.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="F = p_{cg}\,A = \rho g \bar h A"></span>.</li>
+          <li>Centro de pressão: <span data-tex-inline="y_{cp} = \bar y + I_{cg}/(\bar y A)"></span>, sempre abaixo do centroide.</li>
+          <li>Superfície curva: decomponha em horizontal (projeção) e vertical (peso da coluna).</li>
+          <li>Em comporta retangular com topo na superfície, o centro de pressão fica a 2/3 da altura.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Onde age a resultante numa comporta retangular que vai da superfície ao fundo?</summary><p>A dois terços da profundidade, medidos a partir da superfície — e não na metade.</p></details>
+          <details><summary>Como se calcula a componente vertical numa superfície curva?</summary><p>É o peso do volume de líquido acima da superfície, real ou imaginário.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Fluido em movimento" data-topicos="continuidade">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Cinemática e conservação de massa</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir descrição lagrangiana de euleriana;</li>
+            <li>aplicar a equação da continuidade;</li>
+            <li>relacionar vazão volumétrica e mássica;</li>
+            <li>interpretar linhas de corrente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>Em regime permanente, o que entra tem de sair: essa é a conservação da massa aplicada a um volume de controle. Dela sai a equação da continuidade, que explica por que o jato acelera ao estreitar a seção — e prepara o terreno para Bernoulli.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Vazão e continuidade</h3>
+<p>A equação da continuidade em regime permanente e fluido incompressível é a mais simples e a mais usada da disciplina:</p>
             <div class="formula"><span data-tex="Q = A_{1}\cdot v_{1} = A_{2}\cdot v_{2} \quad \dot{m} = \rho \cdot Q"></span><span class="where">Q = vazão volumétrica [m³/s]; ṁ = vazão mássica [kg/s]</span></div>
             <div class="callout tip">
               <strong>A velocidade varia com o quadrado do diâmetro</strong>
               Como A ∝ D², reduzir o diâmetro pela metade quadruplica a velocidade. E como a perda de carga vai com v², ela sobe 16 vezes — mais o efeito do próprio D no termo L/D, chegando a 32 vezes.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Equação de Bernoulli e linhas de energia</summary>
-          <div class="topic-body">
-            <p>Para escoamento incompressível, permanente, sem atrito e ao longo de uma linha de corrente, a soma das três cargas é constante:</p>
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\dot m = \rho A v"></span> e <span data-tex-inline="Q = A v"></span>.</li>
+          <li>Incompressível em regime permanente: <span data-tex-inline="A_1v_1 = A_2v_2"></span>.</li>
+          <li>Linhas de corrente são tangentes ao vetor velocidade em cada instante.</li>
+          <li>Reduzir a área à metade dobra a velocidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um tubo de 100 mm reduz para 50 mm. A velocidade muda quanto?</summary><p>Quadruplica: a área cai a um quarto.</p></details>
+          <details><summary>A continuidade vale para gás comprimido?</summary><p>Vale para a vazão em massa; a volumétrica muda porque a massa específica varia.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Fluido em movimento" data-topicos="bernoulli">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Equação de Bernoulli</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar Bernoulli e suas hipóteses;</li>
+            <li>interpretar as linhas piezométrica e de energia;</li>
+            <li>resolver Torricelli, Venturi e tubo de Pitot;</li>
+            <li>reconhecer quando a equação não vale.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 5.</p></div>
+        </div>
+
+        <p>Bernoulli é a equação mais usada — e mais abusada — da mecânica dos fluidos. Ela diz que, ao longo de uma linha de corrente, a soma das cargas de pressão, velocidade e elevação se conserva, desde que o escoamento seja permanente, incompressível e sem atrito. As três hipóteses importam, e saber identificá-las é o que separa o uso correto do uso errado.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Energia ao longo da linha de corrente</h3>
+<p>Para escoamento incompressível, permanente, sem atrito e ao longo de uma linha de corrente, a soma das três cargas é constante:</p>
             <div class="formula"><span data-tex="\frac{p}{\gamma } + \frac{v^{2}}{2g} + z = \text{constante}"></span><span class="where">carga de pressão + carga cinética + carga de posição, todas em metros de coluna de fluido</span></div>
             <p>Na versão real, com máquinas e atrito, vira a equação da energia:</p>
             <div class="formula"><span data-tex="\frac{p_{1}}{\gamma } + \frac{v_{1}^{2}}{2g} + z_{1} + H_{\text{bomba}} = \frac{p_{2}}{\gamma } + \frac{v_{2}^{2}}{2g} + z_{2} + H_{\text{turbina}} + h_{\text{perdas}}"></span></div>
@@ -179,7 +359,25 @@
               </tbody>
             </table>
             </div>
-            <h4>Duas aplicações clássicas</h4>
+
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Velocidade de saída de um tanque</div>
+          <p>Um tanque aberto tem nível 5 m acima do orifício de saída. Qual a velocidade teórica do jato?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Bernoulli entre a superfície (v ≈ 0, p atmosférica) e o jato: <span data-tex-inline="z = v^2/2g"></span>.</li>
+              <li><span data-tex-inline="v = \sqrt{2gh} = \sqrt{2\cdot9{,}81\cdot5} = 9{,}9\ \text{m/s}"></span>.</li>
+            </ol>
+            <p class="resposta">9,9 m/s — a mesma velocidade de um corpo que cai 5 m. Na prática o coeficiente de velocidade (≈ 0,97) reduz um pouco esse valor.</p>
+          </details>
+        </div>
+
+        <div id="sim-bernoulli" class="sim"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Duas aplicações clássicas</h3>
+
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Dispositivo</th><th>Princípio</th><th>Resultado</th></tr></thead>
@@ -197,13 +395,37 @@
               <strong>Quando Bernoulli não vale</strong>
               Escoamento com atrito relevante, com bomba ou turbina no trecho, transitório, compressível (Mach &gt; 0,3) ou entre linhas de corrente diferentes. Aplicar Bernoulli através de uma expansão brusca é erro clássico: ali há perda concentrada.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Escoamento viscoso e regimes</summary>
-          <div class="topic-body">
-            <p>O número de Reynolds compara as forças de inércia com as viscosas e decide tudo o que vem depois.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\dfrac{p}{\gamma} + \dfrac{v^2}{2g} + z = \text{constante}"></span>.</li>
+          <li>Linha de energia: soma das três cargas. Piezométrica: sem a cinética.</li>
+          <li>Torricelli: <span data-tex-inline="v = \sqrt{2gh}"></span>. Pitot mede a carga total.</li>
+          <li>Não vale com bomba, turbina, atrito relevante ou escoamento transitório.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a pressão cai na garganta de um Venturi?</summary><p>Porque a velocidade aumenta e, com a carga total constante, a de pressão precisa diminuir.</p></details>
+          <details><summary>Bernoulli vale numa tubulação de 500 m?</summary><p>Não sem correção: o atrito distribuído é significativo e exige o termo de perda de carga, do capítulo 8.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Escoamento real" data-topicos="regimes">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Escoamento viscoso e regimes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular o número de Reynolds e classificar o regime;</li>
+            <li>descrever o perfil de velocidade em cada regime;</li>
+            <li>entender a camada limite;</li>
+            <li>reconhecer o escoamento desenvolvido.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 5.</p></div>
+        </div>
+
+        <p>Um único número adimensional decide o caráter do escoamento: a razão entre forças de inércia e viscosas. Abaixo de 2300 o escoamento em tubo é laminar, com perfil parabólico e perda proporcional à velocidade; acima de 4000 é turbulento, com perfil achatado e perda quase quadrática. Entre os dois, território instável.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Laminar ou turbulento</h3>
+<p>O número de Reynolds compara as forças de inércia com as viscosas e decide tudo o que vem depois.</p>
             <div class="formula"><span data-tex="Re = \rho \cdot v\cdot \frac{D}{\mu } = v\cdot \frac{D}{\nu }"></span><span class="where">em tubo, o comprimento característico é o diâmetro interno</span></div>
             <div class="table-scroll">
             <table class="data">
@@ -221,13 +443,50 @@
             </div>
             <p>Para seção não circular usa-se o diâmetro hidráulico:</p>
             <div class="formula"><span data-tex="D_{h} = 4\cdot \frac{A}{P_{\text{molhado}}}"></span></div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Perda de carga distribuída e o diagrama de Moody</summary>
-          <div class="topic-body">
-            <p>A equação universal da perda de carga em tubo é Darcy-Weisbach. Toda a dificuldade está em achar f.</p>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Classificando o regime</div>
+          <p>Água (ν = 10⁻⁶ m²/s) escoa a 2 m/s num tubo de 50 mm. Qual o regime?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="Re = vD/\nu = 2\cdot0{,}05/10^{-6} = 1{,}0\times10^{5}"></span>.</li>
+            </ol>
+            <p class="resposta">Re = 100 000: turbulento. Para ficar laminar nesse tubo, a velocidade teria de cair abaixo de 0,046 m/s.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="Re = \rho v D/\mu = vD/\nu"></span>.</li>
+          <li>Tubos: laminar até 2300, turbulento acima de 4000.</li>
+          <li>Laminar: perfil parabólico, v_max = 2 v_média. Turbulento: perfil achatado, v_max ≈ 1,2 v_média.</li>
+          <li>Camada limite cresce ao longo da parede até o escoamento ficar desenvolvido.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Água a 2 m/s num tubo de 50 mm é laminar?</summary><p>Não: Re = 10⁵, bem acima de 4000. Escoamento turbulento, como quase toda instalação industrial.</p></details>
+          <details><summary>Por que óleo pesado escoa laminar com frequência?</summary><p>Porque a viscosidade alta derruba o Reynolds: mesmo com velocidade razoável, Re fica abaixo de 2300.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Escoamento real" data-topicos="perda-carga">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Perda de carga distribuída</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar a equação de Darcy-Weisbach;</li>
+            <li>obter o fator de atrito pelo diagrama de Moody ou por correlação;</li>
+            <li>distinguir tubo liso de rugoso e a região de turbulência completa;</li>
+            <li>avaliar o efeito do diâmetro na perda.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 7.</p></div>
+        </div>
+
+        <p>Todo escoamento real perde energia para o atrito, e a perda distribuída costuma dominar em tubulações longas. Darcy-Weisbach organiza essa perda numa fórmula só; a dificuldade fica toda no fator de atrito, que depende do Reynolds e da rugosidade relativa — e é isso que o diagrama de Moody resume.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Darcy-Weisbach e Moody</h3>
+<p>A equação universal da perda de carga em tubo é Darcy-Weisbach. Toda a dificuldade está em achar f.</p>
             <div class="formula"><span data-tex="h_{f} = f\cdot (\frac{L}{D})\cdot \frac{v^{2}}{2g}"></span><span class="where">f = fator de atrito de Darcy (adimensional). Cuidado: o fator de Fanning é f/4</span></div>
             <div class="formula"><span data-tex="\text{Laminar}: f = \frac{64}{Re} (\text{não} \text{depende da rugosidade})"></span></div>
             <div class="formula"><span data-tex="\text{Turbulento} (\text{Colebrook-White}): \\ \frac{1}{\sqrt{f}} = - 2\cdot \log_{10}[ \frac{\varepsilon }{3,7D} + \frac{2,51}{Re\cdot \sqrt{f}} ]"></span><span class="where">implícita em f — resolve-se por iteração ou pelo diagrama de Moody</span></div>
@@ -249,13 +508,54 @@
               <strong>As quatro zonas do Moody</strong>
               Laminar (reta descendente, sem rugosidade) · crítica (vazio, instável) · transição (f depende de Re e de ε/D) · turbulência plena (curvas horizontais: f só depende de ε/D). No projeto de adutoras costuma-se cair na última.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Perdas localizadas</summary>
-          <div class="topic-body">
-            <p>Cada acessório provoca uma perda proporcional à carga cinética:</p>
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Perda em 100 m de tubo</div>
+          <p>Água a 2 m/s num tubo de 50 mm, 100 m de comprimento, rugosidade relativa 0,001. Qual a perda de carga?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Re = 10⁵ e ε/D = 0,001 → pelo diagrama de Moody (ou Colebrook), <span data-tex-inline="f = 0{,}0222"></span>.</li>
+              <li><span data-tex-inline="h_f = f\dfrac{L}{D}\dfrac{v^2}{2g} = 0{,}0222\cdot\dfrac{100}{0{,}05}\cdot\dfrac{4}{19{,}62}"></span>.</li>
+              <li><span data-tex-inline="h_f = 9{,}05\ \text{m}"></span>.</li>
+            </ol>
+            <p class="resposta">9 metros de coluna d’água — quase 0,9 bar só de atrito. É esse número que dimensiona a bomba.</p>
+          </details>
+        </div>
+
+        <div id="sim-moody" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="h_f = f\dfrac{L}{D}\dfrac{v^2}{2g}"></span>.</li>
+          <li>Laminar: <span data-tex-inline="f = 64/Re"></span>, independente da rugosidade.</li>
+          <li>Turbulento: Colebrook (implícita) ou Swamee-Jain (explícita).</li>
+          <li>A perda cresce com D⁻⁵ a vazão constante: um diâmetro acima reduz a perda drasticamente.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o fator de atrito laminar não depende da rugosidade?</summary><p>Porque a subcamada viscosa cobre as asperezas: o fluido nem "enxerga" a parede rugosa.</p></details>
+          <details><summary>Dobrar o diâmetro reduz a perda em quanto, com a mesma vazão?</summary><p>Cerca de 32 vezes: h_f ∝ 1/D⁵ quando a vazão é fixa.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Escoamento real" data-topicos="localizadas">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Perdas localizadas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular perdas localizadas pelo coeficiente K;</li>
+            <li>usar o comprimento equivalente;</li>
+            <li>avaliar quando as localizadas dominam;</li>
+            <li>reconhecer os valores típicos de K.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 8.</p></div>
+        </div>
+
+        <p>Curvas, válvulas, reduções e entradas também consomem energia, e em instalações curtas essas perdas localizadas podem superar a distribuída. Dois métodos equivalentes dão conta delas: o coeficiente K, aplicado à carga cinética, e o comprimento equivalente, que converte o acessório em metros de tubo reto.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Acessórios e singularidades</h3>
+<p>Cada acessório provoca uma perda proporcional à carga cinética:</p>
             <div class="formula"><span data-tex="h_{m} = K\cdot \frac{v^{2}}{2g} \quad L_{\text{eq}} = K\cdot \frac{D}{f}"></span><span class="where">K = coeficiente de perda localizada, tabelado por tipo de peça</span></div>
             <div class="table-scroll">
             <table class="data">
@@ -279,13 +579,53 @@
               <strong>Uma válvula globo vale dezenas de metros de tubo</strong>
               Com K = 6 em tubo de 50 mm e f = 0,021, o comprimento equivalente é 14 m. É por isso que se especifica válvula gaveta (K = 0,15) onde a função é apenas bloquear.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>9. Quantidade de movimento e curva do sistema</summary>
-          <div class="topic-body">
-            <p>Quando o que se pede é <em>força</em> — empuxo de jato, reação em curva de tubulação, tração no suporte — a ferramenta é a equação da quantidade de movimento no volume de controle:</p>
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Peso das localizadas</div>
+          <p>Uma linha de 50 mm tem velocidade de 2 m/s e acessórios somando K = 10. Compare com a perda distribuída de 100 m de tubo.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Localizadas: <span data-tex-inline="h_L = 10\cdot\dfrac{4}{19{,}62} = 2{,}04\ \text{m}"></span>.</li>
+              <li>Distribuída (exemplo 8.1): 9,05 m.</li>
+            </ol>
+            <p class="resposta">As localizadas valem 2,0 m contra 9,0 m da distribuída — mas numa linha de 10 m elas seriam o dobro da distribuída.</p>
+          </details>
+        </div>
+
+        <div id="sim-perda-carga" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="h_L = K\dfrac{v^2}{2g}"></span>.</li>
+          <li>Comprimento equivalente: <span data-tex-inline="L_{eq} = K D/f"></span>.</li>
+          <li>Valores típicos: entrada viva 0,5; cotovelo 90° 0,9; válvula gaveta aberta 0,2; globo 10.</li>
+          <li>Em instalações curtas e cheias de acessórios, as localizadas dominam.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma válvula globo aberta equivale a quantos metros de tubo de 50 mm?</summary><p>Com K = 10 e f = 0,022: L_eq = KD/f ≈ 23 m de tubo reto.</p></details>
+          <details><summary>Por que a saída para um reservatório tem K = 1?</summary><p>Porque toda a carga cinética do jato se perde na turbulência do reservatório.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Escoamento real" data-topicos="momento">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Quantidade de movimento e curva do sistema</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar o teorema da quantidade de movimento a volumes de controle;</li>
+            <li>calcular forças em curvas, bocais e pás;</li>
+            <li>montar a curva do sistema;</li>
+            <li>entender o ponto de operação com a bomba.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 5, 8 e 9, e o impulso de Dinâmica.</p></div>
+        </div>
+
+        <p>O último capítulo fecha o curso em duas frentes: a força que o fluido exerce sobre o que o desvia — base do cálculo de ancoragens, bocais e pás de turbina — e a curva do sistema, que soma estática e perdas para dizer de quanta altura manométrica a bomba precisa.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Força de um escoamento</h3>
+<p>Quando o que se pede é <em>força</em> — empuxo de jato, reação em curva de tubulação, tração no suporte — a ferramenta é a equação da quantidade de movimento no volume de controle:</p>
             <div class="formula"><span data-tex="\Sigma F = \dot{m}\cdot (v_{\text{saída}} - v_{\text{entrada}})"></span><span class="where">equação vetorial: aplique em x e y separadamente, com os sinais das direções</span></div>
             <p>Já o dimensionamento da bomba parte da curva do sistema, que é a altura manométrica em função da vazão:</p>
             <div class="formula"><span data-tex="H_{\text{sistema}} = \Delta z + \Delta (\frac{p}{\gamma }) + (f\cdot \frac{L}{D} + \Sigma K)\cdot \frac{v^{2}}{2g} \approx \Delta z + k\cdot Q^{2}"></span></div>
@@ -294,32 +634,46 @@
               <strong>Ponto de operação</strong>
               É o cruzamento da curva do sistema com a curva da bomba. Fechar uma válvula aumenta ΣK, levanta a curva do sistema e desloca o ponto para a esquerda — menos vazão e mais pressão.
             </div>
-          </div>
-        </details>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Força num bocal</div>
+          <p>Um bocal descarrega 10 L/s de água com velocidade de saída de 10 m/s, a partir de velocidade desprezível. Qual a força sobre o bocal?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\dot m = \rho Q = 1000\cdot0{,}01 = 10\ \text{kg/s}"></span>.</li>
+              <li><span data-tex-inline="F = \dot m\,\Delta v = 10\cdot10 = 100\ \text{N}"></span>.</li>
+            </ol>
+            <p class="resposta">100 N — e é por isso que mangueiras de incêndio precisam de dois bombeiros: com vazão e velocidade maiores, a reação chega a centenas de newtons.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\sum \vec F = \dot m(\vec v_{saída} - \vec v_{entrada})"></span>.</li>
+          <li>A força numa curva de 90° tem as duas componentes e exige ancoragem.</li>
+          <li>Curva do sistema: <span data-tex-inline="H = H_{est} + k\,Q^2"></span>.</li>
+          <li>Ponto de operação: interseção da curva do sistema com a da bomba.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que uma curva de tubulação precisa de bloco de ancoragem?</summary><p>Porque a mudança de direção do escoamento exige força, e a reação sobre a tubulação pode ser de vários kN.</p></details>
+          <details><summary>Fechar parcialmente uma válvula faz o quê com o ponto de operação?</summary><p>Aumenta k, a curva do sistema fica mais inclinada, a vazão cai e a altura manométrica sobe.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Quatro modelos interativos, todos com fórmulas e resolução passo a passo.</p>
-
-        <div id="sim-perda-carga"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Carregue o exemplo 2 (adutora em aço) e depois o 3 (mesmo traçado com tubo enferrujado): só a rugosidade muda, e a perda de carga sobe quase 60 %. Depois abra o exemplo 6 e veja o que acontece ao reduzir o diâmetro pela metade.
-        </div>
-
-        <div id="sim-moody"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Fixe ε/D e arraste o Reynolds para a direita: a curva desce e depois fica horizontal. A partir daí, aumentar a vazão não muda mais o f — o campo "Zona do diagrama" avisa quando isso acontece.
-        </div>
-
-        <div id="sim-bernoulli"></div>
-        <div id="sim-hidrostatica"></div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os quatro simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-hidrostatica"><small>Capítulo 2 · Estática</small>Pressão e manômetros</a></li>
+          <li><a href="#sim-bernoulli"><small>Capítulo 6 · Bernoulli</small>Linhas de energia</a></li>
+          <li><a href="#sim-moody"><small>Capítulo 8 · Atrito</small>Diagrama de Moody</a></li>
+          <li><a href="#sim-perda-carga"><small>Capítulo 9 · Perdas</small>Perda de carga em linha</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="grid cols-2">
           <div class="card">
             <h4 style="margin-top:0">Estática</h4>
@@ -351,7 +705,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <div class="table-scroll">
         <table class="data">
           <thead><tr><th>Norma</th><th>Título</th><th>O que define</th><th>Onde entra no projeto</th></tr></thead>
@@ -402,13 +756,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões cobrindo propriedades, estática, Bernoulli, regimes, perda de carga e quantidade de movimento — conceituais, de cálculo com espaço para desenvolver e discursivas.</p>
         <div id="quiz" data-quiz="mecanica-dos-fluidos"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>FOX, R. W.; McDONALD, A. T.; PRITCHARD, P. J.</strong> <em>Introdução à Mecânica dos Fluidos.</em> LTC. — Bibliografia principal. Caps. 3 (estática), 4 (volume de controle), 6 (Bernoulli), 8 (escoamento interno).</li>
           <li><strong>ÇENGEL, Y. A.; CIMBALA, J. M.</strong> <em>Mecânica dos Fluidos: Fundamentos e Aplicações.</em> McGraw-Hill. — Muito claro no diagrama de Moody e nas perdas localizadas.</li>
@@ -437,7 +791,9 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/mecanica-dos-fluidos.js"></script>
+<script src="../js/fig/mecanica-dos-fluidos.js"></script>
 <script>
 /* glossário específico desta disciplina — sobrepõe o significado
    padrão dos símbolos que mudam de sentido conforme a matéria */
@@ -460,6 +816,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
