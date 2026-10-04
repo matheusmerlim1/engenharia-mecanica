@@ -731,16 +731,6 @@
       "ordem": 1
     },
     {
-      "id": "sim-trocador",
-      "slug": "transferencia-de-calor",
-      "disciplina": "Transferência de Calor",
-      "periodo": "7",
-      "materia": "Termodinâmica e Transferência de Calor",
-      "titulo": "3. Trocador de calor — MLDT e ε-NUT",
-      "resumo": "Os dois métodos no mesmo modelo. Veja o perfil de temperatura que explica a vantagem do contracorrente e onde o paralelo trava por cruzamento de temperatura.",
-      "ordem": 2
-    },
-    {
       "id": "sim-radiacao",
       "slug": "transferencia-de-calor",
       "disciplina": "Transferência de Calor",
@@ -748,6 +738,16 @@
       "materia": "Termodinâmica e Transferência de Calor",
       "titulo": "4. Radiação térmica — Planck, Wien e troca entre superfícies cinzas",
       "resumo": "A distribuição espectral com o pico de Wien marcado e a troca líquida entre duas superfícies cinzas, comparada lado a lado com a convecção.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-trocador",
+      "slug": "transferencia-de-calor",
+      "disciplina": "Transferência de Calor",
+      "periodo": "7",
+      "materia": "Termodinâmica e Transferência de Calor",
+      "titulo": "3. Trocador de calor — MLDT e ε-NUT",
+      "resumo": "Os dois métodos no mesmo modelo. Veja o perfil de temperatura que explica a vantagem do contracorrente e onde o paralelo trava por cruzamento de temperatura.",
       "ordem": 3
     },
     {
