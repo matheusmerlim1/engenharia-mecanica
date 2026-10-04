@@ -22,6 +22,7 @@
     <div class="spacer"></div>
     <nav class="nav-links">
       <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
       <a href="#simuladores">Simuladores</a>
       <a href="../simulacoes.html">Todas as simulações</a>
       <a href="#simulado">Simulado</a>
@@ -34,11 +35,13 @@
   <div class="hero" style="padding-bottom:18px">
     <p class="kicker">6º período · Engenharia Mecânica</p>
     <h1>Termodinâmica II</h1>
-    <p class="lead">A primeira parte da termodinâmica ensinou as leis; esta ensina as máquinas. Usinas a vapor, motores, turbinas a gás, geladeiras e bombas de calor são aplicações dos mesmos balanços de energia e entropia — e o ar úmido e o gás que acelera num bocal completam o repertório do engenheiro que projeta sistemas térmicos.</p>
+    <p class="lead">Ciclos reais, ar úmido e escoamento compressível. Este texto está organizado como um livro: nove capítulos em sequência, das melhorias do Rankine ao choque normal, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
     <div class="btn-row">
-      <span class="tag accent">9 tópicos</span>
+      <span class="tag accent">9 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
       <span class="tag ok">30 questões</span>
-      <span class="tag info">7 simuladores animados</span>
+      <span class="tag info">4 simuladores</span>
+      <span class="tag info">7 figuras interativas</span>
       <span class="tag warn">normas</span>
     </div>
   </div>
@@ -47,35 +50,51 @@
     <aside class="toc"></aside>
     <div>
 
-      <section class="section" id="visao-geral">
-        <h2>Visão geral</h2>
-        <p>Toda a disciplina é aplicação de duas equações ao volume de controle em regime permanente — a primeira lei e a segunda lei — sobre fluidos cujas propriedades se leem em tabelas ou se calculam como gás ideal. O que muda de um capítulo para outro é o equipamento e o fluido.</p>
-        <div class="formula"><span data-tex="\dot Q - \dot W = \sum \dot m_s\left(h_s + \frac{V_s^2}{2} + g z_s\right) - \sum \dot m_e\left(h_e + \frac{V_e^2}{2} + g z_e\right)"></span><span class="where">primeira lei em regime permanente — a base de todos os capítulos</span></div>
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O curso é de aplicação: primeiro os ciclos de potência com suas melhorias reais, depois refrigeração, misturas e psicrometria, e por fim o escoamento compressível, que fecha a disciplina com bocais e choque. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: do ciclo ideal ao equipamento real</h2>
+        <p>Termodinâmica I apresentou os ciclos; aqui eles ganham as melhorias que os tornam viáveis — reaquecimento, regeneração, intercooler — e os desvios que os tornam reais: rendimentos isentrópicos, perdas de carga, superaquecimento na sucção. Depois vêm dois assuntos que a primeira disciplina não alcança: o ar úmido, que governa a climatização, e o escoamento compressível, que governa bocais, turbinas e válvulas de alta pressão.</p>
         <div class="table-scroll">
         <table class="data">
-          <thead><tr><th>Capítulo</th><th>Fluido</th><th>Pergunta central</th></tr></thead>
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
           <tbody>
-            <tr><td>Ciclos a vapor</td><td>Água (tabelas)</td><td>Como converter calor em trabalho com a maior eficiência possível?</td></tr>
-            <tr><td>Ciclos a gás</td><td>Ar (gás ideal, padrão ar)</td><td>Motores e turbinas: o que limita a eficiência?</td></tr>
-            <tr><td>Refrigeração</td><td>R-134a (tabelas) ou ar</td><td>Quanto trabalho custa mover calor do frio para o quente?</td></tr>
-            <tr><td>Misturas e psicrometria</td><td>Ar seco + vapor d’água</td><td>Como tratar o ar de um ambiente?</td></tr>
-            <tr><td>Escoamento compressível</td><td>Gás ideal com k constante</td><td>O que acontece quando o gás se aproxima da velocidade do som?</td></tr>
+            <tr><td>Como melhorar o rendimento da usina?</td><td>Rankine com reaquecimento e regeneração</td><td>2</td></tr>
+            <tr><td>E da turbina a gás?</td><td>Brayton regenerativo e ciclo combinado</td><td>3</td></tr>
+            <tr><td>Qual o COP real?</td><td>Ciclo de refrigeração no P-h</td><td>4 e 5</td></tr>
+            <tr><td>Que carga térmica de climatização?</td><td>Psicrometria</td><td>6 e 7</td></tr>
+            <tr><td>Que velocidade no bocal?</td><td>Escoamento compressível</td><td>8 e 9</td></tr>
           </tbody>
         </table>
         </div>
-        <div class="callout note">
-          <strong>Os ciclos de potência também estão em Termodinâmica</strong>
-          Os simuladores de Rankine, Otto/Diesel e Brayton são os mesmos das duas páginas. Aqui eles aparecem com o aprofundamento que a disciplina pede: melhorias do ciclo, desvios do ideal e comparação entre arranjos.
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras, mude razão de pressão, temperatura e Mach para ver rendimento e propriedades reagirem; termine com o "Teste-se" e com as questões do capítulo.
         </div>
       </section>
 
-      <section class="section" id="conteudo-teoria">
-        <h2>Conteúdo</h2>
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Ciclos de potência" data-topicos="revisao">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Revisão: as leis e o gás ideal</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>revisar os balanços de energia e entropia;</li>
+            <li>reaplicar a equação do gás ideal e os calores específicos;</li>
+            <li>relembrar processos isentrópicos;</li>
+            <li>fixar a notação usada no curso.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Termodinâmica I — toda ela.</p></div>
+        </div>
 
-        <details class="topic" open>
-          <summary>1. Revisão: leis da termodinâmica e o gás ideal</summary>
-          <div class="topic-body">
-            <div class="table-scroll">
+        <p>Esta disciplina é aplicação: ciclos, misturas e escoamento compressível. Antes de entrar neles, vale recolocar as ferramentas na mesa — os dois balanços, a equação do gás ideal e as relações isentrópicas, que vão aparecer em praticamente todas as páginas seguintes.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>O que vem de Termodinâmica I</h3>
+<div class="table-scroll">
             <table class="data">
               <thead><tr><th>Lei</th><th>Enunciado</th></tr></thead>
               <tbody>
@@ -85,7 +104,9 @@
               </tbody>
             </table>
             </div>
-            <h4>Gás ideal e teoria cinética</h4>
+
+        <h3 id="s1-2"><span class="num">1.2</span>Gás ideal e teoria cinética</h3>
+
             <p>No modelo de gás ideal as moléculas são pontos que não interagem e colidem elasticamente. Pela equipartição, cada grau de liberdade armazena <span data-tex-inline="\tfrac{1}{2}k_B T"></span> por molécula:</p>
             <div class="table-scroll">
             <table class="data">
@@ -102,13 +123,37 @@
               <strong>A expansão livre de Joule</strong>
               Um gás que se expande no vácuo, isolado, não troca calor nem realiza trabalho — logo U não muda. Para o gás ideal, a temperatura também não muda: a energia interna depende só de T, não do volume. Um gás real esfria um pouco (as forças de atração entre as moléculas “custam” energia), e o efeito some quando a pressão tende a zero.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>2. Ciclos de potência a vapor — Rankine e suas melhorias</summary>
-          <div class="topic-body">
-            <p>O ciclo de Carnot é impraticável com vapor: comprimir uma mistura líquido-vapor é difícil e a turbina trabalharia com muita umidade. O ciclo de <strong>Rankine</strong> resolve isso superaquecendo o vapor na caldeira e condensando-o totalmente, para bombear só líquido.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Balanço de energia em regime permanente e balanço de entropia com geração.</li>
+          <li><span data-tex-inline="Pv = RT"></span>; <span data-tex-inline="c_p - c_v = R"></span>; <span data-tex-inline="k = c_p/c_v"></span>.</li>
+          <li>Isentrópico de gás ideal: <span data-tex-inline="T_2/T_1 = (P_2/P_1)^{(k-1)/k}"></span>.</li>
+          <li>Rendimento isentrópico compara o real com o ideal — e aparece em toda turbina e compressor.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Qual a diferença entre rendimento térmico e isentrópico?</summary><p>O térmico é do ciclo (trabalho líquido sobre calor fornecido); o isentrópico é de um equipamento (real sobre ideal).</p></details>
+          <details><summary>Por que a hipótese de gás ideal é tão usada nos ciclos a gás?</summary><p>Porque o ar de trabalho está longe da saturação, com erro pequeno — e sem ela os ciclos padrão a ar não seriam tratáveis à mão.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Ciclos de potência" data-topicos="vapor">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Ciclos de potência a vapor</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>analisar o Rankine ideal e o real;</li>
+            <li>avaliar o efeito de pressão, superaquecimento e vácuo no condensador;</li>
+            <li>entender reaquecimento e regeneração;</li>
+            <li>calcular o rendimento com rendimentos isentrópicos.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e o Rankine de Termodinâmica I.</p></div>
+        </div>
+
+        <p>Quase toda a geração térmica do mundo é Rankine. Três melhorias clássicas — pressão mais alta, reaquecimento e regeneração — levaram o rendimento de 25 % para mais de 45 % em unidades supercríticas, e cada uma delas resolve um problema específico do ciclo simples.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>Rankine e suas melhorias</h3>
+<p>O ciclo de Carnot é impraticável com vapor: comprimir uma mistura líquido-vapor é difícil e a turbina trabalharia com muita umidade. O ciclo de <strong>Rankine</strong> resolve isso superaquecendo o vapor na caldeira e condensando-o totalmente, para bombear só líquido.</p>
             <div class="formula"><span data-tex="\eta = \frac{w_T - w_B}{q_{ent}} = 1 - \frac{h_4 - h_1}{h_3 - h_2}, \qquad w_B = v_1 (P_2 - P_1)"></span><span class="where">1 saída do condensador · 2 saída da bomba · 3 saída da caldeira · 4 saída da turbina</span></div>
             <div class="table-scroll">
             <table class="data">
@@ -135,13 +180,39 @@
               </tbody>
             </table>
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>3. Ciclos de potência a gás — padrão ar</summary>
-          <div class="topic-body">
-            <p>Motores e turbinas a gás são analisados com as hipóteses do <strong>padrão ar</strong>: o fluido é ar como gás ideal, que circula num ciclo fechado; a combustão vira fornecimento de calor externo e a exaustão vira rejeição de calor. Com calores específicos constantes, é o <strong>padrão ar frio</strong>.</p>
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Aumentar a pressão e superaquecer eleva a temperatura média de fornecimento.</li>
+          <li>Reaquecimento evita o título baixo no fim da expansão.</li>
+          <li>Regeneração (aquecedores de água) aproveita vapor extraído e sobe o rendimento.</li>
+          <li>Rendimentos isentrópicos de turbina e bomba afastam o ciclo real do ideal.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que vácuo no condensador melhora o rendimento?</summary><p>Porque baixa a temperatura de rejeição, aumentando o salto térmico aproveitado pela turbina.</p></details>
+          <details><summary>Regeneração aumenta a potência da unidade?</summary><p>Não: reduz, porque parte do vapor é extraída. O que ela aumenta é o rendimento.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Ciclos de potência" data-topicos="gas">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Ciclos de potência a gás</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>analisar o Brayton ideal e o real;</li>
+            <li>avaliar razão de pressão e temperatura de entrada na turbina;</li>
+            <li>entender regeneração, intercooler e reaquecimento;</li>
+            <li>reconhecer o ciclo combinado.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 2.</p></div>
+        </div>
+
+        <p>Nas turbinas a gás, o compressor consome boa parte do trabalho da turbina, e por isso o ciclo é muito sensível aos rendimentos dos componentes. Três melhorias ajudam: regenerar (aproveitar a exaustão), resfriar entre estágios de compressão e reaquecer entre estágios de expansão — e a maior delas é acoplar um Rankine na saída.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Brayton e variações</h3>
+<p>Motores e turbinas a gás são analisados com as hipóteses do <strong>padrão ar</strong>: o fluido é ar como gás ideal, que circula num ciclo fechado; a combustão vira fornecimento de calor externo e a exaustão vira rejeição de calor. Com calores específicos constantes, é o <strong>padrão ar frio</strong>.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Ciclo</th><th>Máquina</th><th>Processos</th><th>Eficiência (padrão ar frio)</th></tr></thead>
@@ -168,13 +239,51 @@
             </table>
             </div>
             <div class="formula"><span data-tex="r_{bw} = \frac{w_{comp}}{w_{turb}}"></span><span class="where">razão de trabalho reverso: no Brayton, de 40 a 80 % do trabalho da turbina volta para o compressor</span></div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>4. Refrigeração por compressão de vapor e bomba de calor</summary>
-          <div class="topic-body">
-            <p>O ciclo de refrigeração é o ciclo de potência invertido: gasta trabalho para retirar calor de um meio frio e rejeitá-lo num meio quente. Um refrigerador e uma bomba de calor são a mesma máquina — muda apenas qual dos dois calores é o efeito útil.</p>
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Brayton simples e regenerativo</div>
+          <p>Com rp = 8, T₁ = 300 K e T₃ = 1300 K (k = 1,4), compare o rendimento ideal com e sem regeneração.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Simples: <span data-tex-inline="\eta = 1 - 8^{-0{,}2857} = 44{,}8\ \%"></span>.</li>
+              <li>Regenerativo ideal: <span data-tex-inline="\eta = 1 - (300/1300)\cdot8^{0{,}2857} = 58{,}2\ \%"></span>.</li>
+            </ol>
+            <p class="resposta">44,8 % contra 58,2 %: a regeneração vale treze pontos — desde que a exaustão esteja mais quente que a saída do compressor.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\eta = 1 - r_p^{(1-k)/k}"></span> no ideal.</li>
+          <li>Regeneração só compensa quando T₄ > T₂: <span data-tex-inline="\eta = 1 - (T_1/T_3)\,r_p^{(k-1)/k}"></span>.</li>
+          <li>Intercooler e reaquecimento aumentam o trabalho líquido, não necessariamente o rendimento.</li>
+          <li>Ciclo combinado passa de 60 % aproveitando a exaustão num Rankine.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a regeneração deixa de ajudar em razão de pressão alta?</summary><p>Porque T₄ cai abaixo de T₂: a exaustão fica mais fria que o ar de saída do compressor e não há o que aproveitar.</p></details>
+          <details><summary>Qual o ganho típico do ciclo combinado?</summary><p>De 35-40 % no Brayton isolado para 55-62 % no conjunto.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Refrigeração e misturas" data-topicos="refrigeracao">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Refrigeração por compressão de vapor</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>analisar o ciclo real com superaquecimento e sub-resfriamento;</li>
+            <li>usar o diagrama P-h;</li>
+            <li>calcular COP e capacidade;</li>
+            <li>entender bomba de calor e sistemas em cascata.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e a refrigeração de Termodinâmica I.</p></div>
+        </div>
+
+        <p>O diagrama P-h é a ferramenta natural deste capítulo: o ciclo aparece como um retângulo deformado em que cada lado é um equipamento, e as diferenças de entalpia dão diretamente capacidade e trabalho. Com ele, superaquecimento, sub-resfriamento e perdas de carga deixam de ser abstrações.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>O ciclo e seus desvios</h3>
+<p>O ciclo de refrigeração é o ciclo de potência invertido: gasta trabalho para retirar calor de um meio frio e rejeitá-lo num meio quente. Um refrigerador e uma bomba de calor são a mesma máquina — muda apenas qual dos dois calores é o efeito útil.</p>
             <div class="formula"><span data-tex="COP_R = \frac{Q_L}{W} = \frac{h_1 - h_4}{h_2 - h_1}, \qquad COP_{BC} = \frac{Q_H}{W} = COP_R + 1"></span></div>
             <div class="table-scroll">
             <table class="data">
@@ -208,25 +317,77 @@
               <strong>Ciclo real</strong>
               O vapor sai do evaporador ligeiramente superaquecido (protege o compressor de líquido), o líquido sai do condensador subresfriado (aumenta o efeito refrigerante), o compressor não é isentrópico e há perdas de carga nas linhas. Para temperaturas muito baixas usam-se sistemas em cascata ou de múltiplos estágios; onde há calor residual barato, a refrigeração por absorção substitui o compressor por uma bomba e um gerador.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>5. Refrigeração a gás</summary>
-          <div class="topic-body">
-            <p>O ciclo Brayton invertido comprime ar, resfria-o à temperatura ambiente e o expande numa turbina, de onde ele sai muito frio. O ar então absorve calor do espaço refrigerado.</p>
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <div id="sim-refrigeracao" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="COP = (h_1-h_4)/(h_2-h_1)"></span>.</li>
+          <li>Superaquecer na sucção protege o compressor; sub-resfriar aumenta o efeito frigorífico.</li>
+          <li>Bomba de calor: <span data-tex-inline="COP_{BC} = COP_{ref} + 1"></span>.</li>
+          <li>Cascata permite grandes diferenças de temperatura com fluidos distintos.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que sub-resfriar o líquido aumenta o COP?</summary><p>Porque h₄ cai e o efeito frigorífico (h₁ − h₄) aumenta, sem alterar o trabalho do compressor.</p></details>
+          <details><summary>Qual a vantagem de um sistema em cascata?</summary><p>Cada estágio trabalha com fluido e razão de pressão adequados, evitando compressores com razão excessiva e temperaturas de descarga altas.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Refrigeração e misturas" data-topicos="refrigeracao">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Refrigeração a gás</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>descrever o ciclo de refrigeração a gás;</li>
+            <li>comparar seu COP com o de compressão de vapor;</li>
+            <li>entender o uso em aeronaves;</li>
+            <li>reconhecer a liquefação de gases.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 4.</p></div>
+        </div>
+
+        <p>Invertendo o Brayton obtém-se refrigeração com gás: comprimir, resfriar, expandir numa turbina e absorver calor. O COP é baixo comparado à compressão de vapor, mas o sistema é leve, simples e usa ar — vantagens decisivas em aeronaves.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Ciclo Brayton invertido</h3>
+<p>O ciclo Brayton invertido comprime ar, resfria-o à temperatura ambiente e o expande numa turbina, de onde ele sai muito frio. O ar então absorve calor do espaço refrigerado.</p>
             <div class="formula"><span data-tex="COP_R = \frac{q_L}{w_{comp} - w_{turb}} = \frac{c_p(T_1 - T_4)}{c_p(T_2 - T_1) - c_p(T_3 - T_4)}, \qquad COP_{ideal} = \frac{1}{r_p^{(k-1)/k} - 1}"></span></div>
             <div class="callout note">
               <strong>Quando vale a pena</strong>
               O COP é bem menor que o da compressão de vapor, porque o calor é trocado com temperatura variável e não numa mudança de fase. Mas o sistema é leve, compacto e usa o próprio ar: é o <em>air cycle machine</em> que condiciona a cabine dos aviões a partir do ar sangrado dos motores. Com regenerador, chega a temperaturas criogênicas.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>6. Misturas de gases ideais</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="y_i = \frac{N_i}{N_m}, \qquad mf_i = \frac{m_i}{m_m}, \qquad M_m = \sum y_i M_i, \qquad R_m = \frac{R_u}{M_m}"></span><span class="where">frações molar e mássica, massa molar e constante da mistura</span></div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Sem mudança de fase: a absorção de calor é sensível, e a faixa de temperatura é ampla.</li>
+          <li>COP bem menor que o de compressão de vapor para a mesma aplicação.</li>
+          <li>Usado em aeronaves (sistema de ar-condicionado por ciclo de ar).</li>
+          <li>Com regeneração, permite temperaturas criogênicas e liquefação.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que aviões usam ciclo a ar se o COP é ruim?</summary><p>Porque o ar já está disponível pressurizado nos compressores do motor, e o sistema pesa muito menos que um de compressão de vapor.</p></details>
+          <details><summary>Como se chega a temperaturas criogênicas com ciclo a gás?</summary><p>Com regeneração e expansão sucessiva — o princípio do ciclo de Linde e dos liquefatores.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Refrigeração e misturas" data-topicos="misturas">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Misturas de gases ideais</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular frações mássica e molar;</li>
+            <li>aplicar as leis de Dalton e Amagat;</li>
+            <li>obter propriedades da mistura;</li>
+            <li>preparar o terreno para a psicrometria.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>Ar, gases de combustão e misturas de refrigerantes são sistemas multicomponentes, e tratá-los exige um passo a mais: compor as propriedades a partir das frações. As leis de Dalton e Amagat dizem como — e esse é exatamente o ferramental da psicrometria, no capítulo seguinte.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Frações e propriedades</h3>
+<div class="formula"><span data-tex="y_i = \frac{N_i}{N_m}, \qquad mf_i = \frac{m_i}{m_m}, \qquad M_m = \sum y_i M_i, \qquad R_m = \frac{R_u}{M_m}"></span><span class="where">frações molar e mássica, massa molar e constante da mistura</span></div>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Modelo</th><th>Hipótese</th><th>Resultado</th></tr></thead>
@@ -241,13 +402,39 @@
               <strong>A entropia de cada componente usa a pressão parcial</strong>
               <span data-tex-inline="\Delta s_i = c_{p,i}\ln\frac{T_2}{T_1} - R_i \ln\frac{P_{i,2}}{P_{i,1}}"></span>. Por isso misturar dois gases diferentes gera entropia mesmo à mesma temperatura e pressão: cada um se expande até ocupar todo o volume.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>7. Psicrometria — o ar atmosférico</summary>
-          <div class="topic-body">
-            <p>O ar atmosférico é ar seco mais vapor d’água. Nas temperaturas de condicionamento o vapor está em pressão parcial tão baixa que se comporta como gás ideal, e a entalpia é a soma das duas parcelas.</p>
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Fração molar y e fração mássica x; massa molar aparente da mistura.</li>
+          <li>Dalton: pressões parciais somam a pressão total.</li>
+          <li>Propriedades: <span data-tex-inline="c_p = \sum x_i c_{p,i}"></span>.</li>
+          <li>A entropia da mistura inclui o termo de mistura, que não aparece em u e h.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Fração molar e mássica são iguais?</summary><p>Só se as massas molares forem iguais. No ar, o oxigênio tem 21 % em mol e 23 % em massa.</p></details>
+          <details><summary>A pressão parcial do vapor no ar é alta?</summary><p>Baixíssima: a 30 °C e 50 % de umidade, cerca de 2 kPa em 101 kPa — e ainda assim é ela que governa o conforto.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Refrigeração e misturas" data-topicos="psicrometria">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Psicrometria</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>definir umidade absoluta e relativa;</li>
+            <li>usar a carta psicrométrica;</li>
+            <li>identificar ponto de orvalho e temperatura de bulbo úmido;</li>
+            <li>analisar processos de climatização.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 6.</p></div>
+        </div>
+
+        <p>Psicrometria é a termodinâmica do ar úmido — e, com ela, todo o ar-condicionado. A carta psicrométrica resume num desenho só as cinco propriedades que importam, e cada processo de climatização vira um segmento de reta sobre ela.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>O ar atmosférico</h3>
+<p>O ar atmosférico é ar seco mais vapor d’água. Nas temperaturas de condicionamento o vapor está em pressão parcial tão baixa que se comporta como gás ideal, e a entalpia é a soma das duas parcelas.</p>
             <div class="table-scroll">
             <table class="data">
               <thead><tr><th>Grandeza</th><th>Definição</th></tr></thead>
@@ -277,13 +464,55 @@
               <strong>Conforto térmico</strong>
               A zona de conforto usual fica entre 22 e 27 °C com umidade relativa de 40 a 60 %. Abaixo de ~30 % o ar resseca mucosas; acima de ~70 % o suor não evapora e a sensação é de abafamento, mesmo com temperatura moderada.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>8. Escoamento compressível — estagnação, Mach e bocais</summary>
-          <div class="topic-body">
-            <div class="formula"><span data-tex="h_0 = h + \frac{V^2}{2}, \qquad T_0 = T + \frac{V^2}{2c_p}"></span><span class="where">propriedades de estagnação: o estado alcançado desacelerando o gás adiabaticamente até parar</span></div>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Propriedades do ar úmido</div>
+          <p>Ar a 30 °C e 50 % de umidade relativa, 101,325 kPa. Calcule ω, h e o ponto de orvalho.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="p_{sat}(30) = 4{,}24\ \text{kPa}"></span> → <span data-tex-inline="p_v = 2{,}12\ \text{kPa}"></span>.</li>
+              <li><span data-tex-inline="\omega = 0{,}622\cdot2{,}12/(101{,}3-2{,}12) = 0{,}0133\ \text{kg/kg}"></span>.</li>
+              <li><span data-tex-inline="h = 1{,}005\cdot30 + 0{,}0133(2501+1{,}82\cdot30) = 64{,}1\ \text{kJ/kg}"></span>.</li>
+              <li>Orvalho: temperatura de saturação a 2,12 kPa = 18,4 °C.</li>
+            </ol>
+            <p class="resposta">ω = 13,3 g de vapor por kg de ar seco, h = 64,1 kJ/kg e orvalho a 18,4 °C — abaixo disso, condensa.</p>
+          </details>
+        </div>
+
+        <div id="sim-psicrometria" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\omega = 0{,}622\dfrac{p_v}{P - p_v}"></span> e <span data-tex-inline="\phi = p_v/p_{sat}"></span>.</li>
+          <li>Ponto de orvalho: temperatura de saturação na pressão parcial do vapor.</li>
+          <li>Processos: aquecimento (ω constante), resfriamento com desumidificação, umidificação adiabática e mistura.</li>
+          <li>A carta relaciona T, ω, φ, h e bulbo úmido.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o copo gelado "sua"?</summary><p>Porque sua superfície está abaixo do ponto de orvalho do ar: o vapor condensa nela.</p></details>
+          <details><summary>Aquecer o ar muda a umidade relativa?</summary><p>Sim: ω fica constante, mas a pressão de saturação sobe, então φ cai — é por isso que ambientes aquecidos ficam secos.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Escoamento compressível" data-topicos="compressivel">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Escoamento compressível</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>definir propriedades de estagnação;</li>
+            <li>usar o número de Mach e as relações isentrópicas;</li>
+            <li>entender o bloqueio sônico;</li>
+            <li>relacionar área e velocidade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 3, e Mecânica dos Fluidos.</p></div>
+        </div>
+
+        <p>Quando a velocidade se aproxima da do som, a massa específica deixa de ser constante e a intuição do escoamento incompressível falha. A relação entre área e velocidade inverte: acima de Mach 1, alargar o duto <em>acelera</em> o escoamento — e é isso que explica a forma dos bocais de foguete.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Estagnação, Mach e bocais</h3>
+<div class="formula"><span data-tex="h_0 = h + \frac{V^2}{2}, \qquad T_0 = T + \frac{V^2}{2c_p}"></span><span class="where">propriedades de estagnação: o estado alcançado desacelerando o gás adiabaticamente até parar</span></div>
             <div class="formula"><span data-tex="c = \sqrt{kRT}, \qquad Ma = \frac{V}{c}"></span><span class="where">velocidade do som e número de Mach</span></div>
             <div class="formula"><span data-tex="\frac{dA}{A} = (Ma^2 - 1)\frac{dV}{V}"></span><span class="where">a relação que explica todo bocal</span></div>
             <div class="table-scroll">
@@ -301,13 +530,54 @@
               <strong>Bloqueio</strong>
               Num bocal convergente, baixar a contrapressão aumenta a vazão só até a garganta ficar sônica, com P = 0,5283 P₀ no ar. Daí em diante a vazão não aumenta mais: as ondas de pressão viajam à velocidade do som e não conseguem subir contra um escoamento sônico. É a base das válvulas de alívio e dos bocais sônicos usados como padrão de vazão.
             </div>
-          </div>
-        </details>
 
-        <details class="topic">
-          <summary>9. Choque normal e bocais convergente-divergentes</summary>
-          <div class="topic-body">
-            <p>Um choque normal é uma descontinuidade de espessura molecular em que o escoamento passa de supersônico a subsônico. É adiabático — T₀ se conserva — mas fortemente irreversível: a pressão de estagnação cai e a entropia sobe.</p>
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Propriedades em Mach 2</div>
+          <p>Ar escoa a M = 2. Calcule as razões de estagnação e a razão de áreas (k = 1,4).</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="T_0/T = 1 + 0{,}2\cdot4 = 1{,}80"></span>.</li>
+              <li><span data-tex-inline="p_0/p = 1{,}80^{3{,}5} = 7{,}82"></span>.</li>
+              <li><span data-tex-inline="A/A^* = 1{,}69"></span>.</li>
+            </ol>
+            <p class="resposta">Para chegar a Mach 2, a seção de saída precisa ser 69 % maior que a da garganta, e a pressão cai para 1/7,8 da de estagnação.</p>
+          </details>
+        </div>
+
+        <div id="sim-bocal" class="sim"></div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="T_0/T = 1 + \tfrac{k-1}{2}M^2"></span> e <span data-tex-inline="p_0/p = (T_0/T)^{k/(k-1)}"></span>.</li>
+          <li>Subsônico: área menor acelera. Supersônico: área maior acelera.</li>
+          <li>Na garganta, M = 1 e o escoamento fica bloqueado: a vazão é máxima.</li>
+          <li>Relação de área: <span data-tex-inline="A/A^* = \dfrac{1}{M}\left[\dfrac{2+(k-1)M^2}{k+1}\right]^{\frac{k+1}{2(k-1)}}"></span>.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O que é bloqueio sônico?</summary><p>A condição em que M = 1 na garganta: reduzir mais a pressão de saída não aumenta a vazão.</p></details>
+          <details><summary>Por que bocais de foguete são divergentes?</summary><p>Porque o escoamento já é supersônico depois da garganta, e só a seção crescente continua acelerando o gás.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Escoamento compressível" data-topicos="compressivel">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Choque normal e bocais convergente-divergentes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>analisar o choque normal;</li>
+            <li>usar as relações entre os estados antes e depois;</li>
+            <li>identificar os regimes de operação de um bocal;</li>
+            <li>reconhecer a perda de pressão de estagnação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 8.</p></div>
+        </div>
+
+        <p>O choque normal é uma descontinuidade de espessura quase nula em que o escoamento passa de supersônico a subsônico. A energia se conserva, a entropia aumenta e a pressão de estagnação cai — e é essa perda que torna o choque indesejável em bocais e difusores.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>A descontinuidade</h3>
+<p>Um choque normal é uma descontinuidade de espessura molecular em que o escoamento passa de supersônico a subsônico. É adiabático — T₀ se conserva — mas fortemente irreversível: a pressão de estagnação cai e a entropia sobe.</p>
             <div class="formula"><span data-tex="Ma_2^2 = \frac{Ma_1^2 + \frac{2}{k-1}}{\frac{2k}{k-1}Ma_1^2 - 1}, \qquad \frac{P_2}{P_1} = \frac{1 + kMa_1^2}{1 + kMa_2^2}, \qquad T_{02} = T_{01}"></span></div>
             <div class="table-scroll">
             <table class="data">
@@ -326,51 +596,47 @@
               <strong>Onde isso aparece</strong>
               Bocais de turbinas a vapor e a gás, tubeiras de foguetes, entradas de ar de aviões supersônicos (difusores), válvulas de segurança e ejetores. Em todos, a mesma pergunta: qual é a razão de pressões e em que ponto o escoamento fica sônico.
             </div>
-          </div>
-        </details>
+
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Choque normal a Mach 2</div>
+          <p>Um escoamento de ar a M₁ = 2 atravessa um choque normal. Determine M₂ e as razões de propriedades.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="M_2 = \sqrt{\dfrac{1+0{,}2M_1^2}{1{,}4M_1^2-0{,}2}} = 0{,}577"></span>.</li>
+              <li><span data-tex-inline="p_2/p_1 = \dfrac{2{,}8M_1^2-0{,}4}{2{,}4} = 4{,}50"></span>.</li>
+              <li><span data-tex-inline="T_2/T_1 = 1{,}69"></span> e <span data-tex-inline="p_{02}/p_{01} = 0{,}72"></span>.</li>
+            </ol>
+            <p class="resposta">M₂ = 0,577 com pressão 4,5 vezes maior — e 28 % da pressão de estagnação perdidos no processo.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Depois do choque, M₂ < 1 sempre.</li>
+          <li>Pressão, temperatura e massa específica aumentam; a pressão de estagnação cai.</li>
+          <li>Para M₁ = 2: M₂ = 0,577, p₂/p₁ = 4,50, T₂/T₁ = 1,69 e p₀₂/p₀₁ = 0,72.</li>
+          <li>Num bocal, a posição do choque depende da contrapressão.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a pressão de estagnação cai no choque?</summary><p>Porque o processo é irreversível: há geração de entropia, e com ela perda de capacidade de realizar trabalho.</p></details>
+          <details><summary>O choque pode ocorrer em escoamento subsônico?</summary><p>Não: ele só existe quando o escoamento chega supersônico.</p></details>
+        </div>
       </section>
 
       <section class="section" id="simuladores">
-        <h2>Simuladores</h2>
-        <p>Sete modelos interativos e animados, com fórmulas e resolução passo a passo. As propriedades do R-134a e da água vêm das tabelas do Çengel (6ª ed.), as mesmas das listas, e cada modelo foi conferido contra os exemplos resolvidos do livro.</p>
-
-        <div id="sim-rankine" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Suba a pressão da caldeira mantendo a temperatura: a eficiência aumenta, mas o título na saída da turbina cai abaixo de 88 %. Agora escolha a configuração com reaquecimento e veja o título voltar ao seguro.
-        </div>
-
-        <div id="sim-otto-diesel" class="sim"></div>
-
-        <div id="sim-brayton" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Com regenerador, aumente a razão de pressão: a partir de certo ponto o ar sai do compressor mais quente que a exaustão da turbina, e o regenerador passa a atrapalhar.
-        </div>
-
-        <div id="sim-refrigeracao" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          O exemplo 1 reproduz o Exemplo 11-1 do Çengel: COP ≈ 3,97. Suba a pressão do condensador para 1,4 MPa (exemplo 6, condensador sujo) e veja o COP despencar — é por isso que a serpentina atrás da geladeira precisa de ventilação.
-        </div>
-
-        <div id="sim-refrigeracao-ar" class="sim"></div>
-
-        <div id="sim-psicrometria" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          No exemplo 1, o ar sai a 14 °C mas a serpentina retirou 511 kJ/min — dos quais mais da metade foi para condensar água. Baixe a umidade de entrada para 40 % e veja o calor cair para menos da metade, com as mesmas temperaturas.
-        </div>
-
-        <div id="sim-bocal" class="sim"></div>
-        <div class="callout tip">
-          <strong>O que testar</strong>
-          Comece com a contrapressão perto de P₀ e desça devagar. Até a 1ª pressão crítica a vazão aumenta; depois ela congela no valor bloqueado e um choque normal aparece na garganta, andando para a saída à medida que a contrapressão cai.
-        </div>
+        <h2>Laboratório de simuladores</h2>
+        <p>Os quatro simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-refrigeracao"><small>Capítulo 4 · Refrigeração</small>Ciclo por compressão de vapor</a></li>
+          <li><a href="#sim-refrigeracao-ar"><small>Capítulo 5 · Ciclo a gás</small>Refrigeração a ar</a></li>
+          <li><a href="#sim-psicrometria"><small>Capítulo 7 · Psicrometria</small>Carta psicrométrica</a></li>
+          <li><a href="#sim-bocal"><small>Capítulo 8 · Compressível</small>Bocal convergente-divergente</a></li>
+        </ul>
       </section>
 
       <section class="section" id="formulario">
-        <h2>Formulário</h2>
+        <h2>Apêndice A — Formulário</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Grandeza</th><th>Expressão</th><th>Observação</th></tr></thead>
@@ -398,7 +664,7 @@
       </section>
 
       <section class="section" id="normas">
-        <h2>Normas técnicas</h2>
+        <h2>Apêndice B — Normas</h2>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th>Norma</th><th>Objeto</th><th>Onde entra</th></tr></thead>
@@ -419,13 +685,13 @@
       </section>
 
       <section class="section" id="simulado">
-        <h2>Simulado</h2>
+        <h2>Apêndice C — Simulado</h2>
         <p>30 questões sobre ciclos a vapor e a gás, refrigeração, misturas, psicrometria e escoamento compressível.</p>
         <div id="quiz" data-quiz="termodinamica-2"></div>
       </section>
 
       <section class="section" id="referencias">
-        <h2>Referências</h2>
+        <h2>Apêndice D — Referências</h2>
         <ul>
           <li><strong>ÇENGEL, Y. A.; BOLES, M. A.</strong> <em>Termodinâmica.</em> McGraw-Hill. — Capítulos 9 a 12, 13, 14 e 17; as tabelas do apêndice são as usadas nos simuladores.</li>
           <li><strong>MORAN, M. J.; SHAPIRO, H. N.</strong> <em>Princípios de Termodinâmica para Engenharia.</em> LTC. — Ciclos, psicrometria e escoamento compressível.</li>
@@ -455,8 +721,10 @@
 <script src="../js/core/glossario.js"></script>
 <script src="../js/core/plot.js"></script>
 <script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
 <script src="../js/sim/ciclos.js"></script>
 <script src="../js/sim/termodinamica-2.js"></script>
+<script src="../js/fig/termodinamica-2.js"></script>
 <script>
 /* glossário específico desta disciplina */
 if (window.Glossario) Glossario.definir({
@@ -504,6 +772,7 @@ if (window.Glossario) Glossario.definir({
 </script>
 <script src="../js/core/quiz.js"></script>
 <script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
 <!-- === Botao de volta ao portfolio - cole antes de </body> === -->
 <a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
    aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
