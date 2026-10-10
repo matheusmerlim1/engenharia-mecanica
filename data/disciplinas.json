@@ -474,13 +474,15 @@
       "temas": [
         "compósitos",
         "regra das misturas",
-        "CLT",
+        "lâmina ortotrópica",
+        "teoria clássica dos laminados",
         "Tsai-Hill",
-        "Tsai-Wu"
+        "Tsai-Wu",
+        "falha progressiva"
       ],
       "simuladores": true,
       "normas": true,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "mecanica-dos-fluidos-2",

@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macromecânica — Engenharia Mecânica</title>
+<meta name="description" content="Mecânica dos materiais compósitos: anisotropia, matrizes e reforços, interface, micromecânica, lâmina ortotrópica, matriz Q̄, teoria clássica dos laminados, tensões térmicas de cura e critérios de falha — com simuladores animados e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">7º período · Engenharia Mecânica</p>
+    <h1>Macromecânica</h1>
+    <p class="lead">Mecânica dos materiais compósitos: da fibra e da matriz até o laminado que vai para a peça. Este texto está organizado como um livro: onze capítulos em sequência, da anisotropia à falha progressiva, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
+    <div class="btn-row">
+      <span class="tag accent">11 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">37 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">12 figuras interativas</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho é de dentro para fora: primeiro os constituintes e a interface entre eles, depois a lâmina como material contínuo, e por fim o laminado — que é onde o projeto realmente acontece. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: projetar o material junto com a peça</h2>
+        <p>Com metal, o engenheiro escolhe um material de um catálogo e dimensiona a geometria. Com compósito, as duas coisas acontecem ao mesmo tempo: a escolha da fibra, da matriz, da fração volumétrica, das orientações e da ordem de empilhamento é parte do projeto estrutural. O curso existe para tornar essa liberdade calculável.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Por que usar compósito?</td><td>Anisotropia e propriedades específicas</td><td>1</td></tr>
+            <tr><td>Que matriz e que fibra?</td><td>Famílias, cura e formas de reforço</td><td>2 e 3</td></tr>
+            <tr><td>Como a carga entra na fibra?</td><td>Interface e comprimento crítico</td><td>4</td></tr>
+            <tr><td>Quanto vale a lâmina?</td><td>Regra das misturas e Halpin-Tsai</td><td>5</td></tr>
+            <tr><td>Como ela responde fora do eixo?</td><td>Lâmina ortotrópica e matriz Q̄</td><td>6 e 7</td></tr>
+            <tr><td>E o laminado inteiro?</td><td>Matrizes A, B e D</td><td>8</td></tr>
+            <tr><td>Que tensão já existe na peça?</td><td>Tensões térmicas de cura</td><td>9</td></tr>
+            <tr><td>Quando falha?</td><td>Critérios e falha progressiva</td><td>10 e 11</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução; nas figuras e nos simuladores, mude a fração de fibra, o ângulo da lâmina e o empilhamento para ver as matrizes e os envelopes reagirem; termine com o "Teste-se" e com as questões do capítulo. Os exemplos 8.1, 9.1 e 11.1 tratam do mesmo laminado [0/90]s — acompanhe-o do cálculo das matrizes até a ruptura.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Os constituintes" data-topicos="compositos">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Por que compósitos: a anisotropia muda tudo</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar o que distingue um material anisotrópico;</li>
+            <li>contar as constantes independentes de uma lâmina;</li>
+            <li>comparar compósito e metal por propriedade específica;</li>
+            <li>reconhecer onde o compósito compensa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Mecânica dos Materiais I (estado plano de tensão) e Ciência dos Materiais.</p></div>
+        </div>
+
+        <p>Macromecânica dos compósitos é a disciplina que ensina a tratar como material contínuo algo que, de perto, é um arranjo de fibras dentro de um polímero. O ponto de partida é a propriedade que todo o resto deriva: o material não responde igual em todas as direções — e isso não é um defeito a ser corrigido, é a variável de projeto.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Duas constantes contra quatro</h3>
+        <p>Um metal é indiferente à direção: o módulo medido ao longo da barra é o mesmo medido de través. Um compósito unidirecional não é — e essa única diferença reorganiza toda a mecânica. Rigidez, resistência, dilatação e condutividade passam a depender da direção, e o projeto deixa de ser escolher um material para ser <strong>projetar o material junto com a peça</strong>.</p>
+        <div class="formula"><span data-tex="\text{is\'otropo: } 2 \text{ constantes} \qquad \text{ortotr\'opico no plano: } 4 \text{ constantes } (E_1,\ E_2,\ \nu_{12},\ G_{12})"></span><span class="where">é por isso que a lâmina precisa de quatro ensaios, não de dois</span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Propriedade</th><th>Aço estrutural</th><th>Carbono/epóxi unidirecional</th></tr></thead>
+          <tbody>
+            <tr><td>Módulo na direção da fibra E₁</td><td>200 GPa</td><td>130 a 180 GPa</td></tr>
+            <tr><td>Módulo transversal E₂</td><td>200 GPa</td><td>8 a 10 GPa</td></tr>
+            <tr><td>Resistência à tração na fibra</td><td>400 a 700 MPa</td><td>1500 a 2500 MPa</td></tr>
+            <tr><td>Resistência transversal</td><td>igual</td><td>40 a 70 MPa</td></tr>
+            <tr><td>Massa específica</td><td>7850 kg/m³</td><td>1550 kg/m³</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>O que a anisotropia cobra</h3>
+
+        <p>A coluna da direita mostra os dois lados do negócio. Na direção da fibra o compósito ganha do aço em resistência e empata em rigidez com um terço da massa; na direção transversal ele é vinte vezes mais fraco. Nenhuma peça real é carregada em uma só direção, e é por isso que praticamente não se usa lâmina isolada: usa-se laminado, empilhando camadas em orientações diferentes.</p>
+        <div class="callout warn">
+          <strong>A resistência transversal é a da matriz</strong>
+          Transversalmente, quem carrega é o polímero e a interface — a fibra só atrapalha, concentrando tensão. Por isso a resistência transversal de um unidirecional é da ordem da resistência da matriz pura, e qualquer carga fora da direção da fibra precisa ser levada a sério no projeto.
+        </div>
+
+        <h3 id="s1-3"><span class="num">1.3</span>Onde o compósito compensa</h3>
+
+        <p>Compósito não é material barato: ele compensa quando a massa vale dinheiro (aeronáutica, pás eólicas, veículos de competição), quando o ambiente é agressivo (tubulação e vasos em meio corrosivo) ou quando a peça pode ser feita em uma só operação, substituindo uma montagem inteira. Fora dessas três situações, o metal costuma ganhar.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Isotrópico tem 2 constantes; a lâmina ortotrópica no plano tem 4: E₁, E₂, ν₁₂ e G₁₂.</li>
+          <li>Na direção da fibra o compósito supera o aço com um terço da massa.</li>
+          <li>Transversalmente ele é dez a vinte vezes mais fraco: quem carrega é a matriz.</li>
+          <li>Compósito compensa quando massa, corrosão ou integração de peças pesam na conta.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que praticamente não se usa lâmina isolada?</summary><p>Porque ela só é forte numa direção; qualquer carga fora dela encontra a resistência da matriz. Usa-se laminado, com camadas em várias orientações.</p></details>
+          <details><summary>Rigidez específica alta significa o quê na prática?</summary><p>Que, para a mesma rigidez, a peça pesa menos — e em estrutura de aeronave ou pá eólica isso se converte diretamente em carga paga ou em energia gerada.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Os constituintes" data-topicos="matrizes">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Matrizes poliméricas e a cura</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir termofixas de termoplásticas;</li>
+            <li>escolher a matriz pela temperatura de serviço e pelo meio;</li>
+            <li>explicar o ponto de gel e o ciclo de cura;</li>
+            <li>relacionar vazios e resistência interlaminar.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e Ciência dos Materiais (polímeros).</p></div>
+        </div>
+
+        <p>Quem olha um laminado vê fibra; quem fabrica, vê resina. A matriz transfere carga entre as fibras, protege o reforço, define a temperatura máxima de uso e — isso costuma surpreender — determina o processo de fabricação inteiro, porque a viscosidade e a janela de cura são o que permite ou impede cada técnica.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>O que a matriz decide</h3>
+        <p>A matriz não carrega quase nada na direção da fibra, mas decide quase tudo o mais: temperatura máxima de serviço, resistência transversal e ao cisalhamento, tenacidade, absorção de água e, principalmente, como a peça é fabricada. Escolher a matriz é escolher o processo.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Família</th><th>Exemplos</th><th>Característica</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Termofixas</strong></td><td>Epóxi, poliéster, viniléster, fenólica</td><td>Curam por reação irreversível; baixa viscosidade antes da cura, o que molha bem a fibra</td></tr>
+            <tr><td><strong>Termoplásticas</strong></td><td>PEEK, PPS, PA, PP</td><td>Fundem e solidificam reversivelmente; mais tenazes, recicláveis, mas viscosas e difíceis de impregnar</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Matriz</th><th>Temperatura de serviço</th><th>Onde se usa</th></tr></thead>
+          <tbody>
+            <tr><td>Poliéster</td><td>até ~80 °C</td><td>Náutica, tanques, telhas — barato e fácil</td></tr>
+            <tr><td>Viniléster</td><td>até ~100 °C</td><td>Meio corrosivo: tubulação e vasos</td></tr>
+            <tr><td>Epóxi</td><td>120 a 180 °C</td><td>Estrutural: aeronáutica, eólica, esportivo</td></tr>
+            <tr><td>Fenólica</td><td>até ~200 °C</td><td>Interiores de aeronave: baixa emissão de fumaça</td></tr>
+            <tr><td>PEEK</td><td>acima de 250 °C</td><td>Alta performance, peça de alto valor</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <h3 id="s2-2"><span class="num">2.2</span>A cura e o ponto de gel</h3>
+
+        <p>Numa termofixa, a cura é uma polimerização que vai ligando as cadeias até formar uma rede tridimensional. Enquanto o grau de cura é baixo a resina escoa e molha o reforço; passado o <strong>ponto de gel</strong>, a rede percola e o material deixa de fluir, mesmo sem estar totalmente curado. Toda a conformação precisa acontecer antes disso.</p>
+        <div class="formula"><span data-tex="\frac{d\alpha}{dt} = K(T)\,f(\alpha), \qquad K(T) = A\,e^{-E_a/RT}"></span><span class="where">a cinética de cura é termicamente ativada: aquecer acelera, mas também adianta o gel</span></div>
+        <div class="callout tip">
+          <strong>Por que o ciclo de cura tem patamares</strong>
+          O primeiro patamar baixa a viscosidade e deixa a resina escoar e sair o ar; o segundo, mais quente, completa a reticulação e fixa a temperatura de transição vítrea. Subir direto para a temperatura final gelificaria a resina antes de ela molhar o reforço — e o laminado sairia com vazios.
+        </div>
+        <div class="callout warn">
+          <strong>Vazios custam caro</strong>
+          Cada 1 % de vazios reduz a resistência ao cisalhamento interlaminar em torno de 7 %. Projeto aeronáutico costuma exigir menos de 2 % — e é por isso que se usa autoclave, com pressão durante a cura.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Termofixa cura por reação irreversível; termoplástica funde e solidifica.</li>
+          <li>Poliéster para náutica, viniléster para meio corrosivo, epóxi para estrutura.</li>
+          <li>Antes do ponto de gel a resina escoa; depois dele, não há mais conformação possível.</li>
+          <li>Cada 1 % de vazios custa cerca de 7 % da resistência interlaminar.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o ciclo de cura tem mais de um patamar?</summary><p>O primeiro deixa a resina escoar e molhar o reforço com baixa viscosidade; o segundo completa a reticulação. Ir direto ao patamar alto gelificaria a resina antes da impregnação.</p></details>
+          <details><summary>Por que termoplástico é difícil de impregnar?</summary><p>Porque sua viscosidade no estado fundido é ordens de grandeza maior que a de uma termofixa não curada — daí os processos de consolidação sob pressão e temperatura.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Os constituintes" data-topicos="reforcos">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Reforços: fibras e formas de apresentação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar vidro, carbono e aramida;</li>
+            <li>explicar o efeito do diâmetro na resistência;</li>
+            <li>escolher a forma de apresentação do reforço;</li>
+            <li>reconhecer o custo de rigidez do tecido.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>A fibra é o componente que carrega, e ela consegue isso por um motivo estatístico antes de qualquer outro: quanto menor o volume de material, menor a chance de conter um defeito grande o bastante para iniciar a fratura. Por isso a resistência de um filamento de vidro é dez vezes a de uma placa do mesmo vidro.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Por que a fibra é fina</h3>
+        <p>A fibra é quem carrega. Ela é fina de propósito: quanto menor o diâmetro, menor a chance de conter um defeito grande, e maior a resistência efetiva — o mesmo vidro que quebra fácil em placa resiste a mais de 2 GPa em filamento de 10 µm.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Fibra</th><th>E (GPa)</th><th>Resistência (MPa)</th><th>ρ (kg/m³)</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Vidro E</td><td>72</td><td>2000 a 3500</td><td>2540</td><td>Barata, isolante, a mais usada em volume</td></tr>
+            <tr><td>Vidro S</td><td>86</td><td>4500</td><td>2490</td><td>Mais cara, usada em balística e eólica</td></tr>
+            <tr><td>Carbono padrão</td><td>230</td><td>3500</td><td>1760</td><td>O compromisso usual em estrutura</td></tr>
+            <tr><td>Carbono alto módulo</td><td>390</td><td>2500</td><td>1900</td><td>Rigidez acima de tudo; mais frágil</td></tr>
+            <tr><td>Aramida</td><td>124</td><td>3600</td><td>1440</td><td>Tenaz, excelente em impacto; fraca em compressão</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Formas de apresentação</h3>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Forma</th><th>O que é</th><th>Consequência</th></tr></thead>
+          <tbody>
+            <tr><td>Roving / tow</td><td>Feixe contínuo de filamentos</td><td>Filament winding, pultrusão</td></tr>
+            <tr><td>Tecido plano</td><td>Fios cruzados a 0° e 90°</td><td>Fácil de manusear; a ondulação do fio reduz a rigidez</td></tr>
+            <tr><td>Unidirecional</td><td>Fibras paralelas, costuradas</td><td>Máximo desempenho na direção da fibra</td></tr>
+            <tr><td>Manta (CSM)</td><td>Fibras curtas aleatórias</td><td>Quase isotrópica no plano, baixo desempenho</td></tr>
+            <tr><td>Prepreg</td><td>Reforço já impregnado e pré-catalisado</td><td>Fração de fibra controlada; exige refrigeração e autoclave</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Tecido não é unidirecional cruzado</strong>
+          No tecido, cada fio passa por cima e por baixo do outro: essa ondulação faz a fibra trabalhar levemente fora do eixo e derruba a rigidez em 10 a 20 % em relação a duas camadas unidirecionais a 0° e 90°. Em compensação, o tecido drapeja melhor em superfície curva e é muito mais fácil de manusear.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Vidro E é barata e isolante; carbono dá rigidez; aramida resiste a impacto.</li>
+          <li>Carbono alto módulo troca resistência por rigidez e fica mais frágil.</li>
+          <li>Unidirecional rende mais; tecido drapeja melhor e custa 10 a 20 % de rigidez.</li>
+          <li>Prepreg garante fração de fibra, mas exige refrigeração e autoclave.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que aramida é ruim em compressão?</summary><p>A fibra é altamente orientada e sofre microflambagem das cadeias sob compressão; a resistência à compressão fica em torno de um quinto da de tração.</p></details>
+          <details><summary>Quando a manta de fibras curtas ainda faz sentido?</summary><p>Quando se quer comportamento quase isotrópico no plano e custo baixo — telhas, carenagens, peças não estruturais.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — Os constituintes" data-topicos="interface">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. A interface e o comprimento crítico</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar como a carga entra na fibra;</li>
+            <li>calcular o comprimento crítico;</li>
+            <li>relacionar razão de aspecto e desempenho;</li>
+            <li>reconhecer o papel do agente de acoplamento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 3.</p></div>
+        </div>
+
+        <p>Fibra e matriz não trabalham juntas por mágica: a carga entra na fibra pelas laterais, por cisalhamento na interface. Essa constatação simples explica de uma vez por que fibra curta rende pouco, por que o tratamento superficial da fibra é decisivo e por que a delaminação é o modo de falha que mais assusta.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>A carga passa por cisalhamento</h3>
+        <p>Fibra e matriz só funcionam juntas se a carga passar de uma para a outra, e essa passagem acontece por <strong>cisalhamento na interface</strong>. Numa fibra isolada dentro da matriz tracionada, a tensão na fibra é nula nas duas pontas e cresce em direção ao meio: as extremidades não carregam nada.</p>
+        <div class="formula"><span data-tex="\frac{l_c}{d} = \frac{\sigma_f}{2\,\tau_i}"></span><span class="where">comprimento crítico: abaixo dele a fibra escorrega antes de romper</span></div>
+        <p>Se a fibra for mais curta que <span data-tex-inline="l_c"></span>, ela nunca chega à sua resistência: a interface cede primeiro e a fibra é simplesmente arrancada. É por isso que compósito de fibra curta rende muito menos que o contínuo — e por isso que a razão de aspecto é o parâmetro que o processo precisa preservar.</p>
+
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>Molhabilidade e agentes de acoplamento</h3>
+
+        <p>A interface se forma durante a impregnação, e ela depende de a resina molhar a fibra. O vidro recebe um <strong>agente de acoplamento</strong> à base de silano, que faz ponte química entre o óxido da superfície e a resina; o carbono recebe tratamento oxidativo e um <em>size</em> compatível com a matriz escolhida. Trocar a matriz sem trocar o tratamento da fibra costuma custar metade da resistência interlaminar.</p>
+        <div class="callout warn">
+          <strong>A interface é o elo mais fraco em cisalhamento</strong>
+          Delaminação, falha interlaminar e degradação por umidade começam quase sempre na interface, não na fibra nem na matriz. É ela que o ensaio de cisalhamento interlaminar (ILSS) mede, e é ela que a água atacará ao longo dos anos.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Comprimento crítico de uma fibra de carbono</div>
+          <p>Uma fibra de carbono de 7 µm de diâmetro, com resistência de 3500 MPa, está numa matriz cuja resistência ao cisalhamento interfacial é de 50 MPa. Qual o comprimento crítico?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="l_c/d = \sigma_f/(2\tau_i) = 3500/(2\times50)"></span>.</li>
+              <li>l_c/d = 35.</li>
+              <li><span data-tex-inline="l_c = 35 \times 0{,}007"></span> mm.</li>
+              <li>l_c = 0,245 mm.</li>
+            </ol>
+            <p class="resposta">Apenas 0,245 mm — e é isso que explica o sucesso do compósito de fibra contínua. Uma fibra de 3 mm já tem mais de dez vezes o comprimento crítico e trabalha quase com toda a sua resistência; abaixo de 0,245 mm ela seria arrancada sem nunca romper.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A tensão na fibra é nula nas pontas e cresce para o meio.</li>
+          <li><span data-tex-inline="l_c/d = \sigma_f/2\tau_i"></span>: abaixo disso a fibra é arrancada em vez de romper.</li>
+          <li>Agentes de acoplamento (silanos, no vidro) fazem a ponte química fibra-matriz.</li>
+          <li>A interface é o elo fraco em cisalhamento e o caminho da degradação por umidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que fibra curta rende muito menos?</summary><p>Porque boa parte do comprimento é usada só para transferir carga: a fibra nunca atinge sua resistência, e o compósito falha por arrancamento.</p></details>
+          <details><summary>O que o ensaio de ILSS mede?</summary><p>A resistência ao cisalhamento interlaminar — na prática, a qualidade da interface e da impregnação.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Da fibra à lâmina" data-topicos="micromecanica">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Micromecânica: a regra das misturas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular E₁, E₂, ν₁₂ e G₁₂ a partir dos constituintes;</li>
+            <li>entender por que E₂ não segue a regra das misturas;</li>
+            <li>usar Halpin-Tsai como estimativa intermediária;</li>
+            <li>relacionar fração de fibra, massa e vazios.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 4.</p></div>
+        </div>
+
+        <p>Até aqui o compósito foi descrito qualitativamente. A micromecânica fecha a conta: dadas as propriedades dos constituintes e quanto há de cada um, ela entrega as quatro constantes da lâmina. Duas delas saem quase exatas de um raciocínio de molas; as outras duas exigem cuidado, porque a mistura em série é dominada pelo componente mais flexível.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Molas em paralelo e molas em série</h3>
+        <p>A micromecânica responde a uma pergunta direta: dadas as propriedades da fibra, da matriz e a fração de cada uma, quanto vale a lâmina? Os dois casos extremos têm solução exata e são o que se usa na prática — molas em paralelo na direção da fibra, molas em série na direção transversal.</p>
+        <div class="formula"><span data-tex="E_1 = E_f V_f + E_m(1-V_f) \qquad \nu_{12} = \nu_f V_f + \nu_m (1-V_f)"></span><span class="where">regra das misturas: vale muito bem para E₁ e para ν₁₂</span></div>
+        <div class="formula"><span data-tex="\frac{1}{E_2} = \frac{V_f}{E_f} + \frac{1-V_f}{E_m} \qquad \frac{1}{G_{12}} = \frac{V_f}{G_f} + \frac{1-V_f}{G_m}"></span><span class="where">regra inversa: é um limite inferior, costuma subestimar E₂</span></div>
+
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Por que E₂ não obedece à regra das misturas</h3>
+
+        <p>Na direção da fibra, fibra e matriz se deformam igual e as rigidezes somam: a regra das misturas é quase exata. Transversalmente, as duas fases veem a mesma tensão e as flexibilidades é que somam — e como a matriz é cem vezes mais flexível, ela domina a soma. O resultado é que E₂ fica rastejando perto do valor da matriz até frações de fibra muito altas.</p>
+        <div class="formula"><span data-tex="E_2 = E_m\,\frac{1+\xi\eta V_f}{1-\eta V_f}, \qquad \eta = \frac{E_f/E_m - 1}{E_f/E_m + \xi}"></span><span class="where">Halpin-Tsai, com ξ ≈ 2 para E₂ e ξ ≈ 1 para G₁₂ — fica entre os dois limites</span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Propriedades de uma lâmina de vidro-E/epóxi</div>
+          <p>Calcule E₁, E₂, ν₁₂, G₁₂ e a massa específica de uma lâmina com V_f = 0,60. Fibra: E_f = 72 GPa, G_f = 30 GPa, ν_f = 0,22, ρ_f = 2540 kg/m³. Matriz: E_m = 3,5 GPa, G_m = 1,3 GPa, ν_m = 0,35, ρ_m = 1200 kg/m³.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="E_1 = 0{,}60(72) + 0{,}40(3{,}5) = 44{,}6"></span> GPa.</li>
+              <li><span data-tex-inline="1/E_2 = 0{,}60/72 + 0{,}40/3{,}5 \Rightarrow E_2 = 8{,}16"></span> GPa (limite inferior).</li>
+              <li>Por Halpin-Tsai com ξ = 2: E₂ = 14,9 GPa — o ensaio costuma dar entre 10 e 14 GPa.</li>
+              <li><span data-tex-inline="\nu_{12} = 0{,}272"></span>; <span data-tex-inline="G_{12} = 3{,}05"></span> GPa; <span data-tex-inline="\rho_c = 2004"></span> kg/m³.</li>
+            </ol>
+            <p class="resposta">E₁ = 44,6 GPa e E₂ entre 8 e 15 GPa: a razão E₁/E₂ passa de 3 só com vidro, e com carbono passa de 15. A regra inversa e Halpin-Tsai limitam o valor por baixo e por cima; para projeto, o que vale é o ensaio.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-3"><span class="num">5.3</span>Fração volumétrica, massa e vazios</h3>
+
+        <div class="formula"><span data-tex="\rho_c = \rho_f V_f + \rho_m V_m \qquad V_f + V_m + V_v = 1"></span><span class="where">a fração de vazios V_v aparece na conta de massa e na de resistência</span></div>
+        <div class="callout tip">
+          <strong>Quanto de fibra cabe</strong>
+          Empacotamento hexagonal perfeito daria V_f = 0,907; na prática, laminação manual chega a 0,35–0,45, infusão a 0,50–0,55 e prepreg em autoclave a 0,55–0,65. Acima disso faltam caminhos para a resina e aparecem vazios — o ganho de rigidez não compensa a perda de resistência interlaminar.
+        </div>
+        <div class="callout warn">
+          <strong>Com pouca fibra, a fibra atrapalha</strong>
+          Abaixo de uma fração crítica, as fibras rompem antes da matriz e o que sobra é menos matriz para carregar a mesma carga: o compósito fica mais fraco que a matriz pura. A fração crítica costuma ficar entre 1 e 10 %, o que não é problema em laminado estrutural, mas é decisivo em compósitos de fibra curta.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.2</span>Quanto Halpin-Tsai muda a estimativa</div>
+          <p>Para a mesma lâmina de vidro-E/epóxi do exemplo 5.1 (V_f = 0,60), compare a estimativa de E₂ pela regra inversa com a de Halpin-Tsai, usando ξ = 2.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\eta = \dfrac{E_f/E_m - 1}{E_f/E_m + \xi} = \dfrac{20{,}57-1}{20{,}57+2} = 0{,}867"></span>.</li>
+              <li><span data-tex-inline="E_2 = E_m\dfrac{1+\xi\eta V_f}{1-\eta V_f} = 3{,}5\dfrac{1+2(0{,}867)(0{,}60)}{1-0{,}867(0{,}60)}"></span>.</li>
+              <li>E₂ = 14,9 GPa, contra 8,16 GPa da regra inversa.</li>
+              <li>A mesma conta para G₁₂ com ξ = 1 dá 4,48 GPa, contra 3,05 GPa da regra inversa.</li>
+            </ol>
+            <p class="resposta">Halpin-Tsai entrega quase o dobro da regra inversa — 14,9 contra 8,16 GPa. O ensaio costuma cair entre os dois valores, mais perto de Halpin-Tsai: a regra inversa é um limite inferior rigoroso, válido só se fibra e matriz vissem exatamente a mesma tensão, o que o arranjo real não cumpre.</p>
+          </details>
+        </div>
+
+        <div id="sim-micromecanica" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Varie a fração de fibra e compare as duas estimativas de E₂: a regra inversa quase não reage, Halpin-Tsai sobe antes. E₁, enquanto isso, segue uma reta.
+        </div>
+
+        <div class="fig-host" id="fig-5-2"></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.3</span>A fração crítica de fibra</div>
+          <p>Uma fibra de vidro rompe a 2500 MPa; a matriz resiste a 70 MPa e, na deformação em que a fibra rompe, está carregando 40 MPa. Abaixo de que fração de fibra o compósito fica mais fraco que a matriz pura?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Depois que as fibras rompem, resta <span data-tex-inline="\sigma_{m,u}(1-V_f)"></span>; antes disso, o compósito vale <span data-tex-inline="\sigma_{f,u}V_f + \sigma_m^{*}(1-V_f)"></span>.</li>
+              <li>Igualando as duas: <span data-tex-inline="V_{crit} = \dfrac{\sigma_{m,u}-\sigma_m^{*}}{\sigma_{f,u}+\sigma_{m,u}-\sigma_m^{*}} = \dfrac{30}{2530}"></span>.</li>
+              <li>V_crit = 1,19 %.</li>
+              <li>Para o compósito simplesmente igualar a matriz pura, é preciso V_f = 2,8 %.</li>
+            </ol>
+            <p class="resposta">Com menos de 1,2 % de fibra o compósito é pior que a resina sozinha: as fibras rompem primeiro e o que resta é menos matriz carregando a mesma carga. Em laminado estrutural, com V_f acima de 0,5, isso é irrelevante — mas em compósito de fibra curta e em concreto com fibras a conta decide o projeto.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="E_1 = E_fV_f + E_m(1-V_f)"></span> e <span data-tex-inline="\nu_{12} = \nu_fV_f + \nu_m(1-V_f)"></span>.</li>
+          <li>A regra inversa dá o limite inferior de E₂ e de G₁₂.</li>
+          <li>Halpin-Tsai, com ξ ≈ 2, fica entre os limites e se aproxima do medido.</li>
+          <li>V_f prático: 0,35–0,45 manual, 0,50–0,55 por infusão, 0,55–0,65 em prepreg.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que E₁ é confiável e E₂ não?</summary><p>Em paralelo, as rigidezes somam e a fibra domina — o modelo é quase exato. Em série, somam-se as flexibilidades e a matriz domina; a geometria real do empacotamento passa a importar.</p></details>
+          <details><summary>Aumentar V_f sempre melhora?</summary><p>Até certo ponto. Acima da faixa prática faltam caminhos para a resina, aparecem vazios e a resistência interlaminar cai mais do que a rigidez sobe.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Da fibra à lâmina" data-topicos="lamina">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. A lâmina ortotrópica</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>escrever a relação tensão-deformação da lâmina;</li>
+            <li>aplicar a relação de reciprocidade entre ν₁₂ e ν₂₁;</li>
+            <li>obter a matriz de rigidez Q;</li>
+            <li>não confundir os dois coeficientes de Poisson.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5 e Mecânica dos Materiais (estado plano).</p></div>
+        </div>
+
+        <p>Com as quatro constantes na mão, a lâmina pode ser tratada como um material contínuo. A relação entre tensão e deformação tem a mesma estrutura do caso isotrópico, com uma diferença importante: nos eixos do material, tração e cisalhamento continuam desacoplados — e é só por isso que vale a pena escrever tudo nesses eixos antes de girar.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Quatro constantes e a reciprocidade</h3>
+        <p>Resolvidas as propriedades, a lâmina pode ser tratada como um material homogêneo — contanto que se aceite que ele é ortotrópico. No estado plano de tensão, isso significa quatro constantes independentes e uma relação tensão-deformação que não mistura tração com cisalhamento <em>nos eixos do material</em>.</p>
+        <div class="formula"><span data-tex="\begin{Bmatrix}\varepsilon_1\\ \varepsilon_2\\ \gamma_{12}\end{Bmatrix} = \begin{bmatrix} 1/E_1 & -\nu_{21}/E_2 & 0\\ -\nu_{12}/E_1 & 1/E_2 & 0 \\ 0&0& 1/G_{12}\end{bmatrix}\begin{Bmatrix}\sigma_1\\ \sigma_2\\ \tau_{12}\end{Bmatrix}"></span><span class="where">matriz de flexibilidade S nos eixos do material</span></div>
+        <div class="formula"><span data-tex="\frac{\nu_{12}}{E_1} = \frac{\nu_{21}}{E_2} \qquad\Rightarrow\qquad \nu_{21} = \nu_{12}\frac{E_2}{E_1}"></span><span class="where">relação de reciprocidade: ν₂₁ é bem menor que ν₁₂</span></div>
+
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Da flexibilidade para a rigidez</h3>
+
+        <div class="formula"><span data-tex="Q_{11} = \frac{E_1}{1-\nu_{12}\nu_{21}},\quad Q_{22} = \frac{E_2}{1-\nu_{12}\nu_{21}},\quad Q_{12} = \frac{\nu_{12}E_2}{1-\nu_{12}\nu_{21}},\quad Q_{66} = G_{12}"></span><span class="where">Q = S⁻¹ — é a matriz Q que entra na teoria dos laminados</span></div>
+        <div class="callout note">
+          <strong>Os dois coeficientes de Poisson</strong>
+          ν₁₂ é a contração transversal quando se traciona na fibra: vale 0,25 a 0,35, como num metal. ν₂₁ é a contração na fibra quando se traciona transversalmente — e a fibra não deixa contrair, de modo que ν₂₁ sai dez a vinte vezes menor. Trocar um pelo outro é o erro mais comum nas contas de laminado.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>A matriz de rigidez da lâmina</div>
+          <p>Monte a matriz Q da lâmina de carbono/epóxi T300: E₁ = 134 GPa, E₂ = 7,0 GPa, ν₁₂ = 0,25 e G₁₂ = 4,2 GPa.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Reciprocidade: <span data-tex-inline="\nu_{21} = \nu_{12}E_2/E_1 = 0{,}25(7{,}0)/134 = 0{,}0131"></span>.</li>
+              <li><span data-tex-inline="\Delta = 1-\nu_{12}\nu_{21} = 0{,}99674"></span> — menos de 0,4 % de correção.</li>
+              <li><span data-tex-inline="Q_{11} = E_1/\Delta = 134{,}4"></span>; <span data-tex-inline="Q_{22} = E_2/\Delta = 7{,}02"></span> GPa.</li>
+              <li><span data-tex-inline="Q_{12} = \nu_{12}E_2/\Delta = 1{,}76"></span> GPa e <span data-tex-inline="Q_{66} = G_{12} = 4{,}2"></span> GPa.</li>
+            </ol>
+            <p class="resposta">Note como Δ é praticamente 1: ao contrário do caso isotrópico, em que 1 − ν² vale 0,91, aqui a correção é desprezível porque ν₂₁ é muito pequeno. E repare na razão Q₁₁/Q₂₂ = 19: é ela que o laminado terá de administrar.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Quatro constantes independentes: E₁, E₂, ν₁₂ e G₁₂.</li>
+          <li>Reciprocidade: <span data-tex-inline="\nu_{12}/E_1 = \nu_{21}/E_2"></span>.</li>
+          <li>Q = S⁻¹, com <span data-tex-inline="Q_{11} = E_1/(1-\nu_{12}\nu_{21})"></span>.</li>
+          <li>Nos eixos do material não há acoplamento tração-cisalhamento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>ν₂₁ pode ser muito menor que ν₁₂?</summary><p>Deve ser: a reciprocidade impõe ν₂₁ = ν₁₂E₂/E₁, e como E₂ é muito menor, ν₂₁ sai dez a vinte vezes menor.</p></details>
+          <details><summary>O que significa Q₆₆ = G₁₂?</summary><p>Que o cisalhamento no plano é desacoplado das tensões normais quando se trabalha nos eixos do material.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Da fibra à lâmina" data-topicos="foraeixo">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. A lâmina fora de eixo e a matriz Q̄</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>transformar Q para os eixos da peça;</li>
+            <li>calcular o módulo aparente E_x;</li>
+            <li>explicar o acoplamento tração-cisalhamento;</li>
+            <li>justificar a tolerância apertada de orientação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 6 e transformação de tensões.</p></div>
+        </div>
+
+        <p>A carga chega nos eixos da peça, não nos da fibra. A transformação que leva Q para Q̄ é mecânica de materiais pura — a mesma rotação de tensores do círculo de Mohr —, mas o resultado tem uma consequência sem paralelo em material isotrópico: fora dos eixos, puxar faz distorcer.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Girar a lâmina muda tudo</h3>
+        <p>A carga raramente chega na direção da fibra. Para escrever a lâmina nos eixos da peça é preciso girar o tensor — e o resultado tem uma consequência que não existe em material isotrópico: fora dos eixos do material, tração passa a produzir <strong>cisalhamento</strong>.</p>
+        <div class="formula"><span data-tex="\bar{Q} = T^{-1}\,Q\,T^{-T}, \qquad T = \begin{bmatrix} c^2 & s^2 & 2sc \\ s^2 & c^2 & -2sc \\ -sc & sc & c^2-s^2\end{bmatrix}"></span><span class="where">c = cos θ, s = sen θ · θ medido da direção da fibra para o eixo x</span></div>
+        <div class="formula"><span data-tex="\frac{1}{E_x} = \frac{c^4}{E_1} + \left(\frac{1}{G_{12}} - \frac{2\nu_{12}}{E_1}\right)s^2c^2 + \frac{s^4}{E_2}"></span><span class="where">o módulo aparente na direção da carga</span></div>
+
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>O que aparece fora dos eixos</h3>
+
+        <p>Em θ = 0° e 90° a lâmina continua ortotrópica nos eixos da peça e os termos <span data-tex-inline="\bar Q_{16}"></span> e <span data-tex-inline="\bar Q_{26}"></span> são nulos. Em qualquer outro ângulo eles aparecem, e com eles o <strong>acoplamento tração-cisalhamento</strong>: puxar a lâmina faz com que ela também distorça. O efeito é máximo perto de 45°, que é justamente o ângulo em que a lâmina resiste melhor ao cisalhamento.</p>
+        <div class="callout warn">
+          <strong>A queda de E_x é brutal nos primeiros graus</strong>
+          Girar a fibra 15° em relação à carga já derruba o módulo a cerca de um terço. É por isso que tolerância de orientação em laminação é apertada — alguns graus de desalinhamento custam rigidez que nenhum ajuste de espessura recupera barato.
+        </div>
+        <div class="callout tip">
+          <strong>Por que ±45° aparece em todo laminado</strong>
+          O par ±45° é o que carrega cisalhamento no plano, e colocá-lo aos pares cancela o acoplamento de uma camada com o da outra. Um laminado de projeto quase sempre mistura 0° (carga principal), ±45° (cisalhamento) e 90° (carga transversal e estabilidade dimensional).
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Módulo aparente de uma lâmina girada</div>
+          <p>Uma lâmina de carbono/epóxi T300 tem E₁ = 134 GPa, E₂ = 7,0 GPa, ν₁₂ = 0,25 e G₁₂ = 4,2 GPa. Calcule E_x a 0°, 15° e 45°.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="1/E_x = c^4/E_1 + (1/G_{12} - 2\nu_{12}/E_1)s^2c^2 + s^4/E_2"></span>.</li>
+              <li>A 0°: E_x = E₁ = 134 GPa.</li>
+              <li>A 15°: E_x = 45,9 GPa.</li>
+              <li>A 45°: E_x = 10,4 GPa.</li>
+            </ol>
+            <p class="resposta">Quinze graus de giro derrubam o módulo a 34 % do valor original, e 45° o levam a 10,4 GPa — menos de um décimo. A queda é tão acentuada no começo porque o termo de cisalhamento, com 1/G₁₂ grande, entra proporcional a sen²θcos²θ e domina já em ângulos pequenos.</p>
+          </details>
+        </div>
+
+        <div id="sim-fora-eixo" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Gire a lâmina e acompanhe Q̄₁₆ aparecer e crescer até 45°: é ele que faz a lâmina distorcer quando tracionada fora do eixo.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li><span data-tex-inline="\bar Q = T^{-1}QT^{-T}"></span>, com θ medido da fibra para o eixo x.</li>
+          <li>Em 0° e 90°, <span data-tex-inline="\bar Q_{16} = \bar Q_{26} = 0"></span>; fora disso aparecem.</li>
+          <li>O acoplamento tração-cisalhamento é máximo perto de 45°.</li>
+          <li>E_x cai muito rápido nos primeiros graus de desalinhamento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que ±45° entra aos pares no laminado?</summary><p>Porque o acoplamento de +45° é simétrico ao de −45°: aos pares, os termos A₁₆ e A₂₆ se cancelam e o laminado fica equilibrado.</p></details>
+          <details><summary>Quanto custa 5° de erro de laminação?</summary><p>Em carbono/epóxi, algo em torno de 15 % de E_x — e o erro se acumula camada a camada.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Do laminado ao projeto" data-topicos="clt">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Teoria clássica dos laminados: A, B e D</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>montar as matrizes A, B e D;</li>
+            <li>relacionar simetria e equilíbrio aos acoplamentos;</li>
+            <li>calcular as constantes do laminado;</li>
+            <li>explicar por que a camada externa domina a flexão.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 7.</p></div>
+        </div>
+
+        <p>A teoria clássica dos laminados é o coração da disciplina: ela transforma uma pilha de lâminas orientadas em uma chapa equivalente, descrita por três matrizes. Depois dela, calcular um laminado é álgebra — e, mais importante, as escolhas de empilhamento ganham significado mecânico direto.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>A pilha vira uma chapa equivalente</h3>
+        <p>Um laminado é uma pilha de lâminas coladas, cada uma com sua orientação. A teoria clássica supõe que a seção permanece plana e normal (Kirchhoff) e que a cola não desliza — com isso, a deformação em qualquer ponto fica escrita por três deformações de membrana e três curvaturas, e as forças e momentos saem de uma integral na espessura.</p>
+        <div class="formula"><span data-tex="\begin{Bmatrix} N \\ M \end{Bmatrix} = \begin{bmatrix} A & B \\ B & D\end{bmatrix}\begin{Bmatrix} \varepsilon^0 \\ \kappa \end{Bmatrix}"></span><span class="where">N em N/mm, M em N · A em N/mm, B em N e D em N·mm</span></div>
+        <div class="formula"><span data-tex="A_{ij} = \sum_k \bar Q_{ij}^{(k)}(z_k - z_{k-1}), \quad B_{ij} = \tfrac12\sum_k \bar Q_{ij}^{(k)}(z_k^2 - z_{k-1}^2), \quad D_{ij} = \tfrac13\sum_k \bar Q_{ij}^{(k)}(z_k^3 - z_{k-1}^3)"></span><span class="where">a posição z da camada é o que decide seu peso em cada matriz</span></div>
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>O que cada matriz significa</h3>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Matriz</th><th>Liga</th><th>Como anular o acoplamento</th></tr></thead>
+          <tbody>
+            <tr><td><strong>A</strong></td><td>Forças de membrana a deformações de membrana</td><td>—</td></tr>
+            <tr><td><strong>B</strong></td><td>Forças a curvaturas e momentos a deformações</td><td>Empilhamento <strong>simétrico</strong> zera B inteira</td></tr>
+            <tr><td><strong>D</strong></td><td>Momentos a curvaturas (rigidez à flexão)</td><td>—</td></tr>
+            <tr><td>A₁₆, A₂₆</td><td>Tração a cisalhamento no plano</td><td>Empilhamento <strong>equilibrado</strong> (cada +θ com um −θ)</td></tr>
+            <tr><td>D₁₆, D₂₆</td><td>Flexão a torção</td><td>Só se anulam em laminados antissimétricos ou com muitas camadas</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Laminado não simétrico empena na cura</strong>
+          Com B ≠ 0, a contração térmica de cura produz curvatura: a peça sai do molde torcida, sem nenhuma carga aplicada. É por isso que praticamente todo laminado de projeto é simétrico — e por isso que, quando a simetria é impossível, a deformação de cura precisa entrar no projeto do molde.
+        </div>
+        <div class="callout tip">
+          <strong>Para flexão, o que importa é a camada externa</strong>
+          Em D cada camada entra com z³: a camada mais afastada do plano médio contribui ordens de grandeza mais que a central. Um laminado com 0° por fora e 90° por dentro é muito mais rígido à flexão que o mesmo conjunto invertido, embora A seja idêntica nos dois.
+        </div>
+
+        <div id="sim-laminado" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Monte [0/90]s e depois [90/0]s: A é idêntica nos dois, mas D muda bastante. Depois tire a simetria e veja B aparecer.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Laminado [0/90]s de carbono/epóxi</div>
+          <p>Monte as matrizes de um laminado [0/90]s com camadas de 0,125 mm da mesma lâmina T300 (E₁ = 134 GPa, E₂ = 7,0 GPa, ν₁₂ = 0,25 e G₁₂ = 4,2 GPa). Qual o módulo do laminado na direção x?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Q₁₁ = 134,4; Q₂₂ = 7,02; Q₁₂ = 1,76; Q₆₆ = 4,2 GPa.</li>
+              <li>Somando as quatro camadas: A₁₁ = A₂₂ = 35,37 GPa·mm; A₁₂ = 0,878; A₆₆ = 2,10.</li>
+              <li>O empilhamento é simétrico, de modo que B = 0. Para a flexão, D₁₁ = 1,234 N·mm e D₂₂ = 0,239 N·mm.</li>
+              <li><span data-tex-inline="E_x = (A_{11} - A_{12}^2/A_{22})/h = (35{,}37-0{,}02)/0{,}5"></span>.</li>
+            </ol>
+            <p class="resposta">E_x = 70,7 GPa, pouco mais da metade dos 134 GPa da lâmina unidirecional — é o preço de ter metade das fibras cruzadas. Note a diferença entre D₁₁ e D₂₂, mais de cinco vezes, embora A₁₁ e A₂₂ sejam iguais: na flexão só conta onde a camada está, e as de 0° estão por fora.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A liga forças de membrana a deformações; D liga momentos a curvaturas.</li>
+          <li>B acopla os dois — e some quando o empilhamento é simétrico.</li>
+          <li>A₁₆ e A₂₆ somem quando o laminado é equilibrado.</li>
+          <li>Em D cada camada entra com z³: a camada externa domina a flexão.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que todo laminado de projeto é simétrico?</summary><p>Para zerar B. Com B ≠ 0, a contração de cura produz curvatura e a peça sai empenada do molde, sem carga nenhuma.</p></details>
+          <details><summary>Dois laminados com a mesma A podem ter D muito diferentes?</summary><p>Sim: basta trocar a ordem das camadas. A não muda, mas D muda muito, porque depende de z³.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Do laminado ao projeto" data-topicos="termicas">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Tensões térmicas de cura</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar a origem das tensões residuais de cura;</li>
+            <li>calcular a força térmica equivalente;</li>
+            <li>avaliar quanto da resistência transversal é consumida;</li>
+            <li>reconhecer o efeito da umidade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 8.</p></div>
+        </div>
+
+        <p>Nenhum laminado começa a vida descarregado. A cura acontece a 120 ou 180 °C e a peça é usada à temperatura ambiente: ao esfriar, camadas com orientações diferentes querem contrair de modos diferentes e travam umas às outras. O resultado é uma tensão de tração transversal que já estava lá antes de a peça entrar em serviço.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>A peça já sai do molde carregada</h3>
+        <p>O laminado já sai do molde carregado. Ao esfriar da temperatura de cura, cada camada quer contrair bastante na direção transversal — onde o coeficiente de dilatação é dez a cinquenta vezes maior que na direção da fibra — e é impedida pelas vizinhas, que estão orientadas de outro jeito. O resultado é um campo de tensões residuais que existe antes de qualquer carga externa.</p>
+        <div class="formula"><span data-tex="\alpha_1 \approx -0{,}3 \text{ a } 1 \times 10^{-6}/^{\circ}C \qquad \alpha_2 \approx 20 \text{ a } 30 \times 10^{-6}/^{\circ}C"></span><span class="where">carbono/epóxi: na direção da fibra a dilatação é quase nula, e pode ser negativa</span></div>
+        <div class="formula"><span data-tex="\{N^T\} = \Delta T\sum_k \bar Q^{(k)}\{\alpha\}^{(k)}(z_k - z_{k-1}) \qquad \{\sigma\}^{(k)} = \bar Q^{(k)}\left(\{\varepsilon^0\} - \{\alpha\}^{(k)}\Delta T\right)"></span><span class="where">resolve-se como um carregamento equivalente: força térmica, depois tensão camada a camada</span></div>
+
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>Por que isso importa</h3>
+
+        <p>A tensão residual transversal é de tração e se soma à carga de serviço na direção mais fraca da lâmina. Em um cruzado de carbono/epóxi curado a 150 °C, ela consome tipicamente metade da resistência transversal disponível — e é a principal razão de o trincamento transversal aparecer bem antes da ruptura das fibras.</p>
+        <div class="callout note">
+          <strong>Dilatação quase nula é uma vantagem de projeto</strong>
+          Como α₁ é praticamente zero e α₂ é grande, dá para montar um laminado com coeficiente de dilatação resultante próximo de zero numa direção escolhida. Estruturas de satélite e bancadas ópticas usam exatamente isso: estabilidade dimensional que nenhum metal oferece.
+        </div>
+        <div class="callout warn">
+          <strong>Umidade faz o contrário</strong>
+          A matriz absorve água e incha, produzindo tensões de sinal oposto às de cura. O efeito alivia a tensão residual, mas baixa a temperatura de transição vítrea — razão pela qual o ensaio crítico de qualificação é feito "quente e úmido".
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Tensão residual num cruzado curado a 150 °C</div>
+          <p>O laminado [0/90]s do exemplo 8.1 é curado a 150 °C e resfriado até 25 °C. Com α₁ = −0,3 × 10⁻⁶/°C e α₂ = 28 × 10⁻⁶/°C, qual a tensão transversal residual em cada camada? A resistência transversal é Y_t = 42 MPa.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>ΔT = −125 °C. Montando <span data-tex-inline="N^T"></span> e resolvendo <span data-tex-inline="\varepsilon^0 = A^{-1}N^T"></span>, o laminado contrai 176 µε.</li>
+              <li>Isso equivale a um coeficiente de dilatação de 1,41 × 10⁻⁶/°C para o conjunto.</li>
+              <li>Camada a camada: <span data-tex-inline="\sigma = \bar Q(\varepsilon^0 - \alpha\Delta T)"></span>.</li>
+              <li>σ₂ = +23,0 MPa de tração em cada camada (e σ₁ = −23,0 MPa de compressão).</li>
+            </ol>
+            <p class="resposta">23,0 MPa de tração transversal consomem 55 % dos 42 MPa disponíveis — antes de qualquer carga externa. É por isso que o trincamento transversal aparece tão cedo e por que a análise de laminado sério sempre inclui o termo térmico.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>α₁ é quase nulo (pode ser negativo); α₂ é dez a cinquenta vezes maior.</li>
+          <li>A análise trata ΔT como um carregamento equivalente <span data-tex-inline="N^T"></span>.</li>
+          <li>A tensão residual transversal é de tração e se soma à carga de serviço.</li>
+          <li>Umidade incha a matriz e alivia parte dessa tensão, mas derruba a T_g.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a tensão residual transversal é de tração?</summary><p>Porque a camada quer encolher muito transversalmente ao esfriar e as vizinhas, orientadas de outro jeito, impedem — restando tração na direção fraca.</p></details>
+          <details><summary>Como se faz um laminado com dilatação quase nula?</summary><p>Combinando orientações de modo que a contração em uma direção seja compensada pela expansão da outra — é o que se usa em estrutura de satélite.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Do laminado ao projeto" data-topicos="falha">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Critérios de falha da lâmina</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar o critério da tensão máxima;</li>
+            <li>calcular Tsai-Hill e Tsai-Wu;</li>
+            <li>comparar os critérios e entender onde discordam;</li>
+            <li>escolher o critério adequado a cada situação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 7 e 9.</p></div>
+        </div>
+
+        <p>Em material isotrópico, falha se resume a comparar uma tensão equivalente com o escoamento. Numa lâmina há cinco resistências diferentes — tração e compressão na fibra, tração e compressão transversais e cisalhamento —, e elas interagem. Daí os critérios deste capítulo, que discordam exatamente onde o projeto costuma operar.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Cinco resistências, não uma</h3>
+        <p>Prever falha num material que tem cinco resistências diferentes não é como comparar uma tensão equivalente com o escoamento. Existem três famílias de critérios, e elas discordam justamente nos quadrantes mistos — onde quase todo projeto real opera.</p>
+        <div class="formula"><span data-tex="\text{tens\~ao m\'axima: } \sigma_1 < X_t,\ |\sigma_1| < X_c,\ \sigma_2 < Y_t,\ |\sigma_2| < Y_c,\ |\tau_{12}| < S"></span><span class="where">cinco verificações independentes — dá um retângulo no plano σ₁ × σ₂</span></div>
+        <div class="formula"><span data-tex="\text{Tsai-Hill: } \left(\frac{\sigma_1}{X}\right)^2 - \frac{\sigma_1\sigma_2}{X^2} + \left(\frac{\sigma_2}{Y}\right)^2 + \left(\frac{\tau_{12}}{S}\right)^2 < 1"></span><span class="where">interage as componentes; X e Y conforme o sinal de cada tensão</span></div>
+        <div class="formula"><span data-tex="\text{Tsai-Wu: } F_1\sigma_1 + F_2\sigma_2 + F_{11}\sigma_1^2 + F_{22}\sigma_2^2 + F_{66}\tau_{12}^2 + 2F_{12}\sigma_1\sigma_2 < 1"></span><span class="where">F₁ = 1/X_t − 1/X_c, F₁₁ = 1/(X_tX_c), F₆₆ = 1/S² · trata tração e compressão de forma contínua</span></div>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Qual critério usar</h3>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Critério</th><th>Vantagem</th><th>Limitação</th></tr></thead>
+          <tbody>
+            <tr><td>Tensão máxima</td><td>Diz <em>qual</em> modo falhou</td><td>Ignora a interação entre componentes; otimista</td></tr>
+            <tr><td>Tsai-Hill</td><td>Interage; uma única expressão</td><td>Não distingue tração de compressão</td></tr>
+            <tr><td>Tsai-Wu</td><td>Trata os dois sinais; melhor ajuste experimental</td><td>Não diz o modo; exige F₁₂ estimado</td></tr>
+            <tr><td>Hashin</td><td>Separa falha da fibra e da matriz</td><td>Mais parâmetros; é o padrão em simulação de dano</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Use dois critérios, não um</strong>
+          A prática usual é verificar por tensão máxima — para saber o modo — e por Tsai-Wu ou Tsai-Hill — para ter o fator de segurança com interação. Quando os dois discordam muito, é sinal de que o estado de tensão está num quadrante misto e o projeto merece ensaio.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Três critérios no mesmo estado de tensão</div>
+          <p>Uma lâmina de carbono/epóxi (X_t = 1270, X_c = 1130, Y_t = 42, Y_c = 141 e S = 63 MPa) está sob σ₁ = 600 MPa, σ₂ = 20 MPa e τ₁₂ = 20 MPa. Compare os três critérios.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Tensão máxima: 600/1270 = 0,472; 20/42 = 0,476; 20/63 = 0,317 — nenhum passa de 1. Fator de segurança 2,10, mandado por σ₂.</li>
+              <li>Tsai-Hill: <span data-tex-inline="(0{,}472)^2 - \dfrac{600(20)}{1270^2} + (0{,}476)^2 + (0{,}317)^2 = 0{,}543"></span>.</li>
+              <li>Como 0,543 < 1 não falha, e o fator de segurança é <span data-tex-inline="1/\sqrt{0{,}543} = 1{,}36"></span>.</li>
+              <li>Tsai-Wu, com F₁₂ = −½√(F₁₁F₂₂): fator de segurança 1,44.</li>
+            </ol>
+            <p class="resposta">A tensão máxima promete 2,10 de folga; Tsai-Hill e Tsai-Wu, apenas 1,36 e 1,44 — mais de 50 % de discrepância. A diferença é a interação entre σ₂ e τ₁₂, que o critério desacoplado não enxerga, e é por isso que se projeta com um critério interativo, usando a tensão máxima apenas para identificar o modo. A figura 10.1 parte exatamente deste estado.</p>
+          </details>
+        </div>
+
+        <div id="sim-falha" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare os três envelopes no mesmo plano: nos quadrantes mistos eles se afastam, e é ali que a escolha do critério muda o resultado do projeto.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Tensão máxima: cinco verificações independentes; diz o modo de falha.</li>
+          <li>Tsai-Hill interage as componentes numa única expressão.</li>
+          <li>Tsai-Wu trata tração e compressão de forma contínua e ajusta melhor o ensaio.</li>
+          <li>Hashin separa falha da fibra e da matriz e é o padrão em simulação de dano.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a tensão máxima costuma ser otimista?</summary><p>Porque ignora a interação: um estado com várias componentes moderadas pode falhar mesmo sem nenhuma delas atingir seu limite isolado.</p></details>
+          <details><summary>Tsai-Wu dá o modo de falha?</summary><p>Não. Por isso se usa junto com a tensão máxima, que identifica qual limite foi atingido primeiro.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte III — Do laminado ao projeto" data-topicos="progressiva">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Falha progressiva e regras de projeto</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir primeira falha de camada e falha última;</li>
+            <li>descrever a análise progressiva;</li>
+            <li>escolher o critério de projeto conforme a função da peça;</li>
+            <li>aplicar as regras práticas de empilhamento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 8 a 10.</p></div>
+        </div>
+
+        <p>Um laminado bem projetado avisa antes de romper: as camadas transversais trincam, a rigidez cai um degrau e as camadas alinhadas seguem carregando. Esse comportamento em etapas é o que torna o compósito utilizável — e decidir em qual etapa parar é a última decisão de projeto do curso.</p>
+
+        <h3 id="s11-1"><span class="num">11.1</span>O laminado falha em etapas</h3>
+        <p>Um laminado não falha de uma vez. As camadas mais fracas em relação à carga — tipicamente as de 90° — trincam transversalmente bem antes do fim; a rigidez cai um degrau e o laminado continua carregando pelas camadas alinhadas, até que estas rompam. Projetar é decidir qual desses dois eventos é o limite.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Evento</th><th>O que acontece</th><th>Quando é o limite de projeto</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Primeira falha de camada</strong> (FPF)</td><td>Trincamento transversal; rigidez cai alguns por cento</td><td>Vaso de pressão, tanque, qualquer peça que não pode vazar</td></tr>
+            <tr><td><strong>Falha última</strong> (LPF)</td><td>Ruptura das camadas alinhadas; perda total</td><td>Estrutura seca, com fator de segurança sobre a carga final</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-11-1"></div>
+
+        <h3 id="s11-2"><span class="num">11.2</span>Análise progressiva</h3>
+
+        <p>O procedimento é iterativo: calcula-se o estado de tensão camada a camada, aplica-se o critério de falha, degrada-se a rigidez da camada que falhou (zerando E₂ e G₁₂, por exemplo) e recalcula-se o laminado com a carga aumentada. O resultado é a curva com joelho que a figura 11.1 mostra.</p>
+        <div class="callout warn">
+          <strong>Trinca transversal é vazamento</strong>
+          Em vaso de pressão e tubulação, a primeira falha de camada é o que termina o projeto, mesmo com a estrutura longe da ruptura: a trinca atravessa a espessura da camada e abre caminho para o fluido. Daí a existência de <em>liners</em> internos em vasos tipo IV.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Primeira falha e falha última</div>
+          <p>O laminado [0/90]s dos exemplos anteriores é tracionado em x. Com Y_t = 42 MPa e X_t = 1270 MPa, estime a tensão média de primeira falha e a de ruptura.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>As camadas de 90° têm a direção da fibra perpendicular à carga: nelas, σ₂ é a própria tensão em x.</li>
+              <li>A primeira falha ocorre quando essa componente atinge Y_t. Resolvendo o laminado, isso acontece com N_x = 0,213 kN/mm.</li>
+              <li>Tensão média: 0,213/0,5 = 425 MPa, com deformação de 0,60 %.</li>
+              <li>Depois disso, só as camadas de 0° carregam: a ruptura chega perto de 635 MPa médios.</li>
+            </ol>
+            <p class="resposta">425 MPa na primeira falha e cerca de 635 MPa na ruptura: há 50 % de reserva depois do primeiro trincamento. Em estrutura seca isso é margem; em vaso de pressão, os 425 MPa são o fim do projeto — a mesma peça tem dois limites conforme a função.</p>
+          </details>
+        </div>
+
+        <h3 id="s11-3"><span class="num">11.3</span>Regras práticas de empilhamento</h3>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Regra</th><th>Por quê</th></tr></thead>
+          <tbody>
+            <tr><td>Simétrico</td><td>Zera B e evita empenamento na cura</td></tr>
+            <tr><td>Equilibrado (cada +θ com um −θ)</td><td>Zera A₁₆ e A₂₆, eliminando o acoplamento tração-cisalhamento</td></tr>
+            <tr><td>Pelo menos 10 % em cada direção principal</td><td>Evita que a matriz carregue sozinha alguma direção</td></tr>
+            <tr><td>Não agrupar mais de 4 camadas iguais</td><td>Agrupar concentra tensão interlaminar e favorece delaminação</td></tr>
+            <tr><td>±45° nas faces externas</td><td>Protege contra impacto e melhora a resistência ao cisalhamento e ao dano de borda</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div id="sim-progressiva" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o laminado e acompanhe o joelho da curva: a camada de 90° trinca, a rigidez cai e as camadas de 0° seguem até a ruptura.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Primeira falha de camada (FPF): trincamento transversal, rigidez cai pouco.</li>
+          <li>Falha última (LPF): ruptura das camadas alinhadas.</li>
+          <li>Vaso e tubulação param na FPF; estrutura seca pode ir até a LPF com fator de segurança.</li>
+          <li>Simétrico, equilibrado, 10 % mínimo por direção, sem agrupar mais de 4 camadas.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que FPF é o limite em vaso de pressão?</summary><p>Porque a trinca transversal atravessa a camada e abre caminho para o fluido: a estrutura ainda aguenta, mas vaza.</p></details>
+          <details><summary>O que significa degradar a rigidez de uma camada que falhou?</summary><p>Zerar as propriedades dominadas pela matriz (E₂ e G₁₂) e refazer a análise do laminado com a carga aumentada.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-micromecanica"><small>Capítulo 5 · Micromecânica</small>Regra das misturas e Halpin-Tsai</a></li>
+          <li><a href="#sim-fora-eixo"><small>Capítulo 7 · Fora de eixo</small>Matriz Q̄ e constantes aparentes</a></li>
+          <li><a href="#sim-laminado"><small>Capítulo 8 · Laminados</small>Empilhamento e matrizes A, B e D</a></li>
+          <li><a href="#sim-falha"><small>Capítulo 10 · Falha</small>Envelopes de tensão máxima, Tsai-Hill e Tsai-Wu</a></li>
+          <li><a href="#sim-progressiva"><small>Capítulo 11 · Progressiva</small>Cura, tensões térmicas e falha camada a camada</a></li>
+        </ul>
+      </section>
+
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Micromecânica</h4>
+            <div class="formula"><span data-tex="E_1 = E_fV_f + E_m V_m \qquad \nu_{12} = \nu_fV_f + \nu_mV_m"></span></div>
+            <div class="formula"><span data-tex="\frac{1}{E_2} = \frac{V_f}{E_f} + \frac{V_m}{E_m} \qquad \frac{1}{G_{12}} = \frac{V_f}{G_f} + \frac{V_m}{G_m}"></span></div>
+            <div class="formula"><span data-tex="E_2 = E_m\frac{1+\xi\eta V_f}{1-\eta V_f},\quad \eta = \frac{E_f/E_m-1}{E_f/E_m+\xi}"></span></div>
+            <div class="formula"><span data-tex="\rho_c = \rho_fV_f + \rho_mV_m \qquad \frac{l_c}{d} = \frac{\sigma_f}{2\tau_i}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Lâmina</h4>
+            <div class="formula"><span data-tex="\nu_{21} = \nu_{12}\frac{E_2}{E_1} \qquad \Delta = 1-\nu_{12}\nu_{21}"></span></div>
+            <div class="formula"><span data-tex="Q_{11}=\frac{E_1}{\Delta},\ Q_{22}=\frac{E_2}{\Delta},\ Q_{12}=\frac{\nu_{12}E_2}{\Delta},\ Q_{66}=G_{12}"></span></div>
+            <div class="formula"><span data-tex="\frac{1}{E_x} = \frac{c^4}{E_1}+\left(\frac{1}{G_{12}}-\frac{2\nu_{12}}{E_1}\right)s^2c^2+\frac{s^4}{E_2}"></span></div>
+            <div class="formula"><span data-tex="\bar Q = T^{-1}QT^{-T}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Laminado</h4>
+            <div class="formula"><span data-tex="A_{ij} = \sum_k \bar Q^{(k)}_{ij}(z_k-z_{k-1})"></span></div>
+            <div class="formula"><span data-tex="B_{ij} = \tfrac12\sum_k \bar Q^{(k)}_{ij}(z_k^2-z_{k-1}^2)"></span></div>
+            <div class="formula"><span data-tex="D_{ij} = \tfrac13\sum_k \bar Q^{(k)}_{ij}(z_k^3-z_{k-1}^3)"></span></div>
+            <div class="formula"><span data-tex="E_x^{lam} = \frac{1}{h}\left(A_{11}-\frac{A_{12}^2}{A_{22}}\right)"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Térmico e falha</h4>
+            <div class="formula"><span data-tex="\{N^T\} = \Delta T\sum_k\bar Q^{(k)}\{\alpha\}^{(k)}(z_k-z_{k-1})"></span></div>
+            <div class="formula"><span data-tex="\left(\frac{\sigma_1}{X}\right)^2-\frac{\sigma_1\sigma_2}{X^2}+\left(\frac{\sigma_2}{Y}\right)^2+\left(\frac{\tau_{12}}{S}\right)^2<1"></span></div>
+            <div class="formula"><span data-tex="F_1\sigma_1+F_2\sigma_2+F_{11}\sigma_1^2+F_{22}\sigma_2^2+F_{66}\tau_{12}^2+2F_{12}\sigma_1\sigma_2<1"></span></div>
+            <div class="formula"><span data-tex="F_1=\frac1{X_t}-\frac1{X_c},\ F_{11}=\frac1{X_tX_c},\ F_{66}=\frac1{S^2}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Apêndice B — Normas e ensaios</h2>
+        <p>As normas abaixo são referenciadas pelo número e pelo que definem. Os textos completos são obras protegidas e comercializadas pelas entidades emissoras — o que está aqui é a função de cada uma no projeto e no controle, não o seu conteúdo literal.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>O que trata</th></tr></thead>
+          <tbody>
+            <tr><td>ASTM D3039</td><td>Tração em laminado polimérico: E₁, E₂, ν₁₂ e resistências</td></tr>
+            <tr><td>ASTM D3410 / D6641</td><td>Compressão na direção da fibra</td></tr>
+            <tr><td>ASTM D3518</td><td>Cisalhamento no plano por tração de laminado ±45°</td></tr>
+            <tr><td>ASTM D2344</td><td>Cisalhamento interlaminar aparente (viga curta) — qualidade da interface</td></tr>
+            <tr><td>ASTM D5528</td><td>Tenacidade interlaminar em modo I (delaminação)</td></tr>
+            <tr><td>ASTM D2584 / D3171</td><td>Fração volumétrica de fibra, matriz e vazios</td></tr>
+            <tr><td>ASTM D7028</td><td>Temperatura de transição vítrea por DMA</td></tr>
+            <tr><td>ASTM D7136 / D7137</td><td>Impacto por queda de peso e compressão após impacto</td></tr>
+            <tr><td>ISO 14125</td><td>Flexão em compósitos de matriz polimérica</td></tr>
+            <tr><td>ABNT NBR 15536</td><td>Tubos e conexões de plástico reforçado com fibra de vidro</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Qualificação é por material e por processo</strong>
+          Em compósito, o material só existe depois de fabricado: a mesma fibra e a mesma resina, processadas de outro jeito, dão outro material. Por isso a qualificação aeronáutica amarra fornecedor, lote, ciclo de cura e até o equipamento — e qualquer mudança exige requalificar.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>37 questões objetivas sobre anisotropia, matrizes e reforços, interface, micromecânica, lâmina ortotrópica e fora de eixo, teoria clássica dos laminados, tensões térmicas, critérios de falha e falha progressiva. Escolha os capítulos no filtro e refaça quantas vezes quiser.</p>
+        <div id="quiz" data-quiz="macromecanica"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>JONES, R. M. <em>Mechanics of Composite Materials</em>. 2. ed. Taylor &amp; Francis.</li>
+          <li>DANIEL, I. M.; ISHAI, O. <em>Engineering Mechanics of Composite Materials</em>. 2. ed. Oxford.</li>
+          <li>KAW, A. K. <em>Mechanics of Composite Materials</em>. 2. ed. CRC Press.</li>
+          <li>GIBSON, R. F. <em>Principles of Composite Material Mechanics</em>. 4. ed. CRC Press.</li>
+          <li>HULL, D.; CLYNE, T. W. <em>An Introduction to Composite Materials</em>. 2. ed. Cambridge.</li>
+          <li>BARBERO, E. J. <em>Introduction to Composite Materials Design</em>. 3. ed. CRC Press.</li>
+          <li>ASTM International. Normas da série D30 — Composite Materials.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/macromecanica.js"></script>
+<script src="../js/fig/macromecanica.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  'E_1': ['Módulo na direção da fibra', 'GPa'],
+  'E_2': ['Módulo transversal', 'GPa', 'dominado pela matriz'],
+  'G_{12}': ['Módulo de cisalhamento no plano', 'GPa'],
+  'ν_{12}': ['Coeficiente de Poisson maior', '—', 'contração transversal ao tracionar na fibra'],
+  'ν_{21}': ['Coeficiente de Poisson menor', '—', 'ν₁₂E₂/E₁'],
+  'V_f': ['Fração volumétrica de fibra', '—', '0,35 a 0,65 na prática'],
+  'V_m': ['Fração volumétrica de matriz', '—'],
+  'V_v': ['Fração de vazios', '—', 'cada 1 % custa ~7 % de ILSS'],
+  'l_c': ['Comprimento crítico da fibra', 'mm'],
+  'τ_i': ['Resistência ao cisalhamento da interface', 'MPa'],
+  Q: ['Matriz de rigidez da lâmina', 'GPa', 'nos eixos do material'],
+  S: ['Matriz de flexibilidade', '1/GPa', 'ou resistência ao cisalhamento da lâmina, em MPa'],
+  A: ['Matriz de rigidez extensional do laminado', 'N/mm'],
+  B: ['Matriz de acoplamento membrana-flexão', 'N', 'zero em laminado simétrico'],
+  D: ['Matriz de rigidez à flexão', 'N·mm'],
+  'X_t': ['Resistência à tração na direção da fibra', 'MPa'],
+  'X_c': ['Resistência à compressão na direção da fibra', 'MPa'],
+  'Y_t': ['Resistência à tração transversal', 'MPa', 'a mais baixa da lâmina'],
+  'Y_c': ['Resistência à compressão transversal', 'MPa'],
+  'α_1': ['Coeficiente de dilatação na fibra', '1/°C', 'quase nulo'],
+  'α_2': ['Coeficiente de dilatação transversal', '1/°C'],
+  'T_g': ['Temperatura de transição vítrea', '°C'],
+  θ: ['Ângulo da lâmina', '°', 'medido da fibra para o eixo x'],
+  h: ['Espessura do laminado', 'mm'],
+  z: ['Posição da camada em relação ao plano médio', 'mm'],
+  ξ: ['Parâmetro de Halpin-Tsai', '—', '≈2 para E₂ e ≈1 para G₁₂'],
+  FPF: ['Primeira falha de camada', '—', 'first ply failure'],
+  LPF: ['Falha última do laminado', '—', 'last ply failure']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

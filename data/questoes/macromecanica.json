@@ -1,0 +1,638 @@
+{
+  "disciplina": "Macromecânica",
+  "slug": "macromecanica",
+  "topicos": [
+    {
+      "id": "compositos",
+      "nome": "Anisotropia e propriedades"
+    },
+    {
+      "id": "matrizes",
+      "nome": "Matrizes e cura"
+    },
+    {
+      "id": "reforcos",
+      "nome": "Reforços e formas"
+    },
+    {
+      "id": "interface",
+      "nome": "Interface e comprimento crítico"
+    },
+    {
+      "id": "micromecanica",
+      "nome": "Micromecânica"
+    },
+    {
+      "id": "lamina",
+      "nome": "Lâmina ortotrópica"
+    },
+    {
+      "id": "foraeixo",
+      "nome": "Lâmina fora de eixo"
+    },
+    {
+      "id": "clt",
+      "nome": "Teoria clássica dos laminados"
+    },
+    {
+      "id": "termicas",
+      "nome": "Tensões térmicas"
+    },
+    {
+      "id": "falha",
+      "nome": "Critérios de falha"
+    },
+    {
+      "id": "progressiva",
+      "nome": "Falha progressiva e projeto"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "mm-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "compositos",
+      "enunciado": "<p>Quantas constantes elásticas independentes descrevem uma lâmina unidirecional no estado plano de tensão?</p>",
+      "alternativas": [
+        "Quatro",
+        "Duas",
+        "Três",
+        "Nove"
+      ],
+      "correta": 0,
+      "explicacao": "<p>São quatro: E₁, E₂, ν₁₂ e G₁₂. O isotrópico precisa de duas e o ortotrópico tridimensional de nove — no estado plano a lâmina fica com quatro, e por isso a caracterização exige mais de um ensaio.</p>"
+    },
+    {
+      "id": "mm-002",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "compositos",
+      "enunciado": "<p>Comparada ao aço, uma lâmina unidirecional de carbono/epóxi tem, na direção transversal à fibra:</p>",
+      "alternativas": [
+        "Resistência semelhante, porque a fibra atua nas duas direções",
+        "Resistência da ordem da resistência da matriz, dez a vinte vezes menor",
+        "Resistência maior, por efeito de confinamento da matriz",
+        "Resistência igual à da direção da fibra, mas com rigidez menor"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Transversalmente quem carrega é a matriz e a interface; a fibra apenas concentra tensão. A resistência fica entre 40 e 70 MPa, da ordem da resina pura — daí a necessidade de laminar em várias orientações.</p>"
+    },
+    {
+      "id": "mm-003",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "compositos",
+      "enunciado": "<p>O argumento principal para usar compósito em estrutura aeronáutica é:</p>",
+      "alternativas": [
+        "Custo de matéria-prima menor que o do alumínio",
+        "Facilidade de reparo em campo",
+        "Rigidez e resistência específicas altas, isto é, por unidade de massa",
+        "Condutividade elétrica elevada"
+      ],
+      "correta": 2,
+      "explicacao": "<p>O compósito raramente é mais barato e o reparo é bem mais complexo que no metal. O que o justifica é a propriedade específica: a mesma rigidez com fração da massa, o que se converte em carga paga.</p>"
+    },
+    {
+      "id": "mm-004",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "matrizes",
+      "enunciado": "<p>A diferença fundamental entre matriz termofixa e termoplástica é que a termofixa:</p>",
+      "alternativas": [
+        "Pode ser refundida e reconformada quantas vezes se quiser",
+        "Tem sempre maior tenacidade à fratura",
+        "Dispensa controle de temperatura no processamento",
+        "Cura por reação química irreversível, formando uma rede tridimensional"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A termofixa reticula de forma irreversível e não funde depois de curada. A termoplástica funde e solidifica reversivelmente e costuma ser mais tenaz — mas é muito mais viscosa, o que dificulta a impregnação.</p>"
+    },
+    {
+      "id": "mm-005",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "matrizes",
+      "enunciado": "<p>O que caracteriza o ponto de gel durante a cura de uma resina termofixa?</p>",
+      "alternativas": [
+        "O instante em que a rede percola e a resina deixa de escoar, mesmo sem cura completa",
+        "O instante em que a resina atinge 100 % de grau de cura",
+        "A temperatura em que a resina começa a degradar",
+        "O ponto em que a viscosidade atinge seu valor mínimo"
+      ],
+      "correta": 0,
+      "explicacao": "<p>No gel a rede se torna contínua e o material perde a capacidade de fluir, ainda que o grau de cura esteja longe de 100 %. Toda a conformação e a impregnação precisam acontecer antes disso.</p>"
+    },
+    {
+      "id": "mm-006",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "matrizes",
+      "enunciado": "<p>Um laminado estrutural saiu com 3 % de vazios. A queda esperada na resistência ao cisalhamento interlaminar é de aproximadamente:</p>",
+      "alternativas": [
+        "3 %",
+        "21 %",
+        "7 %",
+        "50 %"
+      ],
+      "correta": 1,
+      "formulas": [
+        "perda ≈ 7 % por 1 % de vazios"
+      ],
+      "explicacao": "<div class=\"passo\">regra prática: cerca de 7 % de perda por ponto percentual de vazios</div><div class=\"passo\">3 × 7 % = <strong>21 %</strong></div><p>É por isso que projeto aeronáutico limita os vazios a menos de 2 % e usa autoclave, com pressão durante toda a cura.</p>"
+    },
+    {
+      "id": "mm-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "matrizes",
+      "enunciado": "<p>Para uma tubulação que vai operar com meio ácido a 90 °C, a matriz mais indicada entre as opções é:</p>",
+      "alternativas": [
+        "Poliéster ortoftálico",
+        "Fenólica",
+        "Viniléster",
+        "Polipropileno"
+      ],
+      "correta": 2,
+      "explicacao": "<p>O viniléster une resistência química superior à do poliéster a uma temperatura de serviço em torno de 100 °C, e é a escolha clássica para tubos e vasos em meio corrosivo. A fenólica aguenta mais temperatura, mas é usada por sua baixa emissão de fumaça.</p>"
+    },
+    {
+      "id": "mm-008",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "reforcos",
+      "enunciado": "<p>A fibra de vidro resiste a mais de 2 GPa enquanto uma placa do mesmo vidro quebra com dezenas de MPa. A razão é:</p>",
+      "alternativas": [
+        "A composição química da fibra é diferente da do vidro comum",
+        "A fibra é tratada termicamente, o que a endurece",
+        "A fibra trabalha em compressão, e o vidro é forte em compressão",
+        "O volume muito pequeno reduz a chance de conter um defeito grande"
+      ],
+      "correta": 3,
+      "explicacao": "<p>É um efeito estatístico de tamanho: quanto menor o volume, menor a probabilidade de existir um defeito crítico. A composição é essencialmente a mesma.</p>"
+    },
+    {
+      "id": "mm-009",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "reforcos",
+      "enunciado": "<p>Duas camadas unidirecionais a 0° e 90° foram substituídas por um tecido plano equilibrado de mesma gramatura. O resultado esperado é:</p>",
+      "alternativas": [
+        "Rigidez de 10 a 20 % menor, por causa da ondulação dos fios",
+        "Rigidez maior, porque o tecido distribui melhor a carga",
+        "Rigidez idêntica, já que há a mesma fibra em cada direção",
+        "Rigidez menor apenas na direção da trama"
+      ],
+      "correta": 0,
+      "explicacao": "<p>No tecido cada fio ondula ao passar por cima e por baixo do outro, de modo que parte da fibra trabalha fora do eixo. Em troca, o tecido drapeja melhor em superfície curva e é mais fácil de manusear.</p>"
+    },
+    {
+      "id": "mm-010",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "reforcos",
+      "enunciado": "<p>Entre vidro E, carbono padrão e aramida, qual combina a menor massa específica com excelente desempenho a impacto, mas é fraca em compressão?</p>",
+      "alternativas": [
+        "Vidro E",
+        "Aramida",
+        "Carbono padrão",
+        "As três têm desempenho equivalente"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A aramida tem ρ ≈ 1440 kg/m³ e é tenacíssima em impacto, mas sua estrutura altamente orientada sofre microflambagem sob compressão — a resistência à compressão fica em torno de um quinto da de tração.</p>"
+    },
+    {
+      "id": "mm-011",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "interface",
+      "enunciado": "<p>Uma fibra de 10 µm de diâmetro com resistência de 2500 MPa está numa matriz com resistência interfacial ao cisalhamento de 40 MPa. O comprimento crítico vale aproximadamente:</p>",
+      "alternativas": [
+        "0,031 mm",
+        "3,1 mm",
+        "0,31 mm",
+        "31 mm"
+      ],
+      "correta": 2,
+      "formulas": [
+        "l_c/d = σ_f / (2 τ_i)"
+      ],
+      "explicacao": "<div class=\"passo\">l<sub>c</sub>/d = σ<sub>f</sub>/(2τ<sub>i</sub>) = 2500/(2 × 40) = 31,25</div><div class=\"passo\">l<sub>c</sub> = 31,25 × 0,010 mm = <strong>0,31 mm</strong></div><p>Abaixo desse comprimento a fibra é arrancada antes de romper — é o que limita o desempenho dos compósitos de fibra curta.</p>"
+    },
+    {
+      "id": "mm-012",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "interface",
+      "enunciado": "<p>Numa fibra curta embebida em matriz tracionada, a tensão ao longo da fibra:</p>",
+      "alternativas": [
+        "É constante em todo o comprimento",
+        "É máxima nas extremidades e nula no centro",
+        "Depende apenas do módulo da fibra, não do comprimento",
+        "É nula nas extremidades e cresce em direção ao centro"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A carga entra pela interface, por cisalhamento: as pontas não carregam nada e a tensão cresce a partir delas. Se a fibra for curta demais, o pico central não chega à resistência da fibra.</p>"
+    },
+    {
+      "id": "mm-013",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "interface",
+      "enunciado": "<p>A função do agente de acoplamento à base de silano aplicado à fibra de vidro é:</p>",
+      "alternativas": [
+        "Fazer a ponte química entre o óxido da superfície da fibra e a resina",
+        "Reduzir o atrito entre as fibras durante o manuseio",
+        "Aumentar o módulo de elasticidade da fibra",
+        "Proteger a fibra contra radiação ultravioleta"
+      ],
+      "correta": 0,
+      "explicacao": "<p>O silano liga quimicamente a superfície da fibra à matriz, criando uma interface capaz de transferir cisalhamento. Sem ele, a resistência interlaminar e a durabilidade em meio úmido caem muito.</p>"
+    },
+    {
+      "id": "mm-014",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "micromecanica",
+      "enunciado": "<p>Uma lâmina de vidro-E/epóxi tem <span class=\"dado\">V<sub>f</sub> = 0,50</span>, E<sub>f</sub> = 72 GPa e E<sub>m</sub> = 3,5 GPa. O módulo na direção da fibra vale aproximadamente:</p>",
+      "alternativas": [
+        "6,7 GPa",
+        "37,8 GPa",
+        "44,6 GPa",
+        "72 GPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "E_1 = E_f V_f + E_m (1 − V_f)"
+      ],
+      "explicacao": "<div class=\"passo\">E₁ = E<sub>f</sub>V<sub>f</sub> + E<sub>m</sub>(1 − V<sub>f</sub>)</div><div class=\"passo\">E₁ = 0,50(72) + 0,50(3,5) = 36 + 1,75</div><div class=\"passo\">E₁ = <strong>37,75 GPa</strong></div><p>O valor de 6,7 GPa é o que a regra inversa dá para E₂, e 44,6 GPa seria o resultado com V_f = 0,60.</p>"
+    },
+    {
+      "id": "mm-015",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "micromecanica",
+      "enunciado": "<p>Para a mesma lâmina (V<sub>f</sub> = 0,50, E<sub>f</sub> = 72 GPa, E<sub>m</sub> = 3,5 GPa), a estimativa de E₂ pela regra inversa é:</p>",
+      "alternativas": [
+        "3,5 GPa",
+        "18,9 GPa",
+        "6,7 GPa",
+        "37,8 GPa"
+      ],
+      "correta": 2,
+      "formulas": [
+        "1/E_2 = V_f/E_f + V_m/E_m"
+      ],
+      "explicacao": "<div class=\"passo\">1/E₂ = V<sub>f</sub>/E<sub>f</sub> + (1 − V<sub>f</sub>)/E<sub>m</sub></div><div class=\"passo\">1/E₂ = 0,50/72 + 0,50/3,5 = 0,00694 + 0,14286 = 0,1498</div><div class=\"passo\">E₂ = <strong>6,68 GPa</strong></div><p>O valor fica pouco acima do módulo da matriz pura: em série, é o componente mais flexível que domina a soma das flexibilidades.</p>"
+    },
+    {
+      "id": "mm-016",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "micromecanica",
+      "enunciado": "<p>Por que a regra das misturas funciona bem para E₁ e mal para E₂?</p>",
+      "alternativas": [
+        "Porque E₂ depende da temperatura e E₁ não",
+        "Porque a fibra é anisotrópica apenas na direção transversal",
+        "Porque E₂ é obtido em ensaio de cisalhamento",
+        "Em E₁ as fases se deformam igualmente e as rigidezes somam; em E₂ somam-se as flexibilidades e a matriz domina"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Na direção da fibra o arranjo é de molas em paralelo e o modelo é quase exato. Transversalmente é de molas em série, e aí a geometria real do empacotamento passa a importar — daí modelos como Halpin-Tsai.</p>"
+    },
+    {
+      "id": "mm-017",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "micromecanica",
+      "enunciado": "<p>Uma lâmina de carbono/epóxi tem <span class=\"dado\">V<sub>f</sub> = 0,55</span>, ρ<sub>f</sub> = 1760 kg/m³ e ρ<sub>m</sub> = 1200 kg/m³. A massa específica do compósito é:</p>",
+      "alternativas": [
+        "1508 kg/m³",
+        "1200 kg/m³",
+        "1480 kg/m³",
+        "1760 kg/m³"
+      ],
+      "correta": 0,
+      "formulas": [
+        "ρ_c = ρ_f V_f + ρ_m V_m"
+      ],
+      "explicacao": "<div class=\"passo\">ρ<sub>c</sub> = ρ<sub>f</sub>V<sub>f</sub> + ρ<sub>m</sub>V<sub>m</sub></div><div class=\"passo\">ρ<sub>c</sub> = 0,55(1760) + 0,45(1200) = 968 + 540</div><div class=\"passo\">ρ<sub>c</sub> = <strong>1508 kg/m³</strong></div><p>Menos de um quinto da massa específica do aço — o argumento central do material.</p>"
+    },
+    {
+      "id": "mm-018",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "micromecanica",
+      "enunciado": "<p>A fração volumétrica de fibra em laminação manual fica entre 0,35 e 0,45, e o prepreg em autoclave chega a 0,65. Por que não se busca sempre o valor mais alto?</p>",
+      "alternativas": [
+        "Porque acima de 0,50 a fibra passa a ser mais frágil",
+        "Porque faltam caminhos para a resina, aparecem vazios e a resistência interlaminar cai",
+        "Porque o custo da fibra é menor que o da resina",
+        "Porque a regra das misturas deixa de valer acima de 0,50"
+      ],
+      "correta": 1,
+      "explicacao": "<p>O empacotamento tem limite físico (0,907 no caso hexagonal ideal). Perto dele a resina não preenche os interstícios, surgem vazios e a interface piora: o ganho de rigidez não compensa a perda de resistência interlaminar.</p>"
+    },
+    {
+      "id": "mm-019",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "lamina",
+      "enunciado": "<p>Uma lâmina tem <span class=\"dado\">E₁ = 134 GPa</span>, <span class=\"dado\">E₂ = 7,0 GPa</span> e <span class=\"dado\">ν₁₂ = 0,25</span>. O coeficiente ν₂₁ vale aproximadamente:</p>",
+      "alternativas": [
+        "0,25",
+        "0,48",
+        "0,013",
+        "4,79"
+      ],
+      "correta": 2,
+      "formulas": [
+        "ν_21 = ν_12 E_2 / E_1"
+      ],
+      "explicacao": "<div class=\"passo\">reciprocidade: ν₁₂/E₁ = ν₂₁/E₂</div><div class=\"passo\">ν₂₁ = ν₁₂ E₂/E₁ = 0,25 × 7,0/134</div><div class=\"passo\">ν₂₁ = <strong>0,0131</strong></div><p>Trocar ν₁₂ por ν₂₁ é o erro mais comum nas contas de laminado: o segundo é dez a vinte vezes menor.</p>"
+    },
+    {
+      "id": "mm-020",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "lamina",
+      "enunciado": "<p>Nos eixos do material, a lâmina ortotrópica apresenta:</p>",
+      "alternativas": [
+        "Acoplamento entre tração e cisalhamento",
+        "Acoplamento entre tração e flexão",
+        "Comportamento idêntico ao de um material isotrópico",
+        "Nenhum acoplamento entre tensões normais e cisalhamento"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Nos eixos 1-2 os termos Q₁₆ e Q₂₆ são nulos: tração e cisalhamento ficam desacoplados. O acoplamento só aparece quando a lâmina é escrita em eixos girados.</p>"
+    },
+    {
+      "id": "mm-021",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "foraeixo",
+      "enunciado": "<p>Com <span class=\"dado\">E₁ = 134 GPa</span>, <span class=\"dado\">E₂ = 7,0 GPa</span>, <span class=\"dado\">ν₁₂ = 0,25</span> e <span class=\"dado\">G₁₂ = 4,2 GPa</span>, o módulo aparente de uma lâmina girada 30° em relação à carga é:</p>",
+      "alternativas": [
+        "17,5 GPa",
+        "7 GPa",
+        "45,9 GPa",
+        "70,7 GPa"
+      ],
+      "correta": 0,
+      "formulas": [
+        "1/E_x = c⁴/E_1 + (1/G_12 − 2ν_12/E_1) s²c² + s⁴/E_2"
+      ],
+      "explicacao": "<div class=\"passo\">1/E<sub>x</sub> = c⁴/E₁ + (1/G₁₂ − 2ν₁₂/E₁)s²c² + s⁴/E₂</div><div class=\"passo\">com θ = 30°: c⁴ = 0,5625; s²c² = 0,1875; s⁴ = 0,0625</div><div class=\"passo\">1/E<sub>x</sub> = 0,0042 + 0,1875(0,2381 − 0,00373) + 0,00893 = 0,0571</div><div class=\"passo\">E<sub>x</sub> = <strong>17,5 GPa</strong></div><p>A 15° seriam 45,9 GPa e a 90°, os 7,0 GPa de E₂. A queda é brutal já nos primeiros graus porque o termo de cisalhamento domina.</p>"
+    },
+    {
+      "id": "mm-022",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "foraeixo",
+      "enunciado": "<p>O acoplamento tração-cisalhamento de uma lâmina isolada é máximo em torno de:</p>",
+      "alternativas": [
+        "0°",
+        "45°",
+        "15°",
+        "90°"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Os termos Q̄₁₆ e Q̄₂₆ são nulos em 0° e 90° e passam por um máximo perto de 45°, que é justamente a orientação usada para carregar cisalhamento no plano.</p>"
+    },
+    {
+      "id": "mm-023",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "foraeixo",
+      "enunciado": "<p>Por que camadas a +45° e −45° são sempre colocadas aos pares num laminado de projeto?</p>",
+      "alternativas": [
+        "Para aumentar a espessura de forma simétrica",
+        "Porque a norma exige número par de camadas",
+        "Para que os acoplamentos tração-cisalhamento das duas se cancelem",
+        "Para reduzir a temperatura de cura"
+      ],
+      "correta": 2,
+      "explicacao": "<p>O acoplamento de +θ é simétrico ao de −θ. Aos pares, os termos A₁₆ e A₂₆ se anulam e o laminado fica equilibrado: tracionar não produz distorção.</p>"
+    },
+    {
+      "id": "mm-024",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "clt",
+      "enunciado": "<p>Num laminado, a matriz B acopla:</p>",
+      "alternativas": [
+        "Tração a cisalhamento no plano",
+        "Flexão a torção",
+        "Deformações térmicas a deformações mecânicas",
+        "Forças de membrana a curvaturas e momentos a deformações de membrana"
+      ],
+      "correta": 3,
+      "explicacao": "<p>B é a matriz de acoplamento membrana-flexão: com B ≠ 0, tracionar o laminado o faz curvar. Empilhamento simétrico zera B inteira — por isso quase todo laminado de projeto é simétrico.</p>"
+    },
+    {
+      "id": "mm-025",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "clt",
+      "enunciado": "<p>Dois laminados usam as mesmas camadas em ordem diferente: [0/90]<sub>s</sub> e [90/0]<sub>s</sub>. Comparando-os:</p>",
+      "alternativas": [
+        "A é igual nos dois, mas D é bem diferente",
+        "A e D são iguais nos dois",
+        "D é igual, mas A é bem diferente",
+        "Ambos passam a ter B diferente de zero"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A soma apenas espessuras e não depende da ordem; D depende de z³ e muda muito com a posição das camadas. Os dois são simétricos, de modo que B = 0 em ambos.</p>"
+    },
+    {
+      "id": "mm-026",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "clt",
+      "enunciado": "<p>Um laminado [0/90]<sub>s</sub> de carbono/epóxi (E₁ = 134 GPa, E₂ = 7,0 GPa, ν₁₂ = 0,25, camadas de 0,125 mm) tem módulo E<sub>x</sub> de aproximadamente:</p>",
+      "alternativas": [
+        "7 GPa",
+        "70,7 GPa",
+        "110 GPa",
+        "134 GPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "A_ij = Σ Q̄_ij (z_k − z_k−1)",
+        "E_x = (A_11 − A_12²/A_22)/h"
+      ],
+      "explicacao": "<div class=\"passo\">Q₁₁ = 134,4; Q₂₂ = 7,02; Q₁₂ = 1,76 GPa</div><div class=\"passo\">A₁₁ = A₂₂ = 2(134,4 + 7,02)(0,125) = 35,37 GPa·mm; A₁₂ = 0,878</div><div class=\"passo\">E<sub>x</sub> = (A₁₁ − A₁₂²/A₂₂)/h = (35,37 − 0,02)/0,5</div><div class=\"passo\">E<sub>x</sub> = <strong>70,7 GPa</strong></div><p>Pouco mais da metade do valor da lâmina unidirecional: é o preço de ter metade das fibras cruzadas.</p>"
+    },
+    {
+      "id": "mm-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "clt",
+      "enunciado": "<p>Numa análise de flexão, qual camada contribui mais para a rigidez do laminado?</p>",
+      "alternativas": [
+        "A central, porque está no plano neutro",
+        "Todas igualmente, desde que tenham a mesma espessura",
+        "A mais afastada do plano médio, porque entra com z³",
+        "A de 90°, porque estabiliza as demais"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Em D cada camada entra com (z_k³ − z_{k−1}³)/3: a externa pesa ordens de grandeza mais que a central. Daí a regra de colocar nas faces as orientações mais solicitadas em flexão.</p>"
+    },
+    {
+      "id": "mm-028",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "termicas",
+      "enunciado": "<p>Ao esfriar da temperatura de cura, a tensão residual transversal às fibras em cada camada de um laminado cruzado é:</p>",
+      "alternativas": [
+        "De compressão, porque a camada é impedida de expandir",
+        "Nula, porque as camadas são iguais",
+        "De cisalhamento puro",
+        "De tração, porque a camada é impedida de contrair"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Transversalmente α₂ é grande e a camada quer contrair bastante ao esfriar; as vizinhas impedem. Sobra tração justamente na direção mais fraca da lâmina.</p>"
+    },
+    {
+      "id": "mm-029",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "termicas",
+      "enunciado": "<p>Num laminado [0/90]<sub>s</sub> de carbono/epóxi curado a 150 °C e usado a 25 °C, a tensão residual transversal calculada é de 23,0 MPa, com Y<sub>t</sub> = 42 MPa. Qual fração da resistência transversal já foi consumida antes de qualquer carga?</p>",
+      "alternativas": [
+        "55 %",
+        "12 %",
+        "27 %",
+        "82 %"
+      ],
+      "correta": 0,
+      "formulas": [
+        "σ_2^res / Y_t"
+      ],
+      "explicacao": "<div class=\"passo\">fração = σ₂ / Y<sub>t</sub> = 23,0/42</div><div class=\"passo\">fração = <strong>0,55, ou 55 %</strong></div><p>A peça chega ao serviço com mais da metade da reserva transversal gasta — razão pela qual o trincamento transversal aparece cedo e a análise térmica não pode ser omitida.</p>"
+    },
+    {
+      "id": "mm-030",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "falha",
+      "enunciado": "<p>Uma lâmina está sob <span class=\"dado\">σ₁ = 800 MPa</span>, <span class=\"dado\">σ₂ = 20 MPa</span> e <span class=\"dado\">τ₁₂ = 30 MPa</span>, com X<sub>t</sub> = 1500, Y<sub>t</sub> = 50 e S = 70 MPa. O índice de Tsai-Hill vale:</p>",
+      "alternativas": [
+        "0,89",
+        "0,62",
+        "1,27",
+        "1,88"
+      ],
+      "correta": 1,
+      "formulas": [
+        "(σ_1/X)² − σ_1σ_2/X² + (σ_2/Y)² + (τ_12/S)² < 1"
+      ],
+      "explicacao": "<div class=\"passo\">(σ₁/X)² = (800/1500)² = 0,284</div><div class=\"passo\">−σ₁σ₂/X² = −(800)(20)/1500² = −0,007</div><div class=\"passo\">(σ₂/Y)² = (20/50)² = 0,160 e (τ/S)² = (30/70)² = 0,184</div><div class=\"passo\">índice = 0,284 − 0,007 + 0,160 + 0,184 = <strong>0,62</strong></div><p>Como é menor que 1, a lâmina não falha; o fator de segurança é 1/√0,62 = 1,27.</p>"
+    },
+    {
+      "id": "mm-031",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "falha",
+      "enunciado": "<p>A principal limitação do critério da tensão máxima é que ele:</p>",
+      "alternativas": [
+        "Exige ensaios que não são normalizados",
+        "Só vale para carregamento de compressão",
+        "Não considera a interação entre as componentes de tensão",
+        "Não distingue tração de compressão"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Ele compara cada componente com seu limite isoladamente, de modo que um estado com várias componentes moderadas pode falhar sem que nenhuma atinja seu limite. Em compensação, é o único que diz qual modo falhou.</p>"
+    },
+    {
+      "id": "mm-032",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "falha",
+      "enunciado": "<p>A vantagem do critério de Tsai-Wu sobre Tsai-Hill é que ele:</p>",
+      "alternativas": [
+        "Dispensa o ensaio de cisalhamento",
+        "Identifica o modo de falha",
+        "Não exige nenhum parâmetro de interação",
+        "Trata tração e compressão de forma contínua, com resistências distintas"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Tsai-Wu incorpora X_t, X_c, Y_t e Y_c numa única expressão. Em troca, não diz o modo de falha e exige a estimativa do termo de interação F₁₂.</p>"
+    },
+    {
+      "id": "mm-033",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "falha",
+      "enunciado": "<p>No mesmo estado de tensão, a tensão máxima deu fator de segurança 1,67 e Tsai-Hill deu 1,09. A explicação é que:</p>",
+      "alternativas": [
+        "Tsai-Hill considera a interação entre σ₂ e τ₁₂, que o critério desacoplado ignora",
+        "A tensão máxima usa resistências diferentes das de Tsai-Hill",
+        "Tsai-Hill vale apenas para compressão",
+        "Houve erro de conta: os dois deveriam coincidir"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Os dois usam as mesmas resistências. A diferença é a interação: com várias componentes moderadas, o critério interativo acusa risco que o desacoplado não enxerga — e é por isso que se projeta com os dois.</p>"
+    },
+    {
+      "id": "mm-034",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "progressiva",
+      "enunciado": "<p>Num vaso de pressão de compósito, o critério de projeto costuma ser a primeira falha de camada porque:</p>",
+      "alternativas": [
+        "A estrutura perde toda a capacidade de carga nesse ponto",
+        "A trinca transversal atravessa a camada e permite vazamento",
+        "A norma proíbe qualquer dano no laminado",
+        "Depois dela a rigidez cai mais de 50 %"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Na primeira falha a estrutura ainda carrega bastante — no exemplo do texto, 425 MPa contra 635 MPa de ruptura. O problema é funcional: a trinca abre caminho para o fluido.</p>"
+    },
+    {
+      "id": "mm-035",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "progressiva",
+      "enunciado": "<p>Na análise de falha progressiva, ao detectar trincamento transversal numa camada, o procedimento usual é:</p>",
+      "alternativas": [
+        "Remover a camada do laminado e recomeçar",
+        "Zerar todas as propriedades da camada, inclusive E₁",
+        "Zerar as propriedades dominadas pela matriz (E₂ e G₁₂) e recalcular o laminado",
+        "Interromper a análise, pois o laminado falhou"
+      ],
+      "correta": 2,
+      "explicacao": "<p>A fibra continua íntegra e carregando na sua direção; o que se perdeu foi a contribuição da matriz. Degradam-se E₂ e G₁₂ e segue-se aumentando a carga até a ruptura das camadas alinhadas.</p>"
+    },
+    {
+      "id": "mm-036",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "progressiva",
+      "enunciado": "<p>A regra de não agrupar mais de quatro camadas de mesma orientação existe para:</p>",
+      "alternativas": [
+        "Facilitar a laminação manual",
+        "Reduzir o consumo de resina",
+        "Manter o laminado equilibrado",
+        "Evitar a concentração de tensão interlaminar que favorece a delaminação"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Agrupar muitas camadas iguais cria um bloco com propriedades muito diferentes das vizinhas; a descontinuidade concentra tensão interlaminar nas bordas e favorece a delaminação.</p>"
+    },
+    {
+      "id": "mm-037",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "progressiva",
+      "enunciado": "<p>Um laminado [0/90]<sub>s</sub> atinge a primeira falha de camada a 425 MPa médios e rompe a cerca de 635 MPa. Para uma estrutura seca (sem contenção de fluido), isso significa que:</p>",
+      "alternativas": [
+        "Há cerca de 50 % de reserva depois do primeiro trincamento, que pode ser aproveitada com fator de segurança",
+        "O projeto deve parar obrigatoriamente em 425 MPa",
+        "O laminado está mal dimensionado, pois a diferença deveria ser nula",
+        "A rigidez cai a zero em 425 MPa"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A mesma peça tem dois limites conforme a função: em vaso de pressão, os 425 MPa encerram o projeto por causa do vazamento; em estrutura seca, a reserva até os 635 MPa é utilizável com o fator de segurança da norma aplicável.</p>"
+    }
+  ]
+}

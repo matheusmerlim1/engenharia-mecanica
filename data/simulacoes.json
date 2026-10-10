@@ -661,6 +661,56 @@
       "ordem": 9
     },
     {
+      "id": "sim-micromecanica",
+      "slug": "macromecanica",
+      "disciplina": "Macromecânica",
+      "periodo": "7",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Micromecânica: da fibra e da matriz às propriedades da lâmina",
+      "resumo": "A regra das misturas trata fibra e matriz como molas em paralelo na direção 1 e em série na direção 2.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-fora-eixo",
+      "slug": "macromecanica",
+      "disciplina": "Macromecânica",
+      "periodo": "7",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Lâmina fora de eixo: a rigidez transformada Q̄ e as constantes aparentes",
+      "resumo": "Gire a lâmina em relação ao eixo de carga e acompanhe o que a matriz de rigidez faz.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-laminado",
+      "slug": "macromecanica",
+      "disciplina": "Macromecânica",
+      "periodo": "7",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Calculadora de laminado: empilhamento, matrizes A, B, D e acoplamentos",
+      "resumo": "Monte o empilhamento camada a camada e veja as três matrizes se formarem.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-falha",
+      "slug": "macromecanica",
+      "disciplina": "Macromecânica",
+      "periodo": "7",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Critérios de falha da lâmina: tensão máxima, Tsai-Hill e Tsai-Wu",
+      "resumo": "O envelope é o contorno dentro do qual a lâmina não rompe.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-progressiva",
+      "slug": "macromecanica",
+      "disciplina": "Macromecânica",
+      "periodo": "7",
+      "materia": "Mecânica dos Sólidos",
+      "titulo": "Cura, tensões térmicas e falha progressiva camada a camada",
+      "resumo": "O laminado já sai do molde carregado: ao esfriar da temperatura de cura, cada camada quer encolher muito na direção transversal à fibra e é impedida pelas vizinhas.",
+      "ordem": 4
+    },
+    {
       "id": "sim-camada-limite",
       "slug": "mecanica-dos-fluidos-2",
       "disciplina": "Mecânica dos Fluidos II",
