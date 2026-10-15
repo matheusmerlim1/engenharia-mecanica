@@ -801,6 +801,56 @@
       "ordem": 3
     },
     {
+      "id": "sim-mapa",
+      "slug": "selecao-de-materiais",
+      "disciplina": "Seleção de Materiais",
+      "periodo": "10",
+      "materia": "Materiais",
+      "titulo": "1. Mapa de propriedades — o gráfico de Ashby",
+      "resumo": "Cada material é um ponto; cada família ocupa uma região.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-indice",
+      "slug": "selecao-de-materiais",
+      "disciplina": "Seleção de Materiais",
+      "periodo": "10",
+      "materia": "Materiais",
+      "titulo": "2. Índice de desempenho — da função à massa da peça",
+      "resumo": "Escolha a função e o objetivo: o simulador monta o índice, ordena os materiais e calcula a massa (e o custo) de uma peça real que cumpra exatamente a mesma especificação.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-restricoes",
+      "slug": "selecao-de-materiais",
+      "disciplina": "Seleção de Materiais",
+      "periodo": "10",
+      "materia": "Materiais",
+      "titulo": "3. Múltiplas restrições — descobrir qual delas manda",
+      "resumo": "Uma viga precisa ser rígida o bastante e resistente o bastante.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-tradeoff",
+      "slug": "selecao-de-materiais",
+      "disciplina": "Seleção de Materiais",
+      "periodo": "10",
+      "materia": "Materiais",
+      "titulo": "4. Objetivos conflitantes — massa contra custo",
+      "resumo": "Quando há dois objetivos que brigam, não existe o melhor material: existe uma fronteira de soluções não dominadas.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-forma",
+      "slug": "selecao-de-materiais",
+      "disciplina": "Seleção de Materiais",
+      "periodo": "10",
+      "materia": "Materiais",
+      "titulo": "5. Material e forma — o fator de forma",
+      "resumo": "A mesma massa de material pode render rigidezes muito diferentes conforme a seção.",
+      "ordem": 4
+    },
+    {
       "id": "sim-petroleo",
       "slug": "refino",
       "disciplina": "Refino de Petróleo",

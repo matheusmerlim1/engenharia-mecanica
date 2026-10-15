@@ -1,0 +1,756 @@
+{
+  "disciplina": "Seleção de Materiais",
+  "slug": "selecao-de-materiais",
+  "topicos": [
+    {
+      "id": "metodo",
+      "nome": "O método da seleção"
+    },
+    {
+      "id": "universo",
+      "nome": "Famílias e propriedades"
+    },
+    {
+      "id": "mapas",
+      "nome": "Mapas de propriedades"
+    },
+    {
+      "id": "receita",
+      "nome": "A receita do índice"
+    },
+    {
+      "id": "indices",
+      "nome": "Índices clássicos"
+    },
+    {
+      "id": "grafica",
+      "nome": "Seleção gráfica"
+    },
+    {
+      "id": "restricoes",
+      "nome": "Restrições múltiplas"
+    },
+    {
+      "id": "tradeoff",
+      "nome": "Objetivos conflitantes"
+    },
+    {
+      "id": "forma",
+      "nome": "Material e forma"
+    },
+    {
+      "id": "hibridos",
+      "nome": "Materiais híbridos"
+    },
+    {
+      "id": "processo",
+      "nome": "Seleção de processo"
+    },
+    {
+      "id": "eco",
+      "nome": "Eco-seleção"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "sm-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "metodo",
+      "enunciado": "<p>Na tradução de um problema de seleção, a flecha máxima admitida por uma viga é:</p>",
+      "alternativas": [
+        "uma restrição",
+        "um objetivo",
+        "uma variável livre",
+        "uma função"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Restrição é o que não se pode deixar de cumprir, e o corte é binário: cumpre ou não cumpre. O objetivo é o que se minimiza (a massa, o custo); a variável livre é o que o projeto pode ajustar (a área da seção); a função é o que a peça faz (uma viga em flexão).</p>"
+    },
+    {
+      "id": "sm-002",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "metodo",
+      "enunciado": "<p>A ordem correta dos quatro passos do método de seleção é:</p>",
+      "alternativas": [
+        "triar, traduzir, ordenar, documentar",
+        "traduzir, triar, ordenar, documentar",
+        "traduzir, ordenar, triar, documentar",
+        "documentar, traduzir, triar, ordenar"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Traduzir produz as quatro declarações; triar elimina quem não cumpre as restrições; ordenar classifica os aprovados pelo índice; documentar busca informação sobre os finalistas e registra a decisão. Ordenar antes de triar gasta cálculo com materiais já eliminados.</p>"
+    },
+    {
+      "id": "sm-003",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "metodo",
+      "enunciado": "<p>Uma especificação de compra pede \"o material mais resistente disponível\". O principal problema dessa especificação é que:</p>",
+      "alternativas": [
+        "resistência não é uma propriedade mensurável de forma confiável",
+        "o material mais resistente é sempre o mais caro, o que torna o pedido inviável",
+        "resistência isolada não determina o desempenho da peça, que depende de uma combinação de propriedades deduzida da função",
+        "resistência só pode ser comparada entre materiais da mesma família"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Numa viga em flexão com seção livre, o desempenho é governado por σ_f^{2/3}/ρ, não por σ_f. O aço-liga de 1000 MPa perde da madeira de 40 MPa nesse índice. Pedir uma propriedade isolada é pedir a propriedade errada — a certa sai da dedução do capítulo 4.</p>"
+    },
+    {
+      "id": "sm-004",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "metodo",
+      "enunciado": "<p>O papel da variável livre na seleção é:</p>",
+      "alternativas": [
+        "definir o valor numérico do índice exigido",
+        "servir de fator de segurança contra incerteza nas propriedades",
+        "indicar qual família de materiais será triada primeiro",
+        "ser eliminada entre a equação do objetivo e a da restrição, fazendo surgir o índice"
+      ],
+      "correta": 3,
+      "explicacao": "<p>É a eliminação da variável livre que separa a massa em fator de carga × fator de geometria × fator de material. Se não há variável livre geométrica — diâmetro fixo por norma, por exemplo —, o índice muda: a viga de altura fixa volta a ter E/ρ, e o empate entre os metais ressurge.</p>"
+    },
+    {
+      "id": "sm-005",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "universo",
+      "enunciado": "<p>A rigidez específica E/ρ do aço (E = 210 GPa, ρ = 7850 kg/m³) e do alumínio 6061 (70 GPa, 2700 kg/m³) valem, respectivamente, em GPa/(Mg/m³):</p>",
+      "alternativas": [
+        "26,8 e 25,9",
+        "26,8 e 77,8",
+        "3,0 e 3,0",
+        "1,85 e 3,10"
+      ],
+      "correta": 0,
+      "formulas": [
+        "E/ρ, com E em GPa e ρ em Mg/m³"
+      ],
+      "explicacao": "<div class=\"passo\">aço: 210/7,85 = <strong>26,8</strong></div><div class=\"passo\">alumínio: 70/2,70 = <strong>25,9</strong></div><p>Praticamente iguais — e o mesmo vale para titânio (26,0) e magnésio (25,0). Em tração pura, trocar aço por alumínio não economiza massa; o ganho de 1,85 para 3,10 só aparece em flexão, onde o índice é E^{1/2}/ρ.</p>"
+    },
+    {
+      "id": "sm-006",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "universo",
+      "enunciado": "<p>Qual família combina módulo elevado, resistência a temperatura alta e fragilidade em tração?</p>",
+      "alternativas": [
+        "compósitos de matriz polimérica",
+        "cerâmicos e vidros",
+        "metais não ferrosos",
+        "polímeros termofixos"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Cerâmicos têm E de 20 a 410 GPa e T_max até 1500 °C, mas a resistência à tração útil depende do maior defeito presente e tem dispersão enorme. Por isso, em qualquer projeto com tração, cerâmico entra pela tenacidade à fratura, não pela resistência tabelada — que normalmente é de compressão ou de flexão.</p>"
+    },
+    {
+      "id": "sm-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "universo",
+      "enunciado": "<p>Na fase de seleção, usar valores típicos de classe (e não a folha de dados da liga exata) é:</p>",
+      "alternativas": [
+        "inadequado, porque o índice é muito sensível a pequenas variações de propriedade",
+        "adequado apenas para metais, cuja dispersão é desprezível",
+        "adequado, porque as famílias estão separadas por ordens de grandeza e a dispersão interna é pequena diante disso",
+        "inadequado, exceto quando há menos de dez candidatos"
+      ],
+      "correta": 2,
+      "explicacao": "<p>O erro de usar um valor típico de \"aço\" em vez da liga exata muda o índice em dezenas de por cento; a diferença entre aço e CFRP é de centenas. A folha de dados do fornecedor é indispensável — mas depois de a lista curta estar formada, para dimensionar.</p>"
+    },
+    {
+      "id": "sm-008",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "universo",
+      "enunciado": "<p>Por que a resistência tabelada de um cerâmico não deve ser usada diretamente num projeto em tração?</p>",
+      "alternativas": [
+        "porque cerâmicos não são usados em tração em nenhuma aplicação",
+        "porque a resistência de cerâmico varia com a temperatura mais que a de metais",
+        "porque a norma de ensaio de cerâmicos mede apenas dureza",
+        "porque normalmente é a de compressão ou de flexão, dez a cinquenta vezes maior que a de tração útil, que depende do maior defeito presente"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A fratura de um cerâmico parte do maior defeito presente, e a dispersão é grande demais para projetar com um valor médio. A forma correta de tratar cerâmico em tração é pela mecânica da fratura — K_IC e tamanho de defeito — ou pela estatística de Weibull.</p>"
+    },
+    {
+      "id": "sm-009",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "mapas",
+      "enunciado": "<p>Num mapa ρ × E com os dois eixos logarítmicos, o índice E^{1/3}/ρ aparece como:</p>",
+      "alternativas": [
+        "uma reta de inclinação 3",
+        "uma reta de inclinação 1/3",
+        "uma parábola de concavidade para cima",
+        "uma reta horizontal"
+      ],
+      "correta": 0,
+      "explicacao": "<p>De E^{1/3}/ρ = M vem log E = 3 log ρ + 3 log M: reta de inclinação 3. A regra geral é que o índice prop^{1/n}/ρ tem inclinação n — 1 para tirante, 2 para viga e 3 para painel. Mudar o nível exigido translada a reta sem girá-la.</p>"
+    },
+    {
+      "id": "sm-010",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "mapas",
+      "enunciado": "<p>A região de alto módulo e baixa massa específica do mapa E × ρ está vazia porque:</p>",
+      "alternativas": [
+        "os materiais dessa região existem, mas são caros demais para ser tabelados",
+        "módulo alto exige ligação forte e átomos bem empacotados, o que implica massa específica alta",
+        "nenhum processo de fabricação atual consegue produzi-los em escala",
+        "a região corresponde a combinações que violam a conservação de energia"
+      ],
+      "correta": 1,
+      "explicacao": "<p>É consequência da física da ligação atômica, não de limitação tecnológica. A única maneira de ocupar aquele canto é hibridizar: combinar um sólido rígido com espaço vazio organizado — sanduíches, espumas, treliças —, que é o assunto do capítulo 10.</p>"
+    },
+    {
+      "id": "sm-011",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "mapas",
+      "enunciado": "<p>Para projetar um vaso de pressão que vaze antes de romper, o mapa mais útil é:</p>",
+      "alternativas": [
+        "ρ × E",
+        "custo por volume × E",
+        "σ_f × K_IC",
+        "T_max × σ_f"
+      ],
+      "correta": 2,
+      "explicacao": "<p>O critério \"vazar antes de romper\" é K_IC²/σ_f, que no mapa σ_f × K_IC é uma reta de inclinação 1/2. Nele se vê o conflito central do problema: os materiais mais resistentes não são os mais tenazes, e é a tenacidade que garante que a trinca atravesse a parede antes de se tornar instável.</p>"
+    },
+    {
+      "id": "sm-012",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "receita",
+      "enunciado": "<p>Depois de eliminar a variável livre, a expressão da massa se separa em três fatores. São eles:</p>",
+      "alternativas": [
+        "rigidez, resistência e tenacidade",
+        "massa, custo e energia",
+        "material, processo e forma",
+        "carga, geometria e material"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Na viga, m = √(S/4) · L^{5/2} · (ρ/E^{1/2}). O primeiro fator vem da especificação, o segundo do tamanho e o terceiro só de propriedades. É essa separação que permite ordenar materiais antes de dimensionar a peça — e é a razão de o método ser utilizável nas primeiras horas de um projeto.</p>"
+    },
+    {
+      "id": "sm-013",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "receita",
+      "enunciado": "<p>Uma viga biapoiada de 1 m e seção quadrada de área livre deve ter rigidez de 500 kN/m. Em aço (E = 210 GPa, ρ = 7850 kg/m³), a área exigida e a massa valem aproximadamente:</p>",
+      "alternativas": [
+        "7,7 cm² e 6,1 kg",
+        "7,7 cm² e 0,61 kg",
+        "15,4 cm² e 12,1 kg",
+        "2,8 cm² e 2,2 kg"
+      ],
+      "correta": 0,
+      "formulas": [
+        "A = L√(SL/4E)",
+        "m = A L ρ",
+        "S = 48EI/L³, I = A²/12"
+      ],
+      "explicacao": "<div class=\"passo\">S = 48EI/L³ com I = A²/12 dá S = 4EA²/L³</div><div class=\"passo\">A = L√(SL/4E) = √(5×10⁵/(4×210×10⁹)) = 7,72×10⁻⁴ m² = <strong>7,72 cm²</strong></div><div class=\"passo\">m = A L ρ = 7,72×10⁻⁴ × 1 × 7850 = <strong>6,06 kg</strong></div><p>O lado da seção fica em 27,8 mm. A mesma viga em CFRP (E^{1/2}/ρ = 6,45 contra 1,85 do aço) pesaria 1,85/6,45 = 29 % disso, ou 1,73 kg.</p>"
+    },
+    {
+      "id": "sm-014",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "receita",
+      "enunciado": "<p>Numa viga em flexão cuja altura de seção é fixada por restrição de espaço, sobrando apenas a largura como variável livre, o índice de massa mínima para rigidez dada é:</p>",
+      "alternativas": [
+        "E^{1/2}/ρ",
+        "E/ρ",
+        "E^{1/3}/ρ",
+        "E²/ρ"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Com altura h fixa, I = bh³/12 é linear em b, e a restrição de rigidez também. Eliminando b, a massa fica proporcional a ρ/E — índice E/ρ. Como todos os metais estruturais empatam nesse índice, trocar o material sem liberdade geométrica raramente compensa. Perder a variável livre é perder o ganho.</p>"
+    },
+    {
+      "id": "sm-015",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "receita",
+      "enunciado": "<p>O índice de massa mínima de uma viga rígida é E^{1/2}/ρ. Com o objetivo trocado de massa para custo do material, o índice passa a ser:</p>",
+      "alternativas": [
+        "E^{1/2}/C_m",
+        "C_m E^{1/2}/ρ",
+        "E^{1/2}/(C_m ρ)",
+        "E^{1/2} ρ/C_m"
+      ],
+      "correta": 2,
+      "formulas": [
+        "C = m C_m = A L ρ C_m",
+        "M_C = prop^e/(C_m ρ)"
+      ],
+      "explicacao": "<div class=\"passo\">custo do material: C = m C_m = A L ρ C_m</div><div class=\"passo\">repetindo a dedução com C no lugar de m, ρ é substituído por C_m ρ</div><div class=\"passo\">índice: <strong>E^{1/2}/(C_m ρ)</strong></div><p>C_m ρ é o custo por volume. Todo índice de massa tem um gêmeo de custo obtido por essa troca — e a ordem muda radicalmente: por massa ganha o CFRP, por custo ganham concreto e madeira.</p>"
+    },
+    {
+      "id": "sm-016",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "indices",
+      "enunciado": "<p>O índice de massa mínima para um painel em flexão com espessura livre e rigidez dada é:</p>",
+      "alternativas": [
+        "E^{1/2}/ρ",
+        "E/ρ",
+        "σ_f^{1/2}/ρ",
+        "E^{1/3}/ρ"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Numa placa, I ∝ t³, e o expoente da propriedade cai para 1/3. É o expoente mais generoso com material de módulo baixo: a madeira (3,82) supera o CFRP (3,00) e o aço (0,757) por larga margem — razão pela qual piso de madeira e compensado nunca foram superados em desempenho por massa e por preço.</p>"
+    },
+    {
+      "id": "sm-017",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "indices",
+      "enunciado": "<p>A energia elástica armazenada por unidade de massa, σ_f²/2Eρ, para um elastômero (σ_f = 10 MPa, E = 0,01 GPa, ρ = 1100 kg/m³) vale aproximadamente:</p>",
+      "alternativas": [
+        "4500 J/kg",
+        "45 J/kg",
+        "300 J/kg",
+        "450 kJ/kg"
+      ],
+      "correta": 0,
+      "formulas": [
+        "U/m = σ_f²/(2Eρ)"
+      ],
+      "explicacao": "<div class=\"passo\">σ_f² = (10⁷)² = 10¹⁴ Pa²</div><div class=\"passo\">2Eρ = 2 × 10⁷ × 1100 = 2,2×10¹⁰</div><div class=\"passo\">U/m = 10¹⁴/2,2×10¹⁰ = <strong>4545 J/kg</strong></div><p>Quinze vezes o aço de mola (303 J/kg) e quatro vezes o CFRP (1161 J/kg). É o resultado que explica o estilingue e o amortecedor de borracha. Se a restrição fosse espaço em vez de massa, o índice seria σ_f²/E por volume, e aí o aço voltaria a vencer.</p>"
+    },
+    {
+      "id": "sm-018",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "indices",
+      "enunciado": "<p>No critério \"vazar antes de romper\" (M = K_IC²/σ_f), aumentar a resistência do material:</p>",
+      "alternativas": [
+        "melhora o índice, porque reduz a tensão de operação",
+        "piora o índice, porque permite parede mais fina, em que a trinca crítica fica menor que a espessura",
+        "não altera o índice, que depende apenas da tenacidade",
+        "melhora o índice, desde que a tenacidade também aumente proporcionalmente"
+      ],
+      "correta": 1,
+      "explicacao": "<p>É o único índice comum em que ser mais resistente é ruim. Com σ_f maior a parede afina, o tamanho crítico de trinca cai abaixo da espessura e o vaso rompe sem avisar. Aço inoxidável macio (33) e cobre (19,6) vencem; o aço-liga temperado (3,6) é dos piores — e é por isso que vasos não são feitos do aço mais resistente disponível.</p>"
+    },
+    {
+      "id": "sm-019",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "indices",
+      "enunciado": "<p>Comparando pelo índice σ_f^{2/3}/ρ (viga leve e resistente), o CFRP (σ_f = 600 MPa, ρ = 1550 kg/m³) e a madeira (40 MPa, 600 kg/m³) valem, respectivamente:</p>",
+      "alternativas": [
+        "19,5 e 45,9",
+        "387 e 66,7",
+        "45,9 e 19,5",
+        "6,45 e 5,77"
+      ],
+      "correta": 2,
+      "formulas": [
+        "M = σ_f^{2/3}/ρ, com σ em MPa e ρ em Mg/m³"
+      ],
+      "explicacao": "<div class=\"passo\">CFRP: 600^{2/3} = 71,1 → 71,1/1,55 = <strong>45,9</strong></div><div class=\"passo\">madeira: 40^{2/3} = 11,7 → 11,7/0,60 = <strong>19,5</strong></div><p>Note a inversão em relação à rigidez: por E^{1/2}/ρ o CFRP (6,45) e a madeira (5,77) são quase empatados; por resistência o CFRP tem o dobro e meio. É a restrição, não a função, que decide a ordem.</p>"
+    },
+    {
+      "id": "sm-020",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "indices",
+      "enunciado": "<p>Um disco rotativo deve girar à maior velocidade possível antes que a tensão centrífuga o faça escoar. O índice a maximizar é:</p>",
+      "alternativas": [
+        "σ_f^{2/3}/ρ",
+        "E/ρ",
+        "σ_f²/Eρ",
+        "σ_f/ρ"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A tensão centrífuga máxima num disco é proporcional a ρω²R², e igualá-la a σ_f dá ω² ∝ σ_f/(ρR²). Maximizar a velocidade é maximizar σ_f/ρ — o mesmo índice do tirante com carga dada, porque em ambos a carga é proporcional à própria massa do material. É um bom exemplo de índice que não está na tabela e sai da receita em três linhas.</p>"
+    },
+    {
+      "id": "sm-021",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "grafica",
+      "enunciado": "<p>Durante a seleção gráfica, o critério prático para parar de deslizar a guia é restar:</p>",
+      "alternativas": [
+        "de três a seis candidatos",
+        "exatamente um candidato",
+        "mais de vinte candidatos",
+        "um candidato por família de material"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Com um único candidato, a seleção fica refém dele: se a documentação o eliminar por processo ou fornecedor, tudo precisa ser refeito. Com mais de uma dezena, não houve seleção. De três a seis é a faixa em que a segunda opção já está justificada e a lista é curta o bastante para investigar a fundo.</p>"
+    },
+    {
+      "id": "sm-022",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "grafica",
+      "enunciado": "<p>Numa seleção gráfica, nenhum material fica acima da guia exigida. A conclusão correta é:</p>",
+      "alternativas": [
+        "que houve erro na dedução do índice",
+        "que a especificação precisa ser revista, ou que o caso pede forma ou híbrido — e isso é um resultado valioso",
+        "que a guia deve ser traçada com outra inclinação até que algum material passe",
+        "que a família de materiais correta não foi incluída no mapa"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Mostrar com evidência que um requisito é impossível, antes de alguém gastar meses tentando cumpri-lo, é um dos usos mais valiosos do método. Os caminhos são, nessa ordem: rever a especificação com quem a escreveu, recorrer à forma (capítulo 9) e recorrer a um híbrido (capítulo 10).</p>"
+    },
+    {
+      "id": "sm-023",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "grafica",
+      "enunciado": "<p>Por que a documentação da seleção deve registrar também a segunda colocada?</p>",
+      "alternativas": [
+        "porque a norma de projeto mecânico exige dois materiais homologados",
+        "porque a primeira colocada costuma estar errada por imprecisão dos dados",
+        "porque ela é o plano de contingência quando o material escolhido falhar em fornecimento, preço ou disponibilidade",
+        "porque o cálculo do índice só é confiável quando há dois resultados próximos"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Quando o fornecedor atrasa, sobe o preço ou sai do mercado, a alternativa já está avaliada e a decisão não precisa ser tomada sob pressão de cronograma. Um registro útil tem meia página: as quatro declarações, o índice, a tabela de candidatos, as restrições que eliminaram os demais e a razão final da escolha.</p>"
+    },
+    {
+      "id": "sm-024",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "restricoes",
+      "enunciado": "<p>Com duas restrições ativas possíveis (rigidez e resistência), a área de seção que a peça precisa ter é:</p>",
+      "alternativas": [
+        "a média das duas áreas calculadas",
+        "a menor das duas áreas calculadas",
+        "a soma das duas áreas calculadas",
+        "a maior das duas áreas calculadas"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A peça tem de cumprir as duas restrições simultaneamente, e por isso obedece à mais exigente. A restrição que fornece a maior área é a restrição ativa. Dimensionar pela outra deixa a peça fora de especificação — em aço, no exemplo do capítulo 7, isso significaria uma viga que escoa em serviço.</p>"
+    },
+    {
+      "id": "sm-025",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "restricoes",
+      "enunciado": "<p>Numa viga, a massa exigida pela rigidez é 3,83 kg e a exigida pela resistência é 5,22 kg. A restrição ativa e a massa de projeto são:</p>",
+      "alternativas": [
+        "resistência, 5,22 kg",
+        "rigidez, 3,83 kg",
+        "resistência, 1,39 kg",
+        "rigidez, 9,05 kg"
+      ],
+      "correta": 0,
+      "formulas": [
+        "m = max(m_rig, m_res)"
+      ],
+      "explicacao": "<div class=\"passo\">m = max(m_rig, m_res) = max(3,83; 5,22)</div><div class=\"passo\">ativa: a <strong>resistência</strong>, com <strong>5,22 kg</strong></div><p>Esses são os números do aço baixo carbono para uma viga de 1 m com 2000 N, flecha de 10 mm e fator de segurança 2. No mesmo problema, o alumínio e o CFRP são limitados pela rigidez — a restrição ativa muda material por material, e por isso é preciso calcular as duas sempre.</p>"
+    },
+    {
+      "id": "sm-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "restricoes",
+      "enunciado": "<p>Por que não existe um índice único que resolva o caso de duas restrições?</p>",
+      "alternativas": [
+        "porque as duas restrições têm unidades diferentes",
+        "porque a massa exigida é o máximo entre duas expressões, e o máximo não se fatora em geometria × material",
+        "porque a segunda restrição sempre depende da primeira",
+        "porque um índice só pode conter uma propriedade de cada vez"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A função max não é derivável no cruzamento e não se separa em fatores. O que se pode fazer é calcular as duas massas e comparar material por material, ou usar a equação de acoplamento para delimitar as regiões em que cada restrição manda.</p>"
+    },
+    {
+      "id": "sm-027",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "restricoes",
+      "enunciado": "<p>Numa peça injetada cuja espessura mínima é imposta pelo molde, e não pelo cálculo estrutural, a consequência para a seleção é:</p>",
+      "alternativas": [
+        "o índice passa a ser σ_f^{1/2}/ρ, próprio de painéis",
+        "a seleção deve priorizar o polímero de maior módulo disponível",
+        "a variável livre desapareceu, e aumentar a resistência do polímero não economiza material algum",
+        "o fator de forma passa a ser a variável de projeto mais importante"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Sem variável livre, não há índice mecânico a maximizar: a massa está fixada pela geometria mínima do processo. A seleção deve então otimizar custo, fluidez, acabamento ou estabilidade dimensional. Reconhecer isso evita trocar um polímero barato por um de engenharia sem ganho nenhum.</p>"
+    },
+    {
+      "id": "sm-028",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "tradeoff",
+      "enunciado": "<p>Um material é dito dominado, numa análise de dois objetivos, quando:</p>",
+      "alternativas": [
+        "ele é o mais caro da lista",
+        "ele está fora da lista curta por restrição de atributo",
+        "seu índice de desempenho é inferior à média",
+        "existe outro que é simultaneamente melhor nos dois objetivos"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Material dominado sai da discussão sem precisar de juízo de valor: ele é pior em massa <em>e</em> em custo que algum outro, para qualquer valor de α. Essa é a única parte da análise de trade-off que não exige opinião, e costuma reduzir a lista pela metade.</p>"
+    },
+    {
+      "id": "sm-029",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "tradeoff",
+      "enunciado": "<p>Com α = 500 US$/kg, qual destas opções minimiza Z = C + αm? (A) m = 6,06 kg, C = US$ 5,45; (B) m = 1,94 kg, C = US$ 1,94; (C) m = 1,73 kg, C = US$ 86,65.</p>",
+      "alternativas": [
+        "a opção C, com Z = US$ 953",
+        "a opção A, com Z = US$ 3034",
+        "a opção B, com Z = US$ 970",
+        "as três empatam em Z"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Z = C + α m"
+      ],
+      "explicacao": "<div class=\"passo\">A: 5,45 + 500×6,06 = <strong>3034</strong></div><div class=\"passo\">B: 1,94 + 500×1,94 = <strong>970</strong></div><div class=\"passo\">C: 86,65 + 500×1,73 = <strong>953</strong></div><p>Com α = 500 (aeronave) vence o CFRP, por pouco, da madeira. Com α = 12 (automóvel) a ordem se inverte: 78,1 contra 25,2 contra 107,4 — a madeira vence e o CFRP passa a ser o pior dos três. Nenhum dado mudou, só a declaração de quanto vale um quilo.</p>"
+    },
+    {
+      "id": "sm-030",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "tradeoff",
+      "enunciado": "<p>No plano (massa, custo), as retas de Z = C + αm constante têm inclinação:</p>",
+      "alternativas": [
+        "+α",
+        "−α",
+        "−1/α",
+        "0"
+      ],
+      "correta": 1,
+      "explicacao": "<p>De C = Z − αm, a inclinação é −α. O ponto ótimo é aquele em que a reta de menor Z toca a fronteira de Pareto. Aumentar α gira a reta e faz o ótimo deslizar para a esquerda, em direção a materiais mais leves e mais caros — o que é exatamente o que se observa ao passar de automóvel para aeronave.</p>"
+    },
+    {
+      "id": "sm-031",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "tradeoff",
+      "enunciado": "<p>Uma estimativa razoável do valor de troca α para um automóvel de passeio está em torno de:</p>",
+      "alternativas": [
+        "0,05 a 0,20 US$/kg",
+        "300 a 1000 US$/kg",
+        "5 a 20 US$/kg",
+        "3 000 a 30 000 US$/kg"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Em automóvel, α vem do combustível economizado na vida útil por quilo retirado. As outras faixas correspondem a aeronave civil (300 a 1000) e veículo espacial (3 000 a 30 000, pelo custo de lançamento). É um número que a área comercial ou de operação tem — e que o projeto deve pedir em vez de arbitrar.</p>"
+    },
+    {
+      "id": "sm-032",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "forma",
+      "enunciado": "<p>Um tubo de aço com d/t = 10 tem fator de forma em flexão φ = 6,5. Em relação à barra quadrada maciça de mesma área, seu índice E^{1/2}/ρ fica multiplicado por:</p>",
+      "alternativas": [
+        "6,5",
+        "1,27",
+        "42,3",
+        "2,55"
+      ],
+      "correta": 3,
+      "formulas": [
+        "M = (φ_B^e E)^{1/2}/ρ",
+        "φ_B^e = 12I/A²"
+      ],
+      "explicacao": "<div class=\"passo\">com forma, M = (φE)^{1/2}/ρ</div><div class=\"passo\">o fator é √φ = √6,5 = <strong>2,55</strong></div><p>Como a massa é inversamente proporcional ao índice, ela cai para 1/2,55 = 39 % da massa da peça maciça equivalente. A forma entra multiplicando o módulo, e o índice sobe pela raiz disso.</p>"
+    },
+    {
+      "id": "sm-033",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "forma",
+      "enunciado": "<p>O teto prático de fator de forma é de cerca de 65 nos metais e de cerca de 2 nos cerâmicos porque:</p>",
+      "alternativas": [
+        "o limite vem da flambagem local da parede fina, que o material dúctil tolera e o frágil não",
+        "o limite vem do módulo de Young, que é maior nos cerâmicos",
+        "o limite vem do custo de usinagem, menor nos metais",
+        "o limite vem da massa específica, maior nos metais"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Afinar a parede aumenta φ até que ela flambe localmente, enrugue ou amasse. Metais são dúcteis, conformáveis em parede fina e toleram imperfeição geométrica; cerâmicos trincam em qualquer concentração local. Por isso o aço domina estrutura metálica leve — é a família que mais ganha com forma — e cerâmico nunca aparece em viga.</p>"
+    },
+    {
+      "id": "sm-034",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "forma",
+      "enunciado": "<p>Comparar aço e CFRP sem especificar a seção é incorreto porque:</p>",
+      "alternativas": [
+        "o CFRP não pode ser fabricado em seção maciça",
+        "o aço em tubo d/t = 25 (M = 7,39) supera o CFRP maciço (6,45), enquanto o CFRP no mesmo tubo chega a 25,8",
+        "o fator de forma do CFRP é sempre igual ao do aço",
+        "o índice do aço não depende da seção, só o do compósito depende"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A comparação honesta é tubo contra tubo, ou maciço contra maciço. Misturar as duas é a origem de boa parte das alegações exageradas sobre compósitos — e também explica por que bicicletas de aço competiram com as de carbono enquanto o carbono era usado em perfis maciços.</p>"
+    },
+    {
+      "id": "sm-035",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "hibridos",
+      "enunciado": "<p>Nos híbridos de dois materiais, a massa específica é a média volumétrica exata, mas o módulo pode variar entre dois limites. Essa assimetria ocorre porque:</p>",
+      "alternativas": [
+        "a massa específica é medida com precisão maior que o módulo",
+        "o módulo depende da temperatura e a massa específica não",
+        "massa é grandeza extensiva e soma independentemente do arranjo, enquanto a rigidez depende de como a carga se distribui",
+        "os limites de Voigt e Reuss são aproximações e a média de massa é exata por coincidência"
+      ],
+      "correta": 2,
+      "explicacao": "<p>É essa assimetria que faz o híbrido valer a pena: a massa é obrigada a ser a média, mas o módulo pode ser o limite superior se o arranjo for o certo — constituintes em paralelo, com deformação igual. Toda a engenharia do híbrido está em chegar perto de Voigt.</p>"
+    },
+    {
+      "id": "sm-036",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "hibridos",
+      "enunciado": "<p>Um painel sanduíche tem 20 % do volume em faces de CFRP (E = 100 GPa, ρ = 1550 kg/m³) e 80 % em núcleo de espuma (0,08 GPa, 100 kg/m³). A massa específica média e o limite de Voigt do módulo valem:</p>",
+      "alternativas": [
+        "825 kg/m³ e 50,0 GPa",
+        "390 kg/m³ e 0,10 GPa",
+        "1450 kg/m³ e 20,1 GPa",
+        "390 kg/m³ e 20,1 GPa"
+      ],
+      "correta": 3,
+      "formulas": [
+        "ρ = fρ_A + (1−f)ρ_B",
+        "E_V = fE_A + (1−f)E_B",
+        "1/E_R = f/E_A + (1−f)/E_B"
+      ],
+      "explicacao": "<div class=\"passo\">ρ = 0,20×1550 + 0,80×100 = 310 + 80 = <strong>390 kg/m³</strong></div><div class=\"passo\">Voigt: E = 0,20×100 + 0,80×0,08 = 20,0 + 0,064 = <strong>20,1 GPa</strong></div><p>O limite de Reuss, para comparação, daria 0,10 GPa — um fator de 200 abaixo. Em flexão o sanduíche se aproxima de Voigt, porque as faces, longe da linha neutra, trabalham em tração e compressão quase uniformes. O índice de painel resultante é 6,97 contra 0,757 do aço.</p>"
+    },
+    {
+      "id": "sm-037",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "hibridos",
+      "enunciado": "<p>Nas espumas de célula aberta, E/E_s ≈ (ρ/ρ_s)². A consequência para a seleção é que espumar:</p>",
+      "alternativas": [
+        "não altera o índice de viga E^{1/2}/ρ, mas melhora o índice de painel E^{1/3}/ρ",
+        "melhora os dois índices na mesma proporção",
+        "melhora o índice de viga e piora o de painel",
+        "piora os dois índices, por isso espumas não têm uso estrutural"
+      ],
+      "correta": 0,
+      "explicacao": "<p>O expoente 2 é exatamente a inclinação da guia de E^{1/2}/ρ: ao espumar, o material desce <em>pela própria guia</em> e o índice fica constante. Para o painel, cuja guia tem inclinação 3, descer com inclinação 2 significa subir em relação à guia. Daí a regra: espuma serve para painel e para núcleo de sanduíche, não para viga. Treliças periódicas, com barras em tração e compressão, chegam a expoente 1 e mantêm o desempenho ao perder massa.</p>"
+    },
+    {
+      "id": "sm-038",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "processo",
+      "enunciado": "<p>No custo por peça C = mC_m/(1−f) + C_fer/n + Ċ/ṅ, a única parcela que depende do tamanho do lote é:</p>",
+      "alternativas": [
+        "a do material, que cai com o volume comprado",
+        "a do ferramental, que cai com 1/n",
+        "a do tempo de máquina, que cai com o aprendizado",
+        "nenhuma: o custo por peça é constante"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Material e tempo de máquina são praticamente constantes por peça; só o ferramental se dilui. Por isso processos de ferramental caro e ciclo rápido (injeção, fundição sob pressão) só fazem sentido em lote grande, e o cruzamento das curvas define o lote econômico.</p>"
+    },
+    {
+      "id": "sm-039",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "processo",
+      "enunciado": "<p>Usinar uma peça custa US$ 200 de ferramental e US$ 3,00 de tempo de máquina por peça; fundir sob pressão custa US$ 25 000 de ferramental e US$ 0,80 por peça. O material é o mesmo nos dois casos. O lote econômico é de aproximadamente:</p>",
+      "alternativas": [
+        "1 130 peças",
+        "113 000 peças",
+        "11 300 peças",
+        "8 300 peças"
+      ],
+      "correta": 2,
+      "formulas": [
+        "C = mC_m/(1−f) + C_fer/n + Ċ/ṅ",
+        "n* = ΔC_fer/Δ(Ċ/ṅ)"
+      ],
+      "explicacao": "<div class=\"passo\">200/n + 3,00 = 25 000/n + 0,80</div><div class=\"passo\">3,00 − 0,80 = (25 000 − 200)/n → 2,20 = 24 800/n</div><div class=\"passo\">n = 24 800/2,20 = <strong>11 273 peças</strong></div><p>Abaixo disso, usinar; acima, fundir. Com lote de mil peças a fundição custa quatro vezes mais; com cem mil, custa 74 % da usinagem. Decidir o processo sem saber o lote é decidir no escuro.</p>"
+    },
+    {
+      "id": "sm-040",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "processo",
+      "enunciado": "<p>Usinar uma peça aeronáutica de titânio a partir de um bloco descarta 80 % do material. No modelo de custo, essa perda entra:</p>",
+      "alternativas": [
+        "na parcela de ferramental, por exigir fixação especial",
+        "na parcela de tempo de máquina, por aumentar o tempo de corte",
+        "fora do modelo, como custo indireto de fábrica",
+        "na parcela de material, pelo fator 1/(1−f)"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Com f = 0,80, o fator 1/(1−f) é 5: o material custa cinco vezes o da peça acabada. Com titânio a US$ 28/kg, essa parcela domina o custo total e justifica processos de forma quase final — forjamento de precisão ou fabricação aditiva — mesmo com taxa de produção muito menor.</p>"
+    },
+    {
+      "id": "sm-041",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "eco",
+      "enunciado": "<p>Num automóvel que roda 200 mil km, a fase do ciclo de vida que domina o consumo de energia é:</p>",
+      "alternativas": [
+        "o uso",
+        "a produção do material",
+        "a manufatura",
+        "o fim de vida"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Para 1200 kg de estrutura de aço, a produção do material consome cerca de 35 GJ e o combustível mais de 400 GJ — mais de dez vezes. Em qualquer produto que se move ou consome energia, o uso responde por 80 a 95 % do total, e é aí que o projeto deve atacar: reduzindo massa, mesmo com material de energia incorporada maior.</p>"
+    },
+    {
+      "id": "sm-042",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "eco",
+      "enunciado": "<p>Trocar 1200 kg de aço (H_m = 29 MJ/kg) por 900 kg de alumínio primário (200 MJ/kg) investe, em energia de material, um extra de:</p>",
+      "alternativas": [
+        "215 GJ",
+        "145 GJ",
+        "34,8 GJ",
+        "63 GJ"
+      ],
+      "correta": 1,
+      "formulas": [
+        "E_material = m × H_m"
+      ],
+      "explicacao": "<div class=\"passo\">aço: 1200 × 29 = 34 800 MJ = 34,8 GJ</div><div class=\"passo\">alumínio: 900 × 200 = 180 000 MJ = 180 GJ</div><div class=\"passo\">extra: 180 − 34,8 = <strong>145,2 GJ</strong></div><p>Com economia de 1,5 L/100 km (0,522 MJ/km), esse investimento se paga em 145 200/0,522 = 278 mil km — acima da vida típica do veículo. Com alumínio reciclado (25 MJ/kg), a energia de material cai a 22,5 GJ, <em>menos</em> que a do aço, e a troca compensa de imediato.</p>"
+    },
+    {
+      "id": "sm-043",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "eco",
+      "enunciado": "<p>Comparar a energia incorporada H_m de dois materiais diretamente, em MJ/kg, engana porque:</p>",
+      "alternativas": [
+        "H_m varia muito com o fornecedor e não é um dado confiável",
+        "H_m não inclui a energia de manufatura, que é sempre dominante",
+        "o que importa é a energia da peça que cumpre a função, e a peça do material leve usa menos quilos",
+        "a comparação só é válida entre materiais da mesma família"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Um painel de alumínio com metade da massa do de aço tem razão de energias 100/29, não 200/29. A forma correta é usar os índices do capítulo 5 com H_mρ no denominador em vez de ρ — o mesmo método, outro objetivo.</p>"
+    },
+    {
+      "id": "sm-044",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "eco",
+      "enunciado": "<p>A recomendação de \"projetar para desmontar\" na eco-seleção existe porque:</p>",
+      "alternativas": [
+        "a desmontagem é exigida por norma em todos os produtos manufaturados",
+        "produtos desmontáveis têm sempre menor energia incorporada",
+        "a montagem por parafusos reduz a massa total do produto",
+        "um produto colado e com insertos moldados não se separa em materiais puros de modo econômico, e a reciclagem prometida não acontece"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Reciclar metal é termodinamicamente favorável — refundir aço custa um terço da energia de produzi-lo do minério, e alumínio um oitavo —, mas só se o metal puder ser separado. Polímero degrada a cada ciclo e compósito termofixo é hoje essencialmente irreciclável, porque a matriz não funde e a fibra não se separa.</p>"
+    }
+  ]
+}

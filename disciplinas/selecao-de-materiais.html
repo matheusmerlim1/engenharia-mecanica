@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seleção de Materiais — Engenharia Mecânica</title>
+<meta name="description" content="O método de seleção de materiais: função, restrição, objetivo e variável livre, mapas de propriedades, índices de desempenho, restrições múltiplas, fronteira de Pareto, fator de forma, híbridos, seleção de processo e eco-seleção — com mapas interativos, simuladores e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">10º período · Engenharia Mecânica</p>
+    <h1>Seleção de Materiais</h1>
+    <p class="lead">O método que transforma 160 mil materiais em três candidatos justificados. Este texto está organizado como um livro: doze capítulos em sequência, do enunciado do problema à eco-seleção, com a teoria explicada passo a passo, exemplos resolvidos, mapas de propriedades interativos e os simuladores no ponto em que o assunto aparece.</p>
+    <div class="btn-row">
+      <span class="tag accent">12 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">44 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">12 figuras interativas</span>
+      <span class="tag warn">método de Ashby</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai do método ao projeto real: primeiro como traduzir um requisito e como ler um mapa de propriedades, depois como deduzir o índice que ordena os materiais, e por fim o que acontece quando as restrições se acumulam, os objetivos entram em conflito e a fabricação e o ambiente entram na conta. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: o material como resposta, não como dado</h2>
+        <p>Em todas as disciplinas anteriores o material vinha no enunciado. Aqui ele é a incógnita — e o que se descobre é que escolher material é um problema de otimização com restrições, que se resolve com método e não com catálogo. O curso dá esse método, devido em grande parte ao trabalho de Ashby, e o aplica até onde ele chega: processo de fabricação e impacto ambiental.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Como enunciar o problema?</td><td>Função, restrição, objetivo, variável livre</td><td>1</td></tr>
+            <tr><td>O que existe para escolher?</td><td>Seis famílias e suas faixas de propriedade</td><td>2</td></tr>
+            <tr><td>Como ver todos de uma vez?</td><td>Mapas de propriedades log-log</td><td>3</td></tr>
+            <tr><td>Que propriedade o desempenho pede?</td><td>A receita do índice</td><td>4 e 5</td></tr>
+            <tr><td>Como chegar a uma lista curta?</td><td>Seleção gráfica e documentação</td><td>6</td></tr>
+            <tr><td>E quando há várias restrições?</td><td>Restrição ativa e acoplamento</td><td>7</td></tr>
+            <tr><td>Leve ou barato?</td><td>Fronteira de Pareto e valor de troca</td><td>8</td></tr>
+            <tr><td>A seção pode mudar?</td><td>Fator de forma e híbridos</td><td>9 e 10</td></tr>
+            <tr><td>Dá para fabricar?</td><td>Atributos de processo e lote econômico</td><td>11</td></tr>
+            <tr><td>Qual o custo ambiental?</td><td>Ciclo de vida e eco-seleção</td><td>12</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução — eles são todos numéricos e todos verificáveis. Nas figuras e nos simuladores, deslize a guia, troque o objetivo e aperte as restrições para ver a lista curta reagir. A viga de 1 m com rigidez de 500 kN/m dos exemplos 4.1, 8.1 e 9.1 é a mesma peça acompanhada do primeiro índice até a escolha final: siga-a de ponta a ponta.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — O método" data-topicos="metodo">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. O problema da seleção</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>traduzir um requisito de projeto em função, restrições, objetivo e variáveis livres;</li>
+            <li>descrever os quatro passos do método de seleção;</li>
+            <li>distinguir uma restrição (que corta) de um objetivo (que ordena);</li>
+            <li>explicar por que não existe "o melhor material".</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Mecânica dos Materiais I e Ciência dos Materiais I.</p></div>
+        </div>
+
+        <p>Seleção de Materiais é a disciplina que fecha o ciclo do projeto mecânico. Nas disciplinas anteriores o material era um dado do problema — "uma viga de aço 1020" —; aqui ele passa a ser a resposta. O texto está organizado como um livro: o método primeiro, os índices depois, e o projeto real no fim, onde restrições se acumulam e objetivos entram em conflito.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Cento e sessenta mil materiais</h3>
+        <p>Existem da ordem de 160 mil materiais de engenharia disponíveis, e o número cresce todo ano. Nenhum engenheiro conhece mais do que algumas dezenas deles, e ainda assim precisa escolher. O que salva o projeto não é saber tudo: é ter um método que reduza 160 mil a meia dúzia sem precisar olhar um por um.</p>
+        <p>O método existe, é devido em grande parte ao trabalho de Ashby, e tem uma virtude incomum: ele é sistemático sem ser burocrático. Em vez de consultar catálogos, parte-se da função que a peça cumpre e se deduz a propriedade — ou a combinação de propriedades — que o desempenho exige. O resultado é um número por material, calculado de uma expressão única, que ordena todos eles para aquela função específica.</p>
+        <p>A frase que resume o capítulo é desconfortável: <strong>não existe o melhor material</strong>. Existe o melhor material para uma função, com certas restrições e um objetivo declarado. Mude o objetivo de massa para custo e a ordem se inverte; troque a restrição de rigidez por resistência e o primeiro colocado cai para a metade da lista. O método não é um atalho para a resposta, é a maneira de garantir que a pergunta foi feita direito.</p>
+
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>Função, restrição, objetivo, variável livre</h3>
+
+        <p>Todo problema de seleção se traduz em quatro declarações. Elas parecem óbvias escritas assim, mas a maior parte das escolhas ruins de material vem de não tê-las escrito:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Declaração</th><th>A pergunta</th><th>Exemplo: haste de bicicleta</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Função</strong></td><td>O que a peça faz?</td><td>é uma viga em flexão</td></tr>
+            <tr><td><strong>Restrições</strong></td><td>O que ela não pode deixar de cumprir?</td><td>comprimento dado, rigidez mínima, não escoar, resistir à corrosão</td></tr>
+            <tr><td><strong>Objetivo</strong></td><td>O que se quer minimizar ou maximizar?</td><td>minimizar a massa</td></tr>
+            <tr><td><strong>Variáveis livres</strong></td><td>O que o projeto pode ajustar?</td><td>a área e a forma da seção; o material</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A variável livre é a peça-chave e a mais esquecida. Se o diâmetro da haste é fixo por norma, ela não é livre, e o índice que sai da conta é outro. Essa única diferença separa o caso em que o alumínio ganha do aço daquele em que ele não ganha nada — como o capítulo 5 mostra.</p>
+        <div class="callout tip">
+          <strong>Escreva as quatro antes de abrir qualquer tabela</strong>
+          Em projeto real, escrever função, restrições, objetivo e variáveis livres leva dez minutos e muda o resultado. Pular essa etapa leva a comparar propriedades isoladas — "o titânio é mais resistente" — que isoladamente não dizem nada sobre o desempenho da peça.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Traduzir o problema de um pedal de bicicleta</div>
+          <p>Um pedal de bicicleta de competição é essencialmente um braço em flexão de 90 mm, carregado pela força do ciclista (até 1500 N), que não pode fletir mais de 2 mm nem escoar, e que deve ser o mais leve possível. Escreva as quatro declarações.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><strong>Função:</strong> viga em flexão, engastada numa extremidade, carregada na outra.</li>
+              <li><strong>Restrições:</strong> comprimento de 90 mm dado; flecha máxima de 2 mm sob 1500 N; não escoar com fator de segurança adequado; resistir à corrosão por suor e intempérie; aceitar rosca de fixação.</li>
+              <li><strong>Objetivo:</strong> minimizar a massa.</li>
+              <li><strong>Variáveis livres:</strong> a área e a forma da seção; o material.</li>
+              <li>Como há duas restrições mecânicas (rigidez e resistência) e a seção é livre, os índices candidatos são E^½/ρ e σ_f^⅔/ρ — e qual deles manda é o assunto do capítulo 7.</li>
+            </ol>
+            <p class="resposta">As declarações já revelam o essencial: o comprimento é fixo, a seção é livre e há duas restrições mecânicas concorrentes. Note que "resistir à corrosão" e "aceitar rosca" são restrições que não aparecem em nenhum índice — elas triam, e é por isso que a triagem vem antes da ordenação.</p>
+          </details>
+        </div>
+
+        <h3 id="s1-3"><span class="num">1.3</span>Os quatro passos do método</h3>
+
+        <p>Com o problema traduzido, o procedimento é mecânico:</p>
+        <ol>
+          <li><strong>Traduzir.</strong> Transformar o requisito de projeto nas quatro declarações acima.</li>
+          <li><strong>Triar.</strong> Eliminar tudo que não cumpre as restrições. É um corte binário: cumpre ou não cumpre. Temperatura de serviço, condutividade elétrica, compatibilidade com o fluido, custo máximo — tudo isso corta, não ordena.</li>
+          <li><strong>Ordenar.</strong> Entre os que sobraram, calcular o índice de desempenho e colocar em ordem. Aqui não há corte: há classificação.</li>
+          <li><strong>Documentar.</strong> Buscar informação sobre os primeiros colocados — histórico de uso, fornecedores, modos de falha, processabilidade — e registrar por que a escolha foi essa, e não a segunda.</li>
+        </ol>
+        <p>A ordem importa. Triar depois de ordenar significa calcular índice para materiais que já estavam fora; ordenar antes de triar produz listas em que o primeiro colocado é sempre eliminado depois, e a frustração leva a abandonar o método.</p>
+
+        <h3 id="s1-4"><span class="num">1.4</span>Por que não basta pedir "o mais resistente"</h3>
+
+        <p>Uma requisição de material que diz apenas "o mais resistente possível" ou "o mais leve possível" não é especificação: é um desejo. O aço-liga temperado tem resistência de 1000 MPa e o CFRP de 600 MPa — mas, numa viga em flexão com seção livre, a viga de CFRP cumpre a mesma função com um quarto da massa. A razão é que, em flexão com seção livre, não é σ que conta, mas σ<sup>2/3</sup>/ρ. Pedir resistência isolada é pedir a propriedade errada.</p>
+        <p>O mesmo vale do outro lado: pedir a menor massa específica levaria a espumas, que não têm rigidez para nada estrutural. O índice existe justamente porque o desempenho quase nunca depende de uma propriedade só, e a combinação correta não é adivinhável — ela é deduzida.</p>
+        <div class="callout warn">
+          <strong>Três erros que o método evita</strong>
+          Escolher por hábito ("sempre usamos aço 1020"); escolher por propriedade isolada ("é o mais rígido"); escolher por material concorrente ("o concorrente usa alumínio"). Nenhum dos três resiste à pergunta: qual função, com que restrição e para qual objetivo?
+        </div>
+
+        <h3 id="s1-5"><span class="num">1.5</span>O que o método não faz</h3>
+
+        <p>Vale dizer de saída o que fica fora. O método ordena por desempenho mecânico, térmico ou econômico calculável; ele não decide sobre disponibilidade local, sobre a linha de produção que a fábrica já tem, sobre a aceitação do cliente ou sobre o risco de depender de um único fornecedor. Também não substitui ensaio: o índice aponta o candidato, o laboratório confirma.</p>
+        <p>E há um limite conceitual: o índice vale para o modo de falha considerado. Uma seleção impecável para rigidez não protege contra fadiga, fluência ou corrosão sob tensão, que precisam entrar como restrições próprias. Em projeto, a lista curta é o começo do trabalho de engenharia, não o fim.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O problema se traduz em função, restrições, objetivo e variáveis livres.</li>
+          <li>O método tem quatro passos: traduzir, triar, ordenar, documentar — nessa ordem.</li>
+          <li>Restrição corta (cumpre ou não); objetivo ordena (melhor ou pior).</li>
+          <li>Não existe o melhor material: existe o melhor para uma função, com restrições e um objetivo declarados.</li>
+          <li>A variável livre é o que o projeto pode ajustar — e é ela que define qual índice vale.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Qual a diferença prática entre restrição e objetivo?</summary><p>A restrição é binária e elimina: temperatura de serviço de 300 °C descarta todo polímero, não importa quão bom ele seja no resto. O objetivo ordena entre os que sobraram: minimizar massa coloca o CFRP na frente do aço. Confundir os dois leva a listas curtas inúteis.</p></details>
+          <details><summary>Por que a variável livre é tão importante?</summary><p>Porque é ela que se elimina na dedução do índice. Se a área da seção é livre, a viga tem índice E^½/ρ e o compósito ganha; se o diâmetro é fixo por norma, o índice volta a ser E/ρ e todos os metais empatam. A mesma peça, dois índices.</p></details>
+          <details><summary>O método decide o material?</summary><p>Não: ele entrega três a seis candidatos justificados. A escolha final envolve processo, união, histórico, fornecedor e modos de falha que o índice não cobre — e é frequentemente decidida por razões não técnicas, o que é legítimo desde que esteja registrado.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — O método" data-topicos="universo">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. O universo dos materiais</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer as seis famílias e o que limita cada uma;</li>
+            <li>listar as propriedades que a seleção estrutural usa;</li>
+            <li>trabalhar com faixas de propriedade em vez de valores;</li>
+            <li>calcular e interpretar propriedades específicas.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1 e Ciência dos Materiais I.</p></div>
+        </div>
+
+        <p>O método do capítulo 1 só funciona se houver o que ordenar. Este capítulo monta o universo de busca: quais famílias existem, que propriedades a seleção usa e — o ponto mais importante — por que trabalhar com faixas é correto e não uma aproximação grosseira.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>Seis famílias</h3>
+        <p>Antes de ordenar é preciso saber o que existe. Os materiais de engenharia se organizam em seis famílias, e elas não são uma classificação arbitrária: cada família compartilha o tipo de ligação atômica, e daí vêm faixas de propriedade parecidas e processos de fabricação parecidos.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Família</th><th>Ligação dominante</th><th>Marca característica</th><th>Onde falha</th></tr></thead>
+          <tbody>
+            <tr><td>Metais</td><td>metálica</td><td>rígidos, dúcteis, tenazes, conformáveis</td><td>densos; corroem; ruins em temperatura muito alta</td></tr>
+            <tr><td>Polímeros</td><td>covalente + van der Waals</td><td>leves, baratos, moldáveis em forma complexa</td><td>módulo cem vezes menor; fluem; T de serviço baixa</td></tr>
+            <tr><td>Cerâmicos e vidros</td><td>iônica / covalente</td><td>rígidos, duros, resistentes a temperatura</td><td>frágeis: resistência à tração imprevisível</td></tr>
+            <tr><td>Compósitos</td><td>híbrida</td><td>melhor rigidez e resistência específicas que existem</td><td>caros; anisotrópicos; difíceis de unir e reciclar</td></tr>
+            <tr><td>Naturais (madeira, bambu)</td><td>celulose orientada</td><td>desempenho específico excelente por preço baixo</td><td>variabilidade; anisotropia; umidade</td></tr>
+            <tr><td>Espumas</td><td>célula + ligação da base</td><td>leves, isolantes, absorvem energia</td><td>rigidez e resistência muito baixas</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A linha "onde falha" é a mais útil das quatro. Ela antecipa qual restrição vai eliminar a família: cerâmico sai de qualquer aplicação com tração incerta, polímero sai acima de 150 °C, compósito sai quando o custo manda.</p>
+
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <h3 id="s2-2"><span class="num">2.2</span>As propriedades que o projeto usa</h3>
+
+        <p>São menos do que parece. Para a maior parte das decisões estruturais bastam oito:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Propriedade</th><th>Símbolo</th><th>Unidade usual</th><th>Para que serve na seleção</th></tr></thead>
+          <tbody>
+            <tr><td>Massa específica</td><td>ρ</td><td>kg/m³</td><td>aparece no denominador de quase todo índice</td></tr>
+            <tr><td>Módulo de Young</td><td>E</td><td>GPa</td><td>rigidez, flambagem, frequência natural</td></tr>
+            <tr><td>Limite de escoamento ou de ruptura</td><td>σ<sub>f</sub></td><td>MPa</td><td>resistência; em cerâmico, use a resistência à compressão</td></tr>
+            <tr><td>Tenacidade à fratura</td><td>K<sub>IC</sub></td><td>MPa·√m</td><td>tolerância a defeito; vasos de pressão</td></tr>
+            <tr><td>Custo por massa</td><td>C<sub>m</sub></td><td>US$/kg</td><td>objetivo econômico</td></tr>
+            <tr><td>Temperatura máxima de serviço</td><td>T<sub>max</sub></td><td>°C</td><td>triagem: corta famílias inteiras</td></tr>
+            <tr><td>Energia incorporada</td><td>H<sub>m</sub></td><td>MJ/kg</td><td>eco-seleção (capítulo 12)</td></tr>
+            <tr><td>Condutividade térmica</td><td>λ</td><td>W/m·K</td><td>trocadores, isolamento, choque térmico</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h3 id="s2-3"><span class="num">2.3</span>Faixas, não valores</h3>
+
+        <p>Um material de engenharia não tem um valor de propriedade: tem uma faixa. "Aço" cobre de 200 a 2000 MPa de resistência conforme a liga e o tratamento; "alumínio" vai de 30 a 600 MPa. Na seleção isso não é um problema — é a razão de o método funcionar. Enquanto as famílias estão separadas por ordens de grandeza, a dispersão interna de cada uma é irrelevante para o corte inicial.</p>
+        <p>A consequência prática: <strong>na fase de seleção, trabalhe com valores típicos de classe e com uma casa significativa</strong>. Buscar a folha de dados exata de uma liga específica só faz sentido depois de a lista curta estar formada. Os números deste texto e dos simuladores são valores típicos — bons para ordenar, insuficientes para dimensionar.</p>
+        <div class="callout note">
+          <strong>Quatro ordens de grandeza</strong>
+          O módulo de Young dos materiais de engenharia vai de 0,002 GPa (espuma flexível) a 410 GPa (carbeto de silício): um fator de 200 mil. É por isso que todo gráfico de propriedade neste texto é logarítmico — e o capítulo 3 faz disso o instrumento central.
+        </div>
+
+        <h3 id="s2-4"><span class="num">2.4</span>Propriedade específica: dividir pela massa</h3>
+
+        <p>A primeira coisa que se faz com ρ é dividir por ela. A rigidez específica E/ρ e a resistência específica σ<sub>f</sub>/ρ medem quanto se obtém por quilo transportado, e reorganizam completamente a comparação entre materiais.</p>
+        <p>O resultado mais instrutivo do assunto aparece aqui. Calculando E/ρ para os metais estruturais: aço 26,8, alumínio 25,9, titânio 26,0, magnésio 25,0 GPa/(Mg/m³). <strong>Todos praticamente iguais.</strong> Em tração pura, trocar aço por alumínio não economiza um grama — a peça de alumínio é mais grossa na mesma proporção em que é mais leve. Só o CFRP (64,5) e os cerâmicos quebram esse empate. Esse fato isolado derruba a maior parte das justificativas informais para usar alumínio, e é a razão pela qual as trocas que funcionam são quase sempre em flexão, não em tração.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>O empate dos metais em rigidez específica</div>
+          <p>Calcule E/ρ para aço (E = 210 GPa, ρ = 7850 kg/m³), alumínio 6061 (70 GPa, 2700), titânio (115 GPa, 4430), magnésio (45 GPa, 1800) e CFRP (100 GPa, 1550). Interprete o resultado para um tirante.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Aço: 210/7,85 = 26,8 GPa/(Mg/m³).</li>
+              <li>Alumínio: 70/2,70 = 25,9.</li>
+              <li>Titânio: 115/4,43 = 26,0.</li>
+              <li>Magnésio: 45/1,80 = 25,0.</li>
+              <li>CFRP: 100/1,55 = 64,5.</li>
+              <li>Num tirante de rigidez dada, a massa é proporcional a ρ/E, isto é, inversa ao índice: a razão entre a massa de alumínio e a de aço é 26,8/25,9 = 1,03.</li>
+            </ol>
+            <p class="resposta">Os quatro metais estão dentro de 7 % uns dos outros: em tração, trocar aço por alumínio aumenta a massa em 3 %. Só o CFRP, com 2,4 vezes o índice, reduz a massa a 42 % da de aço. O empate dos metais não é coincidência — reflete que, nos metais, E e ρ crescem juntos com a densidade de empacotamento atômico.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-5"><span class="num">2.5</span>De onde vêm os dados</h3>
+
+        <p>Três níveis, com confiabilidade crescente e disponibilidade decrescente: valores de classe (livros, bancos de dados de seleção — bons para triar), folhas de dados de fornecedor (para dimensionar, com atenção à condição de ensaio) e ensaio próprio no lote que será usado (para qualificar). Em compósito e em polímero, o terceiro nível não é luxo: a propriedade depende do processamento, e o mesmo material processado de outro jeito é outro material.</p>
+        <div class="callout warn">
+          <strong>Cuidado com a resistência de cerâmico em tração</strong>
+          Para cerâmico, o número tabelado como "resistência" normalmente é de compressão ou de flexão, dez a cinquenta vezes maior do que a resistência à tração útil, que depende do maior defeito presente e tem dispersão enorme. Em qualquer projeto com tração, cerâmico entra pela tenacidade à fratura, não pela resistência.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Seis famílias: metais, polímeros, cerâmicos, compósitos, naturais e espumas.</li>
+          <li>Oito propriedades cobrem a maior parte das decisões estruturais.</li>
+          <li>Na seleção, use valores típicos de classe; folha de dados só depois da lista curta.</li>
+          <li>E/ρ é praticamente igual para todos os metais estruturais: em tração, trocar metal não economiza massa.</li>
+          <li>Resistência tabelada de cerâmico quase nunca é a de tração — em tração, use K_IC.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que faixas largas de propriedade não estragam a seleção?</summary><p>Porque as famílias estão separadas por ordens de grandeza, e a dispersão interna de cada uma é pequena diante disso. O erro de usar um valor típico de "aço" em vez da liga exata muda o índice em dezenas de por cento; a diferença entre aço e CFRP é de centenas.</p></details>
+          <details><summary>Se E/ρ é igual para todos os metais, por que aeronaves usam alumínio?</summary><p>Porque aeronave é feita de painéis e vigas em flexão, não de tirantes. Em flexão com seção livre o índice é E^½/ρ, e aí o alumínio (3,10) vence o aço (1,85). Na tração pura — um tirante de trem de pouso, por exemplo — o ganho realmente desaparece.</p></details>
+          <details><summary>O que significa "propriedade específica"?</summary><p>A propriedade dividida pela massa específica: quanto se obtém por quilo transportado. É o caso mais simples de índice de desempenho, e vale exatamente para a função tirante em tração, nada além dela.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — O método" data-topicos="mapas">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Mapas de propriedades</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar por que os eixos são logarítmicos;</li>
+            <li>ler posição de família e de material num mapa E × ρ;</li>
+            <li>reconhecer um índice como reta de inclinação conhecida;</li>
+            <li>escolher o mapa adequado a cada tipo de projeto.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+
+        <p>Os mapas de propriedades — os gráficos de Ashby — são a representação que torna a seleção um procedimento visual. Este capítulo é curto de teoria e longo de prática: a habilidade a desenvolver é olhar um mapa e saber, em segundos, onde está a região interessante e quem a ocupa.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Por que o gráfico é logarítmico</h3>
+        <p>Com faixas que cobrem cinco ordens de grandeza, nenhum gráfico linear serve: todos os materiais leves se espremem contra o eixo. Em escala logarítmica, ao contrário, cada família ocupa uma região bem definida — uma "bolha" — e as relações entre propriedades aparecem como retas. O mapa de propriedades é a ferramenta central do método, e aprender a lê-lo é metade do curso.</p>
+        <p>O mapa mais usado tem ρ no eixo horizontal e E no vertical, ambos logarítmicos. Nele os metais ficam no canto superior direito (rígidos e densos), as espumas no inferior esquerdo (leves e moles), os polímeros no meio-baixo e os compósitos na região mais cobiçada: rígidos e leves.</p>
+
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Por que o logaritmo é indispensável</h3>
+
+        <p>Além de acomodar a faixa, a escala log transforma lei de potência em reta. Se o desempenho exige E<sup>1/2</sup>/ρ constante, então:</p>
+        <div class="formula"><span data-tex="\frac{E^{1/2}}{\rho} = M \;\Longrightarrow\; \log E = 2\log\rho + 2\log M"></span></div>
+        <p>que é a equação de uma reta de inclinação 2 no plano (log ρ, log E). Mudar o valor exigido de M desloca a reta sem girá-la. Essa é a única razão pela qual a seleção pode ser feita graficamente: <strong>cada índice é uma família de retas paralelas, e selecionar é deslizar uma delas</strong>.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Índice</th><th>Função</th><th>Inclinação no mapa ρ × E</th></tr></thead>
+          <tbody>
+            <tr><td>E/ρ</td><td>tirante (tração)</td><td>1</td></tr>
+            <tr><td>E<sup>1/2</sup>/ρ</td><td>viga em flexão, seção livre</td><td>2</td></tr>
+            <tr><td>E<sup>1/3</sup>/ρ</td><td>painel em flexão, espessura livre</td><td>3</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Ler um mapa E × ρ com a guia de viga</div>
+          <p>No mapa ρ × E, trace a guia do índice E^½/ρ no nível M = 3,0 (com E em GPa e ρ em Mg/m³). Quais dos seguintes ficam acima dela: aço (210; 7,85), alumínio 6061 (70; 2,70), CFRP (100; 1,55), madeira (12; 0,60), alumina (380; 3,90) e polipropileno (1,5; 0,91)?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Aço: √210/7,85 = 14,49/7,85 = 1,85 → abaixo.</li>
+              <li>Alumínio: √70/2,70 = 8,37/2,70 = 3,10 → acima, por pouco.</li>
+              <li>CFRP: √100/1,55 = 10,0/1,55 = 6,45 → bem acima.</li>
+              <li>Madeira: √12/0,60 = 3,46/0,60 = 5,77 → bem acima.</li>
+              <li>Alumina: √380/3,90 = 19,49/3,90 = 5,00 → acima.</li>
+              <li>Polipropileno: √1,5/0,91 = 1,22/0,91 = 1,35 → abaixo.</li>
+            </ol>
+            <p class="resposta">Passam CFRP (6,45), madeira (5,77), alumina (5,00) e alumínio (3,10). O resultado surpreende duas vezes: a madeira fica à frente da alumina e logo atrás do carbono — e a um centésimo do preço —, e o aço, que é o material estrutural padrão, fica <em>abaixo</em> da guia. É exatamente para produzir esse tipo de surpresa que o mapa existe.</p>
+          </details>
+        </div>
+
+        <h3 id="s3-3"><span class="num">3.3</span>Ler o mapa E × ρ</h3>
+
+        <p>Quatro leituras saem de olhar o mapa por um minuto:</p>
+        <ul>
+          <li>As <strong>bolhas de metais, cerâmicos e polímeros não se tocam</strong> em módulo: há um fator de cem entre polímero e metal, e outro de dois a quatro entre metal e cerâmico.</li>
+          <li>A <strong>diagonal de inclinação 1</strong> que passa pelos metais estruturais é quase a mesma para todos eles — o empate em E/ρ visto no capítulo 2 aparece como pontos alinhados.</li>
+          <li>Os <strong>compósitos e a madeira</strong> estão acima dessa diagonal quando a inclinação é 2 ou 3: eles ganham em flexão, não em tração.</li>
+          <li>A região de <strong>alto E e baixo ρ</strong> — canto superior esquerdo — está vazia. Nenhum material monolítico vive lá; é o espaço que os híbridos do capítulo 10 tentam ocupar.</li>
+        </ul>
+
+        <div id="sim-mapa" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Troque os eixos e o índice, ligue e desligue a guia, e observe quem entra e quem sai da lista aprovada. Compare o mapa ρ × E com o mapa custo por volume × E: a lista curta muda inteiramente.
+        </div>
+
+        <h3 id="s3-4"><span class="num">3.4</span>Outros mapas que valem a pena</h3>
+
+        <p>O mapa ρ × E é só o primeiro. Os demais respondem a outras perguntas:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Mapa</th><th>Para quê</th><th>O que se vê de imediato</th></tr></thead>
+          <tbody>
+            <tr><td>ρ × σ<sub>f</sub></td><td>projeto por resistência</td><td>compósitos e aços-liga dominam; cerâmicos só em compressão</td></tr>
+            <tr><td>E × σ<sub>f</sub></td><td>molas, dobradiças elásticas</td><td>elastômeros vencem em energia por massa</td></tr>
+            <tr><td>σ<sub>f</sub> × K<sub>IC</sub></td><td>tolerância a defeito, vasos de pressão</td><td>o conflito entre ser resistente e ser tenaz</td></tr>
+            <tr><td>custo por volume × E</td><td>estrutura civil</td><td>concreto e madeira imbatíveis</td></tr>
+            <tr><td>T<sub>max</sub> × σ<sub>f</sub></td><td>componente quente</td><td>superligas e cerâmicos sozinhos acima de 600 °C</td></tr>
+            <tr><td>H<sub>m</sub> × E</td><td>eco-seleção</td><td>madeira e concreto baratíssimos em energia</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Use o mapa para descobrir, não só para confirmar</strong>
+          O valor do mapa não está em verificar que o CFRP é bom em flexão — isso já se sabia. Está em ver quem mais está naquela região: madeira, bambu, compensado e alumina aparecem acima da guia E<sup>1/2</sup>/ρ junto com o carbono, e dois deles custam um por cento do preço.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Escala log acomoda cinco ordens de grandeza e transforma lei de potência em reta.</li>
+          <li>No mapa ρ × E, um índice E^(1/n)/ρ é uma reta de inclinação n.</li>
+          <li>Metais, polímeros e cerâmicos ocupam regiões que não se tocam em módulo.</li>
+          <li>A região de alto E e baixo ρ está vazia: é o alvo dos híbridos.</li>
+          <li>Cada pergunta de projeto tem seu mapa: ρ×σ, E×σ, σ×K_IC, custo×E, T_max×σ.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que deslizar a guia não muda sua inclinação?</summary><p>Porque a inclinação vem do expoente do índice, que depende da função e da restrição — não do nível exigido. Mudar o nível só muda a constante da reta, isto é, translada-a. Isso é o que permite selecionar graficamente com uma régua.</p></details>
+          <details><summary>O que significa um material estar acima da guia?</summary><p>Que seu índice é maior que o valor exigido: ele cumpre a função com menos massa. Note que "acima" num mapa ρ × E significa "acima e à esquerda" — mais rígido para a mesma densidade, ou menos denso para a mesma rigidez.</p></details>
+          <details><summary>Por que a região de alto E e baixo ρ está vazia?</summary><p>Porque módulo alto exige ligação forte e átomos bem empacotados, o que implica massa específica alta. Não é limitação tecnológica, é consequência da física da ligação — e a única forma de ocupar aquele canto é hibridizar, misturando sólido com espaço vazio de maneira organizada.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Índices de desempenho" data-topicos="receita">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. A receita do índice</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir um índice de desempenho em quatro linhas;</li>
+            <li>identificar de onde vem o expoente da propriedade;</li>
+            <li>converter um índice de massa em índice de custo;</li>
+            <li>reconhecer quando a perda da variável livre muda o índice.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 3; flexão de vigas (Mecânica dos Materiais I).</p></div>
+        </div>
+
+        <p>Este é o capítulo que o resto do curso usa. A dedução do índice é um procedimento de quatro linhas, sempre o mesmo, e aplicá-lo uma vez com atenção vale mais que decorar a tabela inteira do capítulo seguinte.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Objetivo, restrição, variável livre</h3>
+        <p>Este é o capítulo central do curso. O índice de desempenho não é uma fórmula para memorizar: é o resultado de um procedimento de quatro linhas que se aplica a qualquer combinação de função, restrição e objetivo. Quem aprende o procedimento deduz qualquer índice; quem decora a tabela fica preso aos casos tabelados.</p>
+        <p>A receita é:</p>
+        <ol>
+          <li>Escreva uma <strong>equação para o objetivo</strong> — normalmente a massa.</li>
+          <li>Escreva a <strong>equação da restrição</strong> — a rigidez, a carga, a frequência que não pode ser perdida.</li>
+          <li><strong>Elimine a variável livre</strong> entre as duas.</li>
+          <li>Agrupe o resultado: ele se separa em um fator de carga, um de geometria e um <strong>só de propriedades</strong>. Esse último, invertido, é o índice.</li>
+        </ol>
+
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>A dedução para a viga em flexão</h3>
+
+        <p>Viga biapoiada de vão L, carga F no meio, seção quadrada de área A livre, rigidez S = F/δ especificada. Objetivo: massa mínima.</p>
+        <p>① O objetivo:</p>
+        <div class="formula"><span data-tex="m = A\,L\,\rho"></span></div>
+        <p>② A restrição, com I = A²/12 para a seção quadrada:</p>
+        <div class="formula"><span data-tex="S = \frac{48EI}{L^3} = \frac{48E}{L^3}\cdot\frac{A^2}{12} = \frac{4EA^2}{L^3}"></span></div>
+        <p>③ Isolando a variável livre A e substituindo:</p>
+        <div class="formula"><span data-tex="A = L\sqrt{\frac{S\,L}{4E}} \qquad\Longrightarrow\qquad m = \underbrace{\sqrt{\frac{S}{4}}}_{\text{carga}}\;\underbrace{L^{5/2}}_{\text{geometria}}\;\underbrace{\frac{\rho}{E^{1/2}}}_{\text{material}}"></span></div>
+        <p>④ A massa é mínima quando o último fator é mínimo, isto é, quando seu inverso é máximo:</p>
+        <div class="formula"><span data-tex="M = \frac{E^{1/2}}{\rho} \qquad \text{(maximizar)}"></span></div>
+        <p>O ponto notável é a separação: o fator de carga depende da especificação, o de geometria do tamanho, e o de material de mais nada. Dobrar M corta a massa pela metade, independentemente de L e de S. É isso que permite ordenar materiais antes de conhecer o tamanho da peça.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>A viga leve e rígida, em quilos</div>
+          <p>Uma viga biapoiada de 1 m, seção quadrada maciça com área livre, deve fletir no máximo 2 mm sob 1000 N no meio do vão. Calcule a área, o lado e a massa em aço (E = 210 GPa, ρ = 7850), alumínio (70; 2700), CFRP (100; 1550) e madeira (12; 600). A rigidez exigida é S = F/δ = 1000/0,002 = 500 kN/m.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Com I = A²/12 e S = 48EI/L³ = 4EA²/L³, vem <span data-tex-inline="A = L\sqrt{SL/4E}"></span>.</li>
+              <li>Aço: A = √(5×10⁵/(4×210×10⁹)) = 7,72 cm² → lado 27,8 mm → m = 6,06 kg.</li>
+              <li>Alumínio: A = 13,36 cm² → lado 36,6 mm → m = 3,61 kg.</li>
+              <li>CFRP: A = 11,18 cm² → lado 33,4 mm → m = 1,73 kg.</li>
+              <li>Madeira: A = 32,28 cm² → lado 56,8 mm → m = 1,94 kg.</li>
+              <li>Conferindo com os índices E^½/ρ (1,85; 3,10; 6,45; 5,77): as massas relativas ao aço são 1,85/3,10 = 0,60, 1,85/6,45 = 0,29 e 1,85/5,77 = 0,32 — exatamente 3,61/6,06, 1,73/6,06 e 1,94/6,06.</li>
+            </ol>
+            <p class="resposta">A viga de CFRP pesa 29 % da de aço e a de madeira 32 %, cumprindo a mesma especificação. A verificação dos índices é o ponto do exemplo: a razão de massas sai direto da razão de índices, sem precisar recalcular área nenhuma — e é essa propriedade que faz o índice valer a pena.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-3"><span class="num">4.3</span>De onde vem o expoente</h3>
+
+        <p>O expoente de E no índice não é arbitrário: ele conta quantas vezes a variável livre aparece na restrição. Em tração, S = EA/L é linear em A, e o expoente é 1. Em flexão com área livre, S ∝ EA², e o expoente cai para 1/2. Num painel com espessura t livre, S ∝ Et³, e cai para 1/3.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Função</th><th>Variável livre</th><th>Restrição</th><th>Índice</th></tr></thead>
+          <tbody>
+            <tr><td>Tirante</td><td>área A</td><td>S = EA/L</td><td>E/ρ</td></tr>
+            <tr><td>Viga, seção livre</td><td>área A</td><td>S ∝ EA²/L³</td><td>E<sup>1/2</sup>/ρ</td></tr>
+            <tr><td>Painel, espessura livre</td><td>espessura t</td><td>S ∝ Et³/L³</td><td>E<sup>1/3</sup>/ρ</td></tr>
+            <tr><td>Viga de altura fixa</td><td>largura b</td><td>S ∝ Eb</td><td>E/ρ</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A última linha merece atenção: se a altura da seção é fixa por restrição de espaço, a viga volta a ter índice E/ρ — e o empate entre os metais ressurge. Trocar o material sem liberdade geométrica raramente compensa.</p>
+
+        <h3 id="s4-4"><span class="num">4.4</span>Trocar o objetivo troca o denominador</h3>
+
+        <p>Se o objetivo é custo em vez de massa, basta trocar o que se está contando. O custo do material de uma peça é C = m·C<sub>m</sub> = A L ρ C<sub>m</sub>, e repetindo a dedução:</p>
+        <div class="formula"><span data-tex="M_C = \frac{E^{1/2}}{C_m\,\rho}"></span></div>
+        <p>É o mesmo índice com C<sub>m</sub>ρ — o custo por volume — no denominador. Assim, qualquer índice de massa tem um gêmeo de custo. E a ordem muda de modo radical: numa viga rígida, o primeiro colocado por massa é o CFRP; por custo, é o concreto ou a madeira.</p>
+        <div class="callout warn">
+          <strong>O índice não é adimensional</strong>
+          E<sup>1/2</sup>/ρ tem unidade (GPa<sup>1/2</sup>·m³/Mg) e não significa nada em termos absolutos. Ele serve só para comparar. Por isso, ao citar um valor de índice, cite sempre a convenção de unidades — neste texto, E em GPa, σ em MPa e ρ em Mg/m³, que é a de Ashby.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Receita: escreva o objetivo, escreva a restrição, elimine a variável livre, separe os fatores.</li>
+          <li>A massa se separa em fator de carga × fator de geometria × fator de material.</li>
+          <li>O expoente da propriedade conta quantas vezes a variável livre aparece na restrição.</li>
+          <li>Objetivo em custo: troca-se ρ por C_m·ρ no denominador.</li>
+          <li>Sem variável livre geométrica, o índice volta a E/ρ e os metais empatam.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a separação em três fatores é tão importante?</summary><p>Porque ela prova que a ordem dos materiais não depende do tamanho da peça nem da intensidade da carga. Isso é o que permite ordenar materiais antes de dimensionar — e é o que torna o método utilizável nas primeiras horas de um projeto.</p></details>
+          <details><summary>Por que o expoente de E é 1/2 na viga e 1/3 no painel?</summary><p>Porque a rigidez depende de I, e I depende da variável livre com potências diferentes. Com área livre em seção quadrada, I ∝ A²; com espessura livre numa placa, I ∝ t³. Quanto mais forte a dependência, menor o expoente da propriedade — e menos o material importa diante da geometria.</p></details>
+          <details><summary>Em que caso o índice de massa e o de custo dão a mesma resposta?</summary><p>Quase nunca. Eles coincidem só se o custo por volume for igual para todos os candidatos, o que não acontece. Por isso é obrigatório declarar o objetivo: minimizar massa e minimizar custo são problemas diferentes com respostas diferentes.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Índices de desempenho" data-topicos="indices">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Os índices clássicos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>usar a tabela dos índices mais comuns;</li>
+            <li>reconhecer como a restrição muda a ordem dos materiais;</li>
+            <li>aplicar o índice de energia elástica a molas;</li>
+            <li>explicar o critério "vazar antes de romper".</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 4.</p></div>
+        </div>
+
+        <p>Com a receita dominada, vale ter à mão os resultados prontos. Esta é a tabela de referência do curso — e, mais que isso, é a oportunidade de ver que mudar uma palavra no enunciado ("rígido" em vez de "resistente") reorganiza completamente o ranking.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>A tabela que cobre o projeto mecânico</h3>
+        <p>Aplicando a receita às funções que mais aparecem, obtém-se uma tabela que cobre a maior parte dos problemas de projeto mecânico. Não é para decorar: é para reconhecer o padrão e, quando o caso for outro, deduzir o próprio índice em cinco linhas.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Função e restrição</th><th>Objetivo</th><th>Índice a maximizar</th></tr></thead>
+          <tbody>
+            <tr><td>Tirante, rigidez dada</td><td>massa</td><td>E/ρ</td></tr>
+            <tr><td>Tirante, carga dada</td><td>massa</td><td>σ<sub>f</sub>/ρ</td></tr>
+            <tr><td>Viga, rigidez dada, seção livre</td><td>massa</td><td>E<sup>1/2</sup>/ρ</td></tr>
+            <tr><td>Viga, momento dado, seção livre</td><td>massa</td><td>σ<sub>f</sub><sup>2/3</sup>/ρ</td></tr>
+            <tr><td>Painel, rigidez dada, espessura livre</td><td>massa</td><td>E<sup>1/3</sup>/ρ</td></tr>
+            <tr><td>Painel, carga dada, espessura livre</td><td>massa</td><td>σ<sub>f</sub><sup>1/2</sup>/ρ</td></tr>
+            <tr><td>Coluna, carga de flambagem dada</td><td>massa</td><td>E<sup>1/2</sup>/ρ</td></tr>
+            <tr><td>Mola, energia elástica máxima</td><td>massa</td><td>σ<sub>f</sub>²/Eρ</td></tr>
+            <tr><td>Mola, energia por volume</td><td>volume</td><td>σ<sub>f</sub>²/E</td></tr>
+            <tr><td>Vaso, vazar antes de romper</td><td>—</td><td>K<sub>IC</sub>²/σ<sub>f</sub></td></tr>
+            <tr><td>Disco rotativo, tensão centrífuga</td><td>velocidade</td><td>σ<sub>f</sub>/ρ</td></tr>
+            <tr><td>Diafragma, deflexão elástica máxima</td><td>deflexão</td><td>σ<sub>f</sub>/E</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Rigidez ou resistência: a restrição decide</h3>
+
+        <p>Dois projetos com a mesma função geométrica podem ter índices diferentes só porque a restrição é outra. A viga rígida pede E<sup>1/2</sup>/ρ; a viga resistente pede σ<sub>f</sub><sup>2/3</sup>/ρ. E a ordem muda: por E<sup>1/2</sup>/ρ, o CFRP (6,45) vence a madeira (5,77) e o alumínio (3,10); por σ<sub>f</sub><sup>2/3</sup>/ρ, o CFRP (45,9) dispara à frente, mas o alumínio 7075 (22,5) passa à frente da madeira (19,5) e quase alcança o titânio (21,0).</p>
+        <p>Em projeto real as duas restrições coexistem, e qual delas manda é o assunto do capítulo 7. Mas é útil saber de antemão: em peça pequena e muito carregada a resistência tende a mandar; em peça grande e esbelta, a rigidez.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Painel de piso: a madeira ganha de todos</div>
+          <p>Um painel de piso em flexão, de dimensões no plano fixas e espessura livre, deve ter rigidez dada. Compare aço (210; 7850), alumínio (70; 2700), CFRP (100; 1550), madeira (12; 600) e alumina (380; 3900) pelo índice adequado, e dê a massa relativa ao aço. Com espessura livre numa placa, I ∝ t³ e o índice é E^⅓/ρ.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Aço: 210^⅓/7,85 = 5,94/7,85 = 0,757.</li>
+              <li>Alumínio: 70^⅓/2,70 = 4,12/2,70 = 1,526.</li>
+              <li>CFRP: 100^⅓/1,55 = 4,64/1,55 = 2,995.</li>
+              <li>Madeira: 12^⅓/0,60 = 2,29/0,60 = 3,816.</li>
+              <li>Alumina: 380^⅓/3,90 = 7,24/3,90 = 1,857.</li>
+              <li>Massas relativas ao aço (inverso da razão de índices): alumínio 0,496; CFRP 0,253; madeira 0,198; alumina 0,408.</li>
+            </ol>
+            <p class="resposta">A madeira vence o CFRP: um painel de madeira pesa 20 % do painel de aço equivalente, contra 25 % do de carbono. O expoente 1/3 é generoso com material de módulo baixo, porque a espessura livre compensa — e é por isso que piso de madeira, compensado e painel de OSB atravessaram a história da construção sem nunca ser superados em desempenho por massa e por preço.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-3"><span class="num">5.3</span>Molas: o caso em que a borracha vence</h3>
+
+        <p>A energia elástica armazenada por unidade de massa até o escoamento é</p>
+        <div class="formula"><span data-tex="\frac{U}{m} = \frac{\sigma_f^2}{2E\rho}"></span></div>
+        <p>e esse índice produz o ranking mais contraintuitivo da tabela. Aço de mola armazena cerca de 300 J/kg; o elastômero, 4500 J/kg — quinze vezes mais. É por isso que o estilingue e o amortecedor de borracha existem, e é por isso que molas de aço são usadas quando a restrição real é espaço (σ<sub>f</sub>²/E, por volume) e não massa.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.2</span>Mola de energia máxima: aço contra borracha</div>
+          <p>Compare a energia elástica armazenada por unidade de massa, U/m = σ_f²/2Eρ, para aço-liga de mola (σ_f = 1000 MPa, E = 210 GPa, ρ = 7850), CFRP (600; 100; 1550) e elastômero (10 MPa; 0,01 GPa; 1100).</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Aço-liga: (10⁹)²/(2 × 210×10⁹ × 7850) = 10¹⁸/3,30×10¹⁵ = 303 J/kg.</li>
+              <li>CFRP: (6×10⁸)²/(2 × 100×10⁹ × 1550) = 3,6×10¹⁷/3,10×10¹⁴ = 1161 J/kg.</li>
+              <li>Elastômero: (10⁷)²/(2 × 10⁷ × 1100) = 10¹⁴/2,20×10¹⁰ = 4545 J/kg.</li>
+            </ol>
+            <p class="resposta">O elastômero armazena quinze vezes mais energia por quilo que o aço de mola, e quatro vezes mais que o compósito. É o resultado que explica o estilingue, o amortecedor de borracha e o acoplamento elástico. Se a restrição for espaço em vez de massa, o índice passa a ser σ_f²/E por volume — e aí o aço volta a vencer, porque a borracha precisa de volume enorme para a mesma energia.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-4"><span class="num">5.4</span>Vasos de pressão: vazar antes de romper</h3>
+
+        <p>Um índice de natureza diferente, porque não envolve massa. O requisito "vazar antes de romper" (<em>leak before break</em>) exige que uma trinca atravesse a parede, sendo detectada pelo vazamento, antes de atingir o tamanho crítico de propagação instável. A condição leva a</p>
+        <div class="formula"><span data-tex="M = \frac{K_{IC}^2}{\sigma_f}"></span></div>
+        <p>que se maximiza — e aqui, pela primeira vez, <strong>ser mais resistente é ruim</strong>: aumentar σ<sub>f</sub> diminui o índice, porque permite paredes mais finas, nas quais a trinca crítica é menor que a espessura. Aço inoxidável (33), cobre (19,6) e aço baixo carbono (23,1) vencem; o aço-liga temperado (3,6) é dos piores, e é a razão pela qual vasos não são feitos do aço mais resistente disponível.</p>
+        <div class="callout note">
+          <strong>Dois índices, duas respostas</strong>
+          O mesmo vaso de pressão, com objetivo de massa mínima, pediria σ<sub>f</sub>/ρ e apontaria o aço-liga ou o CFRP. Com o critério de segurança "vazar antes de romper", aponta o inoxidável macio. As duas respostas estão certas para as duas perguntas — e saber qual pergunta se está fazendo é o trabalho do engenheiro.
+        </div>
+
+        <div id="sim-indice" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Escolha a função e o objetivo e veja o índice virar quilos de uma peça real. Troque o objetivo de massa para custo com o mesmo índice: o primeiro colocado muda de CFRP para madeira ou concreto.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Tirante, viga e painel têm expoentes 1, 1/2 e 1/3 para rigidez; 1, 2/3 e 1/2 para resistência.</li>
+          <li>A restrição decide o índice: E^½/ρ para rigidez, σ_f^⅔/ρ para resistência.</li>
+          <li>Mola por massa: σ_f²/Eρ — e aí o elastômero vence o aço em quinze vezes.</li>
+          <li>Vazar antes de romper: K_IC²/σ_f, em que ser mais resistente é ruim.</li>
+          <li>Cada índice de massa tem um gêmeo de custo, com C_m·ρ no denominador.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o índice de mola favorece material de módulo baixo?</summary><p>Porque a energia armazenada é a área sob a curva tensão-deformação até o escoamento, e ela cresce com σ_f² e cai com E. Material mole que suporta tensão razoável se deforma muito antes de escoar e acumula muita energia por quilo — exatamente o caso do elastômero.</p></details>
+          <details><summary>Em "vazar antes de romper", por que resistência alta prejudica?</summary><p>Porque com σ_f maior a parede fica mais fina, e o tamanho crítico de trinca cai abaixo da espessura: a trinca se torna instável antes de atravessar a parede e vazar. O vaso rompe sem avisar. Daí K_IC²/σ_f, que premia tenacidade e penaliza resistência.</p></details>
+          <details><summary>A tabela de índices substitui a dedução?</summary><p>Só nos casos tabelados. Qualquer função um pouco diferente — viga de altura fixa, eixo em torção, disco rotativo, diafragma — exige voltar à receita. A tabela é um atalho para os casos comuns, não uma dispensa do método.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Índices de desempenho" data-topicos="grafica">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Seleção gráfica</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>traçar e deslizar a guia de um índice num mapa;</li>
+            <li>combinar guia com restrições de atributo;</li>
+            <li>decidir quando parar de apertar a exigência;</li>
+            <li>documentar a seleção de forma reutilizável.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 5.</p></div>
+        </div>
+
+        <p>Agora o método inteiro em operação. Este capítulo não traz teoria nova: traz o procedimento que se repete em todo projeto, e os critérios práticos de parada que separam uma seleção útil de um exercício.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Três gestos</h3>
+        <p>Com o índice deduzido e o mapa na tela, a seleção se faz com três gestos: desenhar a guia com a inclinação do índice, deslizá-la até restar uma lista curta e aplicar as restrições de atributo que cortam o que sobrou. É um procedimento visual, e sua vantagem sobre uma planilha ordenada é mostrar <em>quem está perto</em> do primeiro colocado — informação que a lista ordenada esconde.</p>
+
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Desenhar a guia e deslizá-la</h3>
+
+        <p>A guia é a reta log E = n log ρ + const, com n = 1/e sendo o inverso do expoente do índice. Posicioná-la em um valor M significa afirmar: "só interessam materiais com índice ≥ M". Tudo que está acima e à esquerda da reta satisfaz; tudo abaixo e à direita, não.</p>
+        <p>Deslizar para cima aperta a exigência e encurta a lista. O ponto de parada é prático: <strong>pare quando restarem três a seis candidatos</strong>. Menos que isso, e a seleção fica refém de um único material — perigoso se ele for eliminado na documentação. Mais que isso, e não houve seleção.</p>
+        <div class="callout tip">
+          <strong>Se a lista esvaziar, o problema não é o material</strong>
+          Quando nenhum material atende, a conclusão não é "não existe solução": é que a especificação precisa ser revista, ou que a função precisa de um híbrido (capítulo 10) ou de forma (capítulo 9). Esse é um dos usos mais valiosos do método — mostrar, com evidência, que o requisito é impossível antes de alguém gastar meses tentando cumpri-lo.
+        </div>
+
+        <h3 id="s6-3"><span class="num">6.3</span>Restrições de atributo: as caixas</h3>
+
+        <p>Além da guia, que é diagonal, entram as restrições de atributo — T de serviço mínima, custo máximo, condutividade, compatibilidade química. Num mapa, elas aparecem como linhas horizontais ou verticais que recortam retângulos; na prática, são filtros que eliminam materiais independentemente de onde estejam no gráfico.</p>
+        <p>A ordem recomendada é aplicar os atributos primeiro (triagem) e a guia depois (ordenação). Em ferramenta gráfica, porém, é instrutivo fazer o contrário uma vez: ver o primeiro colocado desaparecer quando se exige 300 °C de temperatura de serviço ensina mais sobre o problema do que qualquer tabela.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Lista curta para um braço de suspensão</div>
+          <p>Um braço de suspensão em flexão, com seção livre, exige índice E^½/ρ ≥ 3,0; precisa trabalhar até 150 °C, custar no máximo US$ 10/kg e resistir à corrosão por água salgada. Monte a lista curta a partir de: aço (M = 1,85; T_max 500 °C; US$ 0,90), alumínio 6061 (3,10; 180; 2,30), magnésio AZ91 (3,73; 150; 4,00), CFRP (6,45; 180; 50), madeira (5,77; 100; 1,00) e alumina (5,00; 1400; 20).</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Passo 1 — triagem por índice (≥ 3,0): saem o aço (1,85); ficam alumínio, magnésio, CFRP, madeira e alumina.</li>
+              <li>Passo 2 — temperatura de serviço ≥ 150 °C: sai a madeira (100 °C).</li>
+              <li>Passo 3 — custo ≤ US$ 10/kg: saem o CFRP (50) e a alumina (20).</li>
+              <li>Passo 4 — corrosão por água salgada: o magnésio AZ91 é o metal estrutural menos resistente a cloreto; entra como candidato condicionado a revestimento e isolamento galvânico.</li>
+              <li>Lista curta: alumínio 6061 (primeiro), magnésio AZ91 (segundo, condicionado).</li>
+            </ol>
+            <p class="resposta">Duas lições do exemplo. Primeiro, o melhor índice (CFRP, 6,45) foi eliminado pelo custo — o que é o resultado normal, não uma exceção. Segundo, a lista ficou curta demais: com dois candidatos, e um deles condicionado, vale voltar e perguntar se os 150 °C e os US$ 10/kg são realmente requisitos ou números herdados de outro projeto.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-4"><span class="num">6.4</span>A lista curta e o que fazer com ela</h3>
+
+        <p>A lista curta não é a resposta: é o ponto em que a engenharia de verdade começa. Para cada candidato, as perguntas são:</p>
+        <ul>
+          <li><strong>Processo:</strong> a forma pedida pode ser fabricada nesse material, no lote previsto? (capítulo 11)</li>
+          <li><strong>União:</strong> como se une à estrutura vizinha? Compósito não aceita solda; alumínio e aço em contato galvanicamente acoplado corroem.</li>
+          <li><strong>Histórico:</strong> alguém já usou esse material nessa função? O que falhou?</li>
+          <li><strong>Modos de falha não considerados:</strong> fadiga, fluência, desgaste, corrosão sob tensão, degradação por UV.</li>
+          <li><strong>Cadeia de suprimento:</strong> há mais de um fornecedor? Qual o prazo e a variação de preço?</li>
+        </ul>
+
+        <h3 id="s6-5"><span class="num">6.5</span>Documentar: a parte que ninguém faz</h3>
+
+        <p>O quarto passo do método é escrever por que a escolha foi essa — e, principalmente, por que não foi a segunda colocada. Isso tem dois usos concretos: quando o fornecedor do material escolhido falhar, a segunda opção já está justificada e dimensionada; e quando o projeto for revisado anos depois, a decisão não precisa ser redescoberta por tentativa e erro.</p>
+        <p>Um registro útil tem meia página: as quatro declarações do capítulo 1, o índice usado, a tabela dos candidatos com seus índices, as restrições que eliminaram os demais e a razão final da escolha entre os finalistas — que é, quase sempre, não técnica.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Trace a guia com a inclinação do índice e deslize-a até a lista ficar curta.</li>
+          <li>Pare com três a seis candidatos: menos é refém de um material, mais não é seleção.</li>
+          <li>Restrições de atributo cortam caixas; a guia ordena na diagonal.</li>
+          <li>Lista vazia significa especificação impossível — resultado valioso, não falha do método.</li>
+          <li>Documentar inclui dizer por que não foi a segunda colocada.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que parar com três a seis candidatos?</summary><p>Porque a documentação costuma eliminar o primeiro colocado — por processo, por fornecedor, por histórico de falha. Com um único candidato, a seleção precisa ser refeita do zero; com seis, a segunda opção já está pronta e justificada.</p></details>
+          <details><summary>O que fazer quando nenhum material atende?</summary><p>Três caminhos, nessa ordem: rever a especificação com quem a escreveu (muitas vezes a exigência era arbitrária); recorrer à forma, que multiplica o módulo efetivo (capítulo 9); ou recorrer a um híbrido (capítulo 10). Se nenhum funcionar, a função precisa ser repensada.</p></details>
+          <details><summary>Por que registrar a segunda colocada?</summary><p>Porque ela é o plano de contingência. Quando o fornecedor do material escolhido atrasar, subir de preço ou sair do mercado, a alternativa já está avaliada — e a decisão de engenharia não precisa ser tomada sob pressão de cronograma.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Projeto real" data-topicos="restricoes">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Múltiplas restrições</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a massa exigida por cada restrição separadamente;</li>
+            <li>identificar a restrição ativa material por material;</li>
+            <li>montar e interpretar a equação de acoplamento;</li>
+            <li>reconhecer restrições geométricas e de processo que eliminam a variável livre.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 4 e 5.</p></div>
+        </div>
+
+        <p>Aqui o curso sai do caso-escola. Projeto real tem rigidez <em>e</em> resistência <em>e</em> espaço <em>e</em> processo, e cada uma dessas exigências pede uma área de seção diferente. Saber qual delas manda — e que ela muda de material para material — é o que separa uma seleção correta de uma plausível.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>A peça obedece à maior das exigências</h3>
+        <p>Até aqui cada problema tinha uma restrição. Projeto real tem várias: a haste não pode fletir demais <em>e</em> não pode escoar <em>e</em> tem que caber no espaço disponível. Cada restrição, sozinha, dá uma área de seção; a peça precisa da <strong>maior</strong> delas. A restrição que fornece a maior área é a <strong>restrição ativa</strong>, e ela pode ser diferente para cada material.</p>
+        <p>Isso é mais importante do que parece. Dimensionar pela restrição errada deixa a peça fora de especificação; e, pior, escolher material pelo índice da restrição errada leva a uma lista curta inteiramente equivocada.</p>
+
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>Duas restrições, duas massas</h3>
+
+        <p>Para a viga biapoiada de seção quadrada, as duas restrições dão:</p>
+        <div class="formula"><span data-tex="A_{rig} = L\sqrt{\frac{S\,L}{4E}} \qquad\qquad A_{res} = \left(\frac{3FL}{2\sigma_f/n}\right)^{2/3}"></span></div>
+        <p>e as massas correspondentes são m = A L ρ. A massa exigida pela peça é</p>
+        <div class="formula"><span data-tex="m = \max\left(m_{rig},\; m_{res}\right)"></span></div>
+        <p>Essa função max é o que torna o problema interessante: ela não é derivável no cruzamento, não se fatora em índice × geometria, e por isso não existe um índice único que resolva o caso de duas restrições.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Qual restrição manda em cada material</div>
+          <p>Viga biapoiada de 1 m, seção quadrada livre, carga de 2000 N no meio do vão, flecha máxima de 10 mm e fator de segurança 2 contra escoamento. Determine a restrição ativa e a massa para aço (210 GPa; 350 MPa; 7850), alumínio 6061 (70; 270; 2700), CFRP (100; 600; 1550), madeira (12; 40; 600) e alumina (380; 350; 3900). A rigidez exigida é S = 2000/0,010 = 200 kN/m e a tensão admissível é σ_f/2.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Rigidez: <span data-tex-inline="A_{rig} = L\sqrt{SL/4E}"></span>. Resistência: <span data-tex-inline="A_{res} = (3FL/2\sigma_{adm})^{2/3}"></span> para seção quadrada.</li>
+              <li>Aço: m_rig = 3,83 kg; m_res = 5,22 kg → <strong>resistência</strong> manda; m = 5,22 kg.</li>
+              <li>Alumínio: m_rig = 2,28 kg; m_res = 2,13 kg → <strong>rigidez</strong> manda; m = 2,28 kg.</li>
+              <li>CFRP: m_rig = 1,10 kg; m_res = 0,72 kg → <strong>rigidez</strong> manda; m = 1,10 kg.</li>
+              <li>Madeira: m_rig = 1,23 kg; m_res = 1,69 kg → <strong>resistência</strong> manda; m = 1,69 kg.</li>
+              <li>Alumina: m_rig = 1,42 kg; m_res = 2,59 kg → <strong>resistência</strong> manda; m = 2,59 kg.</li>
+            </ol>
+            <p class="resposta">A restrição ativa muda material por material: rigidez no alumínio e no CFRP, resistência no aço, na madeira e na alumina. Quem tivesse selecionado apenas por E^½/ρ apontaria o CFRP (correto, 1,10 kg) mas colocaria a madeira em segundo — e ela é na verdade a segunda por 1,69 kg contra 2,28 kg do alumínio, porque a resistência baixa a penaliza. Dimensionar o aço pela rigidez daria 3,83 kg e uma peça que escoa em serviço.</p>
+          </details>
+        </div>
+
+        <h3 id="s7-3"><span class="num">7.3</span>A restrição ativa muda com o material</h3>
+
+        <p>Com a mesma especificação, o aço baixo carbono costuma ser limitado pela resistência (ele é rígido o bastante com pouca área, mas escoa), enquanto o alumínio e o CFRP são limitados pela rigidez (resistentes de sobra, mas flexíveis). A madeira e os cerâmicos voltam a ser limitados pela resistência. Não há regra: é preciso calcular as duas e comparar, material por material.</p>
+        <p>Apertar uma restrição faz com que ela passe a mandar em mais materiais. Reduzir a flecha admissível pela metade dobra a rigidez exigida e a torna ativa quase sempre; aumentar o fator de segurança tem o efeito oposto.</p>
+
+        <div id="sim-restricoes" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Mexa na flecha admissível e no fator de segurança e veja a restrição ativa trocar de lado. Procure a especificação em que todos os materiais passam a ser limitados pela mesma restrição.
+        </div>
+
+        <h3 id="s7-4"><span class="num">7.4</span>O método do acoplamento</h3>
+
+        <p>Quando se quer mesmo um índice único, há uma saída elegante. No ponto em que as duas restrições se igualam, elimina-se a especificação entre elas e obtém-se uma relação entre propriedades — a <strong>equação de acoplamento</strong>. Para a viga:</p>
+        <div class="formula"><span data-tex="m_{rig} = m_{res} \;\Longrightarrow\; \frac{E^{1/2}}{\rho} = C_a\,\frac{\sigma_f^{2/3}}{\rho}, \qquad C_a = C_a(S, F, L, n)"></span></div>
+        <p>A constante de acoplamento C<sub>a</sub> depende só da especificação. No mapa dos dois índices, ela é uma reta que divide o plano: de um lado a rigidez manda, do outro a resistência. Mudando a especificação, a reta se move — e materiais trocam de regime. É a forma gráfica de responder "para que especificações o alumínio passa a ser limitado por resistência?".</p>
+
+        <h3 id="s7-5"><span class="num">7.5</span>Restrições geométricas e de espaço</h3>
+
+        <p>Nem toda restrição é de propriedade. "A haste não pode ter mais de 30 mm de diâmetro" é uma restrição geométrica que, quando ativa, elimina a variável livre — e, como visto no capítulo 4, isso muda o índice. "A parede não pode ser mais fina que 2 mm" é uma restrição de processo que impede materiais rígidos de se beneficiarem de serem rígidos.</p>
+        <div class="callout warn">
+          <strong>O caso clássico: a peça com espessura mínima de molde</strong>
+          Em peça injetada, a espessura mínima vem do processo, não do cálculo estrutural. Quando ela manda, aumentar a resistência do polímero não economiza material nenhum — e a seleção deve passar a otimizar custo, fluidez ou acabamento, não propriedade mecânica. Reconhecer isso evita trocar um polímero barato por um de engenharia sem ganho algum.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Cada restrição dá uma área; a peça precisa da maior delas.</li>
+          <li>A restrição ativa é a que exige mais, e pode ser diferente em cada material.</li>
+          <li>Não existe índice único para duas restrições: a função max não se fatora.</li>
+          <li>A equação de acoplamento divide o plano de propriedades em regime de rigidez e de resistência.</li>
+          <li>Restrição geométrica ou de processo pode eliminar a variável livre — e trocar o índice.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que não há um índice único com duas restrições?</summary><p>Porque a massa exigida é o máximo entre duas expressões, e o máximo de duas funções não se separa em fator de geometria × fator de material. O que se pode fazer é calcular as duas massas e comparar, ou usar a equação de acoplamento para delimitar os regimes.</p></details>
+          <details><summary>Apertar uma restrição faz o quê?</summary><p>Torna-a ativa em mais materiais. Reduzir a flecha admissível dobra a rigidez exigida e faz a rigidez mandar quase sempre; aumentar o fator de segurança tem o efeito oposto, trazendo a resistência de volta ao comando.</p></details>
+          <details><summary>O que muda quando a espessura mínima vem do processo?</summary><p>Tudo. Se a parede não pode ser mais fina que o molde permite, a variável livre desapareceu: aumentar a resistência do material não reduz material nenhum. A seleção deve então passar a otimizar custo, fluidez ou acabamento — não propriedade mecânica.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Projeto real" data-topicos="tradeoff">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Objetivos conflitantes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>construir a fronteira de Pareto de dois objetivos;</li>
+            <li>eliminar soluções dominadas sem juízo de valor;</li>
+            <li>usar a função penalidade Z = C + αm;</li>
+            <li>estimar o valor de troca α a partir do produto.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 5 e 7.</p></div>
+        </div>
+
+        <p>Massa e custo apontam em direções opostas, e nenhum cálculo resolve esse conflito — ele se resolve declarando quanto vale um quilo. Este capítulo mostra o que a engenharia pode decidir sozinha (eliminar o que é dominado) e o que precisa de uma decisão de negócio (escolher um ponto da fronteira).</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Leve e barato não andam juntos</h3>
+        <p>Minimizar massa e minimizar custo são objetivos que apontam em direções opostas: os materiais leves são caros, quase sem exceção. Não existe um ótimo único quando há dois objetivos em conflito — existe um conjunto de soluções em que melhorar um objetivo obriga a piorar o outro. Esse conjunto é a <strong>fronteira de Pareto</strong>, e sair dela é desperdício.</p>
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>A fronteira de Pareto</h3>
+
+        <p>Plote cada material como um ponto no plano (massa, custo) da peça que cumpre a mesma função. Um material é <strong>dominado</strong> se existe outro que é simultaneamente mais leve e mais barato — esses saem da discussão imediatamente, sem precisar de nenhum juízo de valor. Os que não são dominados por ninguém formam a fronteira, uma curva descendente no canto inferior esquerdo da nuvem.</p>
+        <p>O primeiro resultado da análise é negativo e muito útil: boa parte dos candidatos é dominada, e eliminá-los não exige decidir quanto vale um quilo. Na viga rígida de 1 m com S = 500 kN/m, sobram na fronteira madeira, magnésio, alumínio, alumina e CFRP — e pouco mais.</p>
+
+        <h3 id="s8-3"><span class="num">8.3</span>A função penalidade e o valor de troca</h3>
+
+        <p>Para escolher <em>um</em> ponto da fronteira é preciso declarar quanto vale economizar um quilo. Esse é o <strong>valor de troca</strong> α, em US$/kg, e com ele os dois objetivos se juntam em um:</p>
+        <div class="formula"><span data-tex="Z = C + \alpha\,m \qquad \text{(minimizar)}"></span></div>
+        <p>Z tem unidade de dinheiro: é o custo total incluindo o que a massa custa ao longo da vida do produto. Minimizar Z é geometricamente simples: as retas Z = constante têm inclinação −α no plano (m, C), e o ótimo é o ponto da fronteira que a reta de menor Z toca. Aumentar α gira a reta e faz o ótimo deslizar para a esquerda — para materiais mais leves e mais caros.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>A mesma viga, dois valores de troca</div>
+          <p>Para a viga do exemplo 4.1 (1 m, S = 500 kN/m), a massa e o custo do material são: aço 6,06 kg / US$ 5,45; alumínio 3,61/8,30; magnésio 3,00/12,00; madeira 1,94/1,94; alumina 2,24/44,74; CFRP 1,73/86,65. Escolha o material para α = 12 US$/kg (automóvel) e para α = 500 US$/kg (aeronave).</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Com α = 12: Z_aço = 5,45 + 12×6,06 = 78,1; Z_alumínio = 8,30 + 43,3 = 51,6; Z_magnésio = 12,0 + 36,0 = 48,0; Z_madeira = 1,94 + 23,2 = 25,2; Z_alumina = 44,7 + 26,8 = 71,6; Z_CFRP = 86,7 + 20,8 = 107,4.</li>
+              <li>Mínimo com α = 12: <strong>madeira</strong> (Z = 25,2), seguida de magnésio (48,0).</li>
+              <li>Com α = 500: Z_aço = 3034; Z_alumínio = 1812; Z_magnésio = 1512; Z_madeira = 970; Z_alumina = 1163; Z_CFRP = 953.</li>
+              <li>Mínimo com α = 500: <strong>CFRP</strong> (Z = 953), com a madeira praticamente empatada (970).</li>
+            </ol>
+            <p class="resposta">Com α = 12 o CFRP é o pior de todos; com α = 500 ele é o melhor. Nenhum dado mudou — só a declaração de quanto vale um quilo. Note também que a madeira está entre as duas melhores nos dois casos: ela está na fronteira de Pareto numa posição privilegiada, e só perde para o carbono quando o quilo passa a valer centenas de dólares.</p>
+          </details>
+        </div>
+
+        <h3 id="s8-4"><span class="num">8.4</span>Quanto vale um quilo</h3>
+
+        <p>O valor de α não é opinião: ele se estima do produto.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Produto</th><th>α típico (US$/kg)</th><th>De onde vem</th></tr></thead>
+          <tbody>
+            <tr><td>Bem de consumo, eletrodoméstico</td><td>1 a 5</td><td>frete e matéria-prima</td></tr>
+            <tr><td>Automóvel de passeio</td><td>5 a 20</td><td>combustível economizado na vida útil</td></tr>
+            <tr><td>Caminhão, ônibus</td><td>20 a 100</td><td>carga paga adicional</td></tr>
+            <tr><td>Aeronave civil</td><td>300 a 1000</td><td>combustível e carga paga por quilo retirado</td></tr>
+            <tr><td>Veículo espacial</td><td>3 000 a 30 000</td><td>custo de lançamento por quilo</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Com α = 12 US$/kg (automóvel), a viga ótima é de madeira ou magnésio; com α = 500 (aeronave), passa a ser de CFRP. O mesmo cálculo, o mesmo conjunto de materiais, duas respostas — e nenhuma delas é um palpite.</p>
+        <div class="callout tip">
+          <strong>Use α para discutir com quem decide</strong>
+          A grande vantagem da função penalidade é transformar uma discussão subjetiva ("vale a pena pagar por compósito?") em uma pergunta objetiva: qual é o α deste produto? Se a área comercial afirma que vale pagar US$ 60 por quilo economizado, o compósito entra; se afirma US$ 5, ele está fora, e o engenheiro não precisa defender a decisão com argumentos técnicos que não são o ponto.
+        </div>
+
+        <div id="sim-tradeoff" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Deslize o valor de troca de 1 a 2000 US$/kg e acompanhe o ponto ótimo caminhar pela fronteira. Identifique em que α cada material deixa de ser a melhor escolha.
+        </div>
+
+        <h3 id="s8-5"><span class="num">8.5</span>Mais de dois objetivos</h3>
+
+        <p>Com três objetivos — massa, custo e impacto ambiental, por exemplo — a fronteira se torna uma superfície e o procedimento é o mesmo: Z = C + α m + β H, com β medindo quanto vale um megajoule evitado. A dificuldade deixa de ser matemática e passa a ser política, porque β é uma decisão de sociedade (ou de legislação), não de engenharia.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Material dominado — mais pesado e mais caro que outro — sai sem precisar de juízo de valor.</li>
+          <li>Os não dominados formam a fronteira de Pareto.</li>
+          <li>A função penalidade Z = C + αm junta os dois objetivos em dinheiro.</li>
+          <li>As retas Z = const têm inclinação −α; o ótimo é onde a menor delas toca a fronteira.</li>
+          <li>α vai de 1 US$/kg em bem de consumo a dezenas de milhares em veículo espacial.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Qual a vantagem de eliminar os dominados primeiro?</summary><p>É a única parte da análise que não exige opinião. Se um material é ao mesmo tempo mais pesado e mais caro que outro, ele está fora para qualquer valor de α. Isso costuma reduzir a lista pela metade antes de qualquer discussão.</p></details>
+          <details><summary>De onde se tira o valor de α?</summary><p>Do produto. Num automóvel, α é o combustível economizado na vida útil por quilo retirado; numa aeronave, o combustível mais a carga paga adicional; num satélite, o custo de lançamento por quilo. É um número que a área comercial ou de operação tem — e que o projeto deve pedir em vez de arbitrar.</p></details>
+          <details><summary>Por que a função penalidade é útil numa discussão?</summary><p>Porque transforma "vale a pena compósito?" numa pergunta objetiva: qual é o α deste produto? Declarado o α, a resposta é um cálculo. Sem ele, a discussão é sobre preferências, e o engenheiro acaba defendendo tecnicamente uma decisão que não é técnica.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Projeto real" data-topicos="forma">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Material e forma</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular o fator de forma de uma seção em flexão;</li>
+            <li>incorporar a forma ao índice de desempenho;</li>
+            <li>comparar material maciço com material conformado;</li>
+            <li>reconhecer o limite de forma de cada família.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 4 e 5; momento de inércia de seções.</p></div>
+        </div>
+
+        <p>Nenhuma viga real é maciça. A forma rende rigidez sem acrescentar material, e o ganho pode superar a diferença entre dois materiais — o que torna qualquer comparação "aço contra compósito" sem especificar a seção uma comparação incompleta.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>A forma multiplica o módulo</h3>
+        <p>Até aqui a seção foi sempre quadrada maciça. Na prática ninguém faz viga assim: faz-se tubo, perfil I, caixa. A forma rende rigidez em flexão sem acrescentar material, e esse ganho pode ser maior que a diferença entre dois materiais. Material e forma precisam, portanto, ser escolhidos juntos.</p>
+
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>O fator de forma</h3>
+
+        <p>Defina o fator de forma em flexão como a razão entre a rigidez da seção real e a de uma seção quadrada maciça de <strong>mesma área</strong>:</p>
+        <div class="formula"><span data-tex="\phi_B^e = \frac{I}{I_{quad}} = \frac{12\,I}{A^2}"></span></div>
+        <p>Por construção, φ = 1 para a seção quadrada maciça, e cresce conforme o material se afasta da linha neutra. Há um fator análogo para resistência, φ<sub>B</sub><sup>f</sup> = 6Z/A<sup>3/2</sup>, com valores mais modestos, e outros para torção.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Seção</th><th>φ<sub>B</sub><sup>e</sup> (rigidez)</th><th>φ<sub>B</sub><sup>f</sup> (resistência)</th></tr></thead>
+          <tbody>
+            <tr><td>Quadrada maciça</td><td>1,0</td><td>1,0</td></tr>
+            <tr><td>Retângulo 1:3, de pé</td><td>3,0</td><td>1,7</td></tr>
+            <tr><td>Tubo circular, d/t = 10</td><td>6,5</td><td>3,1</td></tr>
+            <tr><td>Perfil I laminado</td><td>10</td><td>4,3</td></tr>
+            <tr><td>Seção caixa, h/t = 20</td><td>14</td><td>5,0</td></tr>
+            <tr><td>Tubo circular, d/t = 25</td><td>16</td><td>5,5</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h3 id="s9-3"><span class="num">9.3</span>O índice com forma</h3>
+
+        <p>A dedução do capítulo 4, refeita com I = φA²/12, entrega o índice modificado:</p>
+        <div class="formula"><span data-tex="M = \frac{(\phi_B^e E)^{1/2}}{\rho}"></span></div>
+        <p>Isto é: a forma entra multiplicando o módulo. Um material com φ = 6,5 comporta-se, em flexão, como se tivesse 6,5 vezes o módulo que tem — e seu índice sobe pela raiz disso, 2,55 vezes. A massa cai para 39 % da massa da peça maciça equivalente.</p>
+        <p>A consequência é desconcertante e verdadeira: <strong>um tubo de aço pode vencer uma barra maciça de compósito</strong>. O aço maciço tem M = 1,85 contra 6,45 do CFRP maciço — uma derrota de 3,5 vezes. Em tubo d/t = 10, o aço sobe a 4,71 e a diferença cai para 1,37. Em tubo d/t = 25, o aço vai a 7,39 e <em>passa</em> o CFRP maciço. É por isso que bicicletas de aço competiram com as de carbono por tanto tempo: a comparação honesta é tubo contra tubo, e o compósito em tubo chega a M acima de 25.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Tubo de aço contra barra maciça de compósito</div>
+          <p>Compare, pelo índice de viga leve e rígida, o aço (E = 210 GPa, ρ = 7850) em seção quadrada maciça, em tubo d/t = 10 (φ = 6,5) e em tubo d/t = 25 (φ = 16), com o CFRP maciço (100; 1550) e o CFRP em tubo d/t = 25.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Aço maciço: √210/7,85 = 1,85.</li>
+              <li>Aço, tubo d/t = 10: √(6,5 × 210)/7,85 = √1365/7,85 = 36,9/7,85 = 4,71.</li>
+              <li>Aço, tubo d/t = 25: √(16 × 210)/7,85 = 57,97/7,85 = 7,39.</li>
+              <li>CFRP maciço: √100/1,55 = 6,45.</li>
+              <li>CFRP, tubo d/t = 25: √(16 × 100)/1,55 = 40,0/1,55 = 25,8.</li>
+            </ol>
+            <p class="resposta">O aço maciço perde do CFRP maciço por 3,5 vezes; em tubo d/t = 10 a diferença cai a 1,37; em tubo d/t = 25 o aço <em>passa</em> o compósito maciço. Isso explica por que bicicletas de aço competiram com as de carbono por décadas — e também por que elas deixaram de competir quando o carbono passou a ser usado em tubo, onde chega a 25,8. A forma é uma variável de projeto tão poderosa quanto o material.</p>
+          </details>
+        </div>
+
+        <h3 id="s9-4"><span class="num">9.4</span>O limite: flambagem local</h3>
+
+        <p>Não se pode aumentar φ indefinidamente afinando a parede: em algum ponto ela flamba localmente, enruga ou amassa, e a seção perde capacidade de forma catastrófica. O limite depende da família do material, porque depende da razão entre módulo e resistência e da tolerância a imperfeição.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Família</th><th>φ<sub>max</sub> prático</th><th>Por quê</th></tr></thead>
+          <tbody>
+            <tr><td>Metais</td><td>≈ 65</td><td>dúcteis, conformáveis em parede fina, toleram imperfeição</td></tr>
+            <tr><td>Compósitos</td><td>≈ 40</td><td>limitados por microflambagem e por delaminação local</td></tr>
+            <tr><td>Polímeros</td><td>≈ 25</td><td>módulo baixo: a parede fina perde estabilidade cedo</td></tr>
+            <tr><td>Madeira</td><td>≈ 8</td><td>processo não permite parede fina controlada</td></tr>
+            <tr><td>Cerâmicos</td><td>≈ 2</td><td>frágeis: qualquer concentração local trinca</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Esse teto explica por que o aço domina estrutura metálica leve: ele é a família que mais ganha com forma. E explica, do outro lado, por que cerâmico nunca aparece em viga: além de frágil em tração, não pode usar a forma para compensar.</p>
+        <div class="callout note">
+          <strong>A forma tem custo</strong>
+          Parede fina exige processo mais caro: extrusão em vez de laminação, molde de injeção com núcleo, laminação sobre mandril. Em projeto, φ alto é uma escolha que compra massa com dinheiro — e, por isso, entra na mesma análise de trade-off do capítulo 8.
+        </div>
+
+        <div id="sim-forma" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Combine material e seção e veja o índice com forma. Procure a combinação em que um metal barato supera um compósito, e observe o alerta quando a forma passa do teto da família.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>φ_B^e = 12I/A² mede a rigidez em flexão relativa à seção quadrada de mesma área.</li>
+          <li>Com forma, o índice passa a (φE)^½/ρ: a forma multiplica o módulo.</li>
+          <li>Tubo d/t = 10 tem φ = 6,5: índice 2,55 vezes maior, massa em 39 %.</li>
+          <li>Há um teto por família: metais ≈ 65, compósitos ≈ 40, polímeros ≈ 25, cerâmicos ≈ 2.</li>
+          <li>Parede fina custa processo mais caro — forma compra massa com dinheiro.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o fator de forma de resistência é menor que o de rigidez?</summary><p>Porque a rigidez depende de I (segundo momento), que cresce com o quadrado da distância à linha neutra, enquanto a resistência depende do módulo de seção Z = I/y_max, que cresce menos. Afastar material da linha neutra também afasta o ponto de tensão máxima.</p></details>
+          <details><summary>Por que os metais têm o teto de forma mais alto?</summary><p>Porque são dúcteis, conformáveis em parede fina e toleram imperfeição geométrica sem flambar localmente de forma catastrófica. Cerâmico, no extremo oposto, trinca em qualquer concentração local — e por isso não pode usar forma para compensar sua fragilidade.</p></details>
+          <details><summary>Comparar aço e CFRP sem dizer a seção faz sentido?</summary><p>Não. Aço maciço tem M = 1,85 e CFRP maciço 6,45; em tubo d/t = 25 o aço vai a 7,39 e o CFRP a 25,8. A comparação honesta é tubo contra tubo, ou maciço contra maciço — e misturar as duas é a origem de boa parte das alegações exageradas sobre compósitos.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Projeto real" data-topicos="hibridos">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Materiais híbridos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer as quatro famílias de híbrido;</li>
+            <li>calcular os limites de Voigt e Reuss;</li>
+            <li>estimar o desempenho de um painel sanduíche;</li>
+            <li>usar as leis de escala de materiais celulares.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3, 9 e Macromecânica (ou noções de compósitos).</p></div>
+        </div>
+
+        <p>Quando nenhum material atende, a saída é não usar um material. Combinando dois — ou um sólido com espaço vazio organizado — obtêm-se propriedades médias que caem onde nenhum constituinte cai, inclusive no canto vazio do mapa E × ρ.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Preencher o canto vazio do mapa</h3>
+        <p>O mapa E × ρ tem um canto vazio: alto módulo e baixa massa específica. Nenhum material monolítico ocupa essa região, e nenhum vai ocupar — a ligação atômica que dá módulo alto implica átomos pesados e bem empacotados. A saída é não usar um material: combinar dois, criando um <strong>híbrido</strong> cujas propriedades médias caem onde nenhum constituinte cai.</p>
+        <p>Há quatro famílias de híbrido, e todas respondem à mesma pergunta — como colocar material onde ele trabalha e nada onde não trabalha:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Arranjo</th><th>O que se ganha</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>Compósito</td><td>fibra ou partícula numa matriz</td><td>rigidez e resistência específicas</td><td>CFRP, concreto armado</td></tr>
+            <tr><td>Sanduíche</td><td>faces rígidas, núcleo leve</td><td>rigidez à flexão por massa</td><td>painel de piso aeronáutico</td></tr>
+            <tr><td>Treliça / celular</td><td>material + espaço vazio organizado</td><td>densidade como variável de projeto</td><td>treliça, espuma, honeycomb</td></tr>
+            <tr><td>Segmentado</td><td>camadas ou blocos com interface</td><td>tenacidade, amortecimento</td><td>vidro laminado, nácar</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Limites de Voigt e Reuss</h3>
+
+        <p>Qualquer arranjo de dois materiais tem módulo entre dois limites. Com os constituintes <strong>em paralelo</strong> (deformação igual), as rigidezes somam — limite superior de Voigt:</p>
+        <div class="formula"><span data-tex="E_{V} = f\,E_A + (1-f)\,E_B"></span></div>
+        <p>Com eles <strong>em série</strong> (tensão igual), somam-se as flexibilidades — limite inferior de Reuss:</p>
+        <div class="formula"><span data-tex="\frac{1}{E_{R}} = \frac{f}{E_A} + \frac{1-f}{E_B}"></span></div>
+        <p>A massa específica, por outro lado, é sempre exatamente a média volumétrica: ρ = fρ<sub>A</sub> + (1−f)ρ<sub>B</sub>. Essa assimetria é o segredo do híbrido: <strong>a massa é obrigada a ser a média, mas o módulo pode ser o limite superior</strong>, se o arranjo for o certo.</p>
+        <p>Os dois limites estão muito longe um do outro quando os constituintes diferem muito. Para 20 % de CFRP em espuma rígida, Voigt dá 20,1 GPa e Reuss dá 0,10 GPa — um fator de 200. Toda a engenharia do híbrido está em chegar perto do limite superior.</p>
+
+        <h3 id="s10-3"><span class="num">10.3</span>Sanduíches</h3>
+
+        <p>O sanduíche é o híbrido mais bem-sucedido em flexão, porque explora a mesma ideia do fator de forma: as faces ficam longe da linha neutra, onde a tensão de flexão é máxima, e o núcleo só precisa manter a distância entre elas e resistir ao cisalhamento. Com faces de espessura t e núcleo de espessura c:</p>
+        <div class="formula"><span data-tex="(EI)_{eq} \approx \frac{E_f\,b\,t\,(c+t)^2}{2} \qquad \rho_{eq} = \frac{2t\rho_f + c\rho_c}{2t+c}"></span></div>
+        <p>Com 20 % de CFRP em volume e espuma rígida no núcleo, o painel resultante tem ρ = 390 kg/m³ e, no limite de Voigt, E ≈ 20 GPa: índice de painel E<sup>1/3</sup>/ρ ≈ 6,97 contra 0,757 do aço — um fator de nove. É esse número que coloca sanduíche em piso de aeronave, em casco de barco e em pá de turbina eólica.</p>
+        <div class="callout warn">
+          <strong>Onde o sanduíche falha</strong>
+          Três modos que não aparecem no índice: enrugamento da face comprimida, cisalhamento do núcleo e descolamento face-núcleo. Nenhum deles depende da rigidez à flexão, e todos são o que efetivamente limita o projeto. Além disso, núcleo de espuma de célula aberta absorve água — e um painel encharcado perde a razão de existir.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Painel sanduíche de CFRP com núcleo de espuma</div>
+          <p>Um painel sanduíche usa faces de CFRP (E = 100 GPa, ρ = 1550) ocupando 20 % do volume e núcleo de espuma rígida (0,08 GPa, 100 kg/m³) nos 80 % restantes. Estime o módulo equivalente em flexão, a massa específica e o índice de painel E^⅓/ρ; compare com o aço.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Massa específica: ρ = 0,20 × 1550 + 0,80 × 100 = 310 + 80 = 390 kg/m³.</li>
+              <li>Limite de Voigt: E = 0,20 × 100 + 0,80 × 0,08 = 20,0 + 0,064 = 20,1 GPa.</li>
+              <li>Limite de Reuss: 1/E = 0,20/100 + 0,80/0,08 = 0,002 + 10,0 → E = 0,10 GPa.</li>
+              <li>Em flexão, com as faces longe da linha neutra, o comportamento se aproxima do limite de Voigt: use E ≈ 20 GPa.</li>
+              <li>Índice: 20,1^⅓/0,390 = 2,72/0,390 = 6,97.</li>
+              <li>Aço: 210^⅓/7,85 = 0,757.</li>
+            </ol>
+            <p class="resposta">O painel sanduíche tem índice 6,97 contra 0,757 do aço: um fator de nove. E o ponto fino do exemplo é a distância entre os limites — de 0,10 a 20,1 GPa, um fator de 200. Tudo depende do arranjo: as mesmas quantidades de carbono e espuma, misturadas em série, dariam um painel inútil. O projeto do híbrido é o projeto do arranjo, não da composição.</p>
+          </details>
+        </div>
+
+        <h3 id="s10-4"><span class="num">10.4</span>Celulares: a densidade como variável de projeto</h3>
+
+        <p>Espumas e treliças têm uma propriedade que materiais sólidos não têm: a densidade relativa ρ/ρ<sub>s</sub> é um parâmetro de projeto. As leis de escala para espuma de célula aberta são</p>
+        <div class="formula"><span data-tex="\frac{E}{E_s} \approx \left(\frac{\rho}{\rho_s}\right)^{2} \qquad \frac{\sigma}{\sigma_s} \approx \left(\frac{\rho}{\rho_s}\right)^{3/2}"></span></div>
+        <p>com expoente 2 porque as paredes trabalham em flexão. Como o expoente é maior que 1, espumar sempre piora o módulo mais do que reduz a massa — no mapa E × ρ, as espumas descem por uma reta de inclinação 2, exatamente a inclinação do índice de viga. Daí uma conclusão elegante: <strong>espumar não muda o índice E<sup>1/2</sup>/ρ</strong>, mas muda E<sup>1/3</sup>/ρ para melhor. Espuma não serve para viga; serve para painel, e para preencher o núcleo de um sanduíche.</p>
+        <p>Treliças periódicas, em que as barras trabalham em tração e compressão em vez de flexão, chegam a expoente 1 — e essas, sim, mantêm o desempenho ao perder massa. É a razão de interesse pelas estruturas de treliça fabricadas por impressão 3D.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Quatro tipos de híbrido: compósito, sanduíche, celular e segmentado.</li>
+          <li>Voigt (paralelo) é o limite superior de E; Reuss (série), o inferior.</li>
+          <li>A massa específica é sempre a média exata — e é essa assimetria que o híbrido explora.</li>
+          <li>Sanduíche com 20 % de CFRP e núcleo de espuma: E^⅓/ρ nove vezes o do aço.</li>
+          <li>Espumar não melhora E^½/ρ (expoente 2), mas melhora E^⅓/ρ: espuma serve para painel, não para viga.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a massa específica é a média exata e o módulo não?</summary><p>Porque massa é uma grandeza extensiva: ela soma, independentemente de como os constituintes estão arranjados. Rigidez depende de como a carga se distribui, e isso depende do arranjo — em paralelo ou em série, com todos os casos intermediários. A média é obrigatória na massa e opcional no módulo.</p></details>
+          <details><summary>Por que o sanduíche se aproxima do limite superior em flexão?</summary><p>Porque as faces, longe da linha neutra, trabalham praticamente em tração e compressão uniformes — o arranjo em paralelo. O núcleo só mantém a distância e resiste ao cisalhamento. É a mesma ideia do fator de forma, levada ao extremo com dois materiais diferentes.</p></details>
+          <details><summary>Por que espumar não melhora o índice de viga?</summary><p>Porque E/E_s ≈ (ρ/ρ_s)², e o expoente 2 é exatamente a inclinação da guia de E^½/ρ: ao espumar, o material desce pela própria guia e o índice fica constante. Para o painel, cuja guia tem inclinação 3, descer com inclinação 2 significa subir em relação à guia — e aí a espuma ganha.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte IV — Processo e ambiente" data-topicos="processo">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Seleção de processo</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer as quatro famílias de processo;</li>
+            <li>triar processos pelos atributos de massa, espessura, forma e tolerância;</li>
+            <li>montar o custo por peça e localizar o lote econômico;</li>
+            <li>explicar o acoplamento entre material, forma e processo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1, 9 e Processos de Fabricação.</p></div>
+        </div>
+
+        <p>Um material com índice excelente que não pode ser conformado na forma pedida, na quantidade pedida, não é candidato. A seleção de processo tem a mesma estrutura da de material — triar por atributo, ordenar por custo — e as duas estão acopladas de modo que nenhuma se resolve sozinha.</p>
+
+        <h3 id="s11-1"><span class="num">11.1</span>O que não se fabrica não é candidato</h3>
+        <p>Um material que não pode ser fabricado na forma pedida, na quantidade pedida, não é um candidato — por melhor que seja seu índice. A seleção de processo segue a mesma estrutura da de material: triar por atributos, ordenar por custo. E as duas não são independentes: material, forma e processo se escolhem juntos, porque cada processo aceita só certas famílias e produz só certas formas.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Família de processo</th><th>O que faz</th><th>Exemplos</th></tr></thead>
+          <tbody>
+            <tr><td>Conformação primária</td><td>dá a forma a partir do estado líquido ou de pó</td><td>fundição, injeção, extrusão, moldagem, prensagem de pó</td></tr>
+            <tr><td>Conformação secundária</td><td>refina a forma ou as dimensões</td><td>usinagem, retificação, dobramento, estampagem</td></tr>
+            <tr><td>União</td><td>monta a peça a partir de outras</td><td>solda, adesivo, parafuso, rebite, brasagem</td></tr>
+            <tr><td>Acabamento</td><td>protege ou trata a superfície</td><td>pintura, anodização, revestimento, polimento, têmpera superficial</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-11-1"></div>
+
+        <h3 id="s11-2"><span class="num">11.2</span>Os atributos que triam</h3>
+
+        <p>Cinco atributos decidem a viabilidade na maioria dos casos:</p>
+        <ul>
+          <li><strong>Material:</strong> injeção só serve a termoplástico; fundição sob pressão, a ligas de baixo ponto de fusão; prensagem de pó, a cerâmico e metal duro.</li>
+          <li><strong>Massa e tamanho:</strong> cada processo tem faixa. Injeção vai de gramas a cerca de 25 kg; fundição em areia, de 0,1 kg a toneladas.</li>
+          <li><strong>Espessura mínima e máxima:</strong> fundição em areia não faz parede abaixo de 3 mm; injeção faz 0,5 mm, mas sofre acima de 8 mm.</li>
+          <li><strong>Complexidade de forma:</strong> extrusão só faz seção constante; fundição e injeção fazem forma tridimensional fechada.</li>
+          <li><strong>Tolerância e acabamento:</strong> fundição em areia dá ±1 mm; usinagem, ±0,01 mm. Exigir tolerância apertada pode impor um processo secundário inteiro.</li>
+        </ul>
+
+        <h3 id="s11-3"><span class="num">11.3</span>O custo por peça e o lote econômico</h3>
+
+        <p>O custo unitário de fabricação tem três parcelas de natureza diferente:</p>
+        <div class="formula"><span data-tex="C = \underbrace{\frac{m\,C_m}{1-f}}_{\text{material}} + \underbrace{\frac{C_{fer}}{n}}_{\text{ferramental}} + \underbrace{\frac{\dot C}{\dot n}}_{\text{tempo de máquina}}"></span></div>
+        <p>onde f é a fração perdida em refugo e cavaco, C<sub>fer</sub> o custo do ferramental, n o tamanho do lote, Ċ a taxa horária e ṅ a taxa de produção. A primeira parcela não depende do lote; a segunda cai com 1/n; a terceira é constante por peça.</p>
+        <p>Daí vem a figura mais útil do capítulo: o custo por peça contra o tamanho do lote, em log-log. Para lote pequeno, o processo de ferramental barato e taxa lenta (usinagem) vence; para lote grande, o de ferramental caro e taxa rápida (injeção, fundição sob pressão) vence. O cruzamento é o <strong>lote econômico</strong>, e saber onde ele está evita os dois erros simétricos: abrir molde para mil peças e usinar cem mil.</p>
+        <div class="callout tip">
+          <strong>O refugo entra no custo do material, não no do processo</strong>
+          Usinar uma peça aeronáutica de titânio a partir de um bloco pode descartar 80 % do material. Com titânio a US$ 28/kg, essa perda domina o custo total e justifica processos de forma quase final — forjamento de precisão ou fabricação aditiva — mesmo com taxa de produção muito menor. É o fator 1/(1−f) na primeira parcela fazendo o trabalho.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Usinar ou fundir? O lote econômico</div>
+          <p>Uma peça de alumínio de 2 kg pode ser usinada (ferramental US$ 200; taxa 20 peças/h; custo-hora US$ 60) ou fundida sob pressão (ferramental US$ 25 000; taxa 100 peças/h; custo-hora US$ 80). O alumínio custa US$ 2,30/kg e o refugo é desprezível nos dois casos. Encontre o lote em que a fundição passa a ser mais barata.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Material, igual nos dois: 2 × 2,30 = US$ 4,60 por peça.</li>
+              <li>Tempo de máquina, usinagem: 60/20 = US$ 3,00 por peça. Fundição: 80/100 = US$ 0,80 por peça.</li>
+              <li>Custo total: C_usin = 4,60 + 200/n + 3,00 e C_fund = 4,60 + 25 000/n + 0,80.</li>
+              <li>Igualando: 200/n + 3,00 = 25 000/n + 0,80 → 2,20 = 24 800/n.</li>
+              <li>n = 24 800/2,20 = 11 273 peças.</li>
+              <li>Conferindo: com n = 1000, usinagem US$ 7,80 e fundição US$ 30,40. Com n = 100 000, usinagem US$ 7,60 e fundição US$ 5,65.</li>
+            </ol>
+            <p class="resposta">O lote econômico fica em cerca de 11 300 peças. Abaixo disso, usinar; acima, fundir. Note como a curva da usinagem é quase plana (seu ferramental é irrelevante) enquanto a da fundição despenca: em lote de cem mil, a fundição custa 74 % da usinagem, e em lote de mil custa quatro vezes mais. Decidir o processo sem saber o lote é decidir no escuro.</p>
+          </details>
+        </div>
+
+        <h3 id="s11-4"><span class="num">11.4</span>Material, forma e processo juntos</h3>
+
+        <p>Fecha-se então o círculo do método. A forma desejada (capítulo 9) restringe os processos; o processo restringe os materiais; o material restringe as formas atingíveis. Em projeto, isso quase nunca se resolve em uma passada: resolve-se iterando duas ou três vezes, e o método serve para que cada iteração parta de uma lista justificada em vez de um palpite.</p>
+        <p>Um exemplo concreto do acoplamento: escolher CFRP implica laminação ou infusão, que implicam lote pequeno e ferramental simples, que implicam custo por peça alto e tempo de ciclo longo. Escolher polímero reforçado com fibra curta implica injeção, que implica ferramental de US$ 30 mil e lote mínimo de dezenas de milhares — mas custo por peça de poucos dólares. A escolha do material arrastou a escala de produção inteira.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Quatro famílias: conformação primária, secundária, união e acabamento.</li>
+          <li>Atributos que triam: material, massa, espessura, complexidade e tolerância.</li>
+          <li>Custo por peça = material/(1−refugo) + ferramental/n + tempo de máquina.</li>
+          <li>Só a parcela de ferramental depende do lote: ela define o lote econômico.</li>
+          <li>Material, forma e processo se escolhem juntos, em duas ou três iterações.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o ferramental é a parcela decisiva?</summary><p>Porque é a única que se dilui com o lote: ela cai com 1/n. Material e tempo de máquina são praticamente constantes por peça. Por isso processos de ferramental caro e ciclo rápido só fazem sentido em lote grande, e processos de ferramental barato e ciclo lento dominam a peça unitária.</p></details>
+          <details><summary>Onde entra o refugo no custo?</summary><p>Na parcela de material, como o fator 1/(1−f). Usinar titânio a partir de bloco pode descartar 80 % do material; com titânio a US$ 28/kg, essa perda domina o custo total e justifica forjamento de precisão ou fabricação aditiva, mesmo com taxa de produção muito menor.</p></details>
+          <details><summary>Como se resolve o acoplamento entre material, forma e processo?</summary><p>Iterando. Escolhe-se um material pelo índice, verifica-se que processo o conforma na forma desejada, descobre-se que o processo impõe espessura mínima ou lote mínimo, volta-se à seleção com essa restrição nova. Duas ou três voltas bastam, e cada uma parte de uma lista justificada em vez de um palpite.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 12 -->
+      <section class="section capitulo" id="cap-12" data-parte="Parte IV — Processo e ambiente" data-topicos="eco">
+        <p class="cap-kicker">Capítulo 12</p>
+        <h2>12. Eco-seleção</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>identificar a fase dominante do ciclo de vida de um produto;</li>
+            <li>usar energia incorporada e CO₂ como atributos de seleção;</li>
+            <li>calcular o ponto de equilíbrio de uma substituição por material leve;</li>
+            <li>reconhecer as restrições de projeto que vêm da reciclagem.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 5, 8 e 11.</p></div>
+        </div>
+
+        <p>A última restrição é ambiental, e ela obriga a olhar além da peça: produção do material, manufatura, uso e fim de vida. A pergunta de projeto não é qual fase é maior em geral, mas qual domina <em>neste</em> produto — porque otimizar qualquer outra é esforço desperdiçado.</p>
+
+        <h3 id="s12-1"><span class="num">12.1</span>As quatro fases do ciclo de vida</h3>
+        <p>A última restrição que entra no projeto é ambiental, e ela tem uma peculiaridade: não basta olhar o material. É preciso olhar o ciclo de vida inteiro, porque na maior parte dos produtos a fase que domina o consumo de energia não é a fabricação.</p>
+        <p>As quatro fases são produção do material, manufatura, uso e fim de vida. Para cada uma se contabiliza energia (MJ) e emissão de CO₂ (kg). A pergunta de projeto não é "qual fase é maior?" em abstrato, mas <strong>qual fase domina neste produto</strong> — porque otimizar qualquer outra é esforço desperdiçado.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Produto</th><th>Fase dominante</th><th>O que fazer no projeto</th></tr></thead>
+          <tbody>
+            <tr><td>Ponte, edifício, trilho</td><td>produção do material</td><td>usar menos material; usar material de baixa H<sub>m</sub>; usar reciclado</td></tr>
+            <tr><td>Automóvel, aeronave</td><td>uso (combustível)</td><td>reduzir massa, mesmo com material de H<sub>m</sub> alta</td></tr>
+            <tr><td>Geladeira, forno, caldeira</td><td>uso (energia elétrica ou térmica)</td><td>melhorar isolamento e eficiência; o material importa pouco</td></tr>
+            <tr><td>Embalagem</td><td>produção do material</td><td>minimizar massa; reciclabilidade; material de baixa H<sub>m</sub></td></tr>
+            <tr><td>Ferramenta de uso raro</td><td>produção</td><td>durabilidade e reparabilidade valem mais que leveza</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-12-1"></div>
+
+        <h3 id="s12-2"><span class="num">12.2</span>Energia incorporada e CO₂</h3>
+
+        <p>A energia incorporada H<sub>m</sub> é a energia gasta para produzir um quilo do material a partir de minério ou de petróleo. As ordens de grandeza são muito separadas:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Material</th><th>H<sub>m</sub> (MJ/kg)</th><th>CO₂ (kg/kg)</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Concreto</td><td>1,3</td><td>0,13</td><td>baixíssima por quilo; usa-se muito em massa</td></tr>
+            <tr><td>Madeira</td><td>8</td><td>0,4</td><td>fixa carbono enquanto cresce</td></tr>
+            <tr><td>Vidro</td><td>15</td><td>0,9</td><td>reciclável indefinidamente</td></tr>
+            <tr><td>Aço</td><td>29</td><td>2,0</td><td>reciclado: cerca de um terço disso</td></tr>
+            <tr><td>Polipropileno</td><td>85</td><td>3,0</td><td>é petróleo transformado</td></tr>
+            <tr><td>Alumínio primário</td><td>200</td><td>12</td><td>eletrólise; reciclado: 25 MJ/kg</td></tr>
+            <tr><td>CFRP</td><td>400</td><td>25</td><td>a fibra de carbono domina</td></tr>
+            <tr><td>Titânio</td><td>650</td><td>44</td><td>processo Kroll</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Comparar H<sub>m</sub> isoladamente, no entanto, é tão enganoso quanto comparar resistência isoladamente. O que importa é a energia da peça que cumpre a função: um painel de alumínio pode pesar metade do de aço, e então a razão de energias não é 200/29, mas 100/29. Os índices do capítulo 5, com H<sub>m</sub>ρ no denominador em vez de ρ, dão a resposta certa.</p>
+
+        <h3 id="s12-3"><span class="num">12.3</span>Quando a fase de uso domina</h3>
+
+        <p>Em qualquer produto que se move ou que consome energia, a fase de uso costuma responder por 80 a 95 % do total. Para um automóvel de 1200 kg que roda 200 mil km, a energia de produção do material (cerca de 35 GJ, em aço) é menos de um décimo da energia de combustível (mais de 400 GJ). A conclusão de projeto é direta: <strong>reduzir massa compensa mesmo pagando energia de material muito maior</strong> — desde que a vida seja longa o bastante.</p>
+        <p>"Longa o bastante" é uma conta, não uma opinião. A energia extra investida no material leve se paga à taxa da economia de combustível, e o ponto de equilíbrio pode ser maior que a vida do veículo. Com alumínio primário, o equilíbrio fica em torno de 280 mil km — mais que a vida típica. Com alumínio reciclado, cuja H<sub>m</sub> é oito vezes menor, a troca passa a compensar desde o primeiro quilômetro. A decisão depende menos do material do que da sua origem.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 12.1</span>Vale trocar aço por alumínio num automóvel?</div>
+          <p>Um automóvel com 1200 kg de estrutura de aço (H_m = 29 MJ/kg) pode ser feito com 900 kg de alumínio (primário: 200 MJ/kg; reciclado: 25 MJ/kg). O consumo de combustível é de 0,5 L/100 km por cada 100 kg de massa, e a gasolina tem 34,8 MJ/L. Em que quilometragem a troca se paga?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Energia de material, aço: 1200 × 29 = 34,8 GJ. Alumínio primário: 900 × 200 = 180 GJ.</li>
+              <li>Energia extra investida: 180 − 34,8 = 145,2 GJ.</li>
+              <li>Consumo: aço 1200 kg → 6,0 L/100 km; alumínio 900 kg → 4,5 L/100 km. Economia de 1,5 L/100 km.</li>
+              <li>Em energia: 1,5/100 × 34,8 = 0,522 MJ/km.</li>
+              <li>Equilíbrio: 145 200 MJ ÷ 0,522 MJ/km = 278 000 km.</li>
+              <li>Com alumínio reciclado: material 900 × 25 = 22,5 GJ, <em>menos</em> que os 34,8 GJ do aço — a troca é vantajosa desde o primeiro quilômetro.</li>
+            </ol>
+            <p class="resposta">Com alumínio primário o equilíbrio fica em 278 mil km, acima da vida típica de um automóvel: a troca não se paga em energia. Com alumínio reciclado, paga-se de imediato. A conclusão de projeto não é sobre o material, é sobre a sua origem — e é por isso que a indústria automotiva passou a especificar conteúdo reciclado mínimo em vez de simplesmente especificar alumínio.</p>
+          </details>
+        </div>
+
+        <h3 id="s12-4"><span class="num">12.4</span>Fim de vida e reciclagem</h3>
+
+        <p>Reciclar metal é termodinamicamente favorável: refundir aço custa cerca de um terço da energia de produzi-lo do minério, e alumínio, um oitavo. Polímero é mais difícil, porque degrada a cada ciclo e porque a separação por tipo é caríssima. Compósito termofixo é, hoje, essencialmente irreciclável: a matriz não funde e a fibra não se separa — o destino usual é moagem para carga ou incineração com recuperação de energia.</p>
+        <p>Isso traz uma restrição de projeto que não é mecânica: <strong>projete para desmontar</strong>. Um produto unido por parafusos e encaixes se separa em materiais puros; o mesmo produto colado e com inserto metálico moldado dentro do polímero não se separa de modo econômico, e a reciclagem prometida no catálogo não acontece.</p>
+        <div class="callout note">
+          <strong>Eco-seleção não é um capítulo separado</strong>
+          Tudo neste capítulo é o método dos capítulos 4 a 8 com outro objetivo: trocar massa ou custo por energia e emissão na função penalidade. O que muda não é a técnica — é a declaração do objetivo, que passa a incluir um custo que ninguém paga na nota fiscal.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Quatro fases: produção do material, manufatura, uso e fim de vida.</li>
+          <li>Em produto que se move ou consome energia, a fase de uso responde por 80 a 95 % do total.</li>
+          <li>H_m varia de 1,3 MJ/kg (concreto) a 650 (titânio); reciclado custa uma fração do primário.</li>
+          <li>Reduzir massa compensa mesmo com material de H_m alta — se a vida for longa o bastante.</li>
+          <li>Projetar para desmontar é o que torna a reciclabilidade do catálogo real.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que comparar H_m isoladamente engana?</summary><p>Pelo mesmo motivo que comparar resistência isoladamente: o que importa é a energia da peça que cumpre a função, não do quilo de material. Um painel de alumínio com metade da massa do de aço tem razão de energias 100/29, não 200/29 — e os índices com H_m·ρ no denominador dão a resposta correta.</p></details>
+          <details><summary>Como se calcula se vale trocar aço por alumínio num automóvel?</summary><p>Comparando a energia extra investida no material com a economia de combustível acumulada. A energia extra é constante; a economia cresce com a quilometragem. O ponto de equilíbrio é a razão entre as duas, e com alumínio primário ele fica em torno de 280 mil km — mais que a vida típica do veículo.</p></details>
+          <details><summary>Por que compósito termofixo é tão difícil de reciclar?</summary><p>Porque a matriz reticulada não funde e não dissolve, e a fibra não se separa dela de modo econômico. O destino usual é moagem para carga ou incineração com recuperação de energia. É uma restrição de fim de vida que não aparece em nenhum índice mecânico e que já pesa na legislação de alguns setores.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-mapa"><small>Capítulo 3 · Mapas</small>Gráfico de Ashby com guia de índice</a></li>
+          <li><a href="#sim-indice"><small>Capítulo 5 · Índices</small>Do índice à massa da peça real</a></li>
+          <li><a href="#sim-restricoes"><small>Capítulo 7 · Restrições</small>Qual restrição está ativa</a></li>
+          <li><a href="#sim-tradeoff"><small>Capítulo 8 · Trade-off</small>Fronteira de Pareto e valor de troca</a></li>
+          <li><a href="#sim-forma"><small>Capítulo 9 · Forma</small>Fator de forma e índice com forma</a></li>
+        </ul>
+      </section>
+
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">A receita</h4>
+            <div class="formula"><span data-tex="m = A\,L\,\rho \quad\text{(objetivo)}"></span></div>
+            <div class="formula"><span data-tex="S = \frac{48EI}{L^3} \quad\text{(restrição)}"></span></div>
+            <div class="formula"><span data-tex="m = \sqrt{\frac{S}{4}}\;L^{5/2}\;\frac{\rho}{E^{1/2}}"></span></div>
+            <div class="formula"><span data-tex="M = \frac{E^{1/2}}{\rho} \quad\text{(maximizar)}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Índices de rigidez</h4>
+            <div class="formula"><span data-tex="\text{tirante: } M = E/\rho"></span></div>
+            <div class="formula"><span data-tex="\text{viga (seção livre): } M = E^{1/2}/\rho"></span></div>
+            <div class="formula"><span data-tex="\text{painel (espessura livre): } M = E^{1/3}/\rho"></span></div>
+            <div class="formula"><span data-tex="\text{objetivo em custo: } M_C = \frac{\text{prop}^{e}}{C_m\,\rho}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Índices de resistência e energia</h4>
+            <div class="formula"><span data-tex="\text{tirante: } M = \sigma_f/\rho \qquad \text{viga: } M = \sigma_f^{2/3}/\rho"></span></div>
+            <div class="formula"><span data-tex="\text{painel: } M = \sigma_f^{1/2}/\rho"></span></div>
+            <div class="formula"><span data-tex="\text{mola: } \frac{U}{m} = \frac{\sigma_f^2}{2E\rho} \qquad M = \frac{\sigma_f^2}{E\rho}"></span></div>
+            <div class="formula"><span data-tex="\text{vazar antes de romper: } M = K_{IC}^2/\sigma_f"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Restrições múltiplas e trade-off</h4>
+            <div class="formula"><span data-tex="A_{rig} = L\sqrt{\frac{SL}{4E}} \qquad A_{res} = \left(\frac{3FL}{2\sigma_f/n}\right)^{2/3}"></span></div>
+            <div class="formula"><span data-tex="m = \max(m_{rig},\,m_{res})"></span></div>
+            <div class="formula"><span data-tex="Z = C + \alpha\,m \quad\text{(minimizar)}"></span></div>
+            <div class="formula"><span data-tex="\frac{E^{1/2}}{\rho} = C_a\frac{\sigma_f^{2/3}}{\rho} \quad\text{(acoplamento)}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Forma e híbridos</h4>
+            <div class="formula"><span data-tex="\phi_B^e = \frac{12\,I}{A^2} \qquad \phi_B^f = \frac{6\,Z}{A^{3/2}}"></span></div>
+            <div class="formula"><span data-tex="M = \frac{(\phi_B^e E)^{1/2}}{\rho}"></span></div>
+            <div class="formula"><span data-tex="E_V = fE_A + (1-f)E_B \qquad \frac{1}{E_R} = \frac{f}{E_A}+\frac{1-f}{E_B}"></span></div>
+            <div class="formula"><span data-tex="\frac{E}{E_s} \approx \left(\frac{\rho}{\rho_s}\right)^{2} \qquad \frac{\sigma}{\sigma_s} \approx \left(\frac{\rho}{\rho_s}\right)^{3/2}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Processo e ambiente</h4>
+            <div class="formula"><span data-tex="C = \frac{m\,C_m}{1-f} + \frac{C_{fer}}{n} + \frac{\dot C}{\dot n}"></span></div>
+            <div class="formula"><span data-tex="n^* = \frac{C_{fer,2}-C_{fer,1}}{\dot C_1/\dot n_1 - \dot C_2/\dot n_2}"></span></div>
+            <div class="formula"><span data-tex="E_{ciclo} = m\,H_m + E_{manuf} + E_{uso} + E_{fim}"></span></div>
+            <div class="formula"><span data-tex="L^* = \frac{\Delta(m H_m)}{\Delta(\text{energia por km})}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="dados">
+        <h2>Apêndice B — Valores típicos de classe</h2>
+        <p>Valores representativos para triagem e ordenação. Eles servem para formar a lista curta; para dimensionar, use a folha de dados do fornecedor e a condição de ensaio correspondente.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Material</th><th>ρ (kg/m³)</th><th>E (GPa)</th><th>σ<sub>f</sub> (MPa)</th><th>K<sub>IC</sub> (MPa·√m)</th><th>C<sub>m</sub> (US$/kg)</th><th>H<sub>m</sub> (MJ/kg)</th><th>T<sub>max</sub> (°C)</th></tr></thead>
+          <tbody>
+            <tr><td>Aço baixo carbono</td><td>7850</td><td>210</td><td>350</td><td>90</td><td>0,90</td><td>29</td><td>500</td></tr>
+            <tr><td>Aço liga temperado</td><td>7850</td><td>210</td><td>1000</td><td>60</td><td>1,40</td><td>34</td><td>500</td></tr>
+            <tr><td>Aço inoxidável 304</td><td>7900</td><td>200</td><td>300</td><td>100</td><td>4,50</td><td>81</td><td>750</td></tr>
+            <tr><td>Ferro fundido cinzento</td><td>7150</td><td>120</td><td>230</td><td>25</td><td>0,70</td><td>20</td><td>500</td></tr>
+            <tr><td>Alumínio 6061-T6</td><td>2700</td><td>70</td><td>270</td><td>26</td><td>2,30</td><td>200</td><td>180</td></tr>
+            <tr><td>Alumínio 7075-T6</td><td>2800</td><td>72</td><td>500</td><td>24</td><td>3,20</td><td>210</td><td>150</td></tr>
+            <tr><td>Magnésio AZ91</td><td>1800</td><td>45</td><td>170</td><td>15</td><td>4,00</td><td>320</td><td>150</td></tr>
+            <tr><td>Titânio Ti-6Al-4V</td><td>4430</td><td>115</td><td>900</td><td>70</td><td>28</td><td>650</td><td>500</td></tr>
+            <tr><td>Superliga de níquel</td><td>8300</td><td>210</td><td>800</td><td>80</td><td>32</td><td>230</td><td>1000</td></tr>
+            <tr><td>Polipropileno</td><td>910</td><td>1,5</td><td>32</td><td>4,0</td><td>1,50</td><td>85</td><td>100</td></tr>
+            <tr><td>PVC rígido</td><td>1400</td><td>3,0</td><td>45</td><td>3,0</td><td>1,60</td><td>70</td><td>70</td></tr>
+            <tr><td>Poliamida (náilon 66)</td><td>1140</td><td>2,8</td><td>70</td><td>4,0</td><td>3,50</td><td>120</td><td>110</td></tr>
+            <tr><td>Policarbonato</td><td>1200</td><td>2,4</td><td>65</td><td>3,5</td><td>4,20</td><td>110</td><td>120</td></tr>
+            <tr><td>Elastômero (borracha)</td><td>1100</td><td>0,01</td><td>10</td><td>0,2</td><td>2,50</td><td>100</td><td>100</td></tr>
+            <tr><td>Alumina</td><td>3900</td><td>380</td><td>350</td><td>4,0</td><td>20</td><td>50</td><td>1400</td></tr>
+            <tr><td>Carbeto de silício</td><td>3150</td><td>410</td><td>450</td><td>4,0</td><td>40</td><td>70</td><td>1500</td></tr>
+            <tr><td>Vidro soda-cal</td><td>2500</td><td>70</td><td>50</td><td>0,7</td><td>1,50</td><td>15</td><td>500</td></tr>
+            <tr><td>Concreto</td><td>2400</td><td>25</td><td>6</td><td>0,5</td><td>0,10</td><td>1,3</td><td>400</td></tr>
+            <tr><td>CFRP quasi-isotrópico</td><td>1550</td><td>100</td><td>600</td><td>35</td><td>50</td><td>400</td><td>180</td></tr>
+            <tr><td>GFRP</td><td>1850</td><td>25</td><td>250</td><td>20</td><td>8,00</td><td>110</td><td>150</td></tr>
+            <tr><td>Madeira (paralela à fibra)</td><td>600</td><td>12</td><td>40</td><td>5,0</td><td>1,00</td><td>8</td><td>100</td></tr>
+            <tr><td>Bambu</td><td>700</td><td>18</td><td>60</td><td>5,0</td><td>1,00</td><td>5</td><td>100</td></tr>
+            <tr><td>Espuma rígida de polímero</td><td>100</td><td>0,08</td><td>1,5</td><td>0,08</td><td>5,00</td><td>100</td><td>90</td></tr>
+            <tr><td>Cortiça</td><td>200</td><td>0,03</td><td>1,0</td><td>0,1</td><td>6,00</td><td>4</td><td>100</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Uma casa significativa basta — e é tudo que esses números merecem</strong>
+          Cada linha representa uma classe inteira, com faixa interna de duas a dez vezes em resistência e em custo. O preço de matéria-prima oscila com o mercado e a região. Use a tabela para ordenar; nunca para dimensionar.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>44 questões objetivas sobre o método, famílias e propriedades, mapas, dedução e aplicação de índices, seleção gráfica, restrições múltiplas, trade-off, forma, híbridos, processo e eco-seleção. Escolha os capítulos no filtro e refaça quantas vezes quiser.</p>
+        <div id="quiz" data-quiz="selecao-de-materiais"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>ASHBY, M. F. <em>Materials Selection in Mechanical Design</em>. 5. ed. Butterworth-Heinemann.</li>
+          <li>ASHBY, M. F.; SHERCLIFF, H.; CEBON, D. <em>Materials: Engineering, Science, Processing and Design</em>. 4. ed. Butterworth-Heinemann.</li>
+          <li>ASHBY, M. F. <em>Materials and the Environment: Eco-informed Material Choice</em>. 2. ed. Butterworth-Heinemann.</li>
+          <li>ASHBY, M. F.; JONES, D. R. H. <em>Engineering Materials 1 e 2</em>. 4. ed. Butterworth-Heinemann.</li>
+          <li>GIBSON, L. J.; ASHBY, M. F. <em>Cellular Solids: Structure and Properties</em>. 2. ed. Cambridge.</li>
+          <li>CALLISTER, W. D.; RETHWISCH, D. G. <em>Ciência e Engenharia de Materiais: uma Introdução</em>. 10. ed. LTC.</li>
+          <li>SHACKELFORD, J. F. <em>Introdução à Ciência dos Materiais para Engenheiros</em>. 6. ed. Pearson.</li>
+          <li>KALPAKJIAN, S.; SCHMID, S. R. <em>Manufacturing Engineering and Technology</em>. 7. ed. Pearson.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/selecao-de-materiais.js"></script>
+<script src="../js/fig/selecao-de-materiais.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  M: ['Índice de desempenho', '—', 'maximizar: a massa é inversamente proporcional a ele'],
+  ρ: ['Massa específica', 'kg/m³', 'ou Mg/m³ na convenção dos índices'],
+  E: ['Módulo de Young', 'GPa'],
+  'σ_f': ['Resistência (escoamento ou ruptura)', 'MPa'],
+  'K_{IC}': ['Tenacidade à fratura', 'MPa·√m'],
+  'C_m': ['Custo por massa do material', 'US$/kg'],
+  'T_{max}': ['Temperatura máxima de serviço', '°C'],
+  'H_m': ['Energia incorporada do material', 'MJ/kg', 'do minério ao material pronto'],
+  S: ['Rigidez exigida', 'N/m', 'S = F/δ'],
+  A: ['Área da seção', 'm²', 'em geral a variável livre'],
+  I: ['Segundo momento de área', 'm⁴'],
+  'φ_B^e': ['Fator de forma em flexão (rigidez)', '—', '12I/A²'],
+  'φ_B^f': ['Fator de forma em flexão (resistência)', '—', '6Z/A^{3/2}'],
+  α: ['Valor de troca', 'US$/kg', 'quanto vale economizar um quilo'],
+  Z: ['Função penalidade', 'US$', 'Z = C + αm'],
+  'C_a': ['Constante de acoplamento', '—', 'separa o regime de rigidez do de resistência'],
+  n: ['Tamanho do lote', 'peças', 'ou fator de segurança, conforme o contexto'],
+  'C_{fer}': ['Custo do ferramental', 'US$'],
+  'E_V': ['Limite de Voigt (paralelo)', 'GPa', 'limite superior do módulo de um híbrido'],
+  'E_R': ['Limite de Reuss (série)', 'GPa', 'limite inferior'],
+  'ρ/ρ_s': ['Densidade relativa', '—', 'material celular: a variável de projeto'],
+  Pareto: ['Fronteira de Pareto', '—', 'soluções não dominadas em dois objetivos'],
+  'triagem': ['Eliminar quem não cumpre as restrições', '—', 'corte binário, antes da ordenação'],
+  'ordenação': ['Classificar os aprovados pelo índice', '—', 'depois da triagem']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>
