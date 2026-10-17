@@ -279,8 +279,12 @@
     var p = document.createElement('p');
     p.id = 'legenda-novidades';
     p.className = 'legenda-novidades';
+    /* com tres ou mais nomes, virgula ate o penultimo e "e" antes do ultimo */
+    var lista_nomes = nomes.length > 1
+      ? nomes.slice(0, -1).join('</strong>, <strong>') + '</strong> e <strong>' + nomes[nomes.length - 1]
+      : nomes[0];
     p.innerHTML = '<span class="estrela-mini" aria-hidden="true">★</span> Novidades da última atualização: <strong>' +
-      nomes.join('</strong> e <strong>') + '</strong>';
+      lista_nomes + '</strong>';
     host.parentNode.insertBefore(p, host);
   }
 
