@@ -801,6 +801,56 @@
       "ordem": 3
     },
     {
+      "id": "sim-juros",
+      "slug": "engenharia-economica",
+      "disciplina": "Engenharia Econômica",
+      "periodo": "9",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "1. Juros simples e compostos — o dinheiro no tempo",
+      "resumo": "A diferença entre os dois regimes não está na fórmula, está no que acontece com os juros de cada período.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-series",
+      "slug": "engenharia-economica",
+      "disciplina": "Engenharia Econômica",
+      "periodo": "9",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "2. Séries de pagamentos — uniformes, gradientes e perpetuidades",
+      "resumo": "Quase nenhum fluxo real é um pagamento único: são prestações, aluguéis, receitas que crescem.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-amortizacao",
+      "slug": "engenharia-economica",
+      "disciplina": "Engenharia Econômica",
+      "periodo": "9",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "3. Sistemas de amortização — SAC, Price e americano",
+      "resumo": "O mesmo empréstimo, a mesma taxa e o mesmo prazo pagos de três maneiras.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-vpl",
+      "slug": "engenharia-economica",
+      "disciplina": "Engenharia Econômica",
+      "periodo": "9",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "4. VPL, TIR e os critérios de decisão",
+      "resumo": "O perfil do VPL contra a taxa de desconto resume quase tudo: onde ele corta o eixo está a TIR, à esquerda está a faixa de taxas que torna o projeto viável, e a inclinação mostra o quanto a decisão é s",
+      "ordem": 3
+    },
+    {
+      "id": "sim-alternativas",
+      "slug": "engenharia-economica",
+      "disciplina": "Engenharia Econômica",
+      "periodo": "9",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "5. Comparação de alternativas — vidas diferentes e TIR incremental",
+      "resumo": "Comparar duas propostas com durações diferentes pelo VPL direto é um erro clássico.",
+      "ordem": 4
+    },
+    {
       "id": "sim-mapa",
       "slug": "selecao-de-materiais",
       "disciplina": "Seleção de Materiais",

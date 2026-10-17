@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "engenharia-economica",
     "acustica-aplicada",
     "selecao-de-materiais",
     "macromecanica"
@@ -592,7 +593,7 @@
       ],
       "simuladores": true,
       "normas": false,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "gerencia-de-projetos",

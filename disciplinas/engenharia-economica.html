@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engenharia Econômica — Engenharia Mecânica</title>
+<meta name="description" content="Engenharia econômica: valor do dinheiro no tempo, juros simples e compostos, taxas nominal, efetiva e real, séries uniformes e gradientes, perpetuidades, sistemas de amortização, fluxo de caixa do projeto, VPL, TIR, payback, comparação de alternativas, inflação, depreciação e substituição de equipamentos — com figuras interativas, simuladores e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">9º período · Engenharia Mecânica</p>
+    <h1>Engenharia Econômica</h1>
+    <p class="lead">O instrumental que transforma alternativas técnicas em decisões defensáveis. Este texto está organizado como um livro: treze capítulos em sequência, dos juros simples à análise de substituição de equipamentos, com a teoria explicada passo a passo, exemplos resolvidos e conferidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
+    <div class="btn-row">
+      <span class="tag accent">13 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">59 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">13 figuras interativas</span>
+      <span class="tag warn">tabelas de fatores</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai do conceito à decisão: primeiro o valor do dinheiro no tempo, depois as séries de pagamentos que descrevem fluxos reais, e por fim os critérios que escolhem entre alternativas. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: a solução elegante que quebra a empresa</h2>
+        <p>Projetar bem não basta. A alternativa tecnicamente superior pode ser a que inviabiliza o negócio, e a que parece cara pode ser a única que se paga. Engenharia econômica dá ao engenheiro o instrumental para comparar alternativas em dinheiro — e, principalmente, em dinheiro situado no tempo, que é o que torna a comparação legítima.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Que custos entram na decisão?</td><td>Fluxo de caixa, custo de oportunidade, custo afundado</td><td>1</td></tr>
+            <tr><td>Quanto rende um capital?</td><td>Juros simples e compostos</td><td>2 e 3</td></tr>
+            <tr><td>A taxa anunciada é a que eu pago?</td><td>Nominal, efetiva, equivalente e real</td><td>4</td></tr>
+            <tr><td>E quando são prestações?</td><td>Séries uniformes e seus cinco fatores</td><td>5</td></tr>
+            <tr><td>E quando a parcela cresce?</td><td>Gradientes aritmético e geométrico</td><td>6</td></tr>
+            <tr><td>E se não acabar nunca?</td><td>Perpetuidade e custo capitalizado</td><td>7</td></tr>
+            <tr><td>Como se paga um empréstimo?</td><td>Price, SAC e americano</td><td>8</td></tr>
+            <tr><td>Como monto o fluxo do projeto?</td><td>Depreciação, imposto e teorema da separação</td><td>9</td></tr>
+            <tr><td>O projeto vale a pena?</td><td>VPL e TIR</td><td>10</td></tr>
+            <tr><td>Em quanto tempo recupero?</td><td>Payback, IL e anuidade equivalente</td><td>11</td></tr>
+            <tr><td>Qual das duas alternativas?</td><td>Vidas diferentes, CAE e análise incremental</td><td>12</td></tr>
+            <tr><td>E a inflação? Quando trocar o equipamento?</td><td>Fisher, depreciação e vida econômica</td><td>13</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez e desenhe o diagrama de fluxo de caixa antes de cada conta — praticamente todo erro nesta disciplina é de posicionamento no tempo, não de fórmula. Tente cada exemplo antes de abrir a solução; todos são numéricos e todos foram conferidos. E guarde as duas verificações que pegam quase tudo: a soma das amortizações tem de dar o principal, e qualquer fluxo descontado à própria taxa tem de devolver o valor de partida.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — O dinheiro no tempo" data-topicos="metodo">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. O que é engenharia econômica</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar por que um real hoje não vale um real amanhã;</li>
+            <li>percorrer as etapas de um estudo econômico;</li>
+            <li>montar e ler um diagrama de fluxo de caixa;</li>
+            <li>distinguir custo relevante de custo afundado.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Nenhum pré-requisito técnico; convém estar à vontade com potências e logaritmos.</p></div>
+        </div>
+
+        <p>Engenharia Econômica é a disciplina que fecha a ponte entre o projeto e a decisão. Este texto está organizado como um livro: treze capítulos em sequência, dos juros simples à análise de substituição de equipamentos, com a teoria explicada passo a passo, exemplos resolvidos e conferidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Decidir com dinheiro situado no tempo</h3>
+        <p>Projetar bem não basta. A solução tecnicamente mais elegante pode ser a que inviabiliza a empresa, e a solução que parece cara pode ser a única que se paga. Engenharia econômica é a disciplina que dá ao engenheiro o instrumental para comparar alternativas em dinheiro — e, principalmente, em dinheiro <em>situado no tempo</em>.</p>
+        <p>A ideia central cabe numa frase: <strong>um real hoje não vale um real daqui a um ano</strong>. Não por causa da inflação — isso é um efeito adicional, tratado no capítulo 13 —, mas porque o real de hoje pode ser aplicado e render. Essa diferença, o valor do dinheiro no tempo, é o que toda a matemática deste curso serve para medir.</p>
+
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>As etapas de uma decisão</h3>
+
+        <p>Um estudo de engenharia econômica segue um roteiro que vale a pena escrever, porque pular etapas é o que produz as decisões ruins:</p>
+        <ol>
+          <li><strong>Entender o problema</strong> e declarar o objetivo.</li>
+          <li><strong>Coletar dados</strong> relevantes.</li>
+          <li><strong>Definir as alternativas</strong> viáveis e estimar seus fluxos de caixa.</li>
+          <li><strong>Escolher o critério</strong> de decisão — VPL, TIR, custo anual equivalente.</li>
+          <li><strong>Avaliar cada alternativa</strong>, incluindo a análise de sensibilidade.</li>
+          <li><strong>Selecionar</strong> a melhor.</li>
+          <li><strong>Implementar</strong> e <strong>monitorar</strong> os resultados.</li>
+        </ol>
+        <p>Duas observações sobre esse roteiro. A primeira: <strong>a alternativa de não fazer nada é sempre uma alternativa</strong>, e precisa entrar na comparação explicitamente. A segunda: os números de um estudo econômico são <em>estimativas do futuro</em>, e por isso a etapa 5 — a análise de sensibilidade — não é um luxo. Uma decisão que se inverte com 2 % de variação na taxa é uma decisão frágil, e saber disso vale mais que a decisão em si.</p>
+
+        <h3 id="s1-3"><span class="num">1.3</span>O diagrama de fluxo de caixa</h3>
+
+        <p>A ferramenta de representação é o diagrama de fluxo de caixa: uma linha horizontal marcando os períodos, com setas verticais para os movimentos de dinheiro. A convenção é universal e vale para o curso inteiro:</p>
+        <ul>
+          <li><strong>Setas para cima</strong>: entradas, recebimentos, receitas, economias.</li>
+          <li><strong>Setas para baixo</strong>: saídas, pagamentos, investimentos, custos.</li>
+          <li>O <strong>instante zero</strong> é o presente — a data em que a decisão é tomada.</li>
+          <li>Por convenção, um valor marcado no período <em>k</em> ocorre no <strong>fim</strong> desse período.</li>
+        </ul>
+        <p>A última linha parece detalhe e não é: ela é a diferença entre uma série postecipada e uma antecipada, e entre dois resultados que diferem pela taxa inteira de um período.</p>
+        <div class="callout tip">
+          <strong>Desenhe o diagrama antes de calcular</strong>
+          Praticamente todo erro em engenharia econômica é erro de posicionamento no tempo, não de fórmula. Desenhar o diagrama leva trinta segundos e resolve: ele mostra se a primeira parcela cai em 0 ou em 1, se há carência, e em que data se está avaliando.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Qual custo entra na decisão</div>
+          <p>Uma empresa comprou há três anos uma máquina por $ 300 000, já depreciada contabilmente em $ 90 000. Hoje ela valeria $ 40 000 no mercado de usados. A empresa estuda substituí-la por um modelo novo de $ 250 000. Um consultor foi pago $ 15 000 para fazer o estudo. Que valores entram na análise da substituição?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Os $ 300 000 da compra: <strong>não entram</strong> — custo afundado, já incorrido e irrecuperável.</li>
+              <li>O valor contábil de $ 210 000: <strong>não entra</strong> como custo — é registro contábil, não movimento de caixa. Entra apenas no cálculo do imposto sobre o ganho ou a perda na venda.</li>
+              <li>Os $ 15 000 do consultor: <strong>não entram</strong> — já foram pagos e não mudam com a decisão.</li>
+              <li>Os $ 40 000 de valor de mercado: <strong>entram</strong>, como custo de oportunidade de manter a máquina antiga, ou como entrada de caixa se ela for vendida.</li>
+              <li>Os $ 250 000 da máquina nova: <strong>entram</strong>, como saída no instante zero.</li>
+              <li>Entram também as diferenças futuras de custo operacional, manutenção, consumo e capacidade, e o efeito da depreciação diferencial sobre o imposto.</li>
+            </ol>
+            <p class="resposta">Dos quatro valores que a contabilidade registra com destaque, três são irrelevantes para a decisão. O critério é único e implacável: só entra o que muda com a escolha. O consultor, aliás, ilustra o ponto com ironia — o estudo que ele produziu é útil, mas o que foi pago por ele já não influencia nada.</p>
+          </details>
+        </div>
+
+        <h3 id="s1-4"><span class="num">1.4</span>Custos que entram e custos que não entram</h3>
+
+        <p>Nem todo custo contábil é relevante para a decisão. O critério é simples e implacável: <strong>só entra o que muda com a escolha</strong>.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Definição</th><th>Entra na análise?</th></tr></thead>
+          <tbody>
+            <tr><td>Custo incremental</td><td>a diferença entre as alternativas</td><td><strong>sim</strong> — é o que se compara</td></tr>
+            <tr><td>Custo de oportunidade</td><td>o que se deixa de ganhar na melhor alternativa descartada</td><td><strong>sim</strong></td></tr>
+            <tr><td>Custo afundado (<em>sunk cost</em>)</td><td>já incorrido, não recuperável</td><td><strong>não</strong> — é irrelevante para o futuro</td></tr>
+            <tr><td>Custo contábil de rateio</td><td>alocado por critério administrativo</td><td>só se mudar de fato com a decisão</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O custo afundado é o que mais ilude. Uma máquina comprada por $ 300 000 há três anos e que hoje vale $ 40 000 no mercado entra na análise por $ 40 000 — o valor que se deixa de receber ao mantê-la. Os $ 300 000 já se foram e não voltam, qualquer que seja a decisão; insistir num projeto ruim "porque já se gastou muito nele" é o erro clássico que esse conceito previne.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Um real hoje vale mais que um real amanhã porque pode ser aplicado — e isso é independente da inflação.</li>
+          <li>O estudo tem oito etapas; a alternativa de não fazer nada é sempre uma delas.</li>
+          <li>Diagrama de fluxo de caixa: setas para cima entram, para baixo saem, e o período k ocorre no fim do período.</li>
+          <li>Só entra na análise o que muda com a decisão.</li>
+          <li>Custo afundado é irrelevante, por maior que tenha sido.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a análise de sensibilidade não é opcional?</summary><p>Porque todo número de um estudo econômico é estimativa do futuro. Uma decisão que se inverte com 2 % de variação na taxa é frágil, e saber disso vale mais que a decisão em si — é o que permite ao engenheiro dizer quanta confiança a recomendação merece.</p></details>
+          <details><summary>O que é custo de oportunidade e por que ele entra?</summary><p>É o que se deixa de ganhar na melhor alternativa descartada. Manter um equipamento que valeria $ 40 mil no mercado custa esses $ 40 mil, mesmo que nenhum cheque seja emitido. É desembolso que não aparece no caixa e precisa aparecer na conta.</p></details>
+          <details><summary>Por que o custo afundado é irrelevante?</summary><p>Porque ele é idêntico em todas as alternativas e não é recuperável em nenhuma delas. Insistir num projeto ruim "porque já se gastou muito" é jogar dinheiro novo atrás de dinheiro velho — o que importa é apenas o que acontece de hoje em diante.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — O dinheiro no tempo" data-topicos="simples">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Juros simples</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular juros, montante e principal no regime simples;</li>
+            <li>converter taxa e prazo para a mesma unidade de tempo;</li>
+            <li>distinguir juros comerciais de juros exatos;</li>
+            <li>reconhecer por que a equivalência depende da data focal.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>O regime simples é o mais fácil e o menos usado. Vale estudá-lo por três razões: ele aparece em multas e em operações de curtíssimo prazo, ele é o contraste que torna o regime composto compreensível, e ele é a aritmética que se esconde por trás de quase todo anúncio de taxa enganoso.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>Juros que não entram na base</h3>
+        <p>No regime de juros simples, os juros de cada período são sempre calculados sobre o mesmo principal. Os juros produzidos não se incorporam ao capital: eles ficam de fora, e o período seguinte recomeça da mesma base.</p>
+        <div class="formula"><span data-tex="J = P\,i\,n \qquad S = P + J = P\,(1 + i\,n)"></span></div>
+        <p>onde P é o principal (ou capital, ou valor presente), i a taxa por período, n o número de períodos, J o juro total e S o montante. A consequência gráfica é imediata: o montante cresce em <strong>linha reta</strong>, e o juro de cada período é sempre o mesmo valor, P·i.</p>
+
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <h3 id="s2-2"><span class="num">2.2</span>A taxa e o período têm de combinar</h3>
+
+        <p>A regra que organiza toda a matemática financeira: <strong>a taxa e o prazo precisam estar na mesma unidade de tempo</strong>. Uma taxa de 36 % ao ano aplicada por um mês exige converter uma das duas. No regime simples a conversão é proporcional, porque tudo é linear:</p>
+        <div class="formula"><span data-tex="i_{mes} = \frac{i_{ano}}{12} \qquad i_{dia} = \frac{i_{ano}}{360} \;\text{ou}\; \frac{i_{ano}}{365}"></span></div>
+        <p>A escolha entre 360 e 365 não é indiferente, e tem nome:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Convenção</th><th>Dias no ano</th><th>Chamado de</th><th>Efeito</th></tr></thead>
+          <tbody>
+            <tr><td>Ano comercial</td><td>360</td><td>juros comerciais ou ordinários</td><td>rende mais para quem empresta</td></tr>
+            <tr><td>Ano civil</td><td>365</td><td>juros exatos</td><td>rende menos</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A diferença é de 1,39 % sobre o juro — pequena numa operação, relevante no volume de uma instituição. Em prova e em contrato, a convenção precisa estar declarada.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Rendimento, montante e taxa a juros simples</div>
+          <p>Responda: (a) o rendimento de $ 3 000 aplicados por um ano a 25 % a.a. simples; (b) o montante de $ 1 600 por um ano a 50 % a.a.; (c) a taxa simples que transforma $ 4 500 em $ 8 100 em um ano; (d) o rendimento de $ 10 000 por um mês a 36 % a.a.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) J = P·i·n = 3 000 × 0,25 × 1 = <strong>$ 750,00</strong>.</li>
+              <li>(b) S = P(1 + i·n) = 1 600 × (1 + 0,50) = <strong>$ 2 400,00</strong>.</li>
+              <li>(c) De S = P(1 + i·n) com n = 1: 8 100 = 4 500(1 + i) → 1 + i = 1,80 → i = <strong>80 % a.a.</strong></li>
+              <li>(d) A taxa é anual e o prazo é mensal: i_mês = 0,36/12 = 0,03. J = 10 000 × 0,03 × 1 = <strong>$ 300,00</strong>.</li>
+            </ol>
+            <p class="resposta">O item (d) é o que mais erra: a taxa estava em uma unidade de tempo e o prazo em outra. No regime simples a conversão é proporcional — divide-se por 12 — e por isso ela é fácil. No regime composto essa divisão estaria errada, como o capítulo 4 mostra.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-3"><span class="num">2.3</span>Equivalência de capitais a juros simples</h3>
+
+        <p>Dois capitais são <strong>equivalentes</strong> quando têm o mesmo valor numa data de avaliação, chamada <em>data focal</em>. Para comparar valores em datas diferentes, transportam-se todos para a data focal e só então se somam — somar valores de datas diferentes, sem transportá-los, é o erro mais comum do assunto.</p>
+        <div class="callout warn">
+          <strong>A armadilha do regime simples</strong>
+          A juros simples, dois capitais equivalentes numa data <strong>não serão</strong> equivalentes em outra. A equivalência depende da data focal escolhida, e mudar a data muda o resultado. Isso não acontece a juros compostos — e é uma das razões de o regime composto ser o padrão do mercado financeiro.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.2</span>Juros comerciais e juros exatos</div>
+          <p>Calcule o rendimento de $ 12 000 aplicados durante os primeiros cinco meses do ano (151 dias) à taxa de juros simples de 40 % ao ano, usando a convenção do ano comercial (360 dias) e a do ano civil (365 dias).</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Juros comerciais: i_dia = 0,40/360 = 1,1111×10⁻³.</li>
+              <li>J = 12 000 × 1,1111×10⁻³ × 151 = <strong>$ 2 013,33</strong>.</li>
+              <li>Juros exatos: i_dia = 0,40/365 = 1,0959×10⁻³.</li>
+              <li>J = 12 000 × 1,0959×10⁻³ × 151 = <strong>$ 1 985,75</strong>.</li>
+              <li>Diferença: 2 013,33 − 1 985,75 = $ 27,58, ou <strong>1,39 %</strong> a mais na convenção comercial.</li>
+            </ol>
+            <p class="resposta">Os 1,39 % são exatamente a razão 365/360 − 1, e portanto a diferença percentual é a mesma qualquer que seja o capital ou o prazo. Numa operação isolada é dinheiro de troco; no volume de uma instituição que empresta bilhões, é receita relevante — e é por isso que a convenção aparece em contrato.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-4"><span class="num">2.4</span>Onde o regime simples ainda aparece</h3>
+
+        <p>Praticamente todo o sistema financeiro opera a juros compostos. O regime simples sobrevive em três situações: operações de prazo muito curto, em que a diferença é desprezível; multas e juros de mora, por definição legal; e o desconto comercial de duplicatas, por tradição. Fora disso, ele serve sobretudo como contraste didático — e como alerta: quando alguém anuncia "2 % ao mês, 24 % ao ano", está usando a conta do regime simples para descrever uma operação composta, e o número verdadeiro é outro. O capítulo 4 mostra qual.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>J = P·i·n e S = P(1 + i·n): crescimento linear.</li>
+          <li>O juro de cada período é sempre o mesmo, P·i — os juros nunca entram na base.</li>
+          <li>Taxa e prazo precisam estar na mesma unidade; no regime simples a conversão é proporcional.</li>
+          <li>Ano comercial tem 360 dias e ano civil 365 — a convenção muda o juro em 1,39 %.</li>
+          <li>A juros simples, a equivalência de capitais depende da data focal escolhida.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o montante cresce em linha reta?</summary><p>Porque o juro de cada período é calculado sempre sobre o mesmo principal P, e vale sempre P·i. Somar uma parcela constante a cada período é a definição de progressão aritmética — e seu gráfico é uma reta.</p></details>
+          <details><summary>Qual convenção favorece quem empresta, 360 ou 365 dias?</summary><p>A de 360 dias, o ano comercial. Dividindo a taxa anual por 360 em vez de 365, a taxa diária fica maior, e o juro de um prazo em dias cresce 1,39 %. Em contrato a convenção precisa estar declarada.</p></details>
+          <details><summary>Por que o regime simples quase não é usado?</summary><p>Porque a equivalência de capitais depende da data focal: dois fluxos equivalentes numa data deixam de ser em outra. Isso torna impossível construir uma matemática financeira consistente, e é a razão de o mercado operar a juros compostos.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — O dinheiro no tempo" data-topicos="compostos">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Juros compostos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>capitalizar e descontar um pagamento único;</li>
+            <li>comparar os dois regimes e saber onde cada um rende mais;</li>
+            <li>montar a equação de valor e resolver problemas de equivalência;</li>
+            <li>estimar o tempo de duplicação de um capital.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 2.</p></div>
+        </div>
+
+        <p>Este é o regime do mundo real. A expressão S = P(1+i)ⁿ é a mais usada de toda a disciplina, e a propriedade que a torna útil — equivalência independente da data focal — é o que permite montar e resolver problemas com entradas e saídas em datas arbitrárias.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Juros sobre juros</h3>
+        <p>No regime composto, os juros de cada período são incorporados ao principal e passam a render no período seguinte. É o regime que governa quase todo o sistema financeiro, e a expressão que o descreve é a mais usada de toda a disciplina:</p>
+        <div class="formula"><span data-tex="S = P\,(1+i)^n \qquad P = S\,(1+i)^{-n}"></span></div>
+        <p>O fator (1+i)<sup>n</sup> é o <strong>fator de capitalização</strong>, e seu inverso é o <strong>fator de desconto</strong>. Capitalizar é levar um valor para o futuro; descontar é trazê-lo para o presente. Toda a matemática financeira é feita desses dois movimentos.</p>
+
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>O crescimento é geométrico</h3>
+
+        <p>A diferença estrutural para o regime simples é que agora a base cresce. Em dez períodos a 10 %, $ 1 000 viram $ 2 000 a juros simples e $ 2 593,74 a juros compostos — 30 % a mais. Em trinta períodos a distância vira um fator de quatro, e em sessenta, de quinze.</p>
+        <p>Vale observar o comportamento nos extremos, porque ele é contraintuitivo:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Prazo</th><th>Quem rende mais</th><th>Por quê</th></tr></thead>
+          <tbody>
+            <tr><td>n &lt; 1 período</td><td>simples</td><td>o composto ainda não capitalizou nada e a potência fracionária é menor que a reta</td></tr>
+            <tr><td>n = 1 período</td><td>empatam exatamente</td><td>(1+i)¹ = 1 + i·1</td></tr>
+            <tr><td>n &gt; 1 período</td><td>composto, e a distância só cresce</td><td>cada período rende sobre o anterior</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Dez períodos nos dois regimes</div>
+          <p>Um capital de $ 1 000 é aplicado a 10 % ao mês. Calcule o montante após 1 mês e após 10 meses nos dois regimes, e explique o resultado do primeiro caso.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Após 1 mês, simples: S = 1 000(1 + 0,10 × 1) = <strong>$ 1 100,00</strong>.</li>
+              <li>Após 1 mês, composto: S = 1 000(1,10)¹ = <strong>$ 1 100,00</strong> — idêntico.</li>
+              <li>Após 10 meses, simples: S = 1 000(1 + 0,10 × 10) = <strong>$ 2 000,00</strong>.</li>
+              <li>Após 10 meses, composto: S = 1 000(1,10)¹⁰ = <strong>$ 2 593,74</strong>.</li>
+              <li>Diferença em 10 meses: $ 593,74, ou <strong>29,7 %</strong> a mais.</li>
+            </ol>
+            <p class="resposta">Em um único período os dois regimes coincidem exatamente, porque (1+i)¹ = 1 + i·1 — e esse é o único caso em que isso acontece. A partir daí a distância cresce sem parar: em 30 meses o composto já rende $ 17 449 contra $ 4 000 do simples, um fator de 4,4.</p>
+          </details>
+        </div>
+
+        <h3 id="s3-3"><span class="num">3.3</span>Equivalência e a equação de valor</h3>
+
+        <p>A juros compostos, a equivalência é <strong>independente da data focal</strong>: se dois conjuntos de pagamentos são equivalentes numa data, serão equivalentes em qualquer outra. Essa propriedade é o que torna o regime composto utilizável em problemas reais, em que há entradas e saídas em datas variadas.</p>
+        <p>O procedimento é sempre o mesmo. Escolha uma data focal, transporte todos os valores para ela pelo fator apropriado e iguale os dois lados:</p>
+        <div class="formula"><span data-tex="\sum_k \frac{\text{entradas}_k}{(1+i)^{k}} = \sum_k \frac{\text{saídas}_k}{(1+i)^{k}}"></span></div>
+        <p>Essa é a <strong>equação de valor</strong>, e ela resolve praticamente qualquer problema do curso: trocar dívidas por outras, encontrar a taxa implícita num financiamento, achar a parcela que equilibra um acordo.</p>
+        <div class="callout note">
+          <strong>Quando a incógnita é a taxa</strong>
+          Se a incógnita é P, S ou n, a equação se resolve algebricamente — n por logaritmo. Se a incógnita é a <strong>taxa</strong>, em geral não há solução fechada: a equação é polinomial de grau n. Resolve-se numericamente, por tentativa, interpolação ou bisseção — que é exatamente o que a calculadora financeira faz por dentro, e o que o simulador deste texto faz também.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.2</span>Uma conta com depósitos e retirada</div>
+          <p>Uma pessoa deposita $ 2 000 numa aplicação que rende 15 % ao mês. Dois meses depois deposita mais $ 2 500, e dois meses após esse último faz uma retirada de $ 1 300. Qual o saldo ao final do quinto mês?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Transportamos tudo para a data focal 5, capitalizando cada movimento pelo tempo que ficou aplicado.</li>
+              <li>Depósito de $ 2 000 no mês 0: fica 5 meses → 2 000 × (1,15)⁵ = 2 000 × 2,011357 = <strong>$ 4 022,71</strong>.</li>
+              <li>Depósito de $ 2 500 no mês 2: fica 3 meses → 2 500 × (1,15)³ = 2 500 × 1,520875 = <strong>$ 3 802,19</strong>.</li>
+              <li>Retirada de $ 1 300 no mês 4: deixa de render 1 mês → −1 300 × (1,15)¹ = <strong>−$ 1 495,00</strong>.</li>
+              <li>Saldo no mês 5 = 4 022,71 + 3 802,19 − 1 495,00 = <strong>$ 6 329,90</strong>.</li>
+            </ol>
+            <p class="resposta">O procedimento é sempre esse: escolher uma data focal, transportar cada movimento para ela pelo número de períodos que o separa, e somar com o sinal correto. Note que a retirada também é capitalizada — ela representa dinheiro que deixou de render, e ignorar isso é o erro mais frequente do exercício.</p>
+          </details>
+        </div>
+
+        <h3 id="s3-4"><span class="num">3.4</span>A regra dos 72</h3>
+
+        <p>Uma aproximação útil para fazer de cabeça: o tempo que um capital leva para dobrar, a juros compostos, é cerca de 72 dividido pela taxa em porcento. A 10 % ao período, dobra em 7,2 períodos — o valor exato é 7,27. A 6 %, dobra em 12 — o exato é 11,9. A aproximação é boa entre 4 % e 15 %, e vem de ln 2 ≈ 0,693, com os 72 escolhidos por ser um número com muitos divisores.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>S = P(1+i)ⁿ capitaliza; P = S(1+i)⁻ⁿ desconta. São a mesma operação em sentidos opostos.</li>
+          <li>Para n = 1 os dois regimes empatam; abaixo disso o simples rende mais, acima o composto.</li>
+          <li>A juros compostos a equivalência independe da data focal — por isso o regime é utilizável.</li>
+          <li>A equação de valor transporta tudo para uma data e iguala os dois lados.</li>
+          <li>Quando a incógnita é a taxa, não há solução fechada: resolve-se numericamente.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a equivalência independe da data focal a juros compostos?</summary><p>Porque transportar um valor de uma data para outra é multiplicar por (1+i) elevado à diferença de períodos, e esse fator é o mesmo para todos os valores do fluxo. Mudar a data focal multiplica os dois lados da equação pela mesma constante, que se cancela.</p></details>
+          <details><summary>Em quanto tempo um capital dobra a 10 % ao período?</summary><p>Exatamente em ln 2 / ln 1,1 = 7,27 períodos. A regra prática dos 72 dá 72/10 = 7,2, boa o bastante para cálculo de cabeça. A aproximação funciona bem entre 4 % e 15 %.</p></details>
+          <details><summary>Por que achar a taxa exige método numérico?</summary><p>Porque a equação de valor com a taxa como incógnita é polinomial de grau n, e polinômios de grau cinco ou mais não têm fórmula geral. A calculadora financeira resolve por iteração — e é exatamente o que o simulador deste texto faz.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — O dinheiro no tempo" data-topicos="taxas">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Taxas: nominal, efetiva, equivalente e real</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>converter taxa nominal em efetiva conhecendo a capitalização;</li>
+            <li>calcular taxas equivalentes entre períodos diferentes;</li>
+            <li>reconhecer o limite da capitalização contínua;</li>
+            <li>aplicar a equação de Fisher para obter a taxa real.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 3.</p></div>
+        </div>
+
+        <p>Quatro conceitos de taxa, quatro nomes parecidos e uma quantidade enorme de confusão. Este capítulo separa os quatro e mostra as duas conversões que resolvem praticamente qualquer problema prático de comparação de crédito.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>A taxa anunciada quase nunca é a que se paga</h3>
+        <p>Uma taxa anunciada quase nunca é a taxa que se paga. Entre o número do anúncio e o custo efetivo há três conceitos que precisam estar separados — e confundi-los é a origem de boa parte dos mal-entendidos em crédito.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Taxa</th><th>O que é</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nominal</strong></td><td>declarada num período, mas capitalizada em outro</td><td>24 % a.a. com capitalização mensal</td></tr>
+            <tr><td><strong>Efetiva</strong></td><td>a que de fato incide, no período de capitalização</td><td>2 % a.m. — e 26,82 % a.a.</td></tr>
+            <tr><td><strong>Equivalente</strong></td><td>a mesma taxa efetiva expressa em outro período</td><td>2 % a.m. ≡ 12,62 % a.s.</td></tr>
+            <tr><td><strong>Real</strong></td><td>descontada a inflação</td><td>14 % nominal com 4 % de inflação → 9,62 %</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>De nominal para efetiva</h3>
+
+        <p>A taxa nominal é uma convenção de anúncio: divide-se pelo número de capitalizações para obter a taxa do período, e essa sim é efetiva.</p>
+        <div class="formula"><span data-tex="i_{periodo} = \frac{i_{nom}}{m} \qquad i_{ef} = \left(1 + \frac{i_{nom}}{m}\right)^{m} - 1"></span></div>
+        <p>Quanto mais frequente a capitalização, maior a taxa efetiva. Para 24 % ao ano nominais:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Capitalização</th><th>m</th><th>Taxa do período</th><th>Efetiva anual</th></tr></thead>
+          <tbody>
+            <tr><td>Anual</td><td>1</td><td>24,00 %</td><td>24,00 %</td></tr>
+            <tr><td>Semestral</td><td>2</td><td>12,00 %</td><td>25,44 %</td></tr>
+            <tr><td>Trimestral</td><td>4</td><td>6,00 %</td><td>26,25 %</td></tr>
+            <tr><td>Mensal</td><td>12</td><td>2,00 %</td><td>26,82 %</td></tr>
+            <tr><td>Diária</td><td>365</td><td>0,0658 %</td><td>27,11 %</td></tr>
+            <tr><td>Contínua</td><td>∞</td><td>—</td><td>27,12 %</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Note que o ganho satura: da capitalização mensal à diária ganha-se 0,29 ponto percentual, e da diária à contínua, 0,01. O limite é a <strong>capitalização contínua</strong>:</p>
+        <div class="formula"><span data-tex="i_{ef} = \lim_{m\to\infty}\left(1+\frac{i_{nom}}{m}\right)^m - 1 = e^{i_{nom}} - 1"></span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>A mesma taxa nominal, cinco capitalizações</div>
+          <p>Uma taxa nominal de 24 % ao ano é oferecida com capitalização anual, semestral, trimestral, mensal e diária. Calcule a taxa efetiva anual de cada caso e compare com o limite contínuo.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Anual (m = 1): (1 + 0,24/1)¹ − 1 = <strong>24,0000 %</strong>.</li>
+              <li>Semestral (m = 2): (1 + 0,12)² − 1 = <strong>25,4400 %</strong>.</li>
+              <li>Trimestral (m = 4): (1 + 0,06)⁴ − 1 = <strong>26,2477 %</strong>.</li>
+              <li>Mensal (m = 12): (1 + 0,02)¹² − 1 = <strong>26,8242 %</strong>.</li>
+              <li>Diária (m = 365): (1 + 0,24/365)³⁶⁵ − 1 = <strong>27,1149 %</strong>.</li>
+              <li>Contínua: e^0,24 − 1 = <strong>27,1249 %</strong>.</li>
+            </ol>
+            <p class="resposta">Entre a capitalização anual e a contínua há 3,12 pontos percentuais — e dois terços desse ganho já se obtêm na capitalização trimestral. O que a tabela mostra é que o anúncio "24 % ao ano" não identifica a operação: sem dizer a frequência de capitalização, ele admite seis custos diferentes.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-3"><span class="num">4.3</span>Taxas equivalentes</h3>
+
+        <p>Duas taxas são equivalentes quando produzem o mesmo montante no mesmo prazo. A conversão é feita por potência, nunca por proporção:</p>
+        <div class="formula"><span data-tex="i_{eq} = (1 + i)^{p/d} - 1"></span></div>
+        <p>onde d é o período da taxa conhecida e p o da taxa procurada. De 2 % ao mês para a taxa anual: (1,02)<sup>12</sup> − 1 = 26,82 %. O erro de multiplicar por 12 e chegar a 24 % é precisamente o erro de aplicar a aritmética do regime simples a um problema composto.</p>
+        <div class="callout warn">
+          <strong>O que comparar quando se escolhe um financiamento</strong>
+          Nunca a taxa anunciada: sempre a <strong>taxa efetiva do período de pagamento</strong>, ou melhor ainda o custo efetivo total, que inclui tarifas, seguros e impostos. Duas propostas com a mesma taxa nominal e capitalizações diferentes custam diferente; duas com a mesma taxa efetiva e tarifas diferentes também.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.2</span>Comparando duas propostas de crédito</div>
+          <p>Uma financeira oferece 16 % ao ano com capitalização trimestral; outra oferece 18 % ao ano com capitalização semestral. Qual é mais cara para quem toma emprestado? Qual a taxa equivalente mensal de cada uma?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Primeira: i_trim = 0,16/4 = 4 % → i_ef = (1,04)⁴ − 1 = <strong>16,9859 %</strong> a.a.</li>
+              <li>Segunda: i_sem = 0,18/2 = 9 % → i_ef = (1,09)² − 1 = <strong>18,8100 %</strong> a.a.</li>
+              <li>A segunda é mais cara, por 1,82 ponto percentual ao ano.</li>
+              <li>Equivalente mensal da primeira: (1,169859)^(1/12) − 1 = <strong>1,3159 %</strong> a.m.</li>
+              <li>Equivalente mensal da segunda: (1,188100)^(1/12) − 1 = <strong>1,4467 %</strong> a.m.</li>
+            </ol>
+            <p class="resposta">Comparar 16 % com 18 % diretamente já daria a resposta certa aqui, mas por coincidência: a capitalização mais frequente da primeira proposta poderia ter invertido o resultado se as taxas fossem mais próximas. A comparação só é legítima entre taxas efetivas no mesmo período — e, em crédito real, entre custos efetivos totais, que incluem tarifas e impostos.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-4"><span class="num">4.4</span>Taxa real: o efeito da inflação</h3>
+
+        <p>A taxa real é a que mede ganho de poder de compra. A relação correta não é a subtração, é a razão — a <strong>equação de Fisher</strong>:</p>
+        <div class="formula"><span data-tex="1 + i_{real} = \frac{1 + i_{nom}}{1 + \pi} \qquad\Longrightarrow\qquad i_{real} = \frac{i_{nom} - \pi}{1 + \pi}"></span></div>
+        <p>Com 14 % nominais e 4 % de inflação, a taxa real é 9,62 % e não 10 %. A aproximação por subtração só é boa com inflação baixa; com 100 % de inflação e 120 % nominais, a subtração daria 20 % e o valor correto é 10 %. O capítulo 13 retoma o assunto do lado do fluxo de caixa.</p>
+
+        <div id="sim-juros" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Deixe a taxa fixa e varie o número de períodos: veja os dois regimes coincidirem em n = 1 e divergirem depois. Depois use o exemplo da poupança de 30 anos para ver a diferença virar um fator de dez.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Nominal é anunciada num período e capitalizada em outro; efetiva é a que de fato incide.</li>
+          <li>i_ef = (1 + i_nom/m)^m − 1: quanto mais frequente a capitalização, maior a efetiva.</li>
+          <li>O limite é a capitalização contínua, e_i − 1 — mas o ganho satura muito antes.</li>
+          <li>Taxas equivalentes convertem-se por potência, nunca por proporção.</li>
+          <li>Taxa real pela equação de Fisher: (1+i)/(1+π) − 1, não a subtração.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que 2 % ao mês não é 24 % ao ano?</summary><p>Porque multiplicar por 12 é a aritmética do regime simples. A juros compostos, (1,02)¹² − 1 = 26,82 %. A diferença de 2,82 pontos percentuais é exatamente o juro sobre juro acumulado nos doze meses.</p></details>
+          <details><summary>Vale a pena procurar capitalização diária em vez de mensal?</summary><p>Pouco. Para 24 % nominais, a efetiva passa de 26,82 % na capitalização mensal para 27,11 % na diária — 0,29 ponto. O limite contínuo, 27,12 %, acrescenta mais 0,01. O ganho satura rápido, e na prática tarifas e impostos pesam muito mais que a frequência de capitalização.</p></details>
+          <details><summary>Por que a taxa real não é simplesmente a nominal menos a inflação?</summary><p>Porque a inflação corrói também o rendimento, não só o principal. A relação correta é de razão: 1 + i_real = (1+i_nom)/(1+π). Com 14 % e 4 %, a real é 9,62 % e não 10 %. A aproximação por subtração só serve com inflação baixa.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Séries de pagamentos" data-topicos="series">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Séries uniformes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar os fatores P/A, A/P, F/A e A/F;</li>
+            <li>ajustar séries antecipadas e diferidas;</li>
+            <li>encontrar a taxa embutida num financiamento;</li>
+            <li>montar a equação de valor de uma série mista.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 4.</p></div>
+        </div>
+
+        <p>Pagamentos únicos são a exceção; o que existe são prestações. Este capítulo traz os fatores que convertem uma série uniforme em valor presente, em montante ou em prestação — e os dois ajustes que cobrem as variantes antecipada e diferida.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Cinco fatores resolvem tudo</h3>
+        <p>Pagamentos únicos são a exceção. O que existe de verdade são prestações, aluguéis, salários, receitas periódicas — séries de pagamentos. Quando as parcelas são iguais e igualmente espaçadas, chamam-se <strong>séries uniformes</strong>, e cinco fatores resolvem tudo.</p>
+        <div class="formula"><span data-tex="P = A\,\frac{1-(1+i)^{-n}}{i} \quad (P/A) \qquad A = P\,\frac{i(1+i)^n}{(1+i)^n-1} \quad (A/P)"></span></div>
+        <div class="formula"><span data-tex="F = A\,\frac{(1+i)^n-1}{i} \quad (F/A) \qquad A = F\,\frac{i}{(1+i)^n-1} \quad (A/F)"></span></div>
+        <p>A notação (P/A, i, n) lê-se "o fator que transforma A em P, à taxa i, em n períodos". Ela vem das tabelas financeiras que antecederam a calculadora, e sobreviveu porque é compacta e inequívoca.</p>
+
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Postecipada, antecipada, diferida</h3>
+
+        <p>Os fatores acima pressupõem série <strong>postecipada</strong>: a primeira parcela no fim do primeiro período. As outras duas formas se obtêm por ajuste:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Forma</th><th>Primeira parcela</th><th>Ajuste</th><th>Exemplo típico</th></tr></thead>
+          <tbody>
+            <tr><td>Postecipada</td><td>fim do período 1</td><td>nenhum</td><td>fatura de cartão, financiamento comum</td></tr>
+            <tr><td>Antecipada</td><td>no instante 0</td><td>P × (1+i)</td><td>aluguel, financiamento com entrada</td></tr>
+            <tr><td>Diferida</td><td>após c períodos de carência</td><td>P × (1+i)<sup>−c</sup></td><td>"compre hoje, pague em 90 dias"</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A série antecipada vale mais — exatamente uma taxa a mais — porque cada parcela está um período mais perto do presente. A diferida vale menos, e por um motivo que vale explicitar: <strong>a carência não é de graça</strong>. Durante ela os juros correm sobre o saldo, e a dívida que se começa a pagar é maior que a original.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>O "parcelado sem juros" que tem juros</div>
+          <p>Uma calculadora é vendida à vista por $ 160 ou em 4 prestações mensais iguais de $ 45,49, vencendo a primeira um mês após a compra. Qual a taxa de juros compostos embutida no financiamento?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A série é postecipada, com A = 45,49, n = 4 e P = 160.</li>
+              <li>Equação: 160 = 45,49 × (P/A, i, 4), ou seja, (P/A, i, 4) = 160/45,49 = 3,51726.</li>
+              <li>Não há solução fechada — resolve-se numericamente.</li>
+              <li>Testando i = 5 %: (P/A, 5 %, 4) = 3,54595, valor presente $ 161,30 — alto demais.</li>
+              <li>Testando i = 5,5 %: (P/A; 5,5 %; 4) = 3,50515, valor presente $ 159,45 — baixo demais.</li>
+              <li>Convergindo: i = <strong>5,35 % ao mês</strong>, equivalente a (1,0535)¹² − 1 = <strong>87,1 % ao ano</strong>.</li>
+            </ol>
+            <p class="resposta">O total parcelado é $ 181,96 contra $ 160 à vista — 13,7 % a mais em quatro meses, o que a propaganda chama de "sem juros". A taxa anual de 87 % mostra o tamanho da distorção, e o exercício ensina a pergunta que o consumidor deveria fazer: qual o desconto à vista?</p>
+          </details>
+        </div>
+
+        <h3 id="s5-3"><span class="num">5.3</span>Quando a incógnita é a taxa</h3>
+
+        <p>Dado o valor à vista e as prestações, achar a taxa embutida é o problema prático mais frequente do consumidor. Não há fórmula fechada: a equação
+        P = A·(P/A, i, n) é polinomial em i e se resolve numericamente.</p>
+        <p>É esse cálculo que revela o custo real de um "parcelado sem juros": uma calculadora que custa $ 160 à vista ou 4 × $ 45,49 tem uma taxa embutida de 5,35 % ao mês — mais de 87 % ao ano. O vendedor não mentiu ao dizer que o preço parcelado é $ 181,96; ele apenas não disse que esse é o preço à vista acrescido de juros.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.2</span>Série diferida com carência</div>
+          <p>Calcule o valor atual de uma série de 10 pagamentos mensais iguais e consecutivos de $ 20 000, com carência de 3 meses, à taxa de 4,5 % ao mês, no regime de juros compostos. A série é postecipada: a primeira parcela vence no mês 4.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Primeiro o valor da série uniforme na data imediatamente anterior à primeira parcela, ou seja, no mês 3.</li>
+              <li>(P/A; 4,5 %; 10) = [1 − (1,045)⁻¹⁰]/0,045 = 7,912718.</li>
+              <li>Valor no mês 3: 20 000 × 7,912718 = <strong>$ 158 254,36</strong>.</li>
+              <li>Agora desconta-se a carência de 3 meses até a data zero.</li>
+              <li>P = 158 254,36 × (1,045)⁻³ = 158 254,36 × 0,876297 = <strong>$ 138 677,76</strong>.</li>
+            </ol>
+            <p class="resposta">O ponto delicado é onde o fator (P/A) deposita o valor: na data <em>imediatamente anterior</em> à primeira parcela, que aqui é o mês 3 e não o mês 4. Errar isso por um período muda o resultado em 4,5 % — $ 6 240. Desenhar o diagrama antes de calcular é o que evita esse erro.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-4"><span class="num">5.4</span>Séries mistas</h3>
+
+        <p>Quando o fluxo tem parcelas uniformes <em>e</em> pagamentos isolados — doze mensais mais duas semestrais, por exemplo —, a saída é sempre a mesma: monta-se a equação de valor numa data focal, aplicando o fator de série à parte uniforme e o fator de desconto a cada pagamento isolado, e resolve-se para a incógnita.</p>
+        <div class="callout tip">
+          <strong>O teste que pega quase todo erro</strong>
+          Depois de calcular, descontaa série encontrada de volta à taxa do problema. Se o resultado não devolver exatamente o valor presente original, há erro de posicionamento ou de fator. Esse teste de consistência custa uma linha e resolve a maior parte das dúvidas.
+        </div>
+
+        <div id="sim-series" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare a mesma série nas três formas — postecipada, antecipada e diferida — e confira que a antecipada vale exatamente (1+i) vezes a postecipada. Depois troque o tipo para perpetuidade e veja a soma convergir.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>P = A·(P/A, i, n) e A = P·(A/P, i, n) são inversos um do outro.</li>
+          <li>F = A·(F/A, i, n) acumula; A = F·(A/F, i, n) forma o montante.</li>
+          <li>Antecipada: multiplica-se por (1+i). Diferida: multiplica-se por (1+i)⁻ᶜ.</li>
+          <li>Quando a incógnita é a taxa, resolve-se numericamente.</li>
+          <li>Série mista: equação de valor numa data focal, fator de série mais descontos isolados.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a série antecipada vale mais?</summary><p>Porque cada parcela está um período mais perto do presente, e o desconto aplicado é um período menor. O resultado é exatamente P_post × (1+i) — uma taxa inteira a mais, não um ajuste aproximado.</p></details>
+          <details><summary>A carência de um financiamento é gratuita?</summary><p>Não. Durante a carência os juros correm sobre o saldo, e a dívida que se começa a pagar é maior que a original. O que a carência faz é adiar o desembolso, não eliminá-lo — e o valor presente da série diferida é menor justamente porque o dinheiro sai mais tarde.</p></details>
+          <details><summary>Como descobrir a taxa de um "parcelado sem juros"?</summary><p>Montando a equação P = A·(P/A, i, n) com P igual ao preço à vista e resolvendo para i. Se a taxa encontrada for maior que zero, há juros embutidos — e em geral há, porque o preço à vista é que foi reduzido.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Séries de pagamentos" data-topicos="gradientes">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Séries variáveis: os gradientes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular o valor presente de um gradiente aritmético;</li>
+            <li>calcular o de um gradiente geométrico;</li>
+            <li>reconhecer o caso singular i = g;</li>
+            <li>escolher o modelo de crescimento adequado ao fluxo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5.</p></div>
+        </div>
+
+        <p>Custos de manutenção crescem com a idade do equipamento; receitas crescem com o mercado; contratos têm reajuste. Dois padrões de crescimento cobrem quase todos os casos, e a diferença entre eles decide bastante no longo prazo.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Quando a parcela não é constante</h3>
+        <p>Nem toda série é uniforme. Custos de manutenção crescem com a idade do equipamento, receitas de um produto novo crescem com o mercado, contratos têm reajuste. Dois padrões de crescimento cobrem a maior parte dos casos práticos.</p>
+        <p>O <strong>gradiente aritmético</strong> soma um valor fixo G a cada período: A, A+G, A+2G, … O <strong>gradiente geométrico</strong> multiplica por uma razão fixa (1+g): A, A(1+g), A(1+g)², … A distinção importa porque os comportamentos divergem fortemente no longo prazo — o aritmético cresce em reta e o geométrico em exponencial.</p>
+
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Gradiente aritmético</h3>
+
+        <p>Decompõe-se a série em duas: uma uniforme de valor A e um gradiente puro que começa em zero no primeiro período e cresce G por período. O valor presente é a soma das duas:</p>
+        <div class="formula"><span data-tex="P = A\,(P/A,i,n) + G\,(P/G,i,n)"></span></div>
+        <div class="formula"><span data-tex="(P/G,i,n) = \frac{1}{i}\left[\frac{1-(1+i)^{-n}}{i} - \frac{n}{(1+i)^{n}}\right]"></span></div>
+        <p>A decomposição é o ponto a reter: <strong>o gradiente é tratado separadamente da base uniforme</strong>, e o fator (P/G) se aplica só à parte que cresce. O G pode ser negativo, e aí a série decresce — o caso de uma receita que declina com o envelhecimento do produto.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Manutenção que cresce $ 200 por ano</div>
+          <p>O custo de manutenção de um equipamento é de $ 1 000 no primeiro ano e cresce $ 200 por ano durante cinco anos. À taxa de 10 % ao ano, qual o valor presente desses custos? Confira pelo desconto direto parcela a parcela.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>As parcelas são 1 000, 1 200, 1 400, 1 600 e 1 800.</li>
+              <li>Pela decomposição: (P/A; 10 %; 5) = 3,790787 e (P/G; 10 %; 5) = 6,861800.</li>
+              <li>Parte uniforme: 1 000 × 3,790787 = <strong>$ 3 790,79</strong>.</li>
+              <li>Parte do gradiente: 200 × 6,861800 = <strong>$ 1 372,36</strong>.</li>
+              <li>Total: 3 790,79 + 1 372,36 = <strong>$ 5 163,15</strong>.</li>
+              <li>Conferindo pelo desconto direto: 1 000/1,1 + 1 200/1,1² + 1 400/1,1³ + 1 600/1,1⁴ + 1 800/1,1⁵ = 909,09 + 991,74 + 1 051,84 + 1 092,82 + 1 117,66 = <strong>$ 5 163,15</strong>.</li>
+            </ol>
+            <p class="resposta">As duas vias coincidem até o centavo, e é essa a verificação que vale fazer sempre que o fator (P/G) for usado — ele é o que mais se aplica errado, por engano quanto a onde o gradiente começa. Note que a série uniforme equivalente seria de $ 1 362,04/ano, acima do primeiro ano e abaixo do último.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-3"><span class="num">6.3</span>Gradiente geométrico</h3>
+
+        <p>Aqui a soma é de uma progressão geométrica de razão (1+g)/(1+i), e o resultado é compacto:</p>
+        <div class="formula"><span data-tex="P = A_1\,\frac{1-\left(\dfrac{1+g}{1+i}\right)^{n}}{i-g} \qquad (i \ne g)"></span></div>
+        <p>O caso i = g é singular na fórmula, mas trivial na interpretação: as parcelas crescem exatamente à taxa de desconto, cada uma vale o mesmo em valor presente, e</p>
+        <div class="formula"><span data-tex="P = \frac{n\,A_1}{1+i} \qquad (i = g)"></span></div>
+        <div class="callout warn">
+          <strong>Quando g &gt; i a série não converge no infinito</strong>
+          Com crescimento maior que a taxa de desconto, as parcelas futuras valem cada vez <em>mais</em> em valor presente, e a soma diverge se n → ∞. Para n finito a fórmula continua válida — mas desconfie de uma projeção que suponha crescimento perpétuo acima do custo do capital: ela é economicamente impossível no longo prazo.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.2</span>Receita que cresce 8 % ao ano</div>
+          <p>Um produto gera receita de $ 1 000 no primeiro ano, crescendo 8 % ao ano durante 10 anos. À taxa de 12 % ao ano, qual o valor presente? Compare com o que daria uma série uniforme de $ 1 000.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A₁ = 1 000, g = 0,08, i = 0,12, n = 10. Como i ≠ g, aplica-se a fórmula geral.</li>
+              <li>Razão: (1+g)/(1+i) = 1,08/1,12 = 0,964286.</li>
+              <li>(0,964286)¹⁰ = 0,695267.</li>
+              <li>P = 1 000 × (1 − 0,695267)/(0,12 − 0,08) = 1 000 × 0,304733/0,04 = <strong>$ 7 618,33</strong>.</li>
+              <li>Conferindo pela soma direta parcela a parcela: <strong>$ 7 618,33</strong>.</li>
+              <li>Série uniforme de $ 1 000: 1 000 × (P/A; 12 %; 10) = 1 000 × 5,650223 = <strong>$ 5 650,22</strong>.</li>
+            </ol>
+            <p class="resposta">O crescimento de 8 % acrescenta $ 1 968 ao valor presente, 35 % a mais que a série constante — e a última parcela, $ 1 999, é quase o dobro da primeira. É a diferença entre projetar um produto com e sem crescimento de mercado, e mostra por que essa hipótese precisa ser declarada e defendida, não embutida.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-4"><span class="num">6.4</span>Qual usar</h3>
+
+        <p>A escolha não é matemática, é de modelagem. Custos de manutenção e de energia tendem a crescer de forma aproximadamente aritmética, por degraus associados a intervenções. Receitas, preços e salários tendem a crescer de forma geométrica, porque reajustes são percentuais. Na dúvida, ajuste os dois a alguns pontos conhecidos e veja qual descreve melhor — e, principalmente, declare a hipótese, porque ela muda bastante o resultado em horizontes longos.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Gradiente aritmético: soma G fixo por período. Geométrico: multiplica por (1+g).</li>
+          <li>Aritmético: P = A·(P/A) + G·(P/G) — a base uniforme e o gradiente, separados.</li>
+          <li>Geométrico: P = A₁[1 − ((1+g)/(1+i))ⁿ]/(i − g), com o caso i = g tratado à parte.</li>
+          <li>G pode ser negativo: a série decresce.</li>
+          <li>Custos tendem a crescer aritmeticamente; preços e salários, geometricamente.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o gradiente aritmético se decompõe em duas séries?</summary><p>Porque o fator (P/G) tabelado corresponde a um gradiente que vale zero no primeiro período e cresce G por período a partir daí. A parcela constante A precisa ser tratada separadamente pelo fator (P/A). Somar as duas é a decomposição.</p></details>
+          <details><summary>O que acontece quando i = g no gradiente geométrico?</summary><p>A fórmula tem i − g no denominador e degenera. Mas a interpretação é simples: as parcelas crescem exatamente à taxa de desconto, cada uma vale o mesmo em valor presente, e P = n·A₁/(1+i). É o único caso em que a série se comporta como uniforme em valor presente.</p></details>
+          <details><summary>Uma projeção com crescimento perpétuo acima da taxa de desconto é possível?</summary><p>Não no longo prazo. Com g > i a série diverge quando n → ∞: as parcelas distantes valeriam cada vez mais em valor presente. Para n finito a fórmula continua válida, mas uma hipótese de crescimento perpétuo acima do custo do capital é economicamente insustentável.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Séries de pagamentos" data-topicos="perpetuidade">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Perpetuidades e custo capitalizado</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir e aplicar P = A/i;</li>
+            <li>calcular o custo capitalizado de uma obra;</li>
+            <li>converter reposições periódicas em série anual equivalente;</li>
+            <li>avaliar a sensibilidade do resultado à taxa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5.</p></div>
+        </div>
+
+        <p>Uma série de infinitas parcelas tem valor presente finito. O resultado incomoda na primeira leitura e é a base da avaliação de obras públicas, de fundos patrimoniais e do valor terminal em avaliação de empresas.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Infinitas parcelas, valor finito</h3>
+        <p>Uma série de infinitas parcelas tem valor presente finito. O resultado incomoda na primeira leitura e é a base da avaliação de obras públicas, de fundos patrimoniais e de boa parte da avaliação de empresas.</p>
+        <div class="formula"><span data-tex="P = \lim_{n\to\infty} A\,\frac{1-(1+i)^{-n}}{i} = \frac{A}{i}"></span></div>
+        <p>A razão é que o fator de desconto cai geometricamente. Com 5 % ao período, a parcela de número 100 vale 0,76 % do seu valor nominal; a de número 200, 0,006 %. A cauda infinita contribui com quase nada, e a soma converge.</p>
+        <p>A leitura inversa é a mais útil: <strong>A/i é o capital que, aplicado à taxa i, gera a renda A para sempre sem nunca ser consumido</strong>. Quem quer uma renda de $ 1 000 por mês a 0,5 % ao mês precisa de $ 200 000 aplicados — e a conta de quanto custa uma aposentadoria sai daí.</p>
+
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>Custo capitalizado</h3>
+
+        <p>Obras de vida indefinida — pontes, estradas, barragens, adutoras — avaliam-se pelo <strong>custo capitalizado</strong>: o capital que hoje financiaria a construção e a manutenção perpétua.</p>
+        <div class="formula"><span data-tex="CC = I + \frac{A}{i}"></span></div>
+        <p>onde I é o investimento inicial e A o custo anual perpétuo. Para incluir uma <strong>reposição periódica</strong> — trocar o revestimento a cada k anos, por exemplo —, converte-se o custo de reposição R numa série anual equivalente antes de perpetuar:</p>
+        <div class="formula"><span data-tex="A_{rep} = R\,(A/F,i,k) = \frac{R\,i}{(1+i)^{k}-1} \qquad CC_{rep} = \frac{A_{rep}}{i} = \frac{R}{(1+i)^k - 1}"></span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>O custo capitalizado de uma ponte</div>
+          <p>Uma ponte custa $ 500 000 para construir, exige manutenção de $ 20 000 por ano e terá o revestimento reposto a cada 10 anos, ao custo de $ 80 000. À taxa de 6 % ao ano e supondo vida indefinida, qual o custo capitalizado?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Investimento inicial: <strong>$ 500 000</strong>.</li>
+              <li>Manutenção perpétua: A/i = 20 000/0,06 = <strong>$ 333 333,33</strong>.</li>
+              <li>Reposição: converte-se em série anual por (A/F; 6 %; 10) = 0,06/[(1,06)¹⁰ − 1] = 0,06/0,790848 = 0,075868.</li>
+              <li>A_rep = 80 000 × 0,075868 = <strong>$ 6 069,44 por ano</strong>.</li>
+              <li>Perpetuando: 6 069,44/0,06 = <strong>$ 101 157,28</strong>.</li>
+              <li>Custo capitalizado total: 500 000 + 333 333,33 + 101 157,28 = <strong>$ 934 490,61</strong>.</li>
+            </ol>
+            <p class="resposta">A manutenção perpétua custa dois terços do valor da obra, e a reposição decenal custa um quinto — a construção é menos da metade do compromisso total. É exatamente esse tipo de conta que falta quando uma obra pública é aprovada só pelo custo de construção, e é por isso que o custo capitalizado existe como critério.</p>
+          </details>
+        </div>
+
+        <h3 id="s7-3"><span class="num">7.3</span>Por que a taxa domina o resultado</h3>
+
+        <p>Em P = A/i, o valor presente é inversamente proporcional à taxa. Isso dá à perpetuidade uma sensibilidade extrema: passar de 5 % para 4 % aumenta o capital necessário em 25 %; de 2 % para 1 %, em 100 %. Nenhuma outra expressão do curso é tão sensível a um único parâmetro.</p>
+        <div class="callout note">
+          <strong>A consequência em avaliação de empresas</strong>
+          O valor terminal de um fluxo de caixa descontado é uma perpetuidade, frequentemente com crescimento: P = A/(i − g). Com i próximo de g o denominador tende a zero e o valor explode. É por isso que análises de avaliação sempre reportam a sensibilidade do resultado à taxa de desconto e à taxa de crescimento perpétuo — nesses dois parâmetros está quase toda a incerteza do resultado.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>P = A/i é o limite de (P/A) quando n → ∞.</li>
+          <li>A/i é o capital que gera a renda A para sempre sem ser consumido.</li>
+          <li>Custo capitalizado: CC = I + A/i, para obras de vida indefinida.</li>
+          <li>Reposição a cada k anos: converte-se por (A/F, i, k) antes de perpetuar.</li>
+          <li>O valor presente é inversamente proporcional à taxa — sensibilidade extrema.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a soma de infinitas parcelas converge?</summary><p>Porque o fator de desconto cai geometricamente. A 5 % ao período, a parcela de número 100 vale 0,76 % do nominal e a de número 200 vale 0,006 %. A cauda infinita contribui com quase nada, e a série geométrica de razão menor que 1 tem soma finita.</p></details>
+          <details><summary>Como entra uma reposição periódica no custo capitalizado?</summary><p>Convertendo-a primeiro numa série anual equivalente pelo fator (A/F, i, k), onde k é o intervalo entre reposições, e só então perpetuando essa série. O resultado compacto é CC = R/[(1+i)ᵏ − 1].</p></details>
+          <details><summary>Por que a perpetuidade é tão sensível à taxa?</summary><p>Porque P = A/i é uma hipérbole: o valor presente é inversamente proporcional a i. Passar de 5 % para 4 % aumenta o capital necessário em 25 %; de 2 % para 1 %, em 100 %. Nenhuma outra expressão do curso depende tanto de um só parâmetro.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte II — Séries de pagamentos" data-topicos="amortizacao">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Sistemas de amortização</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>montar a tabela de Price, SAC e americano;</li>
+            <li>explicar por que os totais nominais diferem;</li>
+            <li>verificar a equivalência financeira dos três sistemas;</li>
+            <li>escolher o sistema conforme o perfil de caixa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 5 e 4.</p></div>
+        </div>
+
+        <p>Um empréstimo pode ser devolvido de várias maneiras, todas equivalentes à mesma taxa. O que muda é o perfil dos pagamentos — e, como consequência, o total nominal. Entender por que o total difere sem que a taxa mude é o objetivo do capítulo.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>O mesmo empréstimo, três perfis</h3>
+        <p>Um empréstimo pode ser devolvido de várias maneiras, e todas são financeiramente equivalentes se calculadas à mesma taxa. O que muda entre elas é o <strong>perfil</strong> dos pagamentos — e, como consequência, o total nominal desembolsado.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Sistema</th><th>O que é constante</th><th>Prestação</th><th>Uso típico</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Price</strong> (francês)</td><td>a prestação</td><td>constante</td><td>crédito pessoal, veículo, consignado</td></tr>
+            <tr><td><strong>SAC</strong></td><td>a amortização</td><td>decrescente</td><td>financiamento imobiliário</td></tr>
+            <tr><td><strong>Americano</strong></td><td>só juros até o fim</td><td>constante e baixa, com balão final</td><td>títulos de dívida, debêntures</td></tr>
+            <tr><td><strong>SAM</strong></td><td>média de Price e SAC</td><td>decrescente, mais suave</td><td>pouco usado hoje</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Como se monta a tabela</h3>
+
+        <p>Qualquer que seja o sistema, a mecânica de cada linha é idêntica:</p>
+        <ol>
+          <li><strong>Juros do período</strong>: J<sub>k</sub> = SD<sub>k−1</sub> · i — sempre sobre o saldo devedor do fim do período anterior.</li>
+          <li><strong>Amortização</strong>: Am<sub>k</sub> = A<sub>k</sub> − J<sub>k</sub> — o que sobra da prestação depois de pagar os juros.</li>
+          <li><strong>Novo saldo</strong>: SD<sub>k</sub> = SD<sub>k−1</sub> − Am<sub>k</sub>.</li>
+        </ol>
+        <p>O que distingue os sistemas é apenas qual coluna se fixa primeiro. No Price fixa-se A<sub>k</sub> = P·(A/P, i, n) e a amortização é o resíduo. No SAC fixa-se Am<sub>k</sub> = P/n e a prestação é a soma. No americano a amortização é zero até o último período.</p>
+        <div class="formula"><span data-tex="\text{Price: } A = P\,\frac{i(1+i)^n}{(1+i)^n-1} \qquad \text{SAC: } A_k = \frac{P}{n} + SD_{k-1}\,i"></span></div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Cem mil em cinco anos, nos três sistemas</div>
+          <p>Um empréstimo de $ 100 000 será pago em 5 parcelas anuais à taxa de 10 % ao ano. Compare o total pago e os juros totais nos sistemas Price, SAC e americano.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Price: A = 100 000 × (A/P; 10 %; 5) = 100 000 × 0,263797 = <strong>$ 26 379,75</strong> por ano.</li>
+              <li>Total pago: 5 × 26 379,75 = $ 131 898,74 → juros de <strong>$ 31 898,74</strong>.</li>
+              <li>SAC: amortização fixa de 100 000/5 = $ 20 000. Prestações: 30 000, 28 000, 26 000, 24 000 e 22 000.</li>
+              <li>Total pago: $ 130 000,00 → juros de <strong>$ 30 000,00</strong>.</li>
+              <li>Americano: quatro parcelas de $ 10 000 (só juros) e uma de $ 110 000.</li>
+              <li>Total pago: $ 150 000,00 → juros de <strong>$ 50 000,00</strong>.</li>
+              <li>Verificação: descontando cada fluxo a 10 %, os três dão exatamente <strong>$ 100 000,00</strong>.</li>
+            </ol>
+            <p class="resposta">O americano paga 67 % a mais de juros que o SAC, com a mesma taxa — a diferença é só o tempo que a dívida fica em pé. E a verificação final é a que importa: os três fluxos valem o mesmo hoje, o que prova que nenhum deles é "mais caro" em termos financeiros. São perfis diferentes de desembolso, adequados a perfis diferentes de geração de caixa.</p>
+          </details>
+        </div>
+
+        <h3 id="s8-3"><span class="num">8.3</span>Por que o SAC paga menos juros</h3>
+
+        <p>Comparando um empréstimo de $ 100 000 em 5 anos a 10 % ao ano, o Price custa $ 31 898,74 de juros e o SAC, $ 30 000,00. A diferença não está na taxa — é a mesma — e sim no <strong>prazo médio do saldo devedor</strong>. No SAC a dívida cai linearmente; no Price ela cai devagar no começo, porque as primeiras prestações são quase só juros. Quanto mais tempo o dinheiro fica emprestado, mais juros se paga, e é só isso.</p>
+        <p>No americano, em que o saldo fica integral até o fim, os juros são máximos: $ 50 000 no mesmo exemplo. A contrapartida é o desembolso baixo durante a operação, o que faz sentido quando o projeto só gera caixa no final.</p>
+        <div class="callout tip">
+          <strong>Duas verificações que fecham qualquer tabela</strong>
+          A primeira: a soma das amortizações tem de dar exatamente o principal. A segunda, mais forte: o fluxo de prestações descontado à taxa do contrato tem de valer o principal. Os três sistemas passam nas duas — é o que prova que são financeiramente equivalentes, por mais diferentes que pareçam os totais nominais.
+        </div>
+
+        <div id="sim-amortizacao" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Monte os três sistemas e compare os totais. Depois aumente o prazo para 240 parcelas, como num financiamento imobiliário, e veja a diferença entre Price e SAC crescer de alguns por cento para dezenas de milhares.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Price fixa a prestação; SAC fixa a amortização; americano paga só juros até o fim.</li>
+          <li>Em todos: J_k = SD_(k−1)·i, Am_k = A_k − J_k, SD_k = SD_(k−1) − Am_k.</li>
+          <li>O SAC paga menos juros porque extingue a dívida mais depressa — não porque a taxa seja menor.</li>
+          <li>A soma das amortizações é sempre o principal.</li>
+          <li>Os três fluxos descontados à taxa do contrato valem exatamente o principal.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Se a taxa é a mesma, por que o total pago difere?</summary><p>Porque difere o prazo médio em que o dinheiro fica emprestado. No americano o saldo devedor permanece integral até o fim e os juros são máximos; no SAC ele cai linearmente e os juros são mínimos; o Price fica no meio. Juros se pagam por tempo de exposição, não por sistema.</p></details>
+          <details><summary>Por que o SAC exige mais renda na aprovação do crédito?</summary><p>Porque sua primeira prestação é a mais alta das três — ela soma a amortização integral com o juro sobre o saldo cheio. O banco dimensiona o limite de crédito pela primeira prestação, e por isso o SAC financia menos para a mesma renda, mesmo custando menos no total.</p></details>
+          <details><summary>Como verificar se uma tabela de amortização está correta?</summary><p>Dois testes. O fraco: a soma das amortizações tem de dar o principal. O forte: o fluxo de prestações descontado à taxa do contrato tem de valer exatamente o principal. O segundo pega erros que o primeiro deixa passar.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Avaliação de investimentos" data-topicos="fluxo">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. O fluxo de caixa do projeto</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>montar o fluxo de caixa econômico de um projeto;</li>
+            <li>tratar corretamente a depreciação e o benefício fiscal;</li>
+            <li>distinguir fluxo econômico de econômico-financeiro;</li>
+            <li>reconhecer o que deve e o que não deve entrar.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1, 3 e noções de contabilidade.</p></div>
+        </div>
+
+        <p>Calcular o VPL é trivial depois que o fluxo existe. A dificuldade está em montá-lo — e é aí que mora a maior parte dos erros de avaliação. Este capítulo trata do que entra, do que não entra e do tratamento peculiar da depreciação.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Montar é mais difícil que calcular</h3>
+        <p>Até aqui os fluxos vinham dados. Num projeto real eles precisam ser montados, e é nessa montagem que mora a maior parte dos erros de avaliação — bem mais que no cálculo do VPL, que é trivial depois que o fluxo existe.</p>
+        <p>A regra geral é só uma: <strong>o fluxo de caixa registra movimento de dinheiro, não resultado contábil</strong>. Receita que não foi recebida não entra; despesa que não desembolsa dinheiro não sai. Daí vem o tratamento peculiar da depreciação.</p>
+
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>A depreciação entra e sai</h3>
+
+        <p>A depreciação não é desembolso: nenhum dinheiro deixa o caixa quando se deprecia um equipamento. Mas ela <strong>reduz o lucro tributável</strong>, e com isso reduz um desembolso que é bem real — o imposto. A montagem padrão resolve isso subtraindo e devolvendo:</p>
+        <div class="formula"><span data-tex="FC = (R - C - D)(1 - t) + D"></span></div>
+        <p>onde R é a receita, C o custo operacional, D a depreciação e t a alíquota. Rearranjando:</p>
+        <div class="formula"><span data-tex="FC = (R - C)(1-t) + D\,t"></span></div>
+        <p>O termo D·t é o <strong>benefício fiscal da depreciação</strong>: a economia de imposto que ela gera. Com depreciação de $ 60 mil e alíquota de 30 %, o projeto ganha $ 18 mil por ano de caixa só por poder depreciar — e é por isso que o regime de depreciação importa na decisão.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Montando o fluxo econômico</div>
+          <p>Um projeto gera receita de $ 300 mil por ano e custos operacionais de $ 140 mil. O equipamento, de $ 300 mil, é depreciado linearmente em 5 anos. A alíquota de imposto é de 30 %. Monte o fluxo de caixa econômico anual e identifique o benefício fiscal da depreciação.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Depreciação anual: 300/5 = <strong>$ 60 mil</strong>.</li>
+              <li>Lucro tributável: 300 − 140 − 60 = <strong>$ 100 mil</strong>.</li>
+              <li>Imposto: 100 × 0,30 = <strong>$ 30 mil</strong>.</li>
+              <li>Lucro líquido: 100 − 30 = $ 70 mil.</li>
+              <li>Devolvendo a depreciação: FC = 70 + 60 = <strong>$ 130 mil por ano</strong>.</li>
+              <li>Pela forma alternativa: (300 − 140)(1 − 0,30) + 60 × 0,30 = 112 + 18 = <strong>$ 130 mil</strong>.</li>
+              <li>Benefício fiscal da depreciação: D·t = 60 × 0,30 = <strong>$ 18 mil por ano</strong>.</li>
+            </ol>
+            <p class="resposta">Sem poder depreciar, o fluxo seria (300 − 140)(1 − 0,30) = $ 112 mil — $ 18 mil a menos por ano, ou $ 90 mil ao longo dos cinco anos. É dinheiro de verdade, e é por isso que o regime de depreciação entra na decisão de investimento e que métodos acelerados aumentam o VPL sem mudar nada de físico no projeto.</p>
+          </details>
+        </div>
+
+        <h3 id="s9-3"><span class="num">9.3</span>Fluxo econômico e fluxo econômico-financeiro</h3>
+
+        <p>Há dois fluxos, e eles respondem a perguntas diferentes:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Fluxo</th><th>O que inclui</th><th>Responde</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Econômico</strong></td><td>investimento, operação, impostos, capital de giro, valor residual</td><td>o projeto é bom <em>em si</em>?</td></tr>
+            <tr><td><strong>Econômico-financeiro</strong></td><td>o econômico mais entradas e saídas do financiamento</td><td>quanto sobra para o acionista?</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O <strong>teorema da separação</strong> diz que as duas decisões — investir e financiar — devem ser analisadas separadamente. A viabilidade de um projeto se avalia pelo fluxo <em>econômico</em>, descontado ao custo do capital: um projeto bom continua bom qualquer que seja a forma de financiá-lo, e um projeto ruim não melhora por ter crédito barato. Misturar os dois produz o erro de aprovar projetos ruins porque o financiamento era subsidiado.</p>
+
+        <h3 id="s9-4"><span class="num">9.4</span>O que mais esquecem de incluir</h3>
+
+        <ul>
+          <li><strong>Capital de giro</strong>: o projeto precisa de estoque e de contas a receber. Entra como saída no início e <strong>retorna integralmente</strong> no fim da vida útil, quando se liquida a operação.</li>
+          <li><strong>Valor residual</strong>: o que o ativo vale ao fim do projeto, líquido do imposto sobre eventual ganho de capital.</li>
+          <li><strong>Reinvestimentos</strong>: reposições e grandes manutenções ao longo da vida, que não aparecem na conta de resultado do primeiro ano.</li>
+          <li><strong>Efeitos sobre produtos existentes</strong>: se o produto novo canibaliza o antigo, a receita perdida é custo do projeto novo.</li>
+        </ul>
+        <div class="callout warn">
+          <strong>O que não entra, por mais tentador que seja</strong>
+          Custos afundados, rateios administrativos que não mudam com a decisão e despesas financeiras do empréstimo (no fluxo econômico). Os três inflam ou deprimem artificialmente o resultado, e os três são excluídos pelo mesmo critério do capítulo 1: só entra o que muda com a decisão.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O fluxo registra movimento de caixa, não resultado contábil.</li>
+          <li>FC = (R − C − D)(1 − t) + D, ou equivalentemente (R − C)(1 − t) + D·t.</li>
+          <li>D·t é o benefício fiscal da depreciação: economia real de imposto sem desembolso.</li>
+          <li>Fluxo econômico avalia o projeto; econômico-financeiro, o retorno ao acionista.</li>
+          <li>Teorema da separação: a viabilidade usa o fluxo econômico, sem o financiamento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a depreciação é subtraída e depois somada de volta?</summary><p>Subtraída porque reduz o lucro tributável e, com isso, o imposto — que é desembolso real. Somada de volta porque ela mesma não é desembolso: nenhum dinheiro saiu do caixa. O efeito líquido é o termo D·t, a economia de imposto que ela gera.</p></details>
+          <details><summary>Por que não incluir as prestações do financiamento na análise de viabilidade?</summary><p>Pelo teorema da separação: as decisões de investir e de financiar devem ser analisadas em separado. Um projeto bom continua bom qualquer que seja o financiamento, e um projeto ruim não melhora por ter crédito subsidiado. Misturar os dois leva a aprovar projetos ruins por causa do crédito.</p></details>
+          <details><summary>O capital de giro entra como custo?</summary><p>Entra como saída no início e retorna integralmente no fim da vida útil, quando a operação é liquidada e estoques e recebíveis viram caixa. Ele não é consumido, é imobilizado — e por isso tem custo de oportunidade, mas não custo de aquisição.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Avaliação de investimentos" data-topicos="vpl">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. VPL e TIR</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular e interpretar o valor presente líquido;</li>
+            <li>calcular a taxa interna de retorno e saber quando ela vale;</li>
+            <li>ler o perfil do VPL contra a taxa;</li>
+            <li>reconhecer as três armadilhas da TIR.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3, 5 e 9.</p></div>
+        </div>
+
+        <p>Com o fluxo montado, resta decidir. Os dois critérios centrais são o valor presente líquido e a taxa interna de retorno — a mesma informação vista de dois ângulos, que concordam sempre que o fluxo é convencional e cujas discordâncias têm causa identificável.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>Os dois critérios centrais</h3>
+        <p>Montado o fluxo, resta decidir. Os dois critérios centrais da disciplina são o valor presente líquido e a taxa interna de retorno, e vale entender desde já que eles são a mesma informação vista de dois ângulos — e que, quando discordam, há sempre uma razão identificável.</p>
+        <div class="formula"><span data-tex="VPL = \sum_{k=0}^{n} \frac{FC_k}{(1+k_a)^{k}} \qquad \text{aceite se } VPL > 0"></span></div>
+        <p>O VPL mede, em dinheiro de hoje, quanto o projeto cria de valor <strong>acima</strong> da remuneração exigida pelo capital. Um VPL de $ 51 412 não significa lucro de $ 51 412: significa que, depois de recuperar o investimento e de remunerar o capital à taxa mínima de atratividade, ainda sobram $ 51 412 em valor presente.</p>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>A taxa mínima de atratividade</h3>
+
+        <p>A TMA é o custo de oportunidade do capital: o retorno da melhor alternativa de risco equivalente que se deixa de fazer. Ela não é a taxa do banco nem um número arbitrário. Em empresa, costuma ser o custo médio ponderado de capital; em decisão pessoal, o rendimento da aplicação alternativa.</p>
+        <p>Como o VPL depende da TMA, e a TMA é uma estimativa, <strong>reportar um VPL sem reportar a sensibilidade à taxa é entregar meia resposta</strong>. É exatamente isso que o perfil do VPL — a curva do VPL contra a taxa — resolve de forma visual.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>VPL e TIR de uma proposta de investimento</div>
+          <p>Uma alternativa de investimento exige desembolso inicial de $ 200 000 e gera fluxos de caixa de $ 75 000 por ano durante cinco anos. Calcule o VPL a um custo de capital de 15 % ao ano e a TIR. O projeto é viável?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(P/A; 15 %; 5) = [1 − (1,15)⁻⁵]/0,15 = 3,352155.</li>
+              <li>Valor presente das entradas: 75 000 × 3,352155 = $ 251 411,63.</li>
+              <li>VPL = 251 411,63 − 200 000 = <strong>$ 51 411,63</strong>.</li>
+              <li>Para a TIR, resolve-se 200 000 = 75 000 × (P/A, i, 5), isto é, (P/A, i, 5) = 2,666667.</li>
+              <li>Testando 25 %: (P/A; 25 %; 5) = 2,689280 — ainda alto.</li>
+              <li>Testando 26 %: (P/A; 26 %; 5) = 2,635374 — já baixo.</li>
+              <li>Convergindo: TIR = <strong>25,41 % ao ano</strong>.</li>
+            </ol>
+            <p class="resposta">Os dois critérios aprovam: VPL positivo e TIR de 25,41 % acima da TMA de 15 %. A margem é grande — a taxa teria de subir 10,41 pontos percentuais para inverter a decisão —, o que torna a recomendação robusta. Note que os dois concordam necessariamente: o fluxo tem uma única inversão de sinal.</p>
+          </details>
+        </div>
+
+        <h3 id="s10-3"><span class="num">10.3</span>A taxa interna de retorno</h3>
+
+        <p>A TIR é a taxa que zera o VPL:</p>
+        <div class="formula"><span data-tex="\sum_{k=0}^{n} \frac{FC_k}{(1+i^*)^{k}} = 0 \qquad \text{aceite se } i^* > TMA"></span></div>
+        <p>Ela tem uma vantagem comunicativa enorme: é um número em porcento, comparável com qualquer outra taxa, e não depende da TMA para ser calculada. Por isso é o critério preferido em reuniões — e por isso também é o mais mal usado.</p>
+        <p>Num fluxo <strong>convencional</strong> — uma única inversão de sinal, investimento no início e retornos depois — VPL e TIR <em>sempre</em> concordam. A curva do VPL é monotonicamente decrescente e corta o eixo uma vez só; à esquerda da TIR o VPL é positivo, à direita, negativo.</p>
+
+        <div id="sim-vpl" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Deslize a TMA e acompanhe o VPL cruzar o zero exatamente na TIR. Depois carregue o exemplo de custo de capital alto e veja os dois critérios reprovarem juntos — como tem de acontecer num fluxo convencional.
+        </div>
+
+        <h3 id="s10-4"><span class="num">10.4</span>As três armadilhas da TIR</h3>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Problema</th><th>Quando aparece</th><th>Saída</th></tr></thead>
+          <tbody>
+            <tr><td><strong>TIR múltipla</strong></td><td>mais de uma inversão de sinal no fluxo (desmobilização, reinvestimento grande)</td><td>usar VPL, ou a TIR modificada</td></tr>
+            <tr><td><strong>Escala</strong></td><td>comparar projetos de tamanhos muito diferentes</td><td>análise incremental ou VPL</td></tr>
+            <tr><td><strong>Hipótese de reinvestimento</strong></td><td>a TIR supõe reinvestir os fluxos à própria TIR, o que raramente é possível</td><td>TIR modificada (MTIR), com taxa de reinvestimento explícita</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A regra de Descartes dá o aviso: o número de raízes positivas é no máximo o número de inversões de sinal. Com um investimento inicial e retornos positivos, há uma inversão e uma TIR. Com uma desmobilização cara no fim, há duas inversões e possivelmente duas TIR — e nenhuma delas significa coisa alguma isoladamente.</p>
+        <div class="callout tip">
+          <strong>Na dúvida, VPL</strong>
+          O VPL é sempre correto, sempre único e aditivo (o VPL de dois projetos é a soma dos VPL). A TIR é um excelente complemento comunicativo e um péssimo critério isolado. Quando os dois discordam numa comparação de alternativas, a resposta certa é a do VPL.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>VPL = Σ FC_k/(1+k_a)^k; aceite se VPL > 0.</li>
+          <li>O VPL mede valor criado acima da remuneração exigida pelo capital.</li>
+          <li>TIR é a taxa que zera o VPL; aceite se TIR > TMA.</li>
+          <li>Em fluxo convencional — uma inversão de sinal — VPL e TIR sempre concordam.</li>
+          <li>Armadilhas da TIR: raízes múltiplas, escala e hipótese de reinvestimento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um VPL de $ 51 mil significa lucro de $ 51 mil?</summary><p>Não. Significa que, depois de recuperar todo o investimento e de remunerar o capital à taxa mínima de atratividade, ainda sobram $ 51 mil em valor de hoje. O lucro contábil é outro número; o VPL é o excedente sobre o custo de oportunidade.</p></details>
+          <details><summary>Quando a TIR pode ter mais de uma raiz?</summary><p>Quando o fluxo tem mais de uma inversão de sinal — um reinvestimento grande no meio, ou um custo de desmobilização no fim. A regra de Descartes limita o número de raízes positivas ao número de inversões, e com duas raízes nenhuma delas significa coisa alguma isoladamente.</p></details>
+          <details><summary>Por que a TIR falha ao comparar alternativas?</summary><p>Porque ela ignora a escala: 50 % sobre $ 10 mil cria menos valor que 20 % sobre $ 1 milhão. Em comparação de alternativas mutuamente exclusivas, usa-se o VPL ou a TIR do fluxo incremental, nunca a TIR de cada uma isoladamente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte III — Avaliação de investimentos" data-topicos="criterios">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Payback, índice de lucratividade e anuidade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular payback simples e descontado;</li>
+            <li>reconhecer a limitação estrutural do payback;</li>
+            <li>usar o índice de lucratividade em racionamento de capital;</li>
+            <li>converter VPL em anuidade equivalente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 10.</p></div>
+        </div>
+
+        <p>Três critérios aparecem em quase todo relatório de viabilidade ao lado do VPL. Nenhum o substitui, e cada um responde a uma pergunta que ele não responde — desde que se saiba qual pergunta é.</p>
+
+        <h3 id="s11-1"><span class="num">11.1</span>O que os outros critérios acrescentam</h3>
+        <p>Ao lado do VPL e da TIR, três critérios aparecem em quase todo relatório de viabilidade. Nenhum deles substitui o VPL, mas cada um responde a uma pergunta que o VPL não responde.</p>
+
+        <div class="fig-host" id="fig-11-1"></div>
+
+        <h3 id="s11-2"><span class="num">11.2</span>Payback: quanto tempo até recuperar</h3>
+
+        <p>O payback é o prazo em que o saldo acumulado cruza o zero. Na versão <strong>simples</strong>, somam-se os fluxos sem descontar; na versão <strong>descontada</strong>, descontam-se à TMA antes de somar — e essa é a única das duas que tem sentido financeiro.</p>
+        <div class="formula"><span data-tex="\sum_{k=0}^{m} \frac{FC_k}{(1+k_a)^{k}} = 0 \;\Rightarrow\; m = payback_{descontado}"></span></div>
+        <p>O payback descontado é sempre maior que o simples, e a diferença é o custo do capital no período. Num projeto de $ 30 000 que rende $ 5 000 por ano a 8 %, o simples dá 6,0 anos e o descontado, 8,5.</p>
+        <div class="callout warn">
+          <strong>A limitação que nenhuma versão resolve</strong>
+          O payback <strong>ignora tudo que acontece depois da recuperação</strong>. Entre um projeto que recupera em 3 anos e morre em 4, e outro que recupera em 5 e gera caixa por 20, o payback escolhe o primeiro. Ele é um critério de <em>risco e liquidez</em> — quanto tempo o capital fica exposto —, e nunca de rentabilidade.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Quatro critérios sobre o mesmo projeto</div>
+          <p>Um projeto requer investimento inicial de $ 30 000 e produz fluxo de caixa livre de $ 5 000 por ano durante 12 anos, a um custo de capital de 8 % ao ano. Calcule VPL, TIR, payback simples, payback descontado, índice de lucratividade e anuidade equivalente.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(P/A; 8 %; 12) = 7,536078. VP das entradas: 5 000 × 7,536078 = $ 37 680,39.</li>
+              <li>VPL = 37 680,39 − 30 000 = <strong>$ 7 680,39</strong>.</li>
+              <li>TIR: resolve-se (P/A, i, 12) = 6,0 → TIR = <strong>12,69 % a.a.</strong></li>
+              <li>Payback simples: 30 000/5 000 = <strong>6,00 anos</strong>.</li>
+              <li>Payback descontado: acumulando 5 000/(1,08)^k, o saldo cruza zero em <strong>8,51 anos</strong>.</li>
+              <li>IL = 37 680,39/30 000 = <strong>1,2560</strong>.</li>
+              <li>AE = 7 680,39/7,536078 = <strong>$ 1 019,15 por ano</strong>.</li>
+            </ol>
+            <p class="resposta">Os cinco números contam a mesma história de ângulos diferentes: o projeto cria $ 7 680 de valor, rende 12,69 % contra 8 % exigidos, devolve $ 1,26 por real investido e equivale a uma renda extra de $ 1 019 por ano. Mas repare nos paybacks: 6,00 e 8,51 anos num projeto de 12 — o capital fica exposto por dois terços da vida, o que é informação de risco que nenhum dos outros critérios revela.</p>
+          </details>
+        </div>
+
+        <h3 id="s11-3"><span class="num">11.3</span>Índice de lucratividade</h3>
+
+        <p>Também chamado de índice custo-benefício, é a razão entre o valor presente das entradas e o das saídas:</p>
+        <div class="formula"><span data-tex="IL = \frac{VP(\text{entradas})}{VP(\text{saídas})} \qquad \text{aceite se } IL > 1"></span></div>
+        <p>IL &gt; 1 e VPL &gt; 0 são a mesma afirmação, então o IL não acrescenta nada à decisão de aceitar ou rejeitar um projeto isolado. Ele ganha utilidade em <strong>racionamento de capital</strong>: quando o orçamento não cobre todos os projetos aprovados, ordenar por IL seleciona o conjunto de maior VPL total por real investido — algo que ordenar por VPL não faz.</p>
+
+        <h3 id="s11-4"><span class="num">11.4</span>Anuidade e custo anual equivalente</h3>
+
+        <p>A anuidade equivalente distribui o VPL em parcelas anuais iguais ao longo da vida do projeto:</p>
+        <div class="formula"><span data-tex="AE = \frac{VPL}{(P/A,\,k_a,\,n)} = VPL \cdot (A/P,\,k_a,\,n)"></span></div>
+        <p>Quando o fluxo é só de custos, chama-se <strong>custo anual equivalente</strong> (CAE). Ela tem duas virtudes práticas. A primeira: está em $/ano, que é a linguagem do orçamento operacional, e por isso comunica melhor que o VPL. A segunda, bem mais importante: <strong>é o critério correto para comparar alternativas de vidas diferentes</strong>, assunto do capítulo seguinte.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Critério</th><th>Responde</th><th>Usar quando</th></tr></thead>
+          <tbody>
+            <tr><td>VPL</td><td>quanto valor o projeto cria</td><td>sempre — é o critério de referência</td></tr>
+            <tr><td>TIR</td><td>qual o rendimento intrínseco</td><td>comunicar, comparar com o custo do capital</td></tr>
+            <tr><td>Payback descontado</td><td>por quanto tempo o capital fica exposto</td><td>avaliar risco e liquidez</td></tr>
+            <tr><td>IL</td><td>quanto se cria por real investido</td><td>racionamento de capital</td></tr>
+            <tr><td>AE / CAE</td><td>quanto por ano</td><td>vidas diferentes, orçamento anual</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Payback é o prazo em que o saldo acumulado cruza o zero.</li>
+          <li>O descontado é sempre maior que o simples; a diferença é o custo do capital.</li>
+          <li>O payback ignora tudo que acontece depois da recuperação: é critério de risco, não de rentabilidade.</li>
+          <li>IL > 1 equivale a VPL > 0; sua utilidade está em ordenar sob racionamento de capital.</li>
+          <li>AE = VPL/(P/A, k, n) distribui o VPL em parcelas anuais — e resolve vidas diferentes.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o payback descontado é maior que o simples?</summary><p>Porque descontar reduz o valor de cada entrada futura, e o saldo acumulado sobe mais devagar. A diferença entre os dois é exatamente o custo do capital imobilizado durante o período de recuperação — que o payback simples ignora.</p></details>
+          <details><summary>Qual a limitação que nenhuma versão do payback resolve?</summary><p>Ele ignora tudo que acontece depois do cruzamento. Entre um projeto que recupera em 3 anos e morre em 4, e outro que recupera em 5 e gera caixa por 20, o payback escolhe o primeiro. Por isso ele nunca deve ser critério único.</p></details>
+          <details><summary>Se IL > 1 equivale a VPL > 0, para que serve o IL?</summary><p>Para ordenar projetos quando o capital é racionado. Se o orçamento não cobre todos os projetos de VPL positivo, selecionar por IL decrescente maximiza o VPL total obtido por real investido — algo que ordenar por VPL absoluto não faz.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 12 -->
+      <section class="section capitulo" id="cap-12" data-parte="Parte III — Avaliação de investimentos" data-topicos="alternativas">
+        <p class="cap-kicker">Capítulo 12</p>
+        <h2>12. Comparação de alternativas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer o problema do horizonte em vidas diferentes;</li>
+            <li>comparar por repetição até o MMC e por custo anual equivalente;</li>
+            <li>conduzir a análise do investimento incremental;</li>
+            <li>encontrar e interpretar a taxa de indiferença.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 10 e 11.</p></div>
+        </div>
+
+        <p>Avaliar um projeto isolado é a parte fácil. Escolher entre alternativas traz duas armadilhas que derrubam a análise ingênua — e a primeira delas inverte o resultado do exemplo deste capítulo.</p>
+
+        <h3 id="s12-1"><span class="num">12.1</span>Vidas diferentes e análise incremental</h3>
+        <p>Avaliar um projeto isolado é a parte fácil. O problema real é escolher entre alternativas — e aí aparecem duas armadilhas que derrubam a análise ingênua: vidas úteis diferentes e comparação por TIR.</p>
+
+        <div class="fig-host" id="fig-12-1"></div>
+
+        <h3 id="s12-2"><span class="num">12.2</span>Alternativas mutuamente exclusivas e o problema do horizonte</h3>
+
+        <p>Considere duas máquinas: A custa $ 50 000, gasta $ 12 000 por ano e dura 3 anos; B custa $ 80 000, gasta $ 7 000 por ano e dura 6 anos. A 12 % ao ano, o valor presente dos custos de A em seu ciclo é $ 78 822 e o de B, $ 108 780. A parece muito mais barata — e a conclusão está errada.</p>
+        <p>Está errada porque <strong>as duas não entregam o mesmo serviço</strong>: A entrega 3 anos e B entrega 6. Comparar os dois valores presentes é comparar coisas diferentes. Há duas saídas corretas, e elas sempre concordam:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Método</th><th>Como</th><th>Quando preferir</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Repetição até o MMC</strong></td><td>repete-se cada alternativa até o mínimo múltiplo comum das vidas</td><td>quando se quer ver o fluxo completo</td></tr>
+            <tr><td><strong>Custo anual equivalente</strong></td><td>converte-se cada uma em $/ano sobre seu próprio ciclo</td><td>quase sempre — dispensa o MMC</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Repetindo A duas vezes para chegar aos 6 anos de B, o valor presente de A sobe para $ 134 926 contra $ 108 780 de B: <strong>B é a mais barata</strong>, ao contrário do que a comparação ingênua sugeria. O CAE chega à mesma conclusão sem repetir nada: $ 32 817/ano para A contra $ 26 458/ano para B.</p>
+        <div class="callout note">
+          <strong>A propriedade que torna o CAE prático</strong>
+          O CAE calculado sobre um ciclo isolado é <em>idêntico</em> ao calculado sobre a série repetida — no exemplo, exatamente $ 32 817/ano nos dois casos. Repetir não muda o custo por ano. É isso que permite dispensar o MMC, que fica inviável quando as vidas são, digamos, 7 e 11 anos.
+        </div>
+        <p>A hipótese embutida nos dois métodos é a mesma: que cada alternativa será <strong>reposta nas mesmas condições</strong>. É razoável para equipamento de uso contínuo em tecnologia estável, e frágil quando há mudança tecnológica à vista. Quando a hipótese não se sustenta, define-se um horizonte de estudo comum e atribui-se valor residual ao que sobrar.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 12.1</span>Três anos contra seis</div>
+          <p>A máquina A custa $ 50 000, tem custo operacional de $ 12 000 por ano e dura 3 anos. A máquina B custa $ 80 000, custa $ 7 000 por ano e dura 6 anos. À TMA de 12 % ao ano, qual escolher? Compare primeiro os ciclos isolados, depois corrija o horizonte.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Ciclo de A: VP = 50 000 + 12 000 × (P/A; 12 %; 3) = 50 000 + 12 000 × 2,401831 = <strong>$ 78 821,98</strong>.</li>
+              <li>Ciclo de B: VP = 80 000 + 7 000 × (P/A; 12 %; 6) = 80 000 + 7 000 × 4,111407 = <strong>$ 108 779,85</strong>.</li>
+              <li>A comparação ingênua apontaria A — e estaria errada, porque A entrega 3 anos e B entrega 6.</li>
+              <li>Repetindo A até o MMC = 6 anos, com reposição de $ 50 000 no fim do ano 3:</li>
+              <li>VP de A em 6 anos = <strong>$ 134 925,90</strong> contra <strong>$ 108 779,85</strong> de B.</li>
+              <li>Pelo CAE: A = 78 821,98/2,401831 = <strong>$ 32 817,45/ano</strong>; B = 108 779,85/4,111407 = <strong>$ 26 458,06/ano</strong>.</li>
+              <li>Verificação: o CAE de A sobre a série repetida é 134 925,90/4,111407 = <strong>$ 32 817,45/ano</strong> — idêntico.</li>
+            </ol>
+            <p class="resposta">A conclusão se inverte quando o horizonte é corrigido: B custa $ 6 359 por ano a menos, apesar de exigir 60 % mais de investimento inicial. E a verificação final é o ponto do capítulo — o CAE do ciclo isolado coincide até o centavo com o da série repetida, o que torna o MMC dispensável na prática.</p>
+          </details>
+        </div>
+
+        <h3 id="s12-3"><span class="num">12.3</span>Análise incremental</h3>
+
+        <p>Comparar alternativas pela TIR de cada uma leva a erro, porque a TIR ignora a escala. A forma correta é analisar o <strong>investimento incremental</strong>: ordenam-se as alternativas por investimento crescente e pergunta-se, para cada passo, se o dinheiro <em>a mais</em> se paga.</p>
+        <div class="formula"><span data-tex="\Delta = \text{(alternativa maior)} - \text{(alternativa menor)} \qquad \text{escolha a maior se } TIR_\Delta > TMA"></span></div>
+        <p>A pergunta que isso responde é a certa: "vale investir $ 30 000 a mais para economizar $ 5 000 por ano e ganhar 3 anos de vida?". Note que o resultado da análise incremental sempre coincide com o do VPL — o que não surpreende, já que TIR<sub>Δ</sub> &gt; TMA equivale a VPL<sub>Δ</sub> &gt; 0.</p>
+
+        <div id="sim-alternativas" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o caso de vidas diferentes e observe a inversão entre a comparação ingênua e a correta. Depois varie a TMA até encontrar a taxa de indiferença — e veja a decisão trocar de lado.
+        </div>
+
+        <h3 id="s12-4"><span class="num">12.4</span>A taxa de indiferença</h3>
+
+        <p>Quando os perfis de custo de duas alternativas se cruzam, existe uma taxa em que elas se equivalem — a <strong>taxa de indiferença</strong>, que é a TIR do fluxo incremental. Abaixo dela compensa investir mais; acima, o capital fica caro demais e a alternativa de menor investimento ganha.</p>
+        <p>Essa taxa é a informação mais valiosa de toda a análise de alternativas, porque transforma a decisão em uma pergunta robusta: não "qual é melhor?", mas "a que distância estamos da fronteira?". Uma decisão tomada a 12 % com indiferença em 13 % é frágil; a mesma decisão com indiferença em 40 % é sólida.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Comparar valores presentes de vidas diferentes compara serviços diferentes.</li>
+          <li>Duas saídas corretas e concordantes: repetir até o MMC, ou usar o CAE.</li>
+          <li>O CAE de um ciclo é idêntico ao da série repetida — por isso dispensa o MMC.</li>
+          <li>Comparar alternativas pela TIR de cada uma ignora a escala; use o fluxo incremental.</li>
+          <li>A taxa de indiferença é a TIR do incremental e mede a robustez da decisão.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que não comparar diretamente os valores presentes de A e B?</summary><p>Porque, com vidas diferentes, eles medem serviços diferentes. A alternativa de vida curta parece barata só porque entrega menos tempo de serviço. É preciso igualar o horizonte, por repetição ou por conversão em custo por ano.</p></details>
+          <details><summary>Por que o CAE dispensa o mínimo múltiplo comum?</summary><p>Porque o CAE calculado sobre um ciclo isolado é numericamente idêntico ao calculado sobre a série repetida — a repetição não muda o custo por ano. Isso é decisivo quando as vidas são, digamos, 7 e 11 anos, e o MMC seria 77.</p></details>
+          <details><summary>O que a taxa de indiferença informa?</summary><p>A que distância a decisão está de se inverter. Uma escolha feita a 12 % com indiferença em 13 % é frágil; a mesma escolha com indiferença em 40 % é sólida. Ela transforma a pergunta "qual é melhor?" na pergunta muito mais útil "quanta confiança essa recomendação merece?".</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 13 -->
+      <section class="section capitulo" id="cap-13" data-parte="Parte III — Avaliação de investimentos" data-topicos="real">
+        <p class="cap-kicker">Capítulo 13</p>
+        <h2>13. Inflação, depreciação e substituição</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>tratar inflação de forma coerente em fluxo e em taxa;</li>
+            <li>calcular depreciação e seu benefício fiscal;</li>
+            <li>conduzir uma análise de substituição de equipamento;</li>
+            <li>determinar a vida econômica pelo mínimo do CAE.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 4, 9 e 12.</p></div>
+        </div>
+
+        <p>O capítulo final junta três fenômenos do mundo real que alteram a conta: a inflação, que corrói o poder de compra; a depreciação, que não desembolsa mas muda o imposto; e a substituição, em que a pergunta não é "se", mas "quando".</p>
+
+        <h3 id="s13-1"><span class="num">13.1</span>A regra da coerência</h3>
+        <p>Três fenômenos do mundo real alteram a conta e são tratados aqui: a inflação, que corrói o poder de compra; a depreciação, que não é desembolso mas muda o imposto; e a substituição de equipamentos, em que a decisão não é "se", mas "quando".</p>
+
+        <div class="fig-host" id="fig-13-1"></div>
+
+        <h3 id="s13-2"><span class="num">13.2</span>Inflação: a regra da coerência</h3>
+
+        <p>Há dois modos corretos de tratar inflação, e eles dão exatamente o mesmo resultado:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Abordagem</th><th>Fluxo de caixa</th><th>Taxa de desconto</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nominal</strong> (moeda corrente)</td><td>inflacionado ano a ano</td><td>taxa nominal</td></tr>
+            <tr><td><strong>Real</strong> (moeda constante)</td><td>em moeda de hoje, sem inflacionar</td><td>taxa real de Fisher</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A regra é a coerência: <strong>ou tudo nominal, ou tudo real</strong>. O erro frequente é descontar um fluxo em moeda constante por uma taxa nominal, o que desconta a inflação duas vezes e subestima o projeto — às vezes o suficiente para rejeitar um projeto bom.</p>
+        <p>A equivalência vale a pena ser verificada uma vez na vida: um investimento de $ 150 mil que gera $ 60 mil reais por ano durante 5 anos, com taxa nominal de 14 % e inflação de 4 %, tem VPL de $ 65,74 mil pelos dois caminhos — inflacionando os fluxos e descontando a 14 %, ou mantendo-os em moeda de hoje e descontando a 9,6154 %.</p>
+        <div class="callout warn">
+          <strong>Quando os dois caminhos deixam de coincidir</strong>
+          A equivalência exige que <em>todos</em> os componentes do fluxo sofram a mesma inflação. Na prática não é o que acontece: a depreciação é calculada sobre o valor histórico e não é corrigida, o que faz seu benefício fiscal perder valor real com o tempo. Com inflação relevante, a análise nominal é a mais fiel, justamente porque captura esse efeito.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 13.1</span>Nominal e real dão o mesmo resultado</div>
+          <p>Um projeto exige $ 150 000 de investimento e gera $ 60 000 por ano, em moeda de hoje, durante 5 anos. A taxa nominal é de 14 % ao ano e a inflação projetada é de 4 % ao ano. Mostre que as duas abordagens coerentes dão o mesmo VPL, e calcule o que daria a abordagem incoerente.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Taxa real de Fisher: (1,14/1,04) − 1 = <strong>9,6154 % a.a.</strong></li>
+              <li>Abordagem real: fluxos de $ 60 000 descontados a 9,6154 %.</li>
+              <li>(P/A; 9,6154 %; 5) = 3,828330 → VP = $ 229 699,77 → VPL = <strong>$ 79 699,77</strong>.</li>
+              <li>Abordagem nominal: fluxos inflacionados — 62 400; 64 896; 67 492; 70 191; 72 999.</li>
+              <li>Descontados a 14 %: 54 737 + 49 937 + 45 558 + 41 563 + 37 905 = $ 229 699,77.</li>
+              <li>VPL = <strong>$ 79 699,77</strong> — idêntico ao caminho real.</li>
+              <li>Abordagem incoerente (fluxo real descontado a 14 %): 60 000 × 3,433081 = $ 205 984,86 → VPL = <strong>$ 55 984,86</strong>.</li>
+            </ol>
+            <p class="resposta">Os dois caminhos corretos coincidem até o centavo, como a álgebra de Fisher garante. O caminho incoerente subestima o VPL em $ 23 714,91 — 30 % a menos. Num projeto de margem apertada, esse erro sozinho decide entre aprovar e rejeitar, e ele é cometido com frequência desconcertante.</p>
+          </details>
+        </div>
+
+        <h3 id="s13-3"><span class="num">13.3</span>Depreciação e o benefício fiscal</h3>
+
+        <p>Depreciação é a alocação contábil do custo de um ativo ao longo de sua vida útil. O método mais comum é o <strong>linear</strong>:</p>
+        <div class="formula"><span data-tex="D_k = \frac{I - VR}{n} \qquad VC_k = I - k\,D"></span></div>
+        <p>onde VR é o valor residual contábil e VC o valor contábil no período k. Existem métodos acelerados — soma dos dígitos, saldo decrescente — que antecipam a dedução e, por isso, antecipam o benefício fiscal. Como dinheiro antecipado vale mais, <strong>acelerar a depreciação aumenta o VPL do projeto</strong>, sem alterar o total depreciado.</p>
+        <p>Dois pontos operacionais: terreno não deprecia; e a venda de um ativo por valor diferente do contábil gera ganho ou perda de capital, tributável, que precisa entrar no fluxo.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 13.2</span>Quando substituir: a vida econômica</div>
+          <p>Um equipamento custa $ 100 000 e perde 20 % do valor de revenda a cada ano. O custo de operação e manutenção é de $ 10 000 no primeiro ano e cresce $ 4 000 por ano. À TMA de 12 % ao ano, qual a vida econômica — o número de anos que minimiza o custo anual equivalente? Para cada vida n, o CAE soma a recuperação do capital com os custos de O&amp;M convertidos em série anual equivalente.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Recuperação do capital: RC(n) = (I − VR)·(A/P; 12 %; n) + VR·0,12.</li>
+              <li>O&amp;M equivalente: [10 000·(P/A; 12 %; n) + 4 000·(P/G; 12 %; n)]·(A/P; 12 %; n).</li>
+              <li>Ano 1: VR = $ 80 000; RC = 32 000; O&amp;M = 10 000; CAE = <strong>$ 42 000/ano</strong>.</li>
+              <li>Ano 3: VR = $ 51 200; RC = 26 462; O&amp;M = 13 698; CAE = <strong>$ 40 160/ano</strong>.</li>
+              <li>Ano 4: VR = $ 40 960; RC = 24 353; O&amp;M = 15 435; CAE = <strong>$ 39 789/ano</strong>.</li>
+              <li>Ano 5: VR = $ 32 768; RC = 22 583; O&amp;M = 17 098; CAE = <strong>$ 39 681/ano</strong> ← mínimo.</li>
+              <li>Ano 6: VR = $ 26 214; RC = 21 092; O&amp;M = 18 688; CAE = <strong>$ 39 780/ano</strong>.</li>
+              <li>Ano 8: VR = $ 16 777; RC = 18 766; O&amp;M = 21 653; CAE = <strong>$ 40 419/ano</strong>.</li>
+            </ol>
+            <p class="resposta">A vida econômica é de <strong>5 anos</strong>, embora o equipamento continue funcionando bem depois disso. Note as duas parcelas caminhando em sentidos opostos: a recuperação do capital cai de $ 32 000 para $ 18 766, enquanto o O&amp;M sobe de $ 10 000 para $ 21 653 — e a soma tem mínimo. O mínimo é raso: entre o ano 4 e o 6 o CAE varia 0,3 %. Isso é informação prática, não detalhe: há folga de um ano para cada lado sem penalidade relevante, o que permite acomodar o momento da troca à disponibilidade de caixa.</p>
+          </details>
+        </div>
+
+        <h3 id="s13-4"><span class="num">13.4</span>Substituição de equipamentos</h3>
+
+        <p>A análise de substituição compara manter o ativo atual (o <em>defensor</em>) com adquirir um novo (o <em>desafiante</em>). Três cuidados a tomar:</p>
+        <ul>
+          <li>O valor do defensor na análise é o <strong>valor de mercado hoje</strong>, não o contábil e muito menos o de compra. Ao mantê-lo, deixa-se de receber esse valor: é custo de oportunidade.</li>
+          <li>O que se compara é o <strong>custo anual equivalente</strong> de cada opção, porque as vidas remanescentes são diferentes.</li>
+          <li>Trabalha-se com o <strong>fluxo incremental</strong>: economia de mão de obra, de matéria-prima e de manutenção, aumento de receita por maior capacidade, e a depreciação <em>diferencial</em> entre os dois equipamentos.</li>
+        </ul>
+        <p>Há ainda a questão do <strong>momento ótimo</strong> de substituir. O custo anual equivalente de um equipamento é a soma de duas parcelas que caminham em sentidos opostos: o custo de capital, que cai com o tempo de uso, e os custos de operação e manutenção, que sobem com a idade. A soma tem mínimo, e esse mínimo é a <strong>vida econômica</strong> — que costuma ser bem menor que a vida física. Substituir no mínimo do CAE é a decisão ótima; esperar o equipamento "morrer" é quase sempre caro.</p>
+        <div class="callout tip">
+          <strong>O custo afundado volta aqui</strong>
+          Em análise de substituição a tentação de incluir o que já se gastou é máxima: "a máquina custou $ 300 000 há três anos, não posso trocá-la agora". Pode, e provavelmente deve. Os $ 300 000 são irrecuperáveis e idênticos nas duas alternativas — portanto irrelevantes. O que importa é o que acontece de hoje em diante.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Ou tudo nominal, ou tudo real: os dois caminhos dão o mesmo VPL.</li>
+          <li>Descontar fluxo real por taxa nominal desconta a inflação duas vezes.</li>
+          <li>Depreciação linear: D = (I − VR)/n. Acelerá-la antecipa o benefício fiscal e aumenta o VPL.</li>
+          <li>Na substituição, o defensor entra pelo valor de mercado, não pelo contábil.</li>
+          <li>A vida econômica é o mínimo do CAE, e costuma ser bem menor que a vida física.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que descontar fluxo real por taxa nominal é errado?</summary><p>Porque desconta a inflação duas vezes: uma vez por já estar o fluxo em moeda de hoje, outra pela parcela de inflação embutida na taxa nominal. O resultado subestima o projeto, às vezes o suficiente para rejeitar um projeto bom.</p></details>
+          <details><summary>Por que acelerar a depreciação aumenta o VPL?</summary><p>Porque antecipa o benefício fiscal D·t sem mudar o total depreciado. Dinheiro recebido antes vale mais, então o mesmo somatório de economias de imposto, concentrado nos primeiros anos, tem valor presente maior. É ganho puro de valor sem nenhuma mudança física no projeto.</p></details>
+          <details><summary>Por que esperar o equipamento "morrer" costuma ser caro?</summary><p>Porque o CAE de um equipamento é a soma de duas parcelas que caminham em sentidos opostos: o custo de capital, que cai com o uso, e os custos de operação e manutenção, que sobem com a idade. A soma tem mínimo — a vida econômica — e operar além dele significa pagar mais por ano do que seria necessário.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-juros"><small>Capítulo 4 · Juros</small>Simples e compostos, e a taxa efetiva</a></li>
+          <li><a href="#sim-series"><small>Capítulo 5 · Séries</small>Uniformes, gradientes e perpetuidades</a></li>
+          <li><a href="#sim-amortizacao"><small>Capítulo 8 · Amortização</small>SAC, Price e americano</a></li>
+          <li><a href="#sim-vpl"><small>Capítulo 10 · Decisão</small>VPL, TIR, payback e anuidade</a></li>
+          <li><a href="#sim-alternativas"><small>Capítulo 12 · Alternativas</small>Vidas diferentes e taxa de indiferença</a></li>
+        </ul>
+      </section>
+
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Pagamento único</h4>
+            <div class="formula"><span data-tex="\text{simples: } S = P(1 + i\,n) \qquad J = P\,i\,n"></span></div>
+            <div class="formula"><span data-tex="\text{composto: } S = P(1+i)^n \qquad P = S(1+i)^{-n}"></span></div>
+            <div class="formula"><span data-tex="n = \frac{\ln(S/P)}{\ln(1+i)} \qquad \text{dobra em } \approx 72/i\,[\%]"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Taxas</h4>
+            <div class="formula"><span data-tex="i_{ef} = \left(1 + \frac{i_{nom}}{m}\right)^{m} - 1 \qquad i_{cont} = e^{i_{nom}} - 1"></span></div>
+            <div class="formula"><span data-tex="i_{eq} = (1+i)^{p/d} - 1"></span></div>
+            <div class="formula"><span data-tex="1 + i_{real} = \frac{1+i_{nom}}{1+\pi} \quad \text{(Fisher)}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Séries uniformes</h4>
+            <div class="formula"><span data-tex="(P/A,i,n) = \frac{1-(1+i)^{-n}}{i} \qquad (A/P,i,n) = \frac{i(1+i)^n}{(1+i)^n-1}"></span></div>
+            <div class="formula"><span data-tex="(F/A,i,n) = \frac{(1+i)^n-1}{i} \qquad (A/F,i,n) = \frac{i}{(1+i)^n-1}"></span></div>
+            <div class="formula"><span data-tex="P_{ante} = P_{post}(1+i) \qquad P_{dif} = P_{post}(1+i)^{-c}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Séries variáveis</h4>
+            <div class="formula"><span data-tex="(P/G,i,n) = \frac{1}{i}\left[\frac{1-(1+i)^{-n}}{i} - \frac{n}{(1+i)^n}\right]"></span></div>
+            <div class="formula"><span data-tex="P = A\,(P/A,i,n) + G\,(P/G,i,n)"></span></div>
+            <div class="formula"><span data-tex="P = A_1\frac{1-\left(\frac{1+g}{1+i}\right)^n}{i-g} \quad (i \ne g) \qquad P = \frac{n A_1}{1+i} \quad (i = g)"></span></div>
+            <div class="formula"><span data-tex="\text{perpetuidade: } P = \frac{A}{i} \qquad CC = I + \frac{A}{i}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Amortização</h4>
+            <div class="formula"><span data-tex="\text{Price: } A = P\,(A/P,i,n)"></span></div>
+            <div class="formula"><span data-tex="\text{SAC: } Am = \frac{P}{n} \qquad A_k = \frac{P}{n} + SD_{k-1}\,i"></span></div>
+            <div class="formula"><span data-tex="J_k = SD_{k-1}\,i \qquad SD_k = SD_{k-1} - Am_k \qquad \sum Am_k = P"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Decisão</h4>
+            <div class="formula"><span data-tex="VPL = \sum_{k=0}^{n}\frac{FC_k}{(1+k_a)^k} \qquad \sum_{k=0}^{n}\frac{FC_k}{(1+i^*)^k} = 0"></span></div>
+            <div class="formula"><span data-tex="IL = \frac{VP(\text{entradas})}{VP(\text{saídas})} \qquad AE = VPL\,(A/P,k_a,n)"></span></div>
+            <div class="formula"><span data-tex="FC = (R-C-D)(1-t) + D = (R-C)(1-t) + D\,t"></span></div>
+            <div class="formula"><span data-tex="D = \frac{I - VR}{n} \qquad \text{vida econômica: } \min_n CAE(n)"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tabelas">
+        <h2>Apêndice B — Tabelas de fatores</h2>
+        <p>Os fatores abaixo substituem as tabelas financeiras impressas. Todos são calculáveis pelas fórmulas do apêndice A; a tabela serve para conferência rápida e para resolver exercícios sem calculadora financeira.</p>
+        <h3 id="tab-pa">Fator (P/A, i, n) — valor presente de série uniforme</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>n \ i</th><th>1 %</th><th>2 %</th><th>5 %</th><th>8 %</th><th>10 %</th><th>12 %</th><th>15 %</th><th>20 %</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>0,9901</td><td>0,9804</td><td>0,9524</td><td>0,9259</td><td>0,9091</td><td>0,8929</td><td>0,8696</td><td>0,8333</td></tr>
+            <tr><td>2</td><td>1,9704</td><td>1,9416</td><td>1,8594</td><td>1,7833</td><td>1,7355</td><td>1,6901</td><td>1,6257</td><td>1,5278</td></tr>
+            <tr><td>3</td><td>2,9410</td><td>2,8839</td><td>2,7232</td><td>2,5771</td><td>2,4869</td><td>2,4018</td><td>2,2832</td><td>2,1065</td></tr>
+            <tr><td>4</td><td>3,9020</td><td>3,8077</td><td>3,5460</td><td>3,3121</td><td>3,1699</td><td>3,0373</td><td>2,8550</td><td>2,5887</td></tr>
+            <tr><td>5</td><td>4,8534</td><td>4,7135</td><td>4,3295</td><td>3,9927</td><td>3,7908</td><td>3,6048</td><td>3,3522</td><td>2,9906</td></tr>
+            <tr><td>6</td><td>5,7955</td><td>5,6014</td><td>5,0757</td><td>4,6229</td><td>4,3553</td><td>4,1114</td><td>3,7845</td><td>3,3255</td></tr>
+            <tr><td>8</td><td>7,6517</td><td>7,3255</td><td>6,4632</td><td>5,7466</td><td>5,3349</td><td>4,9676</td><td>4,4873</td><td>3,8372</td></tr>
+            <tr><td>10</td><td>9,4713</td><td>8,9826</td><td>7,7217</td><td>6,7101</td><td>6,1446</td><td>5,6502</td><td>5,0188</td><td>4,1925</td></tr>
+            <tr><td>12</td><td>11,2551</td><td>10,5753</td><td>8,8633</td><td>7,5361</td><td>6,8137</td><td>6,1944</td><td>5,4206</td><td>4,4392</td></tr>
+            <tr><td>15</td><td>13,8651</td><td>12,8493</td><td>10,3797</td><td>8,5595</td><td>7,6061</td><td>6,8109</td><td>5,8474</td><td>4,6755</td></tr>
+            <tr><td>20</td><td>18,0456</td><td>16,3514</td><td>12,4622</td><td>9,8181</td><td>8,5136</td><td>7,4694</td><td>6,2593</td><td>4,8696</td></tr>
+            <tr><td>30</td><td>25,8077</td><td>22,3965</td><td>15,3725</td><td>11,2578</td><td>9,4269</td><td>8,0552</td><td>6,5660</td><td>4,9789</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="tab-fp">Fator (F/P, i, n) — capitalização de pagamento único</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>n \ i</th><th>1 %</th><th>2 %</th><th>5 %</th><th>8 %</th><th>10 %</th><th>12 %</th><th>15 %</th><th>20 %</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>1,0100</td><td>1,0200</td><td>1,0500</td><td>1,0800</td><td>1,1000</td><td>1,1200</td><td>1,1500</td><td>1,2000</td></tr>
+            <tr><td>5</td><td>1,0510</td><td>1,1041</td><td>1,2763</td><td>1,4693</td><td>1,6105</td><td>1,7623</td><td>2,0114</td><td>2,4883</td></tr>
+            <tr><td>10</td><td>1,1046</td><td>1,2190</td><td>1,6289</td><td>2,1589</td><td>2,5937</td><td>3,1058</td><td>4,0456</td><td>6,1917</td></tr>
+            <tr><td>15</td><td>1,1610</td><td>1,3459</td><td>2,0789</td><td>3,1722</td><td>4,1772</td><td>5,4736</td><td>8,1371</td><td>15,4070</td></tr>
+            <tr><td>20</td><td>1,2202</td><td>1,4859</td><td>2,6533</td><td>4,6610</td><td>6,7275</td><td>9,6463</td><td>16,3665</td><td>38,3376</td></tr>
+            <tr><td>30</td><td>1,3478</td><td>1,8114</td><td>4,3219</td><td>10,0627</td><td>17,4494</td><td>29,9599</td><td>66,2118</td><td>237,3763</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="tab-taxas">Taxa efetiva anual a partir da nominal</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Nominal a.a.</th><th>Anual</th><th>Semestral</th><th>Trimestral</th><th>Mensal</th><th>Diária</th><th>Contínua</th></tr></thead>
+          <tbody>
+            <tr><td>6 %</td><td>6,0000 %</td><td>6,0900 %</td><td>6,1364 %</td><td>6,1678 %</td><td>6,1831 %</td><td>6,1837 %</td></tr>
+            <tr><td>12 %</td><td>12,0000 %</td><td>12,3600 %</td><td>12,5509 %</td><td>12,6825 %</td><td>12,7475 %</td><td>12,7497 %</td></tr>
+            <tr><td>18 %</td><td>18,0000 %</td><td>18,8100 %</td><td>19,2519 %</td><td>19,5618 %</td><td>19,7164 %</td><td>19,7217 %</td></tr>
+            <tr><td>24 %</td><td>24,0000 %</td><td>25,4400 %</td><td>26,2477 %</td><td>26,8242 %</td><td>27,1149 %</td><td>27,1249 %</td></tr>
+            <tr><td>36 %</td><td>36,0000 %</td><td>39,2400 %</td><td>41,1582 %</td><td>42,5761 %</td><td>43,3059 %</td><td>43,3329 %</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Como ler a notação dos fatores</strong>
+          (P/A, i, n) é o fator que converte A em P. O primeiro símbolo é o que se quer, o segundo é o que se tem. Assim, P = A·(P/A, i, n) e A = P·(A/P, i, n), e os dois fatores são inversos. A notação sobreviveu às tabelas impressas que a originaram porque é compacta e não deixa dúvida sobre o sentido da conversão.
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>59 questões objetivas sobre fluxo de caixa e custos relevantes, juros simples e compostos, taxas, séries uniformes e variáveis, perpetuidades, sistemas de amortização, montagem do fluxo do projeto, VPL, TIR, payback, comparação de alternativas, inflação e substituição. Escolha os capítulos no filtro e refaça quantas vezes quiser.</p>
+        <div id="quiz" data-quiz="engenharia-economica"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>BLANK, L.; TARQUIN, A. <em>Engenharia Econômica</em>. 6. ed. McGraw-Hill.</li>
+          <li>NEWNAN, D. G.; ESCHENBACH, T. G.; LAVELLE, J. P. <em>Engineering Economic Analysis</em>. 14. ed. Oxford.</li>
+          <li>PARK, C. S. <em>Contemporary Engineering Economics</em>. 6. ed. Pearson.</li>
+          <li>HIRSCHFELD, H. <em>Engenharia Econômica e Análise de Custos</em>. 7. ed. Atlas.</li>
+          <li>CASAROTTO FILHO, N.; KOPITTKE, B. H. <em>Análise de Investimentos</em>. 12. ed. Atlas.</li>
+          <li>PUCCINI, A. L. <em>Matemática Financeira: Objetiva e Aplicada</em>. 10. ed. Saraiva.</li>
+          <li>SAMANEZ, C. P. <em>Engenharia Econômica</em>. Pearson.</li>
+          <li>BREALEY, R. A.; MYERS, S. C.; ALLEN, F. <em>Princípios de Finanças Corporativas</em>. 12. ed. McGraw-Hill.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/engenharia-economica.js"></script>
+<script src="../js/fig/engenharia-economica.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  P: ['Valor presente ou principal', '$', 'o valor na data zero'],
+  F: ['Valor futuro ou montante', '$', 'também aparece como S'],
+  S: ['Montante', '$', 'o mesmo que F'],
+  A: ['Parcela de série uniforme', '$/período'],
+  G: ['Gradiente aritmético', '$/período', 'o acréscimo fixo por período'],
+  g: ['Gradiente geométrico', '%', 'a razão de crescimento por período'],
+  i: ['Taxa de juros por período', '%'],
+  n: ['Número de períodos', '—'],
+  J: ['Juro', '$'],
+  'i_{nom}': ['Taxa nominal', '%', 'anunciada num período, capitalizada em outro'],
+  'i_{ef}': ['Taxa efetiva', '%', 'a que de fato incide'],
+  'i_{real}': ['Taxa real', '%', 'descontada a inflação, pela equação de Fisher'],
+  π: ['Taxa de inflação', '%'],
+  m: ['Capitalizações por período', '—'],
+  TMA: ['Taxa mínima de atratividade', '%', 'o custo de oportunidade do capital'],
+  VPL: ['Valor presente líquido', '$', 'aceite se maior que zero'],
+  TIR: ['Taxa interna de retorno', '%', 'a taxa que zera o VPL'],
+  IL: ['Índice de lucratividade', '—', 'VP das entradas sobre VP das saídas'],
+  AE: ['Anuidade equivalente', '$/ano', 'o VPL distribuído em parcelas anuais'],
+  CAE: ['Custo anual equivalente', '$/ano', 'a anuidade de um fluxo só de custos'],
+  CC: ['Custo capitalizado', '$', 'I + A/i, para obras de vida indefinida'],
+  SD: ['Saldo devedor', '$'],
+  Am: ['Amortização do período', '$'],
+  D: ['Depreciação do período', '$'],
+  t: ['Alíquota de imposto', '%'],
+  VR: ['Valor residual', '$'],
+  MMC: ['Mínimo múltiplo comum', '—', 'horizonte comum para vidas diferentes'],
+  payback: ['Prazo de recuperação do capital', 'anos'],
+  'data focal': ['Data de avaliação dos capitais', '—', 'para onde tudo é transportado']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

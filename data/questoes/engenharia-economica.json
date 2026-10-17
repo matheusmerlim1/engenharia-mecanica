@@ -1,0 +1,1045 @@
+{
+  "disciplina": "Engenharia Econômica",
+  "slug": "engenharia-economica",
+  "topicos": [
+    {
+      "id": "metodo",
+      "nome": "O método e o fluxo de caixa"
+    },
+    {
+      "id": "simples",
+      "nome": "Juros simples"
+    },
+    {
+      "id": "compostos",
+      "nome": "Juros compostos"
+    },
+    {
+      "id": "taxas",
+      "nome": "Taxas de juros"
+    },
+    {
+      "id": "series",
+      "nome": "Séries uniformes"
+    },
+    {
+      "id": "gradientes",
+      "nome": "Séries variáveis"
+    },
+    {
+      "id": "perpetuidade",
+      "nome": "Perpetuidades"
+    },
+    {
+      "id": "amortizacao",
+      "nome": "Sistemas de amortização"
+    },
+    {
+      "id": "fluxo",
+      "nome": "Fluxo de caixa do projeto"
+    },
+    {
+      "id": "vpl",
+      "nome": "VPL e TIR"
+    },
+    {
+      "id": "criterios",
+      "nome": "Payback, IL e anuidade"
+    },
+    {
+      "id": "alternativas",
+      "nome": "Comparação de alternativas"
+    },
+    {
+      "id": "real",
+      "nome": "Inflação, depreciação e substituição"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "ee-001",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "metodo",
+      "enunciado": "<p>Uma empresa pagou $ 300 000 por uma máquina há três anos. Hoje ela vale $ 40 000 no mercado. Na análise de substituí-la, o valor que entra é:</p>",
+      "alternativas": [
+        "$ 40 000, como custo de oportunidade de mantê-la",
+        "$ 300 000, o valor histórico de aquisição",
+        "$ 260 000, a diferença entre o histórico e o de mercado",
+        "nenhum valor: a máquina já foi paga"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Os $ 300 000 são custo afundado: já incorridos, irrecuperáveis e idênticos em todas as alternativas. O que importa é que, ao manter a máquina, deixa-se de receber os $ 40 000 que ela valeria vendida. Isso é desembolso real, embora nenhum cheque seja emitido.</p>"
+    },
+    {
+      "id": "ee-002",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "metodo",
+      "enunciado": "<p>No diagrama de fluxo de caixa, a convenção estabelece que:</p>",
+      "alternativas": [
+        "setas para cima são saídas e para baixo são entradas",
+        "setas para cima são entradas e para baixo são saídas, e o valor do período k ocorre no fim desse período",
+        "todos os valores ocorrem no início de cada período",
+        "a direção das setas indica se o valor é nominal ou real"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A última parte da convenção é a que mais custa caro: o valor marcado no período k ocorre no <em>fim</em> dele. É exatamente isso que distingue uma série postecipada de uma antecipada, e a diferença entre as duas é uma taxa inteira de um período.</p>"
+    },
+    {
+      "id": "ee-003",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "metodo",
+      "enunciado": "<p>Por que a alternativa de \"não fazer nada\" precisa entrar explicitamente na comparação?</p>",
+      "alternativas": [
+        "porque a norma contábil exige que ela conste do relatório",
+        "porque ela tem sempre VPL igual a zero por definição",
+        "porque ela é sempre viável e define o ponto de referência contra o qual as demais são medidas",
+        "porque ela elimina a necessidade de calcular o custo de oportunidade"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Sem a alternativa nula, a análise responde \"qual das propostas é melhor\" sem jamais perguntar \"alguma delas vale a pena\". Ela nem sempre tem VPL zero: manter o equipamento atual tem custos próprios, e é esse fluxo que serve de referência.</p>"
+    },
+    {
+      "id": "ee-004",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "metodo",
+      "enunciado": "<p>Um consultor foi pago $ 15 000 para elaborar um estudo de viabilidade. Esse valor:</p>",
+      "alternativas": [
+        "entra como investimento inicial do projeto",
+        "entra rateado ao longo da vida do projeto",
+        "entra apenas se o projeto for aprovado",
+        "não entra na análise, por ser custo afundado"
+      ],
+      "correta": 3,
+      "explicacao": "<p>O pagamento já ocorreu e não muda com a decisão de aprovar ou rejeitar. O estudo é útil; o que foi pago por ele é irrelevante para a escolha. É o mesmo critério que exclui o valor histórico de um equipamento.</p>"
+    },
+    {
+      "id": "ee-005",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "simples",
+      "enunciado": "<p>Qual o rendimento de $ 3 000 aplicados por um ano a juros simples de 25 % ao ano?</p>",
+      "alternativas": [
+        "$ 750,00",
+        "$ 3 750,00",
+        "$ 600,00",
+        "$ 1 200,00"
+      ],
+      "correta": 0,
+      "formulas": [
+        "J = P·i·n",
+        "S = P(1 + i·n)"
+      ],
+      "explicacao": "<div class=\"passo\">J = P·i·n = 3 000 × 0,25 × 1 = <strong>$ 750,00</strong></div><p>Os $ 3 750 seriam o montante S = P + J, não o rendimento. A distinção entre juro e montante é a primeira a fixar: J é só a remuneração, S inclui o capital de volta.</p>"
+    },
+    {
+      "id": "ee-006",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "simples",
+      "enunciado": "<p>Que taxa de juros simples transforma $ 4 500 em $ 8 100 em um ano?</p>",
+      "alternativas": [
+        "180 % ao ano",
+        "80 % ao ano",
+        "44,4 % ao ano",
+        "55,6 % ao ano"
+      ],
+      "correta": 1,
+      "formulas": [
+        "S = P(1 + i·n)"
+      ],
+      "explicacao": "<div class=\"passo\">S = P(1 + i·n) → 8 100 = 4 500(1 + i)</div><div class=\"passo\">1 + i = 8 100/4 500 = 1,80 → i = <strong>80 % a.a.</strong></div><p>O erro de 180 % vem de tomar a razão 8 100/4 500 como a própria taxa, esquecendo de subtrair o 1 que representa o capital devolvido.</p>"
+    },
+    {
+      "id": "ee-007",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "simples",
+      "enunciado": "<p>Qual o rendimento de $ 10 000 aplicados por um mês à taxa de juros simples de 36 % ao ano?</p>",
+      "alternativas": [
+        "$ 3 600,00",
+        "$ 360,00",
+        "$ 300,00",
+        "$ 25,00"
+      ],
+      "correta": 2,
+      "formulas": [
+        "i_mês = i_ano/12 (regime simples)",
+        "J = P·i·n"
+      ],
+      "explicacao": "<div class=\"passo\">a taxa é anual e o prazo é mensal: i_mês = 0,36/12 = 0,03</div><div class=\"passo\">J = 10 000 × 0,03 × 1 = <strong>$ 300,00</strong></div><p>É o erro mais comum do capítulo: aplicar a taxa anual a um prazo mensal. No regime simples a conversão é proporcional e fácil — no composto seria por potência, e dividir por 12 estaria errado.</p>"
+    },
+    {
+      "id": "ee-008",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "simples",
+      "enunciado": "<p>A diferença entre juros comerciais (ano de 360 dias) e juros exatos (365 dias), para o mesmo capital, taxa e prazo em dias, é de:</p>",
+      "alternativas": [
+        "1,39 % a mais nos exatos",
+        "5 % a mais nos comerciais",
+        "depende do capital e do prazo, não há valor fixo",
+        "1,39 % a mais nos comerciais, independentemente do capital e do prazo"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A razão 365/360 = 1,0139 é constante, então a diferença percentual não depende nem do capital nem do prazo. Dividir a taxa anual por 360 produz uma taxa diária maior, e por isso a convenção comercial favorece quem empresta.</p>"
+    },
+    {
+      "id": "ee-009",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "simples",
+      "enunciado": "<p>A juros simples, dois capitais equivalentes numa data focal:</p>",
+      "alternativas": [
+        "não serão equivalentes em outra data focal",
+        "serão equivalentes em qualquer data focal",
+        "serão equivalentes apenas em datas anteriores",
+        "tornam-se equivalentes a juros compostos na mesma data"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Essa é a falha estrutural do regime simples e a razão de o mercado não o usar. Transportar valores no tempo a juros simples não é uma operação multiplicativa uniforme, então a escolha da data focal altera o resultado. A juros compostos o fator (1+i) se cancela nos dois lados da equação e a equivalência se preserva.</p>"
+    },
+    {
+      "id": "ee-010",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "compostos",
+      "enunciado": "<p>Um capital de $ 1 000 é aplicado a 10 % ao mês. Qual o montante após 10 meses, a juros compostos?</p>",
+      "alternativas": [
+        "$ 2 000,00",
+        "$ 2 593,74",
+        "$ 1 100,00",
+        "$ 10 000,00"
+      ],
+      "correta": 1,
+      "formulas": [
+        "S = P(1+i)ⁿ"
+      ],
+      "explicacao": "<div class=\"passo\">S = P(1+i)ⁿ = 1 000 × (1,10)¹⁰</div><div class=\"passo\">(1,10)¹⁰ = 2,593742 → S = <strong>$ 2 593,74</strong></div><p>Os $ 2 000 seriam o montante a juros simples. A diferença de $ 593,74, quase 30 %, é o juro sobre juro acumulado nos dez períodos.</p>"
+    },
+    {
+      "id": "ee-011",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "compostos",
+      "enunciado": "<p>Em quantos períodos os regimes simples e composto produzem exatamente o mesmo montante?</p>",
+      "alternativas": [
+        "em nenhum: o composto é sempre maior",
+        "em n = 0 e em n = 2",
+        "em n = 1",
+        "depende da taxa aplicada"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Para n = 1, (1+i)¹ = 1 + i·1 — as duas expressões coincidem algebricamente, qualquer que seja a taxa. Abaixo de um período o regime simples rende mais; acima, o composto, e a distância só cresce.</p>"
+    },
+    {
+      "id": "ee-012",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "compostos",
+      "enunciado": "<p>Que capital, aplicado por seis anos a juros compostos de 15 % ao ano, resulta em $ 14 000?</p>",
+      "alternativas": [
+        "$ 7 368,42",
+        "$ 5 600,00",
+        "$ 32 380,00",
+        "$ 6 053,43"
+      ],
+      "correta": 3,
+      "formulas": [
+        "P = S(1+i)⁻ⁿ"
+      ],
+      "explicacao": "<div class=\"passo\">P = S(1+i)⁻ⁿ = 14 000 × (1,15)⁻⁶</div><div class=\"passo\">(1,15)⁶ = 2,313061 → P = 14 000/2,313061 = <strong>$ 6 053,43</strong></div><p>Descontar é a operação inversa de capitalizar: divide-se pelo mesmo fator que multiplicaria no sentido contrário. Os $ 32 380 seriam o resultado de capitalizar em vez de descontar — erro de sentido.</p>"
+    },
+    {
+      "id": "ee-013",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "compostos",
+      "enunciado": "<p>Em quantos períodos um capital dobra a juros compostos de 10 % ao período?</p>",
+      "alternativas": [
+        "7,27 períodos",
+        "10,0 períodos",
+        "7,20 períodos exatos",
+        "6,93 períodos"
+      ],
+      "correta": 0,
+      "formulas": [
+        "n = ln(S/P)/ln(1+i)",
+        "regra dos 72: n ≈ 72/i[%]"
+      ],
+      "explicacao": "<div class=\"passo\">2P = P(1,10)ⁿ → (1,10)ⁿ = 2</div><div class=\"passo\">n = ln 2 / ln 1,10 = 0,693147/0,095310 = <strong>7,27 períodos</strong></div><p>A regra prática dos 72 dá 72/10 = 7,2 — aproximação excelente para cálculo de cabeça, válida entre 4 % e 15 %. Os 6,93 viriam de usar ln 2 sem dividir pelo logaritmo da taxa.</p>"
+    },
+    {
+      "id": "ee-014",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "compostos",
+      "enunciado": "<p>Uma pessoa deposita $ 2 000 numa aplicação a 15 % ao mês. Dois meses depois deposita $ 2 500 e, dois meses após esse, retira $ 1 300. Qual o saldo ao fim do quinto mês?</p>",
+      "alternativas": [
+        "$ 3 200,00",
+        "$ 6 329,90",
+        "$ 7 824,90",
+        "$ 5 749,89"
+      ],
+      "correta": 1,
+      "formulas": [
+        "transporte para a data focal: valor × (1+i)^(períodos)"
+      ],
+      "explicacao": "<div class=\"passo\">data focal 5: cada movimento é capitalizado pelo tempo em que ficou aplicado</div><div class=\"passo\">2 000 × (1,15)⁵ = 2 000 × 2,011357 = $ 4 022,71</div><div class=\"passo\">2 500 × (1,15)³ = 2 500 × 1,520875 = $ 3 802,19</div><div class=\"passo\">−1 300 × (1,15)¹ = −$ 1 495,00</div><div class=\"passo\">saldo = 4 022,71 + 3 802,19 − 1 495,00 = <strong>$ 6 329,90</strong></div><p>O erro mais frequente é não capitalizar a retirada: ela representa dinheiro que deixou de render durante o mês restante, e por isso é descontada já capitalizada. Os $ 3 200 seriam a soma nominal dos movimentos, sem qualquer transporte no tempo.</p>"
+    },
+    {
+      "id": "ee-015",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "taxas",
+      "enunciado": "<p>Uma taxa de 2 % ao mês equivale, ao ano, a:</p>",
+      "alternativas": [
+        "24,00 %",
+        "22,40 %",
+        "26,82 %",
+        "12,68 %"
+      ],
+      "correta": 2,
+      "formulas": [
+        "i_eq = (1+i)^(p/d) − 1"
+      ],
+      "explicacao": "<div class=\"passo\">i_ano = (1 + 0,02)¹² − 1</div><div class=\"passo\">(1,02)¹² = 1,268242 → i_ano = <strong>26,82 %</strong></div><p>Os 24 % vêm de multiplicar por 12, que é a aritmética do regime simples. A diferença de 2,82 pontos percentuais é exatamente o juro sobre juro acumulado nos doze meses.</p>"
+    },
+    {
+      "id": "ee-016",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "taxas",
+      "enunciado": "<p>Uma taxa nominal de 24 % ao ano com capitalização trimestral corresponde a uma taxa efetiva anual de:</p>",
+      "alternativas": [
+        "24,00 %",
+        "26,82 %",
+        "6,00 %",
+        "26,25 %"
+      ],
+      "correta": 3,
+      "formulas": [
+        "i_ef = (1 + i_nom/m)^m − 1"
+      ],
+      "explicacao": "<div class=\"passo\">taxa do trimestre: 0,24/4 = 6 %</div><div class=\"passo\">i_ef = (1,06)⁴ − 1 = 1,262477 − 1 = <strong>26,2477 %</strong></div><p>Os 26,82 % corresponderiam à capitalização mensal, e os 6 % são a taxa do período, não a anual. Note que, sem informar a frequência de capitalização, o anúncio \"24 % ao ano\" admite custos que vão de 24 % a 27,12 %.</p>"
+    },
+    {
+      "id": "ee-017",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "taxas",
+      "enunciado": "<p>O limite da taxa efetiva quando a frequência de capitalização tende ao infinito é:</p>",
+      "alternativas": [
+        "e^(i_nom) − 1",
+        "infinito: a taxa cresce sem limite",
+        "2·i_nom",
+        "i_nom, pois o efeito se anula"
+      ],
+      "correta": 0,
+      "explicacao": "<p>É a capitalização contínua. Para 24 % nominais, o limite é e^0,24 − 1 = 27,12 %, apenas 0,01 ponto acima da capitalização diária. O ganho satura rápido, e na prática tarifas e impostos pesam muito mais que a frequência de capitalização.</p>"
+    },
+    {
+      "id": "ee-018",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "taxas",
+      "enunciado": "<p>Com taxa nominal de 14 % ao ano e inflação projetada de 4 % ao ano, a taxa real é de:</p>",
+      "alternativas": [
+        "10,0000 %",
+        "9,6154 %",
+        "18,5600 %",
+        "3,5000 %"
+      ],
+      "correta": 1,
+      "formulas": [
+        "1 + i_real = (1+i_nom)/(1+π)"
+      ],
+      "explicacao": "<div class=\"passo\">1 + i_real = (1 + 0,14)/(1 + 0,04) = 1,14/1,04 = 1,096154</div><div class=\"passo\">i_real = <strong>9,6154 %</strong></div><p>Os 10 % vêm da subtração simples, aproximação que só serve com inflação baixa. A relação correta é de razão, porque a inflação corrói também o rendimento e não só o principal. Com 120 % nominais e 100 % de inflação, a subtração daria 20 % e o valor correto é 10 %.</p>"
+    },
+    {
+      "id": "ee-019",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "taxas",
+      "enunciado": "<p>Duas financeiras oferecem crédito: a primeira a 16 % ao ano com capitalização trimestral, a segunda a 18 % ao ano com capitalização semestral. Qual é mais cara e por quanto?</p>",
+      "alternativas": [
+        "a primeira, porque capitaliza mais vezes ao ano",
+        "as duas custam o mesmo, pois a diferença de capitalização compensa a de taxa",
+        "a segunda, com efetiva de 18,81 % contra 16,99 % da primeira",
+        "a segunda, com efetiva de 18,00 % contra 16,00 % da primeira"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Primeira: (1,04)⁴ − 1 = 16,9859 %. Segunda: (1,09)² − 1 = 18,8100 %. A capitalização mais frequente da primeira aumenta sua efetiva, mas não o suficiente para alcançar a segunda. Comparar 16 % com 18 % diretamente daria a resposta certa aqui por coincidência — com taxas mais próximas, o resultado poderia inverter.</p>"
+    },
+    {
+      "id": "ee-020",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "series",
+      "enunciado": "<p>Qual o valor presente de 12 prestações mensais de $ 1 000, postecipadas, à taxa de 2 % ao mês?</p>",
+      "alternativas": [
+        "$ 12 000,00",
+        "$ 10 785,85",
+        "$ 13 412,09",
+        "$ 10 575,34"
+      ],
+      "correta": 3,
+      "formulas": [
+        "(P/A, i, n) = [1 − (1+i)⁻ⁿ]/i"
+      ],
+      "explicacao": "<div class=\"passo\">(P/A; 2 %; 12) = [1 − (1,02)⁻¹²]/0,02 = 10,575341</div><div class=\"passo\">P = 1 000 × 10,575341 = <strong>$ 10 575,34</strong></div><p>Os $ 12 000 são a soma nominal das parcelas; a diferença de $ 1 424,66 são os juros embutidos. Os $ 10 785,85 corresponderiam à série antecipada, 2 % maior.</p>"
+    },
+    {
+      "id": "ee-021",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "series",
+      "enunciado": "<p>Uma série antecipada, comparada à postecipada de mesma parcela, prazo e taxa, tem valor presente:</p>",
+      "alternativas": [
+        "maior, exatamente na proporção (1+i)",
+        "menor, exatamente na proporção (1+i)⁻¹",
+        "igual, pois o número de parcelas é o mesmo",
+        "maior, mas a proporção depende do número de parcelas"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Na antecipada cada parcela está um período mais perto do presente, e o desconto aplicado é um período menor. O fator é exatamente (1+i) e não depende de n — basta multiplicar o resultado da postecipada.</p>"
+    },
+    {
+      "id": "ee-022",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "series",
+      "enunciado": "<p>Uma calculadora custa $ 160 à vista ou 4 prestações mensais de $ 45,49, a primeira um mês após a compra. A taxa mensal embutida é de aproximadamente:</p>",
+      "alternativas": [
+        "3,43 %",
+        "5,35 %",
+        "13,73 %",
+        "0 %, é parcelado sem juros"
+      ],
+      "correta": 1,
+      "formulas": [
+        "P = A·(P/A, i, n)",
+        "resolução numérica para i"
+      ],
+      "explicacao": "<div class=\"passo\">160 = 45,49 × (P/A, i, 4) → (P/A, i, 4) = 3,51726</div><div class=\"passo\">por iteração: i = <strong>5,35 % ao mês</strong></div><div class=\"passo\">ao ano: (1,0535)¹² − 1 = 87,1 %</div><p>Os 3,43 % viriam de dividir a diferença total ($ 21,96) pelo preço e pelo número de parcelas — conta que ignora o tempo. O \"sem juros\" se refere a não haver acréscimo sobre o preço parcelado, que já embute os juros; a pergunta certa do consumidor é qual o desconto à vista.</p>"
+    },
+    {
+      "id": "ee-023",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "series",
+      "enunciado": "<p>Qual o valor atual de 10 pagamentos mensais de $ 20 000, com carência de 3 meses (primeira parcela no mês 4), a 4,5 % ao mês?</p>",
+      "alternativas": [
+        "$ 158 254,36",
+        "$ 200 000,00",
+        "$ 138 677,76",
+        "$ 144 866,76"
+      ],
+      "correta": 2,
+      "formulas": [
+        "(P/A, i, n)",
+        "P_dif = P_post × (1+i)⁻ᶜ"
+      ],
+      "explicacao": "<div class=\"passo\">(P/A; 4,5 %; 10) = 7,912718 → valor no mês 3: 20 000 × 7,912718 = $ 158 254,36</div><div class=\"passo\">desconta-se a carência: 158 254,36 × (1,045)⁻³ = <strong>$ 138 677,76</strong></div><p>O ponto delicado é onde o fator (P/A) deposita o valor: na data <em>imediatamente anterior</em> à primeira parcela, aqui o mês 3. Os $ 158 254,36 são a resposta sem descontar a carência — erro de exatamente três períodos.</p>"
+    },
+    {
+      "id": "ee-024",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "series",
+      "enunciado": "<p>Um veículo de $ 16 500 é financiado em 12 parcelas iguais de $ 2 093,10, sendo a primeira paga no ato da compra. A taxa mensal é de aproximadamente:</p>",
+      "alternativas": [
+        "7,51 %",
+        "5,22 %",
+        "12,68 %",
+        "8,76 %"
+      ],
+      "correta": 3,
+      "formulas": [
+        "P = A·(P/A, i, n)·(1+i) para série antecipada"
+      ],
+      "explicacao": "<div class=\"passo\">série antecipada: 16 500 = 2 093,10 × (P/A, i, 12) × (1+i)</div><div class=\"passo\">por iteração: i = <strong>8,76 % ao mês</strong></div><p>Tratar a série como postecipada daria 7,51 % — subestimando o custo em mais de um ponto percentual ao mês. A primeira parcela paga no ato muda a conta, e esquecer o fator (1+i) é o erro clássico deste tipo de problema.</p>"
+    },
+    {
+      "id": "ee-025",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "gradientes",
+      "enunciado": "<p>O custo de manutenção de um equipamento é $ 1 000 no primeiro ano e cresce $ 200 por ano, durante 5 anos. A 10 % ao ano, o valor presente é:</p>",
+      "alternativas": [
+        "$ 5 163,15",
+        "$ 3 790,79",
+        "$ 7 000,00",
+        "$ 6 810,00"
+      ],
+      "correta": 0,
+      "formulas": [
+        "P = A·(P/A,i,n) + G·(P/G,i,n)",
+        "(P/G,i,n) = [(P/A,i,n) − n(1+i)⁻ⁿ]/i"
+      ],
+      "explicacao": "<div class=\"passo\">(P/A; 10 %; 5) = 3,790787 e (P/G; 10 %; 5) = 6,861800</div><div class=\"passo\">P = 1 000 × 3,790787 + 200 × 6,861800</div><div class=\"passo\">P = 3 790,79 + 1 372,36 = <strong>$ 5 163,15</strong></div><p>Os $ 3 790,79 seriam o valor presente da série uniforme de $ 1 000, esquecendo o gradiente. Os $ 7 000 são a soma nominal das cinco parcelas. A decomposição em base uniforme mais gradiente é obrigatória: o fator (P/G) aplica-se só à parte que cresce.</p>"
+    },
+    {
+      "id": "ee-026",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "gradientes",
+      "enunciado": "<p>Uma receita de $ 1 000 no primeiro ano cresce 8 % ao ano durante 10 anos. A 12 % ao ano, o valor presente é:</p>",
+      "alternativas": [
+        "$ 5 650,22",
+        "$ 7 618,33",
+        "$ 10 000,00",
+        "$ 14 486,56"
+      ],
+      "correta": 1,
+      "formulas": [
+        "P = A₁[1 − ((1+g)/(1+i))ⁿ]/(i − g), para i ≠ g"
+      ],
+      "explicacao": "<div class=\"passo\">(1+g)/(1+i) = 1,08/1,12 = 0,964286; elevado a 10 = 0,695267</div><div class=\"passo\">P = 1 000 × (1 − 0,695267)/(0,12 − 0,08) = 1 000 × 0,304733/0,04</div><div class=\"passo\">P = <strong>$ 7 618,33</strong></div><p>Os $ 5 650,22 seriam o valor de uma série uniforme de $ 1 000 — o crescimento de 8 % acrescenta 35 %. A última parcela, $ 1 999, é quase o dobro da primeira, e é essa a diferença entre projetar um produto com e sem crescimento de mercado.</p>"
+    },
+    {
+      "id": "ee-027",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "gradientes",
+      "enunciado": "<p>No gradiente geométrico, quando a taxa de crescimento g iguala a taxa de desconto i:</p>",
+      "alternativas": [
+        "o valor presente é infinito",
+        "o valor presente é zero",
+        "cada parcela vale o mesmo em valor presente, e P = n·A₁/(1+i)",
+        "a fórmula geral continua válida sem alteração"
+      ],
+      "correta": 2,
+      "explicacao": "<p>A fórmula geral tem (i − g) no denominador e degenera, mas a interpretação é simples: as parcelas crescem exatamente à taxa que as desconta, então todas têm o mesmo valor presente A₁/(1+i), e o total é n vezes isso.</p>"
+    },
+    {
+      "id": "ee-028",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "gradientes",
+      "enunciado": "<p>Uma projeção supõe receitas crescendo perpetuamente a uma taxa maior que o custo do capital. Essa hipótese é:</p>",
+      "alternativas": [
+        "válida, desde que o horizonte seja finito e a fórmula seja aplicada corretamente",
+        "válida apenas para empresas de tecnologia",
+        "equivalente a supor crescimento zero",
+        "economicamente insustentável, porque a série divergiria e a empresa superaria toda a economia"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Com g &gt; i a soma diverge quando n → ∞: as parcelas distantes valeriam cada vez <em>mais</em> em valor presente. Para n finito a fórmula continua matematicamente válida, mas uma hipótese de crescimento perpétuo acima do custo do capital implica que a empresa acabaria maior que a economia inteira.</p>"
+    },
+    {
+      "id": "ee-029",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "perpetuidade",
+      "enunciado": "<p>Que capital, aplicado a 2 % ao mês, permite retirar indefinidamente $ 20 por mês sem consumi-lo?</p>",
+      "alternativas": [
+        "$ 1 000,00",
+        "$ 400,00",
+        "$ 240,00",
+        "infinito: não é possível"
+      ],
+      "correta": 0,
+      "formulas": [
+        "P = A/i"
+      ],
+      "explicacao": "<div class=\"passo\">P = A/i = 20/0,02 = <strong>$ 1 000,00</strong></div><p>A renda perpétua é exatamente o rendimento do capital: $ 1 000 a 2 % rendem $ 20 por mês, que são retirados, deixando o capital intacto. Retirar mais que isso consome o principal e a série deixa de ser perpétua.</p>"
+    },
+    {
+      "id": "ee-030",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "perpetuidade",
+      "enunciado": "<p>Uma obra custa $ 500 000 e exige manutenção perpétua de $ 20 000 por ano. A 6 % ao ano, o custo capitalizado é:</p>",
+      "alternativas": [
+        "$ 520 000,00",
+        "$ 833 333,33",
+        "$ 500 000,00",
+        "$ 1 700 000,00"
+      ],
+      "correta": 1,
+      "formulas": [
+        "CC = I + A/i"
+      ],
+      "explicacao": "<div class=\"passo\">CC = I + A/i = 500 000 + 20 000/0,06</div><div class=\"passo\">CC = 500 000 + 333 333,33 = <strong>$ 833 333,33</strong></div><p>A manutenção perpétua custa dois terços do valor da obra. É esse tipo de conta que falta quando uma obra pública é aprovada apenas pelo custo de construção — e é exatamente para isso que o custo capitalizado existe.</p>"
+    },
+    {
+      "id": "ee-031",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "perpetuidade",
+      "enunciado": "<p>Uma reposição de $ 80 000 ocorrerá a cada 10 anos, perpetuamente. A 6 % ao ano, seu custo capitalizado é:</p>",
+      "alternativas": [
+        "$ 80 000,00",
+        "$ 1 333 333,33",
+        "$ 101 157,28",
+        "$ 133 333,33"
+      ],
+      "correta": 2,
+      "formulas": [
+        "A = R·(A/F,i,k)",
+        "CC = R/[(1+i)ᵏ − 1]"
+      ],
+      "explicacao": "<div class=\"passo\">converte-se em série anual: A = R·(A/F; 6 %; 10) = 80 000 × 0,075868 = $ 6 069,44/ano</div><div class=\"passo\">perpetuando: CC = 6 069,44/0,06 = <strong>$ 101 157,28</strong></div><div class=\"passo\">forma compacta: CC = R/[(1,06)¹⁰ − 1] = 80 000/0,790848</div><p>O erro de dividir diretamente $ 80 000 por 0,06 daria $ 1 333 333 — tratando a reposição como se fosse anual, e não decenal. A conversão por (A/F) é o passo que distribui o custo pelos dez anos antes de perpetuar.</p>"
+    },
+    {
+      "id": "ee-032",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "perpetuidade",
+      "enunciado": "<p>Numa perpetuidade, reduzir a taxa de desconto de 5 % para 4 % faz o capital necessário:</p>",
+      "alternativas": [
+        "aumentar 20 %",
+        "diminuir 20 %",
+        "permanecer o mesmo",
+        "aumentar 25 %"
+      ],
+      "correta": 3,
+      "explicacao": "<p>P = A/i é uma hipérbole: o capital é inversamente proporcional à taxa. De 5 % para 4 %, o fator é 5/4 = 1,25. É a expressão mais sensível de todo o curso a um único parâmetro — e por isso avaliações que usam perpetuidade no valor terminal sempre reportam a sensibilidade à taxa.</p>"
+    },
+    {
+      "id": "ee-033",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "amortizacao",
+      "enunciado": "<p>Um empréstimo de $ 100 000 em 5 parcelas anuais a 10 % ao ano, pelo sistema Price, tem prestação de:</p>",
+      "alternativas": [
+        "$ 26 379,75",
+        "$ 20 000,00",
+        "$ 30 000,00",
+        "$ 22 000,00"
+      ],
+      "correta": 0,
+      "formulas": [
+        "A = P·(A/P, i, n)"
+      ],
+      "explicacao": "<div class=\"passo\">(A/P; 10 %; 5) = 0,10 × (1,10)⁵/[(1,10)⁵ − 1] = 0,263797</div><div class=\"passo\">A = 100 000 × 0,263797 = <strong>$ 26 379,75</strong></div><p>Os $ 30 000 e os $ 22 000 são a primeira e a última prestação do SAC, que tem prestação decrescente. No Price a prestação é constante, e o que varia é sua composição entre juros e amortização.</p>"
+    },
+    {
+      "id": "ee-034",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "amortizacao",
+      "enunciado": "<p>No sistema SAC, o que permanece constante ao longo do financiamento é:</p>",
+      "alternativas": [
+        "a prestação total",
+        "a parcela de amortização",
+        "a parcela de juros",
+        "o saldo devedor"
+      ],
+      "correta": 1,
+      "explicacao": "<p>SAC é Sistema de Amortização Constante: Am = P/n em todas as parcelas. Como os juros caem com o saldo devedor, a prestação total decresce. No Price é a prestação que é constante, e a amortização que cresce.</p>"
+    },
+    {
+      "id": "ee-035",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "amortizacao",
+      "enunciado": "<p>Para o empréstimo de $ 100 000 em 5 anos a 10 %, os juros totais nos sistemas Price, SAC e americano são, respectivamente:</p>",
+      "alternativas": [
+        "$ 30 000,00, $ 31 898,74 e $ 50 000,00",
+        "iguais nos três, pois a taxa é a mesma",
+        "$ 31 898,74, $ 30 000,00 e $ 50 000,00",
+        "$ 50 000,00, $ 31 898,74 e $ 30 000,00"
+      ],
+      "correta": 2,
+      "formulas": [
+        "J_k = SD_(k−1)·i",
+        "Am_k = A_k − J_k"
+      ],
+      "explicacao": "<div class=\"passo\">Price: 5 × 26 379,75 − 100 000 = $ 31 898,74</div><div class=\"passo\">SAC: prestações 30 000 + 28 000 + 26 000 + 24 000 + 22 000 = 130 000 → juros $ 30 000</div><div class=\"passo\">Americano: 4 × 10 000 + 110 000 = 150 000 → juros $ 50 000</div><p>A taxa é idêntica nos três; o que difere é o prazo médio em que o dinheiro fica emprestado. No americano o saldo permanece integral até o fim e os juros são máximos; no SAC ele cai linearmente e os juros são mínimos.</p>"
+    },
+    {
+      "id": "ee-036",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "amortizacao",
+      "enunciado": "<p>Por que o SAC exige mais renda na aprovação do crédito que o Price, apesar de custar menos no total?</p>",
+      "alternativas": [
+        "porque sua taxa de juros é maior",
+        "porque seu prazo é sempre mais curto",
+        "porque ele exige entrada no ato da contratação",
+        "porque sua primeira prestação é a mais alta, e o limite de crédito é dimensionado por ela"
+      ],
+      "correta": 3,
+      "explicacao": "<p>No SAC a primeira prestação soma a amortização integral ($ 20 000 no exemplo do capítulo) com o juro sobre o saldo cheio ($ 10 000), chegando a $ 30 000 contra $ 26 380 do Price. Como o banco avalia a capacidade de pagamento pela primeira prestação, o SAC financia menos para a mesma renda.</p>"
+    },
+    {
+      "id": "ee-037",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "amortizacao",
+      "enunciado": "<p>Qual verificação prova que Price, SAC e americano são financeiramente equivalentes?</p>",
+      "alternativas": [
+        "descontar cada fluxo de prestações à taxa do contrato devolve exatamente o principal nos três",
+        "a soma das prestações é igual nos três sistemas",
+        "a soma dos juros é igual nos três sistemas",
+        "a primeira prestação é igual nos três sistemas"
+      ],
+      "correta": 0,
+      "explicacao": "<p>As somas nominais diferem bastante — $ 131 899, $ 130 000 e $ 150 000 no exemplo. Mas os três fluxos, descontados a 10 %, valem exatamente $ 100 000 hoje. É isso que significa equivalência financeira: perfis diferentes de desembolso com o mesmo valor presente.</p>"
+    },
+    {
+      "id": "ee-038",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "fluxo",
+      "enunciado": "<p>Um projeto tem receita de $ 300 mil, custo operacional de $ 140 mil, depreciação de $ 60 mil e alíquota de 30 %. O fluxo de caixa econômico anual é:</p>",
+      "alternativas": [
+        "$ 70 mil",
+        "$ 130 mil",
+        "$ 112 mil",
+        "$ 160 mil"
+      ],
+      "correta": 1,
+      "formulas": [
+        "FC = (R − C − D)(1 − t) + D",
+        "FC = (R − C)(1 − t) + D·t"
+      ],
+      "explicacao": "<div class=\"passo\">lucro tributável: 300 − 140 − 60 = $ 100 mil</div><div class=\"passo\">imposto: 30 % × 100 = $ 30 mil → lucro líquido $ 70 mil</div><div class=\"passo\">devolvendo a depreciação: 70 + 60 = <strong>$ 130 mil</strong></div><p>Os $ 70 mil são o lucro contábil, não o caixa. Os $ 112 mil seriam o fluxo se não houvesse depreciação a deduzir: (300 − 140)(1 − 0,30). A diferença de $ 18 mil é o benefício fiscal da depreciação.</p>"
+    },
+    {
+      "id": "ee-039",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "fluxo",
+      "enunciado": "<p>A depreciação é subtraída e depois somada de volta no cálculo do fluxo de caixa porque:</p>",
+      "alternativas": [
+        "ela é um custo que só ocorre no último ano",
+        "a norma contábil exige essa apresentação",
+        "ela reduz o imposto, que é desembolso real, mas ela própria não é desembolso",
+        "ela precisa ser corrigida pela inflação antes de entrar"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Nenhum dinheiro sai do caixa quando se deprecia. Mas a depreciação reduz o lucro tributável e, com isso, o imposto — que sai. O efeito líquido é o termo D·t, a economia de imposto, e é por isso que o regime de depreciação importa na decisão de investimento.</p>"
+    },
+    {
+      "id": "ee-040",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fluxo",
+      "enunciado": "<p>O teorema da separação estabelece que, na análise de viabilidade de um projeto:</p>",
+      "alternativas": [
+        "o fluxo financeiro deve ser analisado antes do econômico",
+        "o projeto deve ser financiado integralmente com capital próprio",
+        "a taxa de desconto deve ser a taxa do empréstimo contratado",
+        "as decisões de investir e de financiar devem ser analisadas separadamente, usando o fluxo econômico"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Um projeto bom continua bom qualquer que seja a forma de financiá-lo, e um projeto ruim não melhora por ter crédito subsidiado. Incluir as prestações do empréstimo no fluxo de viabilidade leva a aprovar projetos ruins por causa do financiamento — erro que o teorema previne.</p>"
+    },
+    {
+      "id": "ee-041",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fluxo",
+      "enunciado": "<p>O capital de giro necessário a um projeto entra no fluxo de caixa:</p>",
+      "alternativas": [
+        "como saída no início e retorno integral no fim da vida útil",
+        "como custo operacional distribuído ao longo dos anos",
+        "como investimento depreciável ao longo da vida",
+        "não entra, por não ser imobilizado"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Ele não é consumido, é imobilizado em estoque e contas a receber. No encerramento da operação, estoques se vendem e recebíveis se recebem: o capital volta. Tem custo de oportunidade durante toda a vida do projeto, mas não custo de aquisição.</p>"
+    },
+    {
+      "id": "ee-042",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "vpl",
+      "enunciado": "<p>Um projeto exige $ 200 000 e gera $ 75 000 por ano durante 5 anos. A 15 % ao ano, o VPL é:</p>",
+      "alternativas": [
+        "$ 175 000,00",
+        "$ 51 411,63",
+        "$ 251 411,63",
+        "−$ 51 411,63"
+      ],
+      "correta": 1,
+      "formulas": [
+        "VPL = Σ FC_k/(1+k)^k",
+        "(P/A, i, n)"
+      ],
+      "explicacao": "<div class=\"passo\">(P/A; 15 %; 5) = 3,352155</div><div class=\"passo\">VP das entradas = 75 000 × 3,352155 = $ 251 411,63</div><div class=\"passo\">VPL = 251 411,63 − 200 000 = <strong>$ 51 411,63</strong></div><p>Os $ 175 000 seriam a soma nominal (375 000 − 200 000), ignorando o tempo. Os $ 251 411,63 são o valor presente das entradas, antes de subtrair o investimento.</p>"
+    },
+    {
+      "id": "ee-043",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "vpl",
+      "enunciado": "<p>Para o mesmo projeto ($ 200 000 e cinco anos de $ 75 000), a TIR é de aproximadamente:</p>",
+      "alternativas": [
+        "37,50 % ao ano",
+        "15,00 % ao ano",
+        "25,41 % ao ano",
+        "18,75 % ao ano"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Σ FC_k/(1+i*)^k = 0"
+      ],
+      "explicacao": "<div class=\"passo\">resolve-se 200 000 = 75 000 × (P/A, i, 5), ou (P/A, i, 5) = 2,666667</div><div class=\"passo\">testando 25 %: 2,689280 — alto; 26 %: 2,635374 — baixo</div><div class=\"passo\">convergindo: TIR = <strong>25,41 % a.a.</strong></div><p>Os 37,5 % viriam de 75 000/200 000 — razão que ignora o tempo e o número de períodos. A TIR de 25,41 % supera a TMA de 15 %, aprovando o projeto em concordância com o VPL positivo.</p>"
+    },
+    {
+      "id": "ee-044",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "vpl",
+      "enunciado": "<p>Um VPL de $ 51 mil significa que o projeto:</p>",
+      "alternativas": [
+        "terá lucro contábil de $ 51 mil ao longo da vida",
+        "devolverá $ 51 mil por ano aos acionistas",
+        "custa $ 51 mil a mais que a alternativa",
+        "cria $ 51 mil de valor em moeda de hoje, além de recuperar o investimento e remunerar o capital à TMA"
+      ],
+      "correta": 3,
+      "explicacao": "<p>O VPL é excedente sobre o custo de oportunidade, não lucro. Ele já embute a recuperação integral do investimento e a remuneração do capital à taxa exigida — o que sobra depois disso é o valor criado.</p>"
+    },
+    {
+      "id": "ee-045",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "vpl",
+      "enunciado": "<p>Em que situação VPL e TIR podem levar a decisões contraditórias?</p>",
+      "alternativas": [
+        "ao comparar alternativas mutuamente exclusivas de escalas diferentes",
+        "em qualquer projeto com vida superior a dez anos",
+        "sempre que a TMA for inferior a 10 %",
+        "nunca: os dois critérios são matematicamente equivalentes"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Num projeto isolado com fluxo convencional eles sempre concordam. A contradição aparece na comparação entre alternativas, porque a TIR ignora a escala: 50 % sobre $ 10 mil cria menos valor que 20 % sobre $ 1 milhão. Nesses casos usa-se o VPL ou a TIR do fluxo incremental.</p>"
+    },
+    {
+      "id": "ee-046",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "vpl",
+      "enunciado": "<p>Um fluxo de caixa com duas inversões de sinal (investimento, retornos e depois um custo de desmobilização) pode apresentar:</p>",
+      "alternativas": [
+        "TIR negativa obrigatoriamente",
+        "mais de uma TIR, nenhuma delas interpretável isoladamente",
+        "VPL constante em relação à taxa",
+        "TIR igual à TMA sempre"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Pela regra de Descartes, o número de raízes positivas é no máximo o número de inversões de sinal. Com duas inversões pode haver duas TIR, e nenhuma significa coisa alguma sozinha. A saída é usar o VPL, ou a TIR modificada com taxa de reinvestimento explícita.</p>"
+    },
+    {
+      "id": "ee-047",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "criterios",
+      "enunciado": "<p>Um projeto de $ 30 000 gera $ 5 000 por ano durante 12 anos. A 8 % ao ano, os paybacks simples e descontado são, respectivamente:</p>",
+      "alternativas": [
+        "6,00 e 6,00 anos",
+        "8,51 e 6,00 anos",
+        "6,00 e 8,51 anos",
+        "12,0 e 8,51 anos"
+      ],
+      "correta": 2,
+      "formulas": [
+        "payback: Σ FC_k/(1+i)^k = 0"
+      ],
+      "explicacao": "<div class=\"passo\">simples: 30 000/5 000 = <strong>6,00 anos</strong></div><div class=\"passo\">descontado: acumulando 5 000/(1,08)^k, o saldo cruza zero em <strong>8,51 anos</strong></div><p>O descontado é sempre maior, e a diferença — 2,51 anos — é o custo do capital imobilizado durante a recuperação. Note que ambos consomem boa parte da vida de 12 anos: é informação de risco que nem o VPL nem a TIR revelam.</p>"
+    },
+    {
+      "id": "ee-048",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "criterios",
+      "enunciado": "<p>A limitação estrutural do payback, que nenhuma de suas versões resolve, é:</p>",
+      "alternativas": [
+        "não poder ser calculado quando há fluxos negativos no meio",
+        "exigir que a taxa de desconto seja conhecida",
+        "depender do número de períodos do projeto",
+        "ignorar completamente tudo o que acontece depois da recuperação do capital"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Entre um projeto que recupera em 3 anos e morre em 4, e outro que recupera em 5 e gera caixa por 20, o payback escolhe o primeiro. Ele mede por quanto tempo o capital fica exposto — critério de risco e liquidez —, e nunca deve ser usado isoladamente para medir rentabilidade.</p>"
+    },
+    {
+      "id": "ee-049",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "criterios",
+      "enunciado": "<p>Para o projeto de $ 30 000 com $ 5 000 anuais por 12 anos a 8 %, o índice de lucratividade e a anuidade equivalente valem:</p>",
+      "alternativas": [
+        "1,2560 e $ 1 019,15 por ano",
+        "0,7962 e $ 1 019,15 por ano",
+        "1,2560 e $ 640,03 por ano",
+        "2,0000 e $ 1 250,00 por ano"
+      ],
+      "correta": 0,
+      "formulas": [
+        "IL = VP(entradas)/VP(saídas)",
+        "AE = VPL·(A/P, i, n)"
+      ],
+      "explicacao": "<div class=\"passo\">VP das entradas = 5 000 × 7,536078 = $ 37 680,39</div><div class=\"passo\">IL = 37 680,39/30 000 = <strong>1,2560</strong></div><div class=\"passo\">VPL = $ 7 680,39 → AE = 7 680,39/7,536078 = <strong>$ 1 019,15/ano</strong></div><p>IL &gt; 1 e VPL &gt; 0 são a mesma afirmação: o projeto devolve $ 1,26 por real investido. A anuidade traduz o mesmo resultado em linguagem de orçamento operacional — uma renda extra de $ 1 019 por ano durante os 12 anos.</p>"
+    },
+    {
+      "id": "ee-050",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "criterios",
+      "enunciado": "<p>Se IL > 1 equivale a VPL > 0, qual a utilidade prática do índice de lucratividade?</p>",
+      "alternativas": [
+        "substituir o VPL quando a TMA é desconhecida",
+        "ordenar projetos sob racionamento de capital, maximizando o VPL total por real investido",
+        "calcular o payback sem precisar do fluxo ano a ano",
+        "corrigir o VPL pela inflação do período"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Quando o orçamento não cobre todos os projetos de VPL positivo, selecionar por IL decrescente obtém o maior VPL total possível com o capital disponível — algo que ordenar por VPL absoluto não garante, porque ele favorece os projetos grandes.</p>"
+    },
+    {
+      "id": "ee-051",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "alternativas",
+      "enunciado": "<p>Comparar duas alternativas de vidas diferentes pelo valor presente de um ciclo de cada uma é errado porque:</p>",
+      "alternativas": [
+        "o valor presente não pode ser calculado para vidas diferentes",
+        "a taxa de desconto teria de ser diferente para cada uma",
+        "elas entregam quantidades diferentes de serviço, e os valores não são comparáveis",
+        "a alternativa mais longa sempre tem valor presente maior"
+      ],
+      "correta": 2,
+      "explicacao": "<p>A alternativa de vida curta parece barata só porque entrega menos tempo de serviço. É preciso igualar o horizonte — por repetição até o MMC ou por conversão em custo por ano — antes de comparar.</p>"
+    },
+    {
+      "id": "ee-052",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "alternativas",
+      "enunciado": "<p>A máquina A custa $ 50 000, gasta $ 12 000/ano e dura 3 anos; B custa $ 80 000, gasta $ 7 000/ano e dura 6 anos. A 12 % ao ano, os custos anuais equivalentes são:</p>",
+      "alternativas": [
+        "$ 26 458/ano para A e $ 32 817/ano para B — escolhe-se A",
+        "$ 78 822/ano para A e $ 108 780/ano para B — escolhe-se A",
+        "os dois custam o mesmo por ano",
+        "$ 32 817/ano para A e $ 26 458/ano para B — escolhe-se B"
+      ],
+      "correta": 3,
+      "formulas": [
+        "CAE = VP/(P/A, i, n)"
+      ],
+      "explicacao": "<div class=\"passo\">A: VP = 50 000 + 12 000 × 2,401831 = $ 78 821,98 → CAE = 78 821,98/2,401831 = <strong>$ 32 817,45</strong></div><div class=\"passo\">B: VP = 80 000 + 7 000 × 4,111407 = $ 108 779,85 → CAE = 108 779,85/4,111407 = <strong>$ 26 458,06</strong></div><p>A comparação ingênua dos valores presentes ($ 78 822 contra $ 108 780) apontaria A — e está errada, porque A entrega 3 anos e B entrega 6. Corrigido o horizonte, B custa $ 6 359 por ano a menos, apesar do investimento inicial 60 % maior.</p>"
+    },
+    {
+      "id": "ee-053",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "alternativas",
+      "enunciado": "<p>O custo anual equivalente dispensa o cálculo do mínimo múltiplo comum porque:</p>",
+      "alternativas": [
+        "o CAE de um ciclo isolado é numericamente idêntico ao da série repetida",
+        "ele ignora o investimento inicial",
+        "ele supõe que as alternativas têm a mesma vida",
+        "ele usa uma taxa de desconto diferente para cada alternativa"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Repetir a alternativa não muda seu custo por ano — no exemplo do capítulo, $ 32 817,45/ano tanto no ciclo de 3 anos quanto na série de 6. Isso é decisivo quando as vidas são, digamos, 7 e 11 anos: o MMC seria 77 e o CAE resolve em uma linha.</p>"
+    },
+    {
+      "id": "ee-054",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "alternativas",
+      "enunciado": "<p>A taxa de indiferença entre duas alternativas é:</p>",
+      "alternativas": [
+        "a média das TIR das duas alternativas",
+        "a TIR do fluxo incremental, na qual as duas têm o mesmo custo anual equivalente",
+        "a TMA que anula o VPL da alternativa mais cara",
+        "a taxa em que ambas têm VPL igual a zero"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Ela mede a robustez da decisão: uma escolha feita a 12 % com indiferença em 13 % é frágil; a mesma com indiferença em 40 % é sólida. Transforma a pergunta \"qual é melhor?\" na pergunta muito mais útil \"quanta confiança essa recomendação merece?\".</p>"
+    },
+    {
+      "id": "ee-055",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "real",
+      "enunciado": "<p>Um projeto gera $ 60 000 por ano em moeda de hoje, por 5 anos, com investimento de $ 150 000. Com taxa nominal de 14 % e inflação de 4 %, o VPL correto é:</p>",
+      "alternativas": [
+        "$ 55 984,86, descontando os fluxos reais pela taxa nominal",
+        "$ 150 000,00, pois o projeto apenas se paga",
+        "$ 79 699,77, pelos dois caminhos coerentes",
+        "depende do caminho: nominal e real dão resultados diferentes"
+      ],
+      "correta": 2,
+      "formulas": [
+        "1 + i_real = (1+i_nom)/(1+π)",
+        "VPL = Σ FC_k/(1+i)^k"
+      ],
+      "explicacao": "<div class=\"passo\">taxa real: (1,14/1,04) − 1 = 9,6154 %</div><div class=\"passo\">real: 60 000 × (P/A; 9,6154 %; 5) = 60 000 × 3,828330 = $ 229 699,77</div><div class=\"passo\">nominal: fluxos inflacionados descontados a 14 % = $ 229 699,77 — idêntico</div><div class=\"passo\">VPL = 229 699,77 − 150 000 = <strong>$ 79 699,77</strong></div><p>Os $ 55 984,86 são o resultado do caminho incoerente — fluxo real descontado por taxa nominal —, que desconta a inflação duas vezes e subestima o projeto em $ 23 715, ou 30 %.</p>"
+    },
+    {
+      "id": "ee-056",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "real",
+      "enunciado": "<p>Descontar um fluxo de caixa em moeda constante por uma taxa nominal:</p>",
+      "alternativas": [
+        "é o procedimento correto e mais conservador",
+        "superestima o projeto",
+        "não altera o resultado, por compensação",
+        "desconta a inflação duas vezes e subestima o projeto"
+      ],
+      "correta": 3,
+      "explicacao": "<p>O fluxo em moeda constante já está livre de inflação; a taxa nominal embute uma parcela de inflação. Aplicar uma à outra penaliza o projeto duas vezes. A regra é a coerência: ou tudo nominal, ou tudo real.</p>"
+    },
+    {
+      "id": "ee-057",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "real",
+      "enunciado": "<p>Acelerar a depreciação de um equipamento, mantendo o total depreciado, faz o VPL do projeto:</p>",
+      "alternativas": [
+        "aumentar, porque antecipa o benefício fiscal",
+        "diminuir, porque reduz o lucro contábil dos primeiros anos",
+        "permanecer igual, pois o total depreciado é o mesmo",
+        "aumentar apenas se a alíquota de imposto for superior a 50 %"
+      ],
+      "correta": 0,
+      "explicacao": "<p>O benefício fiscal D·t é o mesmo em soma, mas concentrado nos primeiros anos. Como dinheiro recebido antes vale mais, o valor presente das economias de imposto cresce. É ganho puro de valor sem nenhuma mudança física no projeto — e por isso regimes de depreciação acelerada são usados como política de incentivo.</p>"
+    },
+    {
+      "id": "ee-058",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "real",
+      "enunciado": "<p>Um equipamento de $ 100 000 perde 20 % do valor de revenda por ano; o custo de O&amp;M é $ 10 000 no primeiro ano e cresce $ 4 000 por ano. A 12 % ao ano, a vida econômica é de:</p>",
+      "alternativas": [
+        "1 ano, com CAE de $ 42 000/ano",
+        "5 anos, com CAE de $ 39 681/ano",
+        "10 anos, com CAE de $ 41 425/ano",
+        "3 anos, com CAE de $ 40 160/ano"
+      ],
+      "correta": 1,
+      "formulas": [
+        "CAE = RC(n) + O&M equivalente",
+        "RC = (I − VR)(A/P,i,n) + VR·i"
+      ],
+      "explicacao": "<div class=\"passo\">CAE(n) = (I − VR)·(A/P;12 %;n) + VR·0,12 + [10 000·(P/A) + 4 000·(P/G)]·(A/P)</div><div class=\"passo\">n = 3: $ 40 160 · n = 4: $ 39 789 · n = 5: <strong>$ 39 681</strong> · n = 6: $ 39 780</div><p>A recuperação do capital cai (de $ 32 000 para $ 22 583) enquanto o O&amp;M sobe (de $ 10 000 para $ 17 098): a soma tem mínimo em 5 anos. O mínimo é raso — entre os anos 4 e 6 o CAE varia 0,3 % —, o que dá folga para acomodar a troca à disponibilidade de caixa.</p>"
+    },
+    {
+      "id": "ee-059",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "real",
+      "enunciado": "<p>Numa análise de substituição, o equipamento atual (o defensor) entra na conta pelo:</p>",
+      "alternativas": [
+        "valor histórico de aquisição",
+        "valor contábil líquido de depreciação",
+        "valor de mercado hoje, como custo de oportunidade de mantê-lo",
+        "valor de reposição por um equipamento novo"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Ao manter o equipamento, deixa-se de receber o que ele valeria vendido — e isso é desembolso, mesmo sem cheque emitido. O valor histórico é custo afundado e o contábil é registro, relevante apenas para calcular o imposto sobre o ganho ou a perda na venda.</p>"
+    }
+  ]
+}
