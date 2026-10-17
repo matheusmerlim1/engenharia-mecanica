@@ -151,6 +151,56 @@
       "ordem": 5
     },
     {
+      "id": "sim-resistivo",
+      "slug": "circuitos-eletricos",
+      "disciplina": "Circuitos Elétricos",
+      "periodo": "5",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "1. Circuito resistivo: divisores, Kirchhoff e potência",
+      "resumo": "Uma fonte alimenta R1 em série, o paralelo R2–R3 e R4 em série.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-nos",
+      "slug": "circuitos-eletricos",
+      "disciplina": "Circuitos Elétricos",
+      "periodo": "5",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "2. Nós e malhas no mesmo circuito",
+      "resumo": "O mesmo circuito de dois nós e duas malhas resolvido pelos dois métodos, lado a lado: monta-se a matriz nodal, monta-se a matriz de malhas e comparam-se os resultados.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-thevenin",
+      "slug": "circuitos-eletricos",
+      "disciplina": "Circuitos Elétricos",
+      "periodo": "5",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "3. Thévenin, Norton e máxima transferência de potência",
+      "resumo": "Um circuito com fonte de tensão, fonte de corrente e três resistores é reduzido a um par (Vth, Rth) e ao seu equivalente de Norton.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-transitorio",
+      "slug": "circuitos-eletricos",
+      "disciplina": "Circuitos Elétricos",
+      "periodo": "5",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "4. Transitórios: RC, RL e RLC nos três amortecimentos",
+      "resumo": "Fecha-se a chave em t = 0 e o circuito sai de um estado permanente para outro.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-fasores",
+      "slug": "circuitos-eletricos",
+      "disciplina": "Circuitos Elétricos",
+      "periodo": "5",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "5. Fasores, potências e correção do fator de potência",
+      "resumo": "Uma carga R–L alimentada em regime permanente senoidal: impedância, fasor de corrente, triângulo de potências e o capacitor que corrige o fator de potência.",
+      "ordem": 4
+    },
+    {
       "id": "sim-ttt",
       "slug": "ciencia-dos-materiais-2",
       "disciplina": "Ciência dos Materiais II",

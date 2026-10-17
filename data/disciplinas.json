@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "circuitos-eletricos",
     "engenharia-economica",
     "acustica-aplicada",
     "selecao-de-materiais",
@@ -265,7 +266,7 @@
       ],
       "simuladores": true,
       "normas": true,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "ciencia-dos-materiais-2",

@@ -1,0 +1,1045 @@
+{
+  "disciplina": "Circuitos Elétricos",
+  "slug": "circuitos-eletricos",
+  "topicos": [
+    {
+      "id": "grandezas",
+      "nome": "Grandezas e convenções"
+    },
+    {
+      "id": "elementos",
+      "nome": "Elementos do circuito"
+    },
+    {
+      "id": "kirchhoff",
+      "nome": "Leis de Kirchhoff"
+    },
+    {
+      "id": "associacoes",
+      "nome": "Associações e divisores"
+    },
+    {
+      "id": "nodal",
+      "nome": "Análise nodal"
+    },
+    {
+      "id": "malhas",
+      "nome": "Análise de malhas"
+    },
+    {
+      "id": "superposicao",
+      "nome": "Fontes e superposição"
+    },
+    {
+      "id": "thevenin",
+      "nome": "Thévenin, Norton e potência"
+    },
+    {
+      "id": "armazenadores",
+      "nome": "Capacitores e indutores"
+    },
+    {
+      "id": "primeira-ordem",
+      "nome": "Circuitos de primeira ordem"
+    },
+    {
+      "id": "singularidades",
+      "nome": "Degrau, pulso e impulso"
+    },
+    {
+      "id": "segunda-ordem",
+      "nome": "Circuitos de segunda ordem"
+    },
+    {
+      "id": "fasores",
+      "nome": "Fasores e impedância"
+    },
+    {
+      "id": "potencia",
+      "nome": "Potência em CA e trifásico"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "ce-001",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "grandezas",
+      "enunciado": "<p>Um fio de cobre de seção reta 2,5 mm² conduz 15 A. A densidade de corrente vale:</p>",
+      "alternativas": [
+        "6,0 × 10⁶ A/m²",
+        "6,0 A/m²",
+        "3,75 × 10⁶ A/m²",
+        "2,4 × 10⁷ A/m²"
+      ],
+      "correta": 0,
+      "formulas": [
+        "J = i/A",
+        "1 mm² = 10⁻⁶ m²"
+      ],
+      "explicacao": "<div class=\"passo\">J = i/A = 15 / (2,5 × 10⁻⁶ m²) = <strong>6,0 × 10⁶ A/m²</strong></div><p>O erro frequente é esquecer a conversão de mm² para m²: 1 mm² = 10⁻⁶ m². Densidades dessa ordem — alguns MA/m² — são típicas de fiação predial, e é o aquecimento que elas produzem que limita a corrente admissível de cada bitola.</p>"
+    },
+    {
+      "id": "ce-002",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "grandezas",
+      "enunciado": "<p>Num elemento marcado segundo a convenção passiva, obtém-se p = −35 W. Isso significa que o elemento:</p>",
+      "alternativas": [
+        "está absorvendo 35 W, pois potência é sempre positiva em módulo",
+        "está fornecendo 35 W ao circuito, comportando-se como fonte naquele instante",
+        "está com a corrente invertida, e o cálculo precisa ser refeito",
+        "dissipa 35 W na forma de calor, como qualquer resistor"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Na convenção passiva, p &gt; 0 significa absorver. Um valor negativo é informação legítima: o elemento entrega energia ao circuito. Isso é normal em fontes e em capacitores e indutores durante parte do ciclo. O que não existe é resistor com potência negativa — nesse caso, sim, há erro de sinal na resolução.</p>"
+    },
+    {
+      "id": "ce-003",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "grandezas",
+      "enunciado": "<p>Um chuveiro de 5500 W é ligado em 220 V. A resistência do elemento de aquecimento e a corrente nos fios valem, respectivamente:</p>",
+      "alternativas": [
+        "8,8 Ω e 2,5 A",
+        "40 Ω e 5,5 A",
+        "8,8 Ω e 25 A",
+        "0,114 Ω e 25 A"
+      ],
+      "correta": 2,
+      "formulas": [
+        "P = V²/R = Vi",
+        "i = P/V"
+      ],
+      "explicacao": "<div class=\"passo\">R = V²/P = 48 400 / 5500 = <strong>8,8 Ω</strong></div><div class=\"passo\">i = V/R = 220 / 8,8 = <strong>25 A</strong>, ou diretamente i = P/V</div><p>Os 25 A explicam a exigência de circuito dedicado, disjuntor próprio e condutor de 6 mm². Na tensão de 127 V, a mesma potência pediria 43 A — razão pela qual chuveiros de alta potência são especificados em 220 V.</p>"
+    },
+    {
+      "id": "ce-004",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "grandezas",
+      "enunciado": "<p>A velocidade de deriva dos elétrons num fio típico é da ordem de décimos de milímetro por segundo. Ainda assim a lâmpada acende instantaneamente porque:</p>",
+      "alternativas": [
+        "os elétrons aceleram até próximo da velocidade da luz ao entrar no filamento",
+        "a corrente real é feita de cargas positivas, muito mais rápidas que os elétrons",
+        "a velocidade de deriva calculada é um valor médio que subestima a real em várias ordens de grandeza",
+        "o condutor já está cheio de elétrons livres e o campo que os põe em movimento se propaga a uma fração da velocidade da luz"
+      ],
+      "correta": 3,
+      "explicacao": "<p>É a analogia do cano já cheio de água: abrir a torneira não exige que a primeira molécula percorra o cano. O campo eletromagnético estabelece o movimento em todo o comprimento do condutor quase simultaneamente, e cada elétron se desloca pouquíssimo. Num fio de 20 m com deriva de 0,44 mm/s, um elétron levaria mais de doze horas para atravessá-lo.</p>"
+    },
+    {
+      "id": "ce-005",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "elementos",
+      "enunciado": "<p>A resistência de 20 m de fio de cobre de 2,5 mm² (ρ = 1,68 × 10⁻⁸ Ω·m) e a potência dissipada quando ele conduz 15 A valem:</p>",
+      "alternativas": [
+        "0,134 Ω e 30,2 W",
+        "0,134 Ω e 2,02 W",
+        "1,34 Ω e 302 W",
+        "0,336 Ω e 75,6 W"
+      ],
+      "correta": 0,
+      "formulas": [
+        "R = ρℓ/A",
+        "P = i²R"
+      ],
+      "explicacao": "<div class=\"passo\">R = ρℓ/A = 1,68×10⁻⁸ × 20 / 2,5×10⁻⁶ = <strong>0,134 Ω</strong></div><div class=\"passo\">P = i²R = 225 × 0,1344 = <strong>30,2 W</strong></div><p>Trinta watts perdidos em 20 m de fio é perda pura, que vira calor dentro do eletroduto. É esse número, somado à queda de tensão de 15 × 0,134 = 2,0 V, que o dimensionamento de bitola procura limitar.</p>"
+    },
+    {
+      "id": "ce-006",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "elementos",
+      "enunciado": "<p>Uma lâmpada de 15 W/220 V e outra de 220 W/220 V são ligadas <em>em série</em> na rede de 220 V. O que se observa é:</p>",
+      "alternativas": [
+        "a de 220 W acende normalmente e a de 15 W fica apagada",
+        "a de 15 W acende quase normalmente e a de 220 W fica praticamente apagada",
+        "as duas acendem com metade do brilho nominal",
+        "as duas ficam apagadas, pois a tensão se divide igualmente"
+      ],
+      "correta": 1,
+      "explicacao": "<p>As resistências são R₁ = 220²/15 = 3227 Ω e R₂ = 220²/220 = 220 Ω. Em série a corrente é comum (63,8 mA), e quem tem mais resistência fica com mais tensão e dissipa mais: P = Ri². A lâmpada de 15 W recebe 206 V e dissipa 13,1 W, contra 14,0 V e 0,90 W da outra. Em série, o maior resistor esquenta mais — e aqui o maior resistor é a lâmpada de menor potência nominal.</p>"
+    },
+    {
+      "id": "ce-007",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "elementos",
+      "enunciado": "<p>Uma bateria de 12 V com resistência interna de 0,5 Ω alimenta uma carga de 2 Ω. A tensão nos terminais e o rendimento valem:</p>",
+      "alternativas": [
+        "12 V e 100 %",
+        "9,6 V e 50 %",
+        "9,6 V e 80 %",
+        "11,4 V e 95 %"
+      ],
+      "correta": 2,
+      "formulas": [
+        "i = V/(R_s + R_L)",
+        "η = R_L/(R_L + R_s)"
+      ],
+      "explicacao": "<div class=\"passo\">i = 12/(0,5 + 2) = 4,8 A</div><div class=\"passo\">V = iR<sub>L</sub> = 4,8 × 2 = <strong>9,6 V</strong></div><div class=\"passo\">η = R<sub>L</sub>/(R<sub>L</sub>+R<sub>s</sub>) = 2/2,5 = <strong>80 %</strong></div><p>A queda interna de 2,4 V é o que faz o farol enfraquecer quando o motor de arranque é acionado. Note que, se a carga fosse igual a 0,5 Ω, a potência entregue seria máxima (72 W) e o rendimento cairia a exatos 50 % — é o teorema da máxima transferência.</p>"
+    },
+    {
+      "id": "ce-008",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "elementos",
+      "enunciado": "<p>Ao calcular a resistência equivalente de Thévenin de uma rede que contém uma fonte de corrente controlada por tensão, o procedimento correto é:</p>",
+      "alternativas": [
+        "zerar todas as fontes, independentes e dependentes, e reduzir a rede de resistores",
+        "substituir a fonte dependente por um resistor igual ao inverso do seu ganho",
+        "ignorar a fonte dependente, pois ela não contribui para a resistência equivalente",
+        "zerar apenas as fontes independentes e obter R<sub>th</sub> por excitação externa ou pela razão V<sub>th</sub>/I<sub>N</sub>"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Fonte dependente não é excitação: ela modela o acoplamento interno de um dispositivo e continua respondendo ao circuito. Apagá-la trocaria a rede por outra. Com fonte dependente, calcula-se V<sub>th</sub> e I<sub>N</sub> separadamente e divide-se, ou se aplica 1 V (ou 1 A) no terminal com as independentes zeradas e se obtém R<sub>th</sub> = v/i — que pode até sair negativa em redes com realimentação positiva.</p>"
+    },
+    {
+      "id": "ce-009",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "kirchhoff",
+      "enunciado": "<p>Um circuito tem 5 nós essenciais. O número de equações independentes de LKC que se pode escrever é:</p>",
+      "alternativas": [
+        "4, porque a equação do último nó é a soma algébrica das demais",
+        "5, uma para cada nó essencial",
+        "3, porque dois nós sempre se combinam num supernó",
+        "depende do número de ramos, não do de nós"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Com n nós essenciais escrevem-se n − 1 equações. Cada corrente de ramo aparece duas vezes no conjunto das LKC, com sinais opostos; somando todas, tudo se cancela e sobra 0 = 0. A última equação não traz informação nova, e insistir nela deixa o sistema indeterminado.</p>"
+    },
+    {
+      "id": "ce-010",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "kirchhoff",
+      "enunciado": "<p>Num laço único estão uma fonte de 24 V, uma fonte de 6 V ligada em oposição e resistores de 4 Ω, 8 Ω e 6 Ω. A corrente no laço vale:</p>",
+      "alternativas": [
+        "1,67 A",
+        "1,0 A",
+        "0,33 A",
+        "5,0 A"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Σv = 0 no laço",
+        "v = Ri"
+      ],
+      "explicacao": "<div class=\"passo\">LKT: 24 − 6 = (4 + 8 + 6)·i</div><div class=\"passo\">i = 18/18 = <strong>1,0 A</strong></div><p>Fontes em oposição subtraem. O balanço de potência fecha: a de 24 V fornece 24 W, os resistores dissipam 18 W e a fonte de 6 V <em>absorve</em> 6 W — ela está sendo carregada, como num carregador de bateria.</p>"
+    },
+    {
+      "id": "ce-011",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "kirchhoff",
+      "enunciado": "<p>Num nó chegam correntes de 6 A e 2 A e sai uma corrente de 3 A, além de uma corrente desconhecida i<sub>x</sub>, também saindo. O valor de i<sub>x</sub> é:</p>",
+      "alternativas": [
+        "11 A",
+        "1 A",
+        "5 A",
+        "−5 A"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Σi = 0 no nó"
+      ],
+      "explicacao": "<div class=\"passo\">LKC: 6 + 2 = 3 + i<sub>x</sub></div><div class=\"passo\">i<sub>x</sub> = <strong>5 A</strong></div><p>O nó é um ponto geométrico: não tem volume e não acumula carga. Se entrassem 8 A e saíssem apenas 3 A, o nó ganharia 5 C por segundo e seu potencial subiria sem limite — o que não acontece.</p>"
+    },
+    {
+      "id": "ce-012",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "kirchhoff",
+      "enunciado": "<p>A melhor conferência independente para um circuito que acabou de ser resolvido é:</p>",
+      "alternativas": [
+        "reescrever a LKC em todos os nós, inclusive no de referência",
+        "verificar se todas as correntes resultaram positivas",
+        "conferir se a maior tensão do circuito é a da fonte",
+        "o balanço de potência: a soma das potências fornecidas deve igualar a das dissipadas"
+      ],
+      "correta": 3,
+      "explicacao": "<p>O balanço de potência usa os resultados, não as equações, e por isso é um teste independente: um erro de sinal em qualquer ponto quase sempre o quebra, enquanto as leis de Kirchhoff individuais podem continuar satisfeitas. Correntes negativas, por outro lado, não indicam erro algum — apenas que o sentido real é o oposto do suposto.</p>"
+    },
+    {
+      "id": "ce-013",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "associacoes",
+      "enunciado": "<p>Dois resistores de 12 Ω e 6 Ω em paralelo equivalem a:</p>",
+      "alternativas": [
+        "4 Ω",
+        "18 Ω",
+        "9 Ω",
+        "2 Ω"
+      ],
+      "correta": 0,
+      "formulas": [
+        "R_p = R₁R₂/(R₁+R₂)"
+      ],
+      "explicacao": "<div class=\"passo\">R<sub>p</sub> = (12 × 6)/(12 + 6) = 72/18 = <strong>4 Ω</strong></div><p>O paralelo é sempre menor que o menor dos dois — aqui, menor que 6 Ω. Qualquer resultado de paralelo maior que o menor resistor está errado, e essa checagem de uma linha pega a maioria dos erros de conta.</p>"
+    },
+    {
+      "id": "ce-014",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "associacoes",
+      "enunciado": "<p>Uma fonte de 24 V alimenta R1 = 6 Ω em série com o paralelo de 12 Ω e 6 Ω, seguido de R4 = 2 Ω. A corrente total e a corrente no ramo de 6 Ω do paralelo valem:</p>",
+      "alternativas": [
+        "2,0 A e 0,667 A",
+        "2,0 A e 1,333 A",
+        "1,2 A e 0,8 A",
+        "2,0 A e 1,0 A"
+      ],
+      "correta": 1,
+      "formulas": [
+        "i_k = I·R_outro/(R₁+R₂)",
+        "V_p = i·R_p"
+      ],
+      "explicacao": "<div class=\"passo\">R<sub>p</sub> = 4 Ω; R<sub>eq</sub> = 6 + 4 + 2 = 12 Ω; i = 24/12 = <strong>2,0 A</strong></div><div class=\"passo\">V<sub>p</sub> = 2 × 4 = 8 V; i<sub>6Ω</sub> = 8/6 = <strong>1,333 A</strong></div><p>Pelo divisor de corrente, i = I·R<sub>outro</sub>/(R₁+R₂) = 2 × 12/18 = 1,333 A — o numerador é o <em>outro</em> resistor. O ramo de menor resistência leva o dobro da corrente do de 12 Ω e dissipa o dobro da potência.</p>"
+    },
+    {
+      "id": "ce-015",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "associacoes",
+      "enunciado": "<p>Um divisor com dois resistores de 10 kΩ é alimentado por 24 V. Ao ligar uma carga de 10 kΩ na saída, a tensão passa de 12 V para:</p>",
+      "alternativas": [
+        "12,0 V",
+        "6,0 V",
+        "8,0 V",
+        "11,4 V"
+      ],
+      "correta": 2,
+      "formulas": [
+        "v = V·R_b/(R_a+R_b)",
+        "R_saída = R₁ ∥ R₂"
+      ],
+      "explicacao": "<div class=\"passo\">A carga entra em paralelo com o resistor de baixo: 10 ∥ 10 = 5 kΩ</div><div class=\"passo\">V = 24 × 5/(10 + 5) = <strong>8,0 V</strong></div><p>Um divisor só entrega a tensão prevista em aberto. Sua resistência de saída é R₁ ∥ R₂ = 5 kΩ, e qualquer corrente puxada provoca queda. Com carga de 100 kΩ o erro cairia para 4,8 % (11,43 V). A regra prática é usar resistores ao menos dez vezes menores que a carga — pagando em potência dissipada.</p>"
+    },
+    {
+      "id": "ce-016",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "associacoes",
+      "enunciado": "<p>Numa ponte de Wheatstone, o ramo central pode ser removido da análise (ou curto-circuitado) sem alterar o resto do circuito quando:</p>",
+      "alternativas": [
+        "os quatro resistores são de mesma potência nominal",
+        "a resistência do ramo central é muito maior que as demais",
+        "a fonte é de corrente, e não de tensão",
+        "R₁/R₂ = R₃/R₄, pois nessa condição os dois pontos centrais estão no mesmo potencial"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Com a ponte equilibrada, a diferença de potencial entre os pontos centrais é nula: não há corrente pelo ramo central, que pode então ser aberto ou curto-circuitado indiferentemente. Fora do equilíbrio, a ponte não se reduz por série e paralelo e exige análise nodal ou transformação estrela-triângulo — e é justamente a corrente desse ramo que o instrumento mede.</p>"
+    },
+    {
+      "id": "ce-017",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "nodal",
+      "enunciado": "<p>Na matriz de condutâncias de uma análise nodal com apenas resistores e fontes independentes, o elemento da diagonal G<sub>kk</sub> é:</p>",
+      "alternativas": [
+        "a soma de todas as condutâncias ligadas ao nó k, sempre positiva",
+        "a soma de todas as resistências ligadas ao nó k",
+        "o negativo da soma das condutâncias ligadas ao nó k",
+        "a condutância do ramo que liga o nó k ao nó de referência"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A diagonal reúne tudo o que chega ao nó e é sempre positiva; fora dela entra o <em>negativo</em> da condutância entre os dois nós. Com só resistores e fontes independentes, a matriz é simétrica — e assimetria, nesse caso, é sinal de erro de montagem. Fonte dependente quebra a simetria legitimamente.</p>"
+    },
+    {
+      "id": "ce-018",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "nodal",
+      "enunciado": "<p>Uma fonte de 24 V alimenta R0 = 4 Ω até o nó A; de A saem R3 = 20 Ω para o terra e R1 = 5 Ω até o nó B; de B sai R2 = 5 Ω para o terra. As tensões de nó valem:</p>",
+      "alternativas": [
+        "v<sub>A</sub> = 12,0 V e v<sub>B</sub> = 6,0 V",
+        "v<sub>A</sub> = 15,0 V e v<sub>B</sub> = 7,5 V",
+        "v<sub>A</sub> = 16,0 V e v<sub>B</sub> = 8,0 V",
+        "v<sub>A</sub> = 15,0 V e v<sub>B</sub> = 10,0 V"
+      ],
+      "correta": 1,
+      "formulas": [
+        "Σ(v_nó − v_vizinho)/R = 0",
+        "G_kk v_k − Σ G_kj v_j = i_fontes"
+      ],
+      "explicacao": "<div class=\"passo\">Nó A: (1/4 + 1/20 + 1/5)v<sub>A</sub> − v<sub>B</sub>/5 = 24/4 → 0,50 v<sub>A</sub> − 0,20 v<sub>B</sub> = 6</div><div class=\"passo\">Nó B: −v<sub>A</sub>/5 + (1/5 + 1/5)v<sub>B</sub> = 0 → v<sub>A</sub> = 2 v<sub>B</sub></div><div class=\"passo\">0,80 v<sub>B</sub> = 6 → v<sub>B</sub> = <strong>7,5 V</strong> e v<sub>A</sub> = <strong>15,0 V</strong></div><p>Conferência: i<sub>R0</sub> = (24−15)/4 = 2,25 A, i<sub>R3</sub> = 0,75 A e i<sub>R1</sub> = 1,50 A, com 2,25 = 0,75 + 1,50. O balanço de potência fecha em 54 W dos dois lados.</p>"
+    },
+    {
+      "id": "ce-019",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "nodal",
+      "enunciado": "<p>Uma fonte de tensão ideal está ligada entre dois nós, nenhum deles o de referência. O procedimento correto é:</p>",
+      "alternativas": [
+        "escrever a LKC em cada nó, usando a lei de Ohm para a corrente que atravessa a fonte",
+        "substituir a fonte por um resistor de valor muito baixo e resolver normalmente",
+        "tratar os dois nós como um supernó, escrever a LKC na fronteira e acrescentar a restrição v<sub>A</sub> − v<sub>B</sub> = V<sub>s</sub>",
+        "eliminar um dos dois nós, pois a fonte os torna eletricamente idênticos"
+      ],
+      "correta": 2,
+      "explicacao": "<p>A corrente que atravessa uma fonte ideal não é determinada pela tensão nela, e a lei de Ohm não se aplica — por isso não se escreve LKC atravessando-a. Envolvendo os dois nós numa superfície fechada, a corrente interna da fonte sai da conta, e a equação que falta é fornecida pela própria fonte. O par repõe exatamente o número de equações.</p>"
+    },
+    {
+      "id": "ce-020",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "malhas",
+      "enunciado": "<p>Num ramo compartilhado por duas malhas com correntes i₁ e i₂ no mesmo sentido, um amperímetro inserido nesse ramo indicaria:</p>",
+      "alternativas": [
+        "i₁ + i₂, a soma das correntes de malha",
+        "i₁, a corrente da primeira malha escrita",
+        "a maior entre i₁ e i₂",
+        "i₁ − i₂, a corrente de ramo"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Corrente de malha é uma variável auxiliar que circula no laço inteiro; o que existe fisicamente é a corrente de ramo. No ramo compartilhado as duas correntes de malha se encontram em sentidos opostos, e a corrente real é a diferença. Confundir as duas é o erro mais comum do método, e aparece sempre no último passo.</p>"
+    },
+    {
+      "id": "ce-021",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "malhas",
+      "enunciado": "<p>Duas malhas satisfazem 15i₁ − 10i₂ = 20 e −10i₁ + 15i₂ = −10. As correntes de malha e a corrente no ramo compartilhado de 10 Ω valem:</p>",
+      "alternativas": [
+        "i₁ = 1,6 A, i₂ = 0,4 A e 1,2 A no ramo compartilhado",
+        "i₁ = 1,6 A, i₂ = 0,4 A e 2,0 A no ramo compartilhado",
+        "i₁ = 1,33 A, i₂ = −0,67 A e 2,0 A no ramo compartilhado",
+        "i₁ = 2,0 A, i₂ = 1,0 A e 1,0 A no ramo compartilhado"
+      ],
+      "correta": 0,
+      "formulas": [
+        "R_kk i_k − Σ R_kj i_j = Σv",
+        "regra de Cramer"
+      ],
+      "explicacao": "<div class=\"passo\">Δ = 15 × 15 − 100 = 125</div><div class=\"passo\">i₁ = (20×15 − (−10)(−10))/125 = 200/125 = <strong>1,6 A</strong></div><div class=\"passo\">i₂ = (15(−10) − (−10)(20))/125 = 50/125 = <strong>0,4 A</strong></div><div class=\"passo\">Ramo compartilhado: 1,6 − 0,4 = <strong>1,2 A</strong>, com 12,0 V sobre ele</div><p>O ramo compartilhado é o mais carregado do circuito: dissipa 10 × 1,2² = 14,4 W, mais que qualquer outro. É nele que a soma dos efeitos das duas fontes se concentra.</p>"
+    },
+    {
+      "id": "ce-022",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "malhas",
+      "enunciado": "<p>Entre análise nodal e análise de malhas, a escolha deve ser feita:</p>",
+      "alternativas": [
+        "sempre por malhas, que dispensa escrever a LKC",
+        "pelo menor sistema resultante, comparando nós essenciais menos um com o número de malhas — e malhas não se aplica a circuitos não planares",
+        "sempre por nós, pois tensões são mais fáceis de medir que correntes",
+        "por malhas quando há fontes de corrente e por nós quando há fontes de tensão"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Os dois métodos dão o mesmo resultado; o que muda é o tamanho do sistema. Fontes de tensão em série favorecem malhas e fontes de corrente favorecem nós — exatamente o oposto da terceira alternativa. E a análise nodal não tem restrição de topologia, razão pela qual os programas de simulação usam formulação nodal.</p>"
+    },
+    {
+      "id": "ce-023",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "superposicao",
+      "enunciado": "<p>Ao aplicar superposição, desativar as fontes significa:</p>",
+      "alternativas": [
+        "substituir fontes de tensão por circuitos abertos e fontes de corrente por curtos",
+        "remover fisicamente todas as fontes, inclusive as dependentes, deixando os terminais abertos",
+        "substituir fontes de tensão por curtos-circuitos e fontes de corrente por circuitos abertos, mantendo ativas as dependentes",
+        "substituir todas as fontes por resistores iguais às suas resistências internas"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Fonte de tensão nula impõe v = 0 com qualquer corrente — um curto. Fonte de corrente nula impõe i = 0 com qualquer tensão — um aberto. Trocar os dois é o erro clássico, e produz respostas plausíveis e erradas. Fontes dependentes permanecem ativas em todas as parcelas, por não serem excitações independentes.</p>"
+    },
+    {
+      "id": "ce-024",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "superposicao",
+      "enunciado": "<p>Uma fonte de 12 V alimenta um nó através de 4 Ω; no mesmo nó, uma fonte de corrente de 1 A injeta corrente e 6 Ω ligam o nó ao terra. A tensão do nó vale:</p>",
+      "alternativas": [
+        "7,2 V",
+        "2,4 V",
+        "12,0 V",
+        "9,6 V"
+      ],
+      "correta": 3,
+      "formulas": [
+        "v = Σ v⁽ᵏ⁾",
+        "R_p = R₁R₂/(R₁+R₂)"
+      ],
+      "explicacao": "<div class=\"passo\">Só a fonte de tensão (a de corrente aberta): v⁽¹⁾ = 12 × 6/10 = 7,2 V</div><div class=\"passo\">Só a fonte de corrente (a de tensão em curto): v⁽²⁾ = 1 × (4 ∥ 6) = 2,4 V</div><div class=\"passo\">v = 7,2 + 2,4 = <strong>9,6 V</strong></div><p>Conferência pela LKC: i<sub>4Ω</sub> = (12 − 9,6)/4 = 0,6 A e i<sub>6Ω</sub> = 1,6 A, com 0,6 + 1,0 = 1,6. As duas alternativas intermediárias são justamente as parcelas isoladas — somá-las é o passo que falta.</p>"
+    },
+    {
+      "id": "ce-025",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "superposicao",
+      "enunciado": "<p>No circuito anterior, a potência dissipada no resistor de 6 Ω vale 15,36 W. Somando as potências calculadas em cada parcela de superposição (7,2 V e 2,4 V) obtém-se 9,6 W. A razão da diferença é:</p>",
+      "alternativas": [
+        "potência é quadrática: falta o termo cruzado 2v⁽¹⁾v⁽²⁾/R = 5,76 W, que representa a interação das fontes",
+        "erro de arredondamento acumulado nas duas parcelas",
+        "a superposição só vale para circuitos com uma única fonte de tensão",
+        "a potência da fonte de corrente não pode ser contabilizada em resistores"
+      ],
+      "correta": 0,
+      "formulas": [
+        "p = v²/R",
+        "(a+b)² = a² + 2ab + b²"
+      ],
+      "explicacao": "<div class=\"passo\">9,6²/6 = <strong>15,36 W</strong> (correto) contra 7,2²/6 + 2,4²/6 = 8,64 + 0,96 = 9,6 W</div><div class=\"passo\">Termo cruzado: 2 × 7,2 × 2,4/6 = <strong>5,76 W</strong>, e 9,6 + 5,76 = 15,36 W</div><p>O erro é de 37 % e para baixo — o pior tipo em dimensionamento. Superponha tensões e correntes; some primeiro, calcule a potência depois, uma única vez.</p>"
+    },
+    {
+      "id": "ce-026",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "superposicao",
+      "enunciado": "<p>Uma fonte de 24 V em série com 6 Ω, transformada em fonte de corrente real, equivale a:</p>",
+      "alternativas": [
+        "24 A em paralelo com 6 Ω",
+        "4 A em paralelo com 6 Ω",
+        "4 A em paralelo com 0,167 Ω",
+        "4 A em série com 6 Ω"
+      ],
+      "correta": 1,
+      "formulas": [
+        "I_s = V_s/R_s",
+        "R_p = R_s"
+      ],
+      "explicacao": "<div class=\"passo\">I<sub>s</sub> = V<sub>s</sub>/R<sub>s</sub> = 24/6 = <strong>4 A</strong>, com R<sub>p</sub> = R<sub>s</sub> = <strong>6 Ω</strong></div><p>As duas versões entregam 24 V em aberto e 4 A em curto: por serem lineares, a reta i–v fica determinada e nenhuma medida externa as distingue. Por dentro, no entanto, elas dissipam potências diferentes — a equivalência é apenas no terminal.</p>"
+    },
+    {
+      "id": "ce-027",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "thevenin",
+      "enunciado": "<p>Uma fonte de 24 V alimenta R1 = 12 Ω; R2 = 6 Ω liga o nó intermediário ao terra; e R3 = 2 Ω liga esse nó ao terminal de saída. O equivalente de Thévenin visto do terminal é:</p>",
+      "alternativas": [
+        "V<sub>th</sub> = 8 V e R<sub>th</sub> = 4 Ω",
+        "V<sub>th</sub> = 16 V e R<sub>th</sub> = 6 Ω",
+        "V<sub>th</sub> = 8 V e R<sub>th</sub> = 6 Ω",
+        "V<sub>th</sub> = 24 V e R<sub>th</sub> = 20 Ω"
+      ],
+      "correta": 2,
+      "formulas": [
+        "V_th = tensão em aberto",
+        "R_th = resistência com fontes zeradas"
+      ],
+      "explicacao": "<div class=\"passo\">Em aberto não há corrente em R3: V<sub>th</sub> = 24 × 6/(12+6) = <strong>8 V</strong></div><div class=\"passo\">Fontes zeradas: R<sub>th</sub> = 2 + (12 ∥ 6) = 2 + 4 = <strong>6 Ω</strong></div><p>R3 não aparece em V<sub>th</sub>, porque em aberto não circula corrente por ele, mas entra inteiro em R<sub>th</sub>. Resistor em série com a saída não altera a tensão de circuito aberto e degrada tudo o que a carga recebe.</p>"
+    },
+    {
+      "id": "ce-028",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "thevenin",
+      "enunciado": "<p>Para o equivalente de 8 V e 6 Ω, a potência máxima transferível a uma carga resistiva e o rendimento nesse ponto valem:</p>",
+      "alternativas": [
+        "2,667 W com rendimento de 100 %",
+        "1,333 W com rendimento de 50 %",
+        "10,67 W com rendimento de 50 %",
+        "2,667 W com rendimento de 50 %"
+      ],
+      "correta": 3,
+      "formulas": [
+        "P_max = V_th²/4R_th",
+        "η = R_L/(R_L+R_th)"
+      ],
+      "explicacao": "<div class=\"passo\">R<sub>L</sub> = R<sub>th</sub> = 6 Ω</div><div class=\"passo\">P<sub>max</sub> = V<sub>th</sub>²/(4R<sub>th</sub>) = 64/24 = <strong>2,667 W</strong></div><div class=\"passo\">η = R<sub>L</sub>/(R<sub>L</sub>+R<sub>th</sub>) = <strong>50 %</strong></div><p>No casamento, a carga recebe metade da tensão em aberto e a outra metade da energia aquece R<sub>th</sub>. Daí a distinção prática: casar impedância faz sentido em sinal (antena, sensor, transdutor), e não faz em energia, onde se trabalha deliberadamente com R<sub>L</sub> ≫ R<sub>th</sub>.</p>"
+    },
+    {
+      "id": "ce-029",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "thevenin",
+      "enunciado": "<p>Ainda para o equivalente de 8 V e 6 Ω, as cargas de 3 Ω e de 12 Ω entregam, cada uma, 2,37 W — 89 % do máximo. Os rendimentos respectivos são:</p>",
+      "alternativas": [
+        "33,3 % e 66,7 %",
+        "50 % e 50 %",
+        "66,7 % e 33,3 %",
+        "25 % e 75 %"
+      ],
+      "correta": 0,
+      "formulas": [
+        "P = [V_th/(R_th+R_L)]²R_L",
+        "η = R_L/(R_L+R_th)"
+      ],
+      "explicacao": "<div class=\"passo\">η = R<sub>L</sub>/(R<sub>L</sub>+R<sub>th</sub>): 3/9 = <strong>33,3 %</strong> e 12/18 = <strong>66,7 %</strong></div><p>Mesma potência, rendimentos muito diferentes. A curva de potência é achatada perto do máximo — errar a carga por um fator de dois custa apenas 11 % —, o que significa que, quando o rendimento importa, vale escolher a carga maior. Casar com precisão perfeita raramente compensa o esforço.</p>"
+    },
+    {
+      "id": "ce-030",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "thevenin",
+      "enunciado": "<p>Por que uma rede linear arbitrariamente grande se resume a dois números no seu terminal?</p>",
+      "alternativas": [
+        "porque toda rede pode ser reduzida por série e paralelo a um resistor e uma fonte",
+        "porque a linearidade faz da relação i–v no terminal uma reta, e uma reta fica determinada por dois pontos",
+        "porque a lei de Ohm garante proporcionalidade entre tensão e corrente em qualquer rede",
+        "porque as leis de Kirchhoff limitam a dois o número de incógnitas em qualquer terminal"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Tomando a tensão em aberto e a corrente em curto, tem-se a reta inteira — e qualquer carga ligada ali só pode ver essa reta. A redução por série e paralelo é apenas um caminho para calcular R<sub>th</sub> em casos simples, não a razão do teorema; redes com pontes ou fontes dependentes não se reduzem assim e ainda assim têm equivalente de Thévenin.</p>"
+    },
+    {
+      "id": "ce-031",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "armazenadores",
+      "enunciado": "<p>Um capacitor de 10 µF é carregado a 100 V. A carga e a energia armazenadas valem:</p>",
+      "alternativas": [
+        "1,0 mC e 100 mJ",
+        "10 mC e 50 mJ",
+        "1,0 mC e 50 mJ",
+        "0,1 mC e 5 mJ"
+      ],
+      "correta": 2,
+      "formulas": [
+        "q = Cv",
+        "W = ½Cv² = q²/2C"
+      ],
+      "explicacao": "<div class=\"passo\">q = Cv = 10×10⁻⁶ × 100 = <strong>1,0 mC</strong></div><div class=\"passo\">W = ½Cv² = ½ × 10⁻⁵ × 10⁴ = <strong>50 mJ</strong></div><p>O fator ½ é o que separa a energia (50 mJ) do produto qV (100 mJ), e a diferença não é detalhe algébrico: ela é exatamente a energia que se dissipa ao carregar o capacitor através de qualquer resistência, por pequena que seja.</p>"
+    },
+    {
+      "id": "ce-032",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "armazenadores",
+      "enunciado": "<p>Num circuito em regime permanente de corrente contínua, para efeito de análise:</p>",
+      "alternativas": [
+        "o capacitor se comporta como curto-circuito e o indutor, como circuito aberto",
+        "ambos se comportam como circuitos abertos",
+        "ambos se comportam como resistores de valor igual à sua reatância",
+        "o capacitor se comporta como circuito aberto e o indutor, como curto-circuito"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Em regime contínuo, dv/dt = 0 no capacitor, logo i = C dv/dt = 0: aberto. E di/dt = 0 no indutor, logo v = L di/dt = 0: curto. Com essas duas substituições o circuito volta a ser resistivo — e os valores obtidos são precisamente as condições de contorno dos transitórios.</p>"
+    },
+    {
+      "id": "ce-033",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "armazenadores",
+      "enunciado": "<p>Um capacitor é feito de duas folhas de 0,5 m² separadas por 0,1 mm de papel impregnado (κ = 3,5). Sua capacitância vale aproximadamente:</p>",
+      "alternativas": [
+        "0,155 µF",
+        "1,55 µF",
+        "15,5 µF",
+        "0,0155 µF"
+      ],
+      "correta": 0,
+      "formulas": [
+        "C = κε₀A/d",
+        "ε₀ = 8,854 × 10⁻¹² F/m"
+      ],
+      "explicacao": "<div class=\"passo\">C = κε₀A/d = 3,5 × 8,854×10⁻¹² × 0,5 / 1×10⁻⁴</div><div class=\"passo\">C = 1,549×10⁻⁷ F = <strong>0,155 µF</strong></div><p>Meio metro quadrado de folha para 0,155 µF mostra por que capacitores reais são enrolados: a área precisa ser grande e a separação, mínima. Com rigidez dielétrica de 16 kV/mm, essa espessura de 0,1 mm suporta cerca de 1600 V — e a tensão máxima nada tem a ver com a capacitância.</p>"
+    },
+    {
+      "id": "ce-034",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "armazenadores",
+      "enunciado": "<p>Capacitores de 10 µF e 20 µF associados em série e em paralelo equivalem, respectivamente, a:</p>",
+      "alternativas": [
+        "30 µF e 6,67 µF",
+        "6,67 µF e 30 µF",
+        "6,67 µF e 10 µF",
+        "15 µF e 30 µF"
+      ],
+      "correta": 1,
+      "formulas": [
+        "C_série⁻¹ = ΣC⁻¹",
+        "C_paralelo = ΣC"
+      ],
+      "explicacao": "<div class=\"passo\">Série: C = (10 × 20)/30 = <strong>6,67 µF</strong> — menor que o menor</div><div class=\"passo\">Paralelo: C = 10 + 20 = <strong>30 µF</strong></div><p>É o inverso dos resistores, e por uma razão física: em paralelo os capacitores compartilham a tensão e somam cargas, logo somam capacitâncias; em série compartilham a mesma carga e somam tensões, logo somam inversos. E, em série, o <em>menor</em> capacitor fica com a <em>maior</em> tensão — o que define a especificação de cada unidade num banco.</p>"
+    },
+    {
+      "id": "ce-035",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "primeira-ordem",
+      "enunciado": "<p>Um resistor de 1 MΩ em série com um capacitor de 0,1 µF é ligado a 100 V. A constante de tempo e a corrente inicial valem:</p>",
+      "alternativas": [
+        "0,100 s e 1,0 mA",
+        "10 s e 100 µA",
+        "0,100 s e 100 µA",
+        "0,010 s e 100 µA"
+      ],
+      "correta": 2,
+      "formulas": [
+        "τ = RC",
+        "i(0⁺) = V_s/R com v_C(0) = 0"
+      ],
+      "explicacao": "<div class=\"passo\">τ = RC = 10⁶ × 10⁻⁷ = <strong>0,100 s</strong></div><div class=\"passo\">i(0⁺) = V<sub>s</sub>/R = 100/10⁶ = <strong>100 µA</strong></div><p>No instante inicial o capacitor está descarregado e não oferece tensão: toda a tensão da fonte cai no resistor, e a corrente é máxima. É a corrente que salta nesse circuito; a tensão do capacitor, que tem inércia, parte de zero continuamente.</p>"
+    },
+    {
+      "id": "ce-036",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "primeira-ordem",
+      "enunciado": "<p>Num circuito RC com τ = 100 ms, partindo do capacitor descarregado, o tempo para a tensão atingir 90 % do valor final é:</p>",
+      "alternativas": [
+        "0,100 s",
+        "0,500 s",
+        "0,090 s",
+        "0,230 s"
+      ],
+      "correta": 3,
+      "formulas": [
+        "v = V(1 − e^(−t/τ))",
+        "t = τ ln[1/(1−x)]"
+      ],
+      "explicacao": "<div class=\"passo\">0,90 = 1 − e<sup>−t/τ</sup> → e<sup>−t/τ</sup> = 0,10</div><div class=\"passo\">t = τ ln 10 = 0,1 × 2,303 = <strong>0,230 s</strong></div><p>Em 1τ percorrem-se 63,2 %, em 2τ 86,5 %, em 3τ 95,0 % e em 5τ 99,3 %. Os 90 % ficam entre 2τ e 3τ, e para 99 % seriam 0,461 s. Matematicamente a exponencial nunca termina; em engenharia, 5τ encerra o transitório.</p>"
+    },
+    {
+      "id": "ce-037",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "primeira-ordem",
+      "enunciado": "<p>Uma fonte de 12 V é ligada a 4 Ω em série com 0,2 H. A constante de tempo, a corrente final e o tempo para a corrente atingir 2 A valem:</p>",
+      "alternativas": [
+        "50 ms, 3,0 A e 54,9 ms",
+        "50 ms, 3,0 A e 33,3 ms",
+        "0,8 s, 3,0 A e 54,9 ms",
+        "50 ms, 48 A e 54,9 ms"
+      ],
+      "correta": 0,
+      "formulas": [
+        "τ = L/R",
+        "i = (V/R)(1 − e^(−t/τ))"
+      ],
+      "explicacao": "<div class=\"passo\">τ = L/R = 0,2/4 = <strong>50 ms</strong>; i<sub>∞</sub> = V/R = <strong>3,0 A</strong></div><div class=\"passo\">2 = 3(1 − e<sup>−t/τ</sup>) → e<sup>−t/τ</sup> = 1/3 → t = τ ln 3 = <strong>54,9 ms</strong></div><p>Note que 2 A é 2/3 do valor final, atingido em pouco mais de 1τ (que daria 63,2 %, ou 1,90 A). No indutor, quem tem inércia é a corrente: ela parte de zero suavemente, enquanto a tensão salta para 12 V e decai.</p>"
+    },
+    {
+      "id": "ce-038",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "primeira-ordem",
+      "enunciado": "<p>Ao carregar um capacitor descarregado através de um resistor até a tensão da fonte, a fração da energia fornecida que se dissipa no resistor é:</p>",
+      "alternativas": [
+        "tanto maior quanto maior for R, pois a dissipação é proporcional a R",
+        "exatamente 50 %, qualquer que seja o valor de R",
+        "tanto menor quanto menor for R, tendendo a zero num circuito ideal",
+        "igual a 1 − e⁻¹, ou cerca de 63 %"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A fonte entrega qV<sub>s</sub> = CV<sub>s</sub>² e o capacitor guarda ½CV<sub>s</sub>²; a diferença, a outra metade, vai para o resistor — e a conta não contém R. Reduzir a resistência acelera a carga e aumenta a corrente na mesma proporção, mantendo a energia dissipada. É por isso que fontes chaveadas transferem energia com indutores e comutação, e não com resistores.</p>"
+    },
+    {
+      "id": "ce-039",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "singularidades",
+      "enunciado": "<p>Um RC com τ = 1 ms, inicialmente descarregado, recebe um pulso de 10 V com 2 ms de duração. A tensão do capacitor no fim do pulso vale:</p>",
+      "alternativas": [
+        "10,0 V",
+        "6,32 V",
+        "8,65 V",
+        "1,35 V"
+      ],
+      "correta": 2,
+      "formulas": [
+        "v = V(1 − e^(−t/τ))",
+        "τ = RC"
+      ],
+      "explicacao": "<div class=\"passo\">v<sub>C</sub>(t<sub>p</sub>) = 10(1 − e<sup>−2ms/1ms</sup>) = 10(1 − e⁻²)</div><div class=\"passo\">v<sub>C</sub> = 10 × 0,8647 = <strong>8,65 V</strong></div><p>Um pulso de 2τ carrega 86,5 % — o valor tabelado. Depois do fim do pulso a descarga leva outros 5τ, de modo que a saída fica bem mais larga que a entrada: o RC alargou o pulso. A relação entre t<sub>p</sub> e τ é o único parâmetro de projeto nesse circuito.</p>"
+    },
+    {
+      "id": "ce-040",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "singularidades",
+      "enunciado": "<p>No instante exato em que termina o pulso aplicado a um RC, o que acontece com a corrente?</p>",
+      "alternativas": [
+        "ela permanece contínua, pois corrente nunca dá saltos",
+        "ela vai imediatamente a zero e o capacitor retém a carga indefinidamente",
+        "ela dobra de valor, somando-se à corrente de descarga",
+        "ela salta e troca de sinal, pois a tensão do capacitor não muda mas a fonte desapareceu"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A tensão do capacitor é contínua — tem inércia —, mas a corrente é proporcional à <em>diferença</em> entre a fonte e essa tensão. Com a fonte em zero e o capacitor a 8,65 V, a corrente passa de +1,35 mA a −8,65 mA instantaneamente. Esse degrau é o detalhe mais esquecido nos esboços de resposta a pulso.</p>"
+    },
+    {
+      "id": "ce-041",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "singularidades",
+      "enunciado": "<p>Um capacitor de 1 µF descarregado é ligado diretamente a uma fonte de 12 V por uma chave de resistência desprezível. A carga transferida e a energia perdida no processo valem:</p>",
+      "alternativas": [
+        "12 µC e 72 µJ",
+        "12 µC e 144 µJ",
+        "12 mC e 72 µJ",
+        "144 µC e 72 µJ"
+      ],
+      "correta": 0,
+      "formulas": [
+        "q = CV",
+        "W_fonte = qV",
+        "W_C = ½CV²"
+      ],
+      "explicacao": "<div class=\"passo\">q = CV = 10⁻⁶ × 12 = <strong>12 µC</strong>, num tempo que tende a zero (impulso de corrente)</div><div class=\"passo\">Energia da fonte: qV = <strong>144 µJ</strong>; armazenada: ½CV² = 72 µJ</div><div class=\"passo\">Perdida: 144 − 72 = <strong>72 µJ</strong>, independentemente de R</div><p>Com R → 0, a corrente inicial V/R tende a infinito e τ = RC tende a zero, mas o produto — a carga — permanece 12 µC. É o que acontece ao energizar um banco de capacitores: o pico é limitado apenas pela resistência e pela indutância dos cabos. Um resistor de pré-carga em série não muda a energia perdida, só o tempo e o pico em que isso ocorre.</p>"
+    },
+    {
+      "id": "ce-042",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "segunda-ordem",
+      "enunciado": "<p>Num RLC série com L = 0,1 H e C = 10 µF, a frequência natural e o resistor crítico valem:</p>",
+      "alternativas": [
+        "ω₀ = 1000 rad/s e R<sub>cr</sub> = 100 Ω",
+        "ω₀ = 1000 rad/s e R<sub>cr</sub> = 200 Ω",
+        "ω₀ = 159,2 rad/s e R<sub>cr</sub> = 200 Ω",
+        "ω₀ = 10⁶ rad/s e R<sub>cr</sub> = 200 Ω"
+      ],
+      "correta": 1,
+      "formulas": [
+        "ω₀ = 1/√(LC)",
+        "R_cr = 2√(L/C)"
+      ],
+      "explicacao": "<div class=\"passo\">ω₀ = 1/√(LC) = 1/√(0,1 × 10⁻⁵) = 1/10⁻³ = <strong>1000 rad/s</strong> (f₀ = 159,2 Hz)</div><div class=\"passo\">R<sub>cr</sub> = 2√(L/C) = 2√(10⁴) = <strong>200 Ω</strong></div><p>Os 159,2 Hz são a <em>frequência</em> f₀, não ω₀ — confundir as duas é o erro mais comum aqui. Acima de 200 Ω o circuito não oscila; abaixo, oscila com envelope decrescente.</p>"
+    },
+    {
+      "id": "ce-043",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "segunda-ordem",
+      "enunciado": "<p>No mesmo circuito (L = 0,1 H, C = 10 µF), com R = 40 Ω, o coeficiente de amortecimento e a frequência amortecida valem:</p>",
+      "alternativas": [
+        "ζ = 0,20 e ω<sub>d</sub> = 1000 rad/s",
+        "ζ = 5,0 e ω<sub>d</sub> = 979,8 rad/s",
+        "ζ = 0,20 e ω<sub>d</sub> = 979,8 rad/s",
+        "ζ = 0,20 e ω<sub>d</sub> = 1020,4 rad/s"
+      ],
+      "correta": 2,
+      "formulas": [
+        "α = R/2L",
+        "ζ = α/ω₀",
+        "ω_d = ω₀√(1−ζ²)"
+      ],
+      "explicacao": "<div class=\"passo\">α = R/2L = 40/0,2 = 200 s⁻¹; ζ = α/ω₀ = 200/1000 = <strong>0,20</strong></div><div class=\"passo\">ω<sub>d</sub> = √(ω₀² − α²) = √(10⁶ − 4×10⁴) = <strong>979,8 rad/s</strong></div><p>ω<sub>d</sub> é sempre <em>menor</em> que ω₀: o amortecimento atrasa a oscilação além de reduzi-la. Com ζ = 0,2 a diferença é de apenas 2 %, o que justifica usar ω₀ como estimativa em circuitos de baixa perda.</p>"
+    },
+    {
+      "id": "ce-044",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "segunda-ordem",
+      "enunciado": "<p>Um RLC série com ζ = 0,20 recebe um degrau de 10 V com capacitor descarregado. O pico da tensão no capacitor vale:</p>",
+      "alternativas": [
+        "10,0 V",
+        "12,0 V",
+        "20,0 V",
+        "15,3 V"
+      ],
+      "correta": 3,
+      "formulas": [
+        "M_p = e^(−πζ/√(1−ζ²))",
+        "t_pico = π/ω_d"
+      ],
+      "explicacao": "<div class=\"passo\">M<sub>p</sub> = e<sup>−πζ/√(1−ζ²)</sup> = e<sup>−0,6413</sup> = 0,527</div><div class=\"passo\">v<sub>pico</sub> = 10 × 1,527 = <strong>15,3 V</strong>, em t = π/ω<sub>d</sub> = 3,21 ms</div><p>Quem especificasse o capacitor para os 10 V da fonte o perderia no primeiro acionamento: isolação se dimensiona pelo transitório, não pelo regime. O mecanismo é a inércia do indutor — quando a tensão do capacitor alcança a da fonte, a corrente ainda é máxima e continua carregando além dela.</p>"
+    },
+    {
+      "id": "ce-045",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "segunda-ordem",
+      "enunciado": "<p>Um indutor de 50 mH conduzindo 0,5 A é ligado a um capacitor descarregado de 20 µF, sem resistência. A tensão máxima no capacitor vale:</p>",
+      "alternativas": [
+        "25 V",
+        "12,5 V",
+        "50 V",
+        "0,5 V"
+      ],
+      "correta": 0,
+      "formulas": [
+        "V_max = I₀√(L/C)",
+        "½Li² = ½Cv²"
+      ],
+      "explicacao": "<div class=\"passo\">Impedância característica: √(L/C) = √(0,05/2×10⁻⁵) = 50 Ω</div><div class=\"passo\">V<sub>máx</sub> = I₀√(L/C) = 0,5 × 50 = <strong>25 V</strong></div><p>Conferindo pela energia: ½Li² = ½ × 0,05 × 0,25 = 6,25 mJ, e ½Cv² = ½ × 2×10⁻⁵ × 625 = 6,25 mJ. A tensão apareceu sem nenhuma fonte de tensão no circuito — é a corrente do indutor convertida pela impedância característica, e a troca completa se repete a cada quarto de período (1,57 ms).</p>"
+    },
+    {
+      "id": "ce-046",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "fasores",
+      "enunciado": "<p>A rede residencial é especificada em 220 V. Esse valor e o pico da senoide são, respectivamente:</p>",
+      "alternativas": [
+        "o valor de pico, e o eficaz vale 156 V",
+        "o valor eficaz, e o pico vale 311 V",
+        "o valor médio, e o pico vale 345 V",
+        "o valor eficaz, e o pico vale 440 V"
+      ],
+      "correta": 1,
+      "explicacao": "<p>V<sub>rms</sub> = V<sub>p</sub>/√2, logo V<sub>p</sub> = 220 × 1,414 = 311 V. O eficaz é o valor contínuo que dissiparia a mesma potência num resistor, e é o que todo instrumento indica. O pico, por sua vez, é o que importa para isolação e para tensão reversa de componentes — razão pela qual um capacitor ligado na rede de 220 V precisa de tensão nominal bem acima de 311 V.</p>"
+    },
+    {
+      "id": "ce-047",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "fasores",
+      "enunciado": "<p>A reatância de um indutor de 0,1 H em 60 Hz vale:</p>",
+      "alternativas": [
+        "6,0 Ω",
+        "0,1 Ω",
+        "37,7 Ω",
+        "377 Ω"
+      ],
+      "correta": 2,
+      "formulas": [
+        "X_L = ωL = 2πfL"
+      ],
+      "explicacao": "<div class=\"passo\">X<sub>L</sub> = 2πfL = 2π × 60 × 0,1 = <strong>37,7 Ω</strong></div><p>Reatância tem unidade de ohm mas não dissipa: ela apenas desloca a corrente no tempo. E cresce com a frequência — a mesma bobina ofereceria 75,4 Ω a 120 Hz e seria um curto em corrente contínua. O capacitor faz o oposto, e é essa oposição que produz filtros e ressonância.</p>"
+    },
+    {
+      "id": "ce-048",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "fasores",
+      "enunciado": "<p>Uma carga de R = 30 Ω em série com X<sub>L</sub> = 37,7 Ω é alimentada por 220 V. O módulo da impedância, o ângulo e a corrente valem:</p>",
+      "alternativas": [
+        "67,7 Ω, 51,5° e 3,25 A",
+        "48,2 Ω, 38,5° e 4,57 A",
+        "48,2 Ω, 51,5° e 10,6 A",
+        "48,2 Ω, 51,5° e 4,57 A"
+      ],
+      "correta": 3,
+      "formulas": [
+        "|Z| = √(R²+X²)",
+        "θ = arctg(X/R)",
+        "I = V/|Z|"
+      ],
+      "explicacao": "<div class=\"passo\">|Z| = √(30² + 37,7²) = <strong>48,18 Ω</strong></div><div class=\"passo\">θ = arctg(37,7/30) = <strong>51,49°</strong> (corrente atrasada)</div><div class=\"passo\">I = 220/48,18 = <strong>4,566 A</strong></div><p>Somar as reatâncias e resistências aritmeticamente daria 67,7 Ω, que é a primeira alternativa errada. O fator de potência aqui é cos 51,49° = 0,623 — abaixo do mínimo regulatório de 0,92, o que tornaria essa carga sujeita a cobrança de reativo.</p>"
+    },
+    {
+      "id": "ce-049",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fasores",
+      "enunciado": "<p>Num R–L série alimentado por 220 V, mede-se 137 V no resistor e 172 V no indutor. A soma aritmética dá 309 V. A explicação é:</p>",
+      "alternativas": [
+        "as duas tensões estão defasadas de 90°, e a soma válida é a fasorial: √(137² + 172²) = 220 V",
+        "o indutor gera tensão própria, somando-se à da fonte",
+        "os instrumentos leem valores de pico, que precisam ser divididos por √2",
+        "há erro de medição: a soma das tensões em série é sempre igual à da fonte"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A LKT continua valendo — mas com fasores, não com módulos. A tensão do resistor está em fase com a corrente e a do indutor está 90° adiantada em relação a ela, de modo que as duas formam os catetos de um triângulo retângulo cuja hipotenusa é a tensão da fonte. Somar módulos de grandezas defasadas é o erro mais comum da análise em corrente alternada, e dá sempre um resultado maior que o real.</p>"
+    },
+    {
+      "id": "ce-050",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "fasores",
+      "enunciado": "<p>Um RLC série com R = 10 Ω, L = 50 mH e C = 20 µF é alimentado por 220 V. Na ressonância, a corrente e a tensão sobre o indutor valem:</p>",
+      "alternativas": [
+        "22 A e 220 V",
+        "22 A e 1100 V",
+        "1,93 A e 1100 V",
+        "2,2 A e 110 V"
+      ],
+      "correta": 1,
+      "formulas": [
+        "f₀ = 1/(2π√(LC))",
+        "Q = ω₀L/R",
+        "V_L = Q·V na ressonância"
+      ],
+      "explicacao": "<div class=\"passo\">f₀ = 1/(2π√(LC)) = 159,2 Hz, onde X<sub>L</sub> = X<sub>C</sub> = 50 Ω e Z = R = 10 Ω</div><div class=\"passo\">I = 220/10 = <strong>22 A</strong></div><div class=\"passo\">Q = ω₀L/R = 1000 × 0,05/10 = 5 → V<sub>L</sub> = Q·V = <strong>1100 V</strong></div><p>A 60 Hz esse circuito seria fortemente capacitivo (|Z| = 114 Ω, corrente de 1,93 A); na ressonância a corrente cresce onze vezes e as tensões internas atingem cinco vezes a da fonte, em oposição de fase. É um risco real em instalações com banco de capacitores e harmônicas, e a providência padrão é instalar reatores de dessintonia em série com o banco.</p>"
+    },
+    {
+      "id": "ce-051",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "potencia",
+      "enunciado": "<p>Uma carga consome 10 kW com fator de potência 0,70 em 220 V. A potência aparente e a corrente valem:</p>",
+      "alternativas": [
+        "10,0 kVA e 45,5 A",
+        "14,29 kVA e 45,5 A",
+        "14,29 kVA e 64,9 A",
+        "7,0 kVA e 31,8 A"
+      ],
+      "correta": 2,
+      "formulas": [
+        "S = P/FP",
+        "I = S/V"
+      ],
+      "explicacao": "<div class=\"passo\">S = P/FP = 10/0,70 = <strong>14,29 kVA</strong></div><div class=\"passo\">I = S/V = 14 286/220 = <strong>64,9 A</strong></div><p>É S, e não P, que dimensiona condutor, disjuntor e transformador — o que aquece a instalação é a corrente. Daí a especificação de transformadores em kVA. Com fator de potência unitário, a mesma carga puxaria apenas 45,5 A.</p>"
+    },
+    {
+      "id": "ce-052",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "potencia",
+      "enunciado": "<p>Para elevar o fator de potência dessa carga (10 kW, FP 0,70) a 0,95 em 220 V e 60 Hz, o capacitor em paralelo deve fornecer e valer:</p>",
+      "alternativas": [
+        "10,20 kvar e 559 µF",
+        "3,29 kvar e 180 µF",
+        "6,92 kvar e 42 µF",
+        "6,92 kvar e 379 µF"
+      ],
+      "correta": 3,
+      "formulas": [
+        "Q_C = P(tg θ₁ − tg θ₂)",
+        "C = Q_C/(2πfV²)"
+      ],
+      "explicacao": "<div class=\"passo\">θ₁ = 45,57°, Q₁ = P tg θ₁ = 10,20 kvar</div><div class=\"passo\">θ₂ = 18,19°, Q₂ = 3,29 kvar → Q<sub>C</sub> = <strong>6,92 kvar</strong></div><div class=\"passo\">C = Q<sub>C</sub>/(2πfV²) = 6915/(377 × 48 400) = <strong>379 µF</strong></div><p>O capacitor fornece apenas a diferença entre as duas reativas, não a reativa total: corrigir para FP unitário exigiria 10,20 kvar, e isso não é desejável — banco sobrando eleva a tensão da rede e pode ressoar com harmônicas. Em 380 V, o mesmo kvar pediria 127 µF, porque C varia com 1/V².</p>"
+    },
+    {
+      "id": "ce-053",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "potencia",
+      "enunciado": "<p>Depois de corrigir o fator de potência de 0,70 para 0,95, a corrente cai 26 % e as perdas na linha caem 46 %. Sobre a energia faturada em kWh:</p>",
+      "alternativas": [
+        "ela não muda, pois a potência ativa é a mesma: o capacitor economiza corrente, não energia",
+        "ela cai 26 %, acompanhando a corrente",
+        "ela cai 46 %, acompanhando as perdas",
+        "ela aumenta, pois o capacitor passa a consumir energia reativa"
+      ],
+      "correta": 0,
+      "explicacao": "<p>O capacitor fornece reativa localmente e deixa de obrigar o sistema a transportá-la. A carga continua recebendo 10 kW e 220 V, e o medidor de energia ativa registra o mesmo consumo. O que desaparece são os 17 A que circulavam entre o transformador e a carga — e, com eles, as perdas por efeito joule, que vão com o quadrado da corrente, além da cobrança de excedente reativo.</p>"
+    },
+    {
+      "id": "ce-054",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "potencia",
+      "enunciado": "<p>Uma carga trifásica equilibrada de 8 + j6 Ω por fase é ligada em estrela a uma rede de 380 V entre fases. A corrente de linha e a potência ativa valem:</p>",
+      "alternativas": [
+        "38,0 A e 34,66 kW",
+        "21,9 A e 11,55 kW",
+        "21,9 A e 14,44 kW",
+        "65,8 A e 11,55 kW"
+      ],
+      "correta": 1,
+      "formulas": [
+        "V_f = V_L/√3 (Y)",
+        "P = √3 V_L I_L cos θ"
+      ],
+      "explicacao": "<div class=\"passo\">|Z| = 10 Ω; V<sub>f</sub> = 380/√3 = 219,4 V</div><div class=\"passo\">I<sub>f</sub> = I<sub>L</sub> = 219,4/10 = <strong>21,9 A</strong></div><div class=\"passo\">P = √3 V<sub>L</sub> I<sub>L</sub> cos θ = 1,732 × 380 × 21,94 × 0,80 = <strong>11,55 kW</strong></div><p>Os 14,44 kVA da terceira alternativa são a potência <em>aparente</em>; a ativa é 80 % disso, porque o fator de potência da carga é 8/10 = 0,80. A mesma carga ligada em triângulo conduziria 65,8 A de linha e consumiria 34,66 kW — exatamente o triplo.</p>"
+    },
+    {
+      "id": "ce-055",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "potencia",
+      "enunciado": "<p>A partida estrela-triângulo de um motor de indução funciona porque, ligada em triângulo em vez de estrela, a mesma carga:</p>",
+      "alternativas": [
+        "recebe a mesma tensão por fase, mas com o triplo da corrente de linha",
+        "reduz a impedância por fase a um terço do valor em estrela",
+        "recebe √3 vezes mais tensão por fase e conduz √3 vezes mais corrente por fase, triplicando a potência",
+        "inverte a sequência de fases, o que aumenta o torque de partida"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Em triângulo, V<sub>f</sub> = V<sub>L</sub>; em estrela, V<sub>f</sub> = V<sub>L</sub>/√3. A impedância não muda — o que muda é a tensão aplicada a ela, e com ela a corrente: √3 × √3 = 3. Daí a partida em Y, com um terço do torque e da corrente, comutando para Δ quando a máquina já está girando. A mesma relação de três aparece na transformação estrela-triângulo de resistores: R<sub>Δ</sub> = 3R<sub>Y</sub>.</p>"
+    },
+    {
+      "id": "ce-056",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "potencia",
+      "enunciado": "<p>A potência instantânea numa carga indutiva alimentada em corrente alternada fica negativa durante parte do ciclo. Isso significa que:</p>",
+      "alternativas": [
+        "a carga está gerando energia elétrica a partir de energia mecânica",
+        "houve erro de medição, pois potência instantânea é sempre positiva numa carga",
+        "a carga está consumindo energia reativa da rede nesses intervalos",
+        "nesses intervalos a carga devolve à rede a energia armazenada em seus campos — é o que a potência reativa mede"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Escrevendo p(t) = VI cos θ + VI cos(2ωt − θ), a primeira parcela é a média — a única que transporta energia — e a segunda oscila ao dobro da frequência com média nula. Quando |cos(2ωt − θ)| supera cos θ, a soma fica negativa: o campo magnético do indutor devolve ao sistema o que havia tomado. Nada é gerado nem consumido nessa troca; apenas transportado, duas vezes por ciclo.</p>"
+    }
+  ]
+}
