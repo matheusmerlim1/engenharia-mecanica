@@ -901,6 +901,56 @@
       "ordem": 4
     },
     {
+      "id": "sim-niveis",
+      "slug": "acustica-aplicada",
+      "disciplina": "Acústica Aplicada",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "1. Níveis, fontes e distância — do watt ao decibel",
+      "resumo": "Uma fonte emite certa potência acústica; o microfone mede pressão.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-espectro",
+      "slug": "acustica-aplicada",
+      "disciplina": "Acústica Aplicada",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "2. Espectro, ponderações e exposição — o nível global em dB(A)",
+      "resumo": "Um número só não descreve um ruído. O espectro por bandas de oitava mostra onde está a energia; a ponderação A corrige pela sensibilidade do ouvido; e o nível global em dB(A), com o tempo de exposição",
+      "ordem": 1
+    },
+    {
+      "id": "sim-interface",
+      "slug": "acustica-aplicada",
+      "disciplina": "Acústica Aplicada",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "3. Impedância, reflexão e transmissão — o que acontece na interface",
+      "resumo": "Quando uma onda plana encontra outro meio, parte volta e parte passa.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-sala",
+      "slug": "acustica-aplicada",
+      "disciplina": "Acústica Aplicada",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "4. Reverberação e campo sonoro — projetar uma sala",
+      "resumo": "Dentro de uma sala, o som que chega ao ouvinte é a soma do campo direto, que cai com a distância, e do campo reverberante, que é o mesmo em toda parte.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-isolamento",
+      "slug": "acustica-aplicada",
+      "disciplina": "Acústica Aplicada",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "5. Isolamento — a lei da massa e o furo que estraga tudo",
+      "resumo": "Isolar é impedir o som de passar de um ambiente a outro, e quem faz isso é a massa por unidade de área.",
+      "ordem": 4
+    },
+    {
       "id": "sim-rotor",
       "slug": "bombas-e-compressores",
       "disciplina": "Bombas e Compressores",

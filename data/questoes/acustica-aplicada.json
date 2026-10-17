@@ -1,0 +1,1020 @@
+{
+  "disciplina": "Acústica Aplicada",
+  "slug": "acustica-aplicada",
+  "topicos": [
+    {
+      "id": "fundamentos",
+      "nome": "Ondas e grandezas"
+    },
+    {
+      "id": "niveis",
+      "nome": "Níveis e decibéis"
+    },
+    {
+      "id": "propagacao",
+      "nome": "Propagação ao ar livre"
+    },
+    {
+      "id": "medicao",
+      "nome": "Medição do som"
+    },
+    {
+      "id": "espectro",
+      "nome": "Espectros e ponderações"
+    },
+    {
+      "id": "fourier",
+      "nome": "Sinais e Fourier"
+    },
+    {
+      "id": "equacao",
+      "nome": "A equação da onda"
+    },
+    {
+      "id": "interface",
+      "nome": "Reflexão e transmissão"
+    },
+    {
+      "id": "estacionarias",
+      "nome": "Ondas estacionárias"
+    },
+    {
+      "id": "psico",
+      "nome": "Psicoacústica e música"
+    },
+    {
+      "id": "salas",
+      "nome": "Campo sonoro em salas"
+    },
+    {
+      "id": "parametros",
+      "nome": "Qualidade acústica"
+    },
+    {
+      "id": "isolamento",
+      "nome": "Isolamento e ruído"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "ac-001",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "fundamentos",
+      "enunciado": "<p>Uma onda sonora de 500 Hz se propaga no ar a 343 m/s. O comprimento de onda e o número de onda valem, respectivamente:</p>",
+      "alternativas": [
+        "0,686 m e 9,16 rad/m",
+        "1,46 m e 4,30 rad/m",
+        "0,686 m e 1,46 rad/m",
+        "171,5 m e 0,037 rad/m"
+      ],
+      "correta": 0,
+      "formulas": [
+        "c = λf",
+        "k = ω/c = 2π/λ"
+      ],
+      "explicacao": "<div class=\"passo\">λ = c/f = 343/500 = <strong>0,686 m</strong></div><div class=\"passo\">k = 2π/λ = 6,283/0,686 = <strong>9,16 rad/m</strong></div><p>O período correspondente é 2,00 ms e ω = 3142 rad/s. Note que k e λ são inversos um do outro a menos de 2π — confundir os dois é o erro mais comum nessa conta.</p>"
+    },
+    {
+      "id": "ac-002",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "fundamentos",
+      "enunciado": "<p>A diferença essencial entre o som que se propaga e o açúcar que se dissolve no café é que:</p>",
+      "alternativas": [
+        "a propagação transporta matéria e a difusão transporta apenas energia",
+        "a propagação é reversível e regida por equação de segunda ordem no tempo; a difusão é irreversível e de primeira ordem",
+        "a propagação ocorre em sólidos e a difusão apenas em líquidos",
+        "a propagação é linear e a difusão é sempre não linear"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Essa distinção não é de grau, é de natureza. A equação da onda tem derivada segunda no tempo e admite soluções que mantêm a forma e podem voltar — daí o eco. A equação da difusão tem derivada primeira e é irreversível: a concentração nunca se reconcentra sozinha, e não existe \"eco de açúcar\".</p>"
+    },
+    {
+      "id": "ac-003",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fundamentos",
+      "enunciado": "<p>Uma barreira acústica de 3 m de altura é muito mais eficaz contra os agudos que contra os graves. A razão é que:</p>",
+      "alternativas": [
+        "os graves têm mais energia e por isso atravessam qualquer obstáculo",
+        "o ar absorve os agudos mais rapidamente, o que ajuda a barreira",
+        "a difração contorna obstáculos cuja dimensão é menor que o comprimento de onda, e em 63 Hz λ vale 5,4 m",
+        "a barreira reflete os agudos e transmite os graves por diferença de impedância"
+      ],
+      "correta": 2,
+      "explicacao": "<p>A regra geral da acústica: um obstáculo só interage com o som quando suas dimensões são comparáveis ao comprimento de onda. Em 4 kHz, λ = 8,6 cm e a barreira é enorme comparada a isso; em 63 Hz, λ = 5,4 m e a barreira é pequena — a onda simplesmente contorna. É a mesma razão de um painel absorvente de 5 cm ser inútil nos graves.</p>"
+    },
+    {
+      "id": "ac-004",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "fundamentos",
+      "enunciado": "<p>Quantas oitavas tem o espectro audível (20 Hz a 20 kHz)?</p>",
+      "alternativas": [
+        "cerca de 3",
+        "cerca de 1000",
+        "cerca de 31",
+        "cerca de 10"
+      ],
+      "correta": 3,
+      "formulas": [
+        "n = log₂(f_sup/f_inf)"
+      ],
+      "explicacao": "<div class=\"passo\">número de oitavas = log₂(20000/20) = log₂(1000)</div><div class=\"passo\">= ln(1000)/ln(2) = <strong>9,97 ≈ 10 oitavas</strong></div><p>Para comparação, toda a luz visível (400 a 700 nm) cobre menos de uma oitava. O 31 da alternativa errada é o número de bandas de <em>terço</em> de oitava no espectro audível — três por oitava.</p>"
+    },
+    {
+      "id": "ac-005",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "niveis",
+      "enunciado": "<p>Uma onda monocromática tem amplitude de pressão de 0,02 Pa. Seu nível de pressão sonora é de aproximadamente:</p>",
+      "alternativas": [
+        "57,0 dB",
+        "60,0 dB",
+        "54,0 dB",
+        "114,0 dB"
+      ],
+      "correta": 0,
+      "formulas": [
+        "p_rms = A/√2 para senoide",
+        "L_p = 20 log(p_rms/2×10⁻⁵)"
+      ],
+      "explicacao": "<div class=\"passo\">p_rms = A/√2 = 0,02/1,414 = 0,01414 Pa</div><div class=\"passo\">L_p = 20 log(0,01414/2×10⁻⁵) = 20 log(707,1) = <strong>57,0 dB</strong></div><p>O erro de 3 dB em 60,0 vem de usar a amplitude em vez do valor eficaz: o fator √2 em pressão vale exatamente 3,01 dB. Em sinal senoidal essa distinção importa; em ruído de banda larga, só se trabalha com valor eficaz mesmo.</p>"
+    },
+    {
+      "id": "ac-006",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "niveis",
+      "enunciado": "<p>Qual dos três níveis é uma propriedade exclusiva da fonte, independente de distância e de ambiente?</p>",
+      "alternativas": [
+        "o nível de pressão sonora (NPS)",
+        "o nível de potência sonora (NWS)",
+        "o nível de intensidade sonora (NIS)",
+        "os três dependem igualmente da fonte e do ambiente"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A potência acústica é uma característica da máquina, como a potência elétrica: ela não muda se o microfone se afasta nem se a máquina é levada para outra sala. É por isso que catálogo de fabricante informa NWS, e norma de higiene ocupacional cobra NPS — são perguntas diferentes.</p>"
+    },
+    {
+      "id": "ac-007",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "niveis",
+      "enunciado": "<p>Seis máquinas idênticas, operando em frequências distintas, produzem cada uma 75 dB num dado ponto. O nível global é:</p>",
+      "alternativas": [
+        "450 dB",
+        "80,0 dB",
+        "82,8 dB",
+        "75,0 dB"
+      ],
+      "correta": 2,
+      "formulas": [
+        "L_tot = 10 log Σ 10^(L_i/10)",
+        "n fontes iguais: +10 log n"
+      ],
+      "explicacao": "<div class=\"passo\">L = 10 log(6 × 10^(75/10)) = 75 + 10 log 6</div><div class=\"passo\">= 75 + 7,78 = <strong>82,8 dB</strong></div><p>Fontes incoerentes somam potências, nunca decibéis. Note a consequência prática do outro lado: desligar uma das seis reduz o nível em apenas 0,8 dB — inaudível. Reduzir ruído por eliminação de fontes iguais é um caminho ingrato.</p>"
+    },
+    {
+      "id": "ac-008",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "niveis",
+      "enunciado": "<p>Mede-se 81 dB num ponto da fábrica. Desligando uma máquina particularmente ruidosa, o nível cai para 74 dB. A contribuição dessa máquina ao ruído naquele ponto é de:</p>",
+      "alternativas": [
+        "7,0 dB",
+        "77,5 dB",
+        "81,0 dB",
+        "80,0 dB"
+      ],
+      "correta": 3,
+      "formulas": [
+        "L_fonte = 10 log(10^(L1/10) − 10^(L2/10))"
+      ],
+      "explicacao": "<div class=\"passo\">L_máq = 10 log(10^8,1 − 10^7,4)</div><div class=\"passo\">= 10 log(1,259×10⁸ − 2,512×10⁷) = 10 log(1,008×10⁸)</div><div class=\"passo\">= <strong>80,0 dB</strong></div><p>A subtração é energética, como a soma. Uma máquina que sozinha faz 80 dB num ambiente de 81 dB responde por quase toda a energia: silenciá-la resolve o problema. Se a diferença entre as duas medições fosse menor que 3 dB, porém, a conta ficaria dominada pela incerteza e não teria significado.</p>"
+    },
+    {
+      "id": "ac-009",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "niveis",
+      "enunciado": "<p>Duas fontes contribuem num ponto com 80 dB e 65 dB. O nível resultante é:</p>",
+      "alternativas": [
+        "praticamente 80 dB — a segunda é irrelevante",
+        "145 dB, pela soma dos níveis",
+        "cerca de 83 dB",
+        "cerca de 72,5 dB, pela média"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Uma fonte 15 dB abaixo da maior acrescenta apenas 0,1 dB. Essa é a regra de bolso mais útil da acústica de somas: <strong>só as fontes dentro de uns 10 dB da maior importam</strong>. Silenciar a terceira máquina mais ruidosa de um galpão quase nunca muda o nível global — e descobrir isso antes de gastar com o projeto é o que o cálculo oferece.</p>"
+    },
+    {
+      "id": "ac-010",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "propagacao",
+      "enunciado": "<p>Em campo livre, dobrar a distância a uma fonte pontual reduz o nível de pressão sonora em:</p>",
+      "alternativas": [
+        "3 dB",
+        "6 dB",
+        "20 dB",
+        "2 dB"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Vem do termo 1/r²: 10 log(1/4) = −6,0 dB. O resultado não depende da potência, da frequência nem do fator de diretividade. Para uma fonte <em>linear</em> — uma rodovia, um duto longo —, as frentes são cilíndricas, a intensidade cai com 1/r e a queda é de apenas 3 dB por dobro.</p>"
+    },
+    {
+      "id": "ac-011",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "propagacao",
+      "enunciado": "<p>Uma fonte onidirecional emite 0,2 W de potência acústica em campo livre. O nível de potência sonora e o nível de pressão a 1 m valem, respectivamente:</p>",
+      "alternativas": [
+        "113,0 dB e 113,0 dB",
+        "93,0 dB e 82,0 dB",
+        "113,0 dB e 102,0 dB",
+        "123,0 dB e 112,0 dB"
+      ],
+      "correta": 2,
+      "formulas": [
+        "L_W = 10 log(W/10⁻¹²)",
+        "L_p = L_W + 10 log(Q/4πr²)"
+      ],
+      "explicacao": "<div class=\"passo\">L_W = 10 log(0,2/10⁻¹²) = 10 log(2×10¹¹) = <strong>113,0 dB</strong></div><div class=\"passo\">L_p = L_W + 10 log(1/4π·1²) = 113,0 − 11,0 = <strong>102,0 dB</strong></div><p>Guarde a conversão: em campo livre, a 1 m de uma fonte onidirecional, NPS = NWS − 11 dB. Com a fonte apoiada no piso (Q = 2), seriam NWS − 8 dB.</p>"
+    },
+    {
+      "id": "ac-012",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "propagacao",
+      "enunciado": "<p>Mover uma máquina do canto do galpão para o meio do piso, mantendo a distância ao operador, muda o nível em:</p>",
+      "alternativas": [
+        "−3 dB, porque Q cai de 4 para 2",
+        "0 dB, porque a potência da fonte não mudou",
+        "−9 dB, porque Q cai de 8 para 1",
+        "−6 dB, porque Q cai de 8 para 2"
+      ],
+      "correta": 3,
+      "explicacao": "<p>No canto (piso e duas paredes) Q = 8; sobre o piso apenas, Q = 2. A diferença é 10 log(8/2) = 6,0 dB. A potência da fonte de fato não mudou — o que mudou foi a fração do espaço em que ela se distribui. É uma das medidas de controle de ruído mais baratas que existem.</p>"
+    },
+    {
+      "id": "ac-013",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "propagacao",
+      "enunciado": "<p>A absorção do ar vale cerca de 0,4 dB/km em 125 Hz e 117 dB/km em 8 kHz. A consequência prática mais conhecida disso é que:</p>",
+      "alternativas": [
+        "de longe, de um show só se ouve o grave",
+        "o som se propaga mais rápido nos graves que nos agudos",
+        "graves exigem mais potência para serem gerados",
+        "a divergência geométrica atenua mais os agudos que os graves"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A divergência geométrica atenua todas as frequências igualmente — é a absorção do ar que filtra os agudos ao longo de quilômetros. É também por isso que sirenes de longo alcance e apitos de navio operam em frequências baixas, apesar de o ouvido ser menos sensível a elas.</p>"
+    },
+    {
+      "id": "ac-014",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "propagacao",
+      "enunciado": "<p>Um operador recebe 95 dB a 2 m de uma máquina em campo livre. Se a máquina fosse substituída por uma linha extensa de máquinas idênticas (fonte linear), o nível a 20 m seria:</p>",
+      "alternativas": [
+        "75 dB, igual à fonte pontual",
+        "85 dB, contra 75 dB da fonte pontual",
+        "95 dB, pois fonte linear não atenua",
+        "65 dB, pois a fonte linear atenua mais"
+      ],
+      "correta": 1,
+      "formulas": [
+        "pontual: −6 dB/dobro",
+        "linear: −3 dB/dobro"
+      ],
+      "explicacao": "<div class=\"passo\">pontual: ΔL = −20 log(20/2) = −20,0 dB → 75 dB</div><div class=\"passo\">linear: ΔL = −10 log(20/2) = −10,0 dB → <strong>85 dB</strong></div><p>Dez decibéis de diferença entre os dois modelos no mesmo ponto. É a razão de afastar-se de uma rodovia render tão pouco — e de barreiras acústicas rodoviárias serem necessárias onde o simples afastamento bastaria para uma fonte pontual.</p>"
+    },
+    {
+      "id": "ac-015",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "medicao",
+      "enunciado": "<p>As constantes de tempo Slow, Fast e Impulse de um sonômetro valem, respectivamente:</p>",
+      "alternativas": [
+        "10 s, 1 s e 125 ms",
+        "125 ms, 35 ms e 1 ms",
+        "1 s, 125 ms e 35 ms",
+        "1 min, 1 s e 35 ms"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Para um sinal permanente as três convergem para o mesmo valor. Para um evento curto, não: um pulso de 60 ms lido em Slow aparece cerca de 14 dB abaixo do que aparece em Impulse, porque a energia foi diluída num intervalo muito maior que a duração do evento.</p>"
+    },
+    {
+      "id": "ac-016",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "medicao",
+      "enunciado": "<p>Um pulso retangular de 1 Pa e 60 ms é medido com ponderação Impulse (τ = 35 ms) e com Slow (τ = 1 s). A diferença entre as duas leituras é de aproximadamente:</p>",
+      "alternativas": [
+        "3,0 dB",
+        "0 dB, pois a energia é a mesma",
+        "28,6 dB",
+        "14,5 dB"
+      ],
+      "correta": 3,
+      "formulas": [
+        "p²_rms ≈ energia/τ",
+        "L = 10 log(p²_rms/p_ref²)"
+      ],
+      "explicacao": "<div class=\"passo\">energia do pulso: 1² × 0,060 = 0,060 Pa²·s</div><div class=\"passo\">Slow: p²_rms = 0,060/1,0 = 0,060 → 81,8 dB</div><div class=\"passo\">Impulse: p²_rms = 0,060/0,035 = 1,714 → 96,3 dB</div><div class=\"passo\">diferença = 10 log(1,0/0,035) = <strong>14,6 dB</strong></div><p>Nenhuma das duas leituras é errada: elas informam a energia média em intervalos diferentes. Por isso a norma exige declarar a ponderação temporal junto com o número, e por isso ruído de impacto se mede em Impulse.</p>"
+    },
+    {
+      "id": "ac-017",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "medicao",
+      "enunciado": "<p>Um ruído apresenta L_C − L_A = 18 dB. Isso indica que:</p>",
+      "alternativas": [
+        "há forte conteúdo em baixa frequência, que o protetor auricular atenua mal",
+        "a medição foi feita com o microfone descalibrado",
+        "o ruído é predominantemente de alta frequência",
+        "o ruído é impulsivo e exige ponderação temporal Impulse"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A ponderação A despreza os graves (−39 dB em 31,5 Hz) e a C é quase plana ali. Uma diferença grande entre as duas é, portanto, a assinatura de energia em baixa frequência. Isso tem consequência prática: esse ruído vibra estruturas, incomoda a longa distância e é mal atenuado por protetor auricular — cujo desempenho de catálogo é medido sobretudo nos médios e agudos.</p>"
+    },
+    {
+      "id": "ac-018",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "medicao",
+      "enunciado": "<p>Por que se usa o nível equivalente L_eq em vez da média aritmética dos níveis medidos?</p>",
+      "alternativas": [
+        "porque L_eq é sempre maior, o que é mais conservador",
+        "porque a média de decibéis não tem significado físico; L_eq preserva a energia, que é a grandeza que causa dano auditivo",
+        "porque a norma proíbe calcular médias de decibéis por convenção",
+        "porque L_eq elimina a influência do ruído de fundo"
+      ],
+      "correta": 1,
+      "explicacao": "<p>L_eq é o nível contínuo que teria a mesma energia no período — a única média que se soma corretamente entre períodos e que se relaciona com a dose de exposição. A média aritmética de 70 e 100 dB daria 85 dB; o L_eq correto é 97 dB, porque o período alto domina.</p>"
+    },
+    {
+      "id": "ac-019",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "espectro",
+      "enunciado": "<p>Uma banda de oitava centrada em 1 kHz vai de:</p>",
+      "alternativas": [
+        "500 a 2000 Hz",
+        "891 a 1122 Hz",
+        "707 a 1414 Hz",
+        "950 a 1050 Hz"
+      ],
+      "correta": 2,
+      "formulas": [
+        "f_inf = f_c/√2, f_sup = f_c√2 (oitava)"
+      ],
+      "explicacao": "<div class=\"passo\">f_inf = f_c/√2 = 1000/1,414 = <strong>707 Hz</strong></div><div class=\"passo\">f_sup = f_c√2 = 1000 × 1,414 = <strong>1414 Hz</strong></div><p>A razão entre os limites é 2, como manda a definição de oitava, e a largura é 707 Hz — 70,7 % da frequência central. A faixa de 891 a 1122 Hz é a banda de <em>terço</em> de oitava correspondente, cuja largura é de apenas 23,1 %.</p>"
+    },
+    {
+      "id": "ac-020",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "espectro",
+      "enunciado": "<p>Três bandas de terço de oitava, de 65, 70 e 75 dB, compõem uma banda de oitava. O nível dessa banda é:</p>",
+      "alternativas": [
+        "210 dB",
+        "70,0 dB",
+        "75,0 dB",
+        "76,5 dB"
+      ],
+      "correta": 3,
+      "formulas": [
+        "L_oitava = 10 log Σ 10^(L_i/10)"
+      ],
+      "explicacao": "<div class=\"passo\">L = 10 log(10^6,5 + 10^7,0 + 10^7,5)</div><div class=\"passo\">= 10 log(3,162×10⁶ + 10⁷ + 3,162×10⁷) = 10 log(4,478×10⁷)</div><div class=\"passo\">= <strong>76,5 dB</strong></div><p>A soma de terços em oitavas é direta porque as bandas são disjuntas. O caminho inverso não existe: de uma banda de oitava não se recupera o que havia dentro dela — e é por isso que diagnóstico de fonte exige terços ou banda estreita.</p>"
+    },
+    {
+      "id": "ac-021",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "espectro",
+      "enunciado": "<p>Para obter o nível global em dB(A) a partir de um espectro por bandas, deve-se:</p>",
+      "alternativas": [
+        "aplicar a correção A a cada banda e só então somar energeticamente",
+        "somar energeticamente as bandas e aplicar a correção A ao resultado",
+        "somar aritmeticamente os níveis já corrigidos",
+        "tomar o maior valor entre as bandas corrigidas"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A correção depende da frequência, então ela precisa entrar antes da soma. Inverter a ordem dá resultado diferente e sem significado — tanto maior o erro quanto mais largo for o espectro. É um dos erros mais comuns em relatórios de medição.</p>"
+    },
+    {
+      "id": "ac-022",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "espectro",
+      "enunciado": "<p>Num espectro, a banda dominante em dB(A) tem 66 dB(A) e a segunda tem 62 dB(A); as demais estão 15 dB ou mais abaixo. Atenuar 10 dB na terceira banda mudaria o nível global em:</p>",
+      "alternativas": [
+        "10 dB, o mesmo da atenuação",
+        "praticamente nada — menos de 0,1 dB",
+        "cerca de 3 dB",
+        "cerca de 1 dB"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A soma energética é dominada pelas bandas mais altas. Uma banda 15 dB abaixo da maior contribui com 0,1 dB para o global; atenuá-la não muda nada. É dinheiro jogado fora — e a razão pela qual todo tratamento acústico começa por identificar a banda dominante <em>depois</em> da ponderação.</p>"
+    },
+    {
+      "id": "ac-023",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "fourier",
+      "enunciado": "<p>A propriedade de Fourier que fundamenta a auralização — ouvir uma sala antes de construí-la — é:</p>",
+      "alternativas": [
+        "a linearidade da transformada",
+        "a propriedade de escala",
+        "convolução no tempo equivale a produto na frequência",
+        "a propriedade de translação, que converte atraso em fase"
+      ],
+      "correta": 2,
+      "explicacao": "<p>A sala é um sistema linear e invariante no tempo: sua saída é a convolução do sinal de entrada com a resposta impulsiva. Medida (ou simulada) essa resposta, basta convoluí-la com uma gravação anecoica para escutar como a sala soará — e comparar alternativas de projeto de forma perceptual, e não apenas numérica.</p>"
+    },
+    {
+      "id": "ac-024",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "fourier",
+      "enunciado": "<p>Numa onda quadrada, o terceiro harmônico está abaixo da fundamental em:</p>",
+      "alternativas": [
+        "3,0 dB",
+        "6,0 dB",
+        "4,8 dB",
+        "9,5 dB"
+      ],
+      "correta": 3,
+      "formulas": [
+        "onda quadrada: b_n = 4A/(nπ), n ímpar"
+      ],
+      "explicacao": "<div class=\"passo\">coeficientes da onda quadrada: b_n = 4A/(nπ), n ímpar</div><div class=\"passo\">amplitude relativa: b₃/b₁ = 1/3</div><div class=\"passo\">20 log(1/3) = <strong>−9,54 dB</strong></div><p>O decaimento assintótico é de 6 dB por oitava (1/n), consequência direta da descontinuidade da forma de onda. Uma onda triangular, contínua, decai com 1/n², ou 12 dB por oitava: quanto mais suave a forma, mais rápido o espectro cai.</p>"
+    },
+    {
+      "id": "ac-025",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fourier",
+      "enunciado": "<p>Para separar dois tons distantes 1 Hz num analisador FFT, o tempo mínimo de aquisição é de:</p>",
+      "alternativas": [
+        "1 segundo",
+        "1 milissegundo",
+        "1 minuto",
+        "não há limite: basta aumentar o número de pontos"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A resolução é Δf = 1/T, sem exceção. Aumentar o número de pontos sem aumentar o tempo apenas interpola o mesmo espectro, sem acrescentar informação. Resolução em frequência custa tempo — é a forma acústica do princípio da incerteza, e a razão de medições de baixa frequência serem sempre demoradas.</p>"
+    },
+    {
+      "id": "ac-026",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "fourier",
+      "enunciado": "<p>Por que se aplica uma janela de Hanning antes da FFT de um sinal contínuo?</p>",
+      "alternativas": [
+        "para eliminar o aliasing, que o filtro de entrada não consegue remover",
+        "para reduzir o vazamento espectral causado pelo truncamento abrupto do sinal",
+        "para dobrar a resolução em frequência sem aumentar o tempo de medição",
+        "para converter o espectro de amplitude em espectro de potência"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Truncar o sinal equivale a multiplicá-lo por uma janela retangular, cujo espectro é um seno cardinal que espalha energia para bandas vizinhas. A janela de Hanning suaviza as bordas e reduz esse vazamento, ao custo de alargar um pouco o pico principal. Para impulsos usa-se janela retangular, e quando se quer amplitude exata, a <em>flat-top</em>.</p>"
+    },
+    {
+      "id": "ac-027",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "equacao",
+      "enunciado": "<p>Newton errou a velocidade do som em cerca de 16 % porque supôs que a compressão acústica fosse:</p>",
+      "alternativas": [
+        "adiabática, quando na verdade é isotérmica",
+        "incompressível, quando na verdade é compressível",
+        "isotérmica, quando na verdade é adiabática",
+        "irreversível, quando na verdade é reversível"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Newton usou (∂P/∂ρ)_T = P/ρ e obteve 289 m/s. Laplace apontou que a compressão é rápida demais para trocar calor, e com Pρ^(−γ) = constante chegou a c = √(γP₀/ρ₀) = 343 m/s. A razão entre os dois resultados é exatamente √γ = 1,183.</p>"
+    },
+    {
+      "id": "ac-028",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "equacao",
+      "enunciado": "<p>Com P₀ = 101 325 Pa, ρ₀ = 1,21 kg/m³ e γ = 1,40, a velocidade do som no ar vale:</p>",
+      "alternativas": [
+        "289 m/s",
+        "287 m/s",
+        "480 m/s",
+        "342 m/s"
+      ],
+      "correta": 3,
+      "formulas": [
+        "c = √(γP₀/ρ₀) = √(γRT)"
+      ],
+      "explicacao": "<div class=\"passo\">c = √(γP₀/ρ₀) = √(1,40 × 101 325/1,21)</div><div class=\"passo\">= √(1,40 × 83 740) = √(117 236) = <strong>342,4 m/s</strong></div><p>Os 289 m/s são a previsão isotérmica de Newton, sem o γ. Note também que c não depende da pressão: ao comprimir o ar isotermicamente, P₀ e ρ₀ crescem juntos e o quociente não muda — o que sobra é c = √(γRT).</p>"
+    },
+    {
+      "id": "ac-029",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "equacao",
+      "enunciado": "<p>A solução de D’Alembert p(x,t) = f(x − ct) + g(x + ct) mostra que, no ar:</p>",
+      "alternativas": [
+        "qualquer forma de onda se propaga sem se deformar, porque todas as frequências andam com a mesma velocidade",
+        "apenas senoides podem se propagar sem deformação",
+        "a forma de onda se deforma progressivamente por dispersão",
+        "a onda só existe se houver reflexão nas duas extremidades"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A ausência de dispersão é o que torna possível a comunicação acústica a distância: se c dependesse da frequência, uma orquestra chegaria desafinada ao fundo da sala. A solução geral admite qualquer f e qualquer g — a decomposição em senoides é uma conveniência de cálculo, não uma restrição física.</p>"
+    },
+    {
+      "id": "ac-030",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "equacao",
+      "enunciado": "<p>A impedância característica do ar (ρ₀ = 1,21 kg/m³, c = 343 m/s) e da água (998 kg/m³, 1481 m/s) valem, respectivamente:</p>",
+      "alternativas": [
+        "415 rayl e 1,48×10³ rayl",
+        "415 rayl e 1,48×10⁶ rayl",
+        "283 rayl e 1,48×10⁶ rayl",
+        "1,21 rayl e 998 rayl"
+      ],
+      "correta": 1,
+      "formulas": [
+        "z = ρ₀c"
+      ],
+      "explicacao": "<div class=\"passo\">z_ar = 1,21 × 343 = <strong>415 rayl</strong></div><div class=\"passo\">z_água = 998 × 1481 = <strong>1,478×10⁶ rayl</strong></div><p>Um fator de 3600 entre os dois. É esse contraste que torna a interface ar-água quase intransponível para o som: só 0,11 % da intensidade atravessa, o que são 29,5 dB de perda na transmissão.</p>"
+    },
+    {
+      "id": "ac-031",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "interface",
+      "enunciado": "<p>Uma onda passa do ar (z₁ = 415 rayl) para um gás de z₂ = 830 rayl. O coeficiente de reflexão em pressão vale:</p>",
+      "alternativas": [
+        "0,500",
+        "−0,333",
+        "0,333",
+        "0,667"
+      ],
+      "correta": 2,
+      "formulas": [
+        "R = (z₂−z₁)/(z₂+z₁)",
+        "T = 1 + R"
+      ],
+      "explicacao": "<div class=\"passo\">R = (z₂ − z₁)/(z₂ + z₁) = (830 − 415)/(830 + 415)</div><div class=\"passo\">= 415/1245 = <strong>0,333</strong></div><p>Como R é positivo, a onda refletida volta em fase e a pressão na interface sobe: T = 1 + R = 1,333. Um pulso incidente de 3 Pa produz 4 Pa na interface — maior que o incidente, sem violar nada, porque a velocidade de partícula cai na mesma proporção.</p>"
+    },
+    {
+      "id": "ac-032",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "interface",
+      "enunciado": "<p>Diante de uma parede rígida, a pressão sonora medida encostada na parede, comparada à da onda incidente, é:</p>",
+      "alternativas": [
+        "6 dB menor, porque a parede absorve metade da energia",
+        "igual, porque a parede não altera a onda incidente",
+        "3 dB maior, porque as potências se somam",
+        "6 dB maior, porque incidente e refletida se somam em fase"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Com R ≈ 1, a pressão na parede é o dobro da incidente: 20 log 2 = 6,0 dB. É por isso que um microfone encostado na parede lê mais que um no meio da sala — e por isso a norma de medição especifica a posição do microfone em relação às superfícies.</p>"
+    },
+    {
+      "id": "ac-033",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "interface",
+      "enunciado": "<p>Para a interface ar-água (z₁ = 415, z₂ = 1,48×10⁶ rayl), a perda na transmissão vale aproximadamente:</p>",
+      "alternativas": [
+        "29,5 dB",
+        "0,3 dB",
+        "3,0 dB",
+        "60,0 dB"
+      ],
+      "correta": 0,
+      "formulas": [
+        "τ = 4z₁z₂/(z₁+z₂)²",
+        "TL = −10 log τ"
+      ],
+      "explicacao": "<div class=\"passo\">τ = 4z₁z₂/(z₁+z₂)² = 4 × 415 × 1,48×10⁶/(1,48×10⁶)²</div><div class=\"passo\">τ ≈ 4 × 415/1,48×10⁶ = 1,12×10⁻³ = 0,112 %</div><div class=\"passo\">TL = −10 log(1,12×10⁻³) = <strong>29,5 dB</strong></div><p>Praticamente nada do som aéreo entra na água — e, pela simetria da expressão, praticamente nada do som da água sai para o ar. É por isso que não se ouve o que acontece na superfície quando se mergulha, e por que sonar e hidrofone são equipamentos à parte.</p>"
+    },
+    {
+      "id": "ac-034",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "interface",
+      "enunciado": "<p>Um silenciador reativo, como o de escapamento de motor, funciona por:</p>",
+      "alternativas": [
+        "absorção da energia sonora em material poroso",
+        "descasamento de impedância, devolvendo energia à fonte por câmaras de expansão",
+        "conversão da energia sonora em calor por atrito viscoso",
+        "cancelamento ativo por meio de uma fonte secundária"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Uma mudança brusca de seção reflete a onda como se ela encontrasse outro meio: R = (S₁−S₂)/(S₁+S₂). O reativo atua em faixas estreitas, funciona bem nos graves e não dissipa nada. O dissipativo, com material absorvente, cobre banda larga e é o de duto de ar-condicionado — os dois resolvem problemas diferentes.</p>"
+    },
+    {
+      "id": "ac-035",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "estacionarias",
+      "enunciado": "<p>Um tubo aberto nas duas extremidades tem 1 m de comprimento. Sua frequência fundamental, com c = 343 m/s, é:</p>",
+      "alternativas": [
+        "85,8 Hz",
+        "343 Hz",
+        "171,5 Hz",
+        "686 Hz"
+      ],
+      "correta": 2,
+      "formulas": [
+        "aberto-aberto: f_n = nc/2L",
+        "aberto-fechado: f_n = (2n−1)c/4L"
+      ],
+      "explicacao": "<div class=\"passo\">tubo aberto-aberto: f_n = nc/2L</div><div class=\"passo\">f₁ = 343/(2 × 1) = <strong>171,5 Hz</strong></div><p>Os 85,8 Hz seriam a fundamental de um tubo aberto-fechado de mesmo comprimento (c/4L) — exatamente uma oitava abaixo. É a razão de o clarinete soar uma oitava abaixo da flauta de mesmo comprimento.</p>"
+    },
+    {
+      "id": "ac-036",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "estacionarias",
+      "enunciado": "<p>O timbre \"oco\" característico do clarinete se explica por ele ser um tubo:</p>",
+      "alternativas": [
+        "aberto-aberto, que produz todos os harmônicos",
+        "fechado-fechado, que produz apenas o fundamental",
+        "de seção cônica, o que suprime os harmônicos pares",
+        "aberto-fechado, que só produz harmônicos ímpares"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Num tubo aberto-fechado as frequências são (2n−1)c/4L: faltam os harmônicos pares. A mesma simetria que suprime os pares numa onda quadrada atua aqui — e é também o motivo de a fundamental ser c/4L, uma oitava abaixo da flauta de igual comprimento.</p>"
+    },
+    {
+      "id": "ac-037",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "estacionarias",
+      "enunciado": "<p>Por que salas cúbicas ou com dimensões proporcionais são ruins acusticamente?</p>",
+      "alternativas": [
+        "porque modos de eixos diferentes coincidem e se reforçam, deixando buracos entre as frequências reforçadas",
+        "porque a reverberação em sala cúbica é sempre maior",
+        "porque a absorção se distribui de forma desigual numa sala cúbica",
+        "porque o volume é pequeno demais para haver campo difuso"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Com dimensões iguais ou múltiplas, modos axiais de eixos diferentes caem na mesma frequência e se somam, enquanto frequências vizinhas ficam sem nenhum modo. A resposta nos graves fica muito irregular. Daí a regra de projeto de estúdios: evitar cubos e relações inteiras, preferindo proporções irracionais como 1 : 1,26 : 1,59.</p>"
+    },
+    {
+      "id": "ac-038",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "estacionarias",
+      "enunciado": "<p>Duas cordas soam simultaneamente a 877,1 Hz e 882,9 Hz. A frequência do batimento percebido é:</p>",
+      "alternativas": [
+        "880 Hz",
+        "5,8 Hz",
+        "1760 Hz",
+        "0,0066 Hz"
+      ],
+      "correta": 1,
+      "formulas": [
+        "f_bat = |f₁ − f₂|"
+      ],
+      "explicacao": "<div class=\"passo\">f_batimento = |f₁ − f₂| = |882,9 − 877,1|</div><div class=\"passo\">= <strong>5,8 Hz</strong>, ou 348 pulsações por minuto</div><p>O ouvido percebe a amplitude modulando lentamente, e é isso que permite afinar instrumentos sem equipamento: ajusta-se até o batimento desaparecer. A resolução obtida é extraordinária — detecta-se um batimento de meio hertz em 440 Hz, que é 0,1 %.</p>"
+    },
+    {
+      "id": "ac-039",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "psico",
+      "enunciado": "<p>A ponderação A é, aproximadamente, o inverso da curva isofônica de:</p>",
+      "alternativas": [
+        "0 fone",
+        "100 fones",
+        "40 fones",
+        "120 fones"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Por isso ela descreve bem níveis moderados e mal os ruídos intensos, em que a curva isofônica é bem mais plana. A ponderação C, quase plana, corresponde à curva de 100 fones e é usada para picos e para avaliar conteúdo grave.</p>"
+    },
+    {
+      "id": "ac-040",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "psico",
+      "enunciado": "<p>A perda auditiva induzida por ruído começa tipicamente em torno de:</p>",
+      "alternativas": [
+        "125 Hz",
+        "1 kHz",
+        "15 kHz",
+        "4 kHz"
+      ],
+      "correta": 3,
+      "explicacao": "<p>É a região de maior sensibilidade do ouvido, amplificada pela ressonância do canal auditivo, e onde as células ciliadas sofrem mais. Como elas não se regeneram, a perda é permanente — e o entalhe audiométrico em 4 kHz é o sinal diagnóstico clássico da exposição ocupacional.</p>"
+    },
+    {
+      "id": "ac-041",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "psico",
+      "enunciado": "<p>Na escala pitagórica, E e F correspondem a 81/64 e 4/3. O intervalo E-F, em cents, vale:</p>",
+      "alternativas": [
+        "90,2 cents",
+        "100,0 cents",
+        "111,7 cents",
+        "23,5 cents"
+      ],
+      "correta": 0,
+      "formulas": [
+        "cents = 1200 log₂(razão)"
+      ],
+      "explicacao": "<div class=\"passo\">razão = (4/3)/(81/64) = 256/243 = 1,05350</div><div class=\"passo\">cents = 1200 × log₂(1,05350) = 1200 × 0,07520</div><div class=\"passo\">= <strong>90,2 cents</strong></div><p>O semitom temperado tem exatamente 100 cents, de modo que o semitom pitagórico E-F — o <em>limma</em> — é quase 10 cents mais estreito, uma diferença perfeitamente audível. Os 23,5 cents da alternativa errada são o coma pitagórico, a sobra de empilhar doze quintas justas.</p>"
+    },
+    {
+      "id": "ac-042",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "psico",
+      "enunciado": "<p>Como um ruído de fundo contínuo pode melhorar a privacidade de um escritório aberto?</p>",
+      "alternativas": [
+        "por absorção: ele consome a energia da fala antes que ela chegue",
+        "por mascaramento: ele torna inaudível a fala das estações vizinhas",
+        "por cancelamento: suas ondas se somam em oposição de fase à fala",
+        "por difração: ele desvia a fala das estações vizinhas"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Um som suficientemente intenso torna inaudível outro de frequência próxima e nível menor — e esse é o princípio dos sistemas de <em>sound masking</em>. É também a razão de uma sala silenciosa demais ser péssima para privacidade: sem fundo, cada conversa vizinha fica inteligível.</p>"
+    },
+    {
+      "id": "ac-043",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "salas",
+      "enunciado": "<p>Uma sala de 140 m³ tem absorção equivalente de 69,9 m² sabine. Seu tempo de reverberação pela fórmula de Sabine é:</p>",
+      "alternativas": [
+        "2,00 s",
+        "0,16 s",
+        "0,32 s",
+        "3,10 s"
+      ],
+      "correta": 2,
+      "formulas": [
+        "T₆₀ = 0,161 V/A"
+      ],
+      "explicacao": "<div class=\"passo\">T₆₀ = 0,161 V/A = 0,161 × 140/69,9</div><div class=\"passo\">= 22,54/69,9 = <strong>0,323 s</strong></div><p>Com ᾱ = 0,42, porém, Sabine já superestima: Eyring daria 0,248 s, trinta por cento menos. Acima de ᾱ ≈ 0,25 a fórmula de Sabine deixa de ser confiável, porque sua dedução supõe absorção pequena e distribuída.</p>"
+    },
+    {
+      "id": "ac-044",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "salas",
+      "enunciado": "<p>Além da distância crítica de uma sala, afastar-se da fonte:</p>",
+      "alternativas": [
+        "reduz 6 dB por dobro de distância, como em campo livre",
+        "reduz 3 dB por dobro, como numa fonte linear",
+        "aumenta o nível, por acúmulo de reflexões",
+        "não reduz mais o nível, porque o campo reverberante domina e é uniforme"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Essa é a consequência de projeto mais importante da acústica de ambientes. Dentro de r_c, atacar a fonte funciona; fora dela, só aumentar a absorção ajuda — e com a má notícia de que <strong>dobrar a absorção da sala reduz o campo reverberante em apenas 3 dB</strong>, porque R aparece dentro de um logaritmo.</p>"
+    },
+    {
+      "id": "ac-045",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "salas",
+      "enunciado": "<p>Uma sala tem constante R = 120 m² e a fonte está apoiada no piso (Q = 2). A distância crítica vale:</p>",
+      "alternativas": [
+        "2,19 m",
+        "1,55 m",
+        "4,37 m",
+        "8,74 m"
+      ],
+      "correta": 0,
+      "formulas": [
+        "R = Sᾱ/(1−ᾱ)",
+        "r_c = √(QR/16π)"
+      ],
+      "explicacao": "<div class=\"passo\">r_c = √(QR/16π) = √(2 × 120/50,27)</div><div class=\"passo\">= √4,775 = <strong>2,19 m</strong></div><p>Os 1,55 m seriam o valor com Q = 1. Note que r_c cresce com a raiz de Q e de R: para dobrar a distância crítica é preciso quadruplicar a absorção da sala — mais uma manifestação do rendimento decrescente do tratamento acústico.</p>"
+    },
+    {
+      "id": "ac-046",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "salas",
+      "enunciado": "<p>Por que material poroso absorve bem os agudos e quase nada os graves?</p>",
+      "alternativas": [
+        "porque os graves têm mais energia e saturam o material",
+        "porque a dissipação depende da velocidade de partícula, que só é grande a partir de cerca de λ/4 da superfície rígida",
+        "porque a porosidade do material filtra mecanicamente as altas frequências",
+        "porque os graves são refletidos pela superfície antes de entrar no material"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Junto à parede rígida a velocidade de partícula é nula, e é ela que o atrito viscoso dissipa. Para absorver 125 Hz (λ = 2,7 m) seriam necessários quase 70 cm de espessura — inviável. Nos graves usam-se ressonadores de Helmholtz e painéis vibrantes, que funcionam por outro mecanismo.</p>"
+    },
+    {
+      "id": "ac-047",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "salas",
+      "enunciado": "<p>Uma sala de 140 m³ tem T₆₀ = 0,32 s. Sua frequência de Schroeder — abaixo da qual a teoria estatística não vale — é de aproximadamente:</p>",
+      "alternativas": [
+        "20 Hz",
+        "340 Hz",
+        "96 Hz",
+        "1000 Hz"
+      ],
+      "correta": 2,
+      "formulas": [
+        "f_S ≈ 2000 √(T₆₀/V)"
+      ],
+      "explicacao": "<div class=\"passo\">f_S ≈ 2000 √(T/V) = 2000 √(0,32/140)</div><div class=\"passo\">= 2000 × 0,0478 = <strong>96 Hz</strong></div><p>Toda a faixa dos graves fica abaixo do alcance de Sabine e de Eyring: ali a sala responde por modos isolados, não por campo difuso. É exatamente nessa faixa que os problemas acústicos de salas pequenas costumam estar — e é por isso que o grave é sempre o problema difícil.</p>"
+    },
+    {
+      "id": "ac-048",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "parametros",
+      "enunciado": "<p>A integração reversa de Schroeder serve para:</p>",
+      "alternativas": [
+        "eliminar o ruído de fundo da medição por filtragem",
+        "converter o espectro de potência em espectro de amplitude",
+        "calcular a absorção equivalente de cada superfície separadamente",
+        "obter uma curva de decaimento lisa a partir de uma única resposta impulsiva ruidosa"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A resposta impulsiva medida é irregular demais para ajustar uma reta diretamente. A integral de t até o infinito do quadrado da resposta representa a energia que ainda resta na sala: é monotonicamente decrescente e lisa por construção. Uma só medição substituiu a média de muitas interrupções de ruído.</p>"
+    },
+    {
+      "id": "ac-049",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "parametros",
+      "enunciado": "<p>Numa sala, mediu-se EDT = 1,64 s, T10 = 0,92 s e T30 = 0,44 s. Isso indica que:</p>",
+      "alternativas": [
+        "o decaimento não é exponencial — a curva em decibéis é côncava",
+        "houve erro grosseiro de medição; os três deveriam coincidir",
+        "a sala tem reverberação excessiva em todas as bandas",
+        "o ruído de fundo contaminou apenas o T30"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Se o decaimento fosse uma reta em decibéis, os três coincidiriam. Discordâncias desse tamanho são informação, não erro: indicam decaimento curvo, que pode vir de absorção mal distribuída, de acoplamento entre volumes ou — como neste caso — de uma envoltória de energia que cai linearmente em vez de exponencialmente.</p>"
+    },
+    {
+      "id": "ac-050",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "parametros",
+      "enunciado": "<p>Numa sala, 23,4 % da energia da resposta impulsiva chega nos primeiros 50 ms. O C₅₀ correspondente é:</p>",
+      "alternativas": [
+        "+5,14 dB",
+        "−5,14 dB",
+        "−2,34 dB",
+        "−6,31 dB"
+      ],
+      "correta": 1,
+      "formulas": [
+        "C₅₀ = 10 log(D₅₀/(1−D₅₀))"
+      ],
+      "explicacao": "<div class=\"passo\">C₅₀ = 10 log(D₅₀/(1 − D₅₀))</div><div class=\"passo\">= 10 log(0,234/0,766) = 10 log(0,3055)</div><div class=\"passo\">= <strong>−5,15 dB</strong></div><p>C₅₀ negativo significa que chega mais energia depois dos 50 ms do que antes: a sala é reprovada para fala, cujo alvo é C₅₀ > 0 dB. Os dois parâmetros carregam a mesma informação — D₅₀ como fração, C₅₀ como razão em decibéis.</p>"
+    },
+    {
+      "id": "ac-051",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "parametros",
+      "enunciado": "<p>O tempo de reverberação adequado a uma sala de aula fica tipicamente em torno de:</p>",
+      "alternativas": [
+        "0,1 a 0,2 s",
+        "1,8 a 2,2 s",
+        "0,4 a 0,8 s",
+        "3 a 4 s"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Em sala de aula a prioridade é inteligibilidade: C₅₀ positivo e STI acima de 0,6. Os 1,8 a 2,2 s são de sala de concerto sinfônico, onde se quer sustentação e envolvimento; 3 a 4 s é música de órgão, com a inteligibilidade sacrificada; e 0,1 a 0,2 s seria uma câmara quase anecoica, desconfortável para conversar.</p>"
+    },
+    {
+      "id": "ac-052",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "isolamento",
+      "enunciado": "<p>Forrar uma divisória com espuma acústica, pelo lado da fonte, serve para:</p>",
+      "alternativas": [
+        "aumentar muito o isolamento, por absorver o som antes que ele atravesse",
+        "aumentar a massa da parede e, por isso, o isolamento",
+        "deslocar a frequência de coincidência para fora da faixa da fala",
+        "reduzir a reverberação daquele ambiente, mas praticamente não isola o ambiente vizinho"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Absorver e isolar são problemas diferentes. Absorver usa material poroso e leve, e reduz o som que volta no mesmo ambiente; isolar depende de massa por área, e a espuma não tem nenhuma. Confundir os dois é o erro mais caro da acústica aplicada — consome o orçamento sem resultado.</p>"
+    },
+    {
+      "id": "ac-053",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "isolamento",
+      "enunciado": "<p>Pela lei da massa, dobrar a massa por área de uma parede simples aumenta a perda de transmissão em:</p>",
+      "alternativas": [
+        "6 dB",
+        "3 dB",
+        "10 dB",
+        "20 dB"
+      ],
+      "correta": 0,
+      "formulas": [
+        "TL ≈ 20 log(m f) − 47"
+      ],
+      "explicacao": "<div class=\"passo\">TL = 20 log(m f) − 47</div><div class=\"passo\">ΔTL = 20 log 2 = <strong>6,02 dB</strong></div><p>O mesmo vale para dobrar a frequência. A consequência dura é que, para ganhar 10 dB, é preciso triplicar a massa: isolamento sai caro em quilos. É por isso que divisórias leves de alto desempenho precisam fugir da lei da massa, com parede dupla e cavidade preenchida.</p>"
+    },
+    {
+      "id": "ac-054",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "isolamento",
+      "enunciado": "<p>Uma parede de concreto de 10 cm (ρ = 2400 kg/m³) tem perda de transmissão a 500 Hz, pela lei da massa, de aproximadamente:</p>",
+      "alternativas": [
+        "35 dB",
+        "55 dB",
+        "25 dB",
+        "75 dB"
+      ],
+      "correta": 1,
+      "formulas": [
+        "m = ρ h",
+        "TL ≈ 20 log(m f) − 47"
+      ],
+      "explicacao": "<div class=\"passo\">m = 2400 × 0,10 = 240 kg/m²</div><div class=\"passo\">TL = 20 log(240 × 500) − 47 = 20 log(120 000) − 47</div><div class=\"passo\">= 101,6 − 47 = <strong>54,6 dB</strong></div><p>Para comparação, um vidro de 6 mm (15 kg/m²) dá 30,5 dB e uma chapa de aço de 1 mm (7,85 kg/m²) dá 24,9 dB. A massa é o único parâmetro que conta numa parede simples, e a diferença entre 240 e 8 kg/m² são trinta decibéis.</p>"
+    },
+    {
+      "id": "ac-055",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "isolamento",
+      "enunciado": "<p>Uma parede com TL = 55 dB tem 0,1 % de sua área ocupada por uma fresta aberta. A perda de transmissão do conjunto cai para aproximadamente:</p>",
+      "alternativas": [
+        "54,9 dB",
+        "45 dB",
+        "30 dB",
+        "20 dB"
+      ],
+      "correta": 2,
+      "formulas": [
+        "τ̄ = Σ S_i 10^(−TL_i/10) / Σ S_i",
+        "TL = −10 log τ̄"
+      ],
+      "explicacao": "<div class=\"passo\">τ̄ = 0,999 × 10^(−55/10) + 0,001 × 1</div><div class=\"passo\">= 3,2×10⁻⁶ + 1,0×10⁻³ = 1,003×10⁻³</div><div class=\"passo\">TL = −10 log(1,003×10⁻³) = <strong>30,0 dB</strong></div><p>Vinte e cinco decibéis perdidos por uma fresta de um milésimo da área — a transmissão pela fresta é quase trezentas vezes maior que por toda a parede. Como a média é feita em transmissão e não em decibéis, o elo fraco manda: <strong>1 % de abertura limita o conjunto a 20 dB</strong>, por mais pesada que seja a parede.</p>"
+    },
+    {
+      "id": "ac-056",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "isolamento",
+      "enunciado": "<p>Pelo critério brasileiro (q = 5 dB, limite de 85 dB(A) para 8 h), o tempo máximo de exposição a 95 dB(A) é:</p>",
+      "alternativas": [
+        "4 horas",
+        "1 hora",
+        "8 horas",
+        "2 horas"
+      ],
+      "correta": 3,
+      "formulas": [
+        "T = 8/2^((L−85)/q)"
+      ],
+      "explicacao": "<div class=\"passo\">T = 8/2^((L−85)/q) = 8/2^((95−85)/5)</div><div class=\"passo\">= 8/2² = 8/4 = <strong>2,0 h</strong></div><p>Com o critério da ISO, que usa q = 3 dB e é energeticamente consistente, o mesmo nível permitiria apenas 0,79 h. A escolha de q não é detalhe técnico: ela muda a conclusão do laudo, e é por isso que ela precisa ser declarada.</p>"
+    },
+    {
+      "id": "ac-057",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "isolamento",
+      "enunciado": "<p>Na hierarquia de controle de ruído, a ordem correta de prioridade é:</p>",
+      "alternativas": [
+        "fonte, caminho, receptor e, por último, proteção individual",
+        "proteção individual, receptor, caminho e fonte",
+        "caminho, fonte, proteção individual e receptor",
+        "receptor, proteção individual, fonte e caminho"
+      ],
+      "correta": 0,
+      "explicacao": "<p>A ordem reflete eficácia e custo a longo prazo. Atuar na fonte — trocar o processo, balancear, amortecer, usar silenciador — resolve para todos os expostos e permanentemente. A proteção individual é o último recurso porque depende do uso correto e contínuo, atenua mal os graves e não protege ninguém que esqueça de usá-la.</p>"
+    },
+    {
+      "id": "ac-058",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "isolamento",
+      "enunciado": "<p>Vidro laminado isola melhor que vidro monolítico de mesmo peso porque:</p>",
+      "alternativas": [
+        "o laminado tem massa por área maior, apesar do mesmo peso total",
+        "a camada intermediária amortece as ondas de flexão e suaviza o vale da coincidência",
+        "o laminado reflete mais som por ter duas interfaces",
+        "o laminado desloca a frequência de coincidência para os graves"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Pela lei da massa os dois teriam o mesmo TL. A diferença aparece em torno da frequência de coincidência — cerca de 2 kHz num vidro de 6 mm, bem no meio da faixa da fala —, onde o monolítico perde até 10 dB e o laminado, amortecido pelo PVB, quase não perde. É um caso em que o mecanismo secundário domina o desempenho real.</p>"
+    }
+  ]
+}

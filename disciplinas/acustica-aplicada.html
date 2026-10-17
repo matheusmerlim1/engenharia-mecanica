@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acústica Aplicada — Engenharia Mecânica</title>
+<meta name="description" content="Acústica aplicada: ondas sonoras, níveis em decibéis, propagação ao ar livre, medição e espectros, análise de Fourier, equação da onda, impedância e transmissão, ondas estacionárias, psicoacústica, reverberação, parâmetros de qualidade de salas, isolamento e controle de ruído — com figuras interativas, simuladores e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔊</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">Disciplina eletiva · Engenharia Mecânica</p>
+    <h1>Acústica Aplicada</h1>
+    <p class="lead">Do pascal ao decibel, da equação da onda ao projeto de isolamento. Este texto está organizado como um livro: treze capítulos em sequência, com a teoria explicada passo a passo, exemplos resolvidos e conferidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
+    <div class="btn-row">
+      <span class="tag accent">13 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">58 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">13 figuras interativas</span>
+      <span class="tag warn">normas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai do fenômeno à aplicação: primeiro o som e como ele se mede, depois a física da onda que justifica tudo, e por fim a percepção, as salas e o controle de ruído. Cada capítulo abre em sua própria página: avance e volte pelas setas ‹ › do topo, pelos cartões do fim da página ou pelas teclas ← → do teclado. Marque cada capítulo como lido ao terminá-lo; o progresso fica salvo neste navegador.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: uma parte em cinco milhões</h2>
+        <p>Uma conversa normal faz a pressão do ar oscilar cerca de 0,02 Pa sobre os 101 325 Pa da atmosfera — uma parte em cinco milhões. É dessa flutuação minúscula que a acústica trata, e é por ela ser tão pequena que a teoria pode ser linearizada e virar engenharia calculável. O curso percorre esse caminho em três partes: medir, entender e controlar.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>O que é som, afinal?</td><td>Onda de pressão, c = λf e as cinco grandezas</td><td>1</td></tr>
+            <tr><td>Por que decibel?</td><td>Níveis, referências e soma energética</td><td>2</td></tr>
+            <tr><td>Quanto chega ao receptor?</td><td>Divergência, diretividade e absorção do ar</td><td>3</td></tr>
+            <tr><td>Como se mede?</td><td>Sonômetro, constantes de tempo e ponderações</td><td>4 e 5</td></tr>
+            <tr><td>De onde vem tudo isso?</td><td>Fourier e a equação da onda</td><td>6 e 7</td></tr>
+            <tr><td>O que acontece numa fronteira?</td><td>Impedância, reflexão e transmissão</td><td>8</td></tr>
+            <tr><td>Por que a sala tem frequências preferidas?</td><td>Modos, nós e ventres</td><td>9</td></tr>
+            <tr><td>Como o ouvido entra na conta?</td><td>Psicoacústica e escalas musicais</td><td>10</td></tr>
+            <tr><td>Quanto de ruído há na sala?</td><td>Campo direto, reverberante e distância crítica</td><td>11</td></tr>
+            <tr><td>A sala é boa para quê?</td><td>Reverberação, clareza e definição</td><td>12</td></tr>
+            <tr><td>Como impedir o som de passar?</td><td>Lei da massa, coincidência e dose de ruído</td><td>13</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Leia um capítulo por vez. Tente cada exemplo antes de abrir a solução — todos são numéricos e todos foram conferidos. Nas figuras e nos simuladores, mude a frequência, a distância e os materiais para ver os números reagirem. E guarde desde já as três regras de bolso que organizam quase tudo: dobrar a distância custa 6 dB, dobrar a massa rende 6 dB e somar duas fontes iguais rende 3 dB.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — O som e sua medida" data-topicos="fundamentos">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. O que é som</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir propagação de difusão;</li>
+            <li>relacionar f, T, λ, ω e k pela expressão c = λf;</li>
+            <li>estimar o comprimento de onda e usá-lo para prever o que interage com o som;</li>
+            <li>calcular a velocidade do som no ar em função da temperatura.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Física II (ondas) e Cálculo II.</p></div>
+        </div>
+
+        <p>Acústica Aplicada é a disciplina que trata do som como fenômeno físico mensurável e como problema de engenharia. Este texto está organizado como um livro: treze capítulos em sequência, da onda de pressão ao projeto de isolamento, com a teoria explicada passo a passo, exemplos resolvidos, figuras interativas e os simuladores no ponto em que o assunto aparece.</p>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Uma flutuação de pressão que se propaga</h3>
+        <p>Som é uma flutuação de pressão que se propaga num meio elástico. A frase é curta e cada palavra dela carrega uma consequência de projeto. <strong>Flutuação</strong>: o que se mede é um desvio em torno da pressão atmosférica, e um desvio minúsculo — uma conversa normal faz a pressão oscilar 0,02 Pa sobre os 101 325 Pa do ambiente, uma parte em cinco milhões. <strong>De pressão</strong>: não é matéria que viaja; cada partícula apenas oscila em torno de sua posição e volta. <strong>Que se propaga</strong>: a perturbação anda, e anda com velocidade bem definida. <strong>Num meio elástico</strong>: sem meio não há som, e as propriedades do meio decidem tudo.</p>
+        <p>Vale separar, de saída, dois processos que se confundem. Açúcar numa xícara de café se espalha por <em>difusão</em>: um processo irreversível, governado por uma equação de primeira ordem no tempo, em que a concentração nunca volta a se concentrar sozinha. Som é <em>propagação</em>: um processo reversível, governado por uma equação de segunda ordem no tempo, em que a perturbação mantém a forma e apenas se desloca. A diferença não é de grau — é de natureza, e é por isso que existe eco e não existe "eco de açúcar".</p>
+
+        <div class="fig-host" id="fig-1-1"></div>
+
+        <h3 id="s1-2"><span class="num">1.2</span>As quatro grandezas e a única relação</h3>
+
+        <p>Uma onda monocromática — um tom puro — é descrita por quatro números ligados entre si:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Grandeza</th><th>Símbolo</th><th>Definição</th><th>Unidade</th></tr></thead>
+          <tbody>
+            <tr><td>Frequência</td><td>f</td><td>oscilações por segundo</td><td>Hz</td></tr>
+            <tr><td>Período</td><td>T</td><td>1/f</td><td>s</td></tr>
+            <tr><td>Comprimento de onda</td><td>λ</td><td>distância percorrida em um período</td><td>m</td></tr>
+            <tr><td>Frequência angular</td><td>ω</td><td>2πf</td><td>rad/s</td></tr>
+            <tr><td>Número de onda</td><td>k</td><td>ω/c = 2π/λ</td><td>rad/m</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>E uma única relação liga tudo:</p>
+        <div class="formula"><span data-tex="c = \lambda f"></span></div>
+        <p>A velocidade c é propriedade do meio, não da fonte. No ar a 20 °C ela vale 343 m/s; na água, 1481 m/s; no aço, cerca de 5900 m/s. Como c é fixa, aumentar a frequência <em>obriga</em> o comprimento de onda a diminuir — e essa troca governa quase toda a acústica prática.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>As cinco grandezas de um tom de 500 Hz</div>
+          <p>Uma onda sonora de 500 Hz se propaga no ar a 20 °C. Calcule o período, o comprimento de onda, a frequência angular e o número de onda. Em seguida, diga quantas oitavas cabem no espectro audível (20 Hz a 20 kHz) e compare com a luz visível (400 a 700 nm).</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>c = 331 + 0,6 × 20 = <strong>343 m/s</strong>.</li>
+              <li>T = 1/f = 1/500 = <strong>2,00 ms</strong>.</li>
+              <li>λ = c/f = 343/500 = <strong>0,686 m</strong>.</li>
+              <li>ω = 2πf = 2π × 500 = <strong>3142 rad/s</strong>.</li>
+              <li>k = ω/c = 3142/343 = <strong>9,16 rad/m</strong>.</li>
+              <li>Oitavas no audível: log₂(20000/20) = log₂(1000) = <strong>9,97 ≈ 10 oitavas</strong>.</li>
+              <li>Luz visível: as frequências vão de 3×10⁸/700 nm = 429 THz a 750 THz, e log₂(750/429) = <strong>0,81 oitava</strong>.</li>
+            </ol>
+            <p class="resposta">O espectro audível cobre dez oitavas; toda a luz visível, menos de uma. O olho é um instrumento de banda estreitíssima e altíssima resolução espacial; o ouvido é o contrário — banda larguíssima e resolução espacial pobre. É uma diferença que explica por que a acústica precisa de análise em bandas e a óptica não.</p>
+          </details>
+        </div>
+
+        <h3 id="s1-3"><span class="num">1.3</span>Por que o comprimento de onda decide tudo</h3>
+
+        <p>No ar, o espectro audível vai de 20 Hz a 20 kHz, e os comprimentos de onda correspondentes vão de <strong>17 metros a 1,7 centímetro</strong>: um fator de mil. Nenhum outro ramo da engenharia trabalha com uma faixa dimensional dessas dentro do mesmo problema.</p>
+        <p>A consequência prática é a regra que todo projetista acaba decorando: <strong>um obstáculo só interage com o som quando suas dimensões são comparáveis ao comprimento de onda</strong>. Uma barreira de 3 m de altura bloqueia bem os 4 kHz (λ = 8,6 cm) e quase nada os 63 Hz (λ = 5,4 m), que simplesmente contornam por difração. Um painel absorvente de 5 cm funciona nos agudos e é inútil nos graves. Por isso todo tratamento acústico é especificado por banda de frequência, nunca por um número só.</p>
+        <div class="callout tip">
+          <strong>Oitava: a unidade natural da acústica</strong>
+          Uma oitava é um dobro de frequência. O espectro audível tem cerca de 10 oitavas (20 Hz a 20 kHz), e a luz visível, menos de uma (400 a 700 nm é menos de um dobro). O ouvido analisa em razões, não em diferenças — e é essa a razão profunda de todo gráfico de acústica ter o eixo de frequência logarítmico.
+        </div>
+
+        <h3 id="s1-4"><span class="num">1.4</span>A velocidade do som no ar</h3>
+
+        <p>Para temperaturas usuais, uma aproximação linear basta:</p>
+        <div class="formula"><span data-tex="c \approx 331 + 0{,}6\,T \qquad (T\ \text{em}\ ^\circ\text{C},\ c\ \text{em m/s})"></span></div>
+        <p>Ela vem da expressão exata c = 331,3·√(1 + T/273,15) e erra menos de 0,1 % entre −10 °C e 30 °C. Dois pontos merecem atenção: a velocidade do som no ar <strong>não depende da pressão</strong> (porque P e ρ variam juntos) e <strong>não depende da frequência</strong> — se dependesse, uma orquestra chegaria desafinada ao fundo da sala. O capítulo 7 mostra de onde essa expressão sai.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Som é propagação, não difusão: processo reversível, equação de segunda ordem no tempo.</li>
+          <li>c = λf, com c fixada pelo meio — aumentar f obriga λ a diminuir.</li>
+          <li>No ar audível, λ vai de 17 m a 1,7 cm: um fator de mil dentro do mesmo problema.</li>
+          <li>Um obstáculo só interage com o som se for comparável ao comprimento de onda.</li>
+          <li>c ≈ 331 + 0,6T no ar: não depende da pressão nem da frequência.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que todo gráfico de acústica tem o eixo de frequência logarítmico?</summary><p>Porque o ouvido analisa em razões, não em diferenças: o que ele percebe como "o mesmo intervalo" é o mesmo fator de frequência. A oitava — um dobro — é a unidade natural, e o espectro audível tem cerca de dez delas.</p></details>
+          <details><summary>Se a velocidade do som dependesse da frequência, o que aconteceria?</summary><p>A forma de onda se deformaria ao viajar: uma orquestra chegaria desafinada ao fundo da sala e a fala ficaria ininteligível a poucos metros. A ausência de dispersão no ar é o que torna possível a comunicação acústica a distância.</p></details>
+          <details><summary>Por que uma barreira acústica funciona bem nos agudos e mal nos graves?</summary><p>Porque a difração contorna obstáculos cuja dimensão é menor que o comprimento de onda. Uma barreira de 3 m bloqueia os 4 kHz (λ = 8,6 cm) e é quase transparente aos 63 Hz (λ = 5,4 m).</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — O som e sua medida" data-topicos="niveis">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Níveis e decibéis</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>converter entre pressão, intensidade e os respectivos níveis;</li>
+            <li>distinguir NPS, NIS e NWS e saber do que cada um depende;</li>
+            <li>somar e subtrair níveis de fontes incoerentes;</li>
+            <li>reconhecer quando uma fonte secundária é irrelevante.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+
+        <p>O decibel é a convenção que torna a acústica praticável, e também a fonte de metade dos erros de quem começa. Este capítulo fixa as três grandezas, as três referências e a única operação que importa: somar energias, nunca decibéis.</p>
+
+        <h3 id="s2-1"><span class="num">2.1</span>Por que o logaritmo é inevitável</h3>
+        <p>A faixa de pressões que o ouvido cobre é absurda: do limiar da audição, 20 µPa, ao limiar da dor, 20 Pa — um fator de um milhão em pressão e de um trilhão em intensidade. Nenhuma escala linear acomoda isso. A solução é tomar o logaritmo da razão entre a grandeza e uma referência, e chamar o resultado de <strong>nível</strong>.</p>
+        <div class="formula"><span data-tex="L_p = 10\log_{10}\frac{p_{rms}^2}{p_{ref}^2} = 20\log_{10}\frac{p_{rms}}{p_{ref}}, \qquad p_{ref} = 20\,\mu\text{Pa}"></span></div>
+        <p>Três coisas precisam ficar claras desde já. Primeiro, <strong>decibel não é unidade de pressão</strong>: é a razão entre duas grandezas da mesma espécie, e por isso é adimensional. Segundo, <strong>o nível não existe sem a referência</strong>: 90 dB re 20 µPa e 90 dB re 1 µPa descrevem pressões que diferem por um fator de vinte. Terceiro, <strong>0 dB não é silêncio</strong>: é exatamente a referência — e níveis negativos existem, em câmara anecoica.</p>
+
+        <div class="fig-host" id="fig-2-1"></div>
+
+        <h3 id="s2-2"><span class="num">2.2</span>As três grandezas e os três níveis</h3>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Nível</th><th>Grandeza</th><th>Definição</th><th>Referência</th><th>Depende de</th></tr></thead>
+          <tbody>
+            <tr><td>NPS (L<sub>p</sub>)</td><td>pressão</td><td>20 log(p/p₀)</td><td>20 µPa</td><td>fonte, distância e ambiente</td></tr>
+            <tr><td>NIS (L<sub>I</sub>)</td><td>intensidade</td><td>10 log(I/I₀)</td><td>10⁻¹² W/m²</td><td>fonte, distância e direção</td></tr>
+            <tr><td>NWS (L<sub>W</sub>)</td><td>potência</td><td>10 log(W/W₀)</td><td>10⁻¹² W</td><td><strong>só da fonte</strong></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A última coluna é a que importa. O nível de potência é uma <strong>propriedade da máquina</strong>, como a potência elétrica: ele não muda se o microfone se afasta nem se a máquina é levada para outra sala. O nível de pressão é o que se mede, e depende de tudo. Por isso catálogo de fabricante informa NWS, e norma de higiene ocupacional cobra NPS — são perguntas diferentes.</p>
+        <p>No ar, longe da fonte e em campo livre, vale a coincidência numérica feliz:</p>
+        <div class="formula"><span data-tex="L_I \approx L_p \qquad \text{porque}\quad \rho_0 c \approx 415 \approx \frac{p_{ref}^2}{I_{ref}}"></span></div>
+        <p>Essa igualdade foi construída de propósito na escolha das referências. Ela só vale em onda progressiva e no ar — em campo reverberante ou dentro d'água, não.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Da amplitude ao nível, e de volta</div>
+          <p>Uma onda monocromática tem amplitude de pressão de 0,02 Pa. Qual o seu nível de pressão sonora? Em seguida, qual a pressão eficaz correspondente a um NPS de 90 dB?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Para uma senoide, p_rms = A/√2 = 0,02/1,414 = <strong>0,01414 Pa</strong>.</li>
+              <li>NPS = 20 log(0,01414 / 2×10⁻⁵) = 20 log(707,1) = <strong>57,0 dB</strong>.</li>
+              <li>No caminho inverso: p_rms = 2×10⁻⁵ × 10^(90/20) = 2×10⁻⁵ × 31 623 = <strong>0,632 Pa</strong>.</li>
+            </ol>
+            <p class="resposta">Note a desproporção: 0,632 Pa, que já é um nível de ruído industrial incômodo, corresponde a 0,0006 % da pressão atmosférica. É essa pequenez que justifica toda a linearização do capítulo 7 — e também explica por que o microfone acústico é um instrumento de precisão.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-3"><span class="num">2.3</span>Somar níveis é somar energias</h3>
+
+        <p>O erro mais comum em acústica é somar decibéis. Duas máquinas de 80 dB não fazem 160 dB; fazem 83. Fontes incoerentes — frequências distintas ou fases não relacionadas, que é o caso de praticamente todo ruído industrial — somam <strong>potências</strong>:</p>
+        <div class="formula"><span data-tex="L_{total} = 10\log_{10}\sum_i 10^{L_i/10}"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Situação</th><th>Resultado</th><th>Por quê</th></tr></thead>
+          <tbody>
+            <tr><td>2 fontes iguais</td><td>+3,0 dB</td><td>10 log 2</td></tr>
+            <tr><td>4 fontes iguais</td><td>+6,0 dB</td><td>10 log 4</td></tr>
+            <tr><td>10 fontes iguais</td><td>+10,0 dB</td><td>10 log 10</td></tr>
+            <tr><td>Diferença de 10 dB entre duas</td><td>+0,4 dB sobre a maior</td><td>a menor quase não conta</td></tr>
+            <tr><td>Diferença de 15 dB</td><td>+0,1 dB</td><td>desprezível</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A penúltima linha tem valor prático enorme: <strong>numa soma de fontes, só as que estão dentro de uns 10 dB da maior importam</strong>. Silenciar a terceira máquina mais ruidosa de um galpão quase nunca muda o nível global — e descobrir isso antes de gastar com o projeto é o que o cálculo oferece.</p>
+        <div class="callout warn">
+          <strong>Subtrair ruído de fundo</strong>
+          Para isolar a contribuição de uma máquina, mede-se com ela ligada e desligada e subtrai-se energeticamente: L<sub>máq</sub> = 10 log(10<sup>L₁/10</sup> − 10<sup>L₂/10</sup>). Se a diferença entre as duas medidas for menor que 3 dB, a conta fica dominada pelo erro: não há como separar a máquina do fundo, e a medição precisa ser refeita em outra condição.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.2</span>Somar seis fontes e subtrair o fundo</div>
+          <p>Seis máquinas idênticas, operando em frequências distintas, produzem cada uma 75 dB num dado ponto. Qual o nível global? Em outro ponto da fábrica mede-se 81 dB; desligando uma máquina ruidosa, o nível cai para 74 dB. Qual a contribuição dessa máquina?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Soma: L = 10 log(6 × 10^(75/10)) = 75 + 10 log 6 = 75 + 7,78 = <strong>82,8 dB</strong>.</li>
+              <li>Subtração: L_máq = 10 log(10^(81/10) − 10^(74/10)).</li>
+              <li>10^8,1 = 1,259×10⁸ e 10^7,4 = 2,512×10⁷.</li>
+              <li>Diferença: 1,008×10⁸ → L_máq = <strong>80,0 dB</strong>.</li>
+            </ol>
+            <p class="resposta">Dois resultados que valem como regra de bolso. Sextuplicar o número de fontes custa menos de 8 dB — e, no caminho inverso, desligar uma de seis máquinas iguais reduz apenas 0,8 dB. Já uma máquina que sozinha faz 80 dB num ambiente de 81 dB é responsável por quase toda a energia: silenciá-la resolve o problema, e é ela que a análise precisa identificar.</p>
+          </details>
+        </div>
+
+        <h3 id="s2-4"><span class="num">2.4</span>Ordens de grandeza que vale guardar</h3>
+
+        <p>Para fazer estimativas de cabeça, meia dúzia de pontos de apoio bastam: 0 dB é o limiar, 40 dB é uma biblioteca, 60 dB é uma conversa a 1 m, 85 dB é o limite de 8 horas de jornada, 100 dB é uma serra circular, 120 dB é o limiar da dor e 140 dB é uma turbina a jato a 25 m. E a regra de conversão: <strong>cada 10 dB multiplica a potência por dez e, aproximadamente, dobra a sensação subjetiva de intensidade</strong>.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Nível é o logaritmo de uma razão: adimensional e sempre preso a uma referência.</li>
+          <li>NPS re 20 µPa, NIS re 10⁻¹² W/m², NWS re 10⁻¹² W.</li>
+          <li>NWS é propriedade só da fonte; NPS depende de distância e de ambiente.</li>
+          <li>Somar fontes incoerentes é somar 10^(Li/10): duas iguais dão +3 dB, dez iguais +10 dB.</li>
+          <li>Uma fonte 10 dB abaixo da maior contribui 0,4 dB; 15 dB abaixo, 0,1 dB.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que catálogo de fabricante informa NWS e não NPS?</summary><p>Porque NWS é uma propriedade da máquina, como a potência elétrica: não muda com a distância nem com a sala. Informar NPS obrigaria a declarar a que distância e em que ambiente a medida foi feita — e o número seria inútil para o projetista, que vai instalar a máquina em outro lugar.</p></details>
+          <details><summary>Quando não se consegue separar uma máquina do ruído de fundo?</summary><p>Quando a diferença entre a medição com ela ligada e desligada for menor que 3 dB. Abaixo disso, a subtração energética fica dominada pela incerteza das duas medidas, e a conta não tem significado.</p></details>
+          <details><summary>O que significa, na prática, "+10 dB"?</summary><p>Dez vezes a potência acústica, 3,16 vezes a pressão eficaz e, aproximadamente, o dobro da sensação subjetiva de intensidade. As três leituras são do mesmo fato — e a terceira é a que explica por que se usa uma escala logarítmica em vez da pressão direta.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — O som e sua medida" data-topicos="propagacao">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Propagação ao ar livre</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar a equação de campo livre com diretividade;</li>
+            <li>distinguir fonte pontual de fonte linear pela queda com a distância;</li>
+            <li>usar o fator Q para avaliar o efeito da posição da fonte;</li>
+            <li>estimar a absorção do ar e saber quando ela importa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 2.</p></div>
+        </div>
+
+        <p>Com os níveis definidos, a primeira pergunta de engenharia é quanto do ruído de uma fonte chega a um receptor. Ao ar livre a resposta é quase inteiramente geométrica — e cabe numa linha.</p>
+
+        <h3 id="s3-1"><span class="num">3.1</span>A potência se espalha</h3>
+        <p>Ao ar livre, longe de superfícies refletoras, a potência que a fonte emite se espalha por superfícies cada vez maiores. Se a fonte é pequena comparada ao comprimento de onda e irradia igualmente em todas as direções, essas superfícies são esferas, e a intensidade cai com o inverso do quadrado da distância. Em decibéis:</p>
+        <div class="formula"><span data-tex="L_p = L_W + 10\log_{10}\frac{Q}{4\pi r^2} - A_{atm}"></span></div>
+        <p>onde Q é o fator de diretividade e A<sub>atm</sub> a absorção do ar. É a equação central da propagação externa, e dela saem quase todas as estimativas de ruído ambiental.</p>
+
+        <div class="fig-host" id="fig-3-1"></div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Divergência geométrica: a regra dos 6 dB</h3>
+
+        <p>Do termo 1/r² vem a consequência mais usada da acústica: <strong>dobrar a distância custa 6 dB</strong>, e isso não depende da potência, da frequência nem de Q. Multiplicar a distância por dez custa 20 dB.</p>
+        <p>Uma fonte <em>linear</em> — uma rodovia com tráfego contínuo, um duto longo — se comporta diferente: as superfícies são cilindros, a intensidade cai com 1/r, e <strong>dobrar a distância custa apenas 3 dB</strong>. É por isso que afastar-se de uma estrada dá muito menos resultado do que afastar-se de uma máquina, e por que barreiras acústicas rodoviárias são tão necessárias.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo de fonte</th><th>Frentes de onda</th><th>Queda por dobro de distância</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>Pontual</td><td>esféricas</td><td>6 dB</td><td>máquina, alto-falante, explosão</td></tr>
+            <tr><td>Linear</td><td>cilíndricas</td><td>3 dB</td><td>rodovia, ferrovia, tubulação</td></tr>
+            <tr><td>Plana</td><td>planas</td><td>0 dB</td><td>onda em duto, muito perto de um painel grande</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>De 0,2 watt a um número de decibéis</div>
+          <p>Uma fonte onidirecional de pequenas dimensões emite 0,2 W de potência acústica em campo livre. Calcule o NWS e estime o NPS a 1 m. Em seguida, estime o nível de potência de uma máquina apoiada em piso inteiramente refletor, sabendo que seis medições a 10 m deram em média 87,2 dB.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>NWS = 10 log(0,2/10⁻¹²) = 10 log(2×10¹¹) = <strong>113,0 dB</strong>.</li>
+              <li>A 1 m, com Q = 1: NPS = 113,0 + 10 log(1/4π) = 113,0 − 11,0 = <strong>102,0 dB</strong>.</li>
+              <li>Para a máquina no piso, Q = 2 e a área é 2πr² = 2π(10)² = 628 m².</li>
+              <li>NWS = 87,2 + 10 log(628) = 87,2 + 27,98 = <strong>115,2 dB</strong>.</li>
+            </ol>
+            <p class="resposta">O primeiro resultado merece ser guardado: em campo livre, a 1 m de uma fonte onidirecional, NPS = NWS − 11 dB. É a conversão de cabeça mais útil da propagação externa. O segundo mostra o procedimento inverso, que é como se determina a potência sonora de uma máquina em campo: medem-se vários pontos sobre uma superfície envolvente e soma-se a área.</p>
+          </details>
+        </div>
+
+        <h3 id="s3-3"><span class="num">3.3</span>Diretividade: o fator Q</h3>
+
+        <p>Quando a fonte está apoiada numa superfície refletora, a potência que iria para baixo é devolvida para cima: a mesma potência se distribui por metade do espaço, e a intensidade dobra.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Posição da fonte</th><th>Q</th><th>Ganho</th></tr></thead>
+          <tbody>
+            <tr><td>Suspensa, longe de tudo</td><td>1</td><td>—</td></tr>
+            <tr><td>Sobre o piso</td><td>2</td><td>+3 dB</td></tr>
+            <tr><td>Junto ao piso e a uma parede</td><td>4</td><td>+6 dB</td></tr>
+            <tr><td>No canto (piso e duas paredes)</td><td>8</td><td>+9 dB</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Daí uma recomendação concreta e barata: <strong>tirar uma máquina do canto do galpão vale 9 dB</strong> — mais do que muitos enclausuramentos caros conseguem. O mesmo raciocínio explica por que um subwoofer colocado no canto da sala soa muito mais forte.</p>
+
+        <div id="sim-niveis" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Mude a diretividade com a distância fixa e confira os 3, 6 e 9 dB. Depois ligue a absorção do ar e compare 125 Hz com 4 kHz a 2 km: é o mesmo gráfico com conclusões opostas.
+        </div>
+
+        <h3 id="s3-4"><span class="num">3.4</span>A absorção do ar</h3>
+
+        <p>Além da divergência, o próprio ar dissipa energia, por relaxamento molecular do oxigênio e do nitrogênio e por viscosidade. A atenuação é proporcional à distância e cresce fortemente com a frequência:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Frequência</th><th>125 Hz</th><th>250 Hz</th><th>500 Hz</th><th>1 kHz</th><th>2 kHz</th><th>4 kHz</th><th>8 kHz</th></tr></thead>
+          <tbody>
+            <tr><td>α (dB/km), 20 °C e 70 % UR</td><td>0,4</td><td>1,0</td><td>1,9</td><td>3,7</td><td>9,7</td><td>32,8</td><td>117</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Abaixo de uns 100 m ela é desprezível; em quilômetros, domina os agudos. É a explicação física de um fenômeno que todo mundo já notou: <strong>de longe, de um show só se ouve o grave</strong>. E é também por isso que sirenes de longo alcance e apitos de navio operam em frequências baixas, apesar de o ouvido ser menos sensível a elas.</p>
+        <div class="callout note">
+          <strong>O que este modelo não cobre</strong>
+          Ao ar livre real, ainda entram a absorção do solo, a atenuação por barreiras e vegetação e — o fator mais incômodo de todos — a refração pelo gradiente de vento e de temperatura, que pode criar zonas de sombra acústica ou, ao contrário, fazer um ruído distante soar alto. É por isso que medição de ruído ambiental registra sempre as condições meteorológicas.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.2</span>Quanto rende afastar o operador</div>
+          <p>Um operador trabalha a 2 m de uma máquina, em campo livre, recebendo 95 dB. Quanto ele ganharia a 4 m? E a 20 m? Se, em vez de uma máquina, fosse uma linha de máquinas idênticas lado a lado, quanto ganharia nos mesmos pontos?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Fonte pontual, de 2 para 4 m: dobrou a distância → <strong>−6,0 dB</strong>, restando 89 dB.</li>
+              <li>De 2 para 20 m: fator 10 → −20 log 10 = <strong>−20,0 dB</strong>, restando 75 dB.</li>
+              <li>Fonte linear, de 2 para 4 m: <strong>−3,0 dB</strong>, restando 92 dB.</li>
+              <li>Fonte linear, de 2 para 20 m: −10 log 10 = <strong>−10,0 dB</strong>, restando 85 dB.</li>
+            </ol>
+            <p class="resposta">Afastar o posto de trabalho é a medida de controle mais barata que existe — mas rende metade quando a fonte é extensa. E há um limite que este capítulo ainda não vê: dentro de um galpão, a partir da distância crítica o campo reverberante domina e o nível simplesmente para de cair. É o assunto do capítulo 11, e é a razão de tantos afastamentos não entregarem o ganho previsto.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>L_p = L_W + 10 log(Q/4πr²) − A_atm é a equação central da propagação externa.</li>
+          <li>Fonte pontual: −6 dB por dobro de distância. Fonte linear: −3 dB.</li>
+          <li>Q = 1, 2, 4 ou 8 conforme a fonte esteja livre, no piso, junto a uma parede ou no canto.</li>
+          <li>Tirar uma máquina do canto vale 9 dB — mais que muitos enclausuramentos.</li>
+          <li>A absorção do ar é desprezível em dezenas de metros e domina os agudos em quilômetros.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que afastar-se de uma rodovia adianta menos que afastar-se de uma máquina?</summary><p>Porque a rodovia é uma fonte linear: as frentes de onda são cilíndricas e a intensidade cai com 1/r, não com 1/r². Dobrar a distância rende 3 dB em vez de 6 — e por isso barreiras acústicas rodoviárias são necessárias onde o simples afastamento bastaria para uma fonte pontual.</p></details>
+          <details><summary>De longe, de um show só se ouve o grave. Por quê?</summary><p>Pela absorção do ar, que cresce fortemente com a frequência: 0,4 dB/km em 125 Hz contra 117 dB/km em 8 kHz. A divergência geométrica atenua todas as frequências igualmente; é a absorção que filtra os agudos.</p></details>
+          <details><summary>Colocar uma fonte no canto aumenta a potência que ela emite?</summary><p>Não — a potência é a mesma. O que muda é a distribuição: a mesma potência passa a se espalhar por um oitavo do espaço, e por isso a intensidade octuplica, o que são 9 dB. É redistribuição, não geração.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — O som e sua medida" data-topicos="medicao">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Medição do som</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar o caminho interno do sonômetro;</li>
+            <li>escolher a ponderação temporal adequada ao tipo de ruído;</li>
+            <li>justificar o uso das ponderações A, C e Z;</li>
+            <li>interpretar nível equivalente e níveis estatísticos.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+
+        <p>Medir som parece trivial e não é. Entre o microfone e o número no visor há três decisões — como fazer a média, em quanto tempo e com que ponderação em frequência — e todas elas mudam o resultado. Declarar um nível sem dizer as três é informar meia medida.</p>
+
+        <h3 id="s4-1"><span class="num">4.1</span>O que o medidor realmente faz</h3>
+        <p>O medidor de nível de pressão sonora — o sonômetro — parece simples e esconde três decisões de projeto que mudam o número lido: como ele calcula a média, em quanto tempo e com que ponderação de frequência. Declarar um nível sem dizer essas três coisas é informar meia medida.</p>
+        <p>O caminho interno é sempre o mesmo. O microfone entrega uma tensão proporcional à pressão; o sinal é elevado ao quadrado (porque energia vai com p²); o quadrado é integrado num intervalo de tempo; tira-se a raiz; e só então se converte em decibéis. Os três ajustes aparecem no segundo e no terceiro passos.</p>
+
+        <div class="fig-host" id="fig-4-1"></div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>Valor eficaz e ponderação temporal</h3>
+
+        <p>A integração é feita com um filtro exponencial de constante de tempo τ, e a norma define três:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ponderação</th><th>τ</th><th>Para quê</th></tr></thead>
+          <tbody>
+            <tr><td>Slow (lenta)</td><td>1 s</td><td>ruído permanente; leitura estável, fácil de anotar</td></tr>
+            <tr><td>Fast (rápida)</td><td>125 ms</td><td>ruído variável; acompanha flutuações do processo</td></tr>
+            <tr><td>Impulse</td><td>35 ms na subida, 1,5 s na descida</td><td>impactos, prensas, tiros, martelos</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Para um sinal permanente, as três convergem para o mesmo valor e a escolha é irrelevante. Para um evento curto, não: um pulso de 60 ms lido em Slow aparece dezenas de decibéis abaixo do que aparece em Impulse, simplesmente porque a energia foi diluída num intervalo muito maior que a duração do evento. <strong>O medidor não mentiu em nenhum dos dois casos — ele respondeu a perguntas diferentes.</strong></p>
+        <div class="callout warn">
+          <strong>O erro de truncamento</strong>
+          Mesmo em sinal permanente há uma armadilha. Se o tempo de integração não for múltiplo exato do período, o valor eficaz calculado flutua. Em 1 kHz, com Fast, cabem 125 períodos e o erro é invisível; em 25 Hz, com Impulse, cabe menos de um período, e a leitura oscila vários decibéis conforme o instante em que a janela começa. Medir graves exige tempo de integração longo.
+        </div>
+
+        <h3 id="s4-3"><span class="num">4.3</span>Ponderação em frequência</h3>
+
+        <p>O ouvido não é um instrumento plano: em 100 Hz ele precisa de muito mais pressão para perceber a mesma sensação que em 1 kHz. As curvas de ponderação corrigem isso aplicando um ganho (negativo, em geral) a cada frequência antes de somar.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Curva</th><th>De onde vem</th><th>Usada para</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>curva isofônica de 40 fones</td><td>quase tudo: higiene ocupacional, ruído ambiental, conforto</td></tr>
+            <tr><td>C</td><td>curva de 100 fones, quase plana</td><td>níveis de pico, ruído impulsivo, avaliação de graves</td></tr>
+            <tr><td>Z</td><td>sem ponderação (plana)</td><td>análise de engenharia, diagnóstico de fonte</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A ponderação A despreja fortemente os graves: em 31,5 Hz ela subtrai cerca de 39 dB, e em 125 Hz, 16 dB. Isso traz uma consequência prática importante: um ruído grave e intenso pode ter dB(A) modesto e ainda assim ser inaceitável — ele incomoda, faz vibrar estrutura e esquadria, e é mal atenuado por protetor auricular. Por isso a diferença <strong>L<sub>C</sub> − L<sub>A</sub></strong> é usada como indicador: acima de uns 10 dB, há conteúdo grave dominante e a proteção auditiva convencional será menos eficaz do que o catálogo promete.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Um pulso visto por três constantes de tempo</div>
+          <p>Um sinal consiste em um pulso retangular único de 1 Pa de amplitude e 60 ms de duração. Que NPS indicaria um medidor em Slow (τ = 1 s), em Fast (τ = 125 ms) e em Impulse (τ = 35 ms)? Considere, de forma aproximada, que o medidor divide a energia do pulso pelo tempo de integração.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Energia do pulso: p² × Δt = 1² × 0,060 = 0,060 Pa²·s.</li>
+              <li>Slow: p²_rms = 0,060/1,0 = 0,060 Pa² → p_rms = 0,245 Pa → NPS = 20 log(0,245/2×10⁻⁵) = <strong>81,8 dB</strong>.</li>
+              <li>Fast: p²_rms = 0,060/0,125 = 0,48 Pa² → p_rms = 0,693 Pa → <strong>90,8 dB</strong>.</li>
+              <li>Impulse: p²_rms = 0,060/0,035 = 1,714 Pa² → p_rms = 1,309 Pa → <strong>96,3 dB</strong>.</li>
+            </ol>
+            <p class="resposta">Quatorze decibéis e meio separam a primeira leitura da última, para o mesmo evento físico. Nenhuma das três é errada: o que cada uma informa é a energia média num intervalo diferente. Em ruído de impacto — prensa, martelo, descarga — a norma de higiene exige Impulse justamente porque Slow esconderia o evento.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-4"><span class="num">4.4</span>Nível equivalente e indicadores estatísticos</h3>
+
+        <p>Quando o ruído varia ao longo do tempo, um único valor instantâneo não descreve nada. O indicador usado é o <strong>nível equivalente</strong>, que é o nível contínuo que teria a mesma energia no período:</p>
+        <div class="formula"><span data-tex="L_{eq,T} = 10\log_{10}\left[\frac{1}{T}\int_0^T \frac{p^2(t)}{p_{ref}^2}\,dt\right]"></span></div>
+        <p>Ao lado dele usam-se os <strong>níveis estatísticos</strong> L<sub>N</sub>, o nível excedido em N % do tempo: L<sub>10</sub> descreve os picos (o tráfego pesado que passa), L<sub>50</sub> a mediana e L<sub>90</sub> o ruído de fundo residual. Num ponto urbano, L<sub>10</sub> − L<sub>90</sub> grande indica ruído intermitente, dominado por eventos; pequena, ruído contínuo.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O medidor eleva ao quadrado, integra num tempo τ, tira a raiz e converte em dB.</li>
+          <li>Slow (1 s), Fast (125 ms) e Impulse (35 ms): iguais em sinal permanente, muito diferentes em impulso.</li>
+          <li>Ponderação A para quase tudo; C para picos e graves; Z para diagnóstico.</li>
+          <li>L_C − L_A grande indica conteúdo grave, mal atenuado por protetor auricular.</li>
+          <li>Ruído variável se descreve por L_eq e por níveis estatísticos L₁₀, L₅₀ e L₉₀.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que medir graves exige tempo de integração longo?</summary><p>Porque o valor eficaz só é estável se a janela de integração contiver vários períodos. Em 1 kHz, Fast (125 ms) contém 125 períodos; em 25 Hz, Impulse (35 ms) contém menos de um, e a leitura oscila vários decibéis conforme o instante em que a janela começa.</p></details>
+          <details><summary>O mesmo impulso lido em Slow e em Impulse dá valores muito diferentes. Qual está certo?</summary><p>Os dois. Eles respondem a perguntas diferentes: Slow informa a energia média num segundo, Impulse informa o pico de curta duração que o ouvido percebe como estalo. Por isso a norma exige declarar a ponderação temporal junto com o número.</p></details>
+          <details><summary>Por que L_eq e não o nível médio?</summary><p>Porque a média aritmética de decibéis não tem significado físico. L_eq é o nível contínuo que teria a mesma energia no período — a única média que preserva a grandeza que causa dano auditivo e que se soma entre períodos.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte I — O som e sua medida" data-topicos="espectro">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Espectros e ponderações</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular limites e larguras de bandas de oitava e de terço;</li>
+            <li>converter terços em oitavas e obter o nível global;</li>
+            <li>aplicar a ponderação A na ordem correta;</li>
+            <li>identificar a banda que domina o dB(A) e orientar o tratamento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 4.</p></div>
+        </div>
+
+        <p>Um nível global não diz onde está a energia — e sem saber onde ela está não se trata ruído nenhum. A análise espectral responde a essa pergunta, e a forma como o eixo de frequência é dividido não é arbitrária: ela imita o ouvido.</p>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Bandas de largura relativa constante</h3>
+        <p>Um nível global não diz onde está a energia, e sem saber onde ela está não se trata ruído nenhum. A análise espectral responde a essa pergunta dividindo o eixo de frequência em bandas e informando o nível de cada uma.</p>
+        <p>A divisão não é em bandas de largura constante, como se faria em eletrônica, mas em <strong>bandas de largura relativa constante</strong>: cada banda tem uma largura proporcional à sua frequência central. É a divisão que corresponde ao modo como o ouvido funciona e, não por acaso, a que torna os espectros legíveis num eixo logarítmico.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Razão f<sub>sup</sub>/f<sub>inf</sub></th><th>Largura</th><th>Bandas no espectro audível</th></tr></thead>
+          <tbody>
+            <tr><td>Oitava</td><td>2</td><td>70,7 % de f<sub>c</sub></td><td>10</td></tr>
+            <tr><td>Terço de oitava</td><td>2<sup>1/3</sup></td><td>23,1 % de f<sub>c</sub></td><td>31</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>As frequências centrais normalizadas de oitava são 31,5 · 63 · 125 · 250 · 500 · 1k · 2k · 4k · 8k · 16k Hz. Os limites de cada banda são f<sub>c</sub>/√2 e f<sub>c</sub>√2 — a banda de 1 kHz vai de 707 a 1414 Hz, uma largura de 707 Hz; a de 63 Hz vai de 44,5 a 89 Hz, uma largura de 44 Hz. <strong>A mesma banda, em oitavas diferentes, tem larguras absolutas muito diferentes.</strong></p>
+
+        <div class="fig-host" id="fig-5-1"></div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>De bandas estreitas a bandas largas</h3>
+
+        <p>Como as bandas de terço são disjuntas e cobrem a banda de oitava correspondente em três, basta somar energeticamente:</p>
+        <div class="formula"><span data-tex="L_{oitava} = 10\log_{10}\left(10^{L_1/10} + 10^{L_2/10} + 10^{L_3/10}\right)"></span></div>
+        <p>O caminho inverso não existe: de uma banda de oitava não se recupera o que havia dentro dela. Por isso, quando o objetivo é <em>diagnosticar</em> a fonte — encontrar o tom puro de uma engrenagem, a frequência de passagem de pás de um ventilador —, mede-se em terços ou em banda estreita; quando o objetivo é <em>qualificar</em> o ambiente, oitavas bastam.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Do espectro ao dB(A)</div>
+          <p>Um ruído foi analisado por bandas de oitava, com os níveis abaixo. Calcule o nível global linear e o nível global em dB(A). As correções da ponderação A são, nas mesmas bandas: −39,5; −26,2; −16,2; −8,7; −3,2; 0; +1,2; +1,0; −1,1 dB.<br><br><em>f (Hz):</em> 31,5 · 63 · 125 · 250 · 500 · 1k · 2k · 4k · 8k<br><em>NPS (dB):</em> 60 · 65 · 70 · 75 · 65 · 55 · 45 · 40 · 32</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Global linear: L = 10 log(10^6,0 + 10^6,5 + 10^7,0 + 10^7,5 + 10^6,5 + 10^5,5 + 10^4,5 + 10^4,0 + 10^3,2).</li>
+              <li>A soma dá 4,93×10⁷ → L = <strong>76,9 dB</strong>.</li>
+              <li>Ponderando banda a banda: 20,5 · 38,8 · 53,8 · 66,3 · 61,8 · 55,0 · 46,2 · 41,0 · 30,9 dB(A).</li>
+              <li>Somando essas: L_A = <strong>68,1 dB(A)</strong>.</li>
+            </ol>
+            <p class="resposta">Dois pontos valem destaque. O global linear (76,9 dB) ficou apenas 1,9 dB acima da maior banda (75 dB): oito bandas inteiras contribuíram com menos de 2 dB. E a ponderação A custou 8,8 dB, porque a energia estava concentrada nos graves — onde o ouvido é insensível, mas a estrutura não é.</p>
+          </details>
+        </div>
+
+        <h3 id="s5-3"><span class="num">5.3</span>O nível global e o dB(A)</h3>
+
+        <p>O nível global é a soma energética de todas as bandas. A ponderação A entra <strong>antes</strong> da soma, banda por banda:</p>
+        <div class="formula"><span data-tex="L_A = 10\log_{10}\sum_i 10^{(L_i + A_i)/10}"></span></div>
+        <p>Inverter a ordem — somar primeiro e ponderar depois — está errado e dá resultado diferente, porque a correção depende da frequência.</p>
+        <p>Uma propriedade da soma energética merece ser interiorizada: <strong>ela é dominada pelas bandas mais altas</strong>. Num espectro em que a maior banda tem 75 dB e o global dá 76,9 dB, toda a contribuição das outras oito bandas juntas valeu 1,9 dB. Em termos de projeto: atenuar 10 dB numa banda que está 15 dB abaixo da dominante não muda nada no global, e é dinheiro jogado fora.</p>
+        <div class="callout tip">
+          <strong>Como ler um espectro para decidir o tratamento</strong>
+          Pondere em A, encontre a banda dominante e trate essa. Se o espectro é plano em A, o problema é de banda larga e pede absorção distribuída ou barreira; se há um pico isolado, o problema é um mecanismo específico — desbalanceamento, engrenamento, passagem de pás — e o caminho é corrigir a fonte, não absorver o som.
+        </div>
+
+        <div id="sim-espectro" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue o espectro do compressor e o do jato de ar comprimido: eles têm dB(A) parecidos e espectros opostos. Veja qual banda domina em cada caso — e perceba que o tratamento acústico de um é inútil para o outro.
+        </div>
+
+        <h3 id="s5-4"><span class="num">5.4</span>Curvas de avaliação: NC e NR</h3>
+
+        <p>Para ambientes de conforto, não basta um número global: um ruído com o mesmo dB(A) pode ser aceitável ou insuportável conforme o espectro. As curvas <strong>NC</strong> (<em>noise criteria</em>) e <strong>NR</strong> (<em>noise rating</em>) são famílias de curvas no plano banda × nível, e o ambiente recebe o índice da curva mais baixa que envelopa todo o espectro medido. Valores de referência: NC 25-30 para quartos e salas de concerto, NC 30-35 para escritórios privativos e salas de aula, NC 40-45 para escritórios abertos e restaurantes.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.2</span>Uma nota com infinitos harmônicos</div>
+          <p>Um instrumento emite uma nota cuja fundamental tem NPS de 60 dB, seguida de todos os harmônicos, cada um com amplitude igual a 1/3 da do anterior. Qual o NPS global do som emitido?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Amplitude na razão 1/3 ⇒ potência na razão (1/3)² = 1/9.</li>
+              <li>A soma das potências é uma série geométrica: p₁²(1 + 1/9 + 1/81 + …) = p₁² × 1/(1 − 1/9).</li>
+              <li>Fator: 1/(8/9) = <strong>1,125</strong>.</li>
+              <li>Acréscimo: 10 log(1,125) = <strong>0,51 dB</strong>.</li>
+              <li>Global: 60 + 0,51 = <strong>60,5 dB</strong>.</li>
+            </ol>
+            <p class="resposta">Todos os harmônicos juntos acrescentam meio decibel ao fundamental. É a demonstração mais limpa de uma ideia central deste capítulo: a soma energética é dominada pelo maior termo, e componentes que estão 10 dB abaixo são irrelevantes para o nível — embora sejam exatamente eles que definem o timbre, e portanto tudo que distingue um violino de uma flauta na mesma nota.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Bandas de largura relativa constante: oitava (razão 2) e terço (razão 2^⅓).</li>
+          <li>Limites da banda: f_c/√2 e f_c√2 — a largura absoluta cresce com a frequência.</li>
+          <li>Terços se somam energeticamente em oitavas; o caminho inverso não existe.</li>
+          <li>A ponderação A entra banda a banda, antes da soma — nunca depois.</li>
+          <li>A soma energética é dominada pelas bandas mais altas: tratar o resto é desperdício.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o espectro se divide em bandas relativas e não em bandas de largura fixa?</summary><p>Porque é assim que o ouvido analisa: suas bandas críticas têm largura aproximadamente proporcional à frequência. Uma divisão de largura fixa daria resolução excessiva nos agudos e insuficiente nos graves, e os espectros não seriam comparáveis entre si.</p></details>
+          <details><summary>Posso ponderar em A o nível global e chegar ao mesmo dB(A)?</summary><p>Não. A correção depende da frequência, então ela precisa ser aplicada a cada banda antes da soma. Fazer na ordem errada dá resultado diferente e sem significado — tanto maior o erro quanto mais largo for o espectro.</p></details>
+          <details><summary>Se o maior pico do espectro está 15 dB acima das outras bandas, o que fazer?</summary><p>Tratar só aquela banda. Ela sozinha responde por praticamente todo o nível global, e atenuar qualquer outra não muda nada. Um pico isolado, além disso, costuma indicar um mecanismo específico — engrenamento, passagem de pás, desbalanceamento — que se corrige na fonte.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — A física da onda acústica" data-topicos="fourier">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Sinais e análise de Fourier</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>escrever série e transformada de Fourier e interpretá-las fisicamente;</li>
+            <li>usar as propriedades de linearidade, escala, translação e convolução;</li>
+            <li>relacionar a suavidade da forma de onda com o decaimento do espectro;</li>
+            <li>reconhecer aliasing, resolução e vazamento espectral num analisador.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 5 e Cálculo II (séries e integrais).</p></div>
+        </div>
+
+        <p>A análise em bandas do capítulo anterior é um procedimento de medição; por trás dela está o resultado matemático que sustenta toda a acústica de sinais. Este capítulo é a ponte entre o tempo e a frequência — e entre a teoria e o que o analisador digital realmente faz.</p>
+
+        <h3 id="s6-1"><span class="num">6.1</span>O mesmo sinal, dois ângulos</h3>
+        <p>A análise em bandas do capítulo anterior é um procedimento de medição. Por trás dela está um resultado matemático que é a base de toda a acústica de sinais: <strong>qualquer sinal razoável pode ser escrito como uma soma de senoides</strong>. Para sinais periódicos, a soma é discreta — a série de Fourier; para sinais quaisquer, é uma integral — a transformada.</p>
+        <div class="formula"><span data-tex="s(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\left[a_n\cos(2\pi n f_0 t) + b_n\sin(2\pi n f_0 t)\right]"></span></div>
+        <div class="formula"><span data-tex="\hat s(f) = \int_{-\infty}^{\infty} s(t)\,e^{-j2\pi f t}\,dt \qquad s(t) = \int_{-\infty}^{\infty} \hat s(f)\,e^{j2\pi f t}\,df"></span></div>
+        <p>A interpretação acústica é direta: o sinal no tempo e o espectro em frequência são <strong>a mesma informação vista de dois ângulos</strong>. Nenhum dos dois é mais fundamental; o que muda é qual pergunta fica fácil de responder.</p>
+
+        <div class="fig-host" id="fig-6-1"></div>
+
+        <h3 id="s6-2"><span class="num">6.2</span>As propriedades que se usam o tempo todo</h3>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Propriedade</th><th>No tempo</th><th>Na frequência</th><th>O que significa em acústica</th></tr></thead>
+          <tbody>
+            <tr><td>Linearidade</td><td>αs₁ + βs₂</td><td>αŝ₁ + βŝ₂</td><td>fontes independentes se somam espectro a espectro</td></tr>
+            <tr><td>Escala</td><td>s(at)</td><td>(1/|a|)·ŝ(f/a)</td><td>acelerar o sinal desloca o espectro para cima</td></tr>
+            <tr><td>Translação</td><td>s(t − t₀)</td><td>e<sup>−j2πft₀</sup>·ŝ(f)</td><td>atrasar muda só a fase: o módulo não vê o atraso</td></tr>
+            <tr><td>Modulação</td><td>e<sup>j2πf₀t</sup>·s(t)</td><td>ŝ(f − f₀)</td><td>modular desloca a banda — a base da heterodinagem</td></tr>
+            <tr><td>Derivação</td><td>s′(t)</td><td>j2πf·ŝ(f)</td><td>de deslocamento para velocidade, +6 dB por oitava</td></tr>
+            <tr><td>Convolução</td><td>s * h</td><td>ŝ·ĥ</td><td>passar por um sistema é multiplicar espectros</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A última linha é a mais importante de todas para acústica de salas: a resposta de uma sala a um sinal qualquer é a <strong>convolução</strong> do sinal com a resposta impulsiva da sala. Medida a resposta impulsiva, pode-se ouvir qualquer música naquela sala sem nunca ter estado nela — é o princípio da auralização.</p>
+
+        <h3 id="s6-3"><span class="num">6.3</span>O espectro conta como é a forma de onda</h3>
+
+        <p>A velocidade com que os coeficientes decaem revela a suavidade do sinal. Uma <strong>onda quadrada</strong>, descontínua, tem apenas harmônicos ímpares com amplitude 4A/nπ: o terceiro está 9,5 dB abaixo do fundamental, o quinto 14 dB, e o decaimento é de 6 dB por oitava. Uma <strong>onda triangular</strong>, contínua mas com derivada descontínua, decai com 1/n² — 12 dB por oitava. A regra geral: <strong>quanto mais abrupta a forma de onda, mais rico e mais lentamente decrescente o espectro</strong>.</p>
+        <p>Daí uma consequência de engenharia: impacto metálico, batida de prensa e descarga de ar comprimido são abruptos no tempo e, por isso, largos no espectro — o que torna inútil tratá-los com absorvedor sintonizado numa frequência só.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>O espectro de uma onda quadrada</div>
+          <p>Determine como decaem os coeficientes de Fourier de uma onda quadrada de amplitude A e período T, e calcule de quantos decibéis o terceiro e o quinto harmônicos estão abaixo da fundamental.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A onda quadrada é ímpar e tem simetria de meia onda, e por isso só tem harmônicos ímpares: a_n = 0 e b_n = 4A/(nπ) para n ímpar, zero para n par.</li>
+              <li>Amplitude relativa do n-ésimo: b_n/b₁ = 1/n.</li>
+              <li>3º harmônico: 20 log(1/3) = <strong>−9,54 dB</strong>.</li>
+              <li>5º harmônico: 20 log(1/5) = <strong>−13,98 dB</strong>.</li>
+              <li>Decaimento assintótico: 20 log(1/n), ou seja, <strong>−6 dB por oitava</strong>.</li>
+            </ol>
+            <p class="resposta">A ausência dos harmônicos pares vem da simetria de meia onda — a segunda metade do período é a primeira invertida —, e é a mesma razão pela qual um tubo aberto-fechado só produz harmônicos ímpares (capítulo 9). Já o decaimento lento de 6 dB por oitava é consequência direta da descontinuidade: a transformada "paga" por cada salto da forma de onda com energia espalhada em alta frequência.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-4"><span class="num">6.4</span>Da teoria ao analisador: FFT, janela e resolução</h3>
+
+        <p>O analisador digital não calcula a integral: ele amostra o sinal e aplica a transformada discreta rápida (FFT). Dessa transição saem três limitações que todo medidor enfrenta:</p>
+        <ul>
+          <li><strong>Teorema da amostragem:</strong> para representar até f<sub>max</sub>, é preciso amostrar a mais de 2f<sub>max</sub>. Abaixo disso, componentes altos aparecem disfarçados em frequências baixas — o <em>aliasing</em> —, e por isso todo analisador tem um filtro anti-alias na entrada.</li>
+          <li><strong>Resolução:</strong> Δf = 1/T. Separar dois tons distantes 1 Hz exige medir por pelo menos 1 segundo. Não há como contornar: resolução em frequência custa tempo.</li>
+          <li><strong>Vazamento espectral:</strong> truncar o sinal equivale a multiplicá-lo por uma janela retangular, cujo espectro é um seno cardinal que espalha energia para bandas vizinhas. Usam-se então janelas suaves — Hanning para sinal contínuo, retangular para impulsos, <em>flat-top</em> quando se quer amplitude exata.</li>
+        </ul>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Sinal periódico: soma discreta de harmônicos. Sinal qualquer: integral de Fourier.</li>
+          <li>Tempo e frequência carregam a mesma informação, vista de ângulos diferentes.</li>
+          <li>Convolução no tempo é produto na frequência — a base da auralização.</li>
+          <li>Onda descontínua decai com 1/n (6 dB/oitava); contínua com derivada descontínua, 1/n² (12 dB/oitava).</li>
+          <li>No analisador: aliasing exige filtro de entrada, Δf = 1/T e a janela controla o vazamento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a resposta de uma sala a qualquer sinal é uma convolução?</summary><p>Porque a sala é um sistema linear e invariante no tempo: sua saída é a superposição das respostas a cada impulso do sinal de entrada. Medida a resposta impulsiva, basta convoluí-la com uma gravação anecoica para ouvir a sala — e é por isso que se pode escutar um auditório antes de construí-lo.</p></details>
+          <details><summary>Por que um impacto metálico tem espectro largo?</summary><p>Porque é abrupto no tempo. Quanto mais rápida a variação, mais lentamente o espectro decai — a transformada de um pulso muito curto é quase plana. Daí a inutilidade de tratar ruído de impacto com absorvedor sintonizado numa frequência só.</p></details>
+          <details><summary>Como se melhora a resolução em frequência de uma medição?</summary><p>Medindo por mais tempo: Δf = 1/T, sem exceção. Separar dois tons distantes 1 Hz exige pelo menos 1 segundo de aquisição. Não há processamento que contorne isso — resolução em frequência custa tempo, e essa é a forma acústica do princípio da incerteza.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — A física da onda acústica" data-topicos="equacao">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. A equação da onda</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>montar a equação da onda a partir da conservação de massa e da 2ª lei;</li>
+            <li>explicar por que o processo acústico é adiabático e não isotérmico;</li>
+            <li>usar a solução de D’Alembert;</li>
+            <li>relacionar pressão, velocidade de partícula e intensidade pela impedância.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 6; Termodinâmica (processo isentrópico).</p></div>
+        </div>
+
+        <p>Até aqui a onda foi descrita e medida; falta mostrar de onde ela vem. A dedução é curta, usa apenas três ingredientes conhecidos, e entrega de brinde a explicação de um erro histórico de 16 % que levou um século para ser corrigido.</p>
+
+        <h3 id="s7-1"><span class="num">7.1</span>De onde a velocidade do som vem</h3>
+        <p>Até aqui a onda foi descrita; falta mostrar de onde ela vem. A equação da onda sai de três ingredientes que já são conhecidos de outras disciplinas: a conservação da massa, a segunda lei de Newton aplicada a um elemento de fluido e uma relação constitutiva entre pressão e massa específica.</p>
+        <p>Linearizando para pequenas perturbações — hipótese que o capítulo 2 já justificou, já que 100 dB correspondem a 0,002 % da pressão atmosférica — as três equações se combinam numa só:</p>
+        <div class="formula"><span data-tex="\frac{\partial^2 p}{\partial x^2} = \frac{1}{c^2}\frac{\partial^2 p}{\partial t^2}, \qquad c^2 = \left(\frac{\partial P}{\partial \rho}\right)_s"></span></div>
+        <p>A velocidade do som não é um parâmetro empírico: ela <strong>é</strong> a raiz da derivada da pressão em relação à massa específica, tomada a entropia constante. Essa última ressalva é a parte interessante da história.</p>
+
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>Newton, Laplace e o erro de 16 %</h3>
+
+        <p>Newton foi o primeiro a calcular a velocidade do som, e supôs o processo <em>isotérmico</em>: a compressão seria lenta o bastante para trocar calor com a vizinhança. Com isso, (∂P/∂ρ)<sub>T</sub> = P/ρ, e a previsão dá 289 m/s a 20 °C — cerca de 16 % abaixo do medido. A discrepância ficou sem explicação por mais de um século.</p>
+        <p>Laplace resolveu apontando que a compressão acústica é <strong>rápida demais</strong> para haver troca de calor: o processo é adiabático e, como é reversível, isentrópico. Com Pρ<sup>−γ</sup> constante:</p>
+        <div class="formula"><span data-tex="c = \sqrt{\frac{\gamma P_0}{\rho_0}} = \sqrt{\gamma R T}"></span></div>
+        <p>que dá 343 m/s a 20 °C. Dois corolários valiosos saem da expressão: a velocidade <strong>não depende da pressão</strong> (P₀ e ρ₀ variam juntos, e o quociente só depende de T) e <strong>depende da massa molar</strong> — no hélio, mais leve, c vale cerca de 1000 m/s, o que muda as frequências de ressonância do trato vocal e produz a voz esganiçada do balão de festa.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>O erro de Newton</div>
+          <p>Newton calculou a velocidade do som supondo processo isotérmico, isto é, (∂P/∂ρ)_T = P/ρ. Calcule a velocidade prevista por ele a 20 °C e o erro percentual em relação ao valor correto, com P₀ = 101 325 Pa, ρ₀ = 1,21 kg/m³ e γ = 1,40.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Previsão de Newton: c = √(P₀/ρ₀) = √(101 325/1,21) = √(83 740) = <strong>289,4 m/s</strong>.</li>
+              <li>Previsão de Laplace: c = √(γP₀/ρ₀) = √(1,40 × 83 740) = <strong>342,4 m/s</strong>.</li>
+              <li>Erro de Newton: (289,4 − 342,4)/342,4 = <strong>−15,5 %</strong>.</li>
+              <li>A razão entre as duas é exatamente √γ = √1,40 = 1,183.</li>
+            </ol>
+            <p class="resposta">O erro é precisamente √γ, e foi essa discrepância persistente entre o cálculo e a medida que levou Laplace, mais de um século depois, a perceber que a compressão sonora é adiabática. É um dos casos mais limpos da história da física em que uma diferença numérica teimosa revelou um erro conceitual — e não um erro experimental.</p>
+          </details>
+        </div>
+
+        <h3 id="s7-3"><span class="num">7.3</span>A solução de D'Alembert</h3>
+
+        <p>A equação da onda unidimensional tem solução geral notavelmente simples:</p>
+        <div class="formula"><span data-tex="p(x,t) = f(x - ct) + g(x + ct)"></span></div>
+        <p>Qualquer função f, com qualquer forma, propagando-se para a direita sem se deformar, somada a qualquer função g propagando-se para a esquerda. Não há dispersão: todas as frequências andam com a mesma velocidade, e por isso a forma de onda se mantém. É um resultado que se deve apreciar — ele é o que torna possível a comunicação falada a distância.</p>
+        <p>Para a onda progressiva, pressão e velocidade de partícula estão <strong>em fase</strong> e ligadas pela impedância característica:</p>
+        <div class="formula"><span data-tex="v = \frac{p}{\rho_0 c}, \qquad z = \rho_0 c \quad [\text{rayl}]"></span></div>
+        <p>e a intensidade — potência por unidade de área — vale</p>
+        <div class="formula"><span data-tex="I = \overline{p\,v} = \frac{p_{rms}^2}{\rho_0 c}"></span></div>
+        <p>No ar, ρ₀c ≈ 415 rayl; na água, 1,48 × 10⁶ rayl — um fator de 3600. Esse contraste é o que o capítulo seguinte explora.</p>
+        <div class="callout note">
+          <strong>Ondas em cordas e em barras</strong>
+          A mesma equação, com outros coeficientes, descreve a vibração transversal de uma corda tensionada (c = √(T/ρ<sub>L</sub>)) e a onda longitudinal numa barra (c = √(E/ρ)). É por isso que a acústica, as vibrações e a mecânica dos sólidos compartilham o mesmo ferramental — e por que a frequência de um violão depende da tensão da corda exatamente como a de um tubo depende do comprimento.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A equação sai de conservação de massa, 2ª lei de Newton e uma relação constitutiva.</li>
+          <li>c² = (∂P/∂ρ)_s: a derivada é tomada a entropia constante, não a T constante.</li>
+          <li>Newton supôs isotérmico e errou 16 %; Laplace corrigiu com c = √(γP₀/ρ₀) = √(γRT).</li>
+          <li>D’Alembert: p = f(x−ct) + g(x+ct), sem dispersão nem deformação.</li>
+          <li>Na onda progressiva, v = p/ρ₀c e I = p²_rms/ρ₀c; ρ₀c vale 415 rayl no ar e 1,48×10⁶ na água.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a compressão acústica é adiabática e não isotérmica?</summary><p>Porque ela é rápida demais para haver troca de calor apreciável entre a região comprimida e a vizinhança: o tempo característico da condução é muito maior que o período acústico. Newton não dispunha desse argumento e supôs o contrário, errando a velocidade do som em 16 %.</p></details>
+          <details><summary>Por que a velocidade do som no ar não depende da pressão?</summary><p>Porque c = √(γP₀/ρ₀), e ao comprimir o ar isotermicamente P₀ e ρ₀ crescem na mesma proporção, deixando o quociente inalterado. O que resta é c = √(γRT): só a temperatura importa — e a massa molar, que é o que muda no hélio.</p></details>
+          <details><summary>O que significa a impedância característica ser 3600 vezes maior na água?</summary><p>Que, para a mesma pressão, a velocidade de partícula na água é 3600 vezes menor — e que a interface ar-água é quase intransponível para o som, com apenas 0,11 % da intensidade atravessando. É o assunto do capítulo seguinte.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte II — A física da onda acústica" data-topicos="interface">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Reflexão e transmissão</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular R, T, τ e TL numa interface entre dois meios;</li>
+            <li>explicar por que a pressão transmitida pode exceder a incidente;</li>
+            <li>aplicar o mesmo formalismo a mudanças de seção em dutos;</li>
+            <li>descrever a onda estacionária formada antes da interface.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 7.</p></div>
+        </div>
+
+        <p>Toda a engenharia de isolamento, de silenciadores e de transdutores vem de uma única pergunta: o que acontece quando a onda encontra outro meio? A resposta depende de um só parâmetro — o produto ρ₀c —, e as consequências vão da impossibilidade de ouvir debaixo d’água ao projeto de escapamento de motor.</p>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Quem decide é a impedância</h3>
+        <p>Quando uma onda plana encontra a fronteira entre dois meios, parte da energia volta e parte atravessa. A pergunta é quanto de cada — e a resposta não depende da massa específica nem da velocidade isoladamente, mas do produto delas: a <strong>impedância característica</strong> z = ρ₀c.</p>
+        <p>Impondo as duas condições físicas na interface — continuidade de pressão e continuidade de velocidade normal — obtêm-se, para incidência normal:</p>
+        <div class="formula"><span data-tex="R = \frac{p_r}{p_i} = \frac{z_2 - z_1}{z_2 + z_1}, \qquad T = \frac{p_t}{p_i} = \frac{2z_2}{z_2 + z_1} = 1 + R"></span></div>
+        <p>Em termos de intensidade, a fração transmitida e a perda na transmissão são</p>
+        <div class="formula"><span data-tex="\tau = \frac{4z_1z_2}{(z_1+z_2)^2}, \qquad TL = -10\log_{10}\tau"></span></div>
+
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Três casos que explicam quase tudo</h3>
+
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Situação</th><th>R</th><th>O que acontece</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>z₂ ≫ z₁</td><td>→ +1</td><td>reflexão total em fase; p na interface dobra</td><td>ar contra parede rígida</td></tr>
+            <tr><td>z₂ ≈ z₁</td><td>→ 0</td><td>interface transparente; quase tudo passa</td><td>água contra glicerina</td></tr>
+            <tr><td>z₂ ≪ z₁</td><td>→ −1</td><td>reflexão total invertida; p na interface anula</td><td>aço contra ar; superfície livre d'água</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O primeiro caso contém um resultado que costuma incomodar: a pressão transmitida pode ser <strong>maior</strong> que a incidente, com T até 2. Não há violação de energia nenhuma — no meio mais duro a velocidade de partícula cai na mesma proporção em que a pressão sobe, e o produto p·v, que é a intensidade, obedece à conservação.</p>
+        <p>O contraste ar-água é extremo: τ = 0,11 %, TL = 29,5 dB. Praticamente nada do som aéreo entra na água — por isso não se ouve o que acontece na superfície quando se mergulha, e por isso sonar e hidrofone são equipamentos à parte.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Um pulso que encontra um gás mais denso</div>
+          <p>Um pulso retangular de pressão com amplitude de 3 Pa e 6 m de extensão se propaga num duto com ar (ρ₀ = 1,21 kg/m³, c = 343 m/s) até encontrar outro gás (ρ₀ = 1,64 kg/m³, c = 506 m/s). Calcule R e T, a pressão na interface durante a passagem, a extensão do pulso transmitido e a perda na transmissão.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>z₁ = 1,21 × 343 = <strong>415 rayl</strong>; z₂ = 1,64 × 506 = <strong>829,8 rayl</strong>.</li>
+              <li>R = (829,8 − 415)/(829,8 + 415) = 414,8/1244,8 = <strong>0,333</strong>.</li>
+              <li>T = 1 + R = <strong>1,333</strong>.</li>
+              <li>Pressão na interface: 3 × 1,333 = <strong>4,00 Pa</strong> — maior que a incidente.</li>
+              <li>A duração do pulso não muda, mas a velocidade sim: λ₂ = 6 × 506/343 = <strong>8,85 m</strong>.</li>
+              <li>τ = 4 × 415 × 829,8/(1244,8)² = 0,889 → TL = −10 log(0,889) = <strong>0,51 dB</strong>.</li>
+            </ol>
+            <p class="resposta">Meio decibel de perda: para o som, essa interface quase não existe. E a pressão sobe 33 % ao atravessá-la, sem que nada seja violado — a velocidade de partícula cai de 7,2 para 4,8 mm/s, e o produto p·v se conserva. O pulso também "estica" no espaço, porque viaja mais rápido do outro lado mantendo a mesma duração.</p>
+          </details>
+        </div>
+
+        <h3 id="s8-3"><span class="num">8.3</span>Mudança de seção em dutos</h3>
+
+        <p>O mesmo formalismo descreve o que acontece quando um duto muda de seção, trocando-se a impedância pelo seu análogo acústico z/S:</p>
+        <div class="formula"><span data-tex="R = \frac{S_1 - S_2}{S_1 + S_2}"></span></div>
+        <p>Uma expansão brusca reflete como se o duto encontrasse um meio mais "mole"; uma contração, como se encontrasse um meio mais duro. É o princípio do <strong>silenciador reativo</strong>: uma câmara de expansão em série com o duto devolve energia à fonte em certas faixas, sem absorver nada. Diferentemente do silenciador dissipativo, que usa material absorvente, o reativo atua por descasamento de impedância, funciona bem nos graves e é o que se usa em escapamento de motor.</p>
+
+        <div id="sim-interface" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare ar→água com água→glicerina: o primeiro par é uma parede acústica, o segundo é quase transparente. Depois escolha aço→ar e veja o coeficiente ficar negativo — a onda volta invertida e a pressão na interface se anula.
+        </div>
+
+        <h3 id="s8-4"><span class="num">8.4</span>A onda estacionária</h3>
+
+        <p>Antes da interface, a incidente e a refletida coexistem, e sua soma não é mais uma onda viajante: é um padrão fixo no espaço, que apenas pulsa no tempo. A envoltória da amplitude vale</p>
+        <div class="formula"><span data-tex="|p(x)| = A\sqrt{1 + R^2 + 2R\cos 2kx}"></span></div>
+        <p>com máximos (ventres) e mínimos (nós) alternando a cada λ/4 e espaçados de λ/2 entre si. Diante de uma parede rígida, onde R ≈ 1, a pressão na própria parede é o dobro da incidente — <strong>+6 dB</strong>, e esse é o motivo de um microfone encostado na parede ler mais que um microfone no meio da sala.</p>
+        <p>A razão entre o máximo e o mínimo da envoltória permite medir R sem conhecer a fonte: é o método do <strong>tubo de impedância</strong>, usado em laboratório para determinar o coeficiente de absorção de um material em incidência normal.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.2</span>A pressão dobra diante de uma parede rígida</div>
+          <p>Uma onda plana monocromática de 100 Hz e NPS de 96 dB incide frontalmente numa parede plana rígida. A que distância da parede se mede 98 dB? Considere reflexão total (R = 1) e c = 343 m/s.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Com R = 1, a envoltória da onda estacionária é |p(x)| = 2A|cos kx|, com x medido a partir da parede.</li>
+              <li>Em termos de nível: L(x) = L_inc + 20 log(2|cos kx|). Na parede (x = 0) isso dá +6,0 dB.</li>
+              <li>Para L(x) − L_inc = 2 dB: 2|cos kx| = 10^(2/20) = 1,2589 ⇒ |cos kx| = 0,6295.</li>
+              <li>kx = arccos(0,6295) = 0,890 rad.</li>
+              <li>k = 2πf/c = 2π(100)/343 = 1,832 rad/m.</li>
+              <li>x = 0,890/1,832 = <strong>0,486 m</strong>.</li>
+            </ol>
+            <p class="resposta">Na própria parede o nível é 102 dB, seis decibéis acima da onda incidente — e esse é o motivo de um microfone encostado na parede ler mais que um no meio da sala. O nó mais próximo fica em kx = π/2, isto é, a 0,857 m, onde a pressão se anula. Entre dois pontos separados por menos de um metro há uma diferença de dezenas de decibéis: é o fenômeno que, numa sala, faz o grave sumir quando se move a cabeça.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>R = (z₂−z₁)/(z₂+z₁) e T = 1 + R, com z = ρ₀c.</li>
+          <li>τ = 4z₁z₂/(z₁+z₂)² e TL = −10 log τ.</li>
+          <li>z₂ ≫ z₁: reflexão em fase e pressão dobrada na interface; z₂ ≪ z₁: reflexão invertida.</li>
+          <li>Ar-água: τ = 0,11 %, TL = 29,5 dB — o som aéreo praticamente não entra na água.</li>
+          <li>Em dutos, R = (S₁−S₂)/(S₁+S₂): é o princípio do silenciador reativo.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Como a pressão transmitida pode ser maior que a incidente?</summary><p>Porque o que se conserva é a intensidade, não a pressão. No meio de maior impedância a velocidade de partícula cai na mesma proporção em que a pressão sobe, e o produto p·v obedece à conservação de energia. Com z₂ ≫ z₁, T tende a 2 — a pressão dobra na interface.</p></details>
+          <details><summary>Por que não se ouve o que acontece fora da água quando se mergulha?</summary><p>Porque as impedâncias diferem por um fator de 3600: apenas 0,11 % da intensidade atravessa, o que equivale a 29,5 dB de perda. O som aéreo bate na superfície e volta quase inteiro — e é por isso que sonar e hidrofone são equipamentos à parte.</p></details>
+          <details><summary>Qual a diferença entre silenciador reativo e dissipativo?</summary><p>O reativo usa descasamento de impedância — câmaras de expansão, ressonadores — para devolver energia à fonte, sem absorver nada; funciona bem nos graves e em faixas estreitas, e é o de escapamento de motor. O dissipativo usa material absorvente, funciona em banda larga e nos agudos, e é o de duto de ar-condicionado.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte II — A física da onda acústica" data-topicos="estacionarias">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Ondas estacionárias e ressonância</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir as frequências modais de tubos abertos e fechados;</li>
+            <li>calcular os modos de uma sala retangular;</li>
+            <li>explicar nós, ventres e a origem do batimento;</li>
+            <li>dimensionar um ressonador de Helmholtz.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 7 e 8.</p></div>
+        </div>
+
+        <p>Quando a onda encontra contornos dos dois lados, a ida e a volta se superpõem permanentemente. Só algumas frequências sobrevivem a esse processo — e são elas que dão timbre a um instrumento, irregularidade aos graves de uma sala e justificativa ao ressonador de Helmholtz.</p>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Só sobrevivem certas frequências</h3>
+        <p>Quando as reflexões acontecem nas duas extremidades de um recinto — um tubo, uma corda, uma sala —, a onda ida e a onda de volta se superpõem de modo permanente. Só sobrevivem as frequências em que esse processo se repete em fase; as demais se cancelam. Essas frequências privilegiadas são os <strong>modos de ressonância</strong>, e governam desde o som de um clarinete até os graves irregulares de uma sala de estar.</p>
+
+        <div class="fig-host" id="fig-9-1"></div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>Modos de um tubo</h3>
+
+        <p>A condição é geométrica: um número inteiro de meios comprimentos de onda tem de caber no tubo. Mas os extremos impõem condições diferentes. Numa terminação <strong>rígida</strong>, a velocidade de partícula é nula e a pressão é máxima — ventre de pressão. Numa terminação <strong>aberta</strong>, a pressão se iguala à atmosférica e é nula em flutuação — nó de pressão.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tubo</th><th>Frequências</th><th>Fundamental</th><th>Harmônicos</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>Aberto-aberto</td><td>f<sub>n</sub> = n·c/2L</td><td>c/2L</td><td>todos</td><td>flauta, tubo de órgão aberto</td></tr>
+            <tr><td>Fechado-fechado</td><td>f<sub>n</sub> = n·c/2L</td><td>c/2L</td><td>todos</td><td>sala entre duas paredes</td></tr>
+            <tr><td>Aberto-fechado</td><td>f<sub>n</sub> = (2n−1)·c/4L</td><td>c/4L</td><td>só ímpares</td><td>clarinete, tubo tampado</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A terceira linha explica duas coisas de uma vez: o clarinete soa uma oitava abaixo da flauta de mesmo comprimento (porque sua fundamental é c/4L, metade de c/2L) e tem timbre característico — "oco" — por lhe faltarem os harmônicos pares.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Afinar um monocórdio pelo batimento</div>
+          <p>Um monocórdio de 120 cm é afinado para que a corda solta soe em A4 (440 Hz). Dividindo-a em duas partes que deveriam ser iguais, o ouvido reconhece um batimento cujo envelope pulsa 352 vezes por minuto. Quais são os comprimentos reais dos dois trechos?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A frequência de um trecho de comprimento ℓ é f = 440 × 120/ℓ = 52 800/ℓ (com ℓ em cm).</li>
+              <li>Batimento: Δf = 352/60 = <strong>5,867 Hz</strong>.</li>
+              <li>Com ℓ₁ = 60 − d e ℓ₂ = 60 + d: 52 800/(60−d) − 52 800/(60+d) = 5,867.</li>
+              <li>Resolvendo, d = <strong>0,200 cm</strong>.</li>
+              <li>Comprimentos: <strong>59,8 cm e 60,2 cm</strong>.</li>
+              <li>Frequências: 882,9 Hz e 877,1 Hz — e a diferença confere: 5,87 Hz.</li>
+            </ol>
+            <p class="resposta">Um erro de dois milímetros em sessenta centímetros — três décimos de por cento — produz um batimento que qualquer ouvido detecta sem esforço. É por isso que se afina instrumento de ouvido com precisão maior que a de muitos instrumentos de medida: o batimento transforma uma diferença de frequência minúscula numa modulação de amplitude lenta e evidente.</p>
+          </details>
+        </div>
+
+        <h3 id="s9-3"><span class="num">9.3</span>Modos de uma sala retangular</h3>
+
+        <p>Em três dimensões, as condições se combinam nos três eixos:</p>
+        <div class="formula"><span data-tex="f_{n_x n_y n_z} = \frac{c}{2}\sqrt{\left(\frac{n_x}{L_x}\right)^2 + \left(\frac{n_y}{L_y}\right)^2 + \left(\frac{n_z}{L_z}\right)^2}"></span></div>
+        <p>com n inteiros não negativos. Classificam-se em <em>axiais</em> (um índice não nulo, os mais fortes), <em>tangenciais</em> (dois) e <em>oblíquos</em> (três, os mais fracos). Nos graves, esses modos são poucos e bem separados: a sala responde de forma muito desigual à frequência, e andar um passo muda o nível em dezenas de decibéis. Nos agudos, os modos se amontoam e a resposta fica estatisticamente lisa — é a condição de campo difuso de que o capítulo 11 precisa.</p>
+        <div class="callout warn">
+          <strong>Salas com dimensões proporcionais são as piores</strong>
+          Se duas dimensões são iguais, ou múltiplas uma da outra, modos coincidem e se reforçam, deixando buracos enormes entre eles. Daí a regra de projeto de estúdios: evite cubos e proporções inteiras; prefira relações irracionais, como 1 : 1,26 : 1,59.
+        </div>
+
+        <h3 id="s9-4"><span class="num">9.4</span>Batimento e ressonadores</h3>
+
+        <p>Dois tons de frequências próximas, somados, produzem uma amplitude que pulsa na diferença das frequências: o <strong>batimento</strong>, de frequência f₁ − f₂. É o mecanismo que permite afinar um instrumento sem instrumento de medida — afina-se até o batimento desaparecer —, e é também a medida mais precisa de pequenas diferenças de frequência que existe sem eletrônica: o ouvido detecta um batimento de meio hertz em 440 Hz, o que é uma resolução de 0,1 %.</p>
+        <p>Por fim, nem toda ressonância é de onda estacionária. O <strong>ressonador de Helmholtz</strong> — uma cavidade com um pescoço, como uma garrafa — se comporta como uma massa de ar oscilando sobre a mola do volume interno:</p>
+        <div class="formula"><span data-tex="f_0 = \frac{c}{2\pi}\sqrt{\frac{S}{V\,\ell_{ef}}}"></span></div>
+        <p>Como ele é sintonizável e funciona com dimensões muito menores que o comprimento de onda, é o recurso clássico para atacar um pico grave numa sala, onde um absorvedor poroso precisaria de meio metro de espessura.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Terminação rígida: ventre de pressão. Terminação aberta: nó de pressão.</li>
+          <li>Aberto-aberto e fechado-fechado: f_n = nc/2L, todos os harmônicos.</li>
+          <li>Aberto-fechado: f_n = (2n−1)c/4L, só os ímpares — daí o timbre do clarinete.</li>
+          <li>Sala retangular: modos axiais, tangenciais e oblíquos; nos graves, poucos e separados.</li>
+          <li>Batimento de frequência f₁−f₂ permite afinar de ouvido com resolução de 0,1 %.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o clarinete soa uma oitava abaixo da flauta de mesmo comprimento?</summary><p>Porque ele é um tubo aberto-fechado: sua fundamental é c/4L, metade de c/2L da flauta, que é aberta nas duas pontas. Pelo mesmo motivo ele só produz harmônicos ímpares, o que lhe dá o timbre "oco" característico.</p></details>
+          <details><summary>Por que salas cúbicas ou com dimensões proporcionais são ruins?</summary><p>Porque modos de eixos diferentes coincidem e se reforçam, deixando buracos enormes entre as frequências reforçadas. A resposta da sala fica muito irregular nos graves. Daí a regra de projeto de estúdios: evitar cubos e relações inteiras, preferindo proporções irracionais como 1 : 1,26 : 1,59.</p></details>
+          <details><summary>Quando usar ressonador de Helmholtz em vez de material poroso?</summary><p>Nos graves. Para absorver 125 Hz por porosidade seria preciso uma espessura comparável a λ/4, quase 70 cm. O ressonador funciona com dimensões muito menores que o comprimento de onda e é sintonizável — em troca, atua numa faixa estreita.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Percepção, salas e controle" data-topicos="psico">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Psicoacústica e acústica musical</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>interpretar as curvas isofônicas e a origem da ponderação A;</li>
+            <li>distinguir intensidade, altura e timbre;</li>
+            <li>explicar mascaramento e perda auditiva induzida por ruído;</li>
+            <li>comparar a escala pitagórica com a temperada em cents.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 4, 5 e 9.</p></div>
+        </div>
+
+        <p>Tudo que veio até aqui é física. Mas quem recebe o som é um ouvido, e ele comprime, mascara e interpreta. Sem psicoacústica não se explica por que dois ruídos com o mesmo dB(A) incomodam de modos tão diferentes — nem por que a música ocidental afinou seus instrumentos de um jeito que não é exato em nada.</p>
+
+        <h3 id="s10-1"><span class="num">10.1</span>O destinatário é um ouvido</h3>
+        <p>Tudo que veio até aqui é física. Mas o destinatário do som é um ouvido, e o ouvido não é um instrumento de medida: ele comprime, mascara, agrupa e interpreta. A psicoacústica estuda a relação entre a grandeza física e a sensação — e sem ela não se explica por que dois ruídos com o mesmo dB(A) incomodam de modos tão diferentes.</p>
+
+        <div class="fig-host" id="fig-10-1"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Curvas isofônicas e as três sensações</h3>
+
+        <p>As <strong>curvas isofônicas</strong> (ou de igual sonoridade) ligam os pares frequência-nível que produzem a mesma sensação de intensidade. Elas mostram que o ouvido é mais sensível entre 2 e 5 kHz — por ressonância do canal auditivo — e perde sensibilidade dramaticamente nos graves: em 50 Hz são necessários cerca de 30 dB a mais que em 1 kHz para a mesma sensação. A ponderação A nada mais é que o inverso aproximado da curva de 40 fones.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Sensação</th><th>Grandeza física principal</th><th>Unidade</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Intensidade (<em>loudness</em>)</td><td>pressão e espectro</td><td>fone, sone</td><td>+10 dB ≈ dobro da sensação</td></tr>
+            <tr><td>Altura (<em>pitch</em>)</td><td>frequência</td><td>mel</td><td>não é proporcional a f; é quase logarítmica</td></tr>
+            <tr><td>Timbre</td><td>espectro e envelope temporal</td><td>—</td><td>distingue instrumentos na mesma nota</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Dois fenômenos adicionais têm consequência direta em engenharia. O <strong>mascaramento</strong>: um som intenso torna inaudível outro de frequência próxima, sobretudo acima dele — é o princípio da compressão MP3 e a razão de um ruído de fundo contínuo poder <em>melhorar</em> a privacidade de um escritório aberto. E a <strong>perda auditiva induzida por ruído</strong>, que começa justamente em 4 kHz e é irreversível, porque as células ciliadas não se regeneram.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Quantos cents tem um intervalo pitagórico</div>
+          <p>Na escala pitagórica, as notas E e F correspondem às razões 81/64 e 4/3 em relação à tônica. Calcule o intervalo E-F em cents e compare com o semitom temperado. Sabe-se que a oitava contém 1200 cents.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Razão do intervalo: (4/3)/(81/64) = (4 × 64)/(3 × 81) = <strong>256/243 = 1,05350</strong>.</li>
+              <li>Em cents: 1200 × log₂(1,05350) = 1200 × 0,07520 = <strong>90,2 cents</strong>.</li>
+              <li>Semitom temperado: 1200/12 = <strong>100 cents</strong> exatos.</li>
+              <li>Diferença: o semitom pitagórico E-F é <strong>9,8 cents mais estreito</strong>.</li>
+            </ol>
+            <p class="resposta">A razão 256/243 é o <em>limma</em>, o semitom diatônico pitagórico, e sua estreiteza em relação aos 100 cents temperados é perfeitamente audível — o limiar de percepção fica em torno de 5 cents. É a incompatibilidade entre empilhar quintas justas e fechar oitavas, a mesma que produz o coma pitagórico de 23 cents, e que o temperamento igual resolve por decreto.</p>
+          </details>
+        </div>
+
+        <h3 id="s10-3"><span class="num">10.3</span>A série harmônica e a origem das escalas</h3>
+
+        <p>Um corpo vibrante produz a fundamental e seus múltiplos inteiros. Dessa série saem, nos primeiros termos, os intervalos que todas as culturas musicais reconhecem: 2:1 é a oitava, 3:2 a quinta justa, 4:3 a quarta, 5:4 a terça maior. Razões de números pequenos soam consonantes porque seus harmônicos coincidem — e quando não coincidem exatamente, produzem batimentos que o ouvido percebe como aspereza.</p>
+        <p>A <strong>escala pitagórica</strong> constrói todas as notas empilhando quintas justas (3:2). Funciona lindamente — exceto que doze quintas não fecham uma oitava exata: (3/2)<sup>12</sup> = 129,75 contra 2<sup>7</sup> = 128. A diferença, o <em>coma pitagórico</em>, vale cerca de 23 cents, e obriga a escala a ter um intervalo torto, inutilizável.</p>
+        <p>A <strong>escala temperada</strong> resolve por decreto: divide a oitava em doze semitons exatamente iguais, de razão 2<sup>1/12</sup> = 1,059463. Nenhum intervalo fica exato, mas todos ficam igualmente aproximados, e a música passa a poder modular para qualquer tonalidade. O preço: a quinta temperada fica 2,0 cents abaixo da justa (imperceptível) e a terça maior, 13,7 cents acima (perceptível, e motivo de discussão desde o século XVIII).</p>
+        <div class="callout note">
+          <strong>Cent: a unidade de precisão</strong>
+          Um cent é um centésimo de semitom temperado, ou seja, a razão 2<sup>1/1200</sup>. A oitava tem 1200 cents. O limiar de percepção de diferença de altura fica em torno de 5 cents para tons sucessivos — e cerca de 1 cent quando há batimento para ajudar, o que é a razão de se afinar instrumento de ouvido com tanta precisão.
+        </div>
+
+        <h3 id="s10-4"><span class="num">10.4</span>Da sensação ao critério de projeto</h3>
+
+        <p>Em projeto de ambientes, a psicoacústica entra na forma de critérios: inteligibilidade da fala, medida pelo índice STI ou pela porcentagem de perda de consoantes; incômodo, que depende de tonalidade e de impulsividade além do nível; e privacidade, que depende da relação entre o nível do ruído de fundo e o da fala vizinha. Nenhum desses critérios se deduz do dB(A) sozinho — e é por isso que o capítulo 12 precisa de meia dúzia de parâmetros para qualificar uma sala.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Curvas isofônicas: o ouvido é mais sensível entre 2 e 5 kHz e insensível nos graves.</li>
+          <li>Intensidade (fone/sone), altura (mel) e timbre são sensações distintas.</li>
+          <li>Mascaramento torna inaudível um som próximo e mais fraco — base do MP3.</li>
+          <li>A perda auditiva por ruído começa em 4 kHz e é irreversível.</li>
+          <li>Pitagórica empilha quintas 3:2 e não fecha a oitava; a temperada divide-a em 12 partes iguais.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a perda auditiva induzida por ruído começa justamente em 4 kHz?</summary><p>Porque é a região de maior sensibilidade do ouvido, amplificada pela ressonância do canal auditivo, e é onde as células ciliadas sofrem mais. Como elas não se regeneram, a perda é permanente — e o entalhe audiométrico em 4 kHz é o sinal diagnóstico clássico.</p></details>
+          <details><summary>Como ruído de fundo pode melhorar a privacidade de um escritório?</summary><p>Por mascaramento: um ruído contínuo de nível adequado torna inaudível a fala da estação vizinha, sem que ninguém precise falar mais baixo. É o princípio dos sistemas de sound masking — e também a razão de uma sala silenciosa demais ser péssima para privacidade.</p></details>
+          <details><summary>Por que a escala temperada foi adotada se nenhum intervalo fica exato?</summary><p>Porque ela torna todas as tonalidades igualmente utilizáveis. A pitagórica é exata na tonalidade de origem e inutilizável em outras, já que doze quintas justas não fecham a oitava — sobra o coma pitagórico, de 23 cents. O temperamento distribui esse erro por todos os intervalos: a quinta fica 2 cents estreita, imperceptível, e a terça 13,7 cents larga, perceptível mas tolerável.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte III — Percepção, salas e controle" data-topicos="salas">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Campo sonoro em salas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>separar campo direto de campo reverberante e calcular o nível total;</li>
+            <li>calcular a distância crítica e decidir onde atacar o problema;</li>
+            <li>montar a absorção equivalente a partir de materiais e áreas;</li>
+            <li>aplicar Sabine e Eyring e reconhecer o limite de validade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3, 8 e 9.</p></div>
+        </div>
+
+        <p>Dentro de uma sala, a equação de campo livre do capítulo 3 deixa de valer: o som rebate. O que se ouve é a soma de um campo que cai com a distância e de outro que é o mesmo em toda parte — e distinguir os dois é o que decide onde investir num projeto de controle de ruído.</p>
+
+        <h3 id="s11-1"><span class="num">11.1</span>Direto mais reverberante</h3>
+        <p>Numa sala, o som que chega ao ouvinte vem por dois caminhos. O <strong>campo direto</strong> é o que veio da fonte sem tocar em nada, e obedece à lei do inverso do quadrado do capítulo 3. O <strong>campo reverberante</strong> é a soma de todas as reflexões, que depois de alguns ricochetes perderam a memória da direção de origem — e, por isso, tem praticamente o mesmo nível em toda a sala.</p>
+        <div class="formula"><span data-tex="L_p = L_W + 10\log_{10}\left(\underbrace{\frac{Q}{4\pi r^2}}_{\text{direto}} + \underbrace{\frac{4}{R}}_{\text{reverberante}}\right)"></span></div>
+        <p>onde R = Sᾱ/(1−ᾱ) é a <strong>constante da sala</strong>, em metros quadrados. Essa equação resume a acústica de ambientes fechados em uma linha, e dela saem todas as decisões práticas.</p>
+
+        <div class="fig-host" id="fig-11-1"></div>
+
+        <h3 id="s11-2"><span class="num">11.2</span>A distância crítica</h3>
+
+        <p>Igualando os dois termos obtém-se a distância em que eles se equivalem:</p>
+        <div class="formula"><span data-tex="r_c = \sqrt{\frac{Q\,R}{16\pi}} \approx 0{,}14\sqrt{Q\,R}"></span></div>
+        <p>Dentro de r<sub>c</sub>, o campo direto domina e o nível cai 6 dB por dobro de distância, como ao ar livre. Além de r<sub>c</sub>, o campo reverberante domina e <strong>o nível para de cair</strong>: afastar-se mais da máquina não adianta nada.</p>
+        <p>A consequência de projeto é decisiva e frequentemente ignorada. Se o operador está dentro da distância crítica, o caminho é atacar a fonte — enclausurar, isolar, afastar. Se está além dela, atacar a fonte quase não adianta: é preciso aumentar a absorção da sala. E aqui vem a má notícia: como R aparece dentro de um logaritmo, <strong>dobrar a absorção da sala reduz o campo reverberante em apenas 3 dB</strong>. Tratamento acústico de galpão dá resultado modesto e caro; mudar a máquina de lugar costuma dar mais.</p>
+
+        <h3 id="s11-3"><span class="num">11.3</span>Absorção: o metro quadrado sabine</h3>
+
+        <p>O coeficiente de absorção α de uma superfície é a fração da energia incidente que não volta. A absorção total da sala é a soma ponderada pelas áreas:</p>
+        <div class="formula"><span data-tex="A = \sum_i S_i\,\alpha_i \qquad [\text{m}^2\ \text{sabine}] \qquad \bar\alpha = A/S"></span></div>
+        <p>Um metro quadrado sabine equivale a uma janela aberta de 1 m², que absorve tudo o que recebe. Pessoas, poltronas e objetos entram como absorção individual, em m² por unidade, e não por área.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Material</th><th>125 Hz</th><th>250 Hz</th><th>500 Hz</th><th>1 kHz</th><th>2 kHz</th><th>4 kHz</th></tr></thead>
+          <tbody>
+            <tr><td>Concreto aparente</td><td>0,01</td><td>0,01</td><td>0,02</td><td>0,02</td><td>0,02</td><td>0,03</td></tr>
+            <tr><td>Reboco pintado</td><td>0,02</td><td>0,02</td><td>0,03</td><td>0,03</td><td>0,04</td><td>0,05</td></tr>
+            <tr><td>Vidro em caixilho</td><td>0,18</td><td>0,06</td><td>0,04</td><td>0,03</td><td>0,02</td><td>0,02</td></tr>
+            <tr><td>Carpete sobre laje</td><td>0,02</td><td>0,06</td><td>0,14</td><td>0,37</td><td>0,60</td><td>0,65</td></tr>
+            <tr><td>Cortina pesada franzida</td><td>0,07</td><td>0,31</td><td>0,49</td><td>0,75</td><td>0,70</td><td>0,60</td></tr>
+            <tr><td>Forro mineral acústico</td><td>0,30</td><td>0,45</td><td>0,65</td><td>0,75</td><td>0,75</td><td>0,70</td></tr>
+            <tr><td>Lã mineral 50 mm</td><td>0,20</td><td>0,55</td><td>0,80</td><td>0,90</td><td>0,92</td><td>0,95</td></tr>
+            <tr><td>Plateia ocupada</td><td>0,60</td><td>0,74</td><td>0,88</td><td>0,96</td><td>0,93</td><td>0,85</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Note o padrão: <strong>materiais porosos absorvem os agudos e são quase transparentes aos graves</strong>, porque a espessura precisa ser comparável a λ/4 para que a velocidade de partícula seja grande dentro do material. Para absorver 125 Hz (λ = 2,7 m) por porosidade seriam necessários quase 70 cm — daí os ressonadores e os painéis vibrantes.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Uma sala de 5 × 7 × 4 metros</div>
+          <p>Uma sala retangular de 5 × 7 m e 4 m de pé-direito tem coeficientes médios de absorção de 0,40 nas paredes, 0,25 no teto e 0,65 no piso. Calcule o volume, a superfície, a absorção equivalente, o coeficiente médio, o tempo de reverberação de Sabine e a frequência de corte da sala.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>V = 5 × 7 × 4 = <strong>140 m³</strong>.</li>
+              <li>Paredes: 2(5×4) + 2(7×4) = 40 + 56 = 96 m². Teto e piso: 35 m² cada. S = <strong>166 m²</strong>.</li>
+              <li>A = 96(0,40) + 35(0,25) + 35(0,65) = 38,4 + 8,75 + 22,75 = <strong>69,9 m² sabine</strong>.</li>
+              <li>ᾱ = 69,9/166 = <strong>0,421</strong>.</li>
+              <li>T₆₀ = 0,161 × 140/69,9 = <strong>0,323 s</strong>.</li>
+              <li>f_S = 2000√(T/V) = 2000√(0,323/140) = 2000 × 0,0480 = <strong>96,0 Hz</strong>.</li>
+            </ol>
+            <p class="resposta">Dois alertas saem desses números. Primeiro, com ᾱ = 0,42 a fórmula de Sabine já não é confiável: Eyring daria 0,248 s, trinta por cento menos. Segundo, a frequência de corte em 96 Hz significa que <em>toda</em> a faixa dos graves está abaixo do alcance da teoria estatística — nessa sala, abaixo de 96 Hz existem apenas modos isolados, e é exatamente aí que os problemas acústicos costumam estar.</p>
+          </details>
+        </div>
+
+        <h3 id="s11-4"><span class="num">11.4</span>Sabine, Eyring e o limite de validade</h3>
+
+        <p>O tempo de reverberação T₆₀ é o tempo que o nível leva para cair 60 dB após o desligamento da fonte. A fórmula clássica é:</p>
+        <div class="formula"><span data-tex="T_{60} = \frac{0{,}161\,V}{A} \qquad \text{(Sabine)}"></span></div>
+        <p>Ela supõe absorção pequena e distribuída, e superestima o tempo quando ᾱ passa de uns 0,25. A correção de Eyring substitui A por −S·ln(1−ᾱ), que tende corretamente a zero quando ᾱ → 1. Acima de 2 kHz, acrescenta-se ainda a absorção do ar no denominador, como 4mV.</p>
+        <div class="callout warn">
+          <strong>Abaixo da frequência de Schroeder, nada disso vale</strong>
+          A teoria estatística exige campo difuso: muitos modos superpostos. Abaixo de f<sub>S</sub> ≈ 2000·√(T/V) a sala responde por modos isolados, e nem Sabine nem Eyring fazem sentido. Numa sala de 140 m³ com T = 0,32 s, isso significa 96 Hz — toda a faixa dos graves fica fora do alcance das fórmulas, e é por isso que o grave é sempre o problema difícil.
+        </div>
+
+        <div id="sim-sala" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Carregue a sala nua de concreto e depois a tratada: compare o tempo de reverberação e, principalmente, a distância crítica. Observe que tratar a sala praticamente não muda o nível perto da fonte.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>L_p = L_W + 10 log(Q/4πr² + 4/R), com R = Sᾱ/(1−ᾱ).</li>
+          <li>r_c = √(QR/16π): dentro dela manda o campo direto, fora dela o reverberante.</li>
+          <li>Além de r_c o nível para de cair: afastar-se mais da fonte não adianta.</li>
+          <li>Dobrar a absorção da sala reduz o campo reverberante em apenas 3 dB.</li>
+          <li>T₆₀ = 0,161V/A (Sabine); use Eyring quando ᾱ > 0,25 e some 4mV acima de 2 kHz.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quando tratar a sala e quando tratar a fonte?</summary><p>Se o receptor está dentro da distância crítica, quem manda é o campo direto: enclausurar, afastar ou corrigir a fonte resolve, e tratar a sala não muda nada. Se está além dela, o campo reverberante domina e só aumentar a absorção ajuda — com a ressalva de que dobrar a absorção rende apenas 3 dB.</p></details>
+          <details><summary>Por que material poroso absorve agudos e não graves?</summary><p>Porque a dissipação depende da velocidade de partícula dentro do material, e ela só é grande a partir de cerca de λ/4 da superfície rígida. Para 125 Hz isso significa quase 70 cm de espessura — inviável. Nos graves usam-se ressonadores e painéis vibrantes, que funcionam por outro mecanismo.</p></details>
+          <details><summary>Por que Sabine superestima o tempo em salas muito absorventes?</summary><p>Porque a dedução supõe que a energia decai suavemente, com absorção pequena e distribuída. Quando ᾱ se aproxima de 1, Sabine dá um tempo finito onde o correto seria zero — não existe reverberação numa sala que absorve tudo. A correção de Eyring, com −S·ln(1−ᾱ), tem o comportamento limite certo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 12 -->
+      <section class="section capitulo" id="cap-12" data-parte="Parte III — Percepção, salas e controle" data-topicos="parametros">
+        <p class="cap-kicker">Capítulo 12</p>
+        <h2>12. Parâmetros de qualidade acústica</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar a integração reversa de Schroeder;</li>
+            <li>extrair EDT, T20 e T30 de uma curva de decaimento;</li>
+            <li>calcular e interpretar C50, D50 e C80;</li>
+            <li>escolher o tempo de reverberação adequado ao uso da sala.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 6 e 11.</p></div>
+        </div>
+
+        <p>O tempo de reverberação sozinho não descreve uma sala: duas salas com o mesmo T₆₀ podem ter inteligibilidades completamente diferentes conforme a energia chegue cedo ou tarde. Os parâmetros objetivos existem para capturar essas diferenças — e todos saem de uma única medição.</p>
+
+        <h3 id="s12-1"><span class="num">12.1</span>Uma medição, muitos números</h3>
+        <p>O tempo de reverberação sozinho não descreve uma sala. Duas salas com o mesmo T₆₀ podem ter inteligibilidade de fala completamente diferente, conforme a energia chegue cedo ou tarde. Os parâmetros objetivos de qualidade acústica existem para capturar essas diferenças — e todos eles se extraem de uma única medição: a <strong>resposta impulsiva</strong> da sala.</p>
+
+        <div class="fig-host" id="fig-12-1"></div>
+
+        <h3 id="s12-2"><span class="num">12.2</span>A integração reversa de Schroeder</h3>
+
+        <p>A resposta impulsiva medida é ruidosa e irregular: medir o decaimento diretamente sobre ela seria impossível. A solução, devida a Schroeder, é integrar o quadrado da resposta <em>de trás para frente</em>:</p>
+        <div class="formula"><span data-tex="d(t) = \int_t^{\infty} p^2(\tau)\,d\tau"></span></div>
+        <p>O resultado é a <strong>curva de decaimento</strong>: uma função monotonicamente decrescente e lisa, que representa a energia que ainda resta na sala no instante t. Uma única medição substitui a média de muitas interrupções de ruído — foi o que tornou a medição de reverberação rápida e repetível.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 12.1</span>Extrair tudo de um decaimento que não é reto</div>
+          <p>Numa sala, a envoltória quadrática da resposta impulsiva é p²(t) = a(t₀ − t) para 0 < t < t₀, com a = 1 (Pa)²/ms e t₀ = 400 ms, e zero fora desse intervalo. Determine a curva de decaimento de Schroeder, o nível inicial, EDT, T10 e T30, e depois C50 e D50.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Integração reversa: d(t) = ∫ₜ^{t₀} a(t₀−τ)dτ = a(t₀−t)²/2.</li>
+              <li>Nível inicial: 10 log(a t₀²/2) = 10 log(80 000) = <strong>49,0 dB</strong>; cruza 0 dB em t = 400 − √2 = <strong>398,6 ms</strong>.</li>
+              <li>Como L(t) = 20 log(t₀−t) − 3,01, os instantes de cada queda são: −5 dB em 175,1 ms, −10 dB em 273,5 ms, −15 dB em 328,9 ms e −35 dB em 392,9 ms.</li>
+              <li>EDT = 6 × 273,5 = <strong>1641 ms</strong>.</li>
+              <li>T10 = 6 × (328,9 − 175,1) = <strong>923 ms</strong>.</li>
+              <li>T30 = 2 × (392,9 − 175,1) = <strong>436 ms</strong>.</li>
+              <li>Energia até 50 ms: ∫₀^{50} a(t₀−t)dt = 400(50) − 50²/2 = 18 750; total = 80 000.</li>
+              <li>D50 = 18 750/80 000 = <strong>23,4 %</strong>; C50 = 10 log(18 750/61 250) = <strong>−5,14 dB</strong>.</li>
+            </ol>
+            <p class="resposta">EDT, T10 e T30 diferem por um fator de quase quatro — e isso não é erro de medição: é a assinatura de um decaimento que não é exponencial. Com energia que cai linearmente, a curva em decibéis é côncava, e cada trecho dela tem inclinação diferente. Quanto ao C50 de −5,1 dB, ele reprova a sala para fala: menos de um quarto da energia chega nos primeiros 50 ms, e a inteligibilidade será pobre.</p>
+          </details>
+        </div>
+
+        <h3 id="s12-3"><span class="num">12.3</span>Os tempos de reverberação</h3>
+
+        <p>Da curva em decibéis extraem-se vários tempos, todos extrapolados para a queda de 60 dB:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Parâmetro</th><th>Trecho usado</th><th>Fator</th><th>Para quê</th></tr></thead>
+          <tbody>
+            <tr><td>EDT</td><td>0 a −10 dB</td><td>× 6</td><td>o que mais se correlaciona com a sensação de reverberação</td></tr>
+            <tr><td>T<sub>20</sub></td><td>−5 a −25 dB</td><td>× 3</td><td>robusto quando o ruído de fundo é alto</td></tr>
+            <tr><td>T<sub>30</sub></td><td>−5 a −35 dB</td><td>× 2</td><td>o valor padrão reportado como T₆₀</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Se o decaimento for uma reta perfeita, os três coincidem. <strong>Quando discordam, a informação está justamente na discordância</strong>: EDT muito maior que T₃₀ indica que as primeiras reflexões são fracas; dois trechos de inclinação diferente indicam acoplamento entre volumes, como um palco ligado à plateia por uma boca de cena.</p>
+
+        <h3 id="s12-4"><span class="num">12.4</span>Clareza e definição</h3>
+
+        <p>A inteligibilidade depende de quanta energia chega <em>cedo</em> — porque o cérebro integra as reflexões dos primeiros 50 a 80 ms junto com o som direto, e só percebe como eco o que chega depois. Daí os parâmetros de clareza:</p>
+        <div class="formula"><span data-tex="C_{50} = 10\log_{10}\frac{\int_0^{50} p^2\,dt}{\int_{50}^{\infty} p^2\,dt} \qquad D_{50} = \frac{\int_0^{50} p^2\,dt}{\int_0^{\infty} p^2\,dt}"></span></div>
+        <p>Os dois carregam a mesma informação e se convertem um no outro:</p>
+        <div class="formula"><span data-tex="C_{50} = 10\log_{10}\frac{D_{50}}{1 - D_{50}}"></span></div>
+        <p>Para fala, usa-se o limite de 50 ms (C₅₀ > 0 dB é o alvo); para música, 80 ms (C₈₀ entre −2 e +2 dB é o considerado bom), porque a música tolera — e precisa de — mais energia tardia.</p>
+
+        <h3 id="s12-5"><span class="num">12.5</span>Outros parâmetros e os valores de projeto</h3>
+
+        <p>A <strong>razão de baixos</strong>, BR = (T₁₂₅ + T₂₅₀)/(T₅₀₀ + T₁ₖ), mede o "calor" da sala: acima de 1,2 a sala é quente, adequada a música romântica; abaixo de 0,9 é seca nos graves, o que favorece a fala. Mede-se ainda a <strong>fração de energia lateral</strong> (LF), ligada à sensação de envolvimento, e o <strong>índice de transmissão da fala</strong> (STI), de 0 a 1, que resume inteligibilidade num número.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Uso</th><th>T₆₀ típico (500 Hz-1 kHz)</th><th>Prioridade</th></tr></thead>
+          <tbody>
+            <tr><td>Estúdio de gravação</td><td>0,2 a 0,4 s</td><td>neutralidade; sem coloração modal</td></tr>
+            <tr><td>Sala de aula, escritório</td><td>0,4 a 0,8 s</td><td>C₅₀ > 0 dB; STI > 0,6</td></tr>
+            <tr><td>Teatro, cinema</td><td>0,8 a 1,2 s</td><td>inteligibilidade com algum suporte</td></tr>
+            <tr><td>Música de câmara</td><td>1,3 a 1,7 s</td><td>clareza e envolvimento equilibrados</td></tr>
+            <tr><td>Sala de concerto sinfônico</td><td>1,8 a 2,2 s</td><td>C₈₀, BR > 1,1, energia lateral</td></tr>
+            <tr><td>Música de órgão, igreja</td><td>2,5 a 4 s</td><td>sustentação; inteligibilidade sacrificada</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Simulação por traçado de raios e auralização</strong>
+          Para formas complexas, modela-se a sala em computador e lançam-se dezenas de milhares de raios, acumulando a energia que chega a cada receptor e montando a resposta impulsiva sintética. Dela saem todos os parâmetros acima — e, convoluindo essa resposta com uma gravação anecoica, é possível <em>ouvir</em> a sala antes de construí-la. É o único método que permite comparar alternativas de projeto de forma perceptual, e não apenas numérica.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A integração reversa de Schroeder transforma a resposta impulsiva numa curva lisa.</li>
+          <li>EDT (0 a −10), T20 (−5 a −25) e T30 (−5 a −35), todos extrapolados para 60 dB.</li>
+          <li>Quando os três discordam, a informação está na discordância.</li>
+          <li>C50 e D50 medem energia precoce: carregam a mesma informação e se convertem.</li>
+          <li>Fala pede C50 > 0 dB; música, C80 entre −2 e +2 dB; BR acima de 1,2 é sala "quente".</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que integrar de trás para frente?</summary><p>Porque a resposta impulsiva medida é ruidosa e irregular, e ajustar uma reta diretamente sobre ela seria impossível. A integral reversa representa a energia que ainda resta na sala, é monotonicamente decrescente e lisa por construção — e uma única medição substitui a média de muitas interrupções de ruído.</p></details>
+          <details><summary>O que significa EDT muito maior que T30?</summary><p>Que o decaimento é côncavo: a energia inicial cai devagar e depois acelera. Em geral indica primeiras reflexões fracas — o som direto chega e demora a receber reforço. Como EDT é o parâmetro que mais se correlaciona com a sensação, a sala soará mais reverberante do que o T30 sugere.</p></details>
+          <details><summary>C50 e D50 dizem a mesma coisa?</summary><p>Sim: C50 = 10 log(D50/(1−D50)). D50 é uma fração entre 0 e 1 e C50 uma razão em decibéis, mas a informação é idêntica. Usa-se D50 em percentual para comunicar e C50 em decibéis para comparar com critérios.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 13 -->
+      <section class="section capitulo" id="cap-13" data-parte="Parte III — Percepção, salas e controle" data-topicos="isolamento">
+        <p class="cap-kicker">Capítulo 13</p>
+        <h2>13. Isolamento e controle de ruído</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar a lei da massa e reconhecer seu custo em quilos;</li>
+            <li>localizar a frequência de coincidência e avaliar seu efeito;</li>
+            <li>calcular a perda de transmissão de uma parede composta;</li>
+            <li>avaliar exposição ocupacional por dose e escolher a medida de controle.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 5, 8 e 11.</p></div>
+        </div>
+
+        <p>Chega-se enfim ao problema que motiva boa parte da disciplina: impedir que o ruído passe de um ambiente a outro e proteger quem trabalha perto da fonte. A confusão entre absorver e isolar é o erro mais caro da acústica aplicada — e a matemática deste capítulo mostra por quê.</p>
+
+        <h3 id="s13-1"><span class="num">13.1</span>Absorver não é isolar</h3>
+        <p>Absorver e isolar são coisas diferentes, e confundi-las é o erro mais caro da acústica aplicada. <strong>Absorver</strong> reduz o som que volta dentro do mesmo ambiente, e usa materiais porosos e leves. <strong>Isolar</strong> impede o som de passar para o ambiente vizinho, e usa massa. Forrar uma parede divisória com espuma não isola nada — a espuma é praticamente transparente à transmissão.</p>
+        <p>O desempenho de isolamento de um elemento é medido pela <strong>perda de transmissão</strong>, TL = −10 log τ, em decibéis e por banda de frequência.</p>
+
+        <div class="fig-host" id="fig-13-1"></div>
+
+        <h3 id="s13-2"><span class="num">13.2</span>A lei da massa</h3>
+
+        <p>Para uma parede simples, homogênea e suficientemente grande, a física é dominada pela inércia: a parede precisa ser acelerada pela onda incidente, e quanto mais pesada, menos ela se move. Em incidência de campo:</p>
+        <div class="formula"><span data-tex="TL \approx 20\log_{10}(m\,f) - 47 \qquad [m\ \text{em kg/m}^2,\ f\ \text{em Hz}]"></span></div>
+        <p>A consequência prática está na constante 20: <strong>dobrar a massa por área acrescenta 6 dB; dobrar a frequência também</strong>. Dito de outro jeito, para ganhar 10 dB é preciso triplicar a massa. Isolamento sai caro em quilos, e isso explica por que divisória leve de alto desempenho precisa fugir da lei da massa, com parede dupla.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Elemento</th><th>m (kg/m²)</th><th>TL a 500 Hz</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Chapa de aço 1 mm</td><td>7,9</td><td>≈ 25 dB</td><td>enclausuramento típico, desempenho modesto</td></tr>
+            <tr><td>Vidro 6 mm</td><td>15</td><td>≈ 30 dB</td><td>coincidência em 2 kHz, bem na fala</td></tr>
+            <tr><td>Gesso acartonado duplo</td><td>22</td><td>≈ 34 dB</td><td>com lã na cavidade, supera muito isso</td></tr>
+            <tr><td>Alvenaria 15 cm rebocada</td><td>270</td><td>≈ 56 dB</td><td>padrão de parede entre apartamentos</td></tr>
+            <tr><td>Concreto 10 cm</td><td>240</td><td>≈ 55 dB</td><td>coincidência em 180 Hz, longe da fala</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h3 id="s13-3"><span class="num">13.3</span>A coincidência: onde a lei da massa falha</h3>
+
+        <p>A parede não é uma massa rígida: ela flexiona, e ondas de flexão se propagam nela com velocidade que cresce com a frequência. Quando essa velocidade iguala a velocidade do som no ar, a onda incidente "casa" com a onda de flexão, a parede acompanha o som e deixa passar. A perda de transmissão desaba até 10 dB em torno da <strong>frequência crítica</strong>:</p>
+        <div class="formula"><span data-tex="f_c = \frac{c_0^2}{1{,}8\,c_L\,h}, \qquad c_L = \sqrt{\frac{E}{\rho(1-\nu^2)}}"></span></div>
+        <p>Como f<sub>c</sub> é inversamente proporcional à espessura, <strong>placas finas e rígidas têm coincidência em frequência alta e incômoda</strong>: vidro de 6 mm a 2 kHz, chapa de aço de 1 mm a 12 kHz. Já paredes pesadas têm coincidência nos graves, fora da faixa crítica da fala — mais uma vantagem da massa. É por isso que vidro laminado, cuja camada de PVB amortece a flexão, isola muito melhor que vidro monolítico de mesmo peso.</p>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 13.1</span>A fresta que destrói a parede</div>
+          <p>Uma parede de concreto de 10 cm (ρ = 2400 kg/m³) separa dois ambientes. Calcule sua massa por área, a perda de transmissão a 500 Hz pela lei da massa e a frequência de coincidência (E = 30 GPa, ν = 0,20). Em seguida, calcule a perda de transmissão do conjunto se 0,1 % da área for uma fresta aberta.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>m = 2400 × 0,10 = <strong>240 kg/m²</strong>.</li>
+              <li>TL = 20 log(240 × 500) − 47 = 20 log(120 000) − 47 = 101,6 − 47 = <strong>54,6 dB</strong>.</li>
+              <li>c_L = √(E/ρ(1−ν²)) = √(30×10⁹/(2400 × 0,96)) = <strong>3608 m/s</strong>.</li>
+              <li>f_c = c₀²/(1,8 c_L h) = 343²/(1,8 × 3608 × 0,10) = 117 649/649,4 = <strong>181 Hz</strong>.</li>
+              <li>Com a fresta: τ̄ = 0,999 × 10^(−54,6/10) + 0,001 × 1 = 3,5×10⁻⁶ + 1,0×10⁻³ = 1,0035×10⁻³.</li>
+              <li>TL_comp = −10 log(1,0035×10⁻³) = <strong>30,0 dB</strong>.</li>
+            </ol>
+            <p class="resposta">Vinte e cinco decibéis perdidos por uma fresta de um milésimo da área — e repare que a transmissão pela fresta (10⁻³) é quase trezentas vezes maior que a transmissão por toda a parede (3,5×10⁻⁶). A parede virou enfeite. A coincidência em 181 Hz, por outro lado, é uma boa notícia: fica nos graves, longe da faixa crítica da fala, o que é a vantagem silenciosa das paredes pesadas.</p>
+          </details>
+        </div>
+
+        <h3 id="s13-4"><span class="num">13.4</span>A parede composta: o elo fraco manda</h3>
+
+        <p>Quando a parede tem partes de desempenhos diferentes — uma porta, uma janela, uma passagem de duto, uma fresta —, a média tem de ser feita em <strong>transmissão</strong>, nunca em decibéis:</p>
+        <div class="formula"><span data-tex="\bar\tau = \frac{\sum_i S_i\,10^{-TL_i/10}}{\sum_i S_i}, \qquad TL_{comp} = -10\log_{10}\bar\tau"></span></div>
+        <p>O resultado é brutal: uma abertura de apenas <strong>1 % da área</strong> impõe ao conjunto um teto de 20 dB, por mais pesada que seja a parede; 0,1 % impõe 30 dB. Uma parede de concreto de 55 dB com uma fresta de 0,1 % entrega 30 dB — vinte e cinco decibéis jogados fora por uma fresta de porta. <strong>Vedar frestas é o investimento de melhor retorno que existe em isolamento acústico</strong>, e quase sempre o primeiro a fazer.</p>
+
+        <div id="sim-isolamento" class="sim"></div>
+        <div class="callout tip">
+          <strong>O que testar</strong>
+          Compare vidro de 6 e de 12 mm e confira os 6 dB da lei da massa. Depois volte ao concreto e abra 0,1 % de fresta: é a lição mais importante de todo o capítulo.
+        </div>
+
+        <h3 id="s13-5"><span class="num">13.5</span>Controle de ruído e exposição ocupacional</h3>
+
+        <p>A hierarquia de controle é sempre a mesma, e a ordem importa porque reflete a eficácia e o custo:</p>
+        <ol>
+          <li><strong>Na fonte</strong> — trocar o processo, balancear, reduzir a velocidade de impacto, amortecer painéis, usar silenciador. É o mais eficaz e quase sempre o mais barato a longo prazo.</li>
+          <li><strong>No caminho</strong> — enclausurar, isolar, interpor barreira, tratar a sala, aumentar a distância.</li>
+          <li><strong>No receptor</strong> — cabine de operador, revezamento, redução do tempo de exposição.</li>
+          <li><strong>Proteção individual</strong> — último recurso, porque depende do uso correto e contínuo, e atenua mal os graves.</li>
+        </ol>
+        <p>A avaliação da exposição se faz pela <strong>dose diária</strong>, que soma as frações de tempo em cada nível:</p>
+        <div class="formula"><span data-tex="D = \sum_i \frac{C_i}{T_i} \le 1, \qquad T_i = \frac{8}{2^{(L_i - 85)/q}}"></span></div>
+        <p>onde q é o incremento de duplicação: <strong>5 dB</strong> no critério brasileiro de higiene ocupacional e <strong>3 dB</strong> no critério da ISO e da maior parte dos países, que é energeticamente consistente e mais severo. Com q = 5, 90 dB(A) permitem 4 h e 95 dB(A) permitem 2 h; com q = 3, os mesmos níveis permitem 2,5 h e 0,8 h.</p>
+        <div class="callout note">
+          <strong>Normas que organizam o assunto</strong>
+          Os procedimentos de medição, os limites e os métodos de cálculo estão normalizados: a ISO 3740 e a 3744 para determinação de potência sonora, a ISO 1996 para ruído ambiental, a ISO 9612 para exposição ocupacional, a ISO 3382 para parâmetros de salas, a ISO 354 para absorção em câmara reverberante, a ISO 10140 e a 717 para isolamento e seu número único, e a ABNT NBR 10151 e 10152 para avaliação em comunidades e níveis de conforto em ambientes internos.
+        </div>
+
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 13.2</span>A dose de uma jornada</div>
+          <p>Um operador passa 4 h expostas a 88 dB(A), 2 h a 95 dB(A) e 2 h a 80 dB(A). Calcule a dose diária pelo critério brasileiro (q = 5 dB, limite de 85 dB(A) para 8 h) e o nível equivalente da jornada de 8 h.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Tempo máximo a 88 dB(A): T = 8/2^((88−85)/5) = 8/2^0,6 = 8/1,516 = <strong>5,28 h</strong>.</li>
+              <li>Tempo máximo a 95 dB(A): T = 8/2^((95−85)/5) = 8/4 = <strong>2,00 h</strong>.</li>
+              <li>A 80 dB(A), abaixo do nível de ação, não entra na dose.</li>
+              <li>D = 4/5,28 + 2/2,00 = 0,758 + 1,000 = <strong>1,758 = 175,8 %</strong>.</li>
+              <li>L_eq,8h = 10 log[(4×10^8,8 + 2×10^9,5 + 2×10^8,0)/8] = <strong>90,5 dB(A)</strong>.</li>
+            </ol>
+            <p class="resposta">A dose de 176 % reprova a jornada: as duas horas a 95 dB(A) sozinhas já esgotam o limite diário. Note também que, pelo critério da ISO (q = 3 dB), mais severo e energeticamente consistente, o tempo máximo a 95 dB(A) cairia de 2 h para 0,79 h e a dose passaria de 300 %. A escolha de q não é detalhe técnico: ela muda a conclusão do laudo.</p>
+          </details>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Absorver usa material poroso e leve; isolar usa massa. São problemas diferentes.</li>
+          <li>TL ≈ 20 log(mf) − 47: dobrar massa ou frequência rende 6 dB; 10 dB custam o triplo da massa.</li>
+          <li>Na frequência de coincidência a perda desaba até 10 dB — vidro fino tem f_c na faixa da fala.</li>
+          <li>Parede composta: média em transmissão, nunca em dB. 1 % de abertura limita o conjunto a 20 dB.</li>
+          <li>Dose D = ΣC_i/T_i ≤ 1, com T = 8/2^((L−85)/q), q = 5 dB no critério brasileiro e 3 dB na ISO.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que forrar uma divisória com espuma não isola nada?</summary><p>Porque espuma é leve e porosa: ela absorve o som que volta no mesmo ambiente, mas praticamente não resiste à passagem. Isolar depende de massa por área, e a espuma não tem nenhuma. É o erro mais comum — e o mais caro, porque consome o orçamento sem resultado.</p></details>
+          <details><summary>Por que vidro laminado isola melhor que vidro monolítico de mesmo peso?</summary><p>Porque a camada intermediária de PVB amortece as ondas de flexão e suaviza o vale da coincidência. A lei da massa prevê o mesmo TL para os dois, mas é justamente em torno de f_c — por volta de 2 kHz, bem no meio da fala — que o monolítico perde dez decibéis e o laminado não.</p></details>
+          <details><summary>Qual a primeira providência num projeto de isolamento?</summary><p>Vedar as frestas. Como a média é feita em transmissão, o elo fraco domina: uma abertura de 0,1 % derruba uma parede de 55 dB para 30 dB. Nenhum aumento de massa recupera isso, e vedar custa uma fração do que custa engrossar a parede.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-niveis"><small>Capítulo 3 · Propagação</small>Níveis, fontes e distância</a></li>
+          <li><a href="#sim-espectro"><small>Capítulo 5 · Espectro</small>Bandas, ponderações e exposição</a></li>
+          <li><a href="#sim-interface"><small>Capítulo 8 · Interface</small>Impedância, reflexão e transmissão</a></li>
+          <li><a href="#sim-sala"><small>Capítulo 11 · Salas</small>Reverberação e campo sonoro</a></li>
+          <li><a href="#sim-isolamento"><small>Capítulo 13 · Isolamento</small>Lei da massa e parede composta</a></li>
+        </ul>
+      </section>
+
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Onda e meio</h4>
+            <div class="formula"><span data-tex="c = \lambda f \qquad k = \omega/c = 2\pi/\lambda"></span></div>
+            <div class="formula"><span data-tex="c = \sqrt{\gamma R T} \approx 331 + 0{,}6\,T"></span></div>
+            <div class="formula"><span data-tex="\frac{\partial^2 p}{\partial x^2} = \frac{1}{c^2}\frac{\partial^2 p}{\partial t^2} \qquad p = f(x-ct) + g(x+ct)"></span></div>
+            <div class="formula"><span data-tex="z = \rho_0 c \qquad v = p/z \qquad I = p_{rms}^2/z"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Níveis</h4>
+            <div class="formula"><span data-tex="L_p = 20\log_{10}\frac{p_{rms}}{2\times10^{-5}} \qquad L_W = 10\log_{10}\frac{W}{10^{-12}}"></span></div>
+            <div class="formula"><span data-tex="L_{tot} = 10\log_{10}\sum_i 10^{L_i/10}"></span></div>
+            <div class="formula"><span data-tex="L_{fonte} = 10\log_{10}\left(10^{L_1/10} - 10^{L_2/10}\right)"></span></div>
+            <div class="formula"><span data-tex="L_{eq,T} = 10\log_{10}\frac{1}{T}\int_0^T \frac{p^2(t)}{p_{ref}^2}dt"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Propagação</h4>
+            <div class="formula"><span data-tex="L_p = L_W + 10\log_{10}\frac{Q}{4\pi r^2} - \alpha_{ar}\,r"></span></div>
+            <div class="formula"><span data-tex="\text{pontual: } -6\ \text{dB/dobro} \qquad \text{linear: } -3\ \text{dB/dobro}"></span></div>
+            <div class="formula"><span data-tex="Q = 1,\,2,\,4,\,8 \;\Rightarrow\; 0,\,+3,\,+6,\,+9\ \text{dB}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Interfaces</h4>
+            <div class="formula"><span data-tex="R = \frac{z_2-z_1}{z_2+z_1} \qquad T = 1 + R"></span></div>
+            <div class="formula"><span data-tex="\tau = \frac{4z_1z_2}{(z_1+z_2)^2} \qquad TL = -10\log_{10}\tau"></span></div>
+            <div class="formula"><span data-tex="|p(x)| = A\sqrt{1+R^2+2R\cos 2kx}"></span></div>
+            <div class="formula"><span data-tex="\text{duto: } R = \frac{S_1-S_2}{S_1+S_2}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Modos e salas</h4>
+            <div class="formula"><span data-tex="f_n = \frac{nc}{2L} \quad\text{(aberto-aberto)} \qquad f_n = \frac{(2n-1)c}{4L} \quad\text{(aberto-fechado)}"></span></div>
+            <div class="formula"><span data-tex="f_{n_xn_yn_z} = \frac{c}{2}\sqrt{\left(\frac{n_x}{L_x}\right)^2+\left(\frac{n_y}{L_y}\right)^2+\left(\frac{n_z}{L_z}\right)^2}"></span></div>
+            <div class="formula"><span data-tex="A = \sum S_i\alpha_i \qquad T_{60} = \frac{0{,}161V}{A} \qquad T_{60} = \frac{0{,}161V}{-S\ln(1-\bar\alpha)}"></span></div>
+            <div class="formula"><span data-tex="R = \frac{S\bar\alpha}{1-\bar\alpha} \qquad r_c = \sqrt{\frac{QR}{16\pi}} \qquad f_S \approx 2000\sqrt{T/V}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Qualidade, isolamento e exposição</h4>
+            <div class="formula"><span data-tex="d(t) = \int_t^\infty p^2(\tau)d\tau \qquad C_{50} = 10\log_{10}\frac{D_{50}}{1-D_{50}}"></span></div>
+            <div class="formula"><span data-tex="TL \approx 20\log_{10}(m f) - 47 \qquad f_c = \frac{c_0^2}{1{,}8\,c_L\,h}"></span></div>
+            <div class="formula"><span data-tex="\bar\tau = \frac{\sum S_i 10^{-TL_i/10}}{\sum S_i}"></span></div>
+            <div class="formula"><span data-tex="D = \sum_i \frac{C_i}{T_i} \le 1, \qquad T_i = \frac{8}{2^{(L_i-85)/q}}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tabelas">
+        <h2>Apêndice B — Tabelas de referência</h2>
+        <h3 id="tab-meios">Propriedades acústicas de meios</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Meio</th><th>ρ₀ (kg/m³)</th><th>c (m/s)</th><th>z = ρ₀c (rayl)</th></tr></thead>
+          <tbody>
+            <tr><td>Ar (20 °C)</td><td>1,21</td><td>343</td><td>415</td></tr>
+            <tr><td>Hélio</td><td>0,166</td><td>1007</td><td>167</td></tr>
+            <tr><td>Dióxido de carbono</td><td>1,84</td><td>267</td><td>491</td></tr>
+            <tr><td>Água doce (20 °C)</td><td>998</td><td>1481</td><td>1,48×10⁶</td></tr>
+            <tr><td>Água do mar</td><td>1026</td><td>1500</td><td>1,54×10⁶</td></tr>
+            <tr><td>Glicerina</td><td>1260</td><td>1920</td><td>2,42×10⁶</td></tr>
+            <tr><td>Madeira</td><td>600</td><td>3800</td><td>2,28×10⁶</td></tr>
+            <tr><td>Concreto</td><td>2400</td><td>3400</td><td>8,16×10⁶</td></tr>
+            <tr><td>Alumínio</td><td>2700</td><td>6300</td><td>1,70×10⁷</td></tr>
+            <tr><td>Aço</td><td>7850</td><td>5900</td><td>4,63×10⁷</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="tab-pond">Ponderação A por banda de oitava</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>f (Hz)</th><th>31,5</th><th>63</th><th>125</th><th>250</th><th>500</th><th>1k</th><th>2k</th><th>4k</th><th>8k</th></tr></thead>
+          <tbody>
+            <tr><td>Correção A (dB)</td><td>−39,5</td><td>−26,2</td><td>−16,2</td><td>−8,7</td><td>−3,2</td><td>0,0</td><td>+1,2</td><td>+1,0</td><td>−1,1</td></tr>
+            <tr><td>Correção C (dB)</td><td>−3,0</td><td>−0,8</td><td>−0,2</td><td>0,0</td><td>0,0</td><td>0,0</td><td>−0,2</td><td>−0,8</td><td>−3,0</td></tr>
+            <tr><td>Absorção do ar (dB/km)</td><td>0,1</td><td>0,2</td><td>0,4</td><td>1,0</td><td>1,9</td><td>3,7</td><td>9,7</td><td>32,8</td><td>117</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="tab-abs">Coeficientes de absorção</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Material</th><th>125 Hz</th><th>250 Hz</th><th>500 Hz</th><th>1 kHz</th><th>2 kHz</th><th>4 kHz</th></tr></thead>
+          <tbody>
+            <tr><td>Concreto aparente</td><td>0,01</td><td>0,01</td><td>0,02</td><td>0,02</td><td>0,02</td><td>0,03</td></tr>
+            <tr><td>Reboco pintado</td><td>0,02</td><td>0,02</td><td>0,03</td><td>0,03</td><td>0,04</td><td>0,05</td></tr>
+            <tr><td>Alvenaria aparente</td><td>0,03</td><td>0,03</td><td>0,03</td><td>0,04</td><td>0,05</td><td>0,07</td></tr>
+            <tr><td>Vidro em caixilho</td><td>0,18</td><td>0,06</td><td>0,04</td><td>0,03</td><td>0,02</td><td>0,02</td></tr>
+            <tr><td>Painel de madeira (lambri)</td><td>0,15</td><td>0,11</td><td>0,10</td><td>0,07</td><td>0,06</td><td>0,07</td></tr>
+            <tr><td>Gesso acartonado</td><td>0,29</td><td>0,10</td><td>0,05</td><td>0,04</td><td>0,07</td><td>0,09</td></tr>
+            <tr><td>Forro mineral acústico</td><td>0,30</td><td>0,45</td><td>0,65</td><td>0,75</td><td>0,75</td><td>0,70</td></tr>
+            <tr><td>Carpete sobre laje</td><td>0,02</td><td>0,06</td><td>0,14</td><td>0,37</td><td>0,60</td><td>0,65</td></tr>
+            <tr><td>Cortina pesada franzida</td><td>0,07</td><td>0,31</td><td>0,49</td><td>0,75</td><td>0,70</td><td>0,60</td></tr>
+            <tr><td>Espuma acústica 25 mm</td><td>0,10</td><td>0,25</td><td>0,55</td><td>0,75</td><td>0,85</td><td>0,90</td></tr>
+            <tr><td>Lã mineral 50 mm</td><td>0,20</td><td>0,55</td><td>0,80</td><td>0,90</td><td>0,92</td><td>0,95</td></tr>
+            <tr><td>Plateia ocupada</td><td>0,60</td><td>0,74</td><td>0,88</td><td>0,96</td><td>0,93</td><td>0,85</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Valores típicos, não especificação</strong>
+          Coeficientes de absorção dependem fortemente do modo de montagem — material colado na parede, afastado dela ou com plenum atrás dá resultados muito diferentes nos graves. Para projeto, use o ensaio do fabricante em câmara reverberante com a montagem que será executada.
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Apêndice C — Normas e ensaios</h2>
+        <p>As normas abaixo são referenciadas pelo número e pelo que definem. Os textos completos são obras protegidas e comercializadas pelas entidades emissoras — o que está aqui é a função de cada uma no projeto e na medição, não o seu conteúdo literal.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>O que trata</th></tr></thead>
+          <tbody>
+            <tr><td>IEC 61672</td><td>Medidores de nível sonoro: classes, ponderações A/C/Z e temporais</td></tr>
+            <tr><td>ISO 3740 / 3744 / 3745</td><td>Determinação do nível de potência sonora de fontes</td></tr>
+            <tr><td>ISO 9614</td><td>Potência sonora pelo método da intensidade</td></tr>
+            <tr><td>ISO 1996</td><td>Descrição e medição de ruído ambiental em comunidades</td></tr>
+            <tr><td>ISO 9612</td><td>Determinação da exposição ocupacional ao ruído</td></tr>
+            <tr><td>ISO 1999</td><td>Estimativa da perda auditiva induzida por ruído</td></tr>
+            <tr><td>ISO 3382</td><td>Parâmetros acústicos de salas: T₆₀, EDT, C₈₀, D₅₀, STI</td></tr>
+            <tr><td>ISO 354</td><td>Medição de absorção sonora em câmara reverberante</td></tr>
+            <tr><td>ISO 10534</td><td>Absorção e impedância em tubo de impedância</td></tr>
+            <tr><td>ISO 10140 / ISO 717</td><td>Isolamento sonoro de elementos e seu número único (R<sub>w</sub>)</td></tr>
+            <tr><td>ISO 9613</td><td>Atenuação sonora na propagação ao ar livre</td></tr>
+            <tr><td>ABNT NBR 10151</td><td>Avaliação do ruído em áreas habitadas</td></tr>
+            <tr><td>ABNT NBR 10152</td><td>Níveis de ruído para conforto acústico em ambientes internos</td></tr>
+            <tr><td>ABNT NBR 15575</td><td>Desempenho acústico de edificações habitacionais</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice D — Simulado</h2>
+        <p>58 questões objetivas sobre ondas e grandezas, níveis e decibéis, propagação, medição, espectros, Fourier, equação da onda, interfaces, ondas estacionárias, psicoacústica, salas, parâmetros de qualidade e isolamento. Escolha os capítulos no filtro e refaça quantas vezes quiser.</p>
+        <div id="quiz" data-quiz="acustica-aplicada"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice E — Referências</h2>
+        <ul>
+          <li>KINSLER, L. E.; FREY, A. R.; COPPENS, A. B.; SANDERS, J. V. <em>Fundamentals of Acoustics</em>. 4. ed. Wiley.</li>
+          <li>BERANEK, L. L.; MELLOW, T. <em>Acoustics: Sound Fields and Transducers</em>. Academic Press.</li>
+          <li>BERANEK, L. L. <em>Concert Halls and Opera Houses: Music, Acoustics, and Architecture</em>. 2. ed. Springer.</li>
+          <li>BIES, D. A.; HANSEN, C. H. <em>Engineering Noise Control</em>. 4. ed. Spon Press.</li>
+          <li>FAHY, F. <em>Foundations of Engineering Acoustics</em>. Academic Press.</li>
+          <li>KUTTRUFF, H. <em>Room Acoustics</em>. 6. ed. CRC Press.</li>
+          <li>ROSSING, T. D.; MOORE, F. R.; WHEELER, P. A. <em>The Science of Sound</em>. 3. ed. Addison-Wesley.</li>
+          <li>GERGES, S. N. Y. <em>Ruído: Fundamentos e Controle</em>. 2. ed.</li>
+          <li>BISTAFA, S. R. <em>Acústica Aplicada ao Controle do Ruído</em>. 2. ed. Blucher.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/acustica-aplicada.js"></script>
+<script src="../js/fig/acustica-aplicada.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  c: ['Velocidade do som', 'm/s', '343 no ar a 20 °C'],
+  λ: ['Comprimento de onda', 'm', 'λ = c/f'],
+  f: ['Frequência', 'Hz'],
+  T: ['Período', 's', 'ou tempo de reverberação, conforme o contexto'],
+  ω: ['Frequência angular', 'rad/s', '2πf'],
+  k: ['Número de onda', 'rad/m', 'ω/c = 2π/λ'],
+  'p_{rms}': ['Pressão sonora eficaz', 'Pa'],
+  'L_p': ['Nível de pressão sonora (NPS)', 'dB', 're 20 µPa'],
+  'L_I': ['Nível de intensidade sonora (NIS)', 'dB', 're 10⁻¹² W/m²'],
+  'L_W': ['Nível de potência sonora (NWS)', 'dB', 're 10⁻¹² W; só depende da fonte'],
+  'L_{eq}': ['Nível equivalente', 'dB', 'o contínuo de mesma energia no período'],
+  'L_{10}': ['Nível excedido em 10 % do tempo', 'dB', 'descreve os picos'],
+  'L_{90}': ['Nível excedido em 90 % do tempo', 'dB', 'ruído de fundo residual'],
+  'dB(A)': ['Nível com ponderação A', 'dB', 'corrige pela sensibilidade do ouvido'],
+  Q: ['Fator de diretividade', '—', '1, 2, 4 ou 8 conforme a posição da fonte'],
+  z: ['Impedância característica', 'rayl', 'ρ₀c; 415 no ar'],
+  R: ['Coeficiente de reflexão', '—', 'ou constante da sala, em m², conforme o contexto'],
+  τ: ['Coeficiente de transmissão', '—', 'fração da intensidade que atravessa'],
+  TL: ['Perda na transmissão', 'dB', '−10 log τ'],
+  α: ['Coeficiente de absorção', '—', 'fração da energia que não volta'],
+  A: ['Absorção equivalente', 'm² sabine', 'Σ S_i α_i'],
+  'T_{60}': ['Tempo de reverberação', 's', 'queda de 60 dB'],
+  EDT: ['Early decay time', 's', '0 a −10 dB, × 6'],
+  'C_{50}': ['Clareza para a fala', 'dB', 'razão entre energia antes e depois de 50 ms'],
+  'D_{50}': ['Definição', '%', 'fração da energia nos primeiros 50 ms'],
+  'r_c': ['Distância crítica', 'm', 'onde campo direto e reverberante se igualam'],
+  'f_S': ['Frequência de Schroeder', 'Hz', 'abaixo dela a sala é modal'],
+  'f_c': ['Frequência de coincidência', 'Hz', 'onde a perda de transmissão desaba'],
+  m: ['Massa por unidade de área', 'kg/m²', 'o que isola numa parede simples'],
+  D: ['Dose de ruído', '—', 'Σ C_i/T_i; o limite é 1'],
+  cent: ['Centésimo de semitom temperado', '—', '1200 por oitava']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>
