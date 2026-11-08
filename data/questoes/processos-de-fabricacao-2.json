@@ -1,0 +1,1034 @@
+{
+  "disciplina": "Processos de Fabricação II",
+  "slug": "processos-de-fabricacao-2",
+  "topicos": [
+    {
+      "id": "naometalicos",
+      "nome": "Materiais não metálicos"
+    },
+    {
+      "id": "estrutura",
+      "nome": "Estrutura e transições térmicas"
+    },
+    {
+      "id": "reologia",
+      "nome": "Reologia dos fundidos"
+    },
+    {
+      "id": "fluidez",
+      "nome": "Índice de fluidez"
+    },
+    {
+      "id": "extrusora",
+      "nome": "A extrusora e a rosca"
+    },
+    {
+      "id": "vazao",
+      "nome": "Vazão e ponto de operação"
+    },
+    {
+      "id": "matrizes",
+      "nome": "Matrizes e defeitos"
+    },
+    {
+      "id": "filmes",
+      "nome": "Filme plano e soprado"
+    },
+    {
+      "id": "injecao",
+      "nome": "Injeção: máquina e ciclo"
+    },
+    {
+      "id": "moldes",
+      "nome": "Moldes, resfriamento e contração"
+    },
+    {
+      "id": "sopro",
+      "nome": "Sopro e termoformagem"
+    },
+    {
+      "id": "outros",
+      "nome": "Rotomoldagem e compressão"
+    },
+    {
+      "id": "compositos",
+      "nome": "Compósitos"
+    },
+    {
+      "id": "aditiva",
+      "nome": "Manufatura aditiva e ensaios"
+    }
+  ],
+  "questoes": [
+    {
+      "id": "pf2-001",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "naometalicos",
+      "enunciado": "<p>Um polietileno tem massa molar numérica média de 42 000 g/mol. Sabendo que o mero do eteno tem 28,05 g/mol, o grau de polimerização médio vale:</p>",
+      "alternativas": [
+        "1497 meros",
+        "42 000 meros",
+        "1 178 100 meros",
+        "667 meros"
+      ],
+      "correta": 0,
+      "formulas": [
+        "DP = M / M₀"
+      ],
+      "explicacao": "<div class=\"passo\">DP = M/M₀ = 42 000 / 28,05 = <strong>1497</strong></div><p>A divisão exata vale porque a poliadição incorpora todos os átomos do monômero à cadeia, sem eliminar subprodutos. Numa policondensação, cada ligação elimina uma molécula pequena, e a massa do mero não é igual à do monômero.</p>"
+    },
+    {
+      "id": "pf2-002",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "naometalicos",
+      "enunciado": "<p>A diferença essencial entre um termoplástico e um termorrígido é que:</p>",
+      "alternativas": [
+        "o termoplástico é sempre amorfo e o termorrígido é sempre cristalino",
+        "o termoplástico amolece e solidifica repetidamente por transformação física reversível, enquanto o termorrígido sofre cura irreversível com formação de ligações cruzadas",
+        "o termoplástico é obtido por condensação e o termorrígido por adição",
+        "o termoplástico tem massa molar baixa e o termorrígido tem massa molar alta"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A classificação é por fusibilidade, e ela decide o processo. O termoplástico é fusível, solúvel e reciclável: pode ser extrudado, injetado, soprado e termoformado quantas vezes se queira. O termorrígido amolece uma única vez, cura e depois disso só degrada — por isso tem de ser conformado <em>antes</em> da reticulação, o que o restringe à compressão, à transferência e à fundição.</p>"
+    },
+    {
+      "id": "pf2-003",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "naometalicos",
+      "enunciado": "<p>Dois frascos chegam ao laboratório: um tem uma linha de solda contornando o fundo, o outro apenas uma marca circular no centro do fundo. Os processos foram, respectivamente:</p>",
+      "alternativas": [
+        "injeção-sopro e extrusão-sopro",
+        "rotomoldagem e termoformagem",
+        "extrusão-sopro e injeção-sopro",
+        "injeção e extrusão"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Na extrusão-sopro o parison tubular é pinçado pelo molde que se fecha, e o pinçamento deixa uma solda em volta do fundo, que ainda exige remoção de rebarba. Na injeção-sopro o corpo vem de uma pré-forma injetada, e a única marca é o ponto de injeção dessa pré-forma — é o caso da garrafa PET.</p>"
+    },
+    {
+      "id": "pf2-004",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "naometalicos",
+      "enunciado": "<p>Por que um material cerâmico não pode ser conformado por extrusão de fundido, como um termoplástico?</p>",
+      "alternativas": [
+        "porque sua temperatura de fusão é baixa e ele degradaria na extrusora",
+        "porque a extrusão exige ligação metálica para transmitir o cisalhamento",
+        "porque cerâmicos são dúcteis e entupiriam a matriz",
+        "porque suas ligações iônicas e covalentes são orientadas: ele não forma um fluido viscoso processável e precisa ser conformado em pó ou pasta e depois queimado"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A ligação orientada impede o escorregamento de planos sem ruptura: o cerâmico trinca antes de escoar. Daí a rota por pó ou pasta — prensagem, extrusão de massa plástica, colagem de barbotina — seguida de queima, em que a consolidação vem da sinterização e não da solidificação de um fundido.</p>"
+    },
+    {
+      "id": "pf2-005",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "estrutura",
+      "enunciado": "<p>Uma resina é composta por 6 mol de cadeias de 10 000 g/mol, 3 mol de 50 000 g/mol e 1 mol de 200 000 g/mol. A massa molar numérica média, a ponderal média e a dispersão valem, respectivamente:</p>",
+      "alternativas": [
+        "41 000 g/mol, 117 320 g/mol e 2,86",
+        "86 667 g/mol, 41 000 g/mol e 0,47",
+        "41 000 g/mol, 41 000 g/mol e 1,00",
+        "117 320 g/mol, 41 000 g/mol e 2,86"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Mn = Σ nᵢMᵢ / Σ nᵢ",
+        "Mw = Σ nᵢMᵢ² / Σ nᵢMᵢ",
+        "D = Mw/Mn"
+      ],
+      "explicacao": "<div class=\"passo\">Σnᵢ = 10 mol e ΣnᵢMᵢ = 60 000 + 150 000 + 200 000 = 410 000 g</div><div class=\"passo\">Mn = 410 000/10 = <strong>41 000 g/mol</strong></div><div class=\"passo\">ΣnᵢMᵢ² = 6,0×10⁸ + 7,5×10⁹ + 4,0×10¹⁰ = 4,81×10¹⁰</div><div class=\"passo\">Mw = 4,81×10¹⁰/410 000 = <strong>117 320 g/mol</strong></div><div class=\"passo\">D = 117 320/41 000 = <strong>2,86</strong></div><p>A fração de 200 000 g/mol é 10 % das moléculas e 49 % da massa: é ela que domina Mw, a viscosidade e a resistência do fundido. Mw é sempre maior ou igual a Mn, e a dispersão de 2,86 é compatível com poliadição.</p>"
+    },
+    {
+      "id": "pf2-006",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "estrutura",
+      "enunciado": "<p>Um polietileno tem massa específica de 0,955 g/cm³. Com ρ da fase amorfa de 0,855 e da cristalina de 1,000 g/cm³, o grau de cristalinidade em volume e em massa valem:</p>",
+      "alternativas": [
+        "72,2 % e 69,0 %",
+        "69,0 % e 72,2 %",
+        "10,5 % e 11,0 %",
+        "95,5 % e 100 %"
+      ],
+      "correta": 1,
+      "formulas": [
+        "X_v = (ρ − ρ_a)/(ρ_c − ρ_a)",
+        "X_m = (ρ_c/ρ)·X_v"
+      ],
+      "explicacao": "<div class=\"passo\">X_v = (0,955 − 0,855)/(1,000 − 0,855) = 0,100/0,145 = <strong>0,690</strong></div><div class=\"passo\">X_m = (ρ_c/ρ)·X_v = (1,000/0,955)(0,690) = <strong>0,722</strong></div><p>A fração em massa é maior que a volumétrica porque a fase cristalina é mais densa. Um ensaio de DSC com 210 J/g de entalpia de fusão, contra 293 J/g do PE 100 % cristalino, daria 71,7 % — os dois métodos concordam dentro de meio ponto percentual, o que valida a medida.</p>"
+    },
+    {
+      "id": "pf2-007",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "estrutura",
+      "enunciado": "<p>O polipropileno isotático é um plástico de engenharia e o atático é uma goma pegajosa, embora tenham os mesmos átomos. A razão é que:</p>",
+      "alternativas": [
+        "o isotático tem massa molar muito maior que o atático",
+        "o atático tem ligações cruzadas que impedem a cristalização",
+        "a regularidade espacial dos grupos laterais no isotático permite empacotamento e cristalização, o que o atático não consegue",
+        "o isotático é obtido por policondensação e o atático por poliadição"
+      ],
+      "correta": 2,
+      "explicacao": "<p>A taticidade é a regularidade com que os grupos laterais se distribuem em relação ao plano da cadeia. No isotático todos ficam do mesmo lado, e essa ordem permite que as cadeias se empacotem: cristalinidade de 30 a 60 %, com rigidez, resistência e ponto de fusão definidos. No atático não há ordem alguma, a cristalização é impossível e sobra um material amorfo e mole à temperatura ambiente.</p>"
+    },
+    {
+      "id": "pf2-008",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "estrutura",
+      "enunciado": "<p>Uma peça de PP resfriada rápido demais no molde apresenta, meses depois e em serviço a 60 °C, variação de cotas e empenamento. A explicação é:</p>",
+      "alternativas": [
+        "fluência sob peso próprio, independente da cristalinidade",
+        "absorção de umidade, que dilata a peça de forma irreversível",
+        "degradação térmica, que reduz a massa molar e encolhe a peça",
+        "pós-contração: a cristalização não terminou dentro do molde e prossegue em serviço acima da Tg do material"
+      ],
+      "correta": 3,
+      "explicacao": "<p>O PP tem Tg em torno de −10 °C, de modo que a 60 °C a fase amorfa tem mobilidade e a cristalização pode continuar. Cristalizar aumenta a densidade e, portanto, contrai a peça. A prevenção é garantir a cristalinidade dentro do molde — molde mais quente, resfriamento mais lento — ao custo de um ciclo mais longo.</p>"
+    },
+    {
+      "id": "pf2-009",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "reologia",
+      "enunciado": "<p>A processabilidade de um termoplástico melhora quando se aumenta a rotação da rosca porque o fundido é:</p>",
+      "alternativas": [
+        "pseudoplástico: o cisalhamento desemaranha e alinha as cadeias, reduzindo a viscosidade",
+        "dilatante: o cisalhamento ordena as cadeias e aumenta a viscosidade",
+        "newtoniano: a viscosidade não depende da taxa de cisalhamento",
+        "tixotrópico: a viscosidade depende apenas do tempo de cisalhamento"
+      ],
+      "correta": 0,
+      "explicacao": "<p>Em repouso, cada emaranhamento entre cadeias é um obstáculo ao escoamento. Cisalhando, as cadeias se desemaranham e se alinham na direção do fluxo, o número de obstáculos cai e com ele a viscosidade. É um efeito estrutural, não térmico — embora o cisalhamento também aqueça a massa.</p>"
+    },
+    {
+      "id": "pf2-010",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "reologia",
+      "enunciado": "<p>Um fundido obedece à lei da potência com K = 8783 Pa·sⁿ e n = 0,5. A viscosidade a 10 000 s⁻¹, taxa típica da injeção, vale:</p>",
+      "alternativas": [
+        "878 Pa·s",
+        "87,8 Pa·s",
+        "8783 Pa·s",
+        "8,78 Pa·s"
+      ],
+      "correta": 1,
+      "formulas": [
+        "τ = K γ̇ⁿ",
+        "η = K γ̇^(n−1)"
+      ],
+      "explicacao": "<div class=\"passo\">η = K·γ̇^(n−1) = 8783 × 10 000^(−0,5)</div><div class=\"passo\">10 000^0,5 = 100, logo η = 8783/100 = <strong>87,8 Pa·s</strong></div><p>A mesma resina tem 3985 Pa·s na taxa do ensaio de índice de fluidez (4,86 s⁻¹) e 87,8 Pa·s na taxa da injeção: uma queda de 45 vezes, só por efeito da taxa de cisalhamento. A tensão correspondente, τ = Kγ̇ⁿ = 878 kPa, é quase seis vezes o limiar de fratura do fundido.</p>"
+    },
+    {
+      "id": "pf2-011",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "reologia",
+      "enunciado": "<p>Uma resina tem K = 8783 Pa·sⁿ a 190 °C e energia de ativação do escoamento de 45 kJ/mol. A 230 °C, a viscosidade cai para aproximadamente:</p>",
+      "alternativas": [
+        "83 % do valor original",
+        "10 % do valor original",
+        "40 % do valor original",
+        "250 % do valor original"
+      ],
+      "correta": 2,
+      "formulas": [
+        "K(T) = K₀·exp[(Ea/R)(1/T − 1/T₀)]",
+        "T em kelvin"
+      ],
+      "explicacao": "<div class=\"passo\">1/T − 1/T₀ = 1/503,15 − 1/463,15 = −1,716×10⁻⁴ K⁻¹</div><div class=\"passo\">(Ea/R)(1/T − 1/T₀) = (45 000/8,314)(−1,716×10⁻⁴) = −0,929</div><div class=\"passo\">K(230 °C) = 8783 × e^(−0,929) = <strong>3469 Pa·sⁿ</strong>, isto é 39,5 % de K₀</div><p>Como η = Kγ̇^(n−1), a viscosidade cai na mesma proporção que K, em qualquer taxa: a temperatura desloca a curva inteira sem mudar a inclinação. Para uma resina de cadeia rígida, com Ea de 100 kJ/mol, os mesmos 40 °C levariam a viscosidade a cerca de 18 % — é por isso que o PS responde muito ao aquecimento e o polietileno, pouco.</p>"
+    },
+    {
+      "id": "pf2-012",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "reologia",
+      "enunciado": "<p>Uma resina de bom índice de fluidez não consegue sustentar o parison no sopro. A explicação correta é:</p>",
+      "alternativas": [
+        "o índice de fluidez foi medido a uma temperatura mais baixa que a do processo",
+        "o parison é um problema de condução de calor, não de reologia",
+        "a viscosidade de tração é sempre igual a um terço da de cisalhamento",
+        "o índice de fluidez mede escoamento sob cisalhamento, e sustentar o próprio peso é um problema de viscosidade de tração, que num fundido pode ser muito maior"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Num líquido newtoniano a viscosidade de tração é exatamente três vezes a de cisalhamento; num fundido polimérico ela pode ser muitas vezes maior, e depende fortemente da arquitetura da cadeia — ramificação longa aumenta muito a resistência do fundido sem alterar na mesma medida o MFI. Por isso resinas de sopro e de filme são especificadas também por resistência do fundido.</p>"
+    },
+    {
+      "id": "pf2-013",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "fluidez",
+      "enunciado": "<p>Num ensaio de índice de fluidez, foram coletados 0,30 g de extrudado em 90 s. O índice de fluidez vale:</p>",
+      "alternativas": [
+        "2,0 g/10 min",
+        "0,33 g/10 min",
+        "3,3 g/10 min",
+        "27 g/10 min"
+      ],
+      "correta": 0,
+      "formulas": [
+        "MFI = m × 600/t"
+      ],
+      "explicacao": "<div class=\"passo\">MFI = m × 600/t = 0,30 × 600/90 = <strong>2,0 g/10 min</strong></div><p>O índice é a massa que escoaria em dez minutos nas condições do ensaio, e só tem sentido com a condição declarada: a mesma resina com carga de 5 kg em vez de 2,16 kg daria um número bem maior, porque a tensão na parede passa de 19,4 para 44,8 kPa.</p>"
+    },
+    {
+      "id": "pf2-014",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "fluidez",
+      "enunciado": "<p>Um plastômetro opera com carga de 2,16 kg, pistão de 9,55 mm e capilar de 2,095 mm de diâmetro por 8,000 mm de comprimento. A tensão de cisalhamento na parede do capilar vale:</p>",
+      "alternativas": [
+        "295,7 kPa",
+        "19,4 kPa",
+        "2,16 kPa",
+        "140 kPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "τ_w = (F/A_pist)·R/(2L)",
+        "A_pist = πD²/4"
+      ],
+      "explicacao": "<div class=\"passo\">F = 2,16 × 9,807 = 21,18 N e A = π(9,55×10⁻³)²/4 = 7,163×10⁻⁵ m²</div><div class=\"passo\">P = F/A = 295,7 kPa</div><div class=\"passo\">τ_w = P·R/(2L) = 295 700 × 1,0475×10⁻³/(2 × 8,0×10⁻³) = <strong>19,4 kPa</strong></div><p>Essa tensão é a mesma para qualquer resina ensaiada com 2,16 kg: o plastômetro fixa a tensão e mede a vazão, ao contrário de um reômetro, que fixa a taxa e mede a tensão. O que varia de resina para resina é a vazão — e dela saem a taxa aparente e a viscosidade.</p>"
+    },
+    {
+      "id": "pf2-015",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "fluidez",
+      "enunciado": "<p>Duas resinas foram ensaiadas nas mesmas condições: a resina A deu MFI 1,65 e a resina B, MFI 12 g/10 min. Com τ_w = 19,36 kPa e ρ do fundido de 0,76 g/cm³, a razão entre as viscosidades aparentes η_A/η_B é:</p>",
+      "alternativas": [
+        "0,14",
+        "1,8",
+        "7,3",
+        "45"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Q = (MFI/600)/ρ",
+        "γ̇ = 4Q/πR³",
+        "η = τ_w/γ̇"
+      ],
+      "explicacao": "<div class=\"passo\">Resina A: Q = (1,65/600)/0,76 = 3,62 mm³/s → γ̇ = 4Q/πR³ = 4,01 s⁻¹ → η = 19 360/4,01 = 4830 Pa·s</div><div class=\"passo\">Resina B: Q = (12/600)/0,76 = 26,3 mm³/s → γ̇ = 29,2 s⁻¹ → η = 19 360/29,2 = 664 Pa·s</div><div class=\"passo\">η_A/η_B = 4830/664 = <strong>7,3</strong></div><p>Como a tensão é fixa, a razão de viscosidades é simplesmente a razão inversa dos índices de fluidez: 12/1,65 = 7,3. E como η₀ ∝ Mw^3,4, essa razão corresponde a massas molares que diferem só por (7,3)^(1/3,4) = 1,8 vez — a resina A tem cadeia cerca de 80 % maior.</p>"
+    },
+    {
+      "id": "pf2-016",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "fluidez",
+      "enunciado": "<p>Para extrusão de filme soprado e de tubo, especificam-se resinas de índice de fluidez tipicamente abaixo de 1 g/10 min porque:</p>",
+      "alternativas": [
+        "índice de fluidez baixo reduz a pressão necessária na matriz",
+        "resinas de MFI baixo têm distribuição de massa molar mais estreita",
+        "o MFI baixo evita o inchamento do extrudado",
+        "o extrudado sai da matriz sem apoio e precisa de resistência do fundido, que exige massa molar alta"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Num filme soprado, o balão tem de sustentar o próprio peso até a linha de névoa; num tubo, o extrudado precisa manter a forma até o calibrador. Os dois exigem resistência do fundido, que vem de cadeia longa — logo, de MFI baixo. Em injeção a exigência se inverte: é preciso preencher cavidades finas antes de congelar, e usam-se MFI de 5 a 20, ou acima de 20 em paredes muito finas.</p>"
+    },
+    {
+      "id": "pf2-017",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "extrusora",
+      "enunciado": "<p>Uma rosca de passo quadrado tem altura de canal de 5,4 mm na alimentação e 2,25 mm na dosagem. A razão de compressão e o ângulo de hélice valem:</p>",
+      "alternativas": [
+        "2,40:1 e 17,66°",
+        "0,42:1 e 17,66°",
+        "2,40:1 e 45°",
+        "3,15:1 e 30°"
+      ],
+      "correta": 0,
+      "formulas": [
+        "RC = h_i/h_f",
+        "tg φ = p/(πD)"
+      ],
+      "explicacao": "<div class=\"passo\">RC = h_i/h_f = 5,40/2,25 = <strong>2,40:1</strong></div><div class=\"passo\">Passo quadrado: tg φ = p/(πD) = 1/π = 0,3183 → φ = <strong>17,66°</strong></div><p>A razão de 2,40:1 está próxima do valor típico de 2,25:1 e serve bem a poliolefinas. O ângulo de 17,66° não é escolha de projeto: ele é consequência de o passo ser igual ao diâmetro, e aparece em todas as contas de vazão.</p>"
+    },
+    {
+      "id": "pf2-018",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "extrusora",
+      "enunciado": "<p>A zona de dosagem de uma rosca tem o canal raso e de altura constante porque:</p>",
+      "alternativas": [
+        "o canal raso aumenta a vazão de arraste, elevando a produção",
+        "a vazão de pressão é proporcional ao cubo da altura do canal, e um canal raso torna a vazão praticamente insensível à pressão na matriz",
+        "o canal raso reduz o cisalhamento e protege a resina da degradação",
+        "o canal raso diminui a pressão na matriz e poupa o mancal de apoio"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Com Q_p ∝ H³, um canal raso quase elimina o contrafluxo de pressão: a rosca passa a se comportar como bomba de deslocamento quase positivo, e a vazão é fixada pela rotação. Canal fundo faria a produção flutuar com a temperatura e com o lote de resina. De passagem, o canal raso também eleva a taxa de cisalhamento, o que termina de fundir qualquer sólido remanescente — e aumenta, não reduz, o cisalhamento.</p>"
+    },
+    {
+      "id": "pf2-019",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "extrusora",
+      "enunciado": "<p>Calcule a entalpia específica necessária para levar polipropileno de 25 °C a 230 °C, sabendo que c_p vale 1,9 kJ/kg·K no sólido e 2,6 no fundido, com fusão a 165 °C e calor latente de 100 kJ/kg:</p>",
+      "alternativas": [
+        "435 kJ/kg",
+        "317 kJ/kg",
+        "535 kJ/kg",
+        "266 kJ/kg"
+      ],
+      "correta": 2,
+      "formulas": [
+        "Δh = c_p,s(T_m − T₀) + Δh_f + c_p,l(T − T_m)",
+        "Potência = Δh × ṁ"
+      ],
+      "explicacao": "<div class=\"passo\">Sólido: 1,9 × (165 − 25) = 266 kJ/kg</div><div class=\"passo\">Fusão: + 100 kJ/kg</div><div class=\"passo\">Fundido: 2,6 × (230 − 165) = 169 kJ/kg</div><div class=\"passo\">Total = 266 + 100 + 169 = <strong>535 kJ/kg</strong></div><p>Um poliestireno, amorfo, exigiria apenas 317,5 kJ/kg para um aquecimento equivalente — 69 % menos, porque não cobra calor latente de fusão. Para produzir 50 kg/h de PP, a potência útil é 535 × 50/3600 = 7,43 kW, e com rendimento de 70 % especifica-se um motor de 11 kW.</p>"
+    },
+    {
+      "id": "pf2-020",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "extrusora",
+      "enunciado": "<p>Para compor um termoplástico com fibra de vidro e pigmento, a escolha correta é extrusora de dupla rosca co-rotante porque:</p>",
+      "alternativas": [
+        "a co-rotação reduz o tempo de residência, protegendo a fibra",
+        "a co-rotação gera o menor cisalhamento total entre as três opções",
+        "somente a co-rotante aceita alimentação lateral de fibra",
+        "o material passa de uma rosca para a outra, o que uniformiza o cisalhamento, dá autolimpeza e a melhor mistura distributiva e dispersiva"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Na co-rotação o polímero percorre as duas roscas e a parede do canhão, o que aumenta a troca térmica, submete quase todo o material à mesma condição de cisalhamento e garante autolimpeza, com poucas zonas de estagnação. É a máquina dos componedores. A contra-rotante é indicada para resinas termicamente sensíveis, porque o cisalhamento total e o tempo de residência são menores.</p>"
+    },
+    {
+      "id": "pf2-021",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "vazao",
+      "enunciado": "<p>Uma extrusora de 45 mm com canal de dosagem de 2,25 mm, passo quadrado e filete de 4,5 mm opera a 90 rpm. Para um fundido de 750 kg/m³, a vazão de arraste é:</p>",
+      "alternativas": [
+        "23,6 kg/h",
+        "15,7 kg/h",
+        "31,4 kg/h",
+        "26,3 kg/h"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Q_d = ½π²D²NH·senφ·cosφ",
+        "fator do filete = 1 − e/(πD·senφ)"
+      ],
+      "explicacao": "<div class=\"passo\">N = 90/60 = 1,5 s⁻¹</div><div class=\"passo\">Q_d = ½π²D²NH·senφ·cosφ = ½(9,8696)(0,045²)(1,5)(0,00225)(0,3033)(0,9529) = 9,75×10⁻⁶ m³/s</div><div class=\"passo\">Correção do filete: 1 − e/(πD·senφ) = 1 − 4,5/42,9 = 0,895 → Q = 8,73×10⁻⁶ m³/s</div><div class=\"passo\">Em massa: 8,73×10⁻⁶ × 750 × 3600 = <strong>23,6 kg/h</strong></div><p>A vazão de arraste cresce com D², linearmente com a rotação e com a altura do canal, e não depende da viscosidade. A 120 rpm essa mesma rosca entregaria 31,4 kg/h. A largura do filete consome cerca de 10 % do canal e precisa entrar na conta.</p>"
+    },
+    {
+      "id": "pf2-022",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "vazao",
+      "enunciado": "<p>Numa extrusora com canal de dosagem raso, fechar a abertura da matriz pela metade produz:</p>",
+      "alternativas": [
+        "queda de vazão pela metade, com pressão constante",
+        "grande aumento de pressão e queda muito pequena de vazão",
+        "aumento de vazão, porque a velocidade na matriz cresce",
+        "nenhuma mudança, porque a rosca controla a pressão"
+      ],
+      "correta": 1,
+      "explicacao": "<p>A condutância de uma fenda ou de um anel vai com o cubo da abertura: fechá-la pela metade divide a condutância por oito e a pressão sobe na mesma ordem para passar a mesma vazão. A vazão só cai na medida em que o contrafluxo de pressão aumente — alguns por cento, num canal raso. O risco real não é perder produção, é ultrapassar a tensão crítica de parede e a pressão admissível do conjunto.</p>"
+    },
+    {
+      "id": "pf2-023",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "vazao",
+      "enunciado": "<p>A extrusora anterior, com vazão de arraste de 8,73×10⁻⁶ m³/s, alimenta uma matriz anular de diâmetro médio 50 mm, abertura 2,0 mm e paralelo de 30 mm. Com viscosidade de 1618 Pa·s na matriz e condutância desprezível de contrafluxo, a pressão de operação é da ordem de:</p>",
+      "alternativas": [
+        "0,4 MPa",
+        "40 MPa",
+        "4,0 MPa",
+        "400 kPa"
+      ],
+      "correta": 2,
+      "formulas": [
+        "K_anel = πD_m h³/(12L)",
+        "Q = K_m ΔP/η_m",
+        "F = ΔP·πD²/4"
+      ],
+      "explicacao": "<div class=\"passo\">K_m = πD_m h³/(12L) = π(0,05)(0,002³)/(12 × 0,03) = 3,49×10⁻⁹ m³</div><div class=\"passo\">ΔP ≈ Q·η_m/K_m = 8,73×10⁻⁶ × 1618/3,49×10⁻⁹ = <strong>4,0 MPa</strong></div><p>Nesse ponto de operação, a perda por contrafluxo de pressão é de apenas 0,25 % da vazão de arraste: quem decide a vazão é a rotação e quem decide a pressão é a matriz. A força axial correspondente sobre a rosca é F = ΔP·πD²/4 = 6,4 kN.</p>"
+    },
+    {
+      "id": "pf2-024",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "vazao",
+      "enunciado": "<p>Numa linha de extrusão, a pressão de massa sobe lentamente ao longo de uma hora, com rotação e temperaturas constantes. A hipótese mais provável é:</p>",
+      "alternativas": [
+        "resina do lote novo com índice de fluidez mais alto",
+        "canal de dosagem desgastado, aumentando a altura do canal",
+        "queda de temperatura na zona de alimentação",
+        "conjunto de telas entupindo, o que eleva a contrapressão, o tempo de residência e a temperatura da massa"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Tela entupindo é a causa clássica de pressão crescente a parâmetros constantes, e é perigosa porque eleva três coisas ao mesmo tempo: pressão, tempo de residência e temperatura da massa — combinação que degrada a resina. Resina mais fluida <em>reduziria</em> a pressão; desgaste da rosca aumentaria a folga e reduziria a vazão e a pressão.</p>"
+    },
+    {
+      "id": "pf2-025",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "matrizes",
+      "enunciado": "<p>Uma resina apresenta inchamento do extrudado de 1,35. Para obter um filamento de 3,00 mm sem puxamento, o canal da matriz deve ter:</p>",
+      "alternativas": [
+        "2,22 mm",
+        "4,05 mm",
+        "3,00 mm",
+        "1,35 mm"
+      ],
+      "correta": 0,
+      "formulas": [
+        "B = D_x/D_d"
+      ],
+      "explicacao": "<div class=\"passo\">B = D_x/D_d, logo D_d = D_x/B = 3,00/1,35 = <strong>2,22 mm</strong></div><p>Projetar a matriz com a cota do produto custaria 35 % de sobremedida no diâmetro e 82 % na seção — e, por metro de perfil, exatamente esses 82 % a mais de material. Como o inchamento depende da resina, da temperatura e da taxa de cisalhamento, matrizes de perfil são desenvolvidas por iteração.</p>"
+    },
+    {
+      "id": "pf2-026",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "matrizes",
+      "enunciado": "<p>O inchamento do extrudado tem origem:</p>",
+      "alternativas": [
+        "na expansão térmica do polímero ao sair do canal aquecido",
+        "na recuperação, fora da matriz, da deformação elástica que não relaxou dentro dos canais — a memória plástica do fundido viscoelástico",
+        "na cristalização que ocorre imediatamente após a matriz",
+        "na queda de pressão, que faz o gás dissolvido expandir"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Nos canais da matriz as cadeias são orientadas e guardam deformação elástica; o comprimento do paralelo não basta para relaxá-la por completo, e o que sobra se recupera fora. Reduzem o efeito: paralelo mais longo, matriz mais quente, resfriamento mais próximo da saída e puxamento controlado. Resinas de massa molar alta incham mais, porque relaxar exige desemaranhar cadeias longas.</p>"
+    },
+    {
+      "id": "pf2-027",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "matrizes",
+      "enunciado": "<p>Uma matriz anular opera a 4,03 MPa, com abertura de 2,0 mm e paralelo de 30 mm. A tensão de cisalhamento na parede e o diagnóstico são:</p>",
+      "alternativas": [
+        "134 MPa, muito acima do limiar de fratura",
+        "13,4 kPa, com folga de uma ordem de grandeza",
+        "134 kPa, a 4 % do limiar de fratura do fundido (≈ 140 kPa)",
+        "269 kPa, já dentro do regime de fratura"
+      ],
+      "correta": 2,
+      "formulas": [
+        "τ_w = ΔP·h/(2L)",
+        "τ_w,crít ≈ 0,14 MPa"
+      ],
+      "explicacao": "<div class=\"passo\">τ_w = ΔP·h/(2L) = 4,03×10⁶ × 0,002/(2 × 0,030)</div><div class=\"passo\">τ_w = 4,03×10⁶ × 0,0333 = <strong>134 kPa</strong></div><div class=\"passo\">Comparação: 134/140 = 0,96 → <strong>4 % de margem</strong></div><p>Operar a 4 % do limiar significa que qualquer aumento de rotação, qualquer queda de temperatura ou qualquer tela entupindo joga a linha para dentro do defeito — primeiro pele de cação, depois fratura do fundido. É por isso que o cálculo de τ_w pertence ao projeto da matriz, e não ao diagnóstico depois do problema.</p>"
+    },
+    {
+      "id": "pf2-028",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "matrizes",
+      "enunciado": "<p>Um perfil extrudado passa a apresentar superfície rugosa e sem lisura. A sequência correta de providências é:</p>",
+      "alternativas": [
+        "reduzir a temperatura da matriz e aumentar a velocidade de extrusão",
+        "aumentar a contrapressão fechando as telas e elevar a rotação",
+        "trocar por uma resina de massa molar maior e distribuição estreita",
+        "elevar a temperatura da matriz e reduzir a velocidade de extrusão, verificando a tensão de parede contra o limiar de 0,14 MPa"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Rugosidade de superfície é pele de cação, estágio anterior à fratura do fundido, e as duas vêm de tensão excessiva na parede da matriz. Aquecer a matriz e reduzir a velocidade derrubam essa tensão. Resina de distribuição mais larga e auxiliares de processamento também ajudam; massa molar <em>maior</em> agravaria o problema.</p>"
+    },
+    {
+      "id": "pf2-029",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "filmes",
+      "enunciado": "<p>Uma linha de filme soprado processa 50 kg/h de PEBD (ρ = 920 kg/m³ no fundido) em matriz de 100 mm com abertura de 1,2 mm, BUR de 2,5 e puxamento de 30 m/min. A espessura do filme é:</p>",
+      "alternativas": [
+        "38 µm",
+        "96 µm",
+        "15 µm",
+        "480 µm"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Q = ṁ/ρ",
+        "t = Q/(πD_f v)",
+        "t = h/(BUR × DDR)"
+      ],
+      "explicacao": "<div class=\"passo\">Q = 50/3600/920 = 1,51×10⁻⁵ m³/s</div><div class=\"passo\">D_f = BUR × D_d = 2,5 × 100 = 250 mm</div><div class=\"passo\">t = Q/(πD_f·v) = 1,51×10⁻⁵/(π × 0,250 × 0,500) = 3,84×10⁻⁵ m = <strong>38,4 µm</strong></div><p>Pelo outro caminho: v na matriz = Q/(πD_d h) = 2,40 m/min, logo DDR = 30/2,40 = 12,5, e t = h/(BUR × DDR) = 1200/(2,5 × 12,5) = 38,4 µm. A abertura de 1,2 mm produziu um filme 31 vezes mais fino: 2,5 pelo sopro e 12,5 pelo puxamento.</p>"
+    },
+    {
+      "id": "pf2-030",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "filmes",
+      "enunciado": "<p>No mesmo filme, com balão de 250 mm de diâmetro e espessura de 38,4 µm, a largura da bobina (filme plano) e a gramatura valem:</p>",
+      "alternativas": [
+        "250 mm e 35,4 g/m²",
+        "393 mm e 35,4 g/m²",
+        "785 mm e 17,7 g/m²",
+        "393 mm e 92,0 g/m²"
+      ],
+      "correta": 1,
+      "formulas": [
+        "largura = πD_f/2",
+        "g = ρ t"
+      ],
+      "explicacao": "<div class=\"passo\">Largura plana = πD_f/2 = π × 250/2 = <strong>393 mm</strong></div><div class=\"passo\">Gramatura = ρ·t = 920 × 3,84×10⁻⁵ = 0,0354 kg/m² = <strong>35,4 g/m²</strong></div><p>A bobina sai com 393 mm, não com 250: o balão colapsado tem metade do perímetro, e não o diâmetro. A gramatura é a grandeza que o cliente compra e que a balança da bobinadeira controla.</p>"
+    },
+    {
+      "id": "pf2-031",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "filmes",
+      "enunciado": "<p>Para afinar um filme soprado sem desequilibrar suas propriedades, o ajuste correto é:</p>",
+      "alternativas": [
+        "aumentar somente a velocidade dos rolos, que é o ajuste mais rápido",
+        "aumentar somente o BUR, inflando mais o balão",
+        "aumentar BUR e velocidade de puxamento juntos, mantendo os dois estiramentos da mesma ordem",
+        "aumentar a vazão da extrusora mantendo o puxamento"
+      ],
+      "correta": 2,
+      "explicacao": "<p>Aumentar só a velocidade dos rolos eleva o DDR sem tocar no BUR: o filme fica orientado na direção da máquina e passa a rasgar com facilidade no comprimento. Quando DDR e BUR são da mesma ordem, a orientação é biaxial e as propriedades na direção da máquina e na transversal se aproximam — é justamente a vantagem do filme soprado sobre o plano. Aumentar a vazão sem mexer no puxamento engrossaria o filme.</p>"
+    },
+    {
+      "id": "pf2-032",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "filmes",
+      "enunciado": "<p>Comparando filme plano e filme soprado da mesma resina, o filme plano é mais transparente porque:</p>",
+      "alternativas": [
+        "o estiramento biaxial do filme soprado introduz tensões que opacificam",
+        "a matriz plana orienta as cadeias e isso aumenta a transparência",
+        "o filme plano é sempre mais espesso, o que reduz a difusão da luz",
+        "o cilindro resfriado congela o filme em fração de segundo e impede a cristalização, reduzindo o espalhamento de luz"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Cristais espalham luz; sem tempo de cristalizar, o filme fica mais transparente e dimensionalmente mais estável. No filme soprado o resfriamento é por ar, mais lento, e há tempo de formar cristalitos. Em troca, o plano não tem estiramento transversal nenhum — orienta só na direção da máquina — e gera refile nas bordas.</p>"
+    },
+    {
+      "id": "pf2-033",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "injecao",
+      "enunciado": "<p>Uma injetora tem capacidade de injeção de 220 g de poliestireno. Para polipropileno (ρ sólido 0,905 e fundido 0,73 g/cm³; PS: 1,05 e 0,98), a capacidade equivalente é:</p>",
+      "alternativas": [
+        "164 g",
+        "220 g",
+        "255 g",
+        "190 g"
+      ],
+      "correta": 0,
+      "formulas": [
+        "CI = CI_PS (P/P_r)(FV/FV_r)",
+        "FV = ρ_fundido/ρ_sólido"
+      ],
+      "explicacao": "<div class=\"passo\">FV do PS = 0,98/1,05 = 0,933; FV do PP = 0,73/0,905 = 0,807</div><div class=\"passo\">CI = 220 × (0,905/1,05) × (0,807/0,933) = 220 × 0,862 × 0,864 = <strong>164 g</strong></div><p>O que o curso da rosca fixa é o volume (224,5 cm³ nesta máquina); a massa que cabe nele depende da massa específica do fundido, 25 % menor no PP. Pedir capacidade em gramas sem dizer o material é um erro comum — e caro, porque leva a comprar máquina pequena demais.</p>"
+    },
+    {
+      "id": "pf2-034",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "injecao",
+      "enunciado": "<p>Um molde de duas cavidades tem área projetada de 95 cm² por cavidade e 15 cm² de canais. Com pressão de injeção de 800 kgf/cm² e fator de segurança 1,2, a força de fechamento necessária é:</p>",
+      "alternativas": [
+        "196,8 tf",
+        "98,4 tf",
+        "49,2 tf",
+        "82,0 tf"
+      ],
+      "correta": 1,
+      "formulas": [
+        "FF = A·P·S/2",
+        "S = 1,1 a 1,4"
+      ],
+      "explicacao": "<div class=\"passo\">A = 2(95) + 15 = 205 cm²</div><div class=\"passo\">FF = A·P·S/2 = 205 × 800 × 1,2/2 = 98 400 kgf = <strong>98,4 tf</strong></div><p>O fator ½ reconhece que a pressão média na cavidade é cerca de metade da pressão de injeção — aqui, 400 kgf/cm² ou 39,2 MPa —, por causa das perdas de carga no bico, na bucha e nos canais. Sem o fator de segurança, a conta daria 82 tf; com ele, especifica-se uma máquina de pelo menos 110 tf.</p>"
+    },
+    {
+      "id": "pf2-035",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "injecao",
+      "enunciado": "<p>Na máquina do exemplo (CI de 164 g em PP e rosca de 40 mm), um molde de duas cavidades exige tiro de 185 g (2 × 85 g de peça mais 15 g de canais). A avaliação correta é:</p>",
+      "alternativas": [
+        "viável: 185 g estão abaixo dos 220 g de capacidade nominal da máquina",
+        "viável: o tiro corresponde a 61 % da capacidade em PP",
+        "inviável: o tiro corresponde a 113 % da capacidade, e seria preciso uma máquina de cerca de 310 g em PS para ficar nos 80 %",
+        "inviável apenas por força de fechamento, pois a capacidade de injeção é suficiente"
+      ],
+      "correta": 2,
+      "formulas": [
+        "0,20 ≤ m_tiro/CI ≤ 0,80",
+        "CI = CI_PS (P/P_r)(FV/FV_r)"
+      ],
+      "explicacao": "<div class=\"passo\">Aproveitamento = 185/164 = <strong>113 %</strong> — acima do limite de 80 %</div><div class=\"passo\">Capacidade mínima em PP = 185/0,80 = 231 g</div><div class=\"passo\">Em PS: 231/(164/220) = <strong>310 g</strong></div><p>Os 220 g nominais valem para poliestireno, não para PP. O caso é instrutivo porque os critérios discordam: a força de fechamento de 98,4 tf cabe numa máquina de 110 tf com 12 % de folga, mas a capacidade de injeção reprova. Dimensionar injetora exige verificar os três limites — capacidade de injeção, força de fechamento e capacidade de plastificação — e o que reprova primeiro é o que manda.</p>"
+    },
+    {
+      "id": "pf2-036",
+      "tipo": "multipla",
+      "dificuldade": "facil",
+      "topico": "injecao",
+      "enunciado": "<p>No ciclo de injeção, a etapa de recalque tem a função de:</p>",
+      "alternativas": [
+        "preencher os últimos 10 % da cavidade que a injeção não alcançou",
+        "preparar a dose de material para o ciclo seguinte",
+        "resfriar a peça até a temperatura de extração",
+        "manter pressão sobre a massa para compensar a contração durante o resfriamento, até o congelamento do ponto de injeção"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Um fundido tem massa específica mais de 20 % menor que o sólido à temperatura ambiente, e essa diferença precisa ser compensada com material adicional sob pressão — caso contrário aparecem rechupe, vazios e falta de cota. O recalque não deve passar do instante em que o ponto de injeção congela, porque depois disso a pressão da rosca não chega mais à peça. Para transmitir essa pressão é preciso que reste um colchão de material à frente da rosca.</p>"
+    },
+    {
+      "id": "pf2-037",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "moldes",
+      "enunciado": "<p>Uma peça de PP com 3,0 mm de parede é moldada com massa a 230 °C, molde a 40 °C e extração a 90 °C. Com α = 8,95×10⁻⁸ m²/s, o tempo de resfriamento é:</p>",
+      "alternativas": [
+        "16,1 s",
+        "10,2 s",
+        "28,6 s",
+        "4,0 s"
+      ],
+      "correta": 0,
+      "formulas": [
+        "t_resf = (h²/π²α)·ln[(4/π)(T_massa − T_molde)/(T_extr − T_molde)]",
+        "α = k/(ρc_p)"
+      ],
+      "explicacao": "<div class=\"passo\">h²/(π²α) = (0,003)²/(9,8696 × 8,95×10⁻⁸) = 10,19 s</div><div class=\"passo\">ln[(4/π)(230 − 40)/(90 − 40)] = ln(4,838) = 1,577</div><div class=\"passo\">t = 10,19 × 1,577 = <strong>16,1 s</strong></div><p>O termo dominante é o h²: a mesma peça com 4 mm levaria 28,6 s e com 6 mm, 64 s. Como a difusividade térmica dos polímeros é cerca de cem vezes menor que a do aço, o resfriamento é a etapa mais longa do ciclo — e reduzir parede é a providência de produtividade mais barata que existe.</p>"
+    },
+    {
+      "id": "pf2-038",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "moldes",
+      "enunciado": "<p>Uma cota de 120,0 mm deve ser obtida em PP, cuja contração média é 1,8 %. A cota a usinar no molde é:</p>",
+      "alternativas": [
+        "117,84 mm",
+        "122,16 mm",
+        "120,00 mm",
+        "121,80 mm"
+      ],
+      "correta": 1,
+      "formulas": [
+        "L_molde = L_peça(1 + s)"
+      ],
+      "explicacao": "<div class=\"passo\">L_molde = L_peça(1 + s) = 120,0 × 1,018 = <strong>122,16 mm</strong></div><p>Se a contração real variar entre 1,5 % e 2,5 % — o que a temperatura do molde e a pressão de recalque fazem com facilidade —, a peça sairá entre 120,35 e 119,18 mm: uma faixa de 1,17 mm, quase 1 % da cota. Prometer tolerância mais estreita que essa dispersão é prometer o que o processo não entrega.</p>"
+    },
+    {
+      "id": "pf2-039",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "moldes",
+      "enunciado": "<p>Com tempo de resfriamento de 16,1 s, recalque de 6 s (que ocorre dentro do resfriamento), fechamento de 1,5 s, injeção de 1,2 s e abertura de 2,5 s, a produção de um molde de duas cavidades é:</p>",
+      "alternativas": [
+        "169 peças/h",
+        "676 peças/h",
+        "338 peças/h",
+        "240 peças/h"
+      ],
+      "correta": 2,
+      "formulas": [
+        "ciclo = t_fech + t_inj + t_rec + (t_resf − t_rec) + t_abert",
+        "produção = 3600/ciclo × n_cav"
+      ],
+      "explicacao": "<div class=\"passo\">Resfriamento restante após o recalque: 16,1 − 6 = 10,1 s</div><div class=\"passo\">Ciclo = 1,5 + 1,2 + 6 + 10,1 + 2,5 = <strong>21,3 s</strong></div><div class=\"passo\">Produção = (3600/21,3) × 2 = <strong>338 peças/h</strong></div><p>Com peças de 85 g, isso equivale a 28,7 kg/h. Se a parede fosse de 4 mm, o resfriamento iria a 28,6 s, o ciclo a 33,8 s e a produção cairia para 213 peças/h — 37 % menos, só por um milímetro de parede.</p>"
+    },
+    {
+      "id": "pf2-040",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "moldes",
+      "enunciado": "<p>Uma peça apresenta rechupe nas regiões próximas às nervuras. A causa e a correção mais diretas são:</p>",
+      "alternativas": [
+        "velocidade de injeção baixa; aumentar a velocidade de preenchimento",
+        "ar aprisionado sem saída; abrir saídas de gás na região",
+        "força de fechamento insuficiente; trocar por máquina maior",
+        "contração não compensada em região espessa; aumentar pressão e tempo de recalque e, no projeto, uniformizar espessuras"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Rechupe é um baixo-relevo que aparece onde a massa contraiu sem receber material de reposição — tipicamente junto a nervuras e variações de espessura, em que o núcleo demora mais a solidificar. Ar aprisionado dá efeito diesel, com pontos queimados; força de fechamento insuficiente dá rebarba; velocidade baixa dá efeito de disco e linhas de junção frias.</p>"
+    },
+    {
+      "id": "pf2-041",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "sopro",
+      "enunciado": "<p>Uma pré-forma de PET com 24,6 mm de diâmetro e 3,7 mm de parede é soprada numa garrafa de 64,8 mm, com estiramento axial de 2,6. A espessura final da parede é:</p>",
+      "alternativas": [
+        "0,54 mm",
+        "1,42 mm",
+        "0,24 mm",
+        "1,40 mm"
+      ],
+      "correta": 0,
+      "formulas": [
+        "λ_planar = λ_axial × λ_radial",
+        "t_f = t_0/λ_planar"
+      ],
+      "explicacao": "<div class=\"passo\">Razão radial: λ_r = 64,8/24,6 = 2,63</div><div class=\"passo\">Estiramento planar: λ_p = 2,6 × 2,63 = 6,85</div><div class=\"passo\">t = 3,7/6,85 = <strong>0,54 mm</strong></div><p>O estiramento planar de 6,85 está na faixa usual (6 a 12) e produz uma parede de pouco mais de meio milímetro, com orientação biaxial — é ela que dá resistência mecânica e barreira ao CO₂. Numa extrusão-sopro, sem haste de estiramento, um parison de 40 mm e 3 mm de parede soprado a 90 mm daria 1,33 mm: 2,5 vezes mais espesso.</p>"
+    },
+    {
+      "id": "pf2-042",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "sopro",
+      "enunciado": "<p>A pré-forma de PET é injetada em molde muito frio e com resfriamento longo porque:</p>",
+      "alternativas": [
+        "o molde frio reduz a contração e garante a cota do gargalo",
+        "é preciso impedir a cristalização: uma pré-forma cristalizada fica opaca e não estira de maneira uniforme no sopro",
+        "o PET precisa cristalizar na injeção para resistir à pressão do gás",
+        "o resfriamento longo elimina a umidade residual da resina"
+      ],
+      "correta": 1,
+      "explicacao": "<p>O PET cristaliza devagar, e isso é usado a favor do processo: o molde frio congela a pré-forma no estado amorfo e transparente. No sopro ela é reaquecida a 90–120 °C, acima da Tg (≈ 78 °C) e abaixo da cristalização, e só então estirada. A umidade é removida antes, na secagem — etapa obrigatória, porque o PET hidrolisa e perde massa molar se for injetado úmido.</p>"
+    },
+    {
+      "id": "pf2-043",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "sopro",
+      "enunciado": "<p>Uma bandeja é termoformada a partir de chapa de PS de 2,0 mm, e a área da peça formada é três vezes a área da chapa. A espessura média final e a força do vácuo sobre 0,25 m² (vácuo de 0,9 bar) valem:</p>",
+      "alternativas": [
+        "0,67 mm e 22,5 tf",
+        "6,0 mm e 2,3 tf",
+        "0,67 mm e 2,3 tf",
+        "1,33 mm e 4,6 tf"
+      ],
+      "correta": 2,
+      "formulas": [
+        "t_f = t_0/(A_f/A_0)",
+        "F = p·A"
+      ],
+      "explicacao": "<div class=\"passo\">Conservação de volume: t_f = t₀/(A_f/A₀) = 2,0/3 = <strong>0,67 mm</strong></div><div class=\"passo\">F = pA = 0,9×10⁵ × 0,25 = 22,5 kN = <strong>2,3 tf</strong></div><p>Injetar a mesma área projetada, a 39,2 MPa de pressão média na cavidade, exigiria cerca de 1000 tf — mais de 400 vezes mais. É essa diferença que explica por que uma termoformadora e seu molde de alumínio são tão baratos, e por que o processo aceita peças grandes. O preço é a espessura desigual: 0,67 mm é média, e as quinas ficam bem mais finas.</p>"
+    },
+    {
+      "id": "pf2-044",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "sopro",
+      "enunciado": "<p>A diferença prática entre os arranjos single stage e two stage na produção de garrafas PET é que:</p>",
+      "alternativas": [
+        "no single stage a garrafa é soprada sem estiramento axial",
+        "no two stage a pré-forma é extrudada em vez de injetada",
+        "o single stage dispensa a secagem da resina",
+        "no single stage injeção e sopro são sequenciais na mesma máquina, aproveitando o calor da injeção; no two stage a pré-forma é injetada, resfriada e soprada em outro local"
+      ],
+      "correta": 3,
+      "explicacao": "<p>O single stage economiza energia, porque reaproveita o calor residual da injeção, mas obriga a transportar garrafas prontas, que são volumosas. O two stage transporta apenas pré-formas, de volume muito menor, e é o arranjo dominante em água e refrigerante: o envasador compra a pré-forma e sopra na própria linha. Os dois usam estiramento biaxial e os dois exigem secagem.</p>"
+    },
+    {
+      "id": "pf2-045",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "outros",
+      "enunciado": "<p>Uma caixa de 1,0 × 0,8 × 0,6 m será rotomoldada em polietileno (ρ = 940 kg/m³) com 5 mm de parede. A carga de pó necessária é:</p>",
+      "alternativas": [
+        "17,7 kg",
+        "2,3 kg",
+        "35,3 kg",
+        "451 kg"
+      ],
+      "correta": 0,
+      "formulas": [
+        "A_int = 2(ab + ac + bc)",
+        "t = m/(ρA)"
+      ],
+      "explicacao": "<div class=\"passo\">A = 2(ab + ac + bc) = 2(0,80 + 0,60 + 0,48) = 3,76 m²</div><div class=\"passo\">m = ρ·A·t = 940 × 3,76 × 0,005 = <strong>17,7 kg</strong></div><p>Como não há pressão, a espessura não é imposta por nenhuma ferramenta: ela é a carga dividida pela área interna e pela massa específica. Carregar 12 kg por engano daria 3,4 mm de parede — ainda dentro da faixa usual de 2,5 a 6 mm, mas com peça mais fraca. É o único processo em que a espessura se controla na balança.</p>"
+    },
+    {
+      "id": "pf2-046",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "outros",
+      "enunciado": "<p>Entre as características da rotomoldagem, está corretamente associada ao processo:</p>",
+      "alternativas": [
+        "cantos mais finos, porque o material estira nas quinas",
+        "cantos mais espessos que as paredes, porque o pó se acumula nas regiões côncavas",
+        "tensões internas elevadas, por causa da pressão de sopro",
+        "tolerância dimensional estreita, comparável à da injeção"
+      ],
+      "correta": 1,
+      "explicacao": "<p>Nos processos pressurizados o material estira e afina nas quinas; na rotomoldagem o pó tomba e adere por contato, acumulando-se onde a parede é côncava. É uma vantagem estrutural, porque o canto concentra tensão. Em troca, o processo não usa pressão (peças livres de tensão interna, moldes baratos) e tem ciclo lento, parede desigual e precisão dimensional baixa.</p>"
+    },
+    {
+      "id": "pf2-047",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "outros",
+      "enunciado": "<p>Uma peça em SMC com 0,30 m² de área projetada é moldada por compressão a quente a 7 MPa. A força da prensa é:</p>",
+      "alternativas": [
+        "21 tf",
+        "2100 tf",
+        "214 tf",
+        "70 tf"
+      ],
+      "correta": 2,
+      "formulas": [
+        "F = p·A_projetada"
+      ],
+      "explicacao": "<div class=\"passo\">F = p·A = 7×10⁶ × 0,30 = 2,10×10⁶ N = 2100 kN</div><div class=\"passo\">Em tonelada-força: 2100/9,807 = <strong>214 tf</strong></div><p>Injetar a mesma área projetada, a 39,2 MPa de pressão média na cavidade, exigiria cerca de 1200 tf. É essa diferença que permite moldar painéis grandes em compósito termorrígido com prensas relativamente modestas — e é por isso que a compressão continua sendo a rota industrial dos termorrígidos.</p>"
+    },
+    {
+      "id": "pf2-048",
+      "tipo": "multipla",
+      "dificuldade": "dificil",
+      "topico": "outros",
+      "enunciado": "<p>Termorrígidos são processados por compressão, e não por injeção convencional, porque:</p>",
+      "alternativas": [
+        "termorrígidos têm viscosidade baixa demais para serem dosados por rosca",
+        "a injeção exigiria temperaturas acima da degradação do termorrígido",
+        "termorrígidos não aderem às paredes metálicas do molde",
+        "a conformação precisa ocorrer antes da cura: qualquer atraso solidifica o material no canal em vez da cavidade"
+      ],
+      "correta": 3,
+      "explicacao": "<p>A janela de processamento de um termorrígido é uma corrida contra a reticulação: ele tem de escoar e preencher antes de curar, e canal entupido significa ferramenta parada. Existem rotas de injeção de termorrígidos, inclusive o RIM, que mistura dois líquidos e injeta a 0,7–1,4 MPa, dez a cinquenta vezes menos que termoplásticos; mas a rota padrão continua sendo compressão, com o molde mais quente que o material que entra.</p>"
+    },
+    {
+      "id": "pf2-049",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "compositos",
+      "enunciado": "<p>Um laminado tem 65 % de fibra de carbono em massa (ρ = 1,80 g/cm³) em matriz epóxi (ρ = 1,20 g/cm³). A fração volumétrica de fibra é:</p>",
+      "alternativas": [
+        "0,553",
+        "0,650",
+        "0,447",
+        "0,742"
+      ],
+      "correta": 0,
+      "formulas": [
+        "V_f = (W_f/ρ_f)/[(W_f/ρ_f) + (W_m/ρ_m)]"
+      ],
+      "explicacao": "<div class=\"passo\">V_f = (W_f/ρ_f)/[(W_f/ρ_f) + (W_m/ρ_m)]</div><div class=\"passo\">V_f = (0,65/1,80)/[(0,65/1,80) + (0,35/1,20)] = 0,3611/0,6528 = <strong>0,553</strong></div><p>Como a fibra é mais densa que a matriz, o teor em volume é sempre menor que o teor em massa. E quem carrega a carga é o volume: usar 0,65 na regra das misturas superestimaria o módulo longitudinal em quase 18 %.</p>"
+    },
+    {
+      "id": "pf2-050",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "compositos",
+      "enunciado": "<p>Para esse laminado (V_f = 0,553; fibra de 230 GPa e matriz de 3,6 GPa), os módulos longitudinal e transversal valem:</p>",
+      "alternativas": [
+        "128,8 GPa e 128,8 GPa",
+        "128,8 GPa e 7,9 GPa",
+        "7,9 GPa e 128,8 GPa",
+        "116,1 GPa e 2,0 GPa"
+      ],
+      "correta": 1,
+      "formulas": [
+        "E₁ = E_f V_f + E_m V_m",
+        "E₂ = (V_f/E_f + V_m/E_m)⁻¹"
+      ],
+      "explicacao": "<div class=\"passo\">E₁ = E_f V_f + E_m V_m = 230(0,553) + 3,6(0,447) = 127,2 + 1,6 = <strong>128,8 GPa</strong></div><div class=\"passo\">E₂ = [V_f/E_f + V_m/E_m]⁻¹ = [0,00240 + 0,1241]⁻¹ = <strong>7,9 GPa</strong></div><p>A matriz contribui com 1,2 % de E₁ e domina completamente E₂: a razão E₁/E₂ chega a 16. O laminado unidirecional é, na prática, dois materiais diferentes em direções diferentes. A regra das misturas acerta bem E₁ e subestima E₂, porque a hipótese de tensão uniforme nas duas fases é grosseira.</p>"
+    },
+    {
+      "id": "pf2-051",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "compositos",
+      "enunciado": "<p>O mesmo laminado (E₁ = 128,8 GPa; E₂ = 7,9 GPa; G₁₂ = 2,63 GPa; ν₁₂ = 0,322) é carregado a 45° da direção da fibra. O módulo aparente cai para:</p>",
+      "alternativas": [
+        "64,4 GPa, metade do longitudinal",
+        "128,8 GPa, pois o módulo não depende da direção",
+        "7,9 GPa, cerca de 16 vezes menos",
+        "2,6 GPa, igual ao módulo de cisalhamento"
+      ],
+      "correta": 2,
+      "formulas": [
+        "1/E_x = cos⁴θ/E₁ + sen⁴θ/E₂ + (1/G₁₂ − 2ν₁₂/E₁)sen²θcos²θ"
+      ],
+      "explicacao": "<div class=\"passo\">A 45°: cos⁴θ = sen⁴θ = sen²θcos²θ = 0,25</div><div class=\"passo\">1/E_x = 0,25/128,8 + 0,25/7,9 + (1/2,63 − 2(0,322)/128,8)(0,25)</div><div class=\"passo\">1/E_x = 0,00194 + 0,03165 + 0,09380 = 0,1274 → E_x = <strong>7,85 GPa</strong></div><p>Note que o termo dominante é o de cisalhamento: fora dos eixos, é G₁₂ que manda. É esse resultado que justifica empilhar camadas em 0°, ±45° e 90° — o laminado resultante tem rigidez intermediária em todas as direções, em vez de excelente numa e péssima nas outras.</p>"
+    },
+    {
+      "id": "pf2-052",
+      "tipo": "calculo",
+      "dificuldade": "dificil",
+      "topico": "compositos",
+      "enunciado": "<p>Com fibra de vidro E (ρ = 2,54 g/cm³; E = 73 GPa) e poliéster (ρ = 1,20; E = 3,5 GPa), compare o módulo longitudinal obtido por laminação manual (25 % em massa) e por pultrusão (65 % em massa):</p>",
+      "alternativas": [
+        "18,3 GPa e 47,5 GPa — a pultrusão rende 2,6 vezes mais",
+        "13,0 GPa e 18,0 GPa — a pultrusão rende 1,4 vez mais",
+        "os dois dão o mesmo módulo, pois os materiais são os mesmos",
+        "13,0 GPa e 36,0 GPa — a pultrusão rende 2,8 vezes mais"
+      ],
+      "correta": 3,
+      "formulas": [
+        "V_f = (W_f/ρ_f)/[(W_f/ρ_f) + (W_m/ρ_m)]",
+        "E₁ = E_f V_f + E_m V_m"
+      ],
+      "explicacao": "<div class=\"passo\">Manual: V_f = (0,25/2,54)/[(0,25/2,54) + (0,75/1,20)] = 0,136 → E₁ = 73(0,136) + 3,5(0,864) = <strong>13,0 GPa</strong></div><div class=\"passo\">Pultrusão: V_f = (0,65/2,54)/[(0,65/2,54) + (0,35/1,20)] = 0,467 → E₁ = 73(0,467) + 3,5(0,533) = <strong>36,0 GPa</strong></div><div class=\"passo\">Razão: 36,0/13,0 = <strong>2,8</strong></div><p>Os materiais são idênticos: o que muda é a quantidade e o alinhamento de fibra que cada rota consegue colocar na peça. Nenhuma formulação de resina compensa um fator 2,8 de rigidez — e é por isso que, em compósitos, escolher o processo é escolher a propriedade.</p>"
+    },
+    {
+      "id": "pf2-053",
+      "tipo": "calculo",
+      "dificuldade": "facil",
+      "topico": "aditiva",
+      "enunciado": "<p>Uma impressora FDM deposita cordões de 0,45 mm de largura e 0,20 mm de altura a 60 mm/s. A vazão do bico e o tempo ideal para imprimir 30 cm³ valem:</p>",
+      "alternativas": [
+        "5,4 mm³/s e 1,54 h",
+        "5,4 mm³/s e 0,15 h",
+        "54 mm³/s e 0,15 h",
+        "2,7 mm³/s e 3,1 h"
+      ],
+      "correta": 0,
+      "formulas": [
+        "Q = w·h·v",
+        "t ≈ V/Q"
+      ],
+      "explicacao": "<div class=\"passo\">Q = w·h·v = 0,45 × 0,20 × 60 = <strong>5,4 mm³/s</strong></div><div class=\"passo\">t = V/Q = 30 000/5,4 = 5556 s = <strong>1,54 h</strong></div><p>Com altura de camada de 0,10 mm, a vazão cai para 2,7 mm³/s e o tempo dobra para 3,1 h: a altura da camada é o parâmetro de produtividade dominante. O tempo real é maior, porque deslocamentos sem deposição, aceleração nos cantos e perímetros extras não entram nesta conta.</p>"
+    },
+    {
+      "id": "pf2-054",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "aditiva",
+      "enunciado": "<p>Na mesma impressora, com filamento de 1,75 mm e bico de 0,4 mm, a velocidade de alimentação do filamento e a taxa de cisalhamento no bico valem:</p>",
+      "alternativas": [
+        "5,40 mm/s e 859 s⁻¹",
+        "2,25 mm/s e 859 s⁻¹",
+        "2,25 mm/s e 86 s⁻¹",
+        "0,45 mm/s e 2150 s⁻¹"
+      ],
+      "correta": 1,
+      "formulas": [
+        "v_fil = Q/(πd²/4)",
+        "γ̇ = 4Q/πR³"
+      ],
+      "explicacao": "<div class=\"passo\">A_fil = π(1,75)²/4 = 2,405 mm² → v_fil = Q/A = 5,4/2,405 = <strong>2,25 mm/s</strong></div><div class=\"passo\">γ̇ = 4Q/πR³ = 4(5,4)/(π × 0,2³) = 21,6/0,02513 = <strong>859 s⁻¹</strong></div><p>A taxa de 859 s⁻¹ está na mesma faixa da extrusão convencional: reologicamente, o FDM é uma extrusora de bancada com matriz de 0,4 mm. A diferença estrutural está na solda entre camadas, que nunca alcança a resistência do material maciço — a peça impressa é anisotrópica por construção.</p>"
+    },
+    {
+      "id": "pf2-055",
+      "tipo": "calculo",
+      "dificuldade": "medio",
+      "topico": "aditiva",
+      "enunciado": "<p>Um corpo de prova de 10,0 × 4,0 mm de seção rompe a 1400 N, e na região inicial 25 MPa corresponderam a 0,8 % de deformação. A resistência à tração e o módulo valem:</p>",
+      "alternativas": [
+        "140 MPa e 3,13 GPa",
+        "35,0 MPa e 31,3 GPa",
+        "35,0 MPa e 3,13 GPa",
+        "350 MPa e 0,31 GPa"
+      ],
+      "correta": 2,
+      "formulas": [
+        "σ = F/A₀",
+        "ε = ΔL/L₀",
+        "E = σ/ε"
+      ],
+      "explicacao": "<div class=\"passo\">A₀ = 10,0 × 4,0 = 40,0 mm²</div><div class=\"passo\">σ = F/A₀ = 1400/40,0 = <strong>35,0 MPa</strong></div><div class=\"passo\">E = σ/ε = 25/0,008 = 3125 MPa = <strong>3,13 GPa</strong></div><p>Resistência de 35 MPa e módulo de 3,1 GPa são compatíveis com um poliestireno de alto impacto ou um PP homopolímero. Lembre que o módulo depende da direção em que o corpo de prova foi retirado: numa peça injetada, a diferença entre o sentido do fluxo e o transversal é facilmente de dezenas de por cento, por causa da orientação molecular.</p>"
+    },
+    {
+      "id": "pf2-056",
+      "tipo": "multipla",
+      "dificuldade": "medio",
+      "topico": "aditiva",
+      "enunciado": "<p>Ao examinar um compósito no microscópio eletrônico de varredura, metaliza-se a superfície com ouro ou carbono para:</p>",
+      "alternativas": [
+        "aumentar a resolução do microscópio além do limite do comprimento de onda",
+        "proteger a amostra do aquecimento causado pelo feixe",
+        "revelar a fase cristalina por contraste de fase",
+        "escoar a carga elétrica depositada pelo feixe e melhorar o espalhamento de elétrons, evitando artefatos em aumentos altos"
+      ],
+      "correta": 3,
+      "explicacao": "<p>Polímeros são isolantes: a carga do feixe não escoa e aparecem brilho irregular, deriva e distorção. Uma camada nanométrica de material condutor resolve. Vale lembrar o princípio: o MEV troca fótons por elétrons — filamento de tungstênio, 1 a 50 kV — e varre a superfície ponto a ponto, alcançando 2 a 5 nm de resolução contra o limite de cerca de 2000 × do microscópio óptico, com grande profundidade de campo. Numa fratura de compósito, ele responde à pergunta decisiva: as fibras saíram limpas (adesão ruim) ou cobertas de matriz (interface eficiente)?</p>"
+    }
+  ]
+}

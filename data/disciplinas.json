@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "processos-de-fabricacao-2",
     "circuitos-eletricos",
     "engenharia-economica",
     "acustica-aplicada",
@@ -524,40 +525,23 @@
       "pronta": false
     },
     {
-      "slug": "processos-2",
-      "nome": "Processos 2",
-      "periodo": "7",
-      "materia": "Fabricação",
-      "pasta": "7°- Processos 2",
-      "resumo": "Processos industriais avançados, automação da manufatura e integração de processos.",
-      "temas": [
-        "automação",
-        "CNC",
-        "manufatura integrada",
-        "qualidade"
-      ],
-      "simuladores": true,
-      "normas": true,
-      "pronta": false
-    },
-    {
       "slug": "processos-de-fabricacao-2",
       "nome": "Processos de Fabricação II",
       "periodo": "7",
       "materia": "Fabricação",
       "pasta": "7°- Processos de Fabricação 2",
-      "resumo": "Usinagem, ferramentas de corte, vida de ferramenta, CNC e processos não convencionais.",
+      "resumo": "Polímeros, compósitos e não metálicos: reologia de fundidos, extrusão, injeção, sopro, termoformagem e compósitos.",
       "temas": [
-        "usinagem",
-        "Taylor",
-        "torneamento",
-        "fresamento",
-        "CNC",
-        "EDM"
+        "reologia",
+        "extrusão",
+        "injeção",
+        "sopro",
+        "compósitos",
+        "polímeros"
       ],
       "simuladores": true,
       "normas": true,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "transferencia-de-calor",

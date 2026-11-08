@@ -811,6 +811,56 @@
       "ordem": 4
     },
     {
+      "id": "sim-reologia",
+      "slug": "processos-de-fabricacao-2",
+      "disciplina": "Processos de Fabricação II",
+      "periodo": "7",
+      "materia": "Fabricação",
+      "titulo": "1. Reologia do fundido — do índice de fluidez à lei da potência",
+      "resumo": "O ensaio de índice de fluidez entrega um ponto da curva de viscosidade; o expoente da lei da potência entrega o resto dela.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-extrusora",
+      "slug": "processos-de-fabricacao-2",
+      "disciplina": "Processos de Fabricação II",
+      "periodo": "7",
+      "materia": "Fabricação",
+      "titulo": "2. Extrusora monorosca — vazão de arraste, matriz e ponto de operação",
+      "resumo": "A rosca empurra (vazão de arraste, proporcional à rotação) e a matriz resiste (vazão de pressão, proporcional à pressão).",
+      "ordem": 1
+    },
+    {
+      "id": "sim-filme",
+      "slug": "processos-de-fabricacao-2",
+      "disciplina": "Processos de Fabricação II",
+      "periodo": "7",
+      "materia": "Fabricação",
+      "titulo": "3. Extrusão de filme — soprado e plano",
+      "resumo": "Num filme, a espessura não é usinada: ela sai de um balanço de massa entre o que a extrusora entrega, o quanto o balão incha e o quanto os rolos puxam.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-injecao",
+      "slug": "processos-de-fabricacao-2",
+      "disciplina": "Processos de Fabricação II",
+      "periodo": "7",
+      "materia": "Fabricação",
+      "titulo": "4. Injeção — capacidade, força de fechamento, ciclo e contração",
+      "resumo": "Escolher a injetora é responder a três perguntas numéricas: ela dosa o tiro?",
+      "ordem": 3
+    },
+    {
+      "id": "sim-compositos",
+      "slug": "processos-de-fabricacao-2",
+      "disciplina": "Processos de Fabricação II",
+      "periodo": "7",
+      "materia": "Fabricação",
+      "titulo": "5. Compósitos — regra das misturas e escolha do processo",
+      "resumo": "O processo de fabricação decide a fração de fibra, e a fração de fibra decide a rigidez.",
+      "ordem": 4
+    },
+    {
       "id": "sim-parede",
       "slug": "transferencia-de-calor",
       "disciplina": "Transferência de Calor",
