@@ -1,6 +1,56 @@
 {
   "simulacoes": [
     {
+      "id": "sim-raizes",
+      "slug": "calculo-numerico",
+      "disciplina": "Cálculo Numérico",
+      "periodo": "2",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "1. Raízes de equações — quatro métodos na mesma função",
+      "resumo": "Os quatro métodos encontram a mesma raiz, mas com números de iterações muito diferentes.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-sistemas",
+      "slug": "calculo-numerico",
+      "disciplina": "Cálculo Numérico",
+      "periodo": "2",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "2. Sistemas lineares — Gauss, Jacobi e Gauss-Seidel",
+      "resumo": "O método direto dá a resposta exata em um número fixo de operações; os iterativos chegam perto e param quando você manda.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-interpolacao",
+      "slug": "calculo-numerico",
+      "disciplina": "Cálculo Numérico",
+      "periodo": "2",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "3. Interpolação — Lagrange, Runge e splines",
+      "resumo": "A intuição diz que mais pontos dão melhor aproximação.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-minimos",
+      "slug": "calculo-numerico",
+      "disciplina": "Cálculo Numérico",
+      "periodo": "2",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "4. Ajuste de curvas — mínimos quadrados",
+      "resumo": "Interpolar obriga a curva a passar por todos os pontos; ajustar busca a curva que passa o mais perto possível de todos.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-integracao",
+      "slug": "calculo-numerico",
+      "disciplina": "Cálculo Numérico",
+      "periodo": "2",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "5. Integração e derivação numéricas — a ordem do erro",
+      "resumo": "Trapézio, Simpson e quadratura de Gauss aproximam a mesma integral com esforços muito diferentes.",
+      "ordem": 4
+    },
+    {
       "id": "sim-equilibrio",
       "slug": "estatica",
       "disciplina": "Estática",

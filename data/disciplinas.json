@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "calculo-numerico",
     "processos-de-fabricacao-2",
     "circuitos-eletricos",
     "engenharia-economica",
@@ -94,7 +95,7 @@
       ],
       "simuladores": true,
       "normas": false,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "ciencia-do-ambiente",

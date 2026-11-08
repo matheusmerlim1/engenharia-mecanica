@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cálculo Numérico — Engenharia Mecânica</title>
+<meta name="description" content="Cálculo numérico: erros e ponto flutuante, raízes de equações, sistemas lineares, interpolação, splines, mínimos quadrados, derivação e integração numéricas, em formato de livro, com simuladores e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">2º período · Engenharia Mecânica</p>
+    <h1>Cálculo Numérico</h1>
+    <p class="lead">O que fazer quando a fórmula fechada acaba. Este texto está organizado como um livro: onze capítulos em sequência, do erro de arredondamento à quadratura de Gauss, sempre com a pergunta de quanto se pode confiar no número obtido.</p>
+    <div class="btn-row">
+      <span class="tag accent">11 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">75 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">11 figuras interativas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai do erro à integral: primeiro entender por que o computador erra, depois resolver equações e sistemas, aproximar funções e dados e, por fim, derivar e integrar o que não tem solução exata.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: quando a fórmula fechada acaba</h2>
+        <p>A integral de <span data-tex-inline="e^{-x^2}"></span> não tem primitiva elementar. Uma equação como <span data-tex-inline="\cos x = x"></span> não tem solução escrita com símbolos. Um modelo de elementos finitos gera um sistema com milhões de equações. Em todos esses casos o engenheiro troca a resposta exata, que não está disponível, por uma resposta aproximada com <strong>erro conhecido e controlado</strong>. Cálculo numérico é o estudo dessa troca.</p>
+        <p>A disciplina responde sempre às mesmas três perguntas: o método converge para a resposta certa, com que velocidade, e quanto erro sobra quando ele para. Os algoritmos deste texto foram trabalhados na disciplina em Scilab, e os trechos de código usam essa linguagem.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Quanto posso confiar no número que saiu?</td><td>Erros, ponto flutuante, perda de significância</td><td>1</td></tr>
+            <tr><td>Para que x a função zera?</td><td>Bisseção, falsa posição, Newton, secante, ponto fixo</td><td>2 e 3</td></tr>
+            <tr><td>Como resolver Ax = b?</td><td>Gauss, pivotamento, LU, Jacobi, Gauss-Seidel</td><td>4 e 5</td></tr>
+            <tr><td>Como passar uma curva pelos pontos?</td><td>Lagrange, Newton, splines</td><td>6 e 7</td></tr>
+            <tr><td>Como ajustar uma curva a dados com ruído?</td><td>Mínimos quadrados</td><td>8</td></tr>
+            <tr><td>Como derivar uma tabela?</td><td>Diferenças finitas e Richardson</td><td>9</td></tr>
+            <tr><td>Como integrar o que não tem primitiva?</td><td>Trapézios, Simpson, quadratura de Gauss</td><td>10 e 11</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Faça ao menos uma iteração de cada método à mão antes de abrir o simulador. Quem executou uma linha da tabela de bisseção entende o critério de parada; quem só viu o gráfico costuma errar a prova na primeira conta.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — A natureza do erro" data-topicos="erros">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Erros e aritmética do computador</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir erro absoluto, erro relativo, truncamento e arredondamento;</li>
+            <li>explicar como o ponto flutuante representa números;</li>
+            <li>reconhecer e evitar a perda de significância;</li>
+            <li>escolher um critério de parada adequado.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Série de Taylor e notação científica.</p></div>
+        </div>
+
+        <h3 id="s1-1"><span class="num">1.1</span>Medir o erro</h3>
+        <p>Se <span data-tex-inline="x"></span> é o valor exato e <span data-tex-inline="\bar{x}"></span> sua aproximação, o <strong>erro absoluto</strong> diz quanto se errou e o <strong>erro relativo</strong> diz quanto isso pesa diante do próprio valor.</p>
+        <div class="formula"><span data-tex="E_a = |x - \bar{x}| \qquad E_r = \frac{|x - \bar{x}|}{|x|}"></span></div>
+        <p>Errar um milímetro no diâmetro de um eixo de 10 mm é grave; errar um milímetro no comprimento de uma ponte é irrelevante. O erro absoluto é o mesmo e o relativo difere por um fator enorme. Por isso o erro relativo é a medida natural de precisão: um erro relativo próximo de <span data-tex-inline="10^{-t}"></span> indica cerca de <em>t</em> algarismos significativos corretos. Aproximar <span data-tex-inline="\pi"></span> por 3,14 dá <span data-tex-inline="E_a = 1{,}59\times10^{-3}"></span> e <span data-tex-inline="E_r = 5{,}07\times10^{-4}"></span>: aproximadamente três algarismos corretos.</p>
+
+        <h3 id="s1-2"><span class="num">1.2</span>De onde vem o erro</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Origem</th><th>O que é</th><th>Exemplo</th><th>Como reduzir</th></tr></thead>
+          <tbody>
+            <tr><td>Modelo</td><td>A equação simplifica o fenômeno</td><td>Desprezar o arrasto</td><td>Modelo melhor</td></tr>
+            <tr><td>Dados</td><td>Medições têm incerteza</td><td>Módulo de elasticidade de tabela</td><td>Medir melhor</td></tr>
+            <tr><td>Truncamento</td><td>Um processo infinito é cortado</td><td>Série de Taylor com poucos termos</td><td>Mais termos, passo menor</td></tr>
+            <tr><td>Arredondamento</td><td>A máquina guarda dígitos finitos</td><td>0,1 em binário</td><td>Reorganizar a conta, mais bits</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Truncamento e arredondamento costumam puxar em sentidos opostos: reduzir o passo diminui o primeiro e, a partir de certo ponto, aumenta o segundo. O capítulo 9 mostra isso com números.</p>
+
+        <h3 id="s1-3"><span class="num">1.3</span>O ponto flutuante</h3>
+        <p>O computador guarda um número na forma de sinal, mantissa e expoente:</p>
+        <div class="formula"><span data-tex="x = \pm\,(d_1.d_2 d_3 \dots d_t)_\beta \times \beta^{e}, \qquad e_{min} \le e \le e_{max}"></span></div>
+        <p>A consequência geométrica é o ponto central deste capítulo: os números representáveis <strong>não são igualmente espaçados</strong>. Entre duas potências consecutivas da base há sempre a mesma quantidade deles, e o espaçamento dobra (em base 2) a cada potência. A precisão relativa fica constante, a absoluta não.</p>
+        <div class="fig-host" id="fig-1-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Formato IEEE 754</th><th class="num">Bits</th><th class="num">Bits de mantissa</th><th class="num">Épsilon de máquina</th><th class="num">Dígitos decimais</th><th class="num">Maior valor</th></tr></thead>
+          <tbody>
+            <tr><td>Simples</td><td class="num">32</td><td class="num">24</td><td class="num">1,19×10⁻⁷</td><td class="num">≈ 7</td><td class="num">3,4×10³⁸</td></tr>
+            <tr><td>Dupla</td><td class="num">64</td><td class="num">53</td><td class="num">2,22×10⁻¹⁶</td><td class="num">≈ 16</td><td class="num">1,8×10³⁰⁸</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O <strong>épsilon de máquina</strong> é a distância entre 1 e o próximo número representável. O Scilab, como quase todo ambiente científico, usa precisão dupla; a variável <code>%eps</code> guarda 2,22×10⁻¹⁶.</p>
+        <div class="callout warn">
+          <strong>0,1 não existe em binário</strong>
+          A fração 1/10 tem expansão binária periódica, assim como 1/3 em decimal. Por isso 0,1 + 0,2 resulta em 0,30000000000000004 e comparar reais com <code>==</code> é erro de programação. Compare sempre com tolerância: <code>abs(a - b) &lt; tol</code>.
+        </div>
+
+        <h3 id="s1-4"><span class="num">1.4</span>Perda de significância</h3>
+        <p>A operação perigosa é a <strong>subtração de números quase iguais</strong>: os dígitos iniciais, que estavam certos, se cancelam, e o resultado fica formado pelos dígitos finais, que continham o erro. Nenhuma casa nova de informação aparece; as que restam são as piores.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>A fórmula de Bhaskara com quatro dígitos</div>
+          <p>Calcule a menor raiz de <span data-tex-inline="x^2 - 62{,}10\,x + 1 = 0"></span> trabalhando com quatro algarismos significativos. O valor exato é 0,016107.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Discriminante: <span data-tex-inline="62{,}10^2 = 3856"></span> (quatro dígitos), logo <span data-tex-inline="\sqrt{3856 - 4} = \sqrt{3852} = 62{,}06"></span>.</li>
+              <li>Pela fórmula direta: <span data-tex-inline="x_2 = (62{,}10 - 62{,}06)/2 = 0{,}02000"></span>, com erro relativo de 24 %.</li>
+              <li>Multiplicando pelo conjugado: <span data-tex-inline="x_2 = \dfrac{2c}{b + \sqrt{\Delta}} = \dfrac{2}{124{,}2} = 0{,}01610"></span>, com erro relativo de 0,04 %.</li>
+            </ol>
+            <p class="resposta">Mesma aritmética, mesmos dados: trocar a subtração de números próximos por uma soma reduziu o erro em quase 600 vezes.</p>
+          </details>
+        </div>
+        <p>O remédio costuma ser algébrico: racionalizar, usar identidades trigonométricas ou uma expansão em série. Somar uma série também pede cuidado: acumular os termos do menor para o maior preserva mais dígitos.</p>
+
+        <h3 id="s1-5"><span class="num">1.5</span>Truncamento e critério de parada</h3>
+        <p>O resto de Taylor limita o erro de cortar uma série depois do termo de grau <em>n</em>:</p>
+        <div class="formula"><span data-tex="R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\,(x - a)^{n+1}, \qquad \xi \text{ entre } a \text{ e } x"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.2</span>Quantos termos bastam para e<sup>0,5</sup></div>
+          <p>Some cinco termos da série de <span data-tex-inline="e^x"></span> em torno de zero para <em>x</em> = 0,5 e compare o erro com o limite do resto.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Soma: <span data-tex-inline="1 + 0{,}5 + 0{,}125 + 0{,}020833 + 0{,}002604 = 1{,}648438"></span>.</li>
+              <li>Valor exato: <span data-tex-inline="e^{0{,}5} = 1{,}648721"></span>, logo o erro real é <span data-tex-inline="2{,}84\times10^{-4}"></span>.</li>
+              <li>Limite: <span data-tex-inline="|R_4| \le \dfrac{e^{0{,}5}\,(0{,}5)^5}{5!} = 4{,}29\times10^{-4}"></span>, com <span data-tex-inline="\xi \le 0{,}5"></span>.</li>
+            </ol>
+            <p class="resposta">O erro real cabe dentro do limite. O resto dá um teto garantido sem precisar conhecer o valor exato.</p>
+          </details>
+        </div>
+        <p>Como o valor exato é desconhecido, um processo iterativo para quando a mudança entre iterações fica pequena:</p>
+        <div class="formula"><span data-tex="\frac{|x_{k+1} - x_k|}{|x_{k+1}|} \lt \varepsilon \quad \text{e também} \quad k \lt k_{max}"></span></div>
+        <div class="callout warn">
+          <strong>Sempre limite o número de iterações</strong>
+          Um método que diverge ou entra em ciclo nunca satisfaz a tolerância. Sem o limite <span data-tex-inline="k_{max}"></span>, o programa trava. O critério relativo também falha se a raiz é zero; nesse caso, use o absoluto.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O erro relativo mede precisão; o absoluto depende da escala.</li>
+          <li>Truncamento vem de cortar um processo infinito; arredondamento, de guardar dígitos finitos.</li>
+          <li>Números de ponto flutuante têm espaçamento proporcional ao módulo; a precisão dupla tem ε ≈ 2,22×10⁻¹⁶.</li>
+          <li>Subtrair números quase iguais destrói algarismos significativos; a saída é reformular a conta.</li>
+          <li>Todo laço iterativo precisa de tolerância e de limite de iterações.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que aumentar a precisão de 32 para 64 bits não cura um algoritmo instável?</summary><p>Porque a instabilidade amplifica os erros que existem, sejam eles quais forem. Mais bits apenas atrasam o momento em que o erro amplificado domina o resultado; reformular a conta é o que elimina a amplificação.</p></details>
+          <details><summary>Qual dos dois é maior perto de 10⁶: o espaçamento absoluto ou o relativo dos números de máquina?</summary><p>O espaçamento relativo permanece próximo de ε em toda a faixa. O absoluto cresce com o módulo: perto de 10⁶, em precisão dupla, vale cerca de 10⁻¹⁰.</p></details>
+          <details><summary>Quando o critério de parada relativo falha?</summary><p>Quando a resposta tende a zero: o denominador se aproxima de zero e o quociente nunca fica pequeno. Usa-se então o critério absoluto, ou uma combinação dos dois.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte II — Equações não lineares" data-topicos="intervalo">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Raízes: métodos de intervalo</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>isolar raízes com o teorema de Bolzano;</li>
+            <li>aplicar a bisseção e prever o número de iterações;</li>
+            <li>aplicar a falsa posição e reconhecer quando ela fica lenta.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Continuidade e teorema do valor intermediário.</p></div>
+        </div>
+
+        <h3 id="s2-1"><span class="num">2.1</span>Isolar antes de refinar</h3>
+        <p>Achar uma raiz tem duas fases: localizar um intervalo que a contenha e refinar a aproximação. A primeira usa o <strong>teorema de Bolzano</strong>: se <span data-tex-inline="f"></span> é contínua em <span data-tex-inline="[a,b]"></span> e <span data-tex-inline="f(a)\,f(b) \lt 0"></span>, existe ao menos uma raiz no intervalo. Se além disso <span data-tex-inline="f'"></span> não muda de sinal, a raiz é única.</p>
+        <p>Na prática, tabela-se a função ou traça-se o gráfico. Reescrever <span data-tex-inline="f(x) = 0"></span> como <span data-tex-inline="g(x) = h(x)"></span> e olhar onde as duas curvas se cruzam costuma ajudar.</p>
+        <div class="callout warn">
+          <strong>Duas armadilhas do teste de sinal</strong>
+          Raiz de multiplicidade par (o gráfico tangencia o eixo) não troca o sinal, e o teste não a detecta. E uma descontinuidade, como a de tan x em π/2, troca o sinal sem que exista raiz.
+        </div>
+
+        <h3 id="s2-2"><span class="num">2.2</span>Bisseção</h3>
+        <p>O método mais simples é também o mais seguro. Divide-se o intervalo ao meio, verifica-se em qual metade o sinal troca e descarta-se a outra:</p>
+        <div class="formula"><span data-tex="m_k = \frac{a_k + b_k}{2}, \qquad \text{se } f(a_k) f(m_k) \lt 0 \Rightarrow b_{k+1} = m_k, \text{ senão } a_{k+1} = m_k"></span></div>
+        <p>Como o intervalo cai à metade em cada passo, o número de iterações para uma tolerância <span data-tex-inline="\varepsilon"></span> é conhecido <em>antes</em> de começar:</p>
+        <div class="formula"><span data-tex="n \ge \log_2\!\left(\frac{b - a}{\varepsilon}\right)"></span></div>
+        <div class="fig-host" id="fig-2-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Bisseção de x³ − 9x + 3 em [0, 1]</div>
+          <p>Execute seis iterações e calcule quantas seriam necessárias para <span data-tex-inline="\varepsilon = 10^{-3}"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <div class="table-scroll"><table class="data">
+              <thead><tr><th class="num">k</th><th class="num">a</th><th class="num">b</th><th class="num">m</th><th class="num">f(m)</th></tr></thead>
+              <tbody>
+                <tr><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0,5</td><td class="num">−1,3750</td></tr>
+                <tr><td class="num">2</td><td class="num">0</td><td class="num">0,5</td><td class="num">0,25</td><td class="num">0,7656</td></tr>
+                <tr><td class="num">3</td><td class="num">0,25</td><td class="num">0,5</td><td class="num">0,375</td><td class="num">−0,3223</td></tr>
+                <tr><td class="num">4</td><td class="num">0,25</td><td class="num">0,375</td><td class="num">0,3125</td><td class="num">0,2180</td></tr>
+                <tr><td class="num">5</td><td class="num">0,3125</td><td class="num">0,375</td><td class="num">0,34375</td><td class="num">−0,0531</td></tr>
+                <tr><td class="num">6</td><td class="num">0,3125</td><td class="num">0,34375</td><td class="num">0,328125</td><td class="num">0,0822</td></tr>
+              </tbody>
+            </table></div>
+            <p class="resposta">A raiz é 0,337609. Para ε = 10⁻³, <span data-tex-inline="n \ge \log_2(1/0{,}001) = 9{,}97"></span>, portanto 10 iterações.</p>
+          </details>
+        </div>
+<pre><code>function m = bissecao(f, a, b, tol, kmax)
+  for k = 1:kmax
+    m = (a + b) / 2;
+    if f(a) * f(m) &lt; 0 then b = m; else a = m; end
+    if (b - a) / 2 &lt; tol then return; end
+  end
+endfunction</code></pre>
+
+        <h3 id="s2-3"><span class="num">2.3</span>Falsa posição</h3>
+        <p>A bisseção ignora os valores de <span data-tex-inline="f"></span>: usa apenas o sinal. A falsa posição aproveita a informação e toma o ponto em que a reta entre <span data-tex-inline="(a, f(a))"></span> e <span data-tex-inline="(b, f(b))"></span> corta o eixo:</p>
+        <div class="formula"><span data-tex="x_k = \frac{a\,f(b) - b\,f(a)}{f(b) - f(a)}"></span></div>
+        <p>O intervalo continua garantindo a raiz, mas o comprimento dele já não serve como medida de erro: em função convexa ou côncava, <strong>um extremo fica fixo</strong> e o outro se aproxima da raiz sem que o intervalo tenda a zero.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.2</span>A mesma função, com falsa posição</div>
+          <p>Compare com a bisseção partindo de [0, 1].</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="x_1 = 0{,}375"></span>, com <span data-tex-inline="f(x_1) = -0{,}3223"></span>.</li>
+              <li><span data-tex-inline="x_2 = 0{,}338624"></span>, com <span data-tex-inline="f(x_2) = -8{,}79\times10^{-3}"></span>.</li>
+              <li><span data-tex-inline="x_3 = 0{,}337635"></span> e <span data-tex-inline="x_4 = 0{,}337610"></span>.</li>
+            </ol>
+            <p class="resposta">Em quatro passos, cinco casas corretas. O extremo a = 0 permaneceu fixo o tempo todo, e o intervalo final ainda mede 0,3376: o critério de parada deve olhar a variação de x, não b − a.</p>
+          </details>
+        </div>
+        <div class="callout note">
+          <strong>Quando a falsa posição perde da bisseção</strong>
+          Em funções muito curvas, como <span data-tex-inline="x^{10} - 1"></span> em [0; 1,3], o extremo fixo prende o método e a convergência fica extremamente lenta. A bisseção, indiferente à forma da curva, vence nesses casos.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Bolzano: função contínua com sinais opostos nos extremos tem raiz no intervalo.</li>
+          <li>Bisseção: convergência garantida, linear, com n ≥ log₂((b−a)/ε).</li>
+          <li>Falsa posição: usa os valores de f, costuma ser mais rápida, mas um extremo pode ficar fixo.</li>
+          <li>Métodos de intervalo não divergem; o preço é a velocidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A bisseção pode achar um polo em vez de uma raiz?</summary><p>Sim. Em tan x no intervalo [1, 2], o sinal troca por causa da descontinuidade. O método converge para π/2, onde |f| cresce sem limite. Conferir o valor de f no ponto final revela o engano.</p></details>
+          <details><summary>Por que 10 iterações para 10⁻³ não dependem da função?</summary><p>Porque a bisseção só usa o sinal, e o intervalo cai à metade independentemente da forma da curva.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte II — Equações não lineares" data-topicos="abertos">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Raízes: métodos abertos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir e aplicar Newton-Raphson e a secante;</li>
+            <li>definir ordem de convergência e medi-la;</li>
+            <li>verificar a convergência do ponto fixo;</li>
+            <li>reconhecer os casos em que Newton falha.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Derivadas e a tabela de bisseção do capítulo 2.</p></div>
+        </div>
+
+        <h3 id="s3-1"><span class="num">3.1</span>Newton-Raphson</h3>
+        <p>Substitui-se a função por sua reta tangente em <span data-tex-inline="x_k"></span> e toma-se como nova estimativa o ponto em que essa reta corta o eixo. Equivale a truncar Taylor no termo linear:</p>
+        <div class="formula"><span data-tex="x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}"></span></div>
+        <div class="fig-host" id="fig-3-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>A raiz quadrada de 2</div>
+          <p>Aplique Newton a <span data-tex-inline="f(x) = x^2 - 2"></span> partindo de <span data-tex-inline="x_0 = 1"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <div class="table-scroll"><table class="data">
+              <thead><tr><th class="num">k</th><th class="num">x<sub>k</sub></th><th class="num">erro</th></tr></thead>
+              <tbody>
+                <tr><td class="num">1</td><td class="num">1,5</td><td class="num">8,58×10⁻²</td></tr>
+                <tr><td class="num">2</td><td class="num">1,416667</td><td class="num">2,45×10⁻³</td></tr>
+                <tr><td class="num">3</td><td class="num">1,414216</td><td class="num">2,12×10⁻⁶</td></tr>
+                <tr><td class="num">4</td><td class="num">1,41421356237</td><td class="num">1,59×10⁻¹²</td></tr>
+              </tbody>
+            </table></div>
+            <p class="resposta">O número de casas corretas praticamente dobra a cada passo: essa é a assinatura da convergência quadrática.</p>
+          </details>
+        </div>
+
+        <h3 id="s3-2"><span class="num">3.2</span>Ordem de convergência</h3>
+        <p>Sendo <span data-tex-inline="e_k"></span> o erro na iteração <em>k</em>, o método tem ordem <em>p</em> se existe uma constante <em>C</em> tal que</p>
+        <div class="formula"><span data-tex="\lim_{k\to\infty} \frac{|e_{k+1}|}{|e_k|^{p}} = C"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Método</th><th class="num">Ordem</th><th>Exige</th><th>Garantia</th><th>Avaliações por passo</th></tr></thead>
+          <tbody>
+            <tr><td>Bisseção</td><td class="num">1 (razão ½)</td><td>Troca de sinal</td><td>Sempre converge</td><td>1 de f</td></tr>
+            <tr><td>Falsa posição</td><td class="num">1</td><td>Troca de sinal</td><td>Sempre converge</td><td>1 de f</td></tr>
+            <tr><td>Ponto fixo</td><td class="num">1</td><td>|g′| &lt; 1 perto da raiz</td><td>Só localmente</td><td>1 de g</td></tr>
+            <tr><td>Secante</td><td class="num">≈ 1,618</td><td>Dois pontos iniciais</td><td>Só localmente</td><td>1 de f</td></tr>
+            <tr><td>Newton</td><td class="num">2</td><td>f′ conhecida e não nula</td><td>Só localmente</td><td>1 de f e 1 de f′</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h3 id="s3-3"><span class="num">3.3</span>Secante</h3>
+        <p>Quando a derivada é difícil ou cara, troca-se a tangente por uma reta que passa pelas duas últimas estimativas:</p>
+        <div class="formula"><span data-tex="x_{k+1} = x_k - f(x_k)\,\frac{x_k - x_{k-1}}{f(x_k) - f(x_{k-1})}"></span></div>
+        <p>A fórmula é quase a da falsa posição, mas não mantém o colchete: sempre usa os dois pontos mais recentes. Perde a garantia e ganha velocidade. Para <span data-tex-inline="x^2 - 2"></span> com <span data-tex-inline="x_0 = 1"></span> e <span data-tex-inline="x_1 = 2"></span>, as estimativas são 1,3333; 1,4000; 1,41463; 1,414211; 1,41421356.</p>
+        <div id="sim-raizes" class="sim"></div>
+
+        <h3 id="s3-4"><span class="num">3.4</span>Ponto fixo</h3>
+        <p>Reescreve-se <span data-tex-inline="f(x) = 0"></span> como <span data-tex-inline="x = g(x)"></span> e itera-se <span data-tex-inline="x_{k+1} = g(x_k)"></span>. O erro evolui como <span data-tex-inline="e_{k+1} \approx g'(r)\,e_k"></span>, de onde vem a condição:</p>
+        <div class="formula"><span data-tex="|g'(x)| \lt 1 \text{ numa vizinhança da raiz } r"></span></div>
+        <p>A mesma equação admite várias reescritas, e nem todas convergem. Para <span data-tex-inline="x = \cos x"></span> a partir de 0,5, as iterações oscilam (0,8776; 0,6390; 0,8027; 0,6948…) em torno de 0,739085, com <span data-tex-inline="|g'(r)| = \sin(0{,}739085) = 0{,}674"></span>. Como 0,674 está longe de zero, a convergência é lenta: são cerca de 34 passos para chegar a 10⁻⁶.</p>
+        <p>Newton é, ele próprio, um ponto fixo com <span data-tex-inline="g(x) = x - f/f'"></span>. Em raiz simples, <span data-tex-inline="g'(r) = 0"></span>, e é por isso que sua convergência é mais rápida que a linear.</p>
+
+        <h3 id="s3-5"><span class="num">3.5</span>Quando Newton falha</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Situação</th><th>O que acontece</th><th>O que fazer</th></tr></thead>
+          <tbody>
+            <tr><td>f′(x) ≈ 0</td><td>O passo explode</td><td>Partir de outro ponto</td></tr>
+            <tr><td>Ponto inicial ruim</td><td>Diverge ou entra em ciclo</td><td>Algumas bisseções antes de Newton</td></tr>
+            <tr><td>Raiz múltipla</td><td>Convergência só linear</td><td>Usar <span data-tex-inline="x - m\,f/f'"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.2</span>Raiz dupla</div>
+          <p>Aplique Newton a <span data-tex-inline="f(x) = (x - 1)^2 (x + 2)"></span> a partir de 1,5.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Erros sucessivos: 0,2667; 0,1386; 0,0708; 0,0358; 0,0180.</li>
+              <li>A razão entre erros consecutivos tende a ½.</li>
+            </ol>
+            <p class="resposta">Em raiz de multiplicidade m, a razão vale 1 − 1/m e a ordem cai para 1. Com o passo multiplicado por m = 2, a ordem quadrática volta.</p>
+          </details>
+        </div>
+        <div class="callout tip">
+          <strong>A combinação usada na prática</strong>
+          Rotinas de biblioteca, como o <code>fsolve</code> do Scilab e os métodos do tipo Brent, combinam a segurança de um colchete com a velocidade de passos do tipo secante ou Newton.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Newton: tangente, ordem 2, exige derivada e bom ponto inicial.</li>
+          <li>Secante: troca a derivada por uma diferença, ordem ≈ 1,618, com uma avaliação de f por passo.</li>
+          <li>Ponto fixo: converge se |g′| &lt; 1 perto da raiz; a razão do erro é |g′(r)|.</li>
+          <li>Raiz múltipla derruba Newton para convergência linear.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a secante pode ser mais eficiente que Newton, mesmo com ordem menor?</summary><p>Porque gasta só uma avaliação de função por passo. Se calcular f′ custa tanto quanto f, dois passos de secante (ordem combinada 1,618² ≈ 2,6) custam o mesmo que um de Newton (ordem 2).</p></details>
+          <details><summary>Como medir a ordem de um método a partir dos erros?</summary><p>Faz-se o gráfico de log|e<sub>k+1</sub>| contra log|e<sub>k</sub>|: a inclinação da reta é a ordem.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte III — Sistemas lineares" data-topicos="diretos">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Sistemas lineares: métodos diretos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>resolver sistemas por eliminação de Gauss;</li>
+            <li>justificar o pivotamento parcial;</li>
+            <li>fatorar A = LU e reaproveitar a fatoração;</li>
+            <li>estimar o custo computacional de cada etapa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Produto de matrizes e determinante.</p></div>
+        </div>
+
+        <h3 id="s4-1"><span class="num">4.1</span>Eliminação de Gauss</h3>
+        <p>O objetivo é transformar <span data-tex-inline="Ax = b"></span> em um sistema triangular superior equivalente e resolvê-lo de baixo para cima. Em cada coluna <em>k</em>, a linha <em>i</em> recebe:</p>
+        <div class="formula"><span data-tex="m_{ik} = \frac{a_{ik}}{a_{kk}}, \qquad L_i \leftarrow L_i - m_{ik}\,L_k"></span></div>
+        <p>Depois vem a retrossubstituição:</p>
+        <div class="formula"><span data-tex="x_i = \frac{1}{a_{ii}}\left(b_i - \sum_{j=i+1}^{n} a_{ij} x_j\right)"></span></div>
+        <div class="fig-host" id="fig-4-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Sistema 3 × 3</div>
+          <p>Resolva <span data-tex-inline="2x + y - z = 8"></span>, <span data-tex-inline="-3x - y + 2z = -11"></span> e <span data-tex-inline="-2x + y + 2z = -3"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="m_{21} = -1{,}5"></span> e <span data-tex-inline="m_{31} = -1"></span> produzem as linhas <span data-tex-inline="[0;\ 0{,}5;\ 0{,}5 \mid 1]"></span> e <span data-tex-inline="[0;\ 2;\ 1 \mid 5]"></span>.</li>
+              <li><span data-tex-inline="m_{32} = 4"></span> produz a linha <span data-tex-inline="[0;\ 0;\ -1 \mid 1]"></span>.</li>
+              <li>Retrossubstituição: <span data-tex-inline="z = -1"></span>; <span data-tex-inline="0{,}5y + 0{,}5(-1) = 1 \Rightarrow y = 3"></span>; <span data-tex-inline="2x + 3 + 1 = 8 \Rightarrow x = 2"></span>.</li>
+            </ol>
+            <p class="resposta">x = 2, y = 3 e z = −1. Substituir na terceira equação original confere: −4 + 3 − 2 = −3.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-2"><span class="num">4.2</span>Pivotamento parcial</h3>
+        <p>O multiplicador tem o pivô no denominador. Pivô nulo interrompe o algoritmo; pivô pequeno gera multiplicador grande, que amplifica o erro de arredondamento. A cura é escolher, em cada coluna, a linha com o maior <span data-tex-inline="|a_{ik}|"></span> e trocá-la com a linha do pivô, de modo que <span data-tex-inline="|m_{ik}| \le 1"></span>.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.2</span>Três algarismos e um pivô minúsculo</div>
+          <p>Resolva <span data-tex-inline="0{,}0001\,x + y = 1"></span> e <span data-tex-inline="x + y = 2"></span> com três algarismos. A solução exata é <span data-tex-inline="x = 1{,}0001"></span>, <span data-tex-inline="y = 0{,}9999"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Sem troca: <span data-tex-inline="m = 10000"></span>; a segunda linha vira <span data-tex-inline="-10000\,y = -10000"></span>, logo <span data-tex-inline="y = 1"></span> e <span data-tex-inline="x = (1 - 1)/0{,}0001 = 0"></span>. Resultado errado.</li>
+              <li>Com troca: <span data-tex-inline="m = 0{,}0001"></span>; a segunda linha vira <span data-tex-inline="1\,y = 1"></span>, logo <span data-tex-inline="y = 1"></span> e <span data-tex-inline="x = 2 - 1 = 1"></span>. Resultado certo.</li>
+            </ol>
+            <p class="resposta">O sistema é bem-comportado. Quem errou foi o algoritmo sem pivotamento.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-3"><span class="num">4.3</span>Fatoração LU</h3>
+        <p>Os multiplicadores que a eliminação calcula e descarta formam uma matriz triangular inferior <span data-tex-inline="L"></span> com diagonal unitária, tal que <span data-tex-inline="A = LU"></span> (com pivotamento, <span data-tex-inline="PA = LU"></span>). A vantagem aparece quando a matriz é a mesma e o lado direito muda, como em vários casos de carga sobre a mesma estrutura:</p>
+        <div class="formula"><span data-tex="Ax = b \;\Rightarrow\; L\,y = b \;\text{(para frente)}, \quad U\,x = y \;\text{(para trás)}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.3</span>Fatorar e resolver</div>
+          <p>Fatore <span data-tex-inline="A = \begin{bmatrix}4&3&2\\8&7&9\\4&7&21\end{bmatrix}"></span> e resolva com <span data-tex-inline="b = (16,\ 49,\ 81)^T"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="L = \begin{bmatrix}1&0&0\\2&1&0\\1&4&1\end{bmatrix}, \quad U = \begin{bmatrix}4&3&2\\0&1&5\\0&0&-1\end{bmatrix}"></span>.</li>
+              <li><span data-tex-inline="Ly = b"></span>: <span data-tex-inline="y = (16,\ 17,\ -3)^T"></span>.</li>
+              <li><span data-tex-inline="Ux = y"></span>: <span data-tex-inline="x_3 = 3"></span>, <span data-tex-inline="x_2 = 2"></span>, <span data-tex-inline="x_1 = 1"></span>.</li>
+            </ol>
+            <p class="resposta">x = (1, 2, 3). De brinde, det A = 4 · 1 · (−1) = −4.</p>
+          </details>
+        </div>
+
+        <h3 id="s4-4"><span class="num">4.4</span>O custo</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Etapa</th><th class="num">Operações (aprox.)</th><th>n = 1000</th></tr></thead>
+          <tbody>
+            <tr><td>Eliminação / fatoração LU</td><td class="num">2n³/3</td><td>6,7×10⁸</td></tr>
+            <tr><td>Substituições (para cada b)</td><td class="num">2n²</td><td>2×10⁶</td></tr>
+            <tr><td>Sistema tridiagonal (Thomas)</td><td class="num">8n</td><td>8×10³</td></tr>
+            <tr><td>Regra de Cramer com determinantes por cofatores</td><td class="num">≈ (n + 1)!</td><td>Impraticável</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Dobrar <em>n</em> multiplica o custo da fatoração por oito. Calcular a inversa para fazer <span data-tex-inline="x = A^{-1} b"></span> custa cerca de três vezes mais que fatorar e é menos preciso: não se calcula a inversa para resolver sistemas. No Scilab, <code>x = A \ b</code> usa fatoração com pivotamento.</p>
+        <div class="callout note">
+          <strong>Estrutura economiza</strong>
+          Barras, placas e redes geram matrizes esparsas e, muitas vezes, em banda. Explorar essa estrutura é o que torna possível resolver sistemas com milhões de incógnitas.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Gauss: triangularizar e retrossubstituir, com custo próximo de 2n³/3.</li>
+          <li>O pivotamento parcial mantém os multiplicadores limitados por 1 e estabiliza o processo.</li>
+          <li>LU separa o trabalho caro (uma vez) do barato (um por lado direito).</li>
+          <li>Não se usa inversa nem Cramer para resolver sistemas numericamente.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dez casos de carga na mesma matriz 1000 × 1000: quanto custa com LU e sem LU?</summary><p>Com LU: 6,7×10⁸ + 10 × 2×10⁶ ≈ 6,9×10⁸ operações. Repetindo a eliminação: dez vezes 6,7×10⁸, ou seja, 6,7×10⁹. A fatoração economiza quase dez vezes.</p></details>
+          <details><summary>Determinante pequeno indica sistema difícil?</summary><p>Não. A matriz 0,1·I de ordem 20 tem determinante 10⁻²⁰ e é perfeitamente condicionada. O número que mede a dificuldade é o de condição, tema do próximo capítulo.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte III — Sistemas lineares" data-topicos="iterativos">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Condicionamento e métodos iterativos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular normas e o número de condição;</li>
+            <li>estimar quantos dígitos um sistema pode perder;</li>
+            <li>aplicar Jacobi e Gauss-Seidel;</li>
+            <li>verificar os critérios de convergência.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Eliminação de Gauss do capítulo 4.</p></div>
+        </div>
+
+        <h3 id="s5-1"><span class="num">5.1</span>Sistemas sensíveis</h3>
+        <p>Geometricamente, um sistema 2 × 2 é o cruzamento de duas retas. Quando elas são quase paralelas, uma pequena mudança em uma delas desloca muito o ponto de encontro. Esse é um problema do <em>sistema</em>, não do algoritmo: nem o pivotamento o resolve.</p>
+        <div class="fig-host" id="fig-5-1"></div>
+        <p>A medida dessa sensibilidade é o <strong>número de condição</strong>:</p>
+        <div class="formula"><span data-tex="\kappa(A) = \|A\|\,\|A^{-1}\|, \qquad \frac{\|\Delta x\|}{\|x\|} \le \kappa(A)\,\frac{\|\Delta b\|}{\|b\|}"></span></div>
+        <p>Com a norma de linhas, <span data-tex-inline="\|A\|_\infty = \max_i \sum_j |a_{ij}|"></span>. Sempre vale <span data-tex-inline="\kappa \ge 1"></span>. Como regra prática, perdem-se cerca de <span data-tex-inline="\log_{10}\kappa"></span> algarismos significativos.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Um dado muda na quinta casa</div>
+          <p>Considere <span data-tex-inline="x_1 + 2x_2 = 3"></span> e <span data-tex-inline="x_1 + 2{,}0001\,x_2 = 3{,}0001"></span>, cuja solução é (1, 1). Troque o último termo para 3,0002.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Subtraindo as equações: <span data-tex-inline="0{,}0001\,x_2 = 0{,}0002"></span>, logo <span data-tex-inline="x_2 = 2"></span> e <span data-tex-inline="x_1 = -1"></span>.</li>
+              <li>Uma variação relativa de 3×10⁻⁵ no dado mudou a resposta por completo.</li>
+              <li><span data-tex-inline="\kappa_\infty(A) \approx 1{,}2\times10^{5}"></span>.</li>
+            </ol>
+            <p class="resposta">Com κ ≈ 10⁵, perdem-se cinco algarismos. Se os dados têm quatro algarismos confiáveis, o resultado não tem nenhum.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Resíduo pequeno não garante resposta certa</strong>
+          No exemplo, x = (−1, 2) deixa resíduo de apenas 10⁻⁴ no sistema original, e está longe de (1, 1). Em sistema mal condicionado, o resíduo engana.
+        </div>
+
+        <h3 id="s5-2"><span class="num">5.2</span>Métodos iterativos</h3>
+        <p>Em vez de transformar a matriz, parte-se de um chute e melhora-se a resposta. Cada passo custa da ordem de <span data-tex-inline="n^2"></span> operações, ou de <span data-tex-inline="n"></span> em matriz esparsa, e isso compensa nos grandes sistemas.</p>
+        <div class="formula"><span data-tex="\text{Jacobi:}\quad x_i^{(k+1)} = \frac{1}{a_{ii}}\Big(b_i - \sum_{j\ne i} a_{ij}\,x_j^{(k)}\Big)"></span></div>
+        <div class="formula"><span data-tex="\text{Gauss-Seidel:}\quad x_i^{(k+1)} = \frac{1}{a_{ii}}\Big(b_i - \sum_{j\lt i} a_{ij}\,x_j^{(k+1)} - \sum_{j\gt i} a_{ij}\,x_j^{(k)}\Big)"></span></div>
+        <p>A única diferença: Gauss-Seidel usa os valores recém-calculados já na mesma varredura. Em geral converge mais rápido e dispensa guardar o vetor anterior; Jacobi tem a vantagem de permitir cálculo em paralelo.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.2</span>Quatro iterações de cada método</div>
+          <p>Resolva, partindo de zero: <span data-tex-inline="10x_1 + 2x_2 + x_3 = 7"></span>, <span data-tex-inline="x_1 + 5x_2 + x_3 = -8"></span> e <span data-tex-inline="2x_1 + 3x_2 + 10x_3 = 6"></span>. A solução é (1, −2, 1).</p>
+          <details><summary>Ver solução</summary>
+            <div class="table-scroll"><table class="data">
+              <thead><tr><th class="num">k</th><th>Jacobi</th><th>Gauss-Seidel</th></tr></thead>
+              <tbody>
+                <tr><td class="num">1</td><td>(0,7000; −1,6000; 0,6000)</td><td>(0,7000; −1,7400; 0,9820)</td></tr>
+                <tr><td class="num">2</td><td>(0,9600; −1,8600; 0,9400)</td><td>(0,9498; −1,9864; 1,0059)</td></tr>
+                <tr><td class="num">3</td><td>(0,9780; −1,9800; 0,9660)</td><td>(0,9967; −2,0005; 1,0008)</td></tr>
+                <tr><td class="num">4</td><td>(0,9994; −1,9888; 0,9984)</td><td>(1,0000; −2,0002; 1,0000)</td></tr>
+              </tbody>
+            </table></div>
+            <p class="resposta">Depois de quatro varreduras, Gauss-Seidel erra por 2×10⁻⁴ e Jacobi por 1,1×10⁻².</p>
+          </details>
+        </div>
+        <div id="sim-sistemas" class="sim"></div>
+
+        <h3 id="s5-3"><span class="num">5.3</span>Quando convergem</h3>
+        <p>O <strong>critério das linhas</strong> é suficiente para Jacobi e para Gauss-Seidel: basta a matriz ser estritamente diagonal dominante.</p>
+        <div class="formula"><span data-tex="\alpha_i = \frac{1}{|a_{ii}|}\sum_{j \ne i} |a_{ij}| \lt 1 \quad \text{para toda linha } i"></span></div>
+        <p>O <strong>critério de Sassenfeld</strong>, válido para Gauss-Seidel, é menos exigente porque aproveita os valores já atualizados:</p>
+        <div class="formula"><span data-tex="\beta_i = \frac{1}{|a_{ii}|}\Big(\sum_{j\lt i} |a_{ij}|\,\beta_j + \sum_{j\gt i} |a_{ij}|\Big), \qquad \max_i \beta_i \lt 1"></span></div>
+        <p>No exemplo 5.2, <span data-tex-inline="\alpha = (0{,}3;\ 0{,}4;\ 0{,}5)"></span> e <span data-tex-inline="\beta = (0{,}30;\ 0{,}26;\ 0{,}138)"></span>: os dois critérios são satisfeitos.</p>
+        <div class="callout tip">
+          <strong>Antes de desistir, troque as linhas</strong>
+          Os critérios são suficientes, não necessários. Se a matriz não é diagonal dominante, tente reordenar equações. A ordem das equações não muda a solução, mas muda a convergência.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>κ(A) mede quanto os erros dos dados podem ser amplificados; perdem-se cerca de log₁₀ κ dígitos.</li>
+          <li>Mal condicionamento é propriedade do problema; instabilidade é propriedade do algoritmo.</li>
+          <li>Jacobi usa só os valores antigos; Gauss-Seidel usa os novos já na mesma varredura.</li>
+          <li>Diagonal dominante garante convergência; Sassenfeld é um teste menos restritivo para Gauss-Seidel.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quando um método iterativo vence a eliminação?</summary><p>Em sistemas grandes e esparsos. A eliminação preenche os zeros da matriz, e isso multiplica memória e custo; o iterativo só usa os coeficientes não nulos.</p></details>
+          <details><summary>κ = 10⁸ em precisão dupla: quantos dígitos restam?</summary><p>Cerca de 16 − 8 = 8 algarismos significativos, no melhor caso.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte IV — Aproximação de funções e dados" data-topicos="interpolacao">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Interpolação polinomial</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>construir o polinômio de Lagrange;</li>
+            <li>construir a forma de Newton com diferenças divididas;</li>
+            <li>estimar o erro de interpolação;</li>
+            <li>explicar o fenômeno de Runge.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Polinômios e sistemas lineares.</p></div>
+        </div>
+
+        <h3 id="s6-1"><span class="num">6.1</span>Um único polinômio</h3>
+        <p>Dados <span data-tex-inline="n+1"></span> pontos com abscissas distintas, existe <strong>um e apenas um</strong> polinômio de grau no máximo <em>n</em> que passa por todos. Lagrange, Newton e o sistema de Vandermonde são três maneiras de escrever esse mesmo polinômio. Resolver o sistema de Vandermonde é a forma ingênua, e a matriz fica rapidamente mal condicionada.</p>
+
+        <h3 id="s6-2"><span class="num">6.2</span>Forma de Lagrange</h3>
+        <p>Constrói-se um polinômio <span data-tex-inline="L_k"></span> que vale 1 no nó <em>k</em> e 0 em todos os outros. A soma ponderada pelos valores <span data-tex-inline="y_k"></span> passa exatamente por todos os pontos:</p>
+        <div class="formula"><span data-tex="P_n(x) = \sum_{k=0}^{n} y_k L_k(x), \qquad L_k(x) = \prod_{j \ne k} \frac{x - x_j}{x_k - x_j}"></span></div>
+        <div class="fig-host" id="fig-6-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>ln 2 a partir de três valores</div>
+          <p>Com <span data-tex-inline="\ln 1 = 0"></span>, <span data-tex-inline="\ln 4 = 1{,}386294"></span> e <span data-tex-inline="\ln 6 = 1{,}791759"></span>, estime <span data-tex-inline="\ln 2"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="L_0(2) = \dfrac{(2-4)(2-6)}{(1-4)(1-6)} = 0{,}5333"></span>.</li>
+              <li><span data-tex-inline="L_1(2) = \dfrac{(2-1)(2-6)}{(4-1)(4-6)} = 0{,}6667"></span>.</li>
+              <li><span data-tex-inline="L_2(2) = \dfrac{(2-1)(2-4)}{(6-1)(6-4)} = -0{,}2"></span>.</li>
+              <li><span data-tex-inline="P_2(2) = 0{,}6667(1{,}386294) - 0{,}2(1{,}791759) = 0{,}565844"></span>.</li>
+            </ol>
+            <p class="resposta">O valor real é 0,693147. O erro de 0,127 é grande porque o logaritmo é bastante curvo perto de 1 e os nós estão afastados.</p>
+          </details>
+        </div>
+
+        <h3 id="s6-3"><span class="num">6.3</span>Forma de Newton</h3>
+        <p>Lagrange recomeça do zero a cada novo ponto. A forma de Newton só acrescenta um termo:</p>
+        <div class="formula"><span data-tex="P_n(x) = f[x_0] + f[x_0,x_1](x-x_0) + f[x_0,x_1,x_2](x-x_0)(x-x_1) + \dots"></span></div>
+        <div class="formula"><span data-tex="f[x_i, \dots, x_{i+k}] = \frac{f[x_{i+1}, \dots, x_{i+k}] - f[x_i, \dots, x_{i+k-1}]}{x_{i+k} - x_i}"></span></div>
+        <p>Com os mesmos dados: <span data-tex-inline="f[1,4] = 0{,}462098"></span>, <span data-tex-inline="f[4,6] = 0{,}202733"></span>, <span data-tex-inline="f[1,4,6] = -0{,}051873"></span>. Então <span data-tex-inline="P_2(2) = 0 + 0{,}462098(1) - 0{,}051873(1)(-2) = 0{,}565844"></span>, igual ao resultado por Lagrange, como tinha de ser.</p>
+
+        <h3 id="s6-4"><span class="num">6.4</span>O erro e o fenômeno de Runge</h3>
+        <div class="formula"><span data-tex="f(x) - P_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n} (x - x_i)"></span></div>
+        <p>No exemplo, <span data-tex-inline="|f'''| \le 2"></span> em [1, 6] dá o limite <span data-tex-inline="2\cdot 8/6 = 2{,}67"></span>. O erro verdadeiro, 0,127, cabe nesse limite com folga: a fórmula é uma garantia, nem sempre uma boa estimativa.</p>
+        <p>O produto <span data-tex-inline="\prod (x - x_i)"></span> cresce nas pontas quando os nós são igualmente espaçados. Mais pontos não significam, portanto, melhor aproximação. O caso clássico é <span data-tex-inline="f(x) = 1/(1 + 25x^2)"></span> em [−1, 1]:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th class="num">Grau n</th><th class="num">Erro máx. com nós igualmente espaçados</th><th class="num">Erro máx. com nós de Chebyshev</th></tr></thead>
+          <tbody>
+            <tr><td class="num">4</td><td class="num">0,44</td><td class="num">0,40</td></tr>
+            <tr><td class="num">8</td><td class="num">1,05</td><td class="num">0,17</td></tr>
+            <tr><td class="num">10</td><td class="num">1,92</td><td class="num">0,11</td></tr>
+            <tr><td class="num">14</td><td class="num">7,19</td><td class="num">0,047</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Concentrar os nós nas pontas, como nas abscissas de Chebyshev, elimina o problema: <span data-tex-inline="x_i = \cos\frac{(2i+1)\pi}{2n+2}"></span>. Quando os dados vêm de medições em pontos dados, sem essa escolha, a saída é trocar o grau alto por trechos de grau baixo, que é o assunto do próximo capítulo.</p>
+        <div class="callout warn">
+          <strong>Extrapolar é outra coisa</strong>
+          O produto cresce rapidamente fora do intervalo dos nós. Um polinômio que interpola bem pode dar valores absurdos logo além do último ponto.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O polinômio interpolador de grau ≤ n por n+1 pontos é único.</li>
+          <li>Lagrange é direta; Newton permite acrescentar pontos sem refazer as contas.</li>
+          <li>O erro depende da derivada de ordem n+1 e do produto dos afastamentos aos nós.</li>
+          <li>Nós igualmente espaçados com grau alto oscilam nas pontas (Runge).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quanto é a soma dos L<sub>k</sub>(x)?</summary><p>É igual a 1 para todo x. Interpolar a função constante 1 precisa devolver 1, e o polinômio interpolador é único.</p></details>
+          <details><summary>Dez pontos sobre uma reta: qual o grau do interpolador?</summary><p>Grau 1, apesar do limite ser 9. O polinômio único tem grau no máximo n, e a própria reta já passa por todos.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte IV — Aproximação de funções e dados" data-topicos="splines">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Interpolação por partes e splines</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>justificar a interpolação por partes;</li>
+            <li>montar o sistema de uma spline cúbica natural;</li>
+            <li>escolher as condições de contorno.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Interpolação polinomial e sistemas tridiagonais.</p></div>
+        </div>
+
+        <h3 id="s7-1"><span class="num">7.1</span>Grau baixo em muitos trechos</h3>
+        <p>A interpolação linear por partes é a mais simples: liga pontos consecutivos com retas. O erro em um trecho de largura <em>h</em> é limitado por <span data-tex-inline="h^2\,|f''|_{max}/8"></span> e não oscila; o defeito são os "bicos" nos nós, onde a derivada salta. Tabelas de vapor são lidas assim.</p>
+        <p>A <strong>spline cúbica</strong> usa um polinômio cúbico por trecho e exige continuidade de valor, primeira e segunda derivadas nos nós internos. A curva resultante é suave ao olho, e seu nome vem da régua flexível usada por desenhistas navais.</p>
+        <div class="fig-host" id="fig-7-1"></div>
+
+        <h3 id="s7-2"><span class="num">7.2</span>O sistema da spline</h3>
+        <p>Tomando como incógnitas as segundas derivadas <span data-tex-inline="M_i = S''(x_i)"></span>, a continuidade resulta em um sistema <strong>tridiagonal</strong>, de custo proporcional a <em>n</em>:</p>
+        <div class="formula"><span data-tex="h_{i-1} M_{i-1} + 2(h_{i-1}+h_i) M_i + h_i M_{i+1} = 6\left(\frac{y_{i+1}-y_i}{h_i} - \frac{y_i - y_{i-1}}{h_{i-1}}\right)"></span></div>
+        <p>Em cada trecho, com <span data-tex-inline="h_i = x_{i+1} - x_i"></span>:</p>
+        <div class="formula"><span data-tex="S_i(x) = \frac{M_i (x_{i+1}-x)^3 + M_{i+1}(x-x_i)^3}{6h_i} + \Big(y_i - \frac{M_i h_i^2}{6}\Big)\frac{x_{i+1}-x}{h_i} + \Big(y_{i+1} - \frac{M_{i+1} h_i^2}{6}\Big)\frac{x-x_i}{h_i}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Spline natural por quatro pontos</div>
+          <p>Passe uma spline natural por (0, 0), (1, 1), (2, 0) e (3, 2), e calcule <span data-tex-inline="S(0{,}5)"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Com <span data-tex-inline="h = 1"></span> e <span data-tex-inline="M_0 = M_3 = 0"></span>: <span data-tex-inline="4M_1 + M_2 = -12"></span> e <span data-tex-inline="M_1 + 4M_2 = 18"></span>.</li>
+              <li>Resolvendo: <span data-tex-inline="M_1 = -4{,}4"></span> e <span data-tex-inline="M_2 = 5{,}6"></span>.</li>
+              <li>No trecho [0, 1]: <span data-tex-inline="S(0{,}5) = \dfrac{-4{,}4\,(0{,}5)^3}{6} + \big(1 + \dfrac{4{,}4}{6}\big)(0{,}5) = 0{,}775"></span>.</li>
+            </ol>
+            <p class="resposta">S(0,5) = 0,775. No trecho seguinte, S(1,5) = 0,425.</p>
+          </details>
+        </div>
+        <div id="sim-interpolacao" class="sim"></div>
+
+        <h3 id="s7-3"><span class="num">7.3</span>Condições de contorno</h3>
+        <p>Há duas incógnitas a mais do que equações, e duas condições extras fecham o sistema:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Condição</th><th>Quando usar</th></tr></thead>
+          <tbody>
+            <tr><td>Natural</td><td><span data-tex-inline="M_0 = M_n = 0"></span></td><td>Sem informação sobre as pontas</td></tr>
+            <tr><td>Fixada (<em>clamped</em>)</td><td><span data-tex-inline="S'(x_0)"></span> e <span data-tex-inline="S'(x_n)"></span> dadas</td><td>Inclinações conhecidas; é a mais precisa</td></tr>
+            <tr><td>Sem nó (<em>not-a-knot</em>)</td><td><span data-tex-inline="S'''"></span> contínua no 2º e no penúltimo nó</td><td>Padrão em bibliotecas</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Trechos de grau baixo evitam as oscilações de grau alto.</li>
+          <li>Spline cúbica: valor, primeira e segunda derivadas contínuas nos nós.</li>
+          <li>O sistema das segundas derivadas é tridiagonal.</li>
+          <li>Mudar um dado afeta pouco os trechos distantes.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a spline natural é menos precisa perto das pontas?</summary><p>Porque obriga S″ = 0 nas extremidades, o que raramente é verdade para a função real. Isso introduz um erro próximo às pontas que a condição fixada evita.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte IV — Aproximação de funções e dados" data-topicos="minimos">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Ajuste de curvas por mínimos quadrados</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir ajuste de interpolação;</li>
+            <li>deduzir e resolver as equações normais;</li>
+            <li>linearizar modelos exponenciais e de potência;</li>
+            <li>avaliar o ajuste pelo coeficiente de determinação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Sistemas lineares e derivadas parciais.</p></div>
+        </div>
+
+        <h3 id="s8-1"><span class="num">8.1</span>Ajustar não é interpolar</h3>
+        <p>Dados de ensaio têm ruído. Forçar uma curva a passar por todos eles significa modelar o erro de medição. O ajuste busca a curva de forma simples que melhor representa a tendência, minimizando a soma dos quadrados dos resíduos:</p>
+        <div class="formula"><span data-tex="S_r = \sum_{i=1}^{n} \big(y_i - \hat{y}(x_i)\big)^2"></span></div>
+        <div class="fig-host" id="fig-8-1"></div>
+
+        <h3 id="s8-2"><span class="num">8.2</span>Regressão linear</h3>
+        <p>Para <span data-tex-inline="\hat{y} = a + bx"></span>, anular as derivadas de <span data-tex-inline="S_r"></span> em relação a <em>a</em> e <em>b</em> produz as equações normais, cuja solução é:</p>
+        <div class="formula"><span data-tex="b = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - (\sum x_i)^2}, \qquad a = \bar{y} - b\,\bar{x}"></span></div>
+        <div class="formula"><span data-tex="r^2 = 1 - \frac{S_r}{S_t}, \qquad S_t = \sum (y_i - \bar{y})^2"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Reta de calibração</div>
+          <p>Ajuste uma reta aos pontos (1; 2,2), (2; 4,1), (3; 6,2), (4; 7,9) e (5; 10,1).</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\sum x = 15"></span>, <span data-tex-inline="\sum y = 30{,}5"></span>, <span data-tex-inline="\sum xy = 111{,}1"></span>, <span data-tex-inline="\sum x^2 = 55"></span>.</li>
+              <li><span data-tex-inline="b = \dfrac{5(111{,}1) - 15(30{,}5)}{5(55) - 15^2} = \dfrac{98}{50} = 1{,}96"></span>.</li>
+              <li><span data-tex-inline="a = 6{,}1 - 1{,}96(3) = 0{,}22"></span>.</li>
+              <li><span data-tex-inline="S_t = 38{,}46"></span>, <span data-tex-inline="S_r = 0{,}044"></span>, <span data-tex-inline="r^2 = 0{,}9989"></span>.</li>
+            </ol>
+            <p class="resposta">ŷ = 0,22 + 1,96 x, com r² = 0,9989.</p>
+          </details>
+        </div>
+        <div id="sim-minimos" class="sim"></div>
+
+        <h3 id="s8-3"><span class="num">8.3</span>Linearização</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Modelo</th><th>Transformação</th><th>Reta obtida</th></tr></thead>
+          <tbody>
+            <tr><td><span data-tex-inline="y = \alpha e^{\beta x}"></span></td><td>ln y</td><td><span data-tex-inline="\ln y = \ln\alpha + \beta x"></span></td></tr>
+            <tr><td><span data-tex-inline="y = \alpha x^{\beta}"></span></td><td>ln y e ln x</td><td><span data-tex-inline="\ln y = \ln\alpha + \beta \ln x"></span></td></tr>
+            <tr><td><span data-tex-inline="y = \dfrac{\alpha x}{\beta + x}"></span></td><td>1/y e 1/x</td><td><span data-tex-inline="\dfrac{1}{y} = \dfrac{1}{\alpha} + \dfrac{\beta}{\alpha}\dfrac{1}{x}"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.2</span>Crescimento exponencial</div>
+          <p>Ajuste <span data-tex-inline="y = \alpha e^{\beta x}"></span> a (0; 2), (1; 3,2), (2; 5,1), (3; 8,4) e preveja <em>y</em> em <em>x</em> = 4.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\ln y"></span>: 0,6931; 1,1632; 1,6292; 2,1282.</li>
+              <li>Regressão de ln y em x: <span data-tex-inline="\beta = 0{,}4771"></span> e <span data-tex-inline="\ln\alpha = 0{,}6877"></span>, logo <span data-tex-inline="\alpha = 1{,}989"></span>.</li>
+              <li><span data-tex-inline="y(4) = 1{,}989\,e^{0{,}4771\cdot 4} = 13{,}41"></span>.</li>
+            </ol>
+            <p class="resposta">y = 1,989 e^(0,4771 x), com previsão de 13,4 em x = 4, fora da faixa dos dados: trate-a com reserva.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>O que a linearização minimiza</strong>
+          Ela minimiza os resíduos em ln y, não em y. Isso dá mais peso relativo aos valores pequenos. Para o melhor ajuste na escala original, use o resultado linearizado como ponto de partida de um ajuste não linear.
+        </div>
+
+        <h3 id="s8-4"><span class="num">8.4</span>Polinômios e a tentação do grau alto</h3>
+        <p>O ajuste polinomial segue a mesma lógica: as equações normais formam um sistema <span data-tex-inline="(m+1)\times(m+1)"></span>. Elas ficam mal condicionadas à medida que o grau sobe, e por isso bibliotecas usam fatoração QR. O r² sempre melhora quando se acrescenta um termo, e um polinômio de grau <span data-tex-inline="n-1"></span> chega a <span data-tex-inline="r^2 = 1"></span> sem nenhum poder de previsão. A escolha do modelo vem da física e da análise dos resíduos, que não devem mostrar padrão.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Interpolar passa pelos pontos; ajustar segue a tendência e não exige passar por eles.</li>
+          <li>Os coeficientes da reta têm fórmula fechada; S<sub>r</sub> é mínima.</li>
+          <li>Linearização transforma exponencial, potência e saturação em retas.</li>
+          <li>r² alto não basta: é preciso olhar os resíduos.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A reta de mínimos quadrados sempre passa por algum ponto conhecido?</summary><p>Sim, pelo ponto médio (x̄, ȳ). Vem diretamente de a = ȳ − b x̄.</p></details>
+          <details><summary>Por que elevar os resíduos ao quadrado em vez de somá-los?</summary><p>Porque positivos e negativos se cancelariam: uma reta muito ruim poderia ter soma nula. O quadrado evita o cancelamento, é derivável e leva a um sistema linear.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte V — Derivar e integrar" data-topicos="derivacao">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Derivação numérica</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir as fórmulas de diferenças finitas por Taylor;</li>
+            <li>comparar as ordens dos erros;</li>
+            <li>identificar o passo ótimo;</li>
+            <li>aplicar a extrapolação de Richardson.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Série de Taylor e o capítulo 1.</p></div>
+        </div>
+
+        <h3 id="s9-1"><span class="num">9.1</span>Diferenças finitas</h3>
+        <p>Expandindo <span data-tex-inline="f(x \pm h)"></span> em Taylor e isolando a derivada:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Fórmula</th><th>Expressão</th><th>Erro</th></tr></thead>
+          <tbody>
+            <tr><td>Progressiva</td><td><span data-tex-inline="f'(x) \approx \dfrac{f(x+h) - f(x)}{h}"></span></td><td><span data-tex-inline="O(h)"></span></td></tr>
+            <tr><td>Regressiva</td><td><span data-tex-inline="f'(x) \approx \dfrac{f(x) - f(x-h)}{h}"></span></td><td><span data-tex-inline="O(h)"></span></td></tr>
+            <tr><td>Centrada</td><td><span data-tex-inline="f'(x) \approx \dfrac{f(x+h) - f(x-h)}{2h}"></span></td><td><span data-tex-inline="O(h^2)"></span></td></tr>
+            <tr><td>2ª derivada, centrada</td><td><span data-tex-inline="f''(x) \approx \dfrac{f(x+h) - 2f(x) + f(x-h)}{h^2}"></span></td><td><span data-tex-inline="O(h^2)"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A centrada é melhor porque, ao subtrair as duas expansões, os termos de <span data-tex-inline="f''"></span> se cancelam. Ela não custa mais: são duas avaliações, como na progressiva quando <span data-tex-inline="f(x)"></span> ainda precisa ser calculada.</p>
+        <div class="fig-host" id="fig-9-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>A derivada de eˣ em x = 1</div>
+          <p>Compare as fórmulas para h = 0,1 e h = 0,01. O valor exato é 2,718282.</p>
+          <details><summary>Ver solução</summary>
+            <div class="table-scroll"><table class="data">
+              <thead><tr><th class="num">h</th><th class="num">Progressiva</th><th class="num">Regressiva</th><th class="num">Centrada</th></tr></thead>
+              <tbody>
+                <tr><td class="num">0,1</td><td class="num">2,858842</td><td class="num">2,586787</td><td class="num">2,722815</td></tr>
+                <tr><td class="num">0,01</td><td class="num">2,731919</td><td class="num">2,704736</td><td class="num">2,718327</td></tr>
+              </tbody>
+            </table></div>
+            <p class="resposta">Reduzir h em dez vezes corta o erro da progressiva em dez (0,141 → 0,0136) e o da centrada em cem (4,5×10⁻³ → 4,5×10⁻⁵).</p>
+          </details>
+        </div>
+
+        <h3 id="s9-2"><span class="num">9.2</span>O passo tem um valor ótimo</h3>
+        <p>Com a centrada, o erro total soma truncamento (cai com <em>h</em>) e arredondamento (cresce quando <em>h</em> diminui, pela subtração de valores quase iguais):</p>
+        <div class="formula"><span data-tex="E(h) \approx \frac{h^2}{6}|f'''| + \frac{\epsilon\,|f|}{h} \quad\Rightarrow\quad h_{ot} \approx \sqrt[3]{3\,\epsilon\,\left|\frac{f}{f'''}\right|}"></span></div>
+        <p>Em precisão dupla, <span data-tex-inline="h_{ot}"></span> fica perto de 10⁻⁵. Tomar <em>h</em> = 10⁻¹⁴ não melhora o resultado: destrói-o. A derivada numérica é um problema sensível, e medidas com ruído pioram a situação, pois o ruído é dividido por <em>h</em>.</p>
+        <div class="callout warn">
+          <strong>Dado experimental: ajuste antes de derivar</strong>
+          Diferenças aplicadas diretamente a medições com ruído amplificam o erro. Primeiro suavize ou ajuste uma curva (capítulo 8) e derive o resultado do ajuste.
+        </div>
+
+        <h3 id="s9-3"><span class="num">9.3</span>Extrapolação de Richardson</h3>
+        <p>Se o erro é <span data-tex-inline="Ch^2"></span> mais termos de ordem superior, duas estimativas com <em>h</em> e <em>h/2</em> permitem eliminar o termo dominante:</p>
+        <div class="formula"><span data-tex="D_{melhor} = \frac{4\,D(h/2) - D(h)}{3}, \quad \text{com erro } O(h^4)"></span></div>
+        <p>Com <span data-tex-inline="D(0{,}2) = 2{,}736440"></span> e <span data-tex-inline="D(0{,}1) = 2{,}722815"></span>: <span data-tex-inline="D_{melhor} = 2{,}718273"></span>, com erro de 9,1×10⁻⁶. O erro caiu de 4,5×10⁻³ com contas de uma linha.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Progressiva e regressiva: O(h). Centrada: O(h²).</li>
+          <li>O erro total tem um mínimo em h; reduzir mais piora.</li>
+          <li>Medições com ruído devem ser ajustadas antes de derivar.</li>
+          <li>Richardson combina dois passos e ganha duas ordens.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o centro da tabela usa diferença centrada e as pontas não?</summary><p>Porque na primeira e na última linha falta um dos vizinhos. Lá usam-se fórmulas unilaterais; existem as de três pontos, de ordem 2.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte V — Derivar e integrar" data-topicos="cotes">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Integração: trapézios e Simpson</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar as regras compostas de trapézios e de Simpson;</li>
+            <li>prever o número de subintervalos para uma tolerância;</li>
+            <li>integrar dados tabelados;</li>
+            <li>refinar resultados com Romberg.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Interpolação (capítulo 6) e integral definida.</p></div>
+        </div>
+
+        <h3 id="s10-1"><span class="num">10.1</span>A ideia de Newton-Cotes</h3>
+        <p>Troca-se a função por um polinômio interpolador em nós igualmente espaçados e integra-se o polinômio. Com grau 1, surge o trapézio; com grau 2, Simpson.</p>
+        <div class="formula"><span data-tex="T_n = h\left[\frac{f_0 + f_n}{2} + \sum_{i=1}^{n-1} f_i\right], \qquad E_T = -\frac{(b-a)h^2}{12} f''(\xi)"></span></div>
+        <div class="formula"><span data-tex="S_n = \frac{h}{3}\left[f_0 + 4\!\!\sum_{i\text{ ímpar}}\!\! f_i + 2\!\!\sum_{i\text{ par}}\!\! f_i + f_n\right], \qquad E_S = -\frac{(b-a)h^4}{180} f^{(4)}(\xi)"></span></div>
+        <div class="fig-host" id="fig-10-1"></div>
+        <div class="callout warn">
+          <strong>Simpson 1/3 exige n par</strong>
+          O número de subintervalos deve ser par, o que dá um número ímpar de pontos. Com n ímpar, use a regra 3/8 em três dos intervalos e 1/3 nos demais.
+        </div>
+        <p>Por um golpe de sorte da simetria, Simpson integra exatamente polinômios de grau 3, um grau além do interpolador usado.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>A integral que não tem primitiva</div>
+          <p>Calcule <span data-tex-inline="\int_0^1 e^{-x^2} dx"></span> com n = 4. O valor exato é 0,746824.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>h = 0,25; valores: 1; 0,939413; 0,778801; 0,569783; 0,367879.</li>
+              <li><span data-tex-inline="T_4 = 0{,}25\,[\,0{,}683940 + 2{,}287997\,] = 0{,}742984"></span>, com erro de −3,84×10⁻³.</li>
+              <li><span data-tex-inline="S_4 = \frac{0{,}25}{3}\,[\,1 + 4(1{,}509196) + 2(0{,}778801) + 0{,}367879\,] = 0{,}746855"></span>, com erro de 3,1×10⁻⁵.</li>
+            </ol>
+            <p class="resposta">Com os mesmos cinco valores da função, Simpson é cerca de 120 vezes mais preciso.</p>
+          </details>
+        </div>
+        <div id="sim-integracao" class="sim"></div>
+
+        <h3 id="s10-2"><span class="num">10.2</span>Quantos subintervalos</h3>
+        <p>Isolando <em>n</em> nas expressões do erro e usando um limite das derivadas:</p>
+        <div class="formula"><span data-tex="n_T \ge \sqrt{\frac{(b-a)^3 M_2}{12\,\varepsilon}}, \qquad n_S \ge \sqrt[4]{\frac{(b-a)^5 M_4}{180\,\varepsilon}}"></span></div>
+        <p>Para <span data-tex-inline="e^{-x^2}"></span> em [0, 1], com <span data-tex-inline="M_2 = 2"></span>, <span data-tex-inline="M_4 = 12"></span> e <span data-tex-inline="\varepsilon = 10^{-4}"></span>: 41 subintervalos em trapézios e apenas 6 em Simpson.</p>
+
+        <h3 id="s10-3"><span class="num">10.3</span>Dados tabelados</h3>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.2</span>Trabalho de uma força medida</div>
+          <p>Uma força foi medida a cada 2 m: 0, 12, 21, 26, 28, 27 e 24 kN, de 0 a 12 m. Estime o trabalho.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>São 6 intervalos, um número par, e Simpson 1/3 se aplica.</li>
+              <li><span data-tex-inline="S = \frac{2}{3}\,[\,0 + 4(12+26+27) + 2(21+28) + 24\,] = 254{,}7"></span> kN·m.</li>
+              <li>Trapézios: <span data-tex-inline="2\,[\,12 + 12+21+26+28+27\,] = 252"></span> kN·m.</li>
+            </ol>
+            <p class="resposta">Trabalho de aproximadamente 255 kJ. A diferença de 1 % entre as regras dá uma ideia do erro de discretização.</p>
+          </details>
+        </div>
+
+        <h3 id="s10-4"><span class="num">10.4</span>Romberg</h3>
+        <p>O erro do trapézio é uma série em potências pares de <em>h</em>, então Richardson se aplica: <span data-tex-inline="(4T_{2n} - T_n)/3"></span> elimina o termo <span data-tex-inline="h^2"></span>. Com <span data-tex-inline="T_4 = 0{,}742984"></span> e <span data-tex-inline="T_8 = 0{,}745866"></span>, resulta 0,746826, que é exatamente <span data-tex-inline="S_8"></span>. Repetir a extrapolação ganha mais duas ordens em cada coluna.</p>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Trapézio composto: erro O(h²). Simpson composto: erro O(h⁴), com n par.</li>
+          <li>Dobrar n corta o erro em 4 (trapézio) e em 16 (Simpson).</li>
+          <li>Simpson é exato para cúbicas.</li>
+          <li>Romberg extrapola trapézios sucessivos.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O trapézio superestima ou subestima uma função convexa?</summary><p>Superestima: em função convexa, a corda fica acima da curva. E_T = −(b−a)h²f″/12 é negativo, ou seja, valor exato menor que T.</p></details>
+          <details><summary>Em um gráfico log-log de erro contra n, quais as inclinações?</summary><p>−2 para trapézios e −4 para Simpson. Uma inclinação diferente indica erro no código ou falta de suavidade da função.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte V — Derivar e integrar" data-topicos="gauss-quad">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Quadratura de Gauss</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>entender por que escolher os nós melhora a precisão;</li>
+            <li>aplicar a mudança de intervalo;</li>
+            <li>usar as fórmulas de Gauss-Legendre;</li>
+            <li>decidir entre Gauss, Simpson e integração adaptativa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Regras compostas do capítulo 10.</p></div>
+        </div>
+
+        <h3 id="s11-1"><span class="num">11.1</span>Escolher também os nós</h3>
+        <p>Newton-Cotes fixa os nós e escolhe os pesos. Gauss escolhe os dois. Com <em>n</em> nós há <span data-tex-inline="2n"></span> parâmetros livres, o que permite integrar exatamente polinômios de grau até <span data-tex-inline="2n - 1"></span>:</p>
+        <div class="formula"><span data-tex="\int_{-1}^{1} f(t)\,dt \approx \sum_{i=1}^{n} w_i\,f(t_i)"></span></div>
+        <div class="fig-host" id="fig-11-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th class="num">n</th><th class="num">Nós t<sub>i</sub></th><th class="num">Pesos w<sub>i</sub></th><th class="num">Exata até grau</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td class="num">0</td><td class="num">2</td><td class="num">1</td></tr>
+            <tr><td class="num">2</td><td class="num">±0,577350</td><td class="num">1</td><td class="num">3</td></tr>
+            <tr><td class="num">3</td><td class="num">0; ±0,774597</td><td class="num">0,888889; 0,555556</td><td class="num">5</td></tr>
+            <tr><td class="num">4</td><td class="num">±0,339981; ±0,861136</td><td class="num">0,652145; 0,347855</td><td class="num">7</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h3 id="s11-2"><span class="num">11.2</span>Mudança de intervalo</h3>
+        <p>Os nós tabelados valem em [−1, 1]. Para um intervalo [a, b]:</p>
+        <div class="formula"><span data-tex="x = \frac{b+a}{2} + \frac{b-a}{2}\,t \qquad \int_a^b f\,dx = \frac{b-a}{2}\int_{-1}^{1} f(x(t))\,dt"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>A mesma integral, com Gauss</div>
+          <p>Calcule <span data-tex-inline="\int_0^1 e^{-x^2} dx"></span> com dois e três nós.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Em [0, 1]: <span data-tex-inline="x = (1 + t)/2"></span> e o fator vale ½.</li>
+              <li>Dois nós: <span data-tex-inline="x = 0{,}211325"></span> e <span data-tex-inline="0{,}788675"></span>; <span data-tex-inline="f = 0{,}956324"></span> e <span data-tex-inline="0{,}536865"></span>.</li>
+              <li><span data-tex-inline="G_2 = \frac{1}{2}(0{,}956324 + 0{,}536865) = 0{,}746595"></span>, com erro de −2,3×10⁻⁴.</li>
+              <li>Três nós: <span data-tex-inline="G_3 = 0{,}746815"></span>, com erro de −9,5×10⁻⁶.</li>
+            </ol>
+            <p class="resposta">Com três avaliações, Gauss erra por 9,5×10⁻⁶, enquanto Simpson com as mesmas três avaliações (n = 2) erra por 3,6×10⁻⁴.</p>
+          </details>
+        </div>
+
+        <h3 id="s11-3"><span class="num">11.3</span>Qual método usar</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Situação</th><th>Método</th></tr></thead>
+          <tbody>
+            <tr><td>Dados tabelados em espaçamento uniforme</td><td>Simpson; trapézios se n for ímpar ou os dados forem ruidosos</td></tr>
+            <tr><td>Dados em espaçamento irregular</td><td>Trapézios por trecho</td></tr>
+            <tr><td>Função conhecida, suave e cara de avaliar</td><td>Gauss</td></tr>
+            <tr><td>Função com picos localizados</td><td>Adaptativo (<code>intg</code> no Scilab)</td></tr>
+            <tr><td>Singularidade integrável na ponta</td><td>Gauss, cujos nós não tocam os extremos, ou mudança de variável</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout note">
+          <strong>Onde o engenheiro encontra isso</strong>
+          Em elementos finitos, a matriz de rigidez de cada elemento é calculada por quadratura de Gauss. Os "pontos de Gauss" do relatório do programa são exatamente esses nós, e neles se avaliam as tensões.
+        </div>
+
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>n nós bem escolhidos integram exatamente polinômios de grau 2n − 1.</li>
+          <li>A mudança de variável leva [a, b] para [−1, 1].</li>
+          <li>Gauss requer a função em pontos que não são tabelados; não serve para dados medidos.</li>
+          <li>Funções irregulares pedem integração adaptativa.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quantos nós bastam para integrar exatamente um polinômio de grau 7?</summary><p>Quatro: 2n − 1 ≥ 7 implica n ≥ 4.</p></details>
+          <details><summary>Por que aumentar n não aproveita os cálculos anteriores em Gauss?</summary><p>Porque os nós de n e de n + 1 pontos são diferentes. Em trapézios, dobrar n reaproveita todos os valores já calculados.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-raizes"><small>Capítulo 3 · Raízes</small>Quatro métodos na mesma função</a></li>
+          <li><a href="#sim-sistemas"><small>Capítulo 5 · Sistemas</small>Gauss, Jacobi e Gauss-Seidel</a></li>
+          <li><a href="#sim-interpolacao"><small>Capítulo 7 · Interpolação</small>Lagrange, Runge e splines</a></li>
+          <li><a href="#sim-minimos"><small>Capítulo 8 · Ajuste</small>Mínimos quadrados</a></li>
+          <li><a href="#sim-integracao"><small>Capítulo 10 · Integração</small>Integração e derivação numéricas</a></li>
+        </ul>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Raízes</h4>
+            <div class="formula"><span data-tex="n \ge \log_2\frac{b-a}{\varepsilon}"></span></div>
+            <div class="formula"><span data-tex="x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}"></span></div>
+            <div class="formula"><span data-tex="x_{k+1} = x_k - f_k\frac{x_k - x_{k-1}}{f_k - f_{k-1}}"></span></div>
+            <div class="formula"><span data-tex="\text{ponto fixo: } |g'(r)| \lt 1"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Sistemas</h4>
+            <div class="formula"><span data-tex="m_{ik} = a_{ik}/a_{kk}"></span></div>
+            <div class="formula"><span data-tex="\kappa(A) = \|A\|\,\|A^{-1}\|"></span></div>
+            <div class="formula"><span data-tex="\alpha_i = \sum_{j\ne i}|a_{ij}|/|a_{ii}| \lt 1"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Interpolação e ajuste</h4>
+            <div class="formula"><span data-tex="L_k(x) = \prod_{j\ne k}\frac{x - x_j}{x_k - x_j}"></span></div>
+            <div class="formula"><span data-tex="E = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod (x - x_i)"></span></div>
+            <div class="formula"><span data-tex="b = \frac{n\sum xy - \sum x\sum y}{n\sum x^2 - (\sum x)^2}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Derivação e integração</h4>
+            <div class="formula"><span data-tex="f'(x) \approx \frac{f(x+h) - f(x-h)}{2h}"></span></div>
+            <div class="formula"><span data-tex="E_T = -\frac{(b-a)h^2}{12} f''"></span></div>
+            <div class="formula"><span data-tex="E_S = -\frac{(b-a)h^4}{180} f^{(4)}"></span></div>
+            <div class="formula"><span data-tex="\int_a^b f\,dx = \frac{b-a}{2}\sum w_i f(x(t_i))"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tabelas">
+        <h2>Apêndice B — Escolha do método</h2>
+        <p>Um quadro para consulta rápida, com as propriedades de todos os métodos do texto.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Problema</th><th>Método</th><th>Ordem</th><th>Ponto forte</th><th>Ponto fraco</th></tr></thead>
+          <tbody>
+            <tr><td>Raiz</td><td>Bisseção</td><td>1</td><td>Sempre converge</td><td>Lenta</td></tr>
+            <tr><td>Raiz</td><td>Newton</td><td>2</td><td>Rápido</td><td>Exige f′ e bom chute</td></tr>
+            <tr><td>Raiz</td><td>Secante</td><td>1,618</td><td>Dispensa f′</td><td>Sem garantia</td></tr>
+            <tr><td>Sistema</td><td>Gauss com pivô</td><td>Direto</td><td>Geral</td><td>Custo 2n³/3</td></tr>
+            <tr><td>Sistema</td><td>Gauss-Seidel</td><td>Iterativo</td><td>Sistemas grandes e esparsos</td><td>Requer convergência</td></tr>
+            <tr><td>Interpolação</td><td>Spline cúbica</td><td>h⁴</td><td>Suave, sem Runge</td><td>Resolver um sistema</td></tr>
+            <tr><td>Derivada</td><td>Centrada</td><td>h²</td><td>Simples</td><td>Sensível a ruído</td></tr>
+            <tr><td>Integral</td><td>Simpson</td><td>h⁴</td><td>Serve para tabelas</td><td>n par</td></tr>
+            <tr><td>Integral</td><td>Gauss de n pontos</td><td>Grau 2n−1</td><td>Poucas avaliações</td><td>Não serve para tabelas</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>75 questões objetivas sobre erros, raízes, sistemas lineares, interpolação, ajuste de curvas, derivação e integração numéricas. As questões de cálculo trazem espaço para contas e resolução passo a passo.</p>
+        <div id="quiz" data-quiz="calculo-numerico"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>CHAPRA, S. C.; CANALE, R. P. <em>Métodos Numéricos para Engenharia</em>. 7. ed. McGraw-Hill.</li>
+          <li>RUGGIERO, M. A. G.; LOPES, V. L. R. <em>Cálculo Numérico: aspectos teóricos e computacionais</em>. 2. ed. Pearson.</li>
+          <li>BURDEN, R. L.; FAIRES, J. D. <em>Análise Numérica</em>. Cengage.</li>
+          <li>CAMPOS FILHO, F. F. <em>Algoritmos Numéricos</em>. 3. ed. LTC.</li>
+          <li>HEATH, M. T. <em>Scientific Computing: An Introductory Survey</em>. 2. ed. SIAM.</li>
+          <li>IEEE 754 — Standard for Floating-Point Arithmetic.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/calculo-numerico.js"></script>
+<script src="../js/fig/calculo-numerico.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  'E_a': ['Erro absoluto', '—'],
+  'E_r': ['Erro relativo', '—'],
+  '\\varepsilon': ['Tolerância ou erro admitido', '—'],
+  '\\epsilon': ['Épsilon de máquina', '—', '2,22×10⁻¹⁶ em precisão dupla'],
+  '\\kappa': ['Número de condição', '—', 'mede a sensibilidade do sistema'],
+  'm_{ik}': ['Multiplicador da eliminação', '—'],
+  'L_k': ['Polinômio de Lagrange do nó k', '—'],
+  'M_i': ['Segunda derivada da spline no nó i', '—'],
+  'S_r': ['Soma dos quadrados dos resíduos', '—'],
+  'S_t': ['Soma total dos quadrados em torno da média', '—'],
+  'r^2': ['Coeficiente de determinação', '—'],
+  h: ['Passo ou largura do subintervalo', '—'],
+  n: ['Número de subintervalos ou de iterações', '—'],
+  'w_i': ['Peso da quadratura', '—'],
+  't_i': ['Nó da quadratura em [−1, 1]', '—']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

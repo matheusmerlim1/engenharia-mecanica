@@ -1,0 +1,1261 @@
+{
+ "disciplina": "Cálculo Numérico",
+ "slug": "calculo-numerico",
+ "topicos": [
+  {
+   "id": "erros",
+   "nome": "Erros e ponto flutuante"
+  },
+  {
+   "id": "intervalo",
+   "nome": "Raízes: métodos de intervalo"
+  },
+  {
+   "id": "abertos",
+   "nome": "Raízes: métodos abertos"
+  },
+  {
+   "id": "diretos",
+   "nome": "Sistemas: métodos diretos"
+  },
+  {
+   "id": "iterativos",
+   "nome": "Condicionamento e métodos iterativos"
+  },
+  {
+   "id": "interpolacao",
+   "nome": "Interpolação polinomial"
+  },
+  {
+   "id": "splines",
+   "nome": "Splines"
+  },
+  {
+   "id": "minimos",
+   "nome": "Mínimos quadrados"
+  },
+  {
+   "id": "derivacao",
+   "nome": "Derivação numérica"
+  },
+  {
+   "id": "cotes",
+   "nome": "Trapézios e Simpson"
+  },
+  {
+   "id": "gauss-quad",
+   "nome": "Quadratura de Gauss"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "cn-001",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "erros",
+   "enunciado": "<p>Aproxima-se π por 3,14. O erro relativo é, aproximadamente:</p>",
+   "alternativas": [
+    "1,59×10⁻³",
+    "3,14×10⁻²",
+    "5,07×10⁻²",
+    "5,07×10⁻⁴"
+   ],
+   "correta": 3,
+   "formulas": [
+    "E_a = |x − x̄|",
+    "E_r = E_a/|x|"
+   ],
+   "explicacao": "<div class=\"passo\">E<sub>a</sub> = |3,14159 − 3,14| = 1,59×10⁻³</div><div class=\"passo\">E<sub>r</sub> = 1,59×10⁻³ / 3,14159 = <strong>5,07×10⁻⁴</strong></div><p>O valor 1,59×10⁻³ é o erro absoluto.</p>"
+  },
+  {
+   "id": "cn-002",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "erros",
+   "enunciado": "<p>A diferença entre erro de truncamento e erro de arredondamento é que:</p>",
+   "alternativas": [
+    "o truncamento só ocorre em precisão simples",
+    "o arredondamento vem de usar poucos termos de uma série",
+    "o truncamento vem de cortar um processo infinito, e o arredondamento, de guardar um número finito de dígitos",
+    "os dois são a mesma coisa em precisão dupla"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Truncar é uma decisão do método, como parar uma série. Arredondar é uma limitação da máquina.</p>"
+  },
+  {
+   "id": "cn-003",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "erros",
+   "enunciado": "<p>Em aritmética de ponto flutuante, a expressão 0,1 + 0,2 == 0,3 costuma ser falsa porque:</p>",
+   "alternativas": [
+    "o computador soma em decimal com apenas dois dígitos",
+    "0,1 e 0,2 têm expansão binária infinita e são guardados com erro",
+    "a soma de números positivos sempre gera transbordamento",
+    "o operador == só compara inteiros"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A expansão binária de 1/10 é periódica. Os valores guardados são aproximações, e a soma herda o erro. Compare reais com tolerância.</p>"
+  },
+  {
+   "id": "cn-004",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "erros",
+   "enunciado": "<p>Os números representáveis em ponto flutuante:</p>",
+   "alternativas": [
+    "são igualmente espaçados em toda a faixa",
+    "têm espaçamento que cresce com o módulo, mantendo aproximadamente constante a precisão relativa",
+    "têm espaçamento que diminui à medida que o módulo aumenta",
+    "são todos múltiplos do épsilon de máquina"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Entre duas potências consecutivas da base há a mesma quantidade de números, portanto o espaçamento dobra a cada potência de 2.</p>"
+  },
+  {
+   "id": "cn-005",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "erros",
+   "enunciado": "<p>Calcular a menor raiz de x² − 62,10x + 1 = 0 pela fórmula direta com quatro algarismos dá erro grande porque:</p>",
+   "alternativas": [
+    "subtraem-se dois números quase iguais, e os algarismos iniciais se cancelam",
+    "o discriminante é negativo",
+    "quatro algarismos não bastam para representar 62,10",
+    "a fórmula de Bhaskara não se aplica a coeficientes decimais"
+   ],
+   "correta": 0,
+   "explicacao": "<p>62,10 − 62,06 elimina os dígitos confiáveis. Racionalizando, x = 2c/(b + √Δ) troca a subtração por uma soma.</p>"
+  },
+  {
+   "id": "cn-006",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "erros",
+   "enunciado": "<p>Cinco termos da série de eˣ em torno de 0 são usados para calcular e<sup>0,5</sup>. Pelo resto de Taylor, o erro de truncamento é, no máximo, cerca de:</p>",
+   "alternativas": [
+    "2,6×10⁻⁴",
+    "3,1×10⁻²",
+    "1,6×10⁻³",
+    "4,3×10⁻⁴"
+   ],
+   "correta": 3,
+   "formulas": [
+    "R_n = f⁽ⁿ⁺¹⁾(ξ)(x−a)ⁿ⁺¹/(n+1)!"
+   ],
+   "explicacao": "<div class=\"passo\">|R₄| ≤ e<sup>ξ</sup> (0,5)⁵/5! com ξ ≤ 0,5</div><div class=\"passo\">= 1,6487 × 0,03125/120 = <strong>4,29×10⁻⁴</strong></div><p>O valor 2,6×10⁻⁴ esquece o fator e<sup>ξ</sup>.</p>"
+  },
+  {
+   "id": "cn-007",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "erros",
+   "enunciado": "<p>Em precisão dupla (IEEE 754), o épsilon de máquina vale aproximadamente:</p>",
+   "alternativas": [
+    "1,2×10⁻⁷",
+    "1,0×10⁻³⁰⁸",
+    "2,2×10⁻¹⁶",
+    "1,8×10⁻¹⁰"
+   ],
+   "correta": 2,
+   "explicacao": "<p>São 53 bits de mantissa: 2⁻⁵² ≈ 2,22×10⁻¹⁶. O valor 1,2×10⁻⁷ corresponde à precisão simples.</p>"
+  },
+  {
+   "id": "cn-008",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "intervalo",
+   "enunciado": "<p>O teorema de Bolzano garante raiz de f em [a, b] quando:</p>",
+   "alternativas": [
+    "f é derivável e f(a) = f(b)",
+    "f(a)·f(b) &lt; 0, mesmo com f descontínua",
+    "f é contínua e f(a)·f(b) &lt; 0",
+    "f é crescente em [a, b]"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A continuidade é essencial. Sem ela, tan x troca de sinal em π/2 sem ter raiz.</p>"
+  },
+  {
+   "id": "cn-009",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "intervalo",
+   "enunciado": "<p>Quantas iterações de bisseção são necessárias, a partir de um intervalo de comprimento 1, para que o erro fique abaixo de 10⁻³?</p>",
+   "alternativas": [
+    "3",
+    "10",
+    "7",
+    "1000"
+   ],
+   "correta": 1,
+   "formulas": [
+    "n ≥ log₂((b−a)/ε)"
+   ],
+   "explicacao": "<div class=\"passo\">n ≥ log₂(1/10⁻³) = 9,97</div><div class=\"passo\">n = <strong>10</strong></div>"
+  },
+  {
+   "id": "cn-010",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "intervalo",
+   "enunciado": "<p>Para f(x) = x³ − 9x + 3 em [0, 1], o intervalo após duas iterações de bisseção é:</p>",
+   "alternativas": [
+    "[0,25; 0,5]",
+    "[0; 0,25]",
+    "[0,5; 0,75]",
+    "[0,5; 1]"
+   ],
+   "correta": 0,
+   "explicacao": "<div class=\"passo\">m = 0,5; f(0,5) = −1,375 e f(0) = 3 têm sinais opostos: [0; 0,5]</div><div class=\"passo\">m = 0,25; f(0,25) = 0,766 é positivo: a raiz está em <strong>[0,25; 0,5]</strong></div>"
+  },
+  {
+   "id": "cn-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "intervalo",
+   "enunciado": "<p>Na falsa posição, aplicada a uma função convexa em um intervalo com raiz, é comum que:</p>",
+   "alternativas": [
+    "o método divirja para fora do intervalo",
+    "os dois extremos convirjam para a raiz na mesma velocidade",
+    "seja necessário conhecer a derivada da função",
+    "um dos extremos fique fixo e o comprimento do intervalo não tenda a zero"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A corda fica sempre do mesmo lado da curva, então a mesma extremidade é substituída a cada passo. O critério de parada deve observar a variação de x.</p>"
+  },
+  {
+   "id": "cn-012",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "intervalo",
+   "enunciado": "<p>Com a = 0, b = 1, f(a) = 3 e f(b) = −5, a primeira estimativa da falsa posição é:</p>",
+   "alternativas": [
+    "0,5",
+    "0,625",
+    "0,6",
+    "0,375"
+   ],
+   "correta": 3,
+   "formulas": [
+    "x = (a f(b) − b f(a))/(f(b) − f(a))"
+   ],
+   "explicacao": "<div class=\"passo\">x = (a·f(b) − b·f(a))/(f(b) − f(a))</div><div class=\"passo\">= (0 − 1·3)/(−5 − 3) = <strong>0,375</strong></div><p>O valor 0,625 aparece ao trocar f(a) por f(b) na fórmula.</p>"
+  },
+  {
+   "id": "cn-013",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "intervalo",
+   "enunciado": "<p>O teste f(a)·f(b) &lt; 0 não detecta uma raiz dupla em [a, b] porque:</p>",
+   "alternativas": [
+    "raízes duplas são sempre complexas",
+    "a bisseção só aceita polinômios de grau ímpar",
+    "o gráfico tangencia o eixo e a função não troca de sinal naquele ponto",
+    "a derivada da função é máxima na raiz dupla"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Em raiz de multiplicidade par, f mantém o sinal dos dois lados. O produto nos extremos não vê a raiz.</p>"
+  },
+  {
+   "id": "cn-014",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "abertos",
+   "enunciado": "<p>Uma iteração de Newton em f(x) = x² − 2, partindo de x₀ = 1, resulta em:</p>",
+   "alternativas": [
+    "1,4142",
+    "1,5",
+    "0,5",
+    "2"
+   ],
+   "correta": 1,
+   "formulas": [
+    "x_{k+1} = x_k − f(x_k)/f′(x_k)"
+   ],
+   "explicacao": "<div class=\"passo\">x₁ = 1 − (1 − 2)/(2·1) = <strong>1,5</strong></div>"
+  },
+  {
+   "id": "cn-015",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "abertos",
+   "enunciado": "<p>A assinatura prática da convergência quadrática é que:</p>",
+   "alternativas": [
+    "o número de algarismos corretos praticamente dobra a cada iteração",
+    "o erro cai à metade a cada iteração",
+    "o erro é elevado ao cubo a cada iteração",
+    "são necessárias duas iterações para ganhar um algarismo"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Com |e<sub>k+1</sub>| ≈ C|e<sub>k</sub>|², um erro de 10⁻³ passa para cerca de 10⁻⁶.</p>"
+  },
+  {
+   "id": "cn-016",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "abertos",
+   "enunciado": "<p>Comparado a Newton, o método da secante:</p>",
+   "alternativas": [
+    "dispensa a derivada, mas tem ordem menor, próxima de 1,618",
+    "exige a segunda derivada e tem ordem 3",
+    "mantém a raiz sempre dentro de um colchete",
+    "tem convergência garantida a partir de qualquer chute"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A derivada é aproximada pela inclinação da reta entre as duas últimas estimativas.</p>"
+  },
+  {
+   "id": "cn-017",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "abertos",
+   "enunciado": "<p>A iteração x<sub>k+1</sub> = g(x<sub>k</sub>) converge para a raiz r, a partir de pontos próximos, se:</p>",
+   "alternativas": [
+    "g(r) = 0",
+    "|g′(r)| &gt; 1",
+    "g é decrescente em toda a reta",
+    "|g′(r)| &lt; 1"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O erro evolui como e<sub>k+1</sub> ≈ g′(r) e<sub>k</sub>. O módulo do fator precisa ser menor que 1.</p>"
+  },
+  {
+   "id": "cn-018",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "abertos",
+   "enunciado": "<p>Na iteração x = cos x, a raiz é 0,739085. A razão aproximada entre erros consecutivos é:</p>",
+   "alternativas": [
+    "0,739",
+    "0,5",
+    "0,674",
+    "0,261"
+   ],
+   "correta": 2,
+   "formulas": [
+    "e_{k+1} ≈ g′(r) e_k"
+   ],
+   "explicacao": "<div class=\"passo\">g′(x) = −sen x</div><div class=\"passo\">|g′(0,739085)| = sen(0,739085) = <strong>0,674</strong></div>"
+  },
+  {
+   "id": "cn-019",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "abertos",
+   "enunciado": "<p>Aplicado a uma raiz dupla, Newton:</p>",
+   "alternativas": [
+    "converge cubicamente",
+    "converge apenas linearmente, com razão próxima de 1/2",
+    "diverge sempre",
+    "converge em uma única iteração"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Em raiz de multiplicidade m, a razão vale 1 − 1/m. Multiplicar o passo por m restaura a ordem quadrática.</p>"
+  },
+  {
+   "id": "cn-020",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "abertos",
+   "enunciado": "<p>Sobre a eficiência relativa de Newton e da secante quando calcular f′ custa o mesmo que calcular f, assinale a leitura correta:</p>",
+   "alternativas": [
+    "Newton sempre vence, porque a ordem 2 é maior que 1,618 em qualquer cenário",
+    "Com o mesmo custo de um passo de Newton (ordem 2), a secante faz dois passos, de ordem combinada 1,618² ≈ 2,6, e tende a ser mais eficiente",
+    "A secante só seria vantajosa se f′ custasse zero",
+    "Os dois têm exatamente a mesma eficiência por construção"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Eficiência combina ordem e custo. Newton gasta duas avaliações por passo, e a secante, uma.</p>"
+  },
+  {
+   "id": "cn-021",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "abertos",
+   "enunciado": "<p>A primeira iteração da secante para f(x) = x² − 2, com x₀ = 1 e x₁ = 2, é:</p>",
+   "alternativas": [
+    "1,3333",
+    "1,5",
+    "1,4142",
+    "1,25"
+   ],
+   "correta": 0,
+   "formulas": [
+    "x_{k+1} = x_k − f_k (x_k − x_{k−1})/(f_k − f_{k−1})"
+   ],
+   "explicacao": "<div class=\"passo\">f(1) = −1; f(2) = 2</div><div class=\"passo\">x₂ = 2 − 2·(2 − 1)/(2 + 1) = <strong>1,3333</strong></div>"
+  },
+  {
+   "id": "cn-022",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "diretos",
+   "enunciado": "<p>O objetivo da eliminação de Gauss é:</p>",
+   "alternativas": [
+    "calcular a inversa e multiplicar por b",
+    "tornar a matriz diagonal dominante",
+    "encontrar os autovalores da matriz",
+    "transformar o sistema em triangular superior equivalente e resolvê-lo por retrossubstituição"
+   ],
+   "correta": 3,
+   "explicacao": "<p>As operações elementares não alteram a solução e deixam o sistema fácil de resolver de baixo para cima.</p>"
+  },
+  {
+   "id": "cn-023",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "diretos",
+   "enunciado": "<p>O pivotamento parcial serve principalmente para:</p>",
+   "alternativas": [
+    "reduzir o custo de n³ para n²",
+    "tornar a matriz simétrica",
+    "manter os multiplicadores com módulo no máximo 1, limitando a amplificação dos erros de arredondamento",
+    "eliminar a necessidade de retrossubstituição"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Pivô pequeno gera multiplicador grande. Trocar linhas para usar o maior elemento da coluna impede isso.</p>"
+  },
+  {
+   "id": "cn-024",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "diretos",
+   "enunciado": "<p>Dobrar a ordem de um sistema denso multiplica o custo da fatoração LU por aproximadamente:</p>",
+   "alternativas": [
+    "2",
+    "4",
+    "8",
+    "16"
+   ],
+   "correta": 2,
+   "formulas": [
+    "custo ≈ 2n³/3"
+   ],
+   "explicacao": "<div class=\"passo\">Custo ≈ 2n³/3</div><div class=\"passo\">(2n)³ = 8n³: <strong>8 vezes</strong></div>"
+  },
+  {
+   "id": "cn-025",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "diretos",
+   "enunciado": "<p>A vantagem da fatoração LU sobre repetir a eliminação aparece quando:</p>",
+   "alternativas": [
+    "a matriz muda a cada resolução",
+    "a mesma matriz é resolvida para vários lados direitos",
+    "a matriz é diagonal",
+    "o sistema tem apenas uma incógnita"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A fatoração custa ~2n³/3 uma vez. Cada novo b só precisa de substituições, com ~2n² operações.</p>"
+  },
+  {
+   "id": "cn-026",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "diretos",
+   "enunciado": "<p>No sistema 2x + y − z = 8; −3x − y + 2z = −11; −2x + y + 2z = −3, o multiplicador m₂₁ da primeira etapa vale:</p>",
+   "alternativas": [
+    "−1,5",
+    "1,5",
+    "−0,67",
+    "−3"
+   ],
+   "correta": 0,
+   "formulas": [
+    "m_{ik} = a_{ik}/a_{kk}"
+   ],
+   "explicacao": "<div class=\"passo\">m₂₁ = a₂₁/a₁₁ = −3/2 = <strong>−1,5</strong></div>"
+  },
+  {
+   "id": "cn-027",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "diretos",
+   "enunciado": "<p>Se A = LU com L = [1 0 0; 2 1 0; 1 4 1] e U = [4 3 2; 0 1 5; 0 0 −1], o determinante de A é:</p>",
+   "alternativas": [
+    "4",
+    "−1",
+    "−20",
+    "−4"
+   ],
+   "correta": 3,
+   "formulas": [
+    "det(LU) = det L · det U"
+   ],
+   "explicacao": "<div class=\"passo\">det A = det L · det U</div><div class=\"passo\">det L = 1; det U = 4·1·(−1) = <strong>−4</strong></div>"
+  },
+  {
+   "id": "cn-028",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "diretos",
+   "enunciado": "<p>Para resolver Ax = b com A de ordem 1000, é mais adequado:</p>",
+   "alternativas": [
+    "calcular a inversa e multiplicar por b",
+    "usar a regra de Cramer com determinantes por cofatores",
+    "somar todas as equações e isolar uma incógnita",
+    "fatorar A com pivotamento e fazer as substituições"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A inversa custa cerca de três vezes mais e é menos precisa. Cramer por cofatores tem custo fatorial.</p>"
+  },
+  {
+   "id": "cn-029",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "diretos",
+   "enunciado": "<p>Com três algarismos, resolvem-se 0,0001x + y = 1 e x + y = 2 sem pivotamento. Assinale a leitura correta do resultado:</p>",
+   "alternativas": [
+    "Obtém-se x = 1 e y = 1, e o pivotamento não faria diferença",
+    "Não há solução, porque o pivô é menor que a precisão",
+    "Obtém-se x = 0 e y = 1, resposta errada para x; o sistema é bem condicionado, e o erro é do algoritmo sem troca de linhas",
+    "O sistema é mal condicionado, e nenhum método daria a resposta certa"
+   ],
+   "correta": 2,
+   "explicacao": "<p>O multiplicador 10000 apaga o termo 1 ao arredondar. Com a troca de linhas, x = 1 e y = 1, corretos em três algarismos.</p>"
+  },
+  {
+   "id": "cn-030",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "iterativos",
+   "enunciado": "<p>A diferença entre Jacobi e Gauss-Seidel é que:</p>",
+   "alternativas": [
+    "Jacobi usa valores atualizados e Gauss-Seidel apenas os antigos",
+    "Gauss-Seidel usa os valores recém-calculados já na mesma varredura",
+    "Jacobi é um método direto",
+    "Gauss-Seidel exige a inversa da matriz"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Usar imediatamente o valor novo costuma acelerar a convergência.</p>"
+  },
+  {
+   "id": "cn-031",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "iterativos",
+   "enunciado": "<p>Na primeira iteração de Jacobi, partindo do vetor nulo, para 10x₁ + 2x₂ + x₃ = 7; x₁ + 5x₂ + x₃ = −8; 2x₁ + 3x₂ + 10x₃ = 6, o valor de x₂ é:</p>",
+   "alternativas": [
+    "−1,6",
+    "−1,74",
+    "−1,86",
+    "0,7"
+   ],
+   "correta": 0,
+   "formulas": [
+    "x_i = (b_i − Σ_{j≠i} a_{ij} x_j)/a_{ii}"
+   ],
+   "explicacao": "<div class=\"passo\">x₂ = −8/5 = <strong>−1,6</strong>, pois x₁ = x₃ = 0 na iteração anterior</div><p>O valor −1,74 é o de Gauss-Seidel, que já usa x₁ = 0,7.</p>"
+  },
+  {
+   "id": "cn-032",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "iterativos",
+   "enunciado": "<p>Para o mesmo sistema, na primeira varredura de Gauss-Seidel, x₂ vale:</p>",
+   "alternativas": [
+    "−1,74",
+    "−1,6",
+    "−1,98",
+    "−0,74"
+   ],
+   "correta": 0,
+   "formulas": [
+    "usar o valor novo de x₁"
+   ],
+   "explicacao": "<div class=\"passo\">x₁ = 7/10 = 0,7</div><div class=\"passo\">x₂ = (−8 − 0,7)/5 = <strong>−1,74</strong></div>"
+  },
+  {
+   "id": "cn-033",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "iterativos",
+   "enunciado": "<p>O critério das linhas exige, para cada linha da matriz, que:</p>",
+   "alternativas": [
+    "a matriz seja simétrica",
+    "todos os elementos sejam positivos",
+    "o determinante seja maior que 1",
+    "o módulo do elemento da diagonal seja maior que a soma dos módulos dos demais elementos da linha"
+   ],
+   "correta": 3,
+   "explicacao": "<p>É a dominância diagonal estrita, uma condição suficiente, porém não necessária.</p>"
+  },
+  {
+   "id": "cn-034",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "iterativos",
+   "enunciado": "<p>Um sistema tem número de condição κ = 10⁶ e os dados têm 8 algarismos corretos. Pode-se confiar em cerca de:</p>",
+   "alternativas": [
+    "8 algarismos na resposta",
+    "6 algarismos na resposta",
+    "2 algarismos na resposta",
+    "14 algarismos na resposta"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Perdem-se cerca de log₁₀ κ = 6 algarismos: 8 − 6 = 2.</p>"
+  },
+  {
+   "id": "cn-035",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "iterativos",
+   "enunciado": "<p>Sobre um sistema mal condicionado resolvido com pivotamento completo em precisão dupla, assinale o correto:</p>",
+   "alternativas": [
+    "O pivotamento elimina o mal condicionamento",
+    "O resíduo pode ser pequeno e a resposta ainda ter erro grande, pois a sensibilidade pertence ao sistema, e não ao algoritmo",
+    "Resíduo pequeno garante resposta com todos os dígitos corretos",
+    "Basta aumentar o número de iterações da eliminação"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Duas retas quase paralelas: pontos distantes da solução quase satisfazem as duas equações.</p>"
+  },
+  {
+   "id": "cn-036",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "iterativos",
+   "enunciado": "<p>A matriz [[1, 2], [1, 2,0001]] tem norma infinito de 3,0001 e a inversa tem norma infinito próxima de 4×10⁴. Seu número de condição é próximo de:</p>",
+   "alternativas": [
+    "1,3×10⁴",
+    "1,2×10⁵",
+    "3,0×10⁴",
+    "1,2×10⁹"
+   ],
+   "correta": 1,
+   "formulas": [
+    "κ(A) = ‖A‖ ‖A⁻¹‖"
+   ],
+   "explicacao": "<div class=\"passo\">κ = ‖A‖·‖A⁻¹‖</div><div class=\"passo\">= 3,0001 × 4×10⁴ ≈ <strong>1,2×10⁵</strong></div>"
+  },
+  {
+   "id": "cn-037",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "interpolacao",
+   "enunciado": "<p>Por n + 1 pontos de abscissas distintas passa:</p>",
+   "alternativas": [
+    "um único polinômio de grau no máximo n",
+    "infinitos polinômios de grau n",
+    "um único polinômio de grau exatamente n + 1",
+    "nenhum polinômio, se os pontos forem colineares"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A unicidade justifica que Lagrange, Newton e Vandermonde dão o mesmo polinômio.</p>"
+  },
+  {
+   "id": "cn-038",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "interpolacao",
+   "enunciado": "<p>Com os nós 1, 4 e 6, o valor de L₀(2) é:</p>",
+   "alternativas": [
+    "0,6667",
+    "−0,2",
+    "1",
+    "0,5333"
+   ],
+   "correta": 3,
+   "formulas": [
+    "L_k(x) = Π_{j≠k} (x − x_j)/(x_k − x_j)"
+   ],
+   "explicacao": "<div class=\"passo\">L₀(2) = (2−4)(2−6)/((1−4)(1−6))</div><div class=\"passo\">= 8/15 = <strong>0,5333</strong></div>"
+  },
+  {
+   "id": "cn-039",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "interpolacao",
+   "enunciado": "<p>Interpolando ln x nos nós 1, 4 e 6, a estimativa de ln 2 é:</p>",
+   "alternativas": [
+    "0,6931",
+    "0,4621",
+    "0,5658",
+    "0,7000"
+   ],
+   "correta": 2,
+   "formulas": [
+    "P(x) = Σ y_k L_k(x)",
+    "L₁(2) = 2/3; L₂(2) = −1/5"
+   ],
+   "explicacao": "<div class=\"passo\">P(2) = 0,6667·1,386294 − 0,2·1,791759</div><div class=\"passo\">= <strong>0,5658</strong></div><p>0,4621 é a interpolação linear entre 1 e 4.</p>"
+  },
+  {
+   "id": "cn-040",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "interpolacao",
+   "enunciado": "<p>A vantagem da forma de Newton sobre a de Lagrange é que:</p>",
+   "alternativas": [
+    "ela resulta em um polinômio diferente, mais preciso",
+    "dispensa a avaliação da função nos nós",
+    "acrescentar um ponto só exige calcular um novo termo",
+    "garante a inexistência do fenômeno de Runge"
+   ],
+   "correta": 2,
+   "explicacao": "<p>O polinômio é o mesmo; muda só a forma de construí-lo.</p>"
+  },
+  {
+   "id": "cn-041",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "interpolacao",
+   "enunciado": "<p>A diferença dividida f[1, 4] para ln x vale:</p>",
+   "alternativas": [
+    "1,3863",
+    "0,4621",
+    "0,2027",
+    "0,0519"
+   ],
+   "correta": 1,
+   "formulas": [
+    "f[x₀,x₁] = (f₁ − f₀)/(x₁ − x₀)"
+   ],
+   "explicacao": "<div class=\"passo\">f[1,4] = (ln 4 − ln 1)/(4 − 1)</div><div class=\"passo\">= 1,386294/3 = <strong>0,4621</strong></div>"
+  },
+  {
+   "id": "cn-042",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "interpolacao",
+   "enunciado": "<p>No fenômeno de Runge, com f(x) = 1/(1 + 25x²) e nós igualmente espaçados em [−1, 1], aumentar o grau:</p>",
+   "alternativas": [
+    "faz o erro máximo crescer, com oscilações nas pontas do intervalo",
+    "faz o erro cair monotonicamente para zero",
+    "não altera o erro, que depende só de f",
+    "gera oscilações apenas no centro do intervalo"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O erro cresce de 0,44 (n = 4) para 7,2 (n = 14). Nós de Chebyshev e splines resolvem o problema.</p>"
+  },
+  {
+   "id": "cn-043",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "interpolacao",
+   "enunciado": "<p>Para reduzir o fenômeno de Runge, quando é possível escolher os pontos, deve-se:</p>",
+   "alternativas": [
+    "concentrar os nós no centro do intervalo",
+    "usar nós igualmente espaçados com grau ainda maior",
+    "eliminar os nós das extremidades",
+    "concentrar os nós perto das pontas, como nos nós de Chebyshev"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Os nós de Chebyshev minimizam o máximo do produto Π(x − x<sub>i</sub>).</p>"
+  },
+  {
+   "id": "cn-044",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "splines",
+   "enunciado": "<p>Uma spline cúbica é contínua, nos nós internos, em:</p>",
+   "alternativas": [
+    "apenas valor",
+    "valor e primeira derivada apenas",
+    "todas as derivadas, de qualquer ordem",
+    "valor, primeira e segunda derivadas"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A terceira derivada salta nos nós, e é por isso que cada trecho é um polinômio diferente.</p>"
+  },
+  {
+   "id": "cn-045",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "splines",
+   "enunciado": "<p>O sistema das segundas derivadas de uma spline cúbica é:</p>",
+   "alternativas": [
+    "denso, com custo proporcional a n³",
+    "triangular inferior",
+    "tridiagonal, com custo de resolução proporcional a n",
+    "não linear"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Cada equação envolve apenas o nó e seus dois vizinhos.</p>"
+  },
+  {
+   "id": "cn-046",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "splines",
+   "enunciado": "<p>A condição de spline natural significa:</p>",
+   "alternativas": [
+    "primeira derivada nula nas duas extremidades",
+    "segunda derivada nula nas duas extremidades",
+    "função nula nas duas extremidades",
+    "terceira derivada nula em todos os nós"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Corresponde a uma régua flexível livre nas pontas.</p>"
+  },
+  {
+   "id": "cn-047",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "splines",
+   "enunciado": "<p>Para os pontos (0,0), (1,1), (2,0) e (3,2), com spline natural e h = 1, as equações são 4M₁ + M₂ = −12 e M₁ + 4M₂ = 18. O valor de M₁ é:</p>",
+   "alternativas": [
+    "−4,4",
+    "5,6",
+    "−3",
+    "−2,8"
+   ],
+   "correta": 0,
+   "formulas": [
+    "4M₁ + M₂ = −12",
+    "M₁ + 4M₂ = 18"
+   ],
+   "explicacao": "<div class=\"passo\">De (2): M₁ = 18 − 4M₂</div><div class=\"passo\">4(18 − 4M₂) + M₂ = −12, então 72 − 15M₂ = −12, M₂ = 5,6</div><div class=\"passo\">M₁ = 18 − 22,4 = <strong>−4,4</strong></div>"
+  },
+  {
+   "id": "cn-048",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "splines",
+   "enunciado": "<p>Ao alterar um único valor de y, o comportamento da spline, em comparação com o de um polinômio único de grau alto, é:</p>",
+   "alternativas": [
+    "a mudança se atenua rapidamente longe do ponto, enquanto no polinômio ela afeta todo o intervalo",
+    "a spline muda toda a curva e o polinômio só muda localmente",
+    "nenhum dos dois é afetado longe do ponto",
+    "os dois mudam exatamente da mesma forma"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A inversa da matriz tridiagonal tem elementos que decaem rapidamente longe da diagonal.</p>"
+  },
+  {
+   "id": "cn-049",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "minimos",
+   "enunciado": "<p>O método dos mínimos quadrados escolhe os parâmetros que minimizam:</p>",
+   "alternativas": [
+    "a soma dos resíduos",
+    "o maior resíduo",
+    "o número de pontos fora da curva",
+    "a soma dos quadrados dos resíduos"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Somar os resíduos sem elevar ao quadrado permitiria cancelamentos.</p>"
+  },
+  {
+   "id": "cn-050",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "minimos",
+   "enunciado": "<p>Para (1; 2,2), (2; 4,1), (3; 6,2), (4; 7,9) e (5; 10,1), a inclinação da reta de mínimos quadrados é:</p>",
+   "alternativas": [
+    "2,00",
+    "0,22",
+    "1,96",
+    "1,90"
+   ],
+   "correta": 2,
+   "formulas": [
+    "b = (nΣxy − ΣxΣy)/(nΣx² − (Σx)²)"
+   ],
+   "explicacao": "<div class=\"passo\">b = (5·111,1 − 15·30,5)/(5·55 − 15²)</div><div class=\"passo\">= 98/50 = <strong>1,96</strong></div>"
+  },
+  {
+   "id": "cn-051",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "minimos",
+   "enunciado": "<p>Para os mesmos dados, com b = 1,96, o intercepto é:</p>",
+   "alternativas": [
+    "0,10",
+    "0,22",
+    "6,10",
+    "1,96"
+   ],
+   "correta": 1,
+   "formulas": [
+    "a = ȳ − b x̄"
+   ],
+   "explicacao": "<div class=\"passo\">a = ȳ − b x̄ = 6,1 − 1,96·3 = <strong>0,22</strong></div>"
+  },
+  {
+   "id": "cn-052",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "minimos",
+   "enunciado": "<p>Para ajustar y = αe<sup>βx</sup> por regressão linear, a transformação adequada é:</p>",
+   "alternativas": [
+    "regredir y em ln x",
+    "regredir ln y em x",
+    "regredir 1/y em 1/x",
+    "regredir y em x²"
+   ],
+   "correta": 1,
+   "explicacao": "<p>ln y = ln α + βx é uma reta em x.</p>"
+  },
+  {
+   "id": "cn-053",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "minimos",
+   "enunciado": "<p>A diferença essencial entre ajuste e interpolação é que:</p>",
+   "alternativas": [
+    "o ajuste segue a tendência sem precisar passar pelos pontos, o que é adequado a dados com ruído",
+    "o ajuste sempre usa polinômios de grau mais alto",
+    "a interpolação é indicada para dados com muito ruído",
+    "os dois produzem sempre a mesma curva"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Interpolar dados ruidosos modela o erro de medição.</p>"
+  },
+  {
+   "id": "cn-054",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "minimos",
+   "enunciado": "<p>Um colega obtém r² = 1 ajustando um polinômio de grau 9 a 10 pontos experimentais. Assinale a avaliação correta:</p>",
+   "alternativas": [
+    "O r² igual a 1 prova que o modelo é fisicamente correto",
+    "É impossível obter r² = 1 com dados experimentais",
+    "Basta reduzir os pontos para 5 para confirmar o resultado",
+    "O polinômio passa por todos os pontos e o r² não prova qualidade; o modelo provavelmente generaliza mal entre e além dos dados"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Com tantos parâmetros quanto dados, o ajuste vira interpolação. A escolha do modelo deve vir da física e da análise dos resíduos.</p>"
+  },
+  {
+   "id": "cn-055",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "minimos",
+   "enunciado": "<p>Com S<sub>t</sub> = 38,46 e S<sub>r</sub> = 0,044, o coeficiente de determinação é:</p>",
+   "alternativas": [
+    "0,9956",
+    "0,0011",
+    "0,9989",
+    "0,9500"
+   ],
+   "correta": 2,
+   "formulas": [
+    "r² = 1 − S_r/S_t"
+   ],
+   "explicacao": "<div class=\"passo\">r² = 1 − S<sub>r</sub>/S<sub>t</sub> = 1 − 0,044/38,46 = <strong>0,9989</strong></div>"
+  },
+  {
+   "id": "cn-056",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "derivacao",
+   "enunciado": "<p>A derivada por diferença centrada tem erro de truncamento de ordem:</p>",
+   "alternativas": [
+    "h",
+    "h³",
+    "h²",
+    "h⁴"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Na subtração das expansões de f(x + h) e f(x − h), os termos em f″ se cancelam.</p>"
+  },
+  {
+   "id": "cn-057",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "derivacao",
+   "enunciado": "<p>Para f(x) = eˣ em x = 1, com h = 0,1, a diferença centrada dá:</p>",
+   "alternativas": [
+    "2,8588",
+    "2,7228",
+    "2,5868",
+    "2,7183"
+   ],
+   "correta": 1,
+   "formulas": [
+    "f′(x) ≈ (f(x+h) − f(x−h))/(2h)"
+   ],
+   "explicacao": "<div class=\"passo\">(e<sup>1,1</sup> − e<sup>0,9</sup>)/(0,2)</div><div class=\"passo\">= (3,004166 − 2,459603)/0,2 = <strong>2,7228</strong></div><p>2,8588 é a progressiva; 2,5868, a regressiva.</p>"
+  },
+  {
+   "id": "cn-058",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "derivacao",
+   "enunciado": "<p>Reduzir h indefinidamente na fórmula centrada:</p>",
+   "alternativas": [
+    "piora o resultado a partir de certo ponto, porque o erro de arredondamento passa a dominar",
+    "leva o erro sempre a zero",
+    "não altera o erro",
+    "só afeta a derivada segunda"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O numerador subtrai valores quase iguais e é dividido por um número pequeno. Há um h ótimo perto de 10⁻⁵ em precisão dupla.</p>"
+  },
+  {
+   "id": "cn-059",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "derivacao",
+   "enunciado": "<p>Com D(0,2) = 2,736440 e D(0,1) = 2,722815 pela fórmula centrada, a extrapolação de Richardson dá:</p>",
+   "alternativas": [
+    "2,709190",
+    "2,729628",
+    "2,722815",
+    "2,718273"
+   ],
+   "correta": 3,
+   "formulas": [
+    "D = (4 D(h/2) − D(h))/3"
+   ],
+   "explicacao": "<div class=\"passo\">D = (4·D(0,1) − D(0,2))/3</div><div class=\"passo\">= (10,891260 − 2,736440)/3 = <strong>2,718273</strong></div><p>2,729628 é a média simples das duas estimativas.</p>"
+  },
+  {
+   "id": "cn-060",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "derivacao",
+   "enunciado": "<p>A derivada segunda em x pela fórmula centrada de três pontos é:</p>",
+   "alternativas": [
+    "(f(x+h) − f(x−h))/(2h)",
+    "(f(x+h) − 2f(x) + f(x−h))/(2h)",
+    "(f(x+h) + f(x−h))/h²",
+    "(f(x+h) − 2f(x) + f(x−h))/h²"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Vem da soma das duas expansões de Taylor, em que os termos ímpares se cancelam.</p>"
+  },
+  {
+   "id": "cn-061",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "derivacao",
+   "enunciado": "<p>Para obter uma velocidade a partir de posições medidas com ruído, o procedimento mais adequado é:</p>",
+   "alternativas": [
+    "usar o menor h possível, que sempre reduz o ruído",
+    "aplicar diferenças progressivas, imunes a ruído",
+    "ajustar uma curva aos dados e derivar a curva ajustada, pois a diferença direta amplifica o ruído dividindo-o por h",
+    "elevar a ordem da fórmula de diferenças para grau 10"
+   ],
+   "correta": 2,
+   "explicacao": "<p>O ruído no numerador é dividido por h. Reduzir h aumenta o ruído na derivada.</p>"
+  },
+  {
+   "id": "cn-062",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "cotes",
+   "enunciado": "<p>A regra de Simpson 1/3 composta exige que:</p>",
+   "alternativas": [
+    "o número de subintervalos seja ímpar",
+    "o número de subintervalos seja par",
+    "a função seja um polinômio",
+    "o espaçamento seja variável"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Cada parábola usa dois subintervalos consecutivos.</p>"
+  },
+  {
+   "id": "cn-063",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "cotes",
+   "enunciado": "<p>Com h = 0,25 e valores 1; 0,939413; 0,778801; 0,569783; 0,367879, o resultado da regra dos trapézios é:</p>",
+   "alternativas": [
+    "0,7430",
+    "0,7469",
+    "0,7314",
+    "0,6840"
+   ],
+   "correta": 0,
+   "formulas": [
+    "T = h[(f₀ + f_n)/2 + Σ f_i]"
+   ],
+   "explicacao": "<div class=\"passo\">T = 0,25·[(1 + 0,367879)/2 + 0,939413 + 0,778801 + 0,569783]</div><div class=\"passo\">= 0,25·2,971936 = <strong>0,7430</strong></div>"
+  },
+  {
+   "id": "cn-064",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "cotes",
+   "enunciado": "<p>Com os mesmos dados, a regra de Simpson dá:</p>",
+   "alternativas": [
+    "0,7469",
+    "0,7430",
+    "0,7500",
+    "0,8962"
+   ],
+   "correta": 0,
+   "formulas": [
+    "S = (h/3)[f₀ + 4Σ_ímpar + 2Σ_par + f_n]"
+   ],
+   "explicacao": "<div class=\"passo\">S = (0,25/3)·[1 + 4(0,939413 + 0,569783) + 2(0,778801) + 0,367879]</div><div class=\"passo\">= <strong>0,7469</strong></div>"
+  },
+  {
+   "id": "cn-065",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "cotes",
+   "enunciado": "<p>Dobrando o número de subintervalos, o erro da regra composta de Simpson fica dividido por aproximadamente:</p>",
+   "alternativas": [
+    "2",
+    "4",
+    "8",
+    "16"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O erro é O(h⁴), e (1/2)⁴ = 1/16.</p>"
+  },
+  {
+   "id": "cn-066",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "cotes",
+   "enunciado": "<p>A regra de Simpson 1/3, apesar de usar parábolas, integra exatamente polinômios de grau até:</p>",
+   "alternativas": [
+    "2",
+    "4",
+    "3",
+    "1"
+   ],
+   "correta": 2,
+   "explicacao": "<p>O termo de erro depende de f⁽⁴⁾, nula para cúbicas.</p>"
+  },
+  {
+   "id": "cn-067",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "cotes",
+   "enunciado": "<p>Para integrar e<sup>−x²</sup> em [0, 1] com erro abaixo de 10⁻⁴ pela regra dos trapézios, com |f″| ≤ 2, são necessários pelo menos:</p>",
+   "alternativas": [
+    "6 subintervalos",
+    "41 subintervalos",
+    "9 subintervalos",
+    "100 subintervalos"
+   ],
+   "correta": 1,
+   "formulas": [
+    "n ≥ √((b−a)³M₂/(12ε))"
+   ],
+   "explicacao": "<div class=\"passo\">n ≥ √(M₂/(12ε)) = √(2/(12×10⁻⁴))</div><div class=\"passo\">= 40,8, logo <strong>41</strong></div>"
+  },
+  {
+   "id": "cn-068",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "cotes",
+   "enunciado": "<p>Uma força medida a cada 2 m vale 0, 12, 21, 26, 28, 27 e 24 kN. O trabalho por Simpson 1/3 é, aproximadamente:</p>",
+   "alternativas": [
+    "252,0 kN·m",
+    "254,7 kN·m",
+    "276,0 kN·m",
+    "127,3 kN·m"
+   ],
+   "correta": 1,
+   "formulas": [
+    "S = (h/3)[f₀ + 4Σ_ímpar + 2Σ_par + f_n]"
+   ],
+   "explicacao": "<div class=\"passo\">S = (2/3)[0 + 4(12+26+27) + 2(21+28) + 24]</div><div class=\"passo\">= (2/3)(382) = <strong>254,7</strong></div><p>252 é o resultado da regra dos trapézios.</p>"
+  },
+  {
+   "id": "cn-069",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "cotes",
+   "enunciado": "<p>Em uma função convexa no intervalo, a regra dos trapézios:</p>",
+   "alternativas": [
+    "superestima a integral, pois a corda fica acima da curva",
+    "subestima a integral, pois a corda fica abaixo da curva",
+    "é sempre exata",
+    "pode dar qualquer resultado, sem relação com a curvatura"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Em função convexa, f″ &gt; 0 e E<sub>T</sub> = I − T é negativo.</p>"
+  },
+  {
+   "id": "cn-070",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "gauss-quad",
+   "enunciado": "<p>A quadratura de Gauss com n nós integra exatamente polinômios de grau até:</p>",
+   "alternativas": [
+    "n",
+    "n − 1",
+    "2n + 1",
+    "2n − 1"
+   ],
+   "correta": 3,
+   "explicacao": "<p>São 2n parâmetros livres (n nós e n pesos), o que permite fixar 2n condições.</p>"
+  },
+  {
+   "id": "cn-071",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gauss-quad",
+   "enunciado": "<p>Para mudar a integração de [0, 2] para [−1, 1], usa-se:</p>",
+   "alternativas": [
+    "x = 2t, com fator 2",
+    "x = t, com fator 1/2",
+    "x = 1 + t, com fator (b − a)/2 = 1",
+    "x = 1 − 2t, com fator 2"
+   ],
+   "correta": 2,
+   "explicacao": "<div class=\"passo\">x = (b + a)/2 + (b − a)t/2 = 1 + t</div><div class=\"passo\">Fator (b − a)/2 = 1</div>"
+  },
+  {
+   "id": "cn-072",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gauss-quad",
+   "enunciado": "<p>A regra de Gauss com dois pontos em [−1, 1] tem nós e pesos:</p>",
+   "alternativas": [
+    "t = ±1 e pesos iguais a 1",
+    "t = ±0,7746 e pesos iguais a 5/9",
+    "t = ±0,5774 e pesos iguais a 1",
+    "t = 0 e peso igual a 2"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Os nós são ±1/√3. A regra exata até o grau 3 é obtida resolvendo as quatro condições dos momentos.</p>"
+  },
+  {
+   "id": "cn-073",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "gauss-quad",
+   "enunciado": "<p>Para ∫₀¹ e<sup>−x²</sup> dx com dois nós de Gauss, usando f(0,2113) = 0,9563 e f(0,7887) = 0,5369, o resultado é:</p>",
+   "alternativas": [
+    "1,4932",
+    "0,7466",
+    "0,7788",
+    "0,7469"
+   ],
+   "correta": 1,
+   "formulas": [
+    "∫ₐᵇ f dx = ((b−a)/2) Σ w_i f(x_i)"
+   ],
+   "explicacao": "<div class=\"passo\">O fator de mudança de intervalo é 1/2 e os pesos são 1</div><div class=\"passo\">G = (0,9563 + 0,5369)/2 = <strong>0,7466</strong></div><p>1,4932 esquece o fator 1/2.</p>"
+  },
+  {
+   "id": "cn-074",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gauss-quad",
+   "enunciado": "<p>A quadratura de Gauss não é adequada quando:</p>",
+   "alternativas": [
+    "a função só é conhecida em pontos tabelados igualmente espaçados",
+    "a função é suave e cara de avaliar",
+    "há singularidade integrável em um extremo",
+    "o polinômio integrando tem grau baixo"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Os nós são pontos específicos que dificilmente constam de uma tabela medida.</p>"
+  },
+  {
+   "id": "cn-075",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "gauss-quad",
+   "enunciado": "<p>Comparando Simpson (n = 2) e Gauss (3 nós), ambos com três avaliações de f, para ∫₀¹ e<sup>−x²</sup> dx, assinale o correto:</p>",
+   "alternativas": [
+    "Os dois têm o mesmo erro, pois usam o mesmo número de avaliações",
+    "Simpson é mais preciso porque usa os extremos",
+    "Gauss erra mais porque seus nós não incluem os extremos",
+    "Gauss erra cerca de 9,5×10⁻⁶, e Simpson, 3,6×10⁻⁴, porque Gauss escolhe também os nós"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Três nós de Gauss são exatos até o grau 5; Simpson com três pontos, até o grau 3.</p>"
+  }
+ ]
+}
