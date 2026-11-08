@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "metodos-numericos",
     "calculo-numerico",
     "processos-de-fabricacao-2",
     "circuitos-eletricos",
@@ -311,7 +312,7 @@
       "periodo": "5",
       "materia": "Matemática, Estatística e Computação",
       "pasta": "5°- Métodos Numéricos",
-      "resumo": "Métodos numéricos aplicados a EDOs, EDPs, autovalores e otimização.",
+      "resumo": "Métodos numéricos para equações diferenciais: Runge-Kutta, rigidez, problemas de contorno, autovalores, difusão e advecção.",
       "temas": [
         "EDO",
         "Runge-Kutta",
@@ -320,7 +321,7 @@
       ],
       "simuladores": true,
       "normas": false,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "termodinamica",

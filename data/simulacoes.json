@@ -331,6 +331,56 @@
       "ordem": 3
     },
     {
+      "id": "sim-edo",
+      "slug": "metodos-numericos",
+      "disciplina": "Métodos Numéricos",
+      "periodo": "5",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "1. Euler, Heun e RK4 — a ordem do erro",
+      "resumo": "Os três métodos integram a mesma equação com o mesmo número de passos.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-massa",
+      "slug": "metodos-numericos",
+      "disciplina": "Métodos Numéricos",
+      "periodo": "5",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "2. Sistema massa-mola amortecido",
+      "resumo": "A equação de segunda ordem é resolvida como sistema.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-rigidez",
+      "slug": "metodos-numericos",
+      "disciplina": "Métodos Numéricos",
+      "periodo": "5",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "3. Rigidez — quando o passo é preso pela parte que já morreu",
+      "resumo": "O problema y′ = λ(y − cos t) − sen t tem solução cos t mais um transitório que decai com λ.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-calor",
+      "slug": "metodos-numericos",
+      "disciplina": "Métodos Numéricos",
+      "periodo": "5",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "4. Barra aquecida — FTCS, BTCS e Crank-Nicolson",
+      "resumo": "A barra parte de 0 °C, com as pontas a 150 °C e 50 °C.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-adveccao",
+      "slug": "metodos-numericos",
+      "disciplina": "Métodos Numéricos",
+      "periodo": "5",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "5. Advecção — upwind, Lax-Friedrichs e Lax-Wendroff",
+      "resumo": "Um pulso é transportado em domínio periódico e deveria voltar idêntico.",
+      "ordem": 4
+    },
+    {
       "id": "sim-saturacao",
       "slug": "termodinamica",
       "disciplina": "Termodinâmica",

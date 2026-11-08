@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Métodos Numéricos — Engenharia Mecânica</title>
+<meta name="description" content="Métodos numéricos para equações diferenciais: Euler, Runge-Kutta, multipasso, rigidez, problemas de contorno, autovalores, classificação de EDPs, difusão e advecção, em formato de livro, com simuladores e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">5º período · Engenharia Mecânica</p>
+    <h1>Métodos Numéricos</h1>
+    <p class="lead">Como transformar as equações diferenciais da engenharia em contas que o computador consegue fazer. Este texto está organizado como um livro: treze capítulos em sequência, do método de Euler à advecção, sempre com a pergunta de se a resposta numérica é consistente, estável e convergente.</p>
+    <div class="btn-row">
+      <span class="tag accent">13 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">77 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">13 figuras interativas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai do problema mais simples ao mais exigente: equações diferenciais ordinárias com valor inicial, depois problemas de contorno e autovalores e, por fim, equações diferenciais parciais de difusão e de transporte.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: quando o tempo entra na conta</h2>
+        <p>Quase toda lei da engenharia é uma equação diferencial: a segunda lei de Newton, a condução de calor de Fourier, o balanço de massa em um escoamento. Só as versões mais simples têm solução fechada. Com não linearidade, geometria real ou coeficientes variáveis, a resposta é numérica.</p>
+        <p>Resolver numericamente é trocar o contínuo por uma malha. A disciplina gira em torno de três perguntas, que voltam em todos os capítulos: a equação discreta representa a original (<strong>consistência</strong>), os erros ficam limitados ao avançar (<strong>estabilidade</strong>) e a resposta tende à exata quando a malha é refinada (<strong>convergência</strong>).</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se o problema é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Evolução no tempo a partir de um estado inicial</td><td>Euler, Heun, Runge-Kutta</td><td>1 a 3</td></tr>
+            <tr><td>Equação de ordem alta ou várias variáveis</td><td>Redução a sistema de primeira ordem</td><td>4</td></tr>
+            <tr><td>Função cara de avaliar</td><td>Métodos multipasso</td><td>5</td></tr>
+            <tr><td>Escalas de tempo muito diferentes</td><td>Rigidez e métodos implícitos</td><td>6</td></tr>
+            <tr><td>Condições nas duas extremidades</td><td>Tiro e diferenças finitas</td><td>7</td></tr>
+            <tr><td>Frequências naturais</td><td>Autovalores</td><td>8</td></tr>
+            <tr><td>Que tipo de EDP é esta?</td><td>Classificação e problema bem-posto</td><td>9</td></tr>
+            <tr><td>Como montar a equação discreta?</td><td>Séries de Taylor e consistência</td><td>10</td></tr>
+            <tr><td>Difusão de calor</td><td>FTCS, implícito, Crank-Nicolson</td><td>11 e 12</td></tr>
+            <tr><td>Transporte de uma frente</td><td>Upwind, Lax-Wendroff, CFL</td><td>13</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Pré-requisito</strong>
+          Este texto supõe erros, sistemas lineares e interpolação da disciplina de Cálculo Numérico. Em especial, o algoritmo de Thomas e o conceito de ordem de convergência são usados sem nova explicação detalhada.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Problemas de valor inicial" data-topicos="euler">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Valor inicial e método de Euler</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>formular um problema de valor inicial;</li>
+            <li>aplicar o método de Euler;</li>
+            <li>distinguir erro local de erro global;</li>
+            <li>prever como o erro responde ao passo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Série de Taylor e noção de equação diferencial.</p></div>
+        </div>
+
+        <h3 id="s1-1"><span class="num">1.1</span>O problema</h3>
+        <p>Um <strong>problema de valor inicial</strong> (PVI) pede a função <span data-tex-inline="y(x)"></span> que satisfaz</p>
+        <div class="formula"><span data-tex="\frac{dy}{dx} = f(x, y), \qquad y(x_0) = y_0"></span></div>
+        <p>Geometricamente, <span data-tex-inline="f"></span> define em cada ponto do plano a inclinação da solução que passa por ali. Resolver numericamente é caminhar por esse campo de direções, em passos de tamanho <span data-tex-inline="h"></span>.</p>
+
+        <h3 id="s1-2"><span class="num">1.2</span>O método de Euler</h3>
+        <p>A receita mais simples é seguir a inclinação do ponto atual durante todo o passo:</p>
+        <div class="formula"><span data-tex="y_{i+1} = y_i + h\,f(x_i, y_i)"></span></div>
+        <div class="fig-host" id="fig-1-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Euler com passo grande</div>
+          <p>Integre <span data-tex-inline="y' = -2x^3 + 12x^2 - 20x + 8{,}5"></span>, com <span data-tex-inline="y(0) = 1"></span> e <span data-tex-inline="h = 0{,}5"></span>. A solução exata é <span data-tex-inline="y = -0{,}5x^4 + 4x^3 - 10x^2 + 8{,}5x + 1"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <div class="table-scroll"><table class="data">
+              <thead><tr><th class="num">x</th><th class="num">Euler</th><th class="num">Exata</th><th class="num">Erro</th></tr></thead>
+              <tbody>
+                <tr><td class="num">0,5</td><td class="num">5,250</td><td class="num">3,219</td><td class="num">−2,031</td></tr>
+                <tr><td class="num">1,0</td><td class="num">5,875</td><td class="num">3,000</td><td class="num">−2,875</td></tr>
+                <tr><td class="num">1,5</td><td class="num">5,125</td><td class="num">2,219</td><td class="num">−2,906</td></tr>
+                <tr><td class="num">2,0</td><td class="num">4,500</td><td class="num">2,000</td><td class="num">−2,500</td></tr>
+              </tbody>
+            </table></div>
+            <p class="resposta">O primeiro passo: y₁ = 1 + 0,5 · 8,5 = 5,25. A forma geral é capturada, mas o erro relativo chega a 131 % em x = 1,5.</p>
+          </details>
+        </div>
+
+        <h3 id="s1-3"><span class="num">1.3</span>Erro local e erro global</h3>
+        <p>Comparando o passo de Euler com a série de Taylor da solução, vê-se o que foi desprezado:</p>
+        <div class="formula"><span data-tex="y_{i+1} = y_i + h\,y'_i + \frac{h^2}{2}\,y''(\xi)"></span></div>
+        <p>O <strong>erro local</strong> de truncamento, cometido em um passo, é <span data-tex-inline="O(h^2)"></span>. Para chegar a um ponto fixo são necessários cerca de <span data-tex-inline="1/h"></span> passos e os erros se acumulam, de modo que o <strong>erro global</strong> é <span data-tex-inline="O(h)"></span>. Euler é um método de primeira ordem: reduzir o passo à metade reduz o erro à metade.</p>
+        <div class="callout warn">
+          <strong>A ordem do método é a do erro global</strong>
+          O método de ordem p tem erro local O(h<sup>p+1</sup>) e global O(h<sup>p</sup>). Confundir os dois é o erro mais comum em prova.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>PVI: equação de primeira ordem mais um estado inicial.</li>
+          <li>Euler usa a inclinação do início do passo.</li>
+          <li>Erro local O(h²) e global O(h).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que Euler subestima a solução de uma curva convexa crescente?</summary><p>Porque a inclinação do início do passo é a menor do intervalo, e a reta fica abaixo da curva.</p></details>
+          <details><summary>Quantas vezes mais passos para ganhar um dígito com Euler?</summary><p>Dez vezes: o erro global é proporcional a h.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Problemas de valor inicial" data-topicos="heun">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Heun, ponto médio e Runge-Kutta de 2ª ordem</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar o método de Heun e o de Euler modificado;</li>
+            <li>deduzir a família de métodos de segunda ordem;</li>
+            <li>entender o custo extra de uma ordem a mais.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Método de Euler.</p></div>
+        </div>
+        <h3 id="s2-1"><span class="num">2.1</span>Melhorar a inclinação</h3>
+        <p>Euler erra porque usa a inclinação de uma só extremidade. O <strong>método de Heun</strong> usa a média entre as inclinações do início e de uma estimativa do fim:</p>
+        <div class="formula"><span data-tex="k_1 = f(x_i, y_i), \quad k_2 = f(x_i + h,\ y_i + h k_1), \quad y_{i+1} = y_i + \frac{h}{2}(k_1 + k_2)"></span></div>
+        <p>O <strong>Euler modificado</strong> (ponto médio) usa a inclinação no meio do passo:</p>
+        <div class="formula"><span data-tex="k_1 = f(x_i, y_i), \quad y_{i+1} = y_i + h\,f\!\left(x_i + \tfrac{h}{2},\ y_i + \tfrac{h}{2} k_1\right)"></span></div>
+        <div class="fig-host" id="fig-2-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Um passo com h = 1</div>
+          <p>Para <span data-tex-inline="y' = 4e^{0{,}8x} - 0{,}5y"></span> com <span data-tex-inline="y(0) = 2"></span>, calcule <span data-tex-inline="y(1)"></span>. O valor exato é 6,1946.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="k_1 = 4 - 0{,}5(2) = 3"></span>.</li>
+              <li>Preditor: <span data-tex-inline="y^0 = 2 + 1 \cdot 3 = 5"></span>, valor que o Euler daria.</li>
+              <li><span data-tex-inline="k_2 = 4e^{0{,}8} - 0{,}5(5) = 6{,}4022"></span>.</li>
+              <li><span data-tex-inline="y_1 = 2 + (3 + 6{,}4022)/2 = 6{,}7011"></span>.</li>
+            </ol>
+            <p class="resposta">Euler: 5,000 (erro de 19 %). Heun: 6,701 (8,2 %). Ponto médio: 6,217 (0,4 %).</p>
+          </details>
+        </div>
+        <h3 id="s2-2"><span class="num">2.2</span>A família de segunda ordem</h3>
+        <p>Com a forma <span data-tex-inline="y_{i+1} = y_i + h(a_1 k_1 + a_2 k_2)"></span> e <span data-tex-inline="k_2 = f(x_i + p h,\ y_i + q h k_1)"></span>, a igualdade com Taylor até <span data-tex-inline="h^2"></span> dá três condições para quatro incógnitas:</p>
+        <div class="formula"><span data-tex="a_1 + a_2 = 1, \qquad a_2\,p = \tfrac{1}{2}, \qquad a_2\,q = \tfrac{1}{2}"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Método</th><th class="num">a₂</th><th class="num">a₁</th><th class="num">p = q</th></tr></thead>
+          <tbody>
+            <tr><td>Heun</td><td class="num">1/2</td><td class="num">1/2</td><td class="num">1</td></tr>
+            <tr><td>Ponto médio</td><td class="num">1</td><td class="num">0</td><td class="num">1/2</td></tr>
+            <tr><td>Ralston</td><td class="num">2/3</td><td class="num">1/3</td><td class="num">3/4</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Sobra um grau de liberdade, e é por isso que há infinitos métodos de segunda ordem. Todos têm erro global <span data-tex-inline="O(h^2)"></span> e custam duas avaliações de <span data-tex-inline="f"></span> por passo.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Heun faz a média das inclinações das duas pontas.</li>
+          <li>O ponto médio usa a inclinação do centro do passo.</li>
+          <li>Ambos têm erro global O(h²) com duas avaliações de f.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Se f depende só de x, Heun equivale a qual regra de integração?</summary><p>À regra do trapézio. O ponto médio, nesse caso, equivale à regra do retângulo central.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Problemas de valor inicial" data-topicos="rk">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Runge-Kutta de 4ª ordem e tabela de Butcher</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar o RK4 clássico;</li>
+            <li>ler e escrever uma tabela de Butcher;</li>
+            <li>medir a ordem de um método;</li>
+            <li>escolher o passo com erro controlado.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Métodos de segunda ordem.</p></div>
+        </div>
+        <h3 id="s3-1"><span class="num">3.1</span>O RK4 clássico</h3>
+        <div class="formula"><span data-tex="k_1 = f(x_i, y_i), \quad k_2 = f(x_i + \tfrac{h}{2},\ y_i + \tfrac{h}{2} k_1)"></span></div>
+        <div class="formula"><span data-tex="k_3 = f(x_i + \tfrac{h}{2},\ y_i + \tfrac{h}{2} k_2), \quad k_4 = f(x_i + h,\ y_i + h k_3)"></span></div>
+        <div class="formula"><span data-tex="y_{i+1} = y_i + \frac{h}{6}\,(k_1 + 2k_2 + 2k_3 + k_4)"></span></div>
+        <div class="fig-host" id="fig-3-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>RK4 com h = 0,5</div>
+          <p>Para o mesmo problema do exemplo 2.1, calcule <span data-tex-inline="y(0{,}5)"></span>. O valor exato é 3,75152.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="k_1 = 3"></span>.</li>
+              <li><span data-tex-inline="k_2 = f(0{,}25;\ 2{,}75) = 3{,}5106"></span>.</li>
+              <li><span data-tex-inline="k_3 = f(0{,}25;\ 2{,}8777) = 3{,}4468"></span>.</li>
+              <li><span data-tex-inline="k_4 = f(0{,}5;\ 3{,}7234) = 4{,}1056"></span>.</li>
+              <li><span data-tex-inline="y_1 = 2 + \frac{0{,}5}{6}(3 + 2 \cdot 3{,}5106 + 2 \cdot 3{,}4468 + 4{,}1056) = 3{,}7517"></span>.</li>
+            </ol>
+            <p class="resposta">y(0,5) = 3,75170, com erro de 1,8×10⁻⁴.</p>
+          </details>
+        </div>
+        <h3 id="s3-2"><span class="num">3.2</span>Tabela de Butcher</h3>
+        <p>Todo método de Runge-Kutta fica definido por três conjuntos de coeficientes:</p>
+        <div class="formula"><span data-tex="k_i = f\!\Big(x_n + c_i h,\ y_n + h\sum_j a_{ij} k_j\Big), \qquad y_{n+1} = y_n + h\sum_i b_i k_i"></span></div>
+        <div class="formula"><span data-tex="\begin{array}{c|cccc} 0 \\ 1/2 & 1/2 \\ 1/2 & 0 & 1/2 \\ 1 & 0 & 0 & 1 \\ \hline & 1/6 & 1/3 & 1/3 & 1/6 \end{array}"></span></div>
+        <p>Se a matriz <span data-tex-inline="a_{ij}"></span> é triangular inferior estrita, o método é explícito. As condições de ordem são equações sobre esses coeficientes; as duas primeiras são <span data-tex-inline="\sum b_i = 1"></span> e <span data-tex-inline="\sum b_i c_i = 1/2"></span>.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ordem desejada</th><td class="num">1</td><td class="num">2</td><td class="num">3</td><td class="num">4</td><td class="num">5</td><td class="num">6</td></tr></thead>
+          <tbody>
+            <tr><th>Mínimo de estágios explícitos</th><td class="num">1</td><td class="num">2</td><td class="num">3</td><td class="num">4</td><td class="num">6</td><td class="num">7</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A partir da ordem 5, é preciso mais estágios do que a ordem. Por isso o RK4 é o ponto de equilíbrio clássico.</p>
+        <h3 id="s3-3"><span class="num">3.3</span>A ordem na prática</h3>
+        <p>Erro em <span data-tex-inline="x = 4"></span> para o exemplo 2.1, ao dobrar o número de passos:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th class="num">Passos</th><th class="num">Euler</th><th class="num">Heun</th><th class="num">RK4</th></tr></thead>
+          <tbody>
+            <tr><td class="num">4</td><td class="num">18,49</td><td class="num">8,00</td><td class="num">0,1002</td></tr>
+            <tr><td class="num">8</td><td class="num">9,27</td><td class="num">1,90</td><td class="num">6,37×10⁻³</td></tr>
+            <tr><td class="num">16</td><td class="num">4,62</td><td class="num">0,459</td><td class="num">3,97×10⁻⁴</td></tr>
+            <tr><td class="num">32</td><td class="num">2,31</td><td class="num">0,113</td><td class="num">2,47×10⁻⁵</td></tr>
+            <tr><td>Razão ao dobrar</td><td class="num">≈ 2</td><td class="num">≈ 4</td><td class="num">≈ 16</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div id="sim-edo" class="sim"></div>
+        <h3 id="s3-4"><span class="num">3.4</span>Passo adaptativo</h3>
+        <p>Pares embutidos, como o Runge-Kutta-Fehlberg e o Dormand-Prince, usam os mesmos estágios para duas fórmulas de ordens diferentes. A diferença entre elas estima o erro, e o passo é ajustado automaticamente, encurtando onde a solução muda rápido. A função <code>ode</code> do Scilab e o <code>ode45</code> do MATLAB trabalham desse modo.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>RK4: quatro inclinações, erro global O(h⁴).</li>
+          <li>A tabela de Butcher descreve qualquer método de Runge-Kutta.</li>
+          <li>Acima da ordem 4, os estágios superam a ordem.</li>
+          <li>Pares embutidos estimam o erro e adaptam o passo.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Vale mais usar Euler com h/4 ou RK4 com h?</summary><p>Os dois custam quatro avaliações de f por unidade de h. O RK4 é, quase sempre, muito mais preciso.</p></details>
+          <details><summary>Quando f só depende de x, a que regra o RK4 se reduz?</summary><p>À regra de Simpson com h/2, pois k₂ = k₃.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — Problemas de valor inicial" data-topicos="sistemas">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Sistemas e equações de ordem superior</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reduzir uma EDO de ordem n a um sistema;</li>
+            <li>aplicar RK4 a um sistema massa-mola amortecido;</li>
+            <li>distinguir erro de fase de erro de amplitude.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>RK4 e vibração de um grau de liberdade.</p></div>
+        </div>
+        <h3 id="s4-1"><span class="num">4.1</span>Redução de ordem</h3>
+        <p>Qualquer EDO de ordem <em>n</em> vira um sistema de <em>n</em> equações de primeira ordem. Para um sistema massa-mola com amortecimento, definindo a velocidade <span data-tex-inline="z = y'"></span>:</p>
+        <div class="formula"><span data-tex="m\,y'' + c\,y' + k\,y = 0 \;\Rightarrow\; \begin{cases} y' = z \\ z' = -(c\,z + k\,y)/m \end{cases}"></span></div>
+        <p>Os métodos dos capítulos anteriores se aplicam com a única diferença de que <span data-tex-inline="y"></span> e <span data-tex-inline="k_i"></span> são vetores. Atenção à ordem: é preciso calcular <span data-tex-inline="k_1"></span> de <em>todas</em> as variáveis antes de passar a <span data-tex-inline="k_2"></span>.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Um passo de RK4 no sistema massa-mola</div>
+          <p>Com <span data-tex-inline="m = 1"></span>, <span data-tex-inline="c = 1"></span>, <span data-tex-inline="k = 1{,}5"></span>, <span data-tex-inline="y(0) = 1"></span>, <span data-tex-inline="z(0) = 0"></span> e <span data-tex-inline="h = 0{,}1"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="k_1 = (0;\ -1{,}5)"></span>.</li>
+              <li><span data-tex-inline="k_2 = (-0{,}075;\ -1{,}425)"></span>.</li>
+              <li><span data-tex-inline="k_3 = (-0{,}07125;\ -1{,}423125)"></span>.</li>
+              <li><span data-tex-inline="k_4 = (-0{,}14231;\ -1{,}347)"></span>.</li>
+              <li><span data-tex-inline="y_1 = 1 + \frac{0{,}1}{6}(0 - 0{,}15 - 0{,}1425 - 0{,}14231) = 0{,}992753"></span>.</li>
+            </ol>
+            <p class="resposta">y(0,1) = 0,992753, igual à solução analítica até a sexta casa. Em t = 1, o RK4 dá 0,509247 (exata: 0,509246), e Euler, 0,513613.</p>
+          </details>
+        </div>
+        <div class="fig-host" id="fig-4-1"></div>
+        <div id="sim-massa" class="sim"></div>
+        <div class="callout warn">
+          <strong>Euler explícito injeta energia em osciladores</strong>
+          Sem amortecimento, a solução exata é uma elipse no plano de fase, e o Euler produz uma espiral que cresce: a amplitude aumenta a cada ciclo. Em dinâmica de estruturas e de órbitas, o método explícito de primeira ordem é inadequado.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Ordem n vira n equações de primeira ordem.</li>
+          <li>Os k são vetores, avaliados com todas as variáveis no mesmo estágio.</li>
+          <li>Em osciladores, olhe também a energia, e não só a posição.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quantas condições iniciais uma EDO de 3ª ordem exige?</summary><p>Três: y, y′ e y″ no instante inicial.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte I — Problemas de valor inicial" data-topicos="multipasso">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Métodos multipasso</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>deduzir Adams-Bashforth e Adams-Moulton;</li>
+            <li>aplicar um par preditor-corretor;</li>
+            <li>comparar os métodos de Milne e de Hamming.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Interpolação polinomial e Runge-Kutta.</p></div>
+        </div>
+        <h3 id="s5-1"><span class="num">5.1</span>Aproveitar o passado</h3>
+        <p>Runge-Kutta descarta as avaliações intermediárias ao fim de cada passo. Os métodos multipasso guardam os valores de <span data-tex-inline="f"></span> de passos anteriores e interpolam-nos. Cada novo passo custa apenas uma ou duas avaliações, seja qual for a ordem.</p>
+        <div class="formula"><span data-tex="\text{AB2:}\quad y_{n+1} = y_n + \frac{h}{2}\,(3f_n - f_{n-1})"></span></div>
+        <div class="formula"><span data-tex="\text{AM2:}\quad y_{n+1} = y_n + \frac{h}{2}\,(f_{n+1} + f_n)"></span></div>
+        <div class="fig-host" id="fig-5-1"></div>
+        <p>Adams-Bashforth é explícito e Adams-Moulton é implícito (<span data-tex-inline="f_{n+1}"></span> depende da incógnita). Em par, o primeiro prevê e o segundo corrige, e a diferença entre os dois valores estima o erro.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Preditor-corretor de segunda ordem</div>
+          <p>Para <span data-tex-inline="y' = 4e^{0{,}8x} - 0{,}5y"></span>, <span data-tex-inline="y(0) = 2"></span> e <span data-tex-inline="h = 0{,}5"></span>, com <span data-tex-inline="y_1 = 3{,}7517"></span> do RK4, calcule <span data-tex-inline="y(1)"></span>. O valor exato é 6,1946.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="f_0 = 3"></span> e <span data-tex-inline="f_1 = 4{,}0914"></span>.</li>
+              <li>Preditor AB2: <span data-tex-inline="y_2^p = 3{,}7517 + 0{,}25(3 \cdot 4{,}0914 - 3) = 6{,}0703"></span>.</li>
+              <li><span data-tex-inline="f_2^p = f(1;\ 6{,}0703) = 5{,}8670"></span>.</li>
+              <li>Corretor AM2: <span data-tex-inline="y_2 = 3{,}7517 + 0{,}25(5{,}8670 + 4{,}0914) = 6{,}2413"></span>.</li>
+            </ol>
+            <p class="resposta">y(1) ≈ 6,2413, com erro de 0,75 %, gastando duas avaliações de f nesse passo.</p>
+          </details>
+        </div>
+        <h3 id="s5-2"><span class="num">5.2</span>Fórmulas de quarta ordem</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Método</th><th>Fórmula</th></tr></thead>
+          <tbody>
+            <tr><td>Adams-Bashforth (preditor)</td><td><span data-tex-inline="y_{n+1} = y_n + \frac{h}{24}(55f_n - 59f_{n-1} + 37f_{n-2} - 9f_{n-3})"></span></td></tr>
+            <tr><td>Adams-Moulton (corretor)</td><td><span data-tex-inline="y_{n+1} = y_n + \frac{h}{24}(9f_{n+1} + 19f_n - 5f_{n-1} + f_{n-2})"></span></td></tr>
+            <tr><td>Milne (preditor)</td><td><span data-tex-inline="y_{n+1} = y_{n-3} + \frac{4h}{3}(2f_n - f_{n-1} + 2f_{n-2})"></span></td></tr>
+            <tr><td>Milne (corretor)</td><td><span data-tex-inline="y_{n+1} = y_{n-1} + \frac{h}{3}(f_{n+1} + 4f_n + f_{n-1})"></span></td></tr>
+            <tr><td>Hamming (corretor)</td><td><span data-tex-inline="y_{n+1} = \frac{9y_n - y_{n-2}}{8} + \frac{3h}{8}(f_{n+1} + 2f_n - f_{n-1})"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Milne tem erro pequeno, mas é <strong>fracamente estável</strong>: a raiz espúria da sua equação característica faz crescer uma oscilação em problemas com solução decrescente. Hamming foi criado para corrigir exatamente isso.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th></th><th>Runge-Kutta</th><th>Multipasso</th></tr></thead>
+          <tbody>
+            <tr><td>Inicialização</td><td>Só precisa de y₀</td><td>Precisa de outro método para os primeiros pontos</td></tr>
+            <tr><td>Mudar o passo</td><td>Trivial</td><td>Exige reinterpolar o histórico</td></tr>
+            <tr><td>Custo por passo</td><td>Vários f</td><td>Um ou dois f</td></tr>
+            <tr><td>Quando vale a pena</td><td>Função barata, passo variável</td><td>Função cara, solução suave</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Multipasso reutiliza f já calculados.</li>
+          <li>Não é auto-iniciável: usa-se RK nos primeiros passos.</li>
+          <li>O par preditor-corretor fornece uma estimativa do erro.</li>
+          <li>Milne é fracamente estável; Hamming resolve o problema.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que os coeficientes de AB4 somam 24/24?</summary><p>Para que o método integre exatamente a função constante: 55 − 59 + 37 − 9 = 24. É a condição de consistência.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte I — Problemas de valor inicial" data-topicos="estabilidade">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Estabilidade e rigidez</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>definir consistência, estabilidade e convergência;</li>
+            <li>calcular regiões de estabilidade;</li>
+            <li>reconhecer um problema rígido;</li>
+            <li>aplicar o Euler implícito.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Runge-Kutta e números complexos.</p></div>
+        </div>
+        <h3 id="s6-1"><span class="num">6.1</span>A equação-teste</h3>
+        <p>Aplica-se o método a <span data-tex-inline="y' = \lambda y"></span>, com <span data-tex-inline="\text{Re}(\lambda) \lt 0"></span>. Cada passo multiplica a solução por um fator de amplificação <span data-tex-inline="R(z)"></span>, com <span data-tex-inline="z = h\lambda"></span>. O método é estável quando <span data-tex-inline="|R(z)| \le 1"></span>.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Método</th><th>R(z)</th><th>Intervalo real estável</th></tr></thead>
+          <tbody>
+            <tr><td>Euler explícito</td><td><span data-tex-inline="1 + z"></span></td><td>−2 &lt; z &lt; 0</td></tr>
+            <tr><td>Heun / RK2</td><td><span data-tex-inline="1 + z + z^2/2"></span></td><td>−2 &lt; z &lt; 0</td></tr>
+            <tr><td>RK4</td><td><span data-tex-inline="1 + z + \frac{z^2}{2} + \frac{z^3}{6} + \frac{z^4}{24}"></span></td><td>−2,785 &lt; z &lt; 0</td></tr>
+            <tr><td>Euler implícito</td><td><span data-tex-inline="1/(1 - z)"></span></td><td>Todo z &lt; 0</td></tr>
+            <tr><td>Trapézio</td><td><span data-tex-inline="(1 + z/2)/(1 - z/2)"></span></td><td>Todo z &lt; 0</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-6-1"></div>
+        <h3 id="s6-2"><span class="num">6.2</span>Consistência, estabilidade, convergência</h3>
+        <p>Um método é <strong>consistente</strong> se o erro de truncamento tende a zero com <span data-tex-inline="h"></span>, e <strong>estável</strong> se os erros não crescem sem limite. Para métodos lineares, consistência e estabilidade juntas equivalem a <strong>convergência</strong>. É o mesmo princípio que o teorema de Lax estabelece para as EDPs (capítulo 10).</p>
+        <h3 id="s6-3"><span class="num">6.3</span>Rigidez</h3>
+        <p>Um sistema é <strong>rígido</strong> quando tem escalas de tempo muito diferentes. A componente rápida morre logo, mas continua limitando o passo dos métodos explícitos durante toda a simulação.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>λ = −1000</div>
+          <p>Resolva <span data-tex-inline="y' = -1000y + 3000 - 2000e^{-t}"></span>, com <span data-tex-inline="y(0) = 0"></span>. A solução é <span data-tex-inline="y = 3 - 0{,}998e^{-1000t} - 2{,}002e^{-t}"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Limite do Euler explícito: <span data-tex-inline="h \lt 2/1000 = 0{,}002"></span>.</li>
+              <li><span data-tex-inline="h = 0{,}0015"></span>: 1,50; 0,754; 1,132; 0,948; 1,044. Oscila, mas se amortece.</li>
+              <li><span data-tex-inline="h = 0{,}0025"></span>: 2,50; −1,24; 4,38; −4,03; 8,60. A sequência explode.</li>
+              <li>Euler implícito: <span data-tex-inline="y_{i+1} = \dfrac{y_i + h(3000 - 2000e^{-t_{i+1}})}{1 + 1000h}"></span>. Com <span data-tex-inline="h = 0{,}05"></span>, resulta 1,0760 em t = 0,05 (exata: 1,0956) e 1,1881 em t = 0,10 (exata: 1,1885).</li>
+            </ol>
+            <p class="resposta">O implícito aceita passo 25 vezes maior que o limite do explícito, ao preço de resolver uma equação a cada passo.</p>
+          </details>
+        </div>
+        <div id="sim-rigidez" class="sim"></div>
+        <div class="callout note">
+          <strong>Onde a rigidez aparece</strong>
+          Cinética química, circuitos com capacitores muito diferentes, modelos de transferência de calor com materiais distintos e, principalmente, EDPs semidiscretizadas. No Scilab, <code>ode("stiff", ...)</code> escolhe um método para esses casos.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Estabilidade: |R(hλ)| ≤ 1.</li>
+          <li>Métodos explícitos têm região limitada; o passo fica preso ao maior |λ|.</li>
+          <li>Implícitos A-estáveis aceitam passo guiado só pela precisão.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Com λ = −100, qual o maior h do RK4?</summary><p>h &lt; 2,785/100 = 0,02785.</p></details>
+          <details><summary>Estabilidade garante precisão?</summary><p>Não. O Euler implícito com passo enorme é estável e dá uma resposta ruim, pois perde o transitório.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Problemas de contorno e autovalores" data-topicos="contorno">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Problemas de valor de contorno</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar o método do tiro;</li>
+            <li>montar o sistema de diferenças finitas;</li>
+            <li>tratar condição de contorno com derivada.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>RK4, diferenças centradas e algoritmo de Thomas.</p></div>
+        </div>
+        <h3 id="s7-1"><span class="num">7.1</span>Condições nas duas pontas</h3>
+        <p>Considere uma aleta longa, com perda de calor para o ambiente e temperaturas fixas nas extremidades:</p>
+        <div class="formula"><span data-tex="\frac{d^2T}{dx^2} + h'(T_a - T) = 0, \quad T(0) = 40, \quad T(10) = 200"></span></div>
+        <p>com <span data-tex-inline="h' = 0{,}01"></span> e <span data-tex-inline="T_a = 20"></span>. Falta a inclinação inicial, e não se pode simplesmente avançar a partir de uma das extremidades.</p>
+        <h3 id="s7-2"><span class="num">7.2</span>Método do tiro</h3>
+        <p>Chuta-se a inclinação inicial <span data-tex-inline="z_0"></span>, integra-se como PVI e verifica-se onde a solução chega. Em problema linear, a resposta é uma função linear do chute: dois tiros bastam.</p>
+        <div class="fig-host" id="fig-7-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Dois tiros</div>
+          <p>Encontre a inclinação inicial que atinge T(10) = 200.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Com <span data-tex-inline="z = 10"></span>, RK4 dá <span data-tex-inline="T(10) = 168{,}38"></span>.</li>
+              <li>Com <span data-tex-inline="z = 20"></span>, dá <span data-tex-inline="T(10) = 285{,}90"></span>.</li>
+              <li><span data-tex-inline="z = 10 + \dfrac{200 - 168{,}38}{285{,}90 - 168{,}38}(10) = 12{,}690"></span>.</li>
+            </ol>
+            <p class="resposta">Com z = 12,690, a integração chega a T(10) = 200,00. Em problema não linear, itera-se, por exemplo, pela secante.</p>
+          </details>
+        </div>
+        <h3 id="s7-3"><span class="num">7.3</span>Diferenças finitas</h3>
+        <p>Trocando a derivada segunda pela diferença centrada, surge uma equação algébrica por nó:</p>
+        <div class="formula"><span data-tex="-T_{i-1} + (2 + h'\Delta x^2)\,T_i - T_{i+1} = h'\,\Delta x^2\,T_a"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.2</span>Quatro nós internos</div>
+          <p>Resolva com <span data-tex-inline="\Delta x = 2"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Diagonal: <span data-tex-inline="2 + 0{,}01 \cdot 4 = 2{,}04"></span>. Lado direito interno: <span data-tex-inline="0{,}8"></span>; nas pontas, <span data-tex-inline="40{,}8"></span> e <span data-tex-inline="200{,}8"></span>.</li>
+              <li>Thomas, ida: diagonais 2,04; 1,5498; 1,3948; 1,3230.</li>
+              <li>Volta: <span data-tex-inline="T_4 = 159{,}48"></span>, <span data-tex-inline="T_3 = 124{,}54"></span>, <span data-tex-inline="T_2 = 93{,}78"></span>, <span data-tex-inline="T_1 = 65{,}97"></span>.</li>
+            </ol>
+            <p class="resposta">Os valores exatos são 65,95; 93,75; 124,50; 159,45. Só quatro nós, e o erro é de menos de 0,04 %.</p>
+          </details>
+        </div>
+        <h3 id="s7-4"><span class="num">7.4</span>Condição com derivada</h3>
+        <p>Se a extremidade é isolada ou tem fluxo conhecido, <span data-tex-inline="T'(0) = q"></span>, cria-se um <strong>nó fantasma</strong> <span data-tex-inline="T_{-1}"></span>. A diferença centrada <span data-tex-inline="(T_1 - T_{-1})/(2\Delta x) = q"></span> elimina esse nó e mantém a segunda ordem do esquema.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Tiro: transforma o PVC em uma sequência de PVIs.</li>
+          <li>Diferenças finitas: geram um sistema tridiagonal.</li>
+          <li>Condição com derivada usa nó fantasma.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quantos tiros um PVC linear exige?</summary><p>Dois tiros para interpolar. A interpolação linear é exata, e um terceiro apenas confirma.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte II — Problemas de contorno e autovalores" data-topicos="autovalores">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Problemas de autovalores</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>montar o problema de frequências naturais;</li>
+            <li>aplicar o método da potência e o da potência inversa;</li>
+            <li>estimar a velocidade de convergência.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Sistemas lineares e vibrações.</p></div>
+        </div>
+        <h3 id="s8-1"><span class="num">8.1</span>De onde vêm</h3>
+        <p>Supondo movimento harmônico em um sistema de massas e molas, as derivadas desaparecem e resta <span data-tex-inline="A\,x = \lambda\,x"></span>, com <span data-tex-inline="\lambda = \omega^2"></span>. Autovalores são as frequências naturais ao quadrado, e autovetores são os modos de vibrar.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Duas massas e três molas</div>
+          <p>Com <span data-tex-inline="m = 40"></span> kg e <span data-tex-inline="k = 200"></span> N/m, tem-se <span data-tex-inline="A = \begin{bmatrix}10 & -5\\-5 & 10\end{bmatrix}"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="(10 - \lambda)^2 - 25 = 0"></span>, logo <span data-tex-inline="\lambda = 5"></span> e <span data-tex-inline="\lambda = 15"></span>.</li>
+              <li><span data-tex-inline="\omega_1 = 2{,}236"></span> rad/s e <span data-tex-inline="\omega_2 = 3{,}873"></span> rad/s, com períodos 2,81 s e 1,62 s.</li>
+            </ol>
+            <p class="resposta">Modo 1: (1, 1), as massas juntas. Modo 2: (1, −1), em oposição.</p>
+          </details>
+        </div>
+        <h3 id="s8-2"><span class="num">8.2</span>Método da potência</h3>
+        <p>Multiplicar repetidamente por <span data-tex-inline="A"></span> amplifica mais a componente do maior autovalor, e o vetor gira até o autovetor dominante:</p>
+        <div class="formula"><span data-tex="y = A\,x_k, \qquad \lambda_k = \max_i |y_i|, \qquad x_{k+1} = y/\lambda_k"></span></div>
+        <div class="fig-host" id="fig-8-1"></div>
+        <p>O erro cai a cada passo pela razão <span data-tex-inline="|\lambda_2/\lambda_1|"></span>. Na matriz acima, partindo de (1, 0), a estimativa evolui como 10; 12,5; 14; 14,64; 14,88, rumo a 15, com razão 1/3. Na matriz tridiagonal com 2 na diagonal e −1 fora, a razão é 0,586 e 12 passos são necessários para chegar a 3,4142.</p>
+        <div class="callout warn">
+          <strong>O chute pode não conter o modo</strong>
+          Partindo de (1, 1), que é exatamente o outro autovetor, o método fica preso em λ = 5. Usa-se um vetor inicial genérico, sem simetria especial.
+        </div>
+        <h3 id="s8-3"><span class="num">8.3</span>Menor autovalor e demais métodos</h3>
+        <p>Em engenharia, costuma interessar a <em>menor</em> frequência. O <strong>método da potência inversa</strong> aplica o processo a <span data-tex-inline="A^{-1}"></span>, cujo maior autovalor é <span data-tex-inline="1/\lambda_{min}"></span>: a cada iteração resolve-se <span data-tex-inline="A\,y = x_k"></span> com a LU já pronta. Com <strong>deslocamento</strong>, <span data-tex-inline="A - \sigma I"></span>, chega-se ao autovalor mais próximo de <span data-tex-inline="\sigma"></span>. Para o espectro completo, usa-se o algoritmo QR, que é o que a função <code>spec</code> do Scilab emprega.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>λ = ω²: autovalores dão as frequências e autovetores, os modos.</li>
+          <li>Potência: maior autovalor, com razão |λ₂/λ₁|.</li>
+          <li>Potência inversa: menor autovalor, com uma LU reaproveitada.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O que acontece com dois autovalores de módulos quase iguais?</summary><p>A razão fica perto de 1 e a convergência, muito lenta. Um deslocamento adequado melhora a separação.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Equações diferenciais parciais" data-topicos="classificacao">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Classificação de EDPs e problema bem-posto</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>classificar EDPs de segunda ordem;</li>
+            <li>interpretar as características;</li>
+            <li>escolher condições de contorno adequadas.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Derivadas parciais.</p></div>
+        </div>
+        <h3 id="s9-1"><span class="num">9.1</span>O discriminante</h3>
+        <p>Para a equação linear de segunda ordem em duas variáveis,</p>
+        <div class="formula"><span data-tex="A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + D\,u_x + E\,u_y + F\,u = G"></span></div>
+        <p>a classificação depende do sinal de <span data-tex-inline="\Delta = B^2 - 4AC"></span>, e só dos termos de maior ordem. As <strong>características</strong> são as curvas ao longo das quais a informação se propaga:</p>
+        <div class="formula"><span data-tex="\frac{dy}{dx} = \frac{B \pm \sqrt{B^2 - 4AC}}{2A}"></span></div>
+        <div class="fig-host" id="fig-9-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Δ</th><th>Características</th><th>Exemplo</th><th>Comportamento</th></tr></thead>
+          <tbody>
+            <tr><td>Hiperbólica</td><td>&gt; 0</td><td>Duas reais</td><td>Onda <span data-tex-inline="u_{tt} = c^2 u_{xx}"></span></td><td>Propaga com velocidade finita</td></tr>
+            <tr><td>Parabólica</td><td>= 0</td><td>Uma real</td><td>Calor <span data-tex-inline="u_t = \alpha u_{xx}"></span></td><td>Difunde e suaviza</td></tr>
+            <tr><td>Elíptica</td><td>&lt; 0</td><td>Complexas</td><td>Laplace <span data-tex-inline="u_{xx} + u_{yy} = 0"></span></td><td>Regime permanente, tudo influi em tudo</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A equação <span data-tex-inline="u_{xt} = 0"></span>, com <span data-tex-inline="B = 1"></span> e <span data-tex-inline="A = C = 0"></span>, é hiperbólica, embora não se pareça com a de onda: <span data-tex-inline="\Delta = 1"></span>.</p>
+        <h3 id="s9-2"><span class="num">9.2</span>Problema bem-posto</h3>
+        <p>Segundo Hadamard, um problema é <strong>bem-posto</strong> se tem solução, ela é única e depende continuamente dos dados. O conjunto de condições precisa combinar com o tipo da equação:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Domínio</th><th>Condições apropriadas</th></tr></thead>
+          <tbody>
+            <tr><td>Hiperbólica</td><td>Aberto no tempo</td><td>Condições iniciais (u e u<sub>t</sub>, na onda) e de contorno, conforme as características que entram</td></tr>
+            <tr><td>Parabólica</td><td>Aberto no tempo</td><td>Uma condição inicial e contorno em todo o bordo espacial</td></tr>
+            <tr><td>Elíptica</td><td>Fechado</td><td>Condição em todo o bordo: Dirichlet, Neumann ou Robin</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>A condição errada estraga a solução</strong>
+          Impor condição de Cauchy (valor e derivada) a uma elíptica gera um problema mal-posto: pequenas perturbações nos dados causam mudanças enormes na solução. Nenhum método numérico conserta isso.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Δ = B² − 4AC classifica a EDP.</li>
+          <li>Hiperbólica propaga, parabólica difunde, elíptica equilibra.</li>
+          <li>O tipo define as condições e também o método numérico.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A classificação pode mudar dentro do domínio?</summary><p>Sim, se os coeficientes variam. A equação de Tricomi, u<sub>xx</sub> · y + u<sub>yy</sub> = 0, é elíptica para y &gt; 0 e hiperbólica para y &lt; 0, como no escoamento transônico.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Equações diferenciais parciais" data-topicos="discretizacao">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Discretização e consistência</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>obter fórmulas de diferenças por Taylor;</li>
+            <li>usar a técnica geral dos coeficientes indeterminados;</li>
+            <li>verificar a consistência de um esquema;</li>
+            <li>enunciar o teorema de Lax.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Série de Taylor e derivação numérica.</p></div>
+        </div>
+        <h3 id="s10-1"><span class="num">10.1</span>Malha e notação</h3>
+        <p>A malha tem nós <span data-tex-inline="x_j = j\Delta x"></span> e instantes <span data-tex-inline="t^n = n\Delta t"></span>, e <span data-tex-inline="u_j^n"></span> representa a solução discreta. Uma molécula de cálculo (<em>stencil</em>) mostra quais nós participam da equação.</p>
+        <div class="fig-host" id="fig-10-1"></div>
+        <h3 id="s10-2"><span class="num">10.2</span>A técnica geral</h3>
+        <p>Para aproximar uma derivada com pontos escolhidos, escreve-se uma combinação de coeficientes desconhecidos, expande-se cada termo em Taylor e impõe-se a igualdade termo a termo.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Derivada segunda unilateral</div>
+          <p>Determine <em>a</em>, <em>b</em>, <em>c</em> e <em>d</em> em <span data-tex-inline="u_{xx} \approx a u_j + b u_{j+1} + c u_{j+2} + d u_{j+3}"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Termo em u: <span data-tex-inline="a + b + c + d = 0"></span>.</li>
+              <li>Termo em <span data-tex-inline="u_x"></span>: <span data-tex-inline="b + 2c + 3d = 0"></span>.</li>
+              <li>Termo em <span data-tex-inline="u_{xx}"></span>: <span data-tex-inline="(b + 4c + 9d)\,\Delta x^2/2 = 1"></span>.</li>
+              <li>Termo em <span data-tex-inline="u_{xxx}"></span>: <span data-tex-inline="b + 8c + 27d = 0"></span>.</li>
+              <li>Solução: <span data-tex-inline="(a,b,c,d) = (2,\ -5,\ 4,\ -1)/\Delta x^2"></span>.</li>
+            </ol>
+            <p class="resposta">O próximo termo é de ordem Δx²: a fórmula tem erro O(Δx²), com coeficiente −11/12 de u<sub>xxxx</sub>.</p>
+          </details>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.2</span>Comparação de acurácia</div>
+          <p>Para <span data-tex-inline="y = \text{sen}(x/2)"></span> em <span data-tex-inline="x = 0{,}5"></span> com <span data-tex-inline="\Delta x = 0{,}1"></span>. O valor exato é 0,484456.</p>
+          <details><summary>Ver solução</summary>
+            <div class="table-scroll"><table class="data">
+              <thead><tr><th>Fórmula</th><th class="num">Valor</th><th class="num">Erro</th></tr></thead>
+              <tbody>
+                <tr><td>Avançada, O(Δx)</td><td class="num">0,481162</td><td class="num">−3,3×10⁻³</td></tr>
+                <tr><td>Centrada, O(Δx²)</td><td class="num">0,484254</td><td class="num">−2,0×10⁻⁴</td></tr>
+                <tr><td>Centrada de 5 pontos, O(Δx⁴)</td><td class="num">0,484456</td><td class="num">−1,0×10⁻⁷</td></tr>
+              </tbody>
+            </table></div>
+            <p class="resposta">A cada ordem a mais, ganha-se mais de um dígito para este Δx.</p>
+          </details>
+        </div>
+        <h3 id="s10-3"><span class="num">10.3</span>Consistência e o teorema de Lax</h3>
+        <p>Substituindo a solução exata no esquema discreto, sobra o <strong>erro de truncamento</strong>. Para o FTCS aplicado à difusão:</p>
+        <div class="formula"><span data-tex="\tau = \frac{\Delta t}{2}u_{tt} - \alpha\frac{\Delta x^2}{12}u_{xxxx} + \dots"></span></div>
+        <p>O esquema é <strong>consistente</strong> se <span data-tex-inline="\tau \to 0"></span> quando <span data-tex-inline="\Delta x, \Delta t \to 0"></span>. O <strong>teorema de Lax</strong> liga as três propriedades:</p>
+        <div class="callout tip">
+          <strong>Teorema de equivalência de Lax</strong>
+          Para um problema linear de valor inicial bem-posto, com um esquema consistente, a estabilidade é condição necessária e suficiente para a convergência.
+        </div>
+        <p>A consequência prática é enorme: em vez de provar diretamente a convergência, verifica-se a consistência (Taylor) e a estabilidade (von Neumann, no próximo capítulo).</p>
+        <p>A ordem também pode ser conferida pela extrapolação de Richardson: rodar com malhas <span data-tex-inline="\Delta x"></span> e <span data-tex-inline="\Delta x/2"></span> e comparar os resultados, como no Cálculo Numérico.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Coeficientes indeterminados geram fórmulas em qualquer molécula.</li>
+          <li>Consistência: erro de truncamento tende a zero.</li>
+          <li>Lax: consistência e estabilidade equivalem a convergência.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um esquema consistente pode divergir?</summary><p>Sim, se for instável. O FTCS com r &gt; 1/2 é consistente, e a solução cresce sem limite.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte III — Equações diferenciais parciais" data-topicos="difusao">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Difusão: o esquema explícito e von Neumann</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar o FTCS à condução de calor;</li>
+            <li>deduzir o limite de estabilidade por von Neumann;</li>
+            <li>escolher o passo de tempo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 10 e noções de séries de Fourier.</p></div>
+        </div>
+        <h3 id="s11-1"><span class="num">11.1</span>O FTCS</h3>
+        <p>Avançado no tempo e centrado no espaço, para <span data-tex-inline="u_t = \alpha u_{xx}"></span>:</p>
+        <div class="formula"><span data-tex="u_j^{n+1} = u_j^n + r\,(u_{j+1}^n - 2u_j^n + u_{j-1}^n), \qquad r = \frac{\alpha\,\Delta t}{\Delta x^2}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Barra aquecida nas extremidades</div>
+          <p>Barra de <span data-tex-inline="L = 1"></span> m com <span data-tex-inline="\alpha = 0{,}001"></span> m²/s, inicialmente a 0 °C, com as pontas a 150 °C e 50 °C. Use <span data-tex-inline="\Delta x = 0{,}125"></span> m e <span data-tex-inline="r = 0{,}25"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\Delta t = r\Delta x^2/\alpha = 3{,}906"></span> s.</li>
+              <li>Passo 1, primeiro nó: <span data-tex-inline="0 + 0{,}25(0 - 0 + 150) = 37{,}50"></span>.</li>
+              <li>Passo 2: <span data-tex-inline="37{,}5 + 0{,}25(0 - 75 + 150) = 56{,}25"></span>; segundo nó: <span data-tex-inline="0{,}25 \cdot 37{,}5 = 9{,}375"></span>.</li>
+              <li>Passo 3: 67,97 e 18,75.</li>
+              <li>Em <span data-tex-inline="t = 101{,}6"></span> s: <span data-tex-inline="T(0{,}5) = 54{,}18"></span> °C. A solução por série de Fourier dá 53,28 °C.</li>
+            </ol>
+            <p class="resposta">Com apenas oito intervalos, a diferença é de 1,7 %. O regime permanente é a reta de 150 °C a 50 °C, com 100 °C no centro.</p>
+          </details>
+        </div>
+        <h3 id="s11-2"><span class="num">11.2</span>Análise de von Neumann</h3>
+        <p>Substitui-se um modo de Fourier <span data-tex-inline="u_j^n = G^n e^{i\theta j}"></span>, com <span data-tex-inline="\theta = k\Delta x"></span>. O esquema é estável se o fator de amplificação tiver módulo no máximo 1 para todo <span data-tex-inline="\theta"></span>:</p>
+        <div class="formula"><span data-tex="G = 1 - 4r\,\text{sen}^2(\theta/2), \qquad |G| \le 1 \;\Rightarrow\; r \le \frac{1}{2}"></span></div>
+        <div class="fig-host" id="fig-11-1"></div>
+        <p>O pior caso é <span data-tex-inline="\theta = \pi"></span>, a oscilação nó a nó, que é justamente o que se vê quando o esquema explode: com <span data-tex-inline="r = 0{,}6"></span>, após 40 passos, a barra acusa 2,3×10⁵ °C.</p>
+        <div id="sim-calor" class="sim"></div>
+        <div class="callout warn">
+          <strong>A restrição é severa</strong>
+          Como Δt ∝ Δx², refinar a malha por 2 exige quatro vezes mais passos. Em 2D, o limite é r<sub>x</sub> + r<sub>y</sub> ≤ 1/2, e, em 3D, r<sub>x</sub> + r<sub>y</sub> + r<sub>z</sub> ≤ 1/2.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>FTCS: um cálculo direto por nó, com r ≤ 1/2.</li>
+          <li>Von Neumann testa cada modo de Fourier com G.</li>
+          <li>Instabilidade aparece como oscilação de nó a nó.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Com α = 10⁻⁴ m²/s e Δx = 1 cm, qual o maior Δt?</summary><p>Δt ≤ 0,5 · (0,01)²/10⁻⁴ = 0,5 s.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 12 -->
+      <section class="section capitulo" id="cap-12" data-parte="Parte III — Equações diferenciais parciais" data-topicos="implicitos">
+        <p class="cap-kicker">Capítulo 12</p>
+        <h2>12. Métodos implícitos e equações elípticas</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar os esquemas BTCS e Crank-Nicolson;</li>
+            <li>usar direções alternadas em 2D;</li>
+            <li>resolver a equação de Laplace por Liebmann.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>FTCS e algoritmo de Thomas.</p></div>
+        </div>
+        <h3 id="s12-1"><span class="num">12.1</span>Totalmente implícito</h3>
+        <p>Avaliando a derivada espacial no instante novo, surge um sistema tridiagonal em cada passo:</p>
+        <div class="formula"><span data-tex="-r\,u_{j-1}^{n+1} + (1 + 2r)\,u_j^{n+1} - r\,u_{j+1}^{n+1} = u_j^n"></span></div>
+        <div class="formula"><span data-tex="G = \frac{1}{1 + 4r\,\text{sen}^2(\theta/2)}"></span></div>
+        <p>Como <span data-tex-inline="0 \lt G \le 1"></span> para todo <span data-tex-inline="r"></span>, o esquema é incondicionalmente estável, mas tem erro <span data-tex-inline="O(\Delta t)"></span>.</p>
+        <h3 id="s12-2"><span class="num">12.2</span>Crank-Nicolson</h3>
+        <p>Com a média entre os instantes novo e antigo, centrado em <span data-tex-inline="t^{n+1/2}"></span>, a ordem no tempo sobe para 2:</p>
+        <div class="formula"><span data-tex="-\tfrac{r}{2}u_{j-1}^{n+1} + (1 + r)u_j^{n+1} - \tfrac{r}{2}u_{j+1}^{n+1} = \tfrac{r}{2}u_{j-1}^n + (1 - r)u_j^n + \tfrac{r}{2}u_{j+1}^n"></span></div>
+        <div class="formula"><span data-tex="G = \frac{1 - 2r\,\text{sen}^2(\theta/2)}{1 + 2r\,\text{sen}^2(\theta/2)}"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Esquema</th><th>Ordem (t; x)</th><th>Estabilidade</th><th>Por passo</th></tr></thead>
+          <tbody>
+            <tr><td>FTCS</td><td>1; 2</td><td>r ≤ 1/2</td><td>Fórmula direta</td></tr>
+            <tr><td>BTCS</td><td>1; 2</td><td>Incondicional</td><td>Sistema tridiagonal</td></tr>
+            <tr><td>Crank-Nicolson</td><td>2; 2</td><td>Incondicional</td><td>Sistema tridiagonal</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Crank-Nicolson pode oscilar</strong>
+          Para r grande, G de altas frequências fica próximo de −1: o modo não explode, mas amortece muito pouco e troca de sinal a cada passo. Descontinuidades, como uma ponta aquecida subitamente, deixam oscilações visíveis. O BTCS, por ter G positivo, não oscila.
+        </div>
+        <h3 id="s12-3"><span class="num">12.3</span>Duas dimensões e direções alternadas</h3>
+        <p>Em 2D, o implícito completo dá uma matriz pentadiagonal, muito mais cara. O método <strong>ADI</strong> (direções alternadas implícitas) divide o passo em dois: um meio passo implícito em <em>x</em> e explícito em <em>y</em>, depois o contrário. Cada meio passo é só um conjunto de sistemas tridiagonais, e a estabilidade incondicional é mantida.</p>
+        <h3 id="s12-4"><span class="num">12.4</span>Equações elípticas</h3>
+        <p>Em regime permanente, o tempo desaparece. Para a equação de Laplace com <span data-tex-inline="\Delta x = \Delta y"></span>, cada nó vale a média dos vizinhos:</p>
+        <div class="formula"><span data-tex="u_{i,j} = \frac{u_{i+1,j} + u_{i-1,j} + u_{i,j+1} + u_{i,j-1}}{4}"></span></div>
+        <p>O <strong>método de Liebmann</strong> é o Gauss-Seidel aplicado a essa equação. A <strong>sobre-relaxação</strong> (SOR) acelera a convergência:</p>
+        <div class="formula"><span data-tex="u^{novo} = \omega\,u^{GS} + (1 - \omega)\,u^{velho}, \qquad 1 \lt \omega \lt 2"></span></div>
+        <div class="fig-host" id="fig-12-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 12.1</span>Placa com nove nós internos</div>
+          <p>Bordas: topo a 100 °C, base a 0 °C, esquerda a 75 °C e direita a 50 °C.</p>
+          <details><summary>Ver solução</summary>
+            <div class="table-scroll"><table class="data">
+              <tbody>
+                <tr><td class="num">78,57</td><td class="num">76,12</td><td class="num">69,64</td></tr>
+                <tr><td class="num">63,17</td><td class="num">56,25</td><td class="num">52,46</td></tr>
+                <tr><td class="num">42,86</td><td class="num">33,26</td><td class="num">33,93</td></tr>
+              </tbody>
+            </table></div>
+            <p class="resposta">O centro vale 56,25 °C, a média exata das quatro bordas, por simetria do operador. A tabela segue a posição física: a primeira linha é a mais próxima do topo.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>BTCS: incondicionalmente estável, primeira ordem no tempo.</li>
+          <li>Crank-Nicolson: segunda ordem, com risco de oscilação em r grande.</li>
+          <li>ADI: reduz a 2D a sistemas tridiagonais.</li>
+          <li>Laplace: média dos vizinhos, resolvida por Liebmann ou SOR.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Implícito é sempre melhor?</summary><p>Não. Para capturar transitórios rápidos, o Δt precisa ser pequeno de qualquer modo; nesse caso, o explícito é mais simples e pode ser mais barato.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 13 -->
+      <section class="section capitulo" id="cap-13" data-parte="Parte III — Equações diferenciais parciais" data-topicos="adveccao">
+        <p class="cap-kicker">Capítulo 13</p>
+        <h2>13. Advecção: CFL, dissipação e dispersão</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>entender por que FTCS falha em advecção;</li>
+            <li>aplicar upwind, Lax-Friedrichs e Lax-Wendroff;</li>
+            <li>aplicar a condição CFL;</li>
+            <li>distinguir dissipação de dispersão.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Von Neumann e equações hiperbólicas.</p></div>
+        </div>
+        <h3 id="s13-1"><span class="num">13.1</span>A equação</h3>
+        <p>A equação de advecção linear descreve uma perturbação transportada sem mudar de forma, com velocidade <span data-tex-inline="a"></span>:</p>
+        <div class="formula"><span data-tex="u_t + a\,u_x = 0, \qquad u(x, t) = u_0(x - at)"></span></div>
+        <p>O parâmetro central é o <strong>número de Courant</strong>, <span data-tex-inline="C = a\Delta t/\Delta x"></span>. A <strong>condição CFL</strong> exige que o domínio de dependência numérico contenha o físico: nos esquemas explícitos, <span data-tex-inline="|C| \le 1"></span>.</p>
+        <h3 id="s13-2"><span class="num">13.2</span>Os esquemas</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Esquema</th><th>Atualização</th><th>Ordem</th><th>Estabilidade</th></tr></thead>
+          <tbody>
+            <tr><td>FTCS</td><td><span data-tex-inline="u_j - \frac{C}{2}(u_{j+1} - u_{j-1})"></span></td><td>1; 2</td><td>Sempre instável</td></tr>
+            <tr><td>Upwind (a &gt; 0)</td><td><span data-tex-inline="u_j - C(u_j - u_{j-1})"></span></td><td>1; 1</td><td>0 ≤ C ≤ 1</td></tr>
+            <tr><td>Lax-Friedrichs</td><td><span data-tex-inline="\frac{u_{j+1} + u_{j-1}}{2} - \frac{C}{2}(u_{j+1} - u_{j-1})"></span></td><td>1; 2</td><td>|C| ≤ 1</td></tr>
+            <tr><td>Lax-Wendroff</td><td><span data-tex-inline="u_j - \frac{C}{2}(u_{j+1} - u_{j-1}) + \frac{C^2}{2}(u_{j+1} - 2u_j + u_{j-1})"></span></td><td>2; 2</td><td>|C| ≤ 1</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O FTCS, que funciona em difusão, tem <span data-tex-inline="|G|^2 = 1 + C^2\text{sen}^2\theta \gt 1"></span> e é instável para todo C. Esse resultado surpreende e ilustra que a estabilidade pertence ao par equação e esquema.</p>
+        <div id="sim-adveccao" class="sim"></div>
+        <h3 id="s13-3"><span class="num">13.3</span>Dissipação e dispersão</h3>
+        <p>O erro numérico aparece de duas formas, ambas lidas diretamente de <span data-tex-inline="G = |G|e^{i\phi}"></span>:</p>
+        <ul>
+          <li><strong>Dissipação</strong>: <span data-tex-inline="|G| \lt 1"></span>. A amplitude decai e as frentes ficam suaves.</li>
+          <li><strong>Dispersão</strong>: a fase difere da exata. Cada comprimento de onda viaja com velocidade diferente e surgem ondulações perto das frentes.</li>
+        </ul>
+        <div class="fig-host" id="fig-13-1"></div>
+        <p>A <strong>equação modificada</strong> revela o que o esquema resolve de fato. Para o upwind, o resultado é a própria advecção com um termo de difusão artificial:</p>
+        <div class="formula"><span data-tex="u_t + a\,u_x = \nu_n\,u_{xx} + \dots, \qquad \nu_n = \frac{a\,\Delta x}{2}(1 - C)"></span></div>
+        <p>Com <span data-tex-inline="a = 1"></span>, <span data-tex-inline="\Delta x = 0{,}1"></span> e <span data-tex-inline="C = 0{,}5"></span>, a difusão numérica é <span data-tex-inline="\nu_n = 0{,}025"></span>. Com <span data-tex-inline="C = 1"></span>, ela se anula e o upwind reproduz a solução exata.</p>
+        <div class="callout note">
+          <strong>O dilema dos esquemas lineares</strong>
+          Primeira ordem suaviza as frentes, e segunda ordem cria ondulações. Pelo teorema de Godunov, um esquema linear monotônico é no máximo de primeira ordem. Os limitadores de fluxo, usados em dinâmica dos fluidos, contornam isso ao serem não lineares.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>CFL: |C| ≤ 1 nos esquemas explícitos.</li>
+          <li>FTCS é sempre instável para advecção.</li>
+          <li>Upwind é dissipativo; Lax-Wendroff é dispersivo.</li>
+          <li>A equação modificada mostra o termo que o esquema introduz.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um C pequeno piora o upwind?</summary><p>Porque ν<sub>n</sub> = aΔx(1 − C)/2 cresce quando C diminui, e são necessários mais passos para percorrer a mesma distância.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-edo"><small>Capítulo 3 · EDOs</small>Euler, Heun e RK4 lado a lado</a></li>
+          <li><a href="#sim-massa"><small>Capítulo 4 · Sistemas</small>Massa-mola amortecido</a></li>
+          <li><a href="#sim-rigidez"><small>Capítulo 6 · Estabilidade</small>Rigidez e métodos implícitos</a></li>
+          <li><a href="#sim-calor"><small>Capítulo 11 · Difusão</small>Barra aquecida: FTCS, BTCS e Crank-Nicolson</a></li>
+          <li><a href="#sim-adveccao"><small>Capítulo 13 · Advecção</small>Upwind, Lax-Friedrichs e Lax-Wendroff</a></li>
+        </ul>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Valor inicial</h4>
+            <div class="formula"><span data-tex="\text{Euler: } y_{i+1} = y_i + h f_i"></span></div>
+            <div class="formula"><span data-tex="\text{Heun: } y_{i+1} = y_i + \frac{h}{2}(k_1 + k_2)"></span></div>
+            <div class="formula"><span data-tex="\text{RK4: } y_{i+1} = y_i + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)"></span></div>
+            <div class="formula"><span data-tex="\text{AB2: } y_{n+1} = y_n + \frac{h}{2}(3f_n - f_{n-1})"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Estabilidade</h4>
+            <div class="formula"><span data-tex="\text{Euler: } |1 + h\lambda| \le 1"></span></div>
+            <div class="formula"><span data-tex="\text{RK4 real: } -2{,}785 \lt h\lambda \lt 0"></span></div>
+            <div class="formula"><span data-tex="\text{FTCS: } r \le \tfrac{1}{2}"></span></div>
+            <div class="formula"><span data-tex="\text{CFL: } |C| \le 1"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Contorno e autovalores</h4>
+            <div class="formula"><span data-tex="-T_{i-1} + (2 + h'\Delta x^2) T_i - T_{i+1} = h'\Delta x^2 T_a"></span></div>
+            <div class="formula"><span data-tex="x_{k+1} = A x_k/\lambda_k"></span></div>
+            <div class="formula"><span data-tex="\lambda = \omega^2"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">EDPs</h4>
+            <div class="formula"><span data-tex="\Delta = B^2 - 4AC"></span></div>
+            <div class="formula"><span data-tex="r = \alpha\Delta t/\Delta x^2 \qquad C = a\Delta t/\Delta x"></span></div>
+            <div class="formula"><span data-tex="G_{FTCS} = 1 - 4r\,\text{sen}^2(\theta/2)"></span></div>
+            <div class="formula"><span data-tex="\nu_n = \frac{a\Delta x}{2}(1 - C)"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tabelas">
+        <h2>Apêndice B — Escolha do método</h2>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Problema</th><th>Método padrão</th><th>Quando trocar</th></tr></thead>
+          <tbody>
+            <tr><td>PVI suave</td><td>RK4 ou RK45 adaptativo</td><td>Função muito cara: Adams</td></tr>
+            <tr><td>PVI rígido</td><td>Implícito (BDF)</td><td>Se a rigidez for leve: RK explícito</td></tr>
+            <tr><td>PVC linear</td><td>Diferenças finitas com Thomas</td><td>Geometria complexa: elementos finitos</td></tr>
+            <tr><td>PVC não linear</td><td>Tiro com secante</td><td>Instabilidade do tiro: DF com Newton</td></tr>
+            <tr><td>Autovalor único</td><td>Potência ou potência inversa</td><td>Espectro completo: QR</td></tr>
+            <tr><td>Difusão transiente</td><td>Crank-Nicolson</td><td>Dados descontínuos: BTCS</td></tr>
+            <tr><td>Laplace</td><td>SOR</td><td>Grande escala: multigrid</td></tr>
+            <tr><td>Advecção</td><td>Lax-Wendroff ou upwind</td><td>Frentes abruptas: limitadores</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>77 questões objetivas sobre métodos para valor inicial, estabilidade, problemas de contorno, autovalores, classificação de EDPs, difusão e advecção. As questões de cálculo trazem espaço para contas e resolução passo a passo.</p>
+        <div id="quiz" data-quiz="metodos-numericos"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>CHAPRA, S. C.; CANALE, R. P. <em>Métodos Numéricos para Engenharia</em>. 7. ed. McGraw-Hill.</li>
+          <li>HOFFMANN, K. A.; CHIANG, S. T. <em>Computational Fluid Dynamics</em>. EES.</li>
+          <li>TANNEHILL, J. C.; ANDERSON, D. A.; PLETCHER, R. H. <em>Computational Fluid Mechanics and Heat Transfer</em>. Taylor &amp; Francis.</li>
+          <li>BUTCHER, J. C. <em>Numerical Methods for Ordinary Differential Equations</em>. Wiley.</li>
+          <li>LEVEQUE, R. J. <em>Finite Difference Methods for Ordinary and Partial Differential Equations</em>. SIAM.</li>
+          <li>SMITH, G. D. <em>Numerical Solution of Partial Differential Equations</em>. Oxford.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/metodos-numericos.js"></script>
+<script src="../js/fig/metodos-numericos.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  h: ['Passo de integração', '—'],
+  'k_1': ['Inclinação no início do passo', '—'],
+  'k_2': ['Segunda inclinação do método', '—'],
+  'r': ['Número de difusão', '—', 'r = αΔt/Δx²; FTCS exige r ≤ 1/2'],
+  'C': ['Número de Courant', '—', 'C = aΔt/Δx'],
+  'G': ['Fator de amplificação', '—', 'estável se |G| ≤ 1'],
+  'R(z)': ['Função de estabilidade', '—'],
+  '\\lambda': ['Autovalor', '—'],
+  '\\alpha': ['Difusividade térmica', 'm²/s'],
+  '\\Delta t': ['Passo de tempo', 's'],
+  '\\Delta x': ['Espaçamento da malha', 'm'],
+  '\\nu_n': ['Difusão numérica', 'm²/s']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

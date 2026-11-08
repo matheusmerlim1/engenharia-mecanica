@@ -1,0 +1,1278 @@
+{
+ "disciplina": "Métodos Numéricos",
+ "slug": "metodos-numericos",
+ "topicos": [
+  {
+   "id": "euler",
+   "nome": "Valor inicial e Euler"
+  },
+  {
+   "id": "heun",
+   "nome": "Heun e RK2"
+  },
+  {
+   "id": "rk",
+   "nome": "RK4 e Butcher"
+  },
+  {
+   "id": "sistemas",
+   "nome": "Sistemas e ordem superior"
+  },
+  {
+   "id": "multipasso",
+   "nome": "Multipasso"
+  },
+  {
+   "id": "estabilidade",
+   "nome": "Estabilidade e rigidez"
+  },
+  {
+   "id": "contorno",
+   "nome": "Problemas de contorno"
+  },
+  {
+   "id": "autovalores",
+   "nome": "Autovalores"
+  },
+  {
+   "id": "classificacao",
+   "nome": "Classificação de EDPs"
+  },
+  {
+   "id": "discretizacao",
+   "nome": "Discretização e consistência"
+  },
+  {
+   "id": "difusao",
+   "nome": "Difusão explícita"
+  },
+  {
+   "id": "implicitos",
+   "nome": "Implícitos e elípticas"
+  },
+  {
+   "id": "adveccao",
+   "nome": "Advecção"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "mn-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "euler",
+   "enunciado": "<p>O método de Euler para y′ = f(x, y) tem erro global de ordem:</p>",
+   "alternativas": [
+    "h²",
+    "h³",
+    "h⁴",
+    "h"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O erro local é O(h²), e são cerca de 1/h passos até um ponto fixo: o erro global é O(h).</p>"
+  },
+  {
+   "id": "mn-002",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "euler",
+   "enunciado": "<p>Para y′ = −2x³ + 12x² − 20x + 8,5, com y(0) = 1 e h = 0,5, o primeiro passo de Euler dá:</p>",
+   "alternativas": [
+    "3,22",
+    "4,25",
+    "5,25",
+    "9,50"
+   ],
+   "correta": 2,
+   "formulas": [
+    "y_{i+1} = y_i + h f(x_i, y_i)"
+   ],
+   "explicacao": "<div class=\"passo\">y₁ = 1 + 0,5 · f(0) = 1 + 0,5 · 8,5 = <strong>5,25</strong></div><p>3,22 é o valor exato em x = 0,5.</p>"
+  },
+  {
+   "id": "mn-003",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "euler",
+   "enunciado": "<p>Reduzindo o passo de Euler de 0,4 para 0,1, espera-se que o erro global fique dividido por aproximadamente:</p>",
+   "alternativas": [
+    "2",
+    "4",
+    "16",
+    "64"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O erro é proporcional a h. O passo foi dividido por 4.</p>"
+  },
+  {
+   "id": "mn-004",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "euler",
+   "enunciado": "<p>O erro local de truncamento é definido como:</p>",
+   "alternativas": [
+    "o erro acumulado desde o início da integração",
+    "o erro cometido em um único passo, supondo exato o valor no início do passo",
+    "o erro de arredondamento da máquina",
+    "a diferença entre dois métodos de ordens distintas"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O erro global acumula os erros locais e sua propagação.</p>"
+  },
+  {
+   "id": "mn-005",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "euler",
+   "enunciado": "<p>Em uma função com solução exata y crescente e côncava para cima, o método de Euler produz valores:</p>",
+   "alternativas": [
+    "abaixo da solução exata, pois a inclinação inicial é a menor do intervalo",
+    "acima da solução exata, pois a inclinação inicial é a maior do intervalo",
+    "exatamente iguais à solução",
+    "ora acima, ora abaixo, independentemente da curvatura"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Com y″ &gt; 0, a tangente fica abaixo da curva, e o erro local é positivo: h²y″/2.</p>"
+  },
+  {
+   "id": "mn-006",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "heun",
+   "enunciado": "<p>O método de Heun corresponde a usar:</p>",
+   "alternativas": [
+    "somente a inclinação no meio do passo",
+    "somente a inclinação do fim do passo",
+    "quatro inclinações ponderadas",
+    "a média das inclinações no início e numa estimativa do fim do passo"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O preditor é um passo de Euler; o corretor usa a média das duas inclinações.</p>"
+  },
+  {
+   "id": "mn-007",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "heun",
+   "enunciado": "<p>Para y′ = 4e<sup>0,8x</sup> − 0,5y, com y(0) = 2 e h = 1, o método de Heun resulta em:</p>",
+   "alternativas": [
+    "5,000",
+    "6,195",
+    "6,701",
+    "6,217"
+   ],
+   "correta": 2,
+   "formulas": [
+    "y_{i+1} = y_i + (h/2)(k₁ + k₂)"
+   ],
+   "explicacao": "<div class=\"passo\">k₁ = 3; y⁰ = 5</div><div class=\"passo\">k₂ = 4e<sup>0,8</sup> − 2,5 = 6,4022</div><div class=\"passo\">y₁ = 2 + (3 + 6,4022)/2 = <strong>6,701</strong></div><p>5,000 é Euler, 6,195 a solução exata, 6,217 o ponto médio.</p>"
+  },
+  {
+   "id": "mn-008",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "heun",
+   "enunciado": "<p>As condições para um método de Runge-Kutta de 2ª ordem, com a₁ + a₂ = 1, incluem:</p>",
+   "alternativas": [
+    "a₂·p = 1 e a₂·q = 1",
+    "a₁·p = 1/2 e a₁·q = 1/2",
+    "a₂·p = 1/2 e a₂·q = 1/2",
+    "a₁ = a₂ = 1"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Vêm da comparação com a série de Taylor até h². Sobra um grau de liberdade.</p>"
+  },
+  {
+   "id": "mn-009",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "heun",
+   "enunciado": "<p>Se f depende apenas de x, o método de Heun coincide com:</p>",
+   "alternativas": [
+    "a regra de Simpson",
+    "a regra dos trapézios",
+    "a regra do retângulo pela esquerda",
+    "a quadratura de Gauss de dois pontos"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Com k₁ = f(x<sub>i</sub>) e k₂ = f(x<sub>i+1</sub>), resta h(f<sub>i</sub> + f<sub>i+1</sub>)/2.</p>"
+  },
+  {
+   "id": "mn-010",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "rk",
+   "enunciado": "<p>O método RK4 clássico tem erro global de ordem:</p>",
+   "alternativas": [
+    "h⁴",
+    "h²",
+    "h⁵",
+    "h"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Erro local O(h⁵), erro global O(h⁴).</p>"
+  },
+  {
+   "id": "mn-011",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "rk",
+   "enunciado": "<p>No RK4 para y′ = 4e<sup>0,8x</sup> − 0,5y, y(0) = 2 e h = 0,5, com k₁ = 3, k₂ = 3,5106, k₃ = 3,4468 e k₄ = 4,1056, o valor de y(0,5) é:</p>",
+   "alternativas": [
+    "3,5000",
+    "3,7515",
+    "7,0034",
+    "3,7517"
+   ],
+   "correta": 3,
+   "formulas": [
+    "y_{i+1} = y_i + (h/6)(k₁ + 2k₂ + 2k₃ + k₄)"
+   ],
+   "explicacao": "<div class=\"passo\">y₁ = 2 + (0,5/6)(3 + 2·3,5106 + 2·3,4468 + 4,1056)</div><div class=\"passo\">= 2 + 0,083333 · 21,0204 = <strong>3,7517</strong></div>"
+  },
+  {
+   "id": "mn-012",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "rk",
+   "enunciado": "<p>Ao dobrar o número de passos do RK4, o erro fica dividido por aproximadamente:</p>",
+   "alternativas": [
+    "2",
+    "4",
+    "8",
+    "16"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Erro global O(h⁴): (1/2)⁴ = 1/16.</p>"
+  },
+  {
+   "id": "mn-013",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "rk",
+   "enunciado": "<p>Numa tabela de Butcher, um método é explícito quando:</p>",
+   "alternativas": [
+    "a matriz a<sub>ij</sub> é diagonal",
+    "todos os c<sub>i</sub> são iguais a 1",
+    "a matriz a<sub>ij</sub> é triangular inferior estrita",
+    "a soma dos b<sub>i</sub> é zero"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Cada estágio só depende dos anteriores, sem resolver equações.</p>"
+  },
+  {
+   "id": "mn-014",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "rk",
+   "enunciado": "<p>Uma condição necessária na tabela de Butcher para ordem 2 é:</p>",
+   "alternativas": [
+    "Σ b<sub>i</sub> c<sub>i</sub> = 1",
+    "Σ b<sub>i</sub> c<sub>i</sub> = 1/2",
+    "Σ b<sub>i</sub> = 1/2",
+    "Σ c<sub>i</sub> = 1"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Σb<sub>i</sub> = 1 garante a ordem 1, e Σb<sub>i</sub>c<sub>i</sub> = 1/2 acrescenta a ordem 2.</p>"
+  },
+  {
+   "id": "mn-015",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "rk",
+   "enunciado": "<p>Métodos de Runge-Kutta explícitos de ordem 5 exigem, no mínimo:</p>",
+   "alternativas": [
+    "6 estágios",
+    "4 estágios",
+    "5 estágios",
+    "8 estágios"
+   ],
+   "correta": 0,
+   "explicacao": "<p>É uma das barreiras de Butcher. Até a ordem 4, estágios e ordem coincidem.</p>"
+  },
+  {
+   "id": "mn-016",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "rk",
+   "enunciado": "<p>Pares embutidos como RK45 servem para:</p>",
+   "alternativas": [
+    "estimar o erro com as mesmas avaliações de f e ajustar o passo",
+    "eliminar a necessidade de condição inicial",
+    "tornar o método implícito",
+    "resolver problemas de contorno diretamente"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A diferença entre as fórmulas de ordens 4 e 5 estima o erro local.</p>"
+  },
+  {
+   "id": "mn-017",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "sistemas",
+   "enunciado": "<p>A equação m y″ + c y′ + k y = 0 reduzida a primeira ordem exige:</p>",
+   "alternativas": [
+    "uma equação, derivada uma vez",
+    "três equações, com a aceleração como variável",
+    "a solução analítica prévia",
+    "duas equações, com a velocidade como segunda variável"
+   ],
+   "correta": 3,
+   "explicacao": "<p>y′ = z e z′ = −(cz + ky)/m.</p>"
+  },
+  {
+   "id": "mn-018",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "sistemas",
+   "enunciado": "<p>Com m = 1, c = 1, k = 1,5, y = 1, z = 0, a derivada z′ inicial vale:</p>",
+   "alternativas": [
+    "0",
+    "−1",
+    "−1,5",
+    "1,5"
+   ],
+   "correta": 2,
+   "formulas": [
+    "z′ = −(c z + k y)/m"
+   ],
+   "explicacao": "<div class=\"passo\">z′ = −(1·0 + 1,5·1)/1 = <strong>−1,5</strong></div>"
+  },
+  {
+   "id": "mn-019",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sistemas",
+   "enunciado": "<p>No RK4 aplicado a um sistema, deve-se:</p>",
+   "alternativas": [
+    "integrar uma variável até o fim e só depois a outra",
+    "calcular cada k<sub>j</sub> para todas as variáveis antes de passar ao k<sub>j+1</sub>",
+    "usar um h diferente para cada variável",
+    "aplicar Euler à primeira variável e RK4 à segunda"
+   ],
+   "correta": 1,
+   "explicacao": "<p>As equações são acopladas: os estágios devem usar valores coerentes.</p>"
+  },
+  {
+   "id": "mn-020",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "sistemas",
+   "enunciado": "<p>Em um oscilador sem amortecimento integrado pelo Euler explícito, observa-se:</p>",
+   "alternativas": [
+    "perda artificial de energia a cada ciclo",
+    "crescimento artificial da amplitude e da energia a cada ciclo",
+    "conservação exata da energia",
+    "parada do movimento depois de um ciclo"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Os autovalores são imaginários puros, e |1 + hλ| &gt; 1 para todo h &gt; 0.</p>"
+  },
+  {
+   "id": "mn-021",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "sistemas",
+   "enunciado": "<p>O fator de amortecimento do sistema com m = 1, c = 1, k = 1,5 é:</p>",
+   "alternativas": [
+    "0,408",
+    "0,667",
+    "1,500",
+    "0,816"
+   ],
+   "correta": 0,
+   "formulas": [
+    "ζ = c/(2√(k m))"
+   ],
+   "explicacao": "<div class=\"passo\">ζ = c/(2√(km)) = 1/(2√1,5) = <strong>0,408</strong></div>"
+  },
+  {
+   "id": "mn-022",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "multipasso",
+   "enunciado": "<p>Métodos multipasso não são auto-iniciáveis porque:</p>",
+   "alternativas": [
+    "requerem a solução exata no fim do intervalo",
+    "não usam condição inicial",
+    "não admitem passo constante",
+    "precisam de valores de passos anteriores, que não existem no início"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Inicia-se com Runge-Kutta nos primeiros pontos.</p>"
+  },
+  {
+   "id": "mn-023",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "multipasso",
+   "enunciado": "<p>Adams-Bashforth de 2ª ordem é dado por:</p>",
+   "alternativas": [
+    "y<sub>n+1</sub> = y<sub>n</sub> + (h/2)(f<sub>n+1</sub> + f<sub>n</sub>)",
+    "y<sub>n+1</sub> = y<sub>n</sub> + h f<sub>n</sub>",
+    "y<sub>n+1</sub> = y<sub>n</sub> + (h/2)(3f<sub>n</sub> − f<sub>n−1</sub>)",
+    "y<sub>n+1</sub> = y<sub>n−1</sub> + 2h f<sub>n</sub>"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A segunda alternativa é Adams-Moulton (trapézio), implícito.</p>"
+  },
+  {
+   "id": "mn-024",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "multipasso",
+   "enunciado": "<p>Com y₁ = 3,7517, f₀ = 3, f₁ = 4,0914 e h = 0,5, o preditor AB2 dá y₂ igual a:</p>",
+   "alternativas": [
+    "6,2413",
+    "5,7971",
+    "6,0703",
+    "5,8171"
+   ],
+   "correta": 2,
+   "formulas": [
+    "y_{n+1} = y_n + (h/2)(3f_n − f_{n−1})"
+   ],
+   "explicacao": "<div class=\"passo\">y₂ = 3,7517 + 0,25(3·4,0914 − 3)</div><div class=\"passo\">= 3,7517 + 2,3186 = <strong>6,0703</strong></div>"
+  },
+  {
+   "id": "mn-025",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "multipasso",
+   "enunciado": "<p>A principal vantagem dos multipasso sobre Runge-Kutta é:</p>",
+   "alternativas": [
+    "iniciar sozinho a partir de y₀",
+    "menos avaliações de f por passo, com a mesma ordem",
+    "mudar o passo sem custo",
+    "ser sempre mais estável"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Vale a pena quando f é cara. A mudança de passo é justamente o ponto fraco.</p>"
+  },
+  {
+   "id": "mn-026",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "multipasso",
+   "enunciado": "<p>Sobre o método de Milne em problema de solução decrescente, assinale o correto:</p>",
+   "alternativas": [
+    "é fracamente estável, pois uma raiz espúria da equação característica gera uma oscilação que cresce",
+    "é incondicionalmente estável",
+    "só tem primeira ordem",
+    "tem as mesmas propriedades de estabilidade do Hamming"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O corretor de Hamming foi criado justamente para remover esse efeito.</p>"
+  },
+  {
+   "id": "mn-027",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "multipasso",
+   "enunciado": "<p>Os coeficientes do Adams-Bashforth de 4ª ordem são 55, −59, 37 e −9, sobre 24. A soma ser 24/24 é:</p>",
+   "alternativas": [
+    "coincidência sem significado",
+    "a condição de estabilidade absoluta",
+    "a garantia de ordem 4",
+    "a condição de consistência, que garante integrar a função constante"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Se f = 1, y deve aumentar h a cada passo.</p>"
+  },
+  {
+   "id": "mn-028",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "estabilidade",
+   "enunciado": "<p>A condição de estabilidade do Euler explícito para y′ = λy, λ real negativo, é:</p>",
+   "alternativas": [
+    "h &lt; 1/|λ|",
+    "h &lt; 2,785/|λ|",
+    "qualquer h",
+    "h &lt; 2/|λ|"
+   ],
+   "correta": 3,
+   "explicacao": "<p>|1 + hλ| ≤ 1.</p>"
+  },
+  {
+   "id": "mn-029",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "estabilidade",
+   "enunciado": "<p>Para λ = −100, o maior passo estável do RK4 é:</p>",
+   "alternativas": [
+    "0,0200",
+    "0,0100",
+    "0,0279",
+    "0,2785"
+   ],
+   "correta": 2,
+   "formulas": [
+    "−2,785 &lt; hλ &lt; 0"
+   ],
+   "explicacao": "<div class=\"passo\">h &lt; 2,785/100 = <strong>0,0279</strong></div>"
+  },
+  {
+   "id": "mn-030",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "estabilidade",
+   "enunciado": "<p>Um problema é rígido quando:</p>",
+   "alternativas": [
+    "a solução é constante",
+    "tem escalas de tempo muito diferentes, e o passo explícito fica preso à mais rápida",
+    "o método de Euler é exato",
+    "a função f não depende de y"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A componente rápida morre logo, mas continua limitando h.</p>"
+  },
+  {
+   "id": "mn-031",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "estabilidade",
+   "enunciado": "<p>O Euler implícito tem fator de amplificação:</p>",
+   "alternativas": [
+    "R(z) = 1/(1 − z)",
+    "R(z) = 1 + z",
+    "R(z) = 1 + z + z²/2",
+    "R(z) = (1 + z)/(1 − z)"
+   ],
+   "correta": 0,
+   "explicacao": "<p>y<sub>n+1</sub> = y<sub>n</sub> + hλy<sub>n+1</sub>. Para Re(z) &lt; 0, |R| &lt; 1.</p>"
+  },
+  {
+   "id": "mn-032",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "estabilidade",
+   "enunciado": "<p>Para y′ = −1000y + 3000 − 2000e<sup>−t</sup>, o maior passo estável do Euler explícito é:</p>",
+   "alternativas": [
+    "0,002",
+    "0,001",
+    "0,02",
+    "2"
+   ],
+   "correta": 0,
+   "formulas": [
+    "h &lt; 2/|λ|"
+   ],
+   "explicacao": "<div class=\"passo\">h &lt; 2/1000 = <strong>0,002</strong></div>"
+  },
+  {
+   "id": "mn-033",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "estabilidade",
+   "enunciado": "<p>Sobre estabilidade e precisão em um método implícito com passo enorme, assinale o correto:</p>",
+   "alternativas": [
+    "Estabilidade garante precisão, em qualquer passo",
+    "Métodos implícitos não têm erro de truncamento",
+    "Passos grandes sempre tornam o método implícito instável",
+    "O resultado é estável, mas pode ser pouco preciso, pois o passo não resolve o transitório"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Estabilidade só diz que os erros não crescem. A precisão continua dependendo de h.</p>"
+  },
+  {
+   "id": "mn-034",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "estabilidade",
+   "enunciado": "<p>Com h = 0,0025 e λ = −1000, o fator de amplificação do Euler explícito é:</p>",
+   "alternativas": [
+    "−0,5",
+    "1,5",
+    "−1,5",
+    "−2,5"
+   ],
+   "correta": 2,
+   "formulas": [
+    "R = 1 + hλ"
+   ],
+   "explicacao": "<div class=\"passo\">R = 1 + hλ = 1 − 2,5 = <strong>−1,5</strong></div><p>Módulo maior que 1: oscila e cresce.</p>"
+  },
+  {
+   "id": "mn-035",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "contorno",
+   "enunciado": "<p>O método do tiro converte um problema de contorno em:</p>",
+   "alternativas": [
+    "um problema de autovalores",
+    "uma sequência de problemas de valor inicial",
+    "uma integral definida",
+    "uma equação algébrica não relacionada"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Chuta-se a condição que falta e ajusta-se até acertar o alvo.</p>"
+  },
+  {
+   "id": "mn-036",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "contorno",
+   "enunciado": "<p>Com tiros z = 10 → T(10) = 168,38 e z = 20 → T(10) = 285,90, o z para atingir 200 é:</p>",
+   "alternativas": [
+    "14,23",
+    "12,69",
+    "11,30",
+    "16,00"
+   ],
+   "correta": 1,
+   "formulas": [
+    "z = z₁ + (alvo − T₁)(z₂ − z₁)/(T₂ − T₁)"
+   ],
+   "explicacao": "<div class=\"passo\">z = 10 + (200 − 168,38)/(285,90 − 168,38) · 10</div><div class=\"passo\">= 10 + 0,26906 · 10 = <strong>12,69</strong></div>"
+  },
+  {
+   "id": "mn-037",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "contorno",
+   "enunciado": "<p>Em T″ + h′(T<sub>a</sub> − T) = 0, com h′ = 0,01 e Δx = 2, o coeficiente da diagonal é:</p>",
+   "alternativas": [
+    "2,04",
+    "2,01",
+    "2,00",
+    "1,96"
+   ],
+   "correta": 0,
+   "formulas": [
+    "−T_{i−1} + (2 + h′Δx²) T_i − T_{i+1} = h′Δx² T_a"
+   ],
+   "explicacao": "<div class=\"passo\">2 + h′Δx² = 2 + 0,01·4 = <strong>2,04</strong></div>"
+  },
+  {
+   "id": "mn-038",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "contorno",
+   "enunciado": "<p>O sistema obtido por diferenças centradas em um PVC unidimensional é:</p>",
+   "alternativas": [
+    "denso",
+    "triangular",
+    "diagonal",
+    "tridiagonal"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Cada nó só envolve os dois vizinhos. Resolve-se pelo algoritmo de Thomas.</p>"
+  },
+  {
+   "id": "mn-039",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "contorno",
+   "enunciado": "<p>Para impor T′(0) = q mantendo segunda ordem, usa-se:</p>",
+   "alternativas": [
+    "uma diferença avançada de primeira ordem",
+    "a condição T(0) = q",
+    "um nó fantasma com diferença centrada",
+    "o descarte do primeiro nó"
+   ],
+   "correta": 2,
+   "explicacao": "<p>(T₁ − T₋₁)/(2Δx) = q elimina o nó fora do domínio.</p>"
+  },
+  {
+   "id": "mn-040",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "autovalores",
+   "enunciado": "<p>Em um sistema de massas e molas, os autovalores do problema representam:</p>",
+   "alternativas": [
+    "as massas do sistema",
+    "os deslocamentos máximos",
+    "as frequências naturais ao quadrado",
+    "os coeficientes de amortecimento"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Com movimento harmônico: A x = ω² x.</p>"
+  },
+  {
+   "id": "mn-041",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "autovalores",
+   "enunciado": "<p>Para A = [[10, −5], [−5, 10]], o maior autovalor é:</p>",
+   "alternativas": [
+    "10",
+    "15",
+    "5",
+    "25"
+   ],
+   "correta": 1,
+   "formulas": [
+    "det(A − λI) = 0"
+   ],
+   "explicacao": "<div class=\"passo\">(10 − λ)² = 25</div><div class=\"passo\">λ = 10 ± 5: <strong>15</strong> e 5</div>"
+  },
+  {
+   "id": "mn-042",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "autovalores",
+   "enunciado": "<p>A taxa de convergência do método da potência é governada por:</p>",
+   "alternativas": [
+    "|λ₂/λ₁|",
+    "|λ₁/λ₂|",
+    "|λ₁ − λ₂|",
+    "o número de linhas da matriz"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A componente não dominante cai por esse fator a cada iteração.</p>"
+  },
+  {
+   "id": "mn-043",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "autovalores",
+   "enunciado": "<p>O método da potência inversa é usado para encontrar:</p>",
+   "alternativas": [
+    "o autovalor de maior módulo",
+    "o determinante",
+    "a norma da matriz",
+    "o autovalor de menor módulo"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Aplica-se a potência a A⁻¹, resolvendo um sistema a cada passo.</p>"
+  },
+  {
+   "id": "mn-044",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "autovalores",
+   "enunciado": "<p>Com A = [[10, −5], [−5, 10]], partindo de x₀ = (1, 1), o método da potência:</p>",
+   "alternativas": [
+    "converge para 15 em uma iteração",
+    "diverge",
+    "oscila entre 5 e 15",
+    "fica preso em λ = 5, pois o vetor inicial já é autovetor desse modo"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A·(1, 1) = 5·(1, 1). O vetor inicial não contém a componente de λ = 15.</p>"
+  },
+  {
+   "id": "mn-045",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "autovalores",
+   "enunciado": "<p>Se ω² = 15 rad²/s², o período de oscilação é aproximadamente:</p>",
+   "alternativas": [
+    "0,42 s",
+    "2,81 s",
+    "1,62 s",
+    "3,87 s"
+   ],
+   "correta": 2,
+   "formulas": [
+    "T = 2π/ω"
+   ],
+   "explicacao": "<div class=\"passo\">ω = √15 = 3,873 rad/s</div><div class=\"passo\">T = 2π/ω = <strong>1,62 s</strong></div>"
+  },
+  {
+   "id": "mn-046",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "classificacao",
+   "enunciado": "<p>A equação de Laplace é:</p>",
+   "alternativas": [
+    "parabólica",
+    "elíptica",
+    "hiperbólica",
+    "de primeira ordem"
+   ],
+   "correta": 1,
+   "explicacao": "<p>B² − 4AC = −4 &lt; 0.</p>"
+  },
+  {
+   "id": "mn-047",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "classificacao",
+   "enunciado": "<p>A equação do calor u<sub>t</sub> = α u<sub>xx</sub> é:</p>",
+   "alternativas": [
+    "parabólica",
+    "elíptica",
+    "hiperbólica",
+    "não classificável"
+   ],
+   "correta": 0,
+   "explicacao": "<p>B² − 4AC = 0.</p>"
+  },
+  {
+   "id": "mn-048",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "classificacao",
+   "enunciado": "<p>A equação u<sub>xt</sub> = 0 é:</p>",
+   "alternativas": [
+    "hiperbólica",
+    "elíptica",
+    "parabólica",
+    "de ordem 3"
+   ],
+   "correta": 0,
+   "explicacao": "<div class=\"passo\">A = C = 0 e B = 1</div><div class=\"passo\">B² − 4AC = 1 &gt; 0: <strong>hiperbólica</strong></div>"
+  },
+  {
+   "id": "mn-049",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "classificacao",
+   "enunciado": "<p>A equação u<sub>tt</sub> − 2u<sub>xx</sub> + u = 0 tem discriminante igual a:</p>",
+   "alternativas": [
+    "−8",
+    "4",
+    "1",
+    "8"
+   ],
+   "correta": 3,
+   "formulas": [
+    "Δ = B² − 4AC"
+   ],
+   "explicacao": "<div class=\"passo\">Com A = 1, B = 0 e C = −2: B² − 4AC = <strong>8</strong></div><p>O termo u não entra na classificação.</p>"
+  },
+  {
+   "id": "mn-050",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "classificacao",
+   "enunciado": "<p>Um problema é bem-posto, segundo Hadamard, se:</p>",
+   "alternativas": [
+    "possui solução analítica",
+    "admite um método explícito",
+    "tem solução única que depende continuamente dos dados",
+    "tem coeficientes constantes"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Sem dependência contínua, pequenos erros nos dados destroem a resposta.</p>"
+  },
+  {
+   "id": "mn-051",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "classificacao",
+   "enunciado": "<p>Para uma equação elíptica, as condições adequadas são:</p>",
+   "alternativas": [
+    "apenas uma condição inicial",
+    "condições impostas em todo o bordo do domínio fechado",
+    "duas condições em um único trecho do bordo",
+    "nenhuma condição, pois o domínio é infinito"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Tudo influi em tudo. Impor valor e derivada em só um trecho gera problema mal-posto.</p>"
+  },
+  {
+   "id": "mn-052",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "discretizacao",
+   "enunciado": "<p>A diferença centrada para a derivada primeira tem erro de ordem:</p>",
+   "alternativas": [
+    "Δx",
+    "Δx²",
+    "Δx³",
+    "Δx⁴"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Os termos de ordem par em Δx se cancelam ao subtrair as expansões.</p>"
+  },
+  {
+   "id": "mn-053",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "discretizacao",
+   "enunciado": "<p>Para y = sen(x/2) em x = 0,5, com Δx = 0,1, a diferença centrada dá:</p>",
+   "alternativas": [
+    "0,48425",
+    "0,48116",
+    "0,48446",
+    "0,50000"
+   ],
+   "correta": 0,
+   "formulas": [
+    "y′ ≈ (y_{j+1} − y_{j−1})/(2Δx)"
+   ],
+   "explicacao": "<div class=\"passo\">(sen 0,3 − sen 0,2)/0,2</div><div class=\"passo\">= <strong>0,48425</strong></div><p>0,48116 é a avançada, e 0,48446, a de cinco pontos.</p>"
+  },
+  {
+   "id": "mn-054",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "discretizacao",
+   "enunciado": "<p>Um esquema é consistente quando:</p>",
+   "alternativas": [
+    "a solução numérica é sempre positiva",
+    "os erros de arredondamento são nulos",
+    "a matriz é simétrica",
+    "o erro de truncamento tende a zero com o refinamento da malha"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A equação discreta passa a representar a equação diferencial no limite.</p>"
+  },
+  {
+   "id": "mn-055",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "discretizacao",
+   "enunciado": "<p>O teorema de Lax afirma, para problema linear bem-posto com esquema consistente, que:</p>",
+   "alternativas": [
+    "a consistência implica estabilidade",
+    "todo esquema explícito é convergente",
+    "a estabilidade é necessária e suficiente para a convergência",
+    "a convergência dispensa estabilidade"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Basta verificar consistência e estabilidade para garantir convergência.</p>"
+  },
+  {
+   "id": "mn-056",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "discretizacao",
+   "enunciado": "<p>A fórmula u<sub>xx</sub> ≈ (2u<sub>j</sub> − 5u<sub>j+1</sub> + 4u<sub>j+2</sub> − u<sub>j+3</sub>)/Δx² tem erro de ordem:</p>",
+   "alternativas": [
+    "Δx",
+    "Δx³",
+    "Δx²",
+    "Δx⁴"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Os termos em u, u<sub>x</sub> e u<sub>xxx</sub> se anulam, e o próximo termo restante é de ordem Δx².</p>"
+  },
+  {
+   "id": "mn-057",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "difusao",
+   "enunciado": "<p>O limite de estabilidade do FTCS para difusão é:</p>",
+   "alternativas": [
+    "r ≤ 1",
+    "r ≤ 1/2",
+    "r ≤ 1/4",
+    "sem limite"
+   ],
+   "correta": 1,
+   "explicacao": "<p>De G = 1 − 4r sen²(θ/2), no pior caso θ = π.</p>"
+  },
+  {
+   "id": "mn-058",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "difusao",
+   "enunciado": "<p>Com α = 0,001 m²/s, Δx = 0,125 m e r = 0,25, o passo de tempo é:</p>",
+   "alternativas": [
+    "3,906 s",
+    "0,250 s",
+    "1,953 s",
+    "7,813 s"
+   ],
+   "correta": 0,
+   "formulas": [
+    "r = αΔt/Δx²"
+   ],
+   "explicacao": "<div class=\"passo\">Δt = r Δx²/α = 0,25 · 0,015625/0,001 = <strong>3,906 s</strong></div>"
+  },
+  {
+   "id": "mn-059",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "difusao",
+   "enunciado": "<p>No FTCS com r = 0,25, em uma barra a 0 °C com a ponta a 150 °C, o primeiro nó vale, após um passo:</p>",
+   "alternativas": [
+    "75",
+    "150",
+    "18,75",
+    "37,5"
+   ],
+   "correta": 3,
+   "formulas": [
+    "u_j^{n+1} = u_j^n + r(u_{j+1}^n − 2u_j^n + u_{j−1}^n)"
+   ],
+   "explicacao": "<div class=\"passo\">u₁ = 0 + 0,25(0 − 0 + 150) = <strong>37,5</strong></div>"
+  },
+  {
+   "id": "mn-060",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "difusao",
+   "enunciado": "<p>Ao refinar Δx pela metade no FTCS, o passo Δt máximo:</p>",
+   "alternativas": [
+    "fica dividido por 2",
+    "dobra",
+    "não muda",
+    "fica dividido por 4"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Δt ≤ Δx²/(2α).</p>"
+  },
+  {
+   "id": "mn-061",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "difusao",
+   "enunciado": "<p>No FTCS, a instabilidade aparece primeiro como:</p>",
+   "alternativas": [
+    "um deslocamento suave do perfil",
+    "o erro na condição inicial, que desaparece depois",
+    "uma oscilação de nó a nó, correspondente a θ = π",
+    "um aumento uniforme em todos os nós"
+   ],
+   "correta": 2,
+   "explicacao": "<p>G(π) = 1 − 4r é o menor valor, e ultrapassa −1 quando r &gt; 1/2.</p>"
+  },
+  {
+   "id": "mn-062",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "difusao",
+   "enunciado": "<p>Para r = 0,6, o fator de amplificação do FTCS no modo θ = π vale:</p>",
+   "alternativas": [
+    "−0,4",
+    "−1,4",
+    "−2,4",
+    "0,4"
+   ],
+   "correta": 1,
+   "formulas": [
+    "G = 1 − 4r sen²(θ/2)"
+   ],
+   "explicacao": "<div class=\"passo\">G = 1 − 4(0,6) = <strong>−1,4</strong></div>"
+  },
+  {
+   "id": "mn-063",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "implicitos",
+   "enunciado": "<p>O esquema BTCS para difusão é:</p>",
+   "alternativas": [
+    "incondicionalmente estável, com primeira ordem no tempo",
+    "condicionalmente estável, com r ≤ 1/2",
+    "de segunda ordem no tempo e explícito",
+    "instável para todo r"
+   ],
+   "correta": 0,
+   "explicacao": "<p>G = 1/(1 + 4r sen²(θ/2)) está entre 0 e 1.</p>"
+  },
+  {
+   "id": "mn-064",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "implicitos",
+   "enunciado": "<p>A ordem do esquema de Crank-Nicolson é:</p>",
+   "alternativas": [
+    "Δt² e Δx²",
+    "Δt e Δx²",
+    "Δt² e Δx",
+    "Δt e Δx"
+   ],
+   "correta": 0,
+   "explicacao": "<p>É centrado em t<sup>n+1/2</sup>.</p>"
+  },
+  {
+   "id": "mn-065",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "implicitos",
+   "enunciado": "<p>Com r grande, o esquema de Crank-Nicolson pode:</p>",
+   "alternativas": [
+    "tornar-se instável",
+    "tornar-se explícito",
+    "perder a condição de contorno",
+    "gerar oscilações pouco amortecidas, porque G se aproxima de −1 nos modos altos"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Estável, mas pouco dissipativo nas altas frequências.</p>"
+  },
+  {
+   "id": "mn-066",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "implicitos",
+   "enunciado": "<p>Na equação de Laplace com Δx = Δy, cada nó vale:</p>",
+   "alternativas": [
+    "a soma dos quatro vizinhos",
+    "o maior dos vizinhos",
+    "a média dos quatro vizinhos",
+    "a média das bordas"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Vem da discretização de cinco pontos.</p>"
+  },
+  {
+   "id": "mn-067",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "implicitos",
+   "enunciado": "<p>Os quatro vizinhos de um nó valem 100, 0, 75 e 50. Pela equação discreta de Laplace, o nó vale:</p>",
+   "alternativas": [
+    "75",
+    "56,25",
+    "50",
+    "225"
+   ],
+   "correta": 1,
+   "formulas": [
+    "u_{i,j} = (soma dos vizinhos)/4"
+   ],
+   "explicacao": "<div class=\"passo\">(100 + 0 + 75 + 50)/4 = <strong>56,25</strong></div>"
+  },
+  {
+   "id": "mn-068",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "implicitos",
+   "enunciado": "<p>O método ADI em duas dimensões é vantajoso porque:</p>",
+   "alternativas": [
+    "transforma o problema em unidimensional sem erro",
+    "divide o passo em meias etapas que só exigem sistemas tridiagonais, mantendo a estabilidade",
+    "elimina a condição de contorno",
+    "torna o sistema diagonal"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O implícito direto daria uma matriz pentadiagonal, muito mais cara.</p>"
+  },
+  {
+   "id": "mn-069",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "implicitos",
+   "enunciado": "<p>A sobre-relaxação (SOR) em Liebmann utiliza:</p>",
+   "alternativas": [
+    "ω entre 1 e 2, combinando o valor novo e o anterior para acelerar a convergência",
+    "ω negativo, para amortecer a solução",
+    "ω igual a zero, para congelar a iteração",
+    "ω maior que 2, para garantir a convergência"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Com ω = 1, recupera-se Gauss-Seidel. Para ω ≥ 2, o método diverge.</p>"
+  },
+  {
+   "id": "mn-070",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "adveccao",
+   "enunciado": "<p>A condição CFL para esquemas explícitos de advecção é:</p>",
+   "alternativas": [
+    "|C| ≤ 1/2",
+    "|C| ≥ 1",
+    "C = 0",
+    "|C| ≤ 1"
+   ],
+   "correta": 3,
+   "explicacao": "<p>C = aΔt/Δx. O domínio numérico deve conter o físico.</p>"
+  },
+  {
+   "id": "mn-071",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "adveccao",
+   "enunciado": "<p>O FTCS aplicado à advecção linear é:</p>",
+   "alternativas": [
+    "estável com C ≤ 1",
+    "estável com r ≤ 1/2",
+    "incondicionalmente instável",
+    "incondicionalmente estável"
+   ],
+   "correta": 2,
+   "explicacao": "<p>|G|² = 1 + C² sen²θ &gt; 1.</p>"
+  },
+  {
+   "id": "mn-072",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "adveccao",
+   "enunciado": "<p>Com a = 1, Δx = 0,1 e C = 0,5, a difusão numérica do upwind é:</p>",
+   "alternativas": [
+    "0,05",
+    "0,1",
+    "0,025",
+    "0,0125"
+   ],
+   "correta": 2,
+   "formulas": [
+    "ν_n = aΔx(1 − C)/2"
+   ],
+   "explicacao": "<div class=\"passo\">ν = aΔx(1 − C)/2 = 1·0,1·0,5/2 = <strong>0,025</strong></div>"
+  },
+  {
+   "id": "mn-073",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "adveccao",
+   "enunciado": "<p>O erro numérico do esquema upwind se manifesta principalmente como:</p>",
+   "alternativas": [
+    "dispersão, criando ondulações",
+    "dissipação, suavizando as frentes",
+    "aumento da amplitude",
+    "alteração da velocidade para zero"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A equação modificada tem um termo de difusão artificial.</p>"
+  },
+  {
+   "id": "mn-074",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "adveccao",
+   "enunciado": "<p>O esquema de Lax-Wendroff, em uma frente abrupta, tende a produzir:</p>",
+   "alternativas": [
+    "ondulações próximas à frente, por dispersão",
+    "frente muito suavizada, sem oscilações",
+    "solução exata para qualquer C",
+    "crescimento exponencial para qualquer C"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Segunda ordem, dominada pelo termo dispersivo u<sub>xxx</sub>.</p>"
+  },
+  {
+   "id": "mn-075",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "adveccao",
+   "enunciado": "<p>Com a = 2 m/s, Δx = 0,01 m e Δt = 0,004 s, o número de Courant é:</p>",
+   "alternativas": [
+    "0,4",
+    "1,25",
+    "8",
+    "0,8"
+   ],
+   "correta": 3,
+   "formulas": [
+    "C = aΔt/Δx"
+   ],
+   "explicacao": "<div class=\"passo\">C = 2·0,004/0,01 = <strong>0,8</strong></div>"
+  },
+  {
+   "id": "mn-076",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "adveccao",
+   "enunciado": "<p>No upwind com C = 1, sobre a difusão numérica e a solução, é correto:</p>",
+   "alternativas": [
+    "A difusão numérica é máxima",
+    "O esquema se torna instável",
+    "A solução passa a ser constante",
+    "A difusão numérica se anula, e o esquema transporta o pulso exatamente, célula a célula"
+   ],
+   "correta": 3,
+   "explicacao": "<p>u<sub>j</sub><sup>n+1</sup> = u<sub>j−1</sub><sup>n</sup>: o valor apenas muda de célula.</p>"
+  },
+  {
+   "id": "mn-077",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "adveccao",
+   "enunciado": "<p>Pelo teorema de Godunov, um esquema linear que não cria novos extremos:</p>",
+   "alternativas": [
+    "é necessariamente de segunda ordem",
+    "é sempre instável",
+    "é no máximo de primeira ordem",
+    "só existe para C maior que 1"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Limitadores de fluxo são não lineares para contornar o teorema.</p>"
+  }
+ ]
+}
