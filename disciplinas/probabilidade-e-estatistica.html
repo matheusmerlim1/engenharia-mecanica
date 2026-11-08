@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probabilidade e Estatística — Engenharia Mecânica</title>
+<meta name="description" content="Probabilidade e estatística para engenharia: descritiva, modelos, inferência, regressão, confiabilidade e controle de processo, em formato de livro, com simuladores e simulado.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">4º período · Engenharia Mecânica</p>
+    <h1>Probabilidade e Estatística</h1>
+    <p class="lead">Como decidir com informação incompleta. Este texto está organizado como um livro: treze capítulos em sequência, da descrição dos dados ao controle de processo, com as aplicações que o engenheiro encontra em qualidade e confiabilidade.</p>
+    <div class="btn-row">
+      <span class="tag accent">13 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">81 questões</span>
+      <span class="tag info">5 simuladores animados</span>
+      <span class="tag info">13 figuras interativas</span>
+      <span class="tag warn">tabelas z, t e χ²</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai da descrição dos dados à decisão: primeiro organizar o que foi medido, depois modelar a incerteza e, por fim, tirar conclusões sobre o processo a partir de uma amostra.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: decidir com informação incompleta</h2>
+        <p>Nenhuma peça sai igual à anterior, e nenhum ensaio mede a população inteira. O engenheiro precisa aceitar um lote depois de inspecionar vinte peças, dimensionar considerando que a resistência varia e dizer qual a chance de um equipamento durar até a próxima parada. Probabilidade é a linguagem da incerteza, e estatística é o método para decidir apesar dela.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Como resumir um conjunto de medições?</td><td>Média, desvio-padrão, quartis</td><td>1</td></tr>
+            <tr><td>Qual a chance de um evento?</td><td>Axiomas, contagem, Bayes</td><td>2 e 3</td></tr>
+            <tr><td>Como descrever uma grandeza aleatória?</td><td>Variáveis aleatórias e modelos</td><td>4 a 6</td></tr>
+            <tr><td>O que acontece ao somar ou tirar a média?</td><td>Covariância e teorema central do limite</td><td>7</td></tr>
+            <tr><td>O que uma amostra diz da população?</td><td>Estimação e intervalos de confiança</td><td>8 e 9</td></tr>
+            <tr><td>A diferença observada é real?</td><td>Testes de hipóteses</td><td>10</td></tr>
+            <tr><td>Como uma variável depende de outra?</td><td>Regressão e correlação</td><td>11</td></tr>
+            <tr><td>Quanto tempo o equipamento dura?</td><td>Confiabilidade e Weibull</td><td>12</td></tr>
+            <tr><td>O processo está sob controle e atende à especificação?</td><td>Cartas de controle e capacidade</td><td>13</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Em toda questão, escreva primeiro qual é a variável aleatória e qual distribuição ela segue. A maior parte dos erros vem de aplicar a fórmula certa ao modelo errado.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Dados e probabilidade" data-topicos="descritiva">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Estatística descritiva</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular medidas de posição e de dispersão;</li>
+            <li>escolher entre média e mediana;</li>
+            <li>distinguir variância amostral de populacional;</li>
+            <li>ler um histograma e um diagrama de caixa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Apenas somatórios.</p></div>
+        </div>
+        <h3 id="s1-1"><span class="num">1.1</span>Medidas de posição</h3>
+        <p>A <strong>média</strong> usa todos os valores e por isso é sensível a extremos. A <strong>mediana</strong> é o valor central do conjunto ordenado e é robusta. A <strong>moda</strong> é o valor mais frequente.</p>
+        <div class="formula"><span data-tex="\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i"></span></div>
+        <div class="fig-host" id="fig-1-1"></div>
+        <p>Em distribuição simétrica, as três coincidem. Com cauda à direita, típica de tempos de reparo e de renda, a média fica acima da mediana.</p>
+        <h3 id="s1-2"><span class="num">1.2</span>Medidas de dispersão</h3>
+        <div class="formula"><span data-tex="s^2 = \frac{1}{n-1}\sum (x_i - \bar{x})^2 \qquad \sigma^2 = \frac{1}{N}\sum (x_i - \mu)^2 \qquad CV = \frac{s}{\bar{x}}"></span></div>
+        <p>O divisor <span data-tex-inline="n - 1"></span> vale quando os dados são uma amostra: como a média foi calculada com os próprios dados, sobram <span data-tex-inline="n-1"></span> graus de liberdade. O <strong>coeficiente de variação</strong> é adimensional e permite comparar a variabilidade de grandezas diferentes.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Espessura de chapa</div>
+          <p>Mediram-se as espessuras 4, 7, 7, 9 e 13 mm. Calcule as medidas de posição e de dispersão.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Média: 40/5 = 8 mm. Mediana: 7 mm. Moda: 7 mm.</li>
+              <li><span data-tex-inline="\sum (x_i - \bar{x})^2 = 16 + 1 + 1 + 1 + 25 = 44"></span>.</li>
+              <li>Amostral: <span data-tex-inline="s^2 = 44/4 = 11"></span>, <span data-tex-inline="s = 3{,}32"></span> mm.</li>
+              <li>Populacional: <span data-tex-inline="\sigma^2 = 44/5 = 8{,}8"></span>, <span data-tex-inline="\sigma = 2{,}97"></span> mm.</li>
+              <li><span data-tex-inline="CV = 3{,}32/8 = 41{,}5\,\%"></span>.</li>
+            </ol>
+            <p class="resposta">A média acima da mediana indica assimetria positiva: o valor 13 puxa a média para cima.</p>
+          </details>
+        </div>
+        <h3 id="s1-3"><span class="num">1.3</span>Quartis e diagrama de caixa</h3>
+        <p>Os quartis dividem os dados ordenados em quatro partes iguais. A <strong>amplitude interquartil</strong>, <span data-tex-inline="AIQ = Q_3 - Q_1"></span>, é uma dispersão robusta. Valores além de <span data-tex-inline="1{,}5\,AIQ"></span> das bordas da caixa são tratados como candidatos a valores atípicos e devem ser investigados, e não descartados automaticamente.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Média é sensível a extremos; mediana é robusta.</li>
+          <li>Amostra usa n − 1; população usa N.</li>
+          <li>CV permite comparar dispersões de grandezas diferentes.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Em uma amostra de tempos de reparo com poucos valores muito longos, qual medida representa melhor o caso típico?</summary><p>A mediana, pois não é arrastada pelos reparos excepcionais.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Dados e probabilidade" data-topicos="probabilidade">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Fundamentos de probabilidade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>definir espaço amostral e evento;</li>
+            <li>aplicar os axiomas e o modelo de Laplace;</li>
+            <li>contar arranjos e combinações.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Conjuntos e fatorial.</p></div>
+        </div>
+        <h3 id="s2-1"><span class="num">2.1</span>Espaço amostral e axiomas</h3>
+        <p>O <strong>espaço amostral</strong> <span data-tex-inline="\Omega"></span> reúne todos os resultados possíveis, e um <strong>evento</strong> é um subconjunto dele. A probabilidade obedece a três axiomas: <span data-tex-inline="P(A) \ge 0"></span>; <span data-tex-inline="P(\Omega) = 1"></span>; e, para eventos disjuntos, as probabilidades se somam. Daí seguem:</p>
+        <div class="formula"><span data-tex="P(A^c) = 1 - P(A) \qquad P(A \cup B) = P(A) + P(B) - P(A \cap B)"></span></div>
+        <div class="fig-host" id="fig-2-1"></div>
+        <h3 id="s2-2"><span class="num">2.2</span>Modelo de Laplace</h3>
+        <p>Quando os resultados são igualmente prováveis, <span data-tex-inline="P(A) = \#A/\#\Omega"></span>. Dois dados têm 36 resultados, e a soma 7 ocorre em 6 deles: probabilidade 1/6.</p>
+        <div class="callout warn">
+          <strong>O erro de d'Alembert</strong>
+          Lançando duas moedas, d'Alembert contou três resultados, "zero, uma ou duas caras", e concluiu que a chance de pelo menos uma cara era 2/3. Os resultados não são igualmente prováveis: o espaço correto é {CC, CK, KC, KK}, e a resposta é 3/4.
+        </div>
+        <p>A noção empírica, ou frequentista, complementa o modelo: repetindo o experimento muitas vezes, a frequência relativa tende à probabilidade.</p>
+        <h3 id="s2-3"><span class="num">2.3</span>Contagem</h3>
+        <div class="formula"><span data-tex="A_{n,k} = \frac{n!}{(n-k)!} \qquad \binom{n}{k} = \frac{n!}{k!\,(n-k)!}"></span></div>
+        <p>Use arranjo se a ordem importa, e combinação se não importa.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Amostra de um lote</div>
+          <p>Um lote tem 20 peças, das quais 3 são defeituosas. Retiram-se 2 sem reposição. Calcule a probabilidade de encontrar 0, 1 e 2 defeituosas.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Total: <span data-tex-inline="\binom{20}{2} = 190"></span>.</li>
+              <li><span data-tex-inline="P(0) = \binom{17}{2}/190 = 136/190 = 0{,}7158"></span>.</li>
+              <li><span data-tex-inline="P(1) = 3 \cdot 17/190 = 0{,}2684"></span>.</li>
+              <li><span data-tex-inline="P(2) = 3/190 = 0{,}0158"></span>.</li>
+            </ol>
+            <p class="resposta">A soma das três é 1. Esse modelo, sem reposição, é a distribuição hipergeométrica.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Três axiomas sustentam toda a probabilidade.</li>
+          <li>Laplace exige resultados equiprováveis.</li>
+          <li>Ordem importa: arranjo. Não importa: combinação.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que muitas vezes é mais fácil calcular P(pelo menos um) pelo complemento?</summary><p>Porque 1 − P(nenhum) evita somar vários casos.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Dados e probabilidade" data-topicos="bayes">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Probabilidade condicional e Bayes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular probabilidades condicionais;</li>
+            <li>distinguir eventos independentes de disjuntos;</li>
+            <li>aplicar a probabilidade total e o teorema de Bayes.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Axiomas de probabilidade.</p></div>
+        </div>
+        <h3 id="s3-1"><span class="num">3.1</span>Condicional e independência</h3>
+        <div class="formula"><span data-tex="P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad A, B \text{ independentes} \Leftrightarrow P(A \cap B) = P(A)\,P(B)"></span></div>
+        <div class="callout warn">
+          <strong>Independente não é o mesmo que disjunto</strong>
+          Eventos disjuntos, com probabilidade positiva, são dependentes: se um ocorreu, o outro certamente não ocorreu. Independência diz que saber de um não altera a chance do outro.
+        </div>
+        <h3 id="s3-2"><span class="num">3.2</span>Probabilidade total e Bayes</h3>
+        <p>Se os eventos <span data-tex-inline="B_i"></span> formam uma partição de <span data-tex-inline="\Omega"></span>:</p>
+        <div class="formula"><span data-tex="P(A) = \sum_i P(A \mid B_i)\,P(B_i) \qquad P(B_k \mid A) = \frac{P(A \mid B_k)\,P(B_k)}{\sum_i P(A \mid B_i)\,P(B_i)}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Duas máquinas</div>
+          <p>A máquina A produz 60 % das peças, com 2 % de defeitos, e a máquina B, 40 %, com 5 %. Qual a chance de uma peça ser defeituosa? Dada uma defeituosa, qual a chance de ter vindo de B?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="P(D) = 0{,}6(0{,}02) + 0{,}4(0{,}05) = 0{,}032"></span>.</li>
+              <li><span data-tex-inline="P(B \mid D) = 0{,}020/0{,}032 = 0{,}625"></span>.</li>
+            </ol>
+            <p class="resposta">B fabrica 40 % das peças e responde por 62,5 % dos defeitos.</p>
+          </details>
+        </div>
+        <div class="fig-host" id="fig-3-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.2</span>O ensaio que parece bom</div>
+          <p>Um ensaio detecta 95 % das trincas e dá falso alarme em 10 % das peças boas. Só 1 % das peças tem trinca. Qual a chance de haver trinca em uma peça reprovada?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="P(+) = 0{,}01(0{,}95) + 0{,}99(0{,}10) = 0{,}1085"></span>.</li>
+              <li><span data-tex-inline="P(T \mid +) = 0{,}0095/0{,}1085 = 0{,}0876"></span>.</li>
+            </ol>
+            <p class="resposta">Só 8,8 %: como defeitos são raros, a maioria das reprovações é falso alarme.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Condicionar é restringir o espaço amostral.</li>
+          <li>Independente e disjunto são coisas diferentes.</li>
+          <li>Bayes inverte a condicional e depende da taxa de base.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>P(A|B) é igual a P(B|A)?</summary><p>Em geral não. A relação entre elas é justamente o teorema de Bayes.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Modelos" data-topicos="va">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Variáveis aleatórias</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir variáveis discretas e contínuas;</li>
+            <li>usar a função distribuição acumulada;</li>
+            <li>calcular esperança e variância.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Integrais e probabilidade básica.</p></div>
+        </div>
+        <h3 id="s4-1"><span class="num">4.1</span>Discretas e contínuas</h3>
+        <p>Uma <strong>variável aleatória</strong> associa um número a cada resultado. A discreta tem função de probabilidade <span data-tex-inline="p(x) = P(X = x)"></span>. A contínua tem densidade <span data-tex-inline="f(x)"></span>, e a probabilidade é uma área: <span data-tex-inline="P(X = x) = 0"></span> para qualquer valor exato.</p>
+        <div class="formula"><span data-tex="F(x) = P(X \le x), \qquad P(a \lt X \le b) = F(b) - F(a) = \int_a^b f(x)\,dx"></span></div>
+        <div class="fig-host" id="fig-4-1"></div>
+        <h3 id="s4-2"><span class="num">4.2</span>Esperança e variância</h3>
+        <div class="formula"><span data-tex="E[X] = \sum x\,p(x) \;\text{ ou }\; \int x\,f(x)\,dx, \qquad Var(X) = E[X^2] - (E[X])^2"></span></div>
+        <div class="formula"><span data-tex="E[aX + b] = a\,E[X] + b \qquad Var(aX + b) = a^2\,Var(X)"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Número de paradas por turno</div>
+          <p>X assume 0, 1, 2 e 3 com probabilidades 0,1; 0,3; 0,4 e 0,2.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="E[X] = 0{,}3 + 0{,}8 + 0{,}6 = 1{,}7"></span>.</li>
+              <li><span data-tex-inline="E[X^2] = 0{,}3 + 1{,}6 + 1{,}8 = 3{,}7"></span>.</li>
+              <li><span data-tex-inline="Var(X) = 3{,}7 - 1{,}7^2 = 0{,}81"></span>, com desvio de 0,9.</li>
+            </ol>
+            <p class="resposta">Em média, 1,7 parada por turno, com desvio-padrão de 0,9.</p>
+          </details>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.2</span>Densidade contínua</div>
+          <p>Seja <span data-tex-inline="f(x) = 2x"></span> em [0, 1].</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>A área total é 1. <span data-tex-inline="F(x) = x^2"></span>, logo <span data-tex-inline="P(X \lt 0{,}5) = 0{,}25"></span>.</li>
+              <li><span data-tex-inline="E[X] = \int_0^1 2x^2 dx = 2/3"></span>.</li>
+              <li><span data-tex-inline="E[X^2] = 1/2"></span> e <span data-tex-inline="Var(X) = 1/2 - 4/9 = 1/18"></span>.</li>
+            </ol>
+            <p class="resposta">E[X] = 0,667 e Var(X) = 0,0556.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Contínua: probabilidade é área e P(X = x) é zero.</li>
+          <li>Var(X) = E[X²] − (E[X])².</li>
+          <li>Multiplicar por a multiplica a variância por a².</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma densidade pode ser maior que 1?</summary><p>Sim. A exigência é a área total valer 1, e não o valor da função ser menor que 1.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Modelos" data-topicos="discretos">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Modelos discretos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer os modelos de Bernoulli, binomial, geométrico e de Poisson;</li>
+            <li>aproximar a binomial pela Poisson.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Combinações e esperança.</p></div>
+        </div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Modelo</th><th>Pergunta</th><th>P(X = k)</th><th>Média</th><th>Variância</th></tr></thead>
+          <tbody>
+            <tr><td>Binomial (n, p)</td><td>Quantos sucessos em n ensaios?</td><td><span data-tex-inline="\binom{n}{k} p^k (1-p)^{n-k}"></span></td><td>np</td><td>np(1−p)</td></tr>
+            <tr><td>Geométrica (p)</td><td>Em qual ensaio ocorre o 1º sucesso?</td><td><span data-tex-inline="(1-p)^{k-1} p"></span></td><td>1/p</td><td>(1−p)/p²</td></tr>
+            <tr><td>Binomial negativa (r, p)</td><td>Em qual ensaio ocorre o r-ésimo?</td><td><span data-tex-inline="\binom{k-1}{r-1} p^r (1-p)^{k-r}"></span></td><td>r/p</td><td>r(1−p)/p²</td></tr>
+            <tr><td>Poisson (λ)</td><td>Quantos eventos em um intervalo?</td><td><span data-tex-inline="e^{-\lambda}\lambda^k/k!"></span></td><td>λ</td><td>λ</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A <strong>binomial</strong> exige ensaios independentes com mesma probabilidade. Em retirada sem reposição, de lote pequeno, o modelo correto é o hipergeométrico. A <strong>geométrica</strong> não tem memória: já ter esperado muito não muda a chance do próximo ensaio.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Amostra de 10 peças com 5 % de defeitos</div>
+          <p>Calcule a probabilidade de nenhuma, exatamente uma e duas ou mais defeituosas.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="P(0) = 0{,}95^{10} = 0{,}5987"></span>.</li>
+              <li><span data-tex-inline="P(1) = 10(0{,}05)(0{,}95)^9 = 0{,}3151"></span>.</li>
+              <li><span data-tex-inline="P(X \ge 2) = 1 - 0{,}5987 - 0{,}3151 = 0{,}0861"></span>.</li>
+            </ol>
+            <p class="resposta">Quase 60 % das amostras não mostrariam defeito algum.</p>
+          </details>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.2</span>Poisson e geométrica</div>
+          <p>Uma bomba tem em média 0,5 falha por ano. E, em outro processo, cada ensaio tem chance 0,2 de sucesso.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="P(\text{nenhuma falha no ano}) = e^{-0{,}5} = 0{,}6065"></span>.</li>
+              <li><span data-tex-inline="P(\text{1º sucesso no 3º ensaio}) = 0{,}8^2(0{,}2) = 0{,}128"></span>, com média de 5 ensaios.</li>
+              <li>Terceiro sucesso no 5º ensaio, com p = 0,4: <span data-tex-inline="\binom{4}{2}0{,}4^3 0{,}6^2 = 0{,}138"></span>.</li>
+            </ol>
+          </details>
+        </div>
+        <div class="fig-host" id="fig-5-1"></div>
+        <p>Com <span data-tex-inline="n"></span> grande e <span data-tex-inline="p"></span> pequeno, a binomial se aproxima da Poisson de <span data-tex-inline="\lambda = np"></span>. Para <span data-tex-inline="n = 100"></span> e <span data-tex-inline="p = 0{,}02"></span>: <span data-tex-inline="P(0)"></span> exato é 0,1326, e o de Poisson é 0,1353.</p>
+        <div id="sim-discretas" class="sim"></div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Conta sucessos em n: binomial. Espera o primeiro: geométrica.</li>
+          <li>Eventos raros em um intervalo: Poisson, com média igual à variância.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Como saber, pelos dados, se Poisson é razoável?</summary><p>Compare média e variância: no modelo, são iguais. Variância muito maior indica eventos agrupados.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Modelos" data-topicos="continuos">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Modelos contínuos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>usar a distribuição normal e a padronização;</li>
+            <li>aplicar a regra 68-95-99,7;</li>
+            <li>reconhecer os modelos exponencial e de Weibull;</li>
+            <li>aproximar a binomial pela normal.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Densidade e função acumulada.</p></div>
+        </div>
+        <h3 id="s6-1"><span class="num">6.1</span>A distribuição normal</h3>
+        <div class="formula"><span data-tex="f(x) = \frac{1}{\sigma\sqrt{2\pi}}\,e^{-(x-\mu)^2/2\sigma^2} \qquad Z = \frac{X - \mu}{\sigma}"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Faixa</th><td class="num">μ ± σ</td><td class="num">μ ± 2σ</td><td class="num">μ ± 3σ</td></tr></thead>
+          <tbody><tr><th>Probabilidade</th><td class="num">68,27 %</td><td class="num">95,45 %</td><td class="num">99,73 %</td></tr></tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Resistência de um lote</div>
+          <p>A resistência segue <span data-tex-inline="N(500,\ 20^2)"></span> MPa. Qual a fração entre 460 e 540 MPa?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="z = (460 - 500)/20 = -2"></span> e <span data-tex-inline="z = +2"></span>.</li>
+              <li><span data-tex-inline="\Phi(2) - \Phi(-2) = 0{,}9772 - 0{,}0228 = 0{,}9545"></span>.</li>
+            </ol>
+            <p class="resposta">95,45 % do lote.</p>
+          </details>
+        </div>
+        <div id="sim-normal" class="sim"></div>
+        <h3 id="s6-2"><span class="num">6.2</span>Aproximação normal da binomial</h3>
+        <p>Se <span data-tex-inline="np"></span> e <span data-tex-inline="n(1-p)"></span> são maiores que 5, vale <span data-tex-inline="X \approx N(np,\ np(1-p))"></span>, com <strong>correção de continuidade</strong>: somar 0,5 ao limite. Para <span data-tex-inline="n = 100"></span>, <span data-tex-inline="p = 0{,}5"></span> e <span data-tex-inline="P(X \le 55)"></span>: <span data-tex-inline="z = (55{,}5 - 50)/5 = 1{,}1"></span>, e <span data-tex-inline="\Phi(1{,}1) = 0{,}8643"></span>. O valor exato é 0,8644.</p>
+        <h3 id="s6-3"><span class="num">6.3</span>Exponencial e Weibull</h3>
+        <p>A <strong>exponencial</strong> descreve o tempo até um evento de Poisson e não tem memória:</p>
+        <div class="formula"><span data-tex="f(t) = \lambda e^{-\lambda t}, \qquad P(T \gt t) = e^{-\lambda t}, \qquad E[T] = 1/\lambda"></span></div>
+        <p>A <strong>Weibull</strong> generaliza a exponencial com um parâmetro de forma <span data-tex-inline="\beta"></span> e é o modelo mais usado em vida de componentes:</p>
+        <div class="formula"><span data-tex="R(t) = e^{-(t/\eta)^\beta}, \qquad h(t) = \frac{\beta}{\eta}\left(\frac{t}{\eta}\right)^{\beta - 1}"></span></div>
+        <div class="fig-host" id="fig-6-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>β</th><th>Taxa de falha</th><th>Interpretação</th></tr></thead>
+          <tbody>
+            <tr><td>β &lt; 1</td><td>Decrescente</td><td>Mortalidade infantil, defeitos de fabricação</td></tr>
+            <tr><td>β = 1</td><td>Constante</td><td>Falhas aleatórias; é a exponencial</td></tr>
+            <tr><td>β &gt; 1</td><td>Crescente</td><td>Desgaste e fadiga</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Z = (X − μ)/σ leva à normal padrão.</li>
+          <li>Exponencial não tem memória.</li>
+          <li>Weibull: o valor de β indica o mecanismo de falha.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Se a falha é exponencial, inspecionar e substituir preventivamente ajuda?</summary><p>Não: sem memória, uma peça usada é tão boa quanto uma nova. A preventiva só compensa quando há desgaste (β &gt; 1).</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Modelos" data-topicos="tcl">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Somas de variáveis e teorema central do limite</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular covariância e correlação;</li>
+            <li>somar variâncias de componentes independentes;</li>
+            <li>aplicar o teorema central do limite.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Esperança, variância e distribuição normal.</p></div>
+        </div>
+        <h3 id="s7-1"><span class="num">7.1</span>Covariância e correlação</h3>
+        <div class="formula"><span data-tex="Cov(X,Y) = E[XY] - E[X]\,E[Y] \qquad \rho = \frac{Cov(X,Y)}{\sigma_X\,\sigma_Y}, \quad -1 \le \rho \le 1"></span></div>
+        <div class="fig-host" id="fig-7-1"></div>
+        <div class="callout warn">
+          <strong>Correlação zero não é independência</strong>
+          Independência implica correlação nula, mas o contrário não vale. Se Y = X² com X simétrica em torno de zero, a correlação é zero e Y é totalmente determinada por X.
+        </div>
+        <h3 id="s7-2"><span class="num">7.2</span>Soma de variáveis</h3>
+        <div class="formula"><span data-tex="E[X + Y] = E[X] + E[Y] \qquad Var(X + Y) = Var(X) + Var(Y) + 2\,Cov(X,Y)"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Empilhamento de tolerâncias</div>
+          <p>Três peças independentes são montadas em série, cada uma com <span data-tex-inline="\sigma = 0{,}02"></span> mm.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Variâncias somam: <span data-tex-inline="\sigma_T = \sqrt{3}(0{,}02) = 0{,}0346"></span> mm.</li>
+              <li>Somar os desvios linearmente daria 0,06 mm, pior caso que quase nunca ocorre.</li>
+            </ol>
+            <p class="resposta">O conjunto varia 0,0346 mm: somam-se as variâncias, e não os desvios.</p>
+          </details>
+        </div>
+        <h3 id="s7-3"><span class="num">7.3</span>Teorema central do limite</h3>
+        <p>Para amostras independentes de qualquer população com média <span data-tex-inline="\mu"></span> e variância <span data-tex-inline="\sigma^2"></span> finita, a média padronizada tende à normal:</p>
+        <div class="formula"><span data-tex="\bar{X} \approx N\!\left(\mu,\ \frac{\sigma^2}{n}\right) \quad \text{para } n \text{ grande}"></span></div>
+        <div id="sim-tcl" class="sim"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.2</span>A média de 25 medições</div>
+          <p>Com <span data-tex-inline="\mu = 100"></span>, <span data-tex-inline="\sigma = 10"></span> e <span data-tex-inline="n = 25"></span>, calcule <span data-tex-inline="P(\bar{X} \gt 103)"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Erro-padrão: <span data-tex-inline="10/\sqrt{25} = 2"></span>.</li>
+              <li><span data-tex-inline="z = 3/2 = 1{,}5"></span> e <span data-tex-inline="1 - \Phi(1{,}5) = 0{,}0668"></span>.</li>
+            </ol>
+            <p class="resposta">6,7 %. Para uma peça individual, 103 está a só 0,3σ e seria muito comum.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Variâncias de variáveis independentes se somam.</li>
+          <li>O desvio da média cai com a raiz de n.</li>
+          <li>O TCL é a razão de a normal estar em toda parte.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quantas vezes mais medições para reduzir o erro-padrão à metade?</summary><p>Quatro vezes, por causa da raiz de n.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Inferência" data-topicos="amostragem">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Amostragem e estimação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir parâmetro de estimador;</li>
+            <li>avaliar vício e variância de estimadores;</li>
+            <li>usar as distribuições t e qui-quadrado;</li>
+            <li>dimensionar uma amostra.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Teorema central do limite.</p></div>
+        </div>
+        <h3 id="s8-1"><span class="num">8.1</span>População e amostra</h3>
+        <p>Um <strong>parâmetro</strong> (<span data-tex-inline="\mu, \sigma"></span>) descreve a população e é fixo, porém desconhecido. Um <strong>estimador</strong> (<span data-tex-inline="\bar{X}, S"></span>) é calculado na amostra e varia de amostra para amostra. A amostragem pode ser aleatória simples, estratificada, por conglomerados ou sistemática.</p>
+        <p>Um bom estimador é <strong>não viciado</strong> (<span data-tex-inline="E[\hat\theta] = \theta"></span>) e tem <strong>variância pequena</strong>. O divisor <span data-tex-inline="n-1"></span> em <span data-tex-inline="S^2"></span> existe para torná-lo não viciado.</p>
+        <h3 id="s8-2"><span class="num">8.2</span>As distribuições amostrais</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Grandeza</th><th>Distribuição</th><th>Hipótese</th></tr></thead>
+          <tbody>
+            <tr><td><span data-tex-inline="\dfrac{\bar{X} - \mu}{\sigma/\sqrt{n}}"></span></td><td>Normal padrão</td><td>σ conhecido; população normal ou n grande</td></tr>
+            <tr><td><span data-tex-inline="\dfrac{\bar{X} - \mu}{S/\sqrt{n}}"></span></td><td>t com n − 1 graus de liberdade</td><td>População normal, σ desconhecido</td></tr>
+            <tr><td><span data-tex-inline="\dfrac{(n-1)S^2}{\sigma^2}"></span></td><td>Qui-quadrado com n − 1 graus</td><td>População normal</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-8-1"></div>
+        <h3 id="s8-3"><span class="num">8.3</span>Tamanho da amostra</h3>
+        <div class="formula"><span data-tex="n \ge \left(\frac{z_{\alpha/2}\,\sigma}{E}\right)^2"></span></div>
+        <p>Para 95 % de confiança, <span data-tex-inline="\sigma = 10"></span> e erro máximo <span data-tex-inline="E = 2"></span>: <span data-tex-inline="n \ge (1{,}96 \cdot 10/2)^2 = 96{,}04"></span>, ou seja, 97 observações, arredondando sempre para cima.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Parâmetro é fixo; estimador varia.</li>
+          <li>σ desconhecido e amostra pequena: distribuição t.</li>
+          <li>Reduzir o erro à metade exige quatro vezes mais dados.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Para n muito grande, t e z diferem?</summary><p>Quase não: a distribuição t tende à normal quando os graus de liberdade crescem.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Inferência" data-topicos="ic">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Intervalos de confiança</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>construir intervalos para média, proporção e variância;</li>
+            <li>interpretar corretamente a confiança;</li>
+            <li>relacionar largura, confiança e tamanho da amostra.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 8.</p></div>
+        </div>
+        <h3 id="s9-1"><span class="num">9.1</span>As fórmulas</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Para</th><th>Intervalo</th></tr></thead>
+          <tbody>
+            <tr><td>Média, σ conhecido</td><td><span data-tex-inline="\bar{x} \pm z_{\alpha/2}\,\sigma/\sqrt{n}"></span></td></tr>
+            <tr><td>Média, σ desconhecido</td><td><span data-tex-inline="\bar{x} \pm t_{\alpha/2,\,n-1}\,s/\sqrt{n}"></span></td></tr>
+            <tr><td>Proporção</td><td><span data-tex-inline="\hat{p} \pm z_{\alpha/2}\sqrt{\hat{p}(1-\hat{p})/n}"></span></td></tr>
+            <tr><td>Variância</td><td><span data-tex-inline="\left(\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2}},\ \dfrac{(n-1)s^2}{\chi^2_{\alpha/2}}\right)"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Quatro intervalos de 95 %</div>
+          <p>(a) <span data-tex-inline="\bar{x} = 250"></span>, <span data-tex-inline="\sigma = 12"></span>, <span data-tex-inline="n = 36"></span>. (b) <span data-tex-inline="\bar{x} = 48{,}2"></span>, <span data-tex-inline="s = 2{,}5"></span>, <span data-tex-inline="n = 10"></span>. (c) 40 defeituosas em 200. (d) <span data-tex-inline="s^2 = 6{,}25"></span> e <span data-tex-inline="n = 10"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) <span data-tex-inline="250 \pm 1{,}96(12/6) = 250 \pm 3{,}92"></span>.</li>
+              <li>(b) <span data-tex-inline="t_{0{,}025;9} = 2{,}262"></span>: <span data-tex-inline="48{,}2 \pm 2{,}262(2{,}5/\sqrt{10}) = 48{,}2 \pm 1{,}79"></span>.</li>
+              <li>(c) <span data-tex-inline="0{,}20 \pm 1{,}96\sqrt{0{,}2 \cdot 0{,}8/200} = 0{,}20 \pm 0{,}055"></span>.</li>
+              <li>(d) Com <span data-tex-inline="\chi^2 = 2{,}700"></span> e <span data-tex-inline="19{,}023"></span>: de <span data-tex-inline="9(6{,}25)/19{,}023 = 2{,}96"></span> a <span data-tex-inline="9(6{,}25)/2{,}700 = 20{,}83"></span>.</li>
+            </ol>
+            <p class="resposta">O intervalo da variância não é simétrico em torno de s², porque a qui-quadrado não é simétrica.</p>
+          </details>
+        </div>
+        <h3 id="s9-2"><span class="num">9.2</span>O que 95 % significa</h3>
+        <p>O parâmetro é fixo; o intervalo é que é aleatório. Em repetições do procedimento, cerca de 95 % dos intervalos conterão <span data-tex-inline="\mu"></span>. Depois de calculado, um intervalo específico contém ou não contém <span data-tex-inline="\mu"></span>.</p>
+        <div id="sim-ic" class="sim"></div>
+        <div class="fig-host" id="fig-9-1"></div>
+        <div class="callout warn">
+          <strong>Usar z no lugar de t</strong>
+          Com n pequeno e σ desconhecido, z produz intervalo curto demais, e a cobertura real fica abaixo da nominal. O simulador mostra isso no exemplo 2.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Largura ∝ valor crítico × dispersão / √n.</li>
+          <li>Mais confiança significa intervalo mais largo.</li>
+          <li>A confiança é propriedade do método.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Está certo dizer que há 95 % de chance de μ estar neste intervalo?</summary><p>Na interpretação frequentista, não: μ é fixo. O que tem 95 % é a taxa de acerto do procedimento.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Inferência" data-topicos="testes">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Testes de hipóteses</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>formular hipóteses e identificar os erros tipo I e II;</li>
+            <li>calcular estatística de teste e valor-p;</li>
+            <li>comparar duas médias;</li>
+            <li>aplicar o teste qui-quadrado de aderência.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Intervalos de confiança.</p></div>
+        </div>
+        <h3 id="s10-1"><span class="num">10.1</span>A lógica</h3>
+        <p>A hipótese nula <span data-tex-inline="H_0"></span> é mantida a menos que os dados a tornem pouco plausível. Dois erros são possíveis:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th></th><th>H₀ verdadeira</th><th>H₀ falsa</th></tr></thead>
+          <tbody>
+            <tr><th>Rejeitar H₀</th><td>Erro tipo I, probabilidade α</td><td>Acerto; poder = 1 − β</td></tr>
+            <tr><th>Não rejeitar H₀</th><td>Acerto</td><td>Erro tipo II, probabilidade β</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-10-1"></div>
+        <p>O <strong>valor-p</strong> é a probabilidade, supondo <span data-tex-inline="H_0"></span> verdadeira, de obter um resultado tão extremo quanto o observado. Rejeita-se <span data-tex-inline="H_0"></span> se <span data-tex-inline="p \lt \alpha"></span>.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Teste z bilateral e o poder</div>
+          <p><span data-tex-inline="H_0: \mu = 500"></span>; <span data-tex-inline="\sigma = 20"></span>; <span data-tex-inline="n = 25"></span>; <span data-tex-inline="\bar{x} = 508"></span>; <span data-tex-inline="\alpha = 5\,\%"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="z = 8/(20/5) = 2{,}0"></span>, maior que 1,96: rejeita-se <span data-tex-inline="H_0"></span>.</li>
+              <li>Valor-p = <span data-tex-inline="2(1 - \Phi(2)) = 0{,}0455"></span>.</li>
+              <li>Se de fato <span data-tex-inline="\mu = 510"></span>: região de aceitação até 507,84; <span data-tex-inline="\beta = 0{,}2946"></span>, e o poder é 0,7054.</li>
+            </ol>
+            <p class="resposta">Mesmo com μ = 510, o teste deixaria passar o desvio em cerca de 29 % das vezes.</p>
+          </details>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.2</span>Teste t e duas amostras</div>
+          <p>(a) <span data-tex-inline="H_0: \mu = 10"></span>; <span data-tex-inline="n = 16"></span>; <span data-tex-inline="\bar{x} = 10{,}4"></span>; <span data-tex-inline="s = 0{,}8"></span>. (b) Dois processos com 6 peças cada: médias 54 e 51; ambas com <span data-tex-inline="s^2 = 2"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) <span data-tex-inline="t = 0{,}4/(0{,}8/4) = 2{,}0"></span>; <span data-tex-inline="t_{0{,}025;15} = 2{,}131"></span>: não se rejeita <span data-tex-inline="H_0"></span> (p = 0,064).</li>
+              <li>(b) <span data-tex-inline="s_p^2 = 2"></span>; <span data-tex-inline="t = 3/\sqrt{2(1/6 + 1/6)} = 3{,}67"></span>; <span data-tex-inline="t_{0{,}025;10} = 2{,}228"></span>: diferença significativa.</li>
+            </ol>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Significativo não quer dizer importante</strong>
+          Com n enorme, uma diferença irrelevante na prática sai significativa. E "não rejeitar" não prova que H₀ é verdadeira: pode faltar poder.
+        </div>
+        <h3 id="s10-2"><span class="num">10.2</span>Qui-quadrado de aderência</h3>
+        <div class="formula"><span data-tex="\chi^2 = \sum_i \frac{(O_i - E_i)^2}{E_i}"></span></div>
+        <p>Um dado lançado 60 vezes deu as frequências 8, 12, 9, 11, 14 e 6. Com 10 esperados por face, <span data-tex-inline="\chi^2 = 4{,}2"></span>, abaixo do crítico <span data-tex-inline="\chi^2_{0{,}05;5} = 11{,}07"></span>: não há evidência contra o dado ser honesto.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>α é o risco de falso alarme; β, o de deixar passar.</li>
+          <li>Rejeita-se H₀ se p &lt; α.</li>
+          <li>O poder cresce com n e com o tamanho do efeito.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Como reduzir α e β ao mesmo tempo?</summary><p>Aumentando o tamanho da amostra. Com n fixo, diminuir um aumenta o outro.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte III — Inferência" data-topicos="regressao">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Regressão e correlação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>ajustar uma reta e interpretar seus coeficientes;</li>
+            <li>calcular r e r²;</li>
+            <li>construir um intervalo para a inclinação.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Testes de hipóteses.</p></div>
+        </div>
+        <h3 id="s11-1"><span class="num">11.1</span>O modelo</h3>
+        <div class="formula"><span data-tex="Y = \beta_0 + \beta_1 x + \varepsilon \qquad b_1 = \frac{S_{xy}}{S_{xx}}, \quad b_0 = \bar{y} - b_1 \bar{x}"></span></div>
+        <div class="formula"><span data-tex="r = \frac{S_{xy}}{\sqrt{S_{xx} S_{yy}}} \qquad se(b_1) = \sqrt{\frac{SQE/(n-2)}{S_{xx}}}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Calibração com inferência</div>
+          <p>Para (1; 2,2), (2; 4,1), (3; 6,2), (4; 7,9), (5; 10,1), determine a reta e um intervalo de 95 % para a inclinação.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="S_{xx} = 10"></span>, <span data-tex-inline="S_{xy} = 19{,}6"></span>, <span data-tex-inline="S_{yy} = 38{,}46"></span>.</li>
+              <li><span data-tex-inline="b_1 = 1{,}96"></span> e <span data-tex-inline="b_0 = 6{,}1 - 1{,}96 \cdot 3 = 0{,}22"></span>.</li>
+              <li><span data-tex-inline="SQE = 38{,}46 - 1{,}96(19{,}6) = 0{,}044"></span>; <span data-tex-inline="se(b_1) = \sqrt{0{,}01467/10} = 0{,}0383"></span>.</li>
+              <li>Com <span data-tex-inline="t_{0{,}025;3} = 3{,}182"></span>: <span data-tex-inline="1{,}96 \pm 0{,}122"></span>.</li>
+              <li><span data-tex-inline="r = 0{,}9994"></span> e <span data-tex-inline="r^2 = 0{,}9989"></span>.</li>
+            </ol>
+            <p class="resposta">A inclinação fica entre 1,84 e 2,08. Como o intervalo não contém zero, a relação é significativa.</p>
+          </details>
+        </div>
+        <div class="fig-host" id="fig-11-1"></div>
+        <div class="callout warn">
+          <strong>Três cuidados</strong>
+          Correlação não prova causa. r mede só relação linear: uma parábola perfeita, simétrica, tem r = 0. E extrapolar além da faixa dos dados é assumir que a reta continua, o que nada garante. Sempre olhe o gráfico: um único ponto pode criar ou destruir a correlação.
+        </div>
+        <p>O sinal de <em>r</em> dá o sentido da relação, e o módulo, sua força. Um valor <span data-tex-inline="r = -0{,}95"></span> indica relação linear negativa forte, e <span data-tex-inline="r^2 = 0{,}9025"></span> diz que 90 % da variação de <em>y</em> é explicada pela reta.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>b₁ = S<sub>xy</sub>/S<sub>xx</sub>; a reta passa por (x̄, ȳ).</li>
+          <li>r² é a fração da variação explicada.</li>
+          <li>Inclinação com intervalo contendo zero: relação não significativa.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que dividir por n − 2 ao estimar a variância dos resíduos?</summary><p>Porque dois parâmetros, b₀ e b₁, foram estimados com os próprios dados.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 12 -->
+      <section class="section capitulo" id="cap-12" data-parte="Parte IV — Aplicações à engenharia" data-topicos="confiabilidade">
+        <p class="cap-kicker">Capítulo 12</p>
+        <h2>12. Confiabilidade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>definir confiabilidade, taxa de falha e MTBF;</li>
+            <li>calcular sistemas em série e em paralelo;</li>
+            <li>interpretar a curva da banheira.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Exponencial e Weibull.</p></div>
+        </div>
+        <h3 id="s12-1"><span class="num">12.1</span>Definições</h3>
+        <p><strong>Confiabilidade</strong> é a probabilidade de um item cumprir sua função durante o tempo especificado.</p>
+        <div class="formula"><span data-tex="R(t) = P(T \gt t) = 1 - F(t) \qquad h(t) = \frac{f(t)}{R(t)}"></span></div>
+        <div class="formula"><span data-tex="\text{taxa constante:}\quad R(t) = e^{-\lambda t}, \qquad MTBF = 1/\lambda"></span></div>
+        <p>A taxa de falha de muitos equipamentos segue a <strong>curva da banheira</strong>: mortalidade infantil (β &lt; 1), vida útil com taxa aproximadamente constante (β ≈ 1) e desgaste (β &gt; 1).</p>
+        <h3 id="s12-2"><span class="num">12.2</span>Sistemas</h3>
+        <div class="formula"><span data-tex="\text{série: } R_S = \prod_i R_i \qquad \text{paralelo: } R_P = 1 - \prod_i (1 - R_i)"></span></div>
+        <div class="fig-host" id="fig-12-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 12.1</span>Série, paralelo e MTBF</div>
+          <p>(a) Três componentes de <span data-tex-inline="R = 0{,}90"></span> em série. (b) Dois de <span data-tex-inline="R = 0{,}90"></span> em paralelo. (c) <span data-tex-inline="\lambda = 10^{-3}"></span> falhas/h. (d) Três desses em série. (e) Weibull com <span data-tex-inline="\beta = 2"></span>, <span data-tex-inline="\eta = 1000"></span> h.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) <span data-tex-inline="0{,}9^3 = 0{,}729"></span>.</li>
+              <li>(b) <span data-tex-inline="1 - 0{,}1^2 = 0{,}99"></span>.</li>
+              <li>(c) MTBF = 1000 h; <span data-tex-inline="R(500) = e^{-0{,}5} = 0{,}6065"></span>.</li>
+              <li>(d) As taxas somam: <span data-tex-inline="\lambda = 3\times10^{-3}"></span>; MTBF = 333 h; <span data-tex-inline="R(500) = 0{,}2231"></span>.</li>
+              <li>(e) <span data-tex-inline="R(500) = e^{-(0{,}5)^2} = 0{,}7788"></span>.</li>
+            </ol>
+            <p class="resposta">Componentes em série degradam o sistema; redundância em paralelo o melhora.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Série: confiabilidades multiplicam. Paralelo: desconfiabilidades multiplicam.</li>
+          <li>Com taxa constante, MTBF = 1/λ, e R(MTBF) = 36,8 %.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Qual a chance de um item exponencial durar além do seu MTBF?</summary><p>e⁻¹ = 36,8 %. O MTBF não é o tempo em que o item "deve durar".</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 13 -->
+      <section class="section capitulo" id="cap-13" data-parte="Parte IV — Aplicações à engenharia" data-topicos="cep">
+        <p class="cap-kicker">Capítulo 13</p>
+        <h2>13. Controle estatístico e capacidade do processo</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular limites de uma carta X̄-R;</li>
+            <li>calcular Cp e Cpk;</li>
+            <li>distinguir limites de controle de limites de especificação;</li>
+            <li>comparar amostragem por atributos e por variáveis.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Normal e teorema central do limite.</p></div>
+        </div>
+        <h3 id="s13-1"><span class="num">13.1</span>Cartas de controle</h3>
+        <p>Todo processo tem <strong>causas comuns</strong>, a variação natural, e pode sofrer <strong>causas especiais</strong>, como desgaste de ferramenta ou troca de lote. A carta distingue as duas. Um ponto além dos limites indica causa especial a investigar, e não necessariamente peça fora da especificação.</p>
+        <div class="formula"><span data-tex="LSC_{\bar{X}} = \bar{\bar{X}} + A_2\bar{R} \qquad LIC_{\bar{X}} = \bar{\bar{X}} - A_2\bar{R} \qquad LSC_R = D_4\bar{R} \qquad \hat\sigma = \bar{R}/d_2"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>n</th><td class="num">2</td><td class="num">3</td><td class="num">4</td><td class="num">5</td><td class="num">6</td><td class="num">7</td><td class="num">8</td></tr></thead>
+          <tbody>
+            <tr><th>A₂</th><td class="num">1,880</td><td class="num">1,023</td><td class="num">0,729</td><td class="num">0,577</td><td class="num">0,483</td><td class="num">0,419</td><td class="num">0,373</td></tr>
+            <tr><th>D₃</th><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0,076</td><td class="num">0,136</td></tr>
+            <tr><th>D₄</th><td class="num">3,267</td><td class="num">2,574</td><td class="num">2,282</td><td class="num">2,114</td><td class="num">2,004</td><td class="num">1,924</td><td class="num">1,864</td></tr>
+            <tr><th>d₂</th><td class="num">1,128</td><td class="num">1,693</td><td class="num">2,059</td><td class="num">2,326</td><td class="num">2,534</td><td class="num">2,704</td><td class="num">2,847</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Com limites de 3σ, a probabilidade de falso alarme em cada subgrupo é 0,27 %, e um processo estável leva em média 370 subgrupos para acusar (é o <strong>ARL</strong>). Subgrupos de 5 peças detectam um desvio de 1,5σ, em média, em menos de dois subgrupos.</p>
+        <div id="sim-carta" class="sim"></div>
+        <h3 id="s13-2"><span class="num">13.2</span>Capacidade</h3>
+        <div class="formula"><span data-tex="C_p = \frac{LSE - LIE}{6\sigma} \qquad C_{pk} = \min\!\left(\frac{LSE - \mu}{3\sigma},\ \frac{\mu - LIE}{3\sigma}\right)"></span></div>
+        <div class="fig-host" id="fig-13-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 13.1</span>Carta e índices</div>
+          <p>Subgrupos de 5: <span data-tex-inline="\bar{\bar{X}} = 50"></span>, <span data-tex-inline="\bar{R} = 1{,}2"></span>. Especificação de 48 a 52. Depois, o processo se desloca para <span data-tex-inline="\mu = 50{,}5"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="LSC = 50 + 0{,}577(1{,}2) = 50{,}69"></span>; <span data-tex-inline="LIC = 49{,}31"></span>; <span data-tex-inline="LSC_R = 2{,}114(1{,}2) = 2{,}54"></span>.</li>
+              <li><span data-tex-inline="\hat\sigma = 1{,}2/2{,}326 = 0{,}516"></span>.</li>
+              <li><span data-tex-inline="C_p = 4/(6 \cdot 0{,}516) = 1{,}29"></span>.</li>
+              <li>Com a média em 50,5: <span data-tex-inline="C_{pk} = 1{,}5/(3 \cdot 0{,}516) = 0{,}97"></span>.</li>
+            </ol>
+            <p class="resposta">Cp não muda com o deslocamento; Cpk, sim. Abaixo de 1,33, costuma-se considerar a capacidade insuficiente.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Controle não é capacidade</strong>
+          Limites de controle vêm do processo; limites de especificação vêm do cliente. Um processo pode estar sob controle e produzir peças ruins, se for incapaz. Por isso, primeiro se estabiliza e só depois se mede a capacidade.
+        </div>
+        <h3 id="s13-3"><span class="num">13.3</span>Amostragem de aceitação</h3>
+        <p>Por <strong>atributos</strong>, cada item é classificado como conforme ou não e conta-se o número de defeitos, como nos planos da ABNT NBR 5426. Por <strong>variáveis</strong> (NBR 5429), mede-se uma característica e usam-se média e desvio: exige amostra menor para a mesma proteção, mas pressupõe o modelo de distribuição.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Causas comuns e especiais; a carta separa as duas.</li>
+          <li>Cp mede a largura; Cpk considera a centragem.</li>
+          <li>Controle e capacidade são conceitos independentes.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Cp = 2 e Cpk = 0,5: o que isso significa?</summary><p>A variabilidade é ótima, mas o processo está descentrado. Basta ajustar a média.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os cinco simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado. Use esta lista para ir direto a um deles.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-discretas"><small>Capítulo 5 · Modelos discretos</small>Binomial, Poisson e geométrica</a></li>
+          <li><a href="#sim-normal"><small>Capítulo 6 · Modelos contínuos</small>Áreas sob a normal</a></li>
+          <li><a href="#sim-tcl"><small>Capítulo 7 · Somas</small>Teorema central do limite</a></li>
+          <li><a href="#sim-ic"><small>Capítulo 9 · Inferência</small>Cobertura do intervalo de confiança</a></li>
+          <li><a href="#sim-carta"><small>Capítulo 13 · Qualidade</small>Carta X̄-R e capacidade</a></li>
+        </ul>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Descritiva e probabilidade</h4>
+            <div class="formula"><span data-tex="s^2 = \frac{\sum (x_i - \bar{x})^2}{n-1} \qquad CV = s/\bar{x}"></span></div>
+            <div class="formula"><span data-tex="P(A \cup B) = P(A) + P(B) - P(A \cap B)"></span></div>
+            <div class="formula"><span data-tex="P(B|A) = \frac{P(A|B)P(B)}{P(A)}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Modelos</h4>
+            <div class="formula"><span data-tex="\text{Bin: } \binom{n}{k}p^k q^{n-k}; \quad E = np; \quad V = npq"></span></div>
+            <div class="formula"><span data-tex="\text{Poi: } e^{-\lambda}\lambda^k/k!"></span></div>
+            <div class="formula"><span data-tex="Z = (X - \mu)/\sigma"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Inferência</h4>
+            <div class="formula"><span data-tex="\bar{x} \pm z\,\sigma/\sqrt{n}; \quad \bar{x} \pm t\,s/\sqrt{n}"></span></div>
+            <div class="formula"><span data-tex="z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}"></span></div>
+            <div class="formula"><span data-tex="b_1 = S_{xy}/S_{xx}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Engenharia</h4>
+            <div class="formula"><span data-tex="R_S = \prod R_i; \quad R_P = 1 - \prod (1 - R_i)"></span></div>
+            <div class="formula"><span data-tex="R = e^{-\lambda t}; \quad MTBF = 1/\lambda"></span></div>
+            <div class="formula"><span data-tex="C_p = \frac{LSE - LIE}{6\sigma}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tabelas">
+        <h2>Apêndice B — Tabelas estatísticas</h2>
+        <p>Valores calculados numericamente pelas mesmas funções dos simuladores.</p>
+        <h3 id="tab-z">Normal padrão: Φ(z) = P(Z ≤ z)</h3><div class="table-scroll"><table class="data"><thead><tr><th class="num">z</th><th class="num">0,00</th><th class="num">0,02</th><th class="num">0,04</th><th class="num">0,06</th><th class="num">0,08</th></tr></thead><tbody><tr><td class="num">0,0</td><td class="num">0,5000</td><td class="num">0,5080</td><td class="num">0,5160</td><td class="num">0,5239</td><td class="num">0,5319</td></tr><tr><td class="num">0,1</td><td class="num">0,5398</td><td class="num">0,5478</td><td class="num">0,5557</td><td class="num">0,5636</td><td class="num">0,5714</td></tr><tr><td class="num">0,2</td><td class="num">0,5793</td><td class="num">0,5871</td><td class="num">0,5948</td><td class="num">0,6026</td><td class="num">0,6103</td></tr><tr><td class="num">0,3</td><td class="num">0,6179</td><td class="num">0,6255</td><td class="num">0,6331</td><td class="num">0,6406</td><td class="num">0,6480</td></tr><tr><td class="num">0,4</td><td class="num">0,6554</td><td class="num">0,6628</td><td class="num">0,6700</td><td class="num">0,6772</td><td class="num">0,6844</td></tr><tr><td class="num">0,5</td><td class="num">0,6915</td><td class="num">0,6985</td><td class="num">0,7054</td><td class="num">0,7123</td><td class="num">0,7190</td></tr><tr><td class="num">0,6</td><td class="num">0,7257</td><td class="num">0,7324</td><td class="num">0,7389</td><td class="num">0,7454</td><td class="num">0,7517</td></tr><tr><td class="num">0,7</td><td class="num">0,7580</td><td class="num">0,7642</td><td class="num">0,7704</td><td class="num">0,7764</td><td class="num">0,7823</td></tr><tr><td class="num">0,8</td><td class="num">0,7881</td><td class="num">0,7939</td><td class="num">0,7995</td><td class="num">0,8051</td><td class="num">0,8106</td></tr><tr><td class="num">0,9</td><td class="num">0,8159</td><td class="num">0,8212</td><td class="num">0,8264</td><td class="num">0,8315</td><td class="num">0,8365</td></tr><tr><td class="num">1,0</td><td class="num">0,8413</td><td class="num">0,8461</td><td class="num">0,8508</td><td class="num">0,8554</td><td class="num">0,8599</td></tr><tr><td class="num">1,1</td><td class="num">0,8643</td><td class="num">0,8686</td><td class="num">0,8729</td><td class="num">0,8770</td><td class="num">0,8810</td></tr><tr><td class="num">1,2</td><td class="num">0,8849</td><td class="num">0,8888</td><td class="num">0,8925</td><td class="num">0,8962</td><td class="num">0,8997</td></tr><tr><td class="num">1,3</td><td class="num">0,9032</td><td class="num">0,9066</td><td class="num">0,9099</td><td class="num">0,9131</td><td class="num">0,9162</td></tr><tr><td class="num">1,4</td><td class="num">0,9192</td><td class="num">0,9222</td><td class="num">0,9251</td><td class="num">0,9279</td><td class="num">0,9306</td></tr><tr><td class="num">1,5</td><td class="num">0,9332</td><td class="num">0,9357</td><td class="num">0,9382</td><td class="num">0,9406</td><td class="num">0,9429</td></tr><tr><td class="num">1,6</td><td class="num">0,9452</td><td class="num">0,9474</td><td class="num">0,9495</td><td class="num">0,9515</td><td class="num">0,9535</td></tr><tr><td class="num">1,7</td><td class="num">0,9554</td><td class="num">0,9573</td><td class="num">0,9591</td><td class="num">0,9608</td><td class="num">0,9625</td></tr><tr><td class="num">1,8</td><td class="num">0,9641</td><td class="num">0,9656</td><td class="num">0,9671</td><td class="num">0,9686</td><td class="num">0,9699</td></tr><tr><td class="num">1,9</td><td class="num">0,9713</td><td class="num">0,9726</td><td class="num">0,9738</td><td class="num">0,9750</td><td class="num">0,9761</td></tr><tr><td class="num">2,0</td><td class="num">0,9772</td><td class="num">0,9783</td><td class="num">0,9793</td><td class="num">0,9803</td><td class="num">0,9812</td></tr><tr><td class="num">2,1</td><td class="num">0,9821</td><td class="num">0,9830</td><td class="num">0,9838</td><td class="num">0,9846</td><td class="num">0,9854</td></tr><tr><td class="num">2,2</td><td class="num">0,9861</td><td class="num">0,9868</td><td class="num">0,9875</td><td class="num">0,9881</td><td class="num">0,9887</td></tr><tr><td class="num">2,3</td><td class="num">0,9893</td><td class="num">0,9898</td><td class="num">0,9904</td><td class="num">0,9909</td><td class="num">0,9913</td></tr><tr><td class="num">2,4</td><td class="num">0,9918</td><td class="num">0,9922</td><td class="num">0,9927</td><td class="num">0,9931</td><td class="num">0,9934</td></tr><tr><td class="num">2,5</td><td class="num">0,9938</td><td class="num">0,9941</td><td class="num">0,9945</td><td class="num">0,9948</td><td class="num">0,9951</td></tr><tr><td class="num">2,6</td><td class="num">0,9953</td><td class="num">0,9956</td><td class="num">0,9959</td><td class="num">0,9961</td><td class="num">0,9963</td></tr><tr><td class="num">2,7</td><td class="num">0,9965</td><td class="num">0,9967</td><td class="num">0,9969</td><td class="num">0,9971</td><td class="num">0,9973</td></tr><tr><td class="num">2,8</td><td class="num">0,9974</td><td class="num">0,9976</td><td class="num">0,9977</td><td class="num">0,9979</td><td class="num">0,9980</td></tr><tr><td class="num">2,9</td><td class="num">0,9981</td><td class="num">0,9982</td><td class="num">0,9984</td><td class="num">0,9985</td><td class="num">0,9986</td></tr><tr><td class="num">3,0</td><td class="num">0,9987</td><td class="num">0,9987</td><td class="num">0,9988</td><td class="num">0,9989</td><td class="num">0,9990</td></tr><tr><td class="num">3,1</td><td class="num">0,9990</td><td class="num">0,9991</td><td class="num">0,9992</td><td class="num">0,9992</td><td class="num">0,9993</td></tr><tr><td class="num">3,2</td><td class="num">0,9993</td><td class="num">0,9994</td><td class="num">0,9994</td><td class="num">0,9994</td><td class="num">0,9995</td></tr><tr><td class="num">3,3</td><td class="num">0,9995</td><td class="num">0,9995</td><td class="num">0,9996</td><td class="num">0,9996</td><td class="num">0,9996</td></tr><tr><td class="num">3,4</td><td class="num">0,9997</td><td class="num">0,9997</td><td class="num">0,9997</td><td class="num">0,9997</td><td class="num">0,9997</td></tr></tbody></table></div><h3 id="tab-t">Distribuição t: valores críticos para P(T > t) = α</h3><div class="table-scroll"><table class="data"><thead><tr><th class="num">gl</th><th class="num">α = 0,10</th><th class="num">α = 0,05</th><th class="num">α = 0,025</th><th class="num">α = 0,01</th><th class="num">α = 0,005</th></tr></thead><tbody><tr><td class="num">1</td><td class="num">3,078</td><td class="num">6,314</td><td class="num">12,706</td><td class="num">31,821</td><td class="num">63,657</td></tr><tr><td class="num">2</td><td class="num">1,886</td><td class="num">2,920</td><td class="num">4,303</td><td class="num">6,965</td><td class="num">9,925</td></tr><tr><td class="num">3</td><td class="num">1,638</td><td class="num">2,353</td><td class="num">3,182</td><td class="num">4,541</td><td class="num">5,841</td></tr><tr><td class="num">4</td><td class="num">1,533</td><td class="num">2,132</td><td class="num">2,776</td><td class="num">3,747</td><td class="num">4,604</td></tr><tr><td class="num">5</td><td class="num">1,476</td><td class="num">2,015</td><td class="num">2,571</td><td class="num">3,365</td><td class="num">4,032</td></tr><tr><td class="num">6</td><td class="num">1,440</td><td class="num">1,943</td><td class="num">2,447</td><td class="num">3,143</td><td class="num">3,707</td></tr><tr><td class="num">7</td><td class="num">1,415</td><td class="num">1,895</td><td class="num">2,365</td><td class="num">2,998</td><td class="num">3,499</td></tr><tr><td class="num">8</td><td class="num">1,397</td><td class="num">1,860</td><td class="num">2,306</td><td class="num">2,896</td><td class="num">3,355</td></tr><tr><td class="num">9</td><td class="num">1,383</td><td class="num">1,833</td><td class="num">2,262</td><td class="num">2,821</td><td class="num">3,250</td></tr><tr><td class="num">10</td><td class="num">1,372</td><td class="num">1,812</td><td class="num">2,228</td><td class="num">2,764</td><td class="num">3,169</td></tr><tr><td class="num">12</td><td class="num">1,356</td><td class="num">1,782</td><td class="num">2,179</td><td class="num">2,681</td><td class="num">3,055</td></tr><tr><td class="num">15</td><td class="num">1,341</td><td class="num">1,753</td><td class="num">2,131</td><td class="num">2,602</td><td class="num">2,947</td></tr><tr><td class="num">20</td><td class="num">1,325</td><td class="num">1,725</td><td class="num">2,086</td><td class="num">2,528</td><td class="num">2,845</td></tr><tr><td class="num">24</td><td class="num">1,318</td><td class="num">1,711</td><td class="num">2,064</td><td class="num">2,492</td><td class="num">2,797</td></tr><tr><td class="num">30</td><td class="num">1,310</td><td class="num">1,697</td><td class="num">2,042</td><td class="num">2,457</td><td class="num">2,750</td></tr><tr><td class="num">40</td><td class="num">1,303</td><td class="num">1,684</td><td class="num">2,021</td><td class="num">2,423</td><td class="num">2,704</td></tr><tr><td class="num">60</td><td class="num">1,296</td><td class="num">1,671</td><td class="num">2,000</td><td class="num">2,390</td><td class="num">2,660</td></tr><tr><td class="num">120</td><td class="num">1,289</td><td class="num">1,658</td><td class="num">1,980</td><td class="num">2,358</td><td class="num">2,617</td></tr><tr><td class="num">∞</td><td class="num">1,282</td><td class="num">1,645</td><td class="num">1,960</td><td class="num">2,326</td><td class="num">2,576</td></tr></tbody></table></div><h3 id="tab-chi">Qui-quadrado: quantis</h3><div class="table-scroll"><table class="data"><thead><tr><th class="num">gl</th><th class="num">0,025</th><th class="num">0,05</th><th class="num">0,95</th><th class="num">0,975</th></tr></thead><tbody><tr><td class="num">1</td><td class="num">0,001</td><td class="num">0,004</td><td class="num">3,841</td><td class="num">5,024</td></tr><tr><td class="num">2</td><td class="num">0,051</td><td class="num">0,103</td><td class="num">5,991</td><td class="num">7,378</td></tr><tr><td class="num">3</td><td class="num">0,216</td><td class="num">0,352</td><td class="num">7,815</td><td class="num">9,348</td></tr><tr><td class="num">4</td><td class="num">0,484</td><td class="num">0,711</td><td class="num">9,488</td><td class="num">11,143</td></tr><tr><td class="num">5</td><td class="num">0,831</td><td class="num">1,145</td><td class="num">11,070</td><td class="num">12,833</td></tr><tr><td class="num">6</td><td class="num">1,237</td><td class="num">1,635</td><td class="num">12,592</td><td class="num">14,449</td></tr><tr><td class="num">7</td><td class="num">1,690</td><td class="num">2,167</td><td class="num">14,067</td><td class="num">16,013</td></tr><tr><td class="num">8</td><td class="num">2,180</td><td class="num">2,733</td><td class="num">15,507</td><td class="num">17,535</td></tr><tr><td class="num">9</td><td class="num">2,700</td><td class="num">3,325</td><td class="num">16,919</td><td class="num">19,023</td></tr><tr><td class="num">10</td><td class="num">3,247</td><td class="num">3,940</td><td class="num">18,307</td><td class="num">20,483</td></tr><tr><td class="num">12</td><td class="num">4,404</td><td class="num">5,226</td><td class="num">21,026</td><td class="num">23,337</td></tr><tr><td class="num">15</td><td class="num">6,262</td><td class="num">7,261</td><td class="num">24,996</td><td class="num">27,488</td></tr><tr><td class="num">20</td><td class="num">9,591</td><td class="num">10,851</td><td class="num">31,410</td><td class="num">34,170</td></tr><tr><td class="num">25</td><td class="num">13,120</td><td class="num">14,611</td><td class="num">37,652</td><td class="num">40,646</td></tr><tr><td class="num">30</td><td class="num">16,791</td><td class="num">18,493</td><td class="num">43,773</td><td class="num">46,979</td></tr></tbody></table></div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>81 questões objetivas sobre estatística descritiva, probabilidade, modelos, inferência, regressão, confiabilidade e controle de processo. As questões de cálculo trazem espaço para contas e resolução passo a passo.</p>
+        <div id="quiz" data-quiz="probabilidade-e-estatistica"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>MAGALHÃES, M. N.; LIMA, A. C. P. <em>Noções de Probabilidade e Estatística</em>. Edusp.</li>
+          <li>MONTGOMERY, D. C.; RUNGER, G. C. <em>Estatística Aplicada e Probabilidade para Engenheiros</em>. LTC.</li>
+          <li>MONTGOMERY, D. C. <em>Introdução ao Controle Estatístico da Qualidade</em>. LTC.</li>
+          <li>DEVORE, J. L. <em>Probabilidade e Estatística para Engenharia e Ciências</em>. Cengage.</li>
+          <li>BUSSAB, W. O.; MORETTIN, P. A. <em>Estatística Básica</em>. Saraiva.</li>
+          <li>ABNT NBR 5426 e NBR 5429 — planos de amostragem por atributos e por variáveis.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/probabilidade-e-estatistica.js"></script>
+<script src="../js/fig/probabilidade-e-estatistica.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+  '\\mu': ['Média da população', '—'],
+  '\\sigma': ['Desvio-padrão da população', '—'],
+  '\\bar{x}': ['Média da amostra', '—'],
+  's': ['Desvio-padrão da amostra', '—'],
+  'n': ['Tamanho da amostra', '—'],
+  '\\lambda': ['Taxa de ocorrência ou de falha', '1/tempo'],
+  '\\beta': ['Parâmetro de forma da Weibull', '—'],
+  '\\eta': ['Vida característica da Weibull', 'tempo'],
+  'H_0': ['Hipótese nula', '—'],
+  'C_p': ['Índice de capacidade', '—', 'só compara larguras'],
+  'C_{pk}': ['Índice de capacidade com centragem', '—'],
+  'MTBF': ['Tempo médio entre falhas', 'tempo']
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

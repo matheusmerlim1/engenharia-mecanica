@@ -1,0 +1,1392 @@
+{
+ "disciplina": "Probabilidade e Estatística",
+ "slug": "probabilidade-e-estatistica",
+ "topicos": [
+  {
+   "id": "descritiva",
+   "nome": "Estatística descritiva"
+  },
+  {
+   "id": "probabilidade",
+   "nome": "Fundamentos de probabilidade"
+  },
+  {
+   "id": "bayes",
+   "nome": "Condicional e Bayes"
+  },
+  {
+   "id": "va",
+   "nome": "Variáveis aleatórias"
+  },
+  {
+   "id": "discretos",
+   "nome": "Modelos discretos"
+  },
+  {
+   "id": "continuos",
+   "nome": "Modelos contínuos"
+  },
+  {
+   "id": "tcl",
+   "nome": "Somas e TCL"
+  },
+  {
+   "id": "amostragem",
+   "nome": "Amostragem e estimação"
+  },
+  {
+   "id": "ic",
+   "nome": "Intervalos de confiança"
+  },
+  {
+   "id": "testes",
+   "nome": "Testes de hipóteses"
+  },
+  {
+   "id": "regressao",
+   "nome": "Regressão e correlação"
+  },
+  {
+   "id": "confiabilidade",
+   "nome": "Confiabilidade"
+  },
+  {
+   "id": "cep",
+   "nome": "Controle e capacidade"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "pe-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "descritiva",
+   "enunciado": "<p>Para os valores 4, 7, 7, 9 e 13, a média, a mediana e a moda são, respectivamente:</p>",
+   "alternativas": [
+    "7; 7; 8",
+    "8; 8; 7",
+    "7; 8; 9",
+    "8; 7; 7"
+   ],
+   "correta": 3,
+   "explicacao": "<div class=\"passo\">Média = 40/5 = 8</div><div class=\"passo\">Mediana = 7 (valor central)</div><div class=\"passo\">Moda = 7</div>"
+  },
+  {
+   "id": "pe-002",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "descritiva",
+   "enunciado": "<p>A variância amostral dos valores 4, 7, 7, 9 e 13 é:</p>",
+   "alternativas": [
+    "8,8",
+    "3,32",
+    "11",
+    "44"
+   ],
+   "correta": 2,
+   "formulas": [
+    "s² = Σ(x − x̄)²/(n − 1)"
+   ],
+   "explicacao": "<div class=\"passo\">Σ(x − 8)² = 44</div><div class=\"passo\">s² = 44/(5 − 1) = <strong>11</strong></div><p>8,8 usa o divisor n, para população.</p>"
+  },
+  {
+   "id": "pe-003",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "descritiva",
+   "enunciado": "<p>A mediana é preferível à média quando:</p>",
+   "alternativas": [
+    "os dados são exatamente simétricos",
+    "há valores extremos que distorceriam a média",
+    "a amostra é muito grande",
+    "o desvio-padrão é zero"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A mediana depende só da posição central.</p>"
+  },
+  {
+   "id": "pe-004",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "descritiva",
+   "enunciado": "<p>Um processo tem média 500 e desvio-padrão 20. O coeficiente de variação é:</p>",
+   "alternativas": [
+    "25 %",
+    "4 %",
+    "0,4 %",
+    "20 %"
+   ],
+   "correta": 1,
+   "formulas": [
+    "CV = s/x̄"
+   ],
+   "explicacao": "<div class=\"passo\">CV = 20/500 = <strong>4 %</strong></div>"
+  },
+  {
+   "id": "pe-005",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "descritiva",
+   "enunciado": "<p>Em uma distribuição com cauda longa à direita, costuma-se observar:</p>",
+   "alternativas": [
+    "média maior que a mediana",
+    "média menor que a mediana",
+    "média igual à moda",
+    "mediana maior que a média e a moda"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Os valores altos puxam a média.</p>"
+  },
+  {
+   "id": "pe-006",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "descritiva",
+   "enunciado": "<p>O divisor n − 1 na variância amostral é usado porque:</p>",
+   "alternativas": [
+    "é uma convenção apenas para n pequeno",
+    "evita que a variância seja negativa",
+    "corrige erros de medição do instrumento",
+    "a média foi estimada com os mesmos dados, o que consome um grau de liberdade e tornaria o estimador viciado com divisor n"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Com divisor n−1, E[S²] = σ².</p>"
+  },
+  {
+   "id": "pe-007",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "probabilidade",
+   "enunciado": "<p>Em dois dados honestos, a probabilidade de a soma ser 7 é:</p>",
+   "alternativas": [
+    "1/12",
+    "7/36",
+    "1/6",
+    "1/36"
+   ],
+   "correta": 2,
+   "explicacao": "<div class=\"passo\">São 6 casos favoráveis em 36: <strong>1/6</strong></div>"
+  },
+  {
+   "id": "pe-008",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "probabilidade",
+   "enunciado": "<p>Se P(A) = 0,3, P(B) = 0,2 e P(A ∩ B) = 0,1, então P(A ∪ B) é:</p>",
+   "alternativas": [
+    "0,5",
+    "0,6",
+    "0,4",
+    "0,1"
+   ],
+   "correta": 2,
+   "formulas": [
+    "P(A∪B) = P(A) + P(B) − P(A∩B)"
+   ],
+   "explicacao": "<div class=\"passo\">0,3 + 0,2 − 0,1 = <strong>0,4</strong></div>"
+  },
+  {
+   "id": "pe-009",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "probabilidade",
+   "enunciado": "<p>De um lote de 20 peças com 3 defeituosas, retiram-se 2 sem reposição. A probabilidade de nenhuma defeituosa é:</p>",
+   "alternativas": [
+    "0,7225",
+    "0,7158",
+    "0,8500",
+    "0,2684"
+   ],
+   "correta": 1,
+   "formulas": [
+    "C(n,k) = n!/(k!(n−k)!)"
+   ],
+   "explicacao": "<div class=\"passo\">C(17,2)/C(20,2) = 136/190 = <strong>0,7158</strong></div><p>0,7225 = 0,85² seria com reposição.</p>"
+  },
+  {
+   "id": "pe-010",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "probabilidade",
+   "enunciado": "<p>Quando a ordem não importa, o número de grupos de k elementos entre n é dado por:</p>",
+   "alternativas": [
+    "combinação",
+    "arranjo",
+    "permutação",
+    "produto de n por k"
+   ],
+   "correta": 0,
+   "explicacao": "<p>C(n, k) = n!/(k!(n−k)!).</p>"
+  },
+  {
+   "id": "pe-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "probabilidade",
+   "enunciado": "<p>Lançando duas moedas, a probabilidade de pelo menos uma cara é:</p>",
+   "alternativas": [
+    "2/3",
+    "1/2",
+    "1/4",
+    "3/4"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Espaço: CC, CK, KC, KK. 2/3 foi o erro histórico de d'Alembert.</p>"
+  },
+  {
+   "id": "pe-012",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "probabilidade",
+   "enunciado": "<p>A probabilidade de pelo menos um defeito em 10 peças, com 5 % de defeito cada e independência, é:</p>",
+   "alternativas": [
+    "0,500",
+    "0,050",
+    "0,599",
+    "0,401"
+   ],
+   "correta": 3,
+   "formulas": [
+    "P(pelo menos um) = 1 − P(nenhum)"
+   ],
+   "explicacao": "<div class=\"passo\">1 − 0,95¹⁰ = 1 − 0,5987 = <strong>0,401</strong></div>"
+  },
+  {
+   "id": "pe-013",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "bayes",
+   "enunciado": "<p>P(A | B) é definida por:</p>",
+   "alternativas": [
+    "P(A ∩ B)/P(A)",
+    "P(A)·P(B)",
+    "P(A ∩ B)/P(B)",
+    "P(B)/P(A)"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Restringe o espaço amostral a B.</p>"
+  },
+  {
+   "id": "pe-014",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "bayes",
+   "enunciado": "<p>Eventos A e B disjuntos, com probabilidade positiva, são:</p>",
+   "alternativas": [
+    "independentes",
+    "dependentes",
+    "iguais",
+    "complementares, sempre"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Se A ocorreu, B certamente não ocorreu.</p>"
+  },
+  {
+   "id": "pe-015",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "bayes",
+   "enunciado": "<p>A máquina A faz 60 % das peças, com 2 % de defeitos, e B, 40 %, com 5 %. A probabilidade de defeito é:</p>",
+   "alternativas": [
+    "0,032",
+    "0,035",
+    "0,070",
+    "0,020"
+   ],
+   "correta": 0,
+   "formulas": [
+    "P(D) = Σ P(D|Bᵢ)P(Bᵢ)"
+   ],
+   "explicacao": "<div class=\"passo\">0,6·0,02 + 0,4·0,05 = <strong>0,032</strong></div>"
+  },
+  {
+   "id": "pe-016",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "bayes",
+   "enunciado": "<p>Com os dados anteriores, dada uma peça defeituosa, a probabilidade de ter vindo de B é:</p>",
+   "alternativas": [
+    "0,625",
+    "0,400",
+    "0,050",
+    "0,375"
+   ],
+   "correta": 0,
+   "formulas": [
+    "P(B|D) = P(D|B)P(B)/P(D)"
+   ],
+   "explicacao": "<div class=\"passo\">0,020/0,032 = <strong>0,625</strong></div>"
+  },
+  {
+   "id": "pe-017",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "bayes",
+   "enunciado": "<p>Um ensaio detecta 95 % das trincas e reprova 10 % das peças boas; só 1 % das peças tem trinca. Dada a reprovação, a chance de trinca é:</p>",
+   "alternativas": [
+    "0,950",
+    "0,100",
+    "0,500",
+    "0,088"
+   ],
+   "correta": 3,
+   "formulas": [
+    "Bayes"
+   ],
+   "explicacao": "<div class=\"passo\">P(+) = 0,0095 + 0,099 = 0,1085</div><div class=\"passo\">0,0095/0,1085 = <strong>0,088</strong></div><p>Falsos alarmes dominam quando o defeito é raro.</p>"
+  },
+  {
+   "id": "pe-018",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "va",
+   "enunciado": "<p>Para uma variável contínua, P(X = 3) vale:</p>",
+   "alternativas": [
+    "o valor da densidade em 3",
+    "a área acumulada até 3",
+    "0",
+    "1"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A probabilidade é área, e um ponto não tem área.</p>"
+  },
+  {
+   "id": "pe-019",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "va",
+   "enunciado": "<p>X assume 0, 1, 2 e 3 com probabilidades 0,1; 0,3; 0,4 e 0,2. E[X] é:</p>",
+   "alternativas": [
+    "1,5",
+    "1,7",
+    "2,0",
+    "3,7"
+   ],
+   "correta": 1,
+   "formulas": [
+    "E[X] = Σ x p(x)"
+   ],
+   "explicacao": "<div class=\"passo\">0,3 + 0,8 + 0,6 = <strong>1,7</strong></div>"
+  },
+  {
+   "id": "pe-020",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "va",
+   "enunciado": "<p>Com os mesmos dados, Var(X) é:</p>",
+   "alternativas": [
+    "3,70",
+    "0,81",
+    "0,90",
+    "2,89"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Var(X) = E[X²] − (E[X])²"
+   ],
+   "explicacao": "<div class=\"passo\">E[X²] = 3,7</div><div class=\"passo\">3,7 − 1,7² = <strong>0,81</strong></div><p>0,90 é o desvio-padrão.</p>"
+  },
+  {
+   "id": "pe-021",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "va",
+   "enunciado": "<p>Var(3X + 5) é igual a:</p>",
+   "alternativas": [
+    "9 Var(X)",
+    "3 Var(X)",
+    "3 Var(X) + 5",
+    "9 Var(X) + 25"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Constantes aditivas não mudam a variância e multiplicativas entram ao quadrado.</p>"
+  },
+  {
+   "id": "pe-022",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "va",
+   "enunciado": "<p>Se f(x) = 2x em [0, 1], a média de X é:</p>",
+   "alternativas": [
+    "0,500",
+    "0,333",
+    "1,000",
+    "0,667"
+   ],
+   "correta": 3,
+   "formulas": [
+    "E[X] = ∫x f(x)dx"
+   ],
+   "explicacao": "<div class=\"passo\">∫₀¹ 2x² dx = 2/3 = <strong>0,667</strong></div>"
+  },
+  {
+   "id": "pe-023",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "va",
+   "enunciado": "<p>Sobre o valor de uma densidade de probabilidade, é correto:</p>",
+   "alternativas": [
+    "nunca é maior que 1",
+    "é sempre igual à probabilidade daquele ponto",
+    "pode ser maior que 1, desde que a área total seja 1",
+    "não pode ser zero"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A uniforme em [0; 0,5] tem densidade 2.</p>"
+  },
+  {
+   "id": "pe-024",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "discretos",
+   "enunciado": "<p>A média de uma binomial com n = 20 e p = 0,1 é:</p>",
+   "alternativas": [
+    "1,8",
+    "0,1",
+    "2",
+    "20"
+   ],
+   "correta": 2,
+   "formulas": [
+    "E = np"
+   ],
+   "explicacao": "<div class=\"passo\">np = 20·0,1 = <strong>2</strong></div>"
+  },
+  {
+   "id": "pe-025",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "discretos",
+   "enunciado": "<p>Em amostra de 10 peças, com p = 0,05, a probabilidade de exatamente uma defeituosa é:</p>",
+   "alternativas": [
+    "0,5987",
+    "0,3151",
+    "0,0500",
+    "0,0746"
+   ],
+   "correta": 1,
+   "formulas": [
+    "P = C(n,k) pᵏ (1−p)ⁿ⁻ᵏ"
+   ],
+   "explicacao": "<div class=\"passo\">10·0,05·0,95⁹ = <strong>0,3151</strong></div>"
+  },
+  {
+   "id": "pe-026",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "discretos",
+   "enunciado": "<p>Com média de 0,5 falha por ano, em modelo de Poisson, a chance de nenhuma falha em um ano é:</p>",
+   "alternativas": [
+    "0,6065",
+    "0,5000",
+    "0,3033",
+    "0,3935"
+   ],
+   "correta": 0,
+   "formulas": [
+    "P(0) = e^{−λ}"
+   ],
+   "explicacao": "<div class=\"passo\">e<sup>−0,5</sup> = <strong>0,6065</strong></div>"
+  },
+  {
+   "id": "pe-027",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "discretos",
+   "enunciado": "<p>Na distribuição de Poisson, a variância é:</p>",
+   "alternativas": [
+    "o quadrado da média",
+    "o dobro da média",
+    "sempre 1",
+    "igual à média"
+   ],
+   "correta": 3,
+   "explicacao": "<p>E[X] = Var(X) = λ.</p>"
+  },
+  {
+   "id": "pe-028",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "discretos",
+   "enunciado": "<p>Com p = 0,2 por ensaio independente, a chance de o primeiro sucesso ocorrer no terceiro ensaio é:</p>",
+   "alternativas": [
+    "0,200",
+    "0,032",
+    "0,160",
+    "0,128"
+   ],
+   "correta": 3,
+   "formulas": [
+    "P = (1−p)^{k−1} p"
+   ],
+   "explicacao": "<div class=\"passo\">0,8²·0,2 = <strong>0,128</strong></div>"
+  },
+  {
+   "id": "pe-029",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "discretos",
+   "enunciado": "<p>Em lote pequeno inspecionado sem reposição, o modelo correto é:</p>",
+   "alternativas": [
+    "binomial, sem qualquer ajuste",
+    "Poisson, sempre",
+    "hipergeométrico, pois a probabilidade muda a cada retirada",
+    "geométrico"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A binomial exige probabilidade constante.</p>"
+  },
+  {
+   "id": "pe-030",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "discretos",
+   "enunciado": "<p>A Poisson aproxima bem a binomial quando:</p>",
+   "alternativas": [
+    "n é pequeno e p próximo de 0,5",
+    "n é grande e p é pequeno, com λ = np",
+    "p é próximo de 1",
+    "n = 1"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Regra usual: n ≥ 20 e p ≤ 0,05.</p>"
+  },
+  {
+   "id": "pe-031",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "continuos",
+   "enunciado": "<p>Em uma normal, a faixa μ ± 2σ contém aproximadamente:</p>",
+   "alternativas": [
+    "95 %",
+    "68 %",
+    "99,7 %",
+    "50 %"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Regra 68-95-99,7.</p>"
+  },
+  {
+   "id": "pe-032",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "continuos",
+   "enunciado": "<p>Para μ = 100 e σ = 10, o escore z de x = 127 é:</p>",
+   "alternativas": [
+    "2,7",
+    "27",
+    "1,27",
+    "0,27"
+   ],
+   "correta": 0,
+   "formulas": [
+    "z = (x − μ)/σ"
+   ],
+   "explicacao": "<div class=\"passo\">(127 − 100)/10 = <strong>2,7</strong></div>"
+  },
+  {
+   "id": "pe-033",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "continuos",
+   "enunciado": "<p>Para resistência N(500, 20²), a fração entre 460 e 540 MPa é:</p>",
+   "alternativas": [
+    "68,27 %",
+    "99,73 %",
+    "90,00 %",
+    "95,45 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "z = (x − μ)/σ"
+   ],
+   "explicacao": "<div class=\"passo\">z = ±2</div><div class=\"passo\">Φ(2) − Φ(−2) = <strong>95,45 %</strong></div>"
+  },
+  {
+   "id": "pe-034",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "continuos",
+   "enunciado": "<p>A exponencial tem a propriedade de:</p>",
+   "alternativas": [
+    "taxa de falha crescente",
+    "média igual a λ",
+    "falta de memória: o tempo já decorrido não altera a chance futura",
+    "simetria em torno da média"
+   ],
+   "correta": 2,
+   "explicacao": "<p>P(T > s + t | T > s) = P(T > t).</p>"
+  },
+  {
+   "id": "pe-035",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "continuos",
+   "enunciado": "<p>Na Weibull, um parâmetro de forma β maior que 1 indica:</p>",
+   "alternativas": [
+    "taxa de falha decrescente",
+    "taxa de falha crescente, associada a desgaste",
+    "falhas totalmente aleatórias",
+    "mortalidade infantil"
+   ],
+   "correta": 1,
+   "explicacao": "<p>β &lt; 1: mortalidade infantil. β = 1: exponencial.</p>"
+  },
+  {
+   "id": "pe-036",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "continuos",
+   "enunciado": "<p>Com n = 100, p = 0,5, pela aproximação normal e com correção de continuidade, P(X ≤ 55) é:</p>",
+   "alternativas": [
+    "0,8413",
+    "0,8643",
+    "0,8159",
+    "0,9332"
+   ],
+   "correta": 1,
+   "formulas": [
+    "z = (x + 0,5 − np)/√(np(1−p))"
+   ],
+   "explicacao": "<div class=\"passo\">z = (55,5 − 50)/5 = 1,1</div><div class=\"passo\">Φ(1,1) = <strong>0,8643</strong></div><p>0,8413 é Φ(1), sem correção.</p>"
+  },
+  {
+   "id": "pe-037",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "tcl",
+   "enunciado": "<p>Para X e Y independentes, Var(X + Y) é:</p>",
+   "alternativas": [
+    "Var(X) + Var(Y)",
+    "Var(X) − Var(Y)",
+    "(Var X + Var Y)²",
+    "Var(X)·Var(Y)"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A covariância é nula.</p>"
+  },
+  {
+   "id": "pe-038",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "tcl",
+   "enunciado": "<p>Três peças independentes, com σ = 0,02 mm cada, são empilhadas. O desvio do conjunto é:</p>",
+   "alternativas": [
+    "0,06 mm",
+    "0,02 mm",
+    "0,0012 mm",
+    "0,0346 mm"
+   ],
+   "correta": 3,
+   "formulas": [
+    "σ_T = √(Σσ²)"
+   ],
+   "explicacao": "<div class=\"passo\">√3 · 0,02 = <strong>0,0346</strong></div><p>0,06 somaria os desvios.</p>"
+  },
+  {
+   "id": "pe-039",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "tcl",
+   "enunciado": "<p>Se σ = 10 e n = 25, o erro-padrão da média é:</p>",
+   "alternativas": [
+    "0,4",
+    "10",
+    "2",
+    "50"
+   ],
+   "correta": 2,
+   "formulas": [
+    "σ/√n"
+   ],
+   "explicacao": "<div class=\"passo\">10/√25 = <strong>2</strong></div>"
+  },
+  {
+   "id": "pe-040",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "tcl",
+   "enunciado": "<p>Com μ = 100, σ = 10 e n = 25, P(X̄ > 103) é:</p>",
+   "alternativas": [
+    "0,3821",
+    "0,1587",
+    "0,0668",
+    "0,0228"
+   ],
+   "correta": 2,
+   "formulas": [
+    "z = (x̄ − μ)/(σ/√n)"
+   ],
+   "explicacao": "<div class=\"passo\">z = 3/2 = 1,5</div><div class=\"passo\">1 − Φ(1,5) = <strong>0,0668</strong></div><p>0,3821 ignoraria a raiz de n.</p>"
+  },
+  {
+   "id": "pe-041",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "tcl",
+   "enunciado": "<p>O teorema central do limite afirma que:</p>",
+   "alternativas": [
+    "toda população é normal",
+    "a média de muitas observações tende à normal, qualquer que seja a população com variância finita",
+    "a variância da média cresce com n",
+    "a mediana é sempre igual à média"
+   ],
+   "correta": 1,
+   "explicacao": "<p>É isto que justifica o uso geral da normal em inferência.</p>"
+  },
+  {
+   "id": "pe-042",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "tcl",
+   "enunciado": "<p>Sobre correlação e independência, assinale o correto:</p>",
+   "alternativas": [
+    "Independência implica correlação nula, mas correlação nula não implica independência",
+    "Correlação nula implica independência em qualquer caso",
+    "Variáveis dependentes sempre têm correlação diferente de zero",
+    "Correlação 1 implica independência"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Y = X² com X simétrica em torno de 0 é o contraexemplo.</p>"
+  },
+  {
+   "id": "pe-043",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "amostragem",
+   "enunciado": "<p>Em inferência estatística, um parâmetro é:</p>",
+   "alternativas": [
+    "um valor calculado na amostra",
+    "uma variável aleatória",
+    "o tamanho da amostra",
+    "um valor fixo que descreve a população"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O estimador é que varia de amostra para amostra.</p>"
+  },
+  {
+   "id": "pe-044",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "amostragem",
+   "enunciado": "<p>Um estimador é não viciado quando:</p>",
+   "alternativas": [
+    "sua variância é zero",
+    "é sempre igual ao parâmetro",
+    "usa a amostra inteira",
+    "sua esperança é igual ao parâmetro"
+   ],
+   "correta": 3,
+   "explicacao": "<p>E[θ̂] = θ.</p>"
+  },
+  {
+   "id": "pe-045",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "amostragem",
+   "enunciado": "<p>Com σ desconhecido, população normal e amostra pequena, usa-se:</p>",
+   "alternativas": [
+    "normal padrão",
+    "qui-quadrado",
+    "distribuição t com n − 1 graus de liberdade",
+    "Poisson"
+   ],
+   "correta": 2,
+   "explicacao": "<p>S substitui σ, e a incerteza extra alarga as caudas.</p>"
+  },
+  {
+   "id": "pe-046",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "amostragem",
+   "enunciado": "<p>Para estimar μ com erro máximo 2, σ = 10 e 95 % de confiança, são necessárias:</p>",
+   "alternativas": [
+    "96 observações",
+    "97 observações",
+    "50 observações",
+    "25 observações"
+   ],
+   "correta": 1,
+   "formulas": [
+    "n ≥ (zσ/E)²"
+   ],
+   "explicacao": "<div class=\"passo\">n ≥ (1,96·10/2)² = 96,04</div><div class=\"passo\">Arredondando para cima: <strong>97</strong></div>"
+  },
+  {
+   "id": "pe-047",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "amostragem",
+   "enunciado": "<p>Para reduzir à metade o erro de estimação, o tamanho da amostra deve ser multiplicado por:</p>",
+   "alternativas": [
+    "4",
+    "2",
+    "√2",
+    "8"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O erro depende de 1/√n.</p>"
+  },
+  {
+   "id": "pe-048",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "amostragem",
+   "enunciado": "<p>A amostragem por atributos difere da por variáveis porque:</p>",
+   "alternativas": [
+    "classifica cada item como conforme ou não conforme, sem medir uma grandeza contínua",
+    "mede o valor exato de cada característica",
+    "não exige critério de aceitação",
+    "usa sempre amostras menores"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Por variáveis, mede-se; a amostra exigida costuma ser menor.</p>"
+  },
+  {
+   "id": "pe-049",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "ic",
+   "enunciado": "<p>Com x̄ = 250, σ = 12, n = 36 e z = 1,96, a semilargura do IC de 95 % é:</p>",
+   "alternativas": [
+    "0,65",
+    "23,52",
+    "1,96",
+    "3,92"
+   ],
+   "correta": 3,
+   "formulas": [
+    "z σ/√n"
+   ],
+   "explicacao": "<div class=\"passo\">1,96·12/6 = <strong>3,92</strong></div>"
+  },
+  {
+   "id": "pe-050",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ic",
+   "enunciado": "<p>Com n = 10, s = 2,5 e t = 2,262, a semilargura é:</p>",
+   "alternativas": [
+    "1,55",
+    "0,57",
+    "1,79",
+    "5,66"
+   ],
+   "correta": 2,
+   "formulas": [
+    "t s/√n"
+   ],
+   "explicacao": "<div class=\"passo\">2,262·2,5/√10 = <strong>1,79</strong></div><p>1,55 usaria z.</p>"
+  },
+  {
+   "id": "pe-051",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ic",
+   "enunciado": "<p>Encontraram-se 40 defeituosas em 200. A semilargura do IC de 95 % para a proporção é:</p>",
+   "alternativas": [
+    "0,028",
+    "0,055",
+    "0,196",
+    "0,200"
+   ],
+   "correta": 1,
+   "formulas": [
+    "z √(p̂(1−p̂)/n)"
+   ],
+   "explicacao": "<div class=\"passo\">1,96√(0,2·0,8/200) = <strong>0,055</strong></div>"
+  },
+  {
+   "id": "pe-052",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ic",
+   "enunciado": "<p>Aumentando a confiança de 95 % para 99 %, mantida a amostra, o intervalo:</p>",
+   "alternativas": [
+    "fica mais estreito",
+    "fica mais largo",
+    "não muda",
+    "muda de centro"
+   ],
+   "correta": 1,
+   "explicacao": "<p>z sobe de 1,96 para 2,576.</p>"
+  },
+  {
+   "id": "pe-053",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ic",
+   "enunciado": "<p>A interpretação correta de um IC de 95 % para μ é:</p>",
+   "alternativas": [
+    "em repetições do procedimento, cerca de 95 % dos intervalos conteriam μ",
+    "μ varia e cai no intervalo em 95 % das vezes",
+    "95 % dos dados estão dentro do intervalo",
+    "o intervalo contém 95 % das médias amostrais"
+   ],
+   "correta": 0,
+   "explicacao": "<p>μ é fixo; o aleatório é o intervalo.</p>"
+  },
+  {
+   "id": "pe-054",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ic",
+   "enunciado": "<p>Usar z no lugar de t, com s e amostra pequena, produz:</p>",
+   "alternativas": [
+    "intervalos longos demais",
+    "nenhuma alteração",
+    "cobertura de 100 %",
+    "intervalos curtos demais e cobertura real abaixo da nominal"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O t crítico é maior que z.</p>"
+  },
+  {
+   "id": "pe-055",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "testes",
+   "enunciado": "<p>O erro tipo I consiste em:</p>",
+   "alternativas": [
+    "não rejeitar H₀ quando ela é falsa",
+    "calcular o valor-p errado",
+    "rejeitar H₀ quando ela é verdadeira",
+    "usar amostra pequena"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Sua probabilidade é α.</p>"
+  },
+  {
+   "id": "pe-056",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "testes",
+   "enunciado": "<p>Para H₀: μ = 500, σ = 20, n = 25, x̄ = 508, a estatística z é:</p>",
+   "alternativas": [
+    "0,4",
+    "10",
+    "2,0",
+    "1,96"
+   ],
+   "correta": 2,
+   "formulas": [
+    "z = (x̄ − μ₀)/(σ/√n)"
+   ],
+   "explicacao": "<div class=\"passo\">8/(20/5) = <strong>2,0</strong></div>"
+  },
+  {
+   "id": "pe-057",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "testes",
+   "enunciado": "<p>Rejeita-se H₀ quando:</p>",
+   "alternativas": [
+    "o valor-p é maior que α",
+    "o valor-p é menor que α",
+    "α é maior que 1",
+    "a amostra é grande"
+   ],
+   "correta": 1,
+   "explicacao": "<p>p baixo significa dados pouco compatíveis com H₀.</p>"
+  },
+  {
+   "id": "pe-058",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "testes",
+   "enunciado": "<p>O poder de um teste é:</p>",
+   "alternativas": [
+    "1 − β",
+    "α",
+    "β",
+    "1 − α"
+   ],
+   "correta": 0,
+   "explicacao": "<p>É a probabilidade de detectar um efeito real.</p>"
+  },
+  {
+   "id": "pe-059",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "testes",
+   "enunciado": "<p>Para n = 16, x̄ = 10,4, s = 0,8 e H₀: μ = 10, a estatística é t = 2,0. Com t crítico de 2,131:</p>",
+   "alternativas": [
+    "rejeita-se H₀",
+    "o teste é inválido",
+    "H₀ está provada",
+    "não se rejeita H₀"
+   ],
+   "correta": 3,
+   "explicacao": "<p>|t| = 2,0 &lt; 2,131. Não rejeitar não prova H₀.</p>"
+  },
+  {
+   "id": "pe-060",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "testes",
+   "enunciado": "<p>Em um dado lançado 60 vezes, as frequências foram 8, 12, 9, 11, 14 e 6. A estatística qui-quadrado é:</p>",
+   "alternativas": [
+    "2,8",
+    "11,07",
+    "0,7",
+    "4,2"
+   ],
+   "correta": 3,
+   "formulas": [
+    "χ² = Σ(O − E)²/E"
+   ],
+   "explicacao": "<div class=\"passo\">Σ(O − 10)²/10 = (4+4+1+1+16+16)/10 = <strong>4,2</strong></div><p>11,07 é o valor crítico.</p>"
+  },
+  {
+   "id": "pe-061",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "testes",
+   "enunciado": "<p>Com a amostra fixa, ao reduzir α:</p>",
+   "alternativas": [
+    "β diminui",
+    "β e α diminuem",
+    "β aumenta, pois a região de rejeição diminui",
+    "o poder aumenta"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Só com n maior os dois caem juntos.</p>"
+  },
+  {
+   "id": "pe-062",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "regressao",
+   "enunciado": "<p>Um r = −0,95 indica:</p>",
+   "alternativas": [
+    "ausência de relação",
+    "relação linear negativa forte",
+    "relação positiva fraca",
+    "causa e efeito comprovados"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Correlação não prova causa.</p>"
+  },
+  {
+   "id": "pe-063",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "regressao",
+   "enunciado": "<p>Com S<sub>xy</sub> = 19,6 e S<sub>xx</sub> = 10, a inclinação é:</p>",
+   "alternativas": [
+    "1,96",
+    "0,51",
+    "196",
+    "9,6"
+   ],
+   "correta": 0,
+   "formulas": [
+    "b₁ = S_xy/S_xx"
+   ],
+   "explicacao": "<div class=\"passo\">19,6/10 = <strong>1,96</strong></div>"
+  },
+  {
+   "id": "pe-064",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "regressao",
+   "enunciado": "<p>Se r = 0,9, a fração da variação de y explicada pela reta é:</p>",
+   "alternativas": [
+    "81 %",
+    "90 %",
+    "95 %",
+    "10 %"
+   ],
+   "correta": 0,
+   "formulas": [
+    "r²"
+   ],
+   "explicacao": "<div class=\"passo\">r² = 0,81</div>"
+  },
+  {
+   "id": "pe-065",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "regressao",
+   "enunciado": "<p>A reta de mínimos quadrados sempre passa pelo ponto:</p>",
+   "alternativas": [
+    "(0, 0)",
+    "de maior resíduo",
+    "(x₁, y₁)",
+    "(x̄, ȳ)"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Vem de b₀ = ȳ − b₁x̄.</p>"
+  },
+  {
+   "id": "pe-066",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "regressao",
+   "enunciado": "<p>Com n = 5, usa-se t com quantos graus de liberdade para a inclinação?</p>",
+   "alternativas": [
+    "4",
+    "5",
+    "3",
+    "2"
+   ],
+   "correta": 2,
+   "formulas": [
+    "gl = n − 2"
+   ],
+   "explicacao": "<div class=\"passo\">n − 2 = <strong>3</strong></div>"
+  },
+  {
+   "id": "pe-067",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "regressao",
+   "enunciado": "<p>Um intervalo de 95 % para a inclinação que contém zero indica:</p>",
+   "alternativas": [
+    "a relação é certamente nula",
+    "não há evidência, a 5 %, de relação linear",
+    "a reta passa pela origem",
+    "r é igual a 1"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Equivale a não rejeitar H₀: β₁ = 0.</p>"
+  },
+  {
+   "id": "pe-068",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "confiabilidade",
+   "enunciado": "<p>Três componentes de R = 0,9 em série têm confiabilidade do sistema igual a:</p>",
+   "alternativas": [
+    "0,900",
+    "0,729",
+    "0,999",
+    "0,270"
+   ],
+   "correta": 1,
+   "formulas": [
+    "R_S = Π Rᵢ"
+   ],
+   "explicacao": "<div class=\"passo\">0,9³ = <strong>0,729</strong></div>"
+  },
+  {
+   "id": "pe-069",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "confiabilidade",
+   "enunciado": "<p>Dois componentes de R = 0,9 em paralelo têm confiabilidade de:</p>",
+   "alternativas": [
+    "0,99",
+    "0,81",
+    "0,90",
+    "0,999"
+   ],
+   "correta": 0,
+   "formulas": [
+    "R_P = 1 − Π(1 − Rᵢ)"
+   ],
+   "explicacao": "<div class=\"passo\">1 − 0,1² = <strong>0,99</strong></div>"
+  },
+  {
+   "id": "pe-070",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "confiabilidade",
+   "enunciado": "<p>Com λ = 10⁻³ falha/h, o MTBF e R(500 h) são:</p>",
+   "alternativas": [
+    "1000 h e 0,5000",
+    "500 h e 0,6065",
+    "1000 h e 0,3935",
+    "1000 h e 0,6065"
+   ],
+   "correta": 3,
+   "explicacao": "<div class=\"passo\">MTBF = 1/λ = 1000 h</div><div class=\"passo\">R = e<sup>−0,5</sup> = 0,6065</div>"
+  },
+  {
+   "id": "pe-071",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "confiabilidade",
+   "enunciado": "<p>Três componentes com λ = 10⁻³/h em série têm MTBF de:</p>",
+   "alternativas": [
+    "1000 h",
+    "3000 h",
+    "333 h",
+    "577 h"
+   ],
+   "correta": 2,
+   "formulas": [
+    "λ_S = Σλᵢ"
+   ],
+   "explicacao": "<div class=\"passo\">λ total = 3×10⁻³</div><div class=\"passo\">MTBF = <strong>333 h</strong></div>"
+  },
+  {
+   "id": "pe-072",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "confiabilidade",
+   "enunciado": "<p>A chance de um item com taxa constante durar além de seu MTBF é:</p>",
+   "alternativas": [
+    "50 %",
+    "63,2 %",
+    "36,8 %",
+    "100 %"
+   ],
+   "correta": 2,
+   "formulas": [
+    "R(t) = e^{−λt}"
+   ],
+   "explicacao": "<div class=\"passo\">e<sup>−1</sup> = <strong>36,8 %</strong></div>"
+  },
+  {
+   "id": "pe-073",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "confiabilidade",
+   "enunciado": "<p>Para Weibull com β = 2 e η = 1000 h, R(500 h) é:</p>",
+   "alternativas": [
+    "0,6065",
+    "0,7788",
+    "0,5000",
+    "0,2212"
+   ],
+   "correta": 1,
+   "formulas": [
+    "R = exp(−(t/η)^β)"
+   ],
+   "explicacao": "<div class=\"passo\">e<sup>−(0,5)²</sup> = <strong>0,7788</strong></div>"
+  },
+  {
+   "id": "pe-074",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "confiabilidade",
+   "enunciado": "<p>Na curva da banheira, o trecho central corresponde a:</p>",
+   "alternativas": [
+    "vida útil, com taxa de falha aproximadamente constante",
+    "mortalidade infantil",
+    "desgaste acelerado",
+    "ausência total de falhas"
+   ],
+   "correta": 0,
+   "explicacao": "<p>É a região em que o modelo exponencial se aplica.</p>"
+  },
+  {
+   "id": "pe-075",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "cep",
+   "enunciado": "<p>Um ponto fora dos limites de controle de uma carta X̄-R indica:</p>",
+   "alternativas": [
+    "necessariamente peça fora da especificação",
+    "processo capaz",
+    "erro no cálculo da média",
+    "possível causa especial, a ser investigada"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Controle e especificação são coisas diferentes.</p>"
+  },
+  {
+   "id": "pe-076",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "cep",
+   "enunciado": "<p>Com X̿ = 50, R̄ = 1,2, n = 5 e A₂ = 0,577, o LSC é:</p>",
+   "alternativas": [
+    "51,20",
+    "50,58",
+    "49,31",
+    "50,69"
+   ],
+   "correta": 3,
+   "formulas": [
+    "LSC = X̿ + A₂R̄"
+   ],
+   "explicacao": "<div class=\"passo\">50 + 0,577·1,2 = <strong>50,69</strong></div><p>49,31 é o LIC.</p>"
+  },
+  {
+   "id": "pe-077",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "cep",
+   "enunciado": "<p>Com especificação de 48 a 52 e σ = 0,5, o Cp é:</p>",
+   "alternativas": [
+    "1,00",
+    "2,67",
+    "1,33",
+    "0,75"
+   ],
+   "correta": 2,
+   "formulas": [
+    "Cp = (LSE − LIE)/(6σ)"
+   ],
+   "explicacao": "<div class=\"passo\">4/(6·0,5) = <strong>1,33</strong></div>"
+  },
+  {
+   "id": "pe-078",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "cep",
+   "enunciado": "<p>Com especificação de 48 a 52, σ = 0,5 e média 50,5, o Cpk é:</p>",
+   "alternativas": [
+    "1,33",
+    "1,00",
+    "1,67",
+    "0,50"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Cpk = min(LSE − μ, μ − LIE)/(3σ)"
+   ],
+   "explicacao": "<div class=\"passo\">min(1,5; 2,5)/(1,5) = <strong>1,00</strong></div>"
+  },
+  {
+   "id": "pe-079",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "cep",
+   "enunciado": "<p>Os limites de controle e os de especificação são:</p>",
+   "alternativas": [
+    "conceitos diferentes: os primeiros vêm do processo e os segundos, do projeto",
+    "exatamente os mesmos",
+    "ambos definidos pelo cliente",
+    "ambos calculados pela amplitude"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Processo sob controle ainda pode ser incapaz.</p>"
+  },
+  {
+   "id": "pe-080",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "cep",
+   "enunciado": "<p>Um processo com Cp = 2 e Cpk = 0,5:</p>",
+   "alternativas": [
+    "tem baixa variabilidade, mas está descentrado",
+    "tem alta variabilidade e está centrado",
+    "é plenamente capaz",
+    "não pode existir"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Cpk &lt; Cp indica descentragem.</p>"
+  },
+  {
+   "id": "pe-081",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "cep",
+   "enunciado": "<p>A probabilidade de um ponto cair fora dos limites de 3σ, com processo estável, resulta em um ARL de aproximadamente:</p>",
+   "alternativas": [
+    "100 subgrupos",
+    "30 subgrupos",
+    "1000 subgrupos",
+    "370 subgrupos"
+   ],
+   "correta": 3,
+   "formulas": [
+    "ARL = 1/p"
+   ],
+   "explicacao": "<div class=\"passo\">p = 0,0027</div><div class=\"passo\">ARL = 1/p = <strong>370</strong></div>"
+  }
+ ]
+}

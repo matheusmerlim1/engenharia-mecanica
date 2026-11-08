@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "probabilidade-e-estatistica",
     "metodos-numericos",
     "calculo-numerico",
     "processos-de-fabricacao-2",
@@ -242,7 +243,7 @@
       "periodo": "4",
       "materia": "Matemática, Estatística e Computação",
       "pasta": "4°- Probabilidade e Estatistica",
-      "resumo": "Distribuições, amostragem, intervalos de confiança, testes de hipótese e regressão.",
+      "resumo": "Modelos de probabilidade, inferência, regressão, confiabilidade e controle estatístico de processo.",
       "temas": [
         "distribuições",
         "intervalo de confiança",
@@ -251,7 +252,7 @@
       ],
       "simuladores": true,
       "normas": false,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "circuitos-eletricos",

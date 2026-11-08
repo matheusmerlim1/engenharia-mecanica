@@ -201,6 +201,56 @@
       "ordem": 5
     },
     {
+      "id": "sim-discretas",
+      "slug": "probabilidade-e-estatistica",
+      "disciplina": "Probabilidade e Estatística",
+      "periodo": "4",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "1. Modelos discretos — binomial, Poisson e geométrica",
+      "resumo": "Escolha o modelo e marque um valor de k. Na binomial com n grande e p pequeno, ligue a comparação e veja a Poisson coincidir.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-normal",
+      "slug": "probabilidade-e-estatistica",
+      "disciplina": "Probabilidade e Estatística",
+      "periodo": "4",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "2. Distribuição normal — áreas e padronização",
+      "resumo": "A probabilidade é a área sob a curva. O escore z conta quantos desvios-padrão o valor está afastado da média.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-tcl",
+      "slug": "probabilidade-e-estatistica",
+      "disciplina": "Probabilidade e Estatística",
+      "periodo": "4",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "3. Teorema central do limite",
+      "resumo": "Sorteiam-se muitas amostras da população e calcula-se a média de cada uma.",
+      "ordem": 2
+    },
+    {
+      "id": "sim-ic",
+      "slug": "probabilidade-e-estatistica",
+      "disciplina": "Probabilidade e Estatística",
+      "periodo": "4",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "4. O que significa 95 % de confiança",
+      "resumo": "Cem amostras, cem intervalos diferentes. A média verdadeira é fixa, e são os intervalos que variam; os vermelhos não contêm μ.",
+      "ordem": 3
+    },
+    {
+      "id": "sim-carta",
+      "slug": "probabilidade-e-estatistica",
+      "disciplina": "Probabilidade e Estatística",
+      "periodo": "4",
+      "materia": "Matemática, Estatística e Computação",
+      "titulo": "5. Carta X̄-R e capacidade do processo",
+      "resumo": "Subgrupos de peças são medidos ao longo do tempo.",
+      "ordem": 4
+    },
+    {
       "id": "sim-resistivo",
       "slug": "circuitos-eletricos",
       "disciplina": "Circuitos Elétricos",
