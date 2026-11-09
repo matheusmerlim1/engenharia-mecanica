@@ -1,0 +1,917 @@
+{
+ "disciplina": "Eletrotécnica",
+ "slug": "eletrotecnica",
+ "topicos": [
+  {
+   "id": "trifasico",
+   "nome": "Sistema trifásico"
+  },
+  {
+   "id": "fp",
+   "nome": "Fator de potência"
+  },
+  {
+   "id": "magnetismo",
+   "nome": "Eletromagnetismo"
+  },
+  {
+   "id": "transformador",
+   "nome": "Transformadores"
+  },
+  {
+   "id": "inducao",
+   "nome": "Motor de indução"
+  },
+  {
+   "id": "conjugado",
+   "nome": "Conjugado e rendimento"
+  },
+  {
+   "id": "partida",
+   "nome": "Partida e acionamento"
+  },
+  {
+   "id": "sincronas",
+   "nome": "Síncronas e CC"
+  },
+  {
+   "id": "protecao",
+   "nome": "Proteção e especificação"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "el-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "trifasico",
+   "enunciado": "<p>Em ligação estrela equilibrada, a tensão de linha é:</p>",
+   "alternativas": [
+    "igual à tensão de fase",
+    "3 vezes a tensão de fase",
+    "metade da tensão de fase",
+    "√3 vezes a tensão de fase"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Na estrela, é a corrente que é igual.</p>"
+  },
+  {
+   "id": "el-002",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "trifasico",
+   "enunciado": "<p>Em ligação triângulo, a corrente de linha é:</p>",
+   "alternativas": [
+    "igual à corrente de fase",
+    "1/3 da corrente de fase",
+    "√3 vezes a corrente de fase",
+    "3 vezes a corrente de fase"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A tensão de linha é igual à de fase.</p>"
+  },
+  {
+   "id": "el-003",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "trifasico",
+   "enunciado": "<p>Um motor em 380 V, com 30 A e fator de potência 0,85, consome potência ativa de aproximadamente:</p>",
+   "alternativas": [
+    "9,7 kW",
+    "16,8 kW",
+    "19,7 kW",
+    "29,1 kW"
+   ],
+   "correta": 1,
+   "formulas": [
+    "P = √3 V I cos φ"
+   ],
+   "explicacao": "<div class=\"passo\">√3·380·30·0,85 = <strong>16,8 kW</strong></div><p>19,7 é a potência aparente em kVA.</p>"
+  },
+  {
+   "id": "el-004",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "trifasico",
+   "enunciado": "<p>A tensão de fase em uma rede de 380 V de linha é:</p>",
+   "alternativas": [
+    "380 V",
+    "219 V",
+    "127 V",
+    "658 V"
+   ],
+   "correta": 1,
+   "formulas": [
+    "V_f = V_L/√3"
+   ],
+   "explicacao": "<div class=\"passo\">380/√3 = <strong>219 V</strong></div>"
+  },
+  {
+   "id": "el-005",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "trifasico",
+   "enunciado": "<p>A principal vantagem do sistema trifásico equilibrado para acionamento é:</p>",
+   "alternativas": [
+    "a potência instantânea total é constante, o que evita conjugado pulsante",
+    "a tensão ser sempre contínua",
+    "dispensar qualquer condutor",
+    "eliminar perdas"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Além disso, produz campo girante.</p>"
+  },
+  {
+   "id": "el-006",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "trifasico",
+   "enunciado": "<p>Com S = 19,75 kVA e fator de potência 0,85, a potência reativa é:</p>",
+   "alternativas": [
+    "16,8 kvar",
+    "2,96 kvar",
+    "19,7 kvar",
+    "10,4 kvar"
+   ],
+   "correta": 3,
+   "formulas": [
+    "Q = S sen φ"
+   ],
+   "explicacao": "<div class=\"passo\">sen φ = 0,527</div><div class=\"passo\">19,75·0,527 = <strong>10,4 kvar</strong></div>"
+  },
+  {
+   "id": "el-007",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "fp",
+   "enunciado": "<p>Motores de indução consomem potência reativa principalmente para:</p>",
+   "alternativas": [
+    "aumentar o conjugado no eixo",
+    "reduzir a tensão da rede",
+    "magnetizar o circuito magnético",
+    "aquecer as barras do rotor"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Ela não produz trabalho.</p>"
+  },
+  {
+   "id": "el-008",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "fp",
+   "enunciado": "<p>Uma carga de 100 kW passa de fator de potência 0,70 para 0,95. O banco de capacitores necessário é de aproximadamente:</p>",
+   "alternativas": [
+    "102 kvar",
+    "33 kvar",
+    "69 kvar",
+    "143 kvar"
+   ],
+   "correta": 2,
+   "formulas": [
+    "Q_c = P(tan φ₁ − tan φ₂)"
+   ],
+   "explicacao": "<div class=\"passo\">100(1,020 − 0,329) = <strong>69 kvar</strong></div>"
+  },
+  {
+   "id": "el-009",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "fp",
+   "enunciado": "<p>Ao corrigir o fator de potência de uma instalação, a potência ativa:</p>",
+   "alternativas": [
+    "aumenta na mesma proporção que a corrente",
+    "permanece praticamente igual, e a corrente diminui",
+    "cai a zero",
+    "dobra"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Só o reativo muda.</p>"
+  },
+  {
+   "id": "el-010",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "fp",
+   "enunciado": "<p>A carga de 100 kW em 380 V tem, com fator de potência 0,70, corrente de:</p>",
+   "alternativas": [
+    "217 A",
+    "160 A",
+    "152 A",
+    "263 A"
+   ],
+   "correta": 0,
+   "formulas": [
+    "I = P/(√3 V cos φ)"
+   ],
+   "explicacao": "<div class=\"passo\">100 000/(√3·380·0,7) = <strong>217 A</strong></div>"
+  },
+  {
+   "id": "el-011",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "fp",
+   "enunciado": "<p>No Brasil, o consumidor com medição de reativo paga excedente quando o fator de potência fica abaixo de:</p>",
+   "alternativas": [
+    "0,50",
+    "0,70",
+    "1,00",
+    "0,92"
+   ],
+   "correta": 3,
+   "explicacao": "<p>É o valor regulado pela Aneel.</p>"
+  },
+  {
+   "id": "el-012",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "fp",
+   "enunciado": "<p>Uma redução da corrente de 217 A para 160 A reduz as perdas nos cabos em aproximadamente:</p>",
+   "alternativas": [
+    "26 %",
+    "13 %",
+    "74 %",
+    "46 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "P ∝ I²"
+   ],
+   "explicacao": "<div class=\"passo\">1 − (160/217)² = <strong>46 %</strong></div>"
+  },
+  {
+   "id": "el-013",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "magnetismo",
+   "enunciado": "<p>A lei de Faraday, base do funcionamento do gerador, afirma que:</p>",
+   "alternativas": [
+    "a corrente é proporcional à resistência",
+    "o fluxo é sempre constante",
+    "uma variação de fluxo magnético enlaçado induz uma força eletromotriz",
+    "a carga elétrica se conserva"
+   ],
+   "correta": 2,
+   "explicacao": "<p>e = −N dΦ/dt.</p>"
+  },
+  {
+   "id": "el-014",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "magnetismo",
+   "enunciado": "<p>Uma bobina de 200 espiras, com variação de 0,02 Wb em 10 ms, induz:</p>",
+   "alternativas": [
+    "4 V",
+    "400 V",
+    "40 V",
+    "200 V"
+   ],
+   "correta": 1,
+   "formulas": [
+    "e = N ΔΦ/Δt"
+   ],
+   "explicacao": "<div class=\"passo\">200·0,02/0,01 = <strong>400 V</strong></div>"
+  },
+  {
+   "id": "el-015",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "magnetismo",
+   "enunciado": "<p>A força sobre um condutor de 0,5 m, com 10 A, em campo de 0,8 T perpendicular é:</p>",
+   "alternativas": [
+    "4 N",
+    "16 N",
+    "0,4 N",
+    "40 N"
+   ],
+   "correta": 0,
+   "formulas": [
+    "F = B L I"
+   ],
+   "explicacao": "<div class=\"passo\">0,8·0,5·10 = <strong>4 N</strong></div>"
+  },
+  {
+   "id": "el-016",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "magnetismo",
+   "enunciado": "<p>Os núcleos são feitos de chapas finas isoladas para:</p>",
+   "alternativas": [
+    "reduzir as perdas por correntes parasitas",
+    "aumentar a resistência do enrolamento",
+    "reduzir o número de espiras",
+    "aumentar a frequência"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A perda de Foucault cai com a espessura.</p>"
+  },
+  {
+   "id": "el-017",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "magnetismo",
+   "enunciado": "<p>A lei de Lenz estabelece que a corrente induzida:</p>",
+   "alternativas": [
+    "reforça a variação que a criou",
+    "só depende da temperatura",
+    "só existe em corrente contínua",
+    "tem sentido tal que se opõe à variação de fluxo que a criou"
+   ],
+   "correta": 3,
+   "explicacao": "<p>É uma consequência da conservação da energia.</p>"
+  },
+  {
+   "id": "el-018",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "transformador",
+   "enunciado": "<p>Um transformador de 220/110 V, com 10 A no secundário, tem no primário:</p>",
+   "alternativas": [
+    "20 A",
+    "10 A",
+    "5 A",
+    "2,5 A"
+   ],
+   "correta": 2,
+   "formulas": [
+    "V₁I₁ = V₂I₂"
+   ],
+   "explicacao": "<div class=\"passo\">I₁ = 10·110/220 = <strong>5 A</strong></div>"
+  },
+  {
+   "id": "el-019",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "transformador",
+   "enunciado": "<p>A corrente nominal no secundário de um trafo trifásico de 500 kVA e 380 V é:</p>",
+   "alternativas": [
+    "1316 A",
+    "760 A",
+    "439 A",
+    "21 A"
+   ],
+   "correta": 1,
+   "formulas": [
+    "I = S/(√3 V)"
+   ],
+   "explicacao": "<div class=\"passo\">500 000/(√3·380) = <strong>760 A</strong></div>"
+  },
+  {
+   "id": "el-020",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "transformador",
+   "enunciado": "<p>O ensaio a vazio de um transformador determina principalmente:</p>",
+   "alternativas": [
+    "as perdas no cobre",
+    "as perdas no ferro",
+    "a impedância de curto-circuito",
+    "o isolamento dos enrolamentos"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O ensaio de curto-circuito dá o cobre.</p>"
+  },
+  {
+   "id": "el-021",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "transformador",
+   "enunciado": "<p>Com perdas de 500 W no ferro e 1200 W no cobre nominal, o rendimento máximo ocorre em:</p>",
+   "alternativas": [
+    "64,5 % da carga",
+    "41,7 % da carga",
+    "100 % da carga",
+    "83 % da carga"
+   ],
+   "correta": 0,
+   "formulas": [
+    "x = √(P_Fe/P_Cu)"
+   ],
+   "explicacao": "<div class=\"passo\">√(500/1200) = <strong>0,645</strong></div>"
+  },
+  {
+   "id": "el-022",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "transformador",
+   "enunciado": "<p>Um transformador de 100 kVA com 500 W no ferro e 1200 W no cobre, a plena carga e fator de potência unitário, tem rendimento de:</p>",
+   "alternativas": [
+    "98,8 %",
+    "99,5 %",
+    "95,0 %",
+    "98,3 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "η = P/(P + perdas)"
+   ],
+   "explicacao": "<div class=\"passo\">100/(100 + 1,7) = <strong>98,3 %</strong></div>"
+  },
+  {
+   "id": "el-023",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "transformador",
+   "enunciado": "<p>Em um transformador abaixador, em relação ao primário, o secundário tem:</p>",
+   "alternativas": [
+    "mais espiras e corrente menor",
+    "menos espiras e corrente menor",
+    "menos espiras e corrente maior",
+    "o mesmo número de espiras"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Potências praticamente iguais.</p>"
+  },
+  {
+   "id": "el-024",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "inducao",
+   "enunciado": "<p>Um motor de 4 polos em 60 Hz tem rotação síncrona de:</p>",
+   "alternativas": [
+    "3600 rpm",
+    "1200 rpm",
+    "1800 rpm",
+    "900 rpm"
+   ],
+   "correta": 2,
+   "formulas": [
+    "n_s = 120 f/p"
+   ],
+   "explicacao": "<div class=\"passo\">120·60/4 = <strong>1800 rpm</strong></div>"
+  },
+  {
+   "id": "el-025",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "inducao",
+   "enunciado": "<p>Um motor de 4 polos, em 60 Hz, opera a 1750 rpm. O escorregamento é:</p>",
+   "alternativas": [
+    "5,0 %",
+    "2,8 %",
+    "0,28 %",
+    "1,4 %"
+   ],
+   "correta": 1,
+   "formulas": [
+    "s = (n_s − n)/n_s"
+   ],
+   "explicacao": "<div class=\"passo\">50/1800 = <strong>2,8 %</strong></div>"
+  },
+  {
+   "id": "el-026",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "inducao",
+   "enunciado": "<p>O motor com rotor em gaiola é o mais usado na indústria porque:</p>",
+   "alternativas": [
+    "é robusto, barato e não tem escovas nem anéis",
+    "permite ajustar a resistência do rotor externamente",
+    "dispensa corrente de magnetização",
+    "tem rotação exatamente síncrona"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A manutenção é mínima.</p>"
+  },
+  {
+   "id": "el-027",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "inducao",
+   "enunciado": "<p>Um motor de indução não pode operar na rotação síncrona porque:</p>",
+   "alternativas": [
+    "a rede não fornece essa frequência",
+    "o estator se aqueceria menos",
+    "o número de polos mudaria",
+    "sem movimento relativo não há tensão induzida no rotor nem conjugado"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O escorregamento é essencial.</p>"
+  },
+  {
+   "id": "el-028",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "inducao",
+   "enunciado": "<p>Com s = 2,78 % e 60 Hz, a frequência das correntes no rotor é:</p>",
+   "alternativas": [
+    "60 Hz",
+    "58,3 Hz",
+    "0,47 Hz",
+    "1,67 Hz"
+   ],
+   "correta": 3,
+   "formulas": [
+    "f_r = s f"
+   ],
+   "explicacao": "<div class=\"passo\">0,0278·60 = <strong>1,67 Hz</strong></div>"
+  },
+  {
+   "id": "el-029",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "inducao",
+   "enunciado": "<p>Um motor de 60 Hz gira a 1160 rpm em carga. Seu número de polos é:</p>",
+   "alternativas": [
+    "4",
+    "8",
+    "6",
+    "2"
+   ],
+   "correta": 2,
+   "formulas": [
+    "p = 120 f/n_s"
+   ],
+   "explicacao": "<div class=\"passo\">A rotação síncrona imediatamente acima é 1200 rpm</div><div class=\"passo\">120·60/1200 = <strong>6</strong></div>"
+  },
+  {
+   "id": "el-030",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "conjugado",
+   "enunciado": "<p>Um motor de 15 kW, a 1750 rpm, tem conjugado nominal de aproximadamente:</p>",
+   "alternativas": [
+    "8,6 N·m",
+    "82 N·m",
+    "273 N·m",
+    "41 N·m"
+   ],
+   "correta": 1,
+   "formulas": [
+    "T = P/ω"
+   ],
+   "explicacao": "<div class=\"passo\">15 000/183,3 = <strong>82 N·m</strong></div>"
+  },
+  {
+   "id": "el-031",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "conjugado",
+   "enunciado": "<p>Um motor consome 20 kW e entrega 18 kW. O rendimento e as perdas são:</p>",
+   "alternativas": [
+    "90 % e 2 kW",
+    "111 % e 2 kW",
+    "90 % e 18 kW",
+    "80 % e 4 kW"
+   ],
+   "correta": 0,
+   "explicacao": "<div class=\"passo\">18/20 = 90 %; 20 − 18 = 2 kW</div>"
+  },
+  {
+   "id": "el-032",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "conjugado",
+   "enunciado": "<p>Na curva de um motor de indução, o conjugado máximo:</p>",
+   "alternativas": [
+    "não depende da resistência do rotor, que apenas desloca o escorregamento em que ele ocorre",
+    "é diretamente proporcional à resistência do rotor",
+    "ocorre sempre na rotação síncrona",
+    "é igual ao conjugado nominal"
+   ],
+   "correta": 0,
+   "explicacao": "<p>É por isso que a resistência externa aumenta o conjugado de partida.</p>"
+  },
+  {
+   "id": "el-033",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "conjugado",
+   "enunciado": "<p>Com tensão 10 % menor, o conjugado disponível cai aproximadamente:</p>",
+   "alternativas": [
+    "10 %",
+    "5 %",
+    "33 %",
+    "19 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "T ∝ V²"
+   ],
+   "explicacao": "<div class=\"passo\">1 − 0,9² = <strong>19 %</strong></div>"
+  },
+  {
+   "id": "el-034",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "conjugado",
+   "enunciado": "<p>A perda no rotor de um motor com 15,43 kW no entreferro e escorregamento de 2,78 % é:</p>",
+   "alternativas": [
+    "278 W",
+    "1543 W",
+    "429 W",
+    "154 W"
+   ],
+   "correta": 2,
+   "formulas": [
+    "P_rotor = s P_ag"
+   ],
+   "explicacao": "<div class=\"passo\">0,0278·15 430 = <strong>429 W</strong></div>"
+  },
+  {
+   "id": "el-035",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "conjugado",
+   "enunciado": "<p>O ponto de operação em regime é:</p>",
+   "alternativas": [
+    "sempre a rotação síncrona",
+    "o cruzamento das curvas de conjugado do motor e da carga, no trecho estável",
+    "o ponto de conjugado máximo",
+    "o ponto de partida"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Em equilíbrio, T<sub>m</sub> = T<sub>c</sub>.</p>"
+  },
+  {
+   "id": "el-036",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "partida",
+   "enunciado": "<p>Na partida estrela-triângulo, comparada à direta, a corrente e o conjugado ficam, respectivamente:</p>",
+   "alternativas": [
+    "1/√3 e 1/3",
+    "1/3 e 1/3",
+    "1/3 e 1/√3",
+    "1/√3 e 1/√3"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A tensão na bobina cai √3 vezes; corrente de linha e conjugado caem 3 vezes.</p>"
+  },
+  {
+   "id": "el-037",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "partida",
+   "enunciado": "<p>Com corrente de partida direta de 600 A, a partida em estrela-triângulo solicita da rede:</p>",
+   "alternativas": [
+    "200 A",
+    "346 A",
+    "600 A",
+    "100 A"
+   ],
+   "correta": 0,
+   "formulas": [
+    "I_Y = I_Δ/3"
+   ],
+   "explicacao": "<div class=\"passo\">600/3 = <strong>200 A</strong></div>"
+  },
+  {
+   "id": "el-038",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "partida",
+   "enunciado": "<p>O controle escalar por inversor mantém V/f constante porque:</p>",
+   "alternativas": [
+    "assim a frequência da rede é corrigida",
+    "a corrente passa a ser contínua",
+    "o número de polos pode variar",
+    "assim o fluxo no entreferro fica aproximadamente constante, evitando saturar o ferro"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O fluxo é proporcional a V/f.</p>"
+  },
+  {
+   "id": "el-039",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "partida",
+   "enunciado": "<p>Um motor de 380 V em 60 Hz, sob controle V/f, recebe em 30 Hz a tensão de:</p>",
+   "alternativas": [
+    "380 V",
+    "95 V",
+    "190 V",
+    "269 V"
+   ],
+   "correta": 2,
+   "formulas": [
+    "V/f = cte"
+   ],
+   "explicacao": "<div class=\"passo\">380·30/60 = <strong>190 V</strong></div>"
+  },
+  {
+   "id": "el-040",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "partida",
+   "enunciado": "<p>Com compensadora de tap 65 %, o conjugado de partida é, em relação à partida direta:</p>",
+   "alternativas": [
+    "65 %",
+    "81 %",
+    "42 %",
+    "35 %"
+   ],
+   "correta": 2,
+   "formulas": [
+    "T ∝ k²"
+   ],
+   "explicacao": "<div class=\"passo\">0,65² = <strong>42 %</strong></div>"
+  },
+  {
+   "id": "el-041",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "partida",
+   "enunciado": "<p>A partida estrela-triângulo não é adequada quando:</p>",
+   "alternativas": [
+    "a carga é uma bomba centrífuga com válvula fechada",
+    "a carga exige conjugado de partida elevado, próximo ou acima de um terço do disponível",
+    "o motor tem seis terminais acessíveis",
+    "a rede admite somente correntes reduzidas"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O motor fica preso em baixa rotação.</p>"
+  },
+  {
+   "id": "el-042",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "partida",
+   "enunciado": "<p>A rotação síncrona com 4 polos em 30 Hz é:</p>",
+   "alternativas": [
+    "900 rpm",
+    "1800 rpm",
+    "450 rpm",
+    "3600 rpm"
+   ],
+   "correta": 0,
+   "formulas": [
+    "n_s = 120 f/p"
+   ],
+   "explicacao": "<div class=\"passo\">120·30/4 = <strong>900 rpm</strong></div>"
+  },
+  {
+   "id": "el-043",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "sincronas",
+   "enunciado": "<p>Um gerador de 2 polos em 60 Hz gira a:</p>",
+   "alternativas": [
+    "1800 rpm",
+    "60 rpm",
+    "7200 rpm",
+    "3600 rpm"
+   ],
+   "correta": 3,
+   "formulas": [
+    "n = 120 f/p"
+   ],
+   "explicacao": "<div class=\"passo\">120·60/2 = <strong>3600 rpm</strong></div>"
+  },
+  {
+   "id": "el-044",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sincronas",
+   "enunciado": "<p>Em um gerador síncrono isolado, a frequência e a tensão são controladas, respectivamente, atuando:</p>",
+   "alternativas": [
+    "na corrente de excitação e na admissão da máquina primária",
+    "somente no número de polos",
+    "somente na carga",
+    "na admissão da máquina primária e na corrente de excitação"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Regulador de velocidade e AVR.</p>"
+  },
+  {
+   "id": "el-045",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "sincronas",
+   "enunciado": "<p>Um gerador hidráulico de 40 polos em 60 Hz gira a:</p>",
+   "alternativas": [
+    "90 rpm",
+    "360 rpm",
+    "180 rpm",
+    "1500 rpm"
+   ],
+   "correta": 2,
+   "formulas": [
+    "n = 120 f/p"
+   ],
+   "explicacao": "<div class=\"passo\">120·60/40 = <strong>180 rpm</strong></div>"
+  },
+  {
+   "id": "el-046",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "sincronas",
+   "enunciado": "<p>Para colocar um gerador em paralelo com a rede, é preciso igualar:</p>",
+   "alternativas": [
+    "somente a tensão",
+    "tensão, frequência, fase e sequência de fases",
+    "somente a potência ativa",
+    "somente a corrente"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Fechar fora de sincronismo gera choque mecânico e elétrico.</p>"
+  },
+  {
+   "id": "el-047",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "sincronas",
+   "enunciado": "<p>Com 220 V, R<sub>a</sub> = 0,2 Ω e 30 A, a força contraeletromotriz de um motor CC é:</p>",
+   "alternativas": [
+    "214 V",
+    "226 V",
+    "220 V",
+    "6 V"
+   ],
+   "correta": 0,
+   "formulas": [
+    "E = V − R_a I_a"
+   ],
+   "explicacao": "<div class=\"passo\">220 − 0,2·30 = <strong>214 V</strong></div>"
+  },
+  {
+   "id": "el-048",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "protecao",
+   "enunciado": "<p>O relé térmico em um circuito de motor tem por função:</p>",
+   "alternativas": [
+    "proteger o motor contra sobrecarga",
+    "interromper correntes de curto-circuito",
+    "ligar e desligar o motor",
+    "corrigir o fator de potência"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O curto fica com fusível ou disjuntor.</p>"
+  },
+  {
+   "id": "el-049",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "protecao",
+   "enunciado": "<p>Para motor que aciona bomba em área classificada, é requisito essencial:</p>",
+   "alternativas": [
+    "ter grau de proteção IP, que substitui a certificação",
+    "operar sempre com rotor bobinado",
+    "ser alimentado em corrente contínua",
+    "ter certificação Ex compatível com a zona e o grupo de gás"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Por exemplo, Ex d ou Ex e.</p>"
+  },
+  {
+   "id": "el-050",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "protecao",
+   "enunciado": "<p>O contator tem como função:</p>",
+   "alternativas": [
+    "proteger contra curto-circuito",
+    "medir a potência",
+    "manobra, ligando e desligando o circuito",
+    "corrigir a frequência"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Não é dispositivo de proteção.</p>"
+  },
+  {
+   "id": "el-051",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "protecao",
+   "enunciado": "<p>No grau IP55, o primeiro dígito indica proteção contra:</p>",
+   "alternativas": [
+    "água",
+    "sólidos e poeira",
+    "temperatura",
+    "impactos"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O segundo dígito é a proteção contra água.</p>"
+  },
+  {
+   "id": "el-052",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "protecao",
+   "enunciado": "<p>O relé térmico é projetado com retardo para:</p>",
+   "alternativas": [
+    "atuar antes do curto-circuito",
+    "não atuar durante a corrente elevada e breve da partida",
+    "aumentar o conjugado",
+    "evitar a correção do fator de potência"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A proteção precisa diferenciar partida de sobrecarga.</p>"
+  },
+  {
+   "id": "el-053",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "protecao",
+   "enunciado": "<p>A NR-10 exige, antes de intervenção elétrica:</p>",
+   "alternativas": [
+    "desenergização, bloqueio e sinalização, com trabalhadores autorizados",
+    "apenas o uso de luvas",
+    "apenas o aviso verbal",
+    "somente a medição da corrente"
+   ],
+   "correta": 0,
+   "explicacao": "<p>É a norma regulamentadora de segurança em eletricidade.</p>"
+  }
+ ]
+}

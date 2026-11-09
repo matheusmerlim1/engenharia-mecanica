@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "eletrotecnica",
     "usinagem",
     "probabilidade-e-estatistica",
     "metodos-numericos",
@@ -792,6 +793,24 @@
         "ferramentas e fluidos",
         "fresamento",
         "condições econômicas"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "eletrotecnica",
+      "nome": "Eletrotécnica",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "pasta": "",
+      "resumo": "Sistema trifásico, fator de potência, transformadores, motor de indução, partida, geradores e proteção.",
+      "temas": [
+        "trifásico",
+        "fator de potência",
+        "transformadores",
+        "motor de indução",
+        "partida e inversor"
       ],
       "simuladores": true,
       "normas": true,

@@ -1381,6 +1381,36 @@
       "ordem": 2
     },
     {
+      "id": "sim-trifasico",
+      "slug": "eletrotecnica",
+      "disciplina": "Eletrotécnica",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "1. Potência trifásica e correção do fator de potência",
+      "resumo": "O triângulo de potências mostra o que os capacitores fazem: encolhem o cateto reativo e, com ele, a potência aparente e a corrente.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-motor",
+      "slug": "eletrotecnica",
+      "disciplina": "Eletrotécnica",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "2. Motor de indução — curva conjugado × rotação",
+      "resumo": "A curva vem do circuito equivalente. Dobre a resistência do rotor e veja o conjugado máximo permanecer igual, deslocando-se para baixo na rotação.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-partida",
+      "slug": "eletrotecnica",
+      "disciplina": "Eletrotécnica",
+      "periodo": "0",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "3. Métodos de partida",
+      "resumo": "Compare o quanto cada método alivia a rede e se o conjugado reduzido ainda dá conta da carga.",
+      "ordem": 2
+    },
+    {
       "id": "sim-motor",
       "slug": "motores-de-combustao-interna",
       "disciplina": "Motores de Combustão Interna",

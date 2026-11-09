@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eletrotécnica — Engenharia Mecânica</title>
+<meta name="description" content="Eletrotécnica para engenharia mecânica: sistema trifásico, correção do fator de potência, transformadores, motor de indução, partida, inversor, geradores e proteção.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">Optativa · Engenharia Mecânica</p>
+    <h1>Eletrotécnica</h1>
+    <p class="lead">Da rede ao eixo. Este texto está organizado como um livro: nove capítulos em sequência, do sistema trifásico à especificação de motores em área classificada, com o que o engenheiro mecânico precisa para acionar uma máquina.</p>
+    <div class="btn-row">
+      <span class="tag accent">9 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">53 questões</span>
+      <span class="tag info">3 simuladores animados</span>
+      <span class="tag info">9 figuras interativas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai da rede ao eixo: primeiro o sistema trifásico e o fator de potência, depois o eletromagnetismo que faz transformadores e motores funcionarem e, por fim, como acionar, proteger e especificar.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: o motor que move a planta</h2>
+        <p>Bombas, compressores, ventiladores e pontes rolantes são, quase sempre, acionados por motor elétrico. O engenheiro mecânico especifica o motor, confere o conjugado de partida contra a carga, entende por que a bomba não parte em estrela-triângulo e dialoga com a elétrica sobre fator de potência e proteção. Este texto parte do que está em Circuitos Elétricos e chega às máquinas.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Quanta potência o motor consome da rede?</td><td>Sistema trifásico</td><td>1</td></tr>
+            <tr><td>Como reduzir a conta e a corrente?</td><td>Correção do fator de potência</td><td>2</td></tr>
+            <tr><td>Por que uma bobina gera tensão?</td><td>Eletromagnetismo</td><td>3</td></tr>
+            <tr><td>Como mudar o nível de tensão?</td><td>Transformadores</td><td>4</td></tr>
+            <tr><td>A que rotação o motor gira?</td><td>Motor de indução</td><td>5</td></tr>
+            <tr><td>Que conjugado entrega?</td><td>Curva conjugado × rotação</td><td>6</td></tr>
+            <tr><td>Como partir sem derrubar a rede?</td><td>Partida e inversor</td><td>7</td></tr>
+            <tr><td>E os geradores?</td><td>Síncronas e corrente contínua</td><td>8</td></tr>
+            <tr><td>Como proteger e especificar?</td><td>Proteção, grau IP, área classificada</td><td>9</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Duas contas resolvem a maior parte das questões: a rotação síncrona, 120f/p, e a potência trifásica, √3·V·I·cos φ. Fixe as duas antes de seguir.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — A rede" data-topicos="trifasico">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Sistema trifásico</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir valores de fase e de linha;</li>
+            <li>relacionar as ligações estrela e triângulo;</li>
+            <li>calcular as potências ativa, reativa e aparente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Fasores e potência em corrente alternada.</p></div>
+        </div>
+        <h3 id="s1-1"><span class="num">1.1</span>Três fases defasadas</h3>
+        <p>Um sistema trifásico equilibrado tem três tensões de mesma amplitude, defasadas em 120°. A soma instantânea é zero, e a potência total é constante, o que dá conjugado sem pulsação no eixo.</p>
+        <div class="fig-host" id="fig-1-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ligação</th><th>Tensão</th><th>Corrente</th></tr></thead>
+          <tbody>
+            <tr><td>Estrela (Y)</td><td><span data-tex-inline="V_L = \sqrt{3}\,V_f"></span></td><td><span data-tex-inline="I_L = I_f"></span></td></tr>
+            <tr><td>Triângulo (Δ)</td><td><span data-tex-inline="V_L = V_f"></span></td><td><span data-tex-inline="I_L = \sqrt{3}\,I_f"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s1-2"><span class="num">1.2</span>Potências</h3>
+        <div class="formula"><span data-tex="P = \sqrt{3}\,V_L I_L\cos\varphi \quad [\text{W}] \qquad Q = \sqrt{3}\,V_L I_L\,\text{sen}\,\varphi \quad [\text{var}] \qquad S = \sqrt{3}\,V_L I_L \quad [\text{VA}]"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Motor em 380 V</div>
+          <p>Motor trifásico em 380 V, com 30 A de linha e fator de potência 0,85.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="S = \sqrt{3}(380)(30) = 19{,}75"></span> kVA.</li>
+              <li><span data-tex-inline="P = 19{,}75 \cdot 0{,}85 = 16{,}78"></span> kW.</li>
+              <li><span data-tex-inline="Q = 19{,}75 \cdot \text{sen}(\arccos 0{,}85) = 10{,}40"></span> kvar.</li>
+            </ol>
+            <p class="resposta">A tensão de fase é 380/√3 = 219 V. A potência é a que o motor consome, e não a que entrega no eixo.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Use o valor de linha</strong>
+          A fórmula com √3 usa tensão e corrente de linha, seja qual for a ligação. Misturar valor de fase com √3 é o erro mais frequente.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Y: tensão de linha = √3 × fase. Δ: corrente de linha = √3 × fase.</li>
+          <li>P = √3·V·I·cos φ, com grandezas de linha.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o trifásico é preferido na indústria?</summary><p>Potência instantânea constante, campo girante sem dispositivos auxiliares e menos cobre para a mesma potência.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — A rede" data-topicos="fp">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Correção do fator de potência</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>interpretar o triângulo de potências;</li>
+            <li>dimensionar um banco de capacitores.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+        <h3 id="s2-1"><span class="num">2.1</span>O problema</h3>
+        <p>Motores precisam de potência reativa para magnetizar o ferro. Ela não realiza trabalho, mas circula pelos cabos e transformadores, aumentando a corrente e as perdas. No Brasil, abaixo de 0,92 o consumidor paga excedente de reativo. Capacitores fornecem esse reativo localmente:</p>
+        <div class="formula"><span data-tex="Q_c = P\,(\tan\varphi_1 - \tan\varphi_2)"></span></div>
+        <div class="fig-host" id="fig-2-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>De 0,70 para 0,95</div>
+          <p>Carga de 100 kW em 380 V.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\tan(\arccos 0{,}70) = 1{,}020"></span> e <span data-tex-inline="\tan(\arccos 0{,}95) = 0{,}329"></span>.</li>
+              <li><span data-tex-inline="Q_c = 100(1{,}020 - 0{,}329) = 69{,}2"></span> kvar.</li>
+              <li><span data-tex-inline="S"></span> cai de 142,9 para 105,3 kVA.</li>
+              <li>A corrente cai de 217 A para 160 A.</li>
+            </ol>
+            <p class="resposta">A potência ativa não muda: o que diminui é a corrente que a instalação precisa transportar.</p>
+          </details>
+        </div>
+        <div id="sim-trifasico" class="sim"></div>
+        <div class="callout warn">
+          <strong>Não exagere nos capacitores</strong>
+          Banco grande demais adianta o fator de potência e eleva a tensão. Motores acionados por inversor exigem cuidado adicional, porque as harmônicas podem danificar os capacitores.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Q<sub>c</sub> = P(tan φ₁ − tan φ₂).</li>
+          <li>Corrigir reduz a corrente e as perdas, mantendo a potência ativa.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O motor gasta menos energia ativa depois da correção?</summary><p>O motor, não: ele continua igual. O que cai são as perdas nos cabos até o ponto da correção.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte II — As máquinas" data-topicos="magnetismo">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Eletromagnetismo aplicado</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar as leis de Faraday e de Lenz;</li>
+            <li>calcular a força sobre um condutor;</li>
+            <li>explicar as perdas no ferro.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Noções de campo magnético.</p></div>
+        </div>
+        <h3 id="s3-1"><span class="num">3.1</span>As duas leis das máquinas</h3>
+        <div class="formula"><span data-tex="e = -N\,\frac{d\Phi}{dt} \qquad F = B\,L\,I"></span></div>
+        <p>A <strong>lei de Faraday</strong> diz que uma variação de fluxo enlaçado induz tensão: é o que faz o gerador e o transformador funcionarem. O sinal negativo é a <strong>lei de Lenz</strong>: a tensão se opõe à variação que a criou. A força sobre um condutor é o que produz o conjugado do motor.</p>
+        <div class="fig-host" id="fig-3-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Tensão e força</div>
+          <p>(a) Bobina de 200 espiras com o fluxo variando 0,02 Wb em 10 ms. (b) Condutor de 0,5 m em 0,8 T, com 10 A.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) <span data-tex-inline="e = 200 \cdot 0{,}02/0{,}01 = 400"></span> V.</li>
+              <li>(b) <span data-tex-inline="F = 0{,}8 \cdot 0{,}5 \cdot 10 = 4"></span> N.</li>
+            </ol>
+          </details>
+        </div>
+        <h3 id="s3-2"><span class="num">3.2</span>Perdas no ferro</h3>
+        <p>O fluxo alternado causa perdas por <strong>histerese</strong>, associadas ao ciclo de magnetização, e por <strong>correntes parasitas</strong> (Foucault), que circulam no próprio núcleo. É por isso que núcleos são feitos de chapas finas isoladas de aço-silício.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Faraday: variação de fluxo induz tensão.</li>
+          <li>Lenz: a tensão se opõe à causa.</li>
+          <li>Núcleos laminados reduzem as correntes parasitas.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um transformador não funciona em corrente contínua?</summary><p>Sem variação de fluxo, não há tensão induzida no secundário, e a corrente no primário fica limitada apenas pela resistência do enrolamento.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — As máquinas" data-topicos="transformador">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Transformadores</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>aplicar as relações de transformação;</li>
+            <li>calcular correntes nominais, rendimento e regulação;</li>
+            <li>interpretar os ensaios a vazio e de curto-circuito.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Lei de Faraday e sistema trifásico.</p></div>
+        </div>
+        <h3 id="s4-1"><span class="num">4.1</span>Relação de transformação</h3>
+        <div class="formula"><span data-tex="a = \frac{N_1}{N_2} = \frac{V_1}{V_2} = \frac{I_2}{I_1} \qquad S_1 \approx S_2"></span></div>
+        <p>Um transformador de 220/110 V, com 10 A no secundário, tem <span data-tex-inline="a = 2"></span> e consome 5 A no primário. A tensão é reduzida e a corrente, aumentada, na mesma proporção.</p>
+        <h3 id="s4-2"><span class="num">4.2</span>Perdas, ensaios e rendimento</h3>
+        <p>O <strong>ensaio a vazio</strong> mede as perdas no ferro <span data-tex-inline="P_{Fe}"></span>, que são praticamente constantes. O <strong>ensaio de curto-circuito</strong> mede as perdas no cobre <span data-tex-inline="P_{Cu}"></span> nominais, que variam com o quadrado da carga.</p>
+        <div class="formula"><span data-tex="\eta = \frac{x\,S\cos\varphi}{x\,S\cos\varphi + P_{Fe} + x^2 P_{Cu}} \qquad x_{\eta\,max} = \sqrt{\frac{P_{Fe}}{P_{Cu}}}"></span></div>
+        <div class="fig-host" id="fig-4-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Transformador de distribuição</div>
+          <p>(a) Trifásico de 500 kVA, 13,8 kV/380 V. (b) Unidade de 100 kVA, com perdas de 500 W no ferro e 1200 W no cobre, com fator de potência unitário.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) <span data-tex-inline="I_1 = 500\,000/(\sqrt{3} \cdot 13\,800) = 20{,}9"></span> A e <span data-tex-inline="I_2 = 760"></span> A.</li>
+              <li>(b) A plena carga: <span data-tex-inline="\eta = 100/(100 + 0{,}5 + 1{,}2) = 98{,}33\,\%"></span>.</li>
+              <li>A 80 %: <span data-tex-inline="\eta = 80/(80 + 0{,}5 + 0{,}768) = 98{,}44\,\%"></span>.</li>
+              <li>Rendimento máximo em <span data-tex-inline="x = \sqrt{500/1200} = 64{,}5\,\%"></span> da carga.</li>
+            </ol>
+            <p class="resposta">O máximo ocorre quando as perdas no cobre se igualam às perdas no ferro.</p>
+          </details>
+        </div>
+        <p>A <strong>regulação</strong> mede a queda de tensão com a carga: <span data-tex-inline="(V_{vazio} - V_{carga})/V_{carga}"></span>. Um secundário de 400 V a vazio e 380 V em carga tem regulação de 5,3 %.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Tensão proporcional a N; corrente inversamente proporcional.</li>
+          <li>Ferro: constante. Cobre: varia com o quadrado da carga.</li>
+          <li>Rendimento máximo quando as duas perdas se igualam.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a transmissão usa alta tensão?</summary><p>Para a mesma potência, a corrente é menor, e as perdas nos cabos caem com o quadrado da corrente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — As máquinas" data-topicos="inducao">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Motor de indução</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a rotação síncrona e o escorregamento;</li>
+            <li>comparar rotor em gaiola e bobinado;</li>
+            <li>interpretar o circuito equivalente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Sistema trifásico e transformador.</p></div>
+        </div>
+        <h3 id="s5-1"><span class="num">5.1</span>O campo girante</h3>
+        <p>Três bobinas defasadas no espaço, alimentadas por correntes defasadas no tempo, criam um campo de amplitude constante que gira com a <strong>rotação síncrona</strong>:</p>
+        <div class="formula"><span data-tex="n_s = \frac{120\,f}{p} \qquad s = \frac{n_s - n}{n_s}"></span></div>
+        <div class="fig-host" id="fig-5-1"></div>
+        <p>O campo cruza as barras do rotor e induz nelas uma corrente, e a interação produz conjugado. Se o rotor girasse exatamente na rotação síncrona, não haveria variação de fluxo, nem corrente, nem conjugado. Por isso o motor opera com <strong>escorregamento</strong>, típico de 1 a 5 % em carga.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Polos</th><td class="num">2</td><td class="num">4</td><td class="num">6</td><td class="num">8</td></tr></thead>
+          <tbody>
+            <tr><th>n<sub>s</sub> em 60 Hz (rpm)</th><td class="num">3600</td><td class="num">1800</td><td class="num">1200</td><td class="num">900</td></tr>
+            <tr><th>n<sub>s</sub> em 50 Hz (rpm)</th><td class="num">3000</td><td class="num">1500</td><td class="num">1000</td><td class="num">750</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Motor de 4 polos</div>
+          <p>Em 60 Hz, opera a 1750 rpm em carga nominal.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="n_s = 120 \cdot 60/4 = 1800"></span> rpm.</li>
+              <li><span data-tex-inline="s = 50/1800 = 2{,}78\,\%"></span>.</li>
+              <li>Frequência no rotor: <span data-tex-inline="s\,f = 1{,}67"></span> Hz.</li>
+            </ol>
+          </details>
+        </div>
+        <h3 id="s5-2"><span class="num">5.2</span>Tipos de rotor</h3>
+        <p>O rotor em <strong>gaiola de esquilo</strong> é o mais empregado na indústria: robusto, barato e sem contatos deslizantes, o que exige pouca manutenção. O rotor <strong>bobinado</strong> permite ligar resistências externas por anéis, para aumentar o conjugado de partida; hoje foi em boa parte substituído pelo inversor.</p>
+        <h3 id="s5-3"><span class="num">5.3</span>Circuito equivalente</h3>
+        <p>O motor é um transformador cujo secundário gira. Por fase, o estator tem <span data-tex-inline="R_1 + jX_1"></span>, a magnetização é <span data-tex-inline="jX_m"></span> e o rotor, referido ao estator, é <span data-tex-inline="R_2/s + jX_2"></span>. Reduzindo ao equivalente de Thévenin visto pelo rotor:</p>
+        <div class="formula"><span data-tex="T = \frac{3\,V_{th}^2\,(R_2/s)}{\omega_s\left[(R_{th} + R_2/s)^2 + (X_{th} + X_2)^2\right]}"></span></div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>n<sub>s</sub> = 120f/p; s = (n<sub>s</sub> − n)/n<sub>s</sub>.</li>
+          <li>Sem escorregamento não há conjugado.</li>
+          <li>Gaiola: padrão da indústria.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quantos polos tem um motor de 1160 rpm em 60 Hz?</summary><p>A rotação síncrona logo acima é 1200 rpm: 6 polos.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — As máquinas" data-topicos="conjugado">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Conjugado, potência e rendimento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular conjugado e rendimento;</li>
+            <li>ler a curva conjugado × rotação;</li>
+            <li>encontrar o ponto de operação com a carga.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Motor de indução.</p></div>
+        </div>
+        <h3 id="s6-1"><span class="num">6.1</span>Do eixo à rede</h3>
+        <div class="formula"><span data-tex="T = \frac{P}{\omega} = \frac{9550\,P[\text{kW}]}{n[\text{rpm}]} \qquad \eta = \frac{P_{eixo}}{P_{rede}}"></span></div>
+        <div class="fig-host" id="fig-6-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Motor de 15 kW</div>
+          <p>(a) A 1750 rpm. (b) Outro motor consome 20 kW e entrega 18 kW.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) <span data-tex-inline="\omega = 183{,}3"></span> rad/s, logo <span data-tex-inline="T = 15\,000/183{,}3 = 81{,}9"></span> N·m.</li>
+              <li>Potência no entreferro: <span data-tex-inline="P_{ag} = P_{mec}/(1 - s) = 15{,}43"></span> kW, e a perda no rotor é <span data-tex-inline="s\,P_{ag} = 429"></span> W.</li>
+              <li>(b) <span data-tex-inline="\eta = 18/20 = 90\,\%"></span>, com 2 kW de perdas.</li>
+            </ol>
+          </details>
+        </div>
+        <h3 id="s6-2"><span class="num">6.2</span>A curva conjugado × rotação</h3>
+        <p>O motor parte com conjugado de partida, passa pelo <strong>conjugado máximo</strong> e estabiliza no trecho estável, onde a curva cruza a da carga. O conjugado máximo <strong>não depende da resistência do rotor</strong>, que só desloca o escorregamento em que ele ocorre.</p>
+        <div class="formula"><span data-tex="s_{max} = \frac{R_2}{\sqrt{R_{th}^2 + (X_{th} + X_2)^2}} \qquad T_{max} \propto V^2"></span></div>
+        <div id="sim-motor" class="sim"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.2</span>Pelo circuito equivalente</div>
+          <p>Motor de 4 polos, 60 Hz e 220 V por fase, com <span data-tex-inline="R_1 = 0{,}2"></span>, <span data-tex-inline="X_1 = X_2 = 0{,}5"></span>, <span data-tex-inline="R_2 = 0{,}25"></span> e <span data-tex-inline="X_m = 20"></span> Ω.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="V_{th} = 214{,}6"></span> V e <span data-tex-inline="Z_{th} = 0{,}190 + j0{,}490"></span> Ω.</li>
+              <li><span data-tex-inline="s_{max} = 0{,}25/\sqrt{0{,}190^2 + 0{,}990^2} = 0{,}248"></span>.</li>
+              <li>Partida (s = 1): 156 N·m, com 198 A. Máximo: 306 N·m.</li>
+              <li>Em s = 0,03: 83 N·m, 15,2 kW e 25 A.</li>
+            </ol>
+            <p class="resposta">Na partida, a corrente é quase oito vezes a nominal, mas o conjugado é só o dobro: a corrente é pouco aproveitada, por causa do baixo fator de potência do rotor parado.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Conjugado varia com o quadrado da tensão</strong>
+          Uma queda de 10 % na tensão reduz o conjugado disponível em cerca de 19 %. Se o motor está no limite, ele pode não partir, ou pode parar.
+        </div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Categoria (NBR 17094)</th><th>Características</th><th>Aplicação</th></tr></thead>
+          <tbody>
+            <tr><td>N</td><td>Conjugado e corrente de partida normais</td><td>Bombas e máquinas operatrizes</td></tr>
+            <tr><td>H</td><td>Conjugado de partida alto</td><td>Esteiras carregadas e peneiras</td></tr>
+            <tr><td>D</td><td>Conjugado de partida alto e escorregamento alto</td><td>Prensas com volante, elevadores</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>T = 9550·P/n.</li>
+          <li>T<sub>max</sub> não depende de R₂, e varia com V².</li>
+          <li>O ponto de operação é o cruzamento com a curva da carga.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Motor em sobrecarga além do conjugado máximo: o que acontece?</summary><p>A rotação cai, o conjugado diminui, e o motor para, com corrente muito alta.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Na instalação" data-topicos="partida">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Partida e acionamento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>comparar os métodos de partida;</li>
+            <li>explicar a relação V/f;</li>
+            <li>saber quando a estrela-triângulo não serve.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Curva conjugado × rotação.</p></div>
+        </div>
+        <h3 id="s7-1"><span class="num">7.1</span>Métodos</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Método</th><th>Corrente de linha</th><th>Conjugado</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Direta</td><td>100 %</td><td>100 %</td><td>Simples; limitada pela rede</td></tr>
+            <tr><td>Estrela-triângulo</td><td>1/3</td><td>1/3</td><td>Exige 6 terminais e carga leve na partida</td></tr>
+            <tr><td>Compensadora (tap k)</td><td>k²</td><td>k²</td><td>Autotransformador com taps de 50, 65 e 80 %</td></tr>
+            <tr><td>Soft-starter</td><td>Ajustável</td><td>Reduz com V²</td><td>Partida e parada suaves</td></tr>
+            <tr><td>Inversor</td><td>Perto da nominal</td><td>Alto em toda a faixa</td><td>Permite variar a rotação</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-7-1"></div>
+        <p>Na estrela-triângulo, a tensão por bobina cai por √3, e tanto a corrente de linha quanto o conjugado caem a um terço. Um motor com corrente de partida de 600 A em direta parte com 200 A.</p>
+        <div class="callout warn">
+          <strong>Bomba carregada não parte em estrela</strong>
+          Se o conjugado da carga superar o terço disponível, o motor estabiliza em rotação baixa, e a transição para triângulo vira quase uma partida direta. Bombas centrífugas partem bem com a válvula de descarga fechada, com conjugado de carga proporcional a n².
+        </div>
+        <div id="sim-partida" class="sim"></div>
+        <h3 id="s7-2"><span class="num">7.2</span>Inversor de frequência</h3>
+        <p>Para variar a rotação, varia-se a frequência. O controle escalar mantém <strong>V/f constante</strong> para manter constante o fluxo no entreferro: reduzir só a frequência saturaria o ferro. Um motor de 380 V e 60 Hz tem 6,33 V/Hz; em 30 Hz, recebe 190 V e sua rotação síncrona, com 4 polos, é de 900 rpm.</p>
+        <p>Acima da frequência nominal, a tensão fica no limite: o fluxo diminui e o motor opera a potência constante (enfraquecimento de campo). Em baixa rotação, o ventilador do próprio motor refrigera pouco, e pode ser preciso ventilação forçada.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Y-Δ: 1/3 da corrente e 1/3 do conjugado.</li>
+          <li>V/f constante mantém o fluxo.</li>
+          <li>Em bomba, reduzir a rotação reduz a potência com o cubo.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A compensadora com tap de 65 % dá quanto de conjugado?</summary><p>0,65² = 42 % do conjugado de partida direta.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Na instalação" data-topicos="sincronas">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Geradores síncronos e corrente contínua</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar rotação, polos e frequência;</li>
+            <li>controlar a frequência e a tensão de um gerador;</li>
+            <li>conferir as condições de paralelismo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Lei de Faraday.</p></div>
+        </div>
+        <h3 id="s8-1"><span class="num">8.1</span>Gerador síncrono</h3>
+        <p>O rotor, com campo de corrente contínua, gira e induz tensão no estator, com frequência diretamente amarrada à rotação: <span data-tex-inline="f = p\,n/120"></span>. Uma turbina a vapor de 3600 rpm tem 2 polos, e uma hidráulica de 40 polos gira a 180 rpm em 60 Hz.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Grandeza</th><th>Atua-se em</th><th>Equipamento</th></tr></thead>
+          <tbody>
+            <tr><td>Frequência (e potência ativa)</td><td>Admissão da máquina primária</td><td>Regulador de velocidade</td></tr>
+            <tr><td>Tensão (e potência reativa)</td><td>Corrente de excitação</td><td>Regulador de tensão (AVR)</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Para colocar um gerador em <strong>paralelo</strong> com a rede, é preciso igualar a tensão, a frequência, a fase e a sequência de fases.</p>
+        <div class="fig-host" id="fig-8-1"></div>
+        <h3 id="s8-2"><span class="num">8.2</span>Motor síncrono e máquinas de corrente contínua</h3>
+        <p>O <strong>motor síncrono</strong> gira exatamente em n<sub>s</sub>, e sobreexcitado fornece reativo à rede. As máquinas de <strong>corrente contínua</strong> têm controle simples, mas o comutador e as escovas exigem manutenção:</p>
+        <div class="formula"><span data-tex="E = V - R_a I_a \qquad n \propto \frac{E}{\Phi}"></span></div>
+        <p>Com 220 V, <span data-tex-inline="R_a = 0{,}2"></span> Ω e 30 A, a força contraeletromotriz é 214 V. Se o motor gira a 1500 rpm com 220 V a vazio, passa a cerca de 1459 rpm em carga.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>f = pn/120, com rotação rigidamente ligada à frequência.</li>
+          <li>Turbina controla frequência; excitação controla tensão.</li>
+          <li>Paralelismo: tensão, frequência, fase e sequência.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Gerador em paralelo com a rede: aumentar a excitação altera a potência ativa?</summary><p>Não. Muda o reativo. A potência ativa depende da máquina primária.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Na instalação" data-topicos="protecao">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Proteção e especificação de motores</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir proteção contra sobrecarga e contra curto-circuito;</li>
+            <li>especificar um motor para área classificada.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Partida de motores.</p></div>
+        </div>
+        <h3 id="s9-1"><span class="num">9.1</span>Dispositivos</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Dispositivo</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td>Fusível / disjuntor magnético</td><td>Curto-circuito: atua em milissegundos</td></tr>
+            <tr><td>Relé térmico</td><td>Sobrecarga: protege o enrolamento; atua com retardo</td></tr>
+            <tr><td>Contator</td><td>Manobra: liga e desliga, sem função de proteção</td></tr>
+            <tr><td>Sensor PTC</td><td>Temperatura medida no próprio enrolamento</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O relé térmico é propositalmente lento, para suportar os poucos segundos da corrente de partida, e o fusível precisa ser retardado pelo mesmo motivo.</p>
+        <div class="fig-host" id="fig-9-1"></div>
+        <h3 id="s9-2"><span class="num">9.2</span>Especificação</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Dado</th><th>O que considerar</th></tr></thead>
+          <tbody>
+            <tr><td>Potência e regime</td><td>Regimes S1 (contínuo), S2 e S3</td></tr>
+            <tr><td>Rotação e polos</td><td>Velocidade da carga e transmissão</td></tr>
+            <tr><td>Tensão e ligação</td><td>Rede e método de partida</td></tr>
+            <tr><td>Grau de proteção IP</td><td>1º dígito: sólidos. 2º dígito: água. Ex.: IP55</td></tr>
+            <tr><td>Classe de isolamento</td><td>B (130 °C), F (155 °C), H (180 °C)</td></tr>
+            <tr><td>Fator de serviço</td><td>Sobrecarga contínua admissível</td></tr>
+            <tr><td>Carcaça, altitude, temperatura</td><td>Corrigir a potência se necessário</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Área classificada</strong>
+          Em ambiente com gases inflamáveis, como em instalações de petróleo, o motor precisa ser certificado para a zona e o grupo de gás. Os tipos mais comuns são à prova de explosão (Ex d) e segurança aumentada (Ex e). Grau IP não substitui certificação Ex. A série ABNT NBR IEC 60079 trata do assunto.
+        </div>
+        <div class="callout note">
+          <strong>Segurança</strong>
+          A NR-10 exige desenergização, bloqueio e sinalização antes de qualquer intervenção elétrica, além de trabalhadores autorizados.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Relé térmico: sobrecarga. Fusível e disjuntor: curto-circuito.</li>
+          <li>Em área classificada, o certificado Ex é indispensável.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O que significa IP55?</summary><p>Proteção contra poeira em quantidade prejudicial e contra jatos de água.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os três simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-trifasico"><small>Capítulo 2 · Rede</small>Potência trifásica e correção do fator de potência</a></li>
+          <li><a href="#sim-motor"><small>Capítulo 6 · Motor</small>Curva conjugado × rotação</a></li>
+          <li><a href="#sim-partida"><small>Capítulo 7 · Partida</small>Direta, estrela-triângulo, compensadora e inversor</a></li>
+        </ul>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Rede</h4>
+            <div class="formula"><span data-tex="P = \sqrt{3} V_L I_L \cos\varphi"></span></div>
+            <div class="formula"><span data-tex="Q_c = P(\tan\varphi_1 - \tan\varphi_2)"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Transformador</h4>
+            <div class="formula"><span data-tex="N_1/N_2 = V_1/V_2 = I_2/I_1"></span></div>
+            <div class="formula"><span data-tex="x_{\eta\,max} = \sqrt{P_{Fe}/P_{Cu}}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Motor</h4>
+            <div class="formula"><span data-tex="n_s = 120 f/p"></span></div>
+            <div class="formula"><span data-tex="s = (n_s - n)/n_s"></span></div>
+            <div class="formula"><span data-tex="T = 9550 P/n"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Acionamento</h4>
+            <div class="formula"><span data-tex="Y\text{-}\Delta: I/3,\ T/3"></span></div>
+            <div class="formula"><span data-tex="V/f = \text{constante}"></span></div>
+            <div class="formula"><span data-tex="f = p\,n/120"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Apêndice B — Normas</h2>
+        <p>As normas são citadas por designação e escopo. Os textos integrais são obras protegidas.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>O que trata</th><th>Onde entra</th></tr></thead>
+          <tbody>
+            <tr><td>ABNT NBR 17094</td><td>Motores de indução trifásicos</td><td>Categorias N, H e D, e ensaios</td></tr>
+            <tr><td>ABNT NBR 5356</td><td>Transformadores de potência</td><td>Especificação, ensaios e perdas</td></tr>
+            <tr><td>ABNT NBR 5410</td><td>Instalações elétricas de baixa tensão</td><td>Dimensionamento de circuitos e proteção</td></tr>
+            <tr><td>ABNT NBR IEC 60529</td><td>Graus de proteção IP</td><td>Primeiro dígito, sólidos; segundo, água</td></tr>
+            <tr><td>ABNT NBR IEC 60079</td><td>Atmosferas explosivas</td><td>Tipos de proteção Ex e zonas</td></tr>
+            <tr><td>NR-10</td><td>Segurança em eletricidade</td><td>Desenergização e autorização</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>53 questões objetivas sobre sistemas trifásicos, fator de potência, transformadores, motores, partida, geradores e proteção. As questões de cálculo trazem espaço para contas e resolução passo a passo.</p>
+        <div id="quiz" data-quiz="eletrotecnica"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>CHAPMAN, S. J. <em>Fundamentos de Máquinas Elétricas</em>. AMGH.</li>
+          <li>FITZGERALD, A. E.; KINGSLEY, C.; UMANS, S. D. <em>Máquinas Elétricas</em>. AMGH.</li>
+          <li>DEL TORO, V. <em>Fundamentos de Máquinas Elétricas</em>. LTC.</li>
+          <li>CREDER, H. <em>Instalações Elétricas</em>. LTC.</li>
+          <li>WEG. <em>Guia de Especificação de Motores Elétricos</em>.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/eletrotecnica.js"></script>
+<script src="../js/fig/eletrotecnica.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+ "V_L": [
+  "Tensão de linha",
+  "V"
+ ],
+ "I_L": [
+  "Corrente de linha",
+  "A"
+ ],
+ "n_s": [
+  "Rotação síncrona",
+  "rpm"
+ ],
+ "s": [
+  "Escorregamento",
+  "—"
+ ],
+ "Q_c": [
+  "Potência reativa do banco de capacitores",
+  "kvar"
+ ],
+ "P_{Fe}": [
+  "Perdas no ferro",
+  "W"
+ ],
+ "P_{Cu}": [
+  "Perdas no cobre",
+  "W"
+ ],
+ "R_2": [
+  "Resistência do rotor referida ao estator",
+  "Ω"
+ ],
+ "T": [
+  "Conjugado",
+  "N·m"
+ ]
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>
