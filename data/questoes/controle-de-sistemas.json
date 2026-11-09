@@ -1,0 +1,1665 @@
+{
+ "disciplina": "Modelagem e Controle de Sistemas",
+ "slug": "controle-de-sistemas",
+ "topicos": [
+  {
+   "id": "fundamentos",
+   "nome": "Sistemas de controle"
+  },
+  {
+   "id": "laplace",
+   "nome": "Transformada de Laplace"
+  },
+  {
+   "id": "modelagem",
+   "nome": "Modelagem física"
+  },
+  {
+   "id": "linearizacao",
+   "nome": "Linearização"
+  },
+  {
+   "id": "blocos",
+   "nome": "Diagramas de blocos"
+  },
+  {
+   "id": "primeira",
+   "nome": "Primeira ordem"
+  },
+  {
+   "id": "segunda",
+   "nome": "Segunda ordem"
+  },
+  {
+   "id": "estabilidade",
+   "nome": "Estabilidade"
+  },
+  {
+   "id": "erro",
+   "nome": "Erro em regime"
+  },
+  {
+   "id": "lgr",
+   "nome": "Lugar das raízes"
+  },
+  {
+   "id": "pid",
+   "nome": "PID"
+  },
+  {
+   "id": "frequencia",
+   "nome": "Resposta em frequência"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "cs-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "fundamentos",
+   "enunciado": "<p>A principal característica de um sistema em malha fechada é:</p>",
+   "alternativas": [
+    "a ação de controle ser independente da saída",
+    "o uso obrigatório de um controlador digital",
+    "a ausência de atuador",
+    "a ação de controle depender da diferença entre a referência e a saída medida"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O sensor devolve a saída ao comparador, e o controlador age sobre o erro.</p>"
+  },
+  {
+   "id": "cs-002",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "fundamentos",
+   "enunciado": "<p>Um forno ligado por tempo fixo, sem medir a temperatura, opera em:</p>",
+   "alternativas": [
+    "malha fechada com retroalimentação unitária",
+    "malha fechada com controle integral",
+    "malha aberta",
+    "regime de controle em cascata"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Nenhuma medida da saída interfere na ação.</p>"
+  },
+  {
+   "id": "cs-003",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "fundamentos",
+   "enunciado": "<p>Em comparação com a malha aberta, a realimentação tem como desvantagem:</p>",
+   "alternativas": [
+    "aumentar a sensibilidade a variações da planta",
+    "a possibilidade de tornar instável uma planta estável",
+    "impedir a rejeição de perturbações",
+    "eliminar a necessidade de atuador"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Ganho alto reduz o erro, mas pode levar polos ao semiplano direito.</p>"
+  },
+  {
+   "id": "cs-004",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "fundamentos",
+   "enunciado": "<p>A planta G = 1, com ganho Kc = 9 e perturbação d = 0,5 somada à entrada da planta, em malha fechada unitária, leva a saída a variar, por causa da perturbação:</p>",
+   "alternativas": [
+    "0,5",
+    "0,05",
+    "0,45",
+    "0,25"
+   ],
+   "correta": 1,
+   "formulas": [
+    "ΔY = G·D/(1 + Kc·G)"
+   ],
+   "explicacao": "<div class=\"passo\">ΔY = G·d/(1 + Kc·G) = 0,5/10 = <strong>0,05</strong></div>"
+  },
+  {
+   "id": "cs-005",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "laplace",
+   "enunciado": "<p>A transformada de Laplace da derivada primeira de f(t) é:</p>",
+   "alternativas": [
+    "sF(s) − f(0)",
+    "F(s)/s",
+    "s²F(s)",
+    "F(s) − s·f(0)"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Propriedade da diferenciação.</p>"
+  },
+  {
+   "id": "cs-006",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "laplace",
+   "enunciado": "<p>A transformada do degrau de amplitude 5 é:</p>",
+   "alternativas": [
+    "5",
+    "5/s²",
+    "5s",
+    "5/s"
+   ],
+   "correta": 3,
+   "explicacao": "<p>L{A} = A/s.</p>"
+  },
+  {
+   "id": "cs-007",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "laplace",
+   "enunciado": "<p>A função e<sup>−2t</sup> sen 3t tem transformada:</p>",
+   "alternativas": [
+    "3/(s² + 9)",
+    "(s + 2)/[(s + 2)² + 9]",
+    "3/[(s + 2)² + 9]",
+    "3/[(s − 2)² + 9]"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Translação em s aplicada ao seno.</p>"
+  },
+  {
+   "id": "cs-008",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "laplace",
+   "enunciado": "<p>O teorema do valor final <em>não</em> pode ser aplicado a:</p>",
+   "alternativas": [
+    "F(s) = 2/[s(s + 4)]",
+    "F(s) = 1/(s + 1)",
+    "F(s) = 2/(s² + 4), cuja saída oscila indefinidamente",
+    "F(s) = 3/[s(s² + 2s + 5)]"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Os polos ±j2 de sF(s) não estão no semiplano esquerdo.</p>"
+  },
+  {
+   "id": "cs-009",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "laplace",
+   "enunciado": "<p>O valor final de F(s) = 8/[s(s + 2)(s + 4)] é:</p>",
+   "alternativas": [
+    "8",
+    "1",
+    "0,5",
+    "2"
+   ],
+   "correta": 1,
+   "formulas": [
+    "f(∞) = lim s→0 sF(s)"
+   ],
+   "explicacao": "<div class=\"passo\">sF(s) = 8/[(s + 2)(s + 4)]</div><div class=\"passo\">Em s = 0: 8/8 = <strong>1</strong></div>"
+  },
+  {
+   "id": "cs-010",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "laplace",
+   "enunciado": "<p>Em F(s) = (s + 5)/[(s + 1)(s + 2)], o resíduo do polo s = −1 vale:</p>",
+   "alternativas": [
+    "4",
+    "−3",
+    "5",
+    "1"
+   ],
+   "correta": 0,
+   "formulas": [
+    "Aᵢ = [(s + pᵢ)F(s)] em s = −pᵢ"
+   ],
+   "explicacao": "<div class=\"passo\">A = (s + 5)/(s + 2) em s = −1</div><div class=\"passo\">4/1 = <strong>4</strong></div>"
+  },
+  {
+   "id": "cs-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "laplace",
+   "enunciado": "<p>A inversa de 1/[s(s + 1)²] é:</p>",
+   "alternativas": [
+    "1 − e<sup>−t</sup>",
+    "t·e<sup>−t</sup>",
+    "1 + e<sup>−t</sup> + t·e<sup>−t</sup>",
+    "1 − e<sup>−t</sup> − t·e<sup>−t</sup>"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Expansão: 1/s − 1/(s + 1) − 1/(s + 1)².</p>"
+  },
+  {
+   "id": "cs-012",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "laplace",
+   "enunciado": "<p>A equação 0,5 y′ + 2y = 4, com y(0) = 1, tem solução cujo valor em t = 0,25 s é:</p>",
+   "alternativas": [
+    "2,00",
+    "0,37",
+    "1,26",
+    "1,63"
+   ],
+   "correta": 3,
+   "formulas": [
+    "L{y′} = sY − y(0)"
+   ],
+   "explicacao": "<div class=\"passo\">y(t) = 2 − e<sup>−4t</sup></div><div class=\"passo\">y(0,25) = 2 − e<sup>−1</sup> = <strong>1,63</strong></div>"
+  },
+  {
+   "id": "cs-013",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "modelagem",
+   "enunciado": "<p>A função de transferência é definida para:</p>",
+   "alternativas": [
+    "qualquer sistema, inclusive os não lineares",
+    "sistemas lineares com condições iniciais quaisquer",
+    "sistemas lineares e invariantes no tempo, com condições iniciais nulas",
+    "somente sistemas elétricos"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Razão Y(s)/U(s) com condições iniciais nulas.</p>"
+  },
+  {
+   "id": "cs-014",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "modelagem",
+   "enunciado": "<p>A função de transferência X(s)/F(s) de massa, mola e amortecedor é:</p>",
+   "alternativas": [
+    "ms² + bs + k",
+    "1/(ms² + bs + k)",
+    "1/(ms + b)",
+    "k/(ms² + bs)"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Transformando m x″ + b x′ + k x = f.</p>"
+  },
+  {
+   "id": "cs-015",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "modelagem",
+   "enunciado": "<p>No tanque com descarga h/R, de área A, a constante de tempo é:</p>",
+   "alternativas": [
+    "RA",
+    "R/A",
+    "A/R",
+    "R + A"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Em A h′ + h/R = q, multiplicando por R: RA h′ + h = Rq.</p>"
+  },
+  {
+   "id": "cs-016",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "modelagem",
+   "enunciado": "<p>Uma massa de 200 kg sobre atrito viscoso de 50 N·s/m, sob força em degrau, tem constante de tempo da velocidade de:</p>",
+   "alternativas": [
+    "4 s",
+    "0,25 s",
+    "10 s",
+    "250 s"
+   ],
+   "correta": 0,
+   "formulas": [
+    "m v′ + b v = f",
+    "τ = m/b"
+   ],
+   "explicacao": "<div class=\"passo\">τ = m/b = 200/50 = <strong>4 s</strong></div>"
+  },
+  {
+   "id": "cs-017",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "modelagem",
+   "enunciado": "<p>No circuito RC série, com saída no capacitor, R = 10 kΩ e C = 100 μF, a constante de tempo é:</p>",
+   "alternativas": [
+    "0,1 s",
+    "10 s",
+    "100 s",
+    "1 s"
+   ],
+   "correta": 3,
+   "formulas": [
+    "τ = RC"
+   ],
+   "explicacao": "<div class=\"passo\">τ = RC = 10⁴·10⁻⁴ = <strong>1 s</strong></div>"
+  },
+  {
+   "id": "cs-018",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "modelagem",
+   "enunciado": "<p>Em um tanque aquecido, misturado e adiabático, com ρV constante, aumentar a vazão mássica faz a constante de tempo:</p>",
+   "alternativas": [
+    "aumentar, pois τ = ṁ/(ρV)",
+    "permanecer constante",
+    "diminuir, pois τ = ρV/ṁ",
+    "depender apenas do calor específico"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A massa do tanque é renovada mais depressa.</p>"
+  },
+  {
+   "id": "cs-019",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "modelagem",
+   "enunciado": "<p>Água, com ρ = 1000 kg/m³ e c = 4180 J/(kg·°C), passa a 1 kg/s por tanque de 0,5 m³, misturado e adiabático. Um aumento de 41,8 kW na potência eleva a temperatura final em:</p>",
+   "alternativas": [
+    "1 °C",
+    "10 °C",
+    "20 °C",
+    "5 °C"
+   ],
+   "correta": 1,
+   "formulas": [
+    "ΔT = q/(ṁ c)"
+   ],
+   "explicacao": "<div class=\"passo\">K = 1/(ṁc) = 1/4180</div><div class=\"passo\">ΔT = 41 800/4180 = <strong>10 °C</strong></div>"
+  },
+  {
+   "id": "cs-020",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "modelagem",
+   "enunciado": "<p>Um tanque com R = 5 s/m² e A = 3 m² recebe aumento em degrau de 0,2 m³/s na entrada. A variação final do nível e a constante de tempo são:</p>",
+   "alternativas": [
+    "0,2 m e 15 s",
+    "1 m e 15 s",
+    "1 m e 1,67 s",
+    "15 m e 5 s"
+   ],
+   "correta": 1,
+   "formulas": [
+    "G = R/(RAs + 1)"
+   ],
+   "explicacao": "<div class=\"passo\">Δh = R·Δq = 5·0,2 = <strong>1 m</strong></div><div class=\"passo\">τ = RA = 15 s</div>"
+  },
+  {
+   "id": "cs-021",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "linearizacao",
+   "enunciado": "<p>Linearizar um sistema em torno de um ponto de operação significa:</p>",
+   "alternativas": [
+    "aproximar a função pela reta tangente, válida para pequenos desvios",
+    "eliminar todos os termos dinâmicos",
+    "substituir a função pela secante entre os extremos",
+    "aplicar o teorema do valor final"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Truncamento da série de Taylor na primeira ordem.</p>"
+  },
+  {
+   "id": "cs-022",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "linearizacao",
+   "enunciado": "<p>A função de transferência linearizada relaciona:</p>",
+   "alternativas": [
+    "os valores absolutos das variáveis",
+    "somente as condições iniciais",
+    "as potências das variáveis",
+    "os desvios das variáveis em torno do ponto de operação"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Some o valor de equilíbrio para obter o valor real.</p>"
+  },
+  {
+   "id": "cs-023",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "linearizacao",
+   "enunciado": "<p>Linearizando z = x² + 2xy + 3y² em x = 4 e y = 2, o coeficiente de (y − 2) é:</p>",
+   "alternativas": [
+    "12",
+    "14",
+    "20",
+    "44"
+   ],
+   "correta": 2,
+   "formulas": [
+    "z − z₀ ≈ fₓ(x − x₀) + f_y(y − y₀)"
+   ],
+   "explicacao": "<div class=\"passo\">∂z/∂y = 2x + 6y = 8 + 12 = <strong>20</strong></div>"
+  },
+  {
+   "id": "cs-024",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "linearizacao",
+   "enunciado": "<p>Um tanque tem descarga q = 0,2√h e área 1,5 m², e opera em h₀ = 9 m. A resistência linearizada é:</p>",
+   "alternativas": [
+    "15 s/m²",
+    "45 s/m²",
+    "30 s/m²",
+    "0,033 s/m²"
+   ],
+   "correta": 2,
+   "formulas": [
+    "R = 2√h₀/k"
+   ],
+   "explicacao": "<div class=\"passo\">R = 2√h₀/k = 2·3/0,2 = <strong>30 s/m²</strong></div>"
+  },
+  {
+   "id": "cs-025",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "linearizacao",
+   "enunciado": "<p>Para o tanque com descarga q = 0,2√h, área 1,5 m² e h₀ = 9 m, a constante de tempo no ponto de operação é:</p>",
+   "alternativas": [
+    "30 s",
+    "45 s",
+    "20 s",
+    "135 s"
+   ],
+   "correta": 1,
+   "formulas": [
+    "R = 2√h₀/k",
+    "τ = RA"
+   ],
+   "explicacao": "<div class=\"passo\">R = 30 s/m²</div><div class=\"passo\">τ = RA = 30·1,5 = <strong>45 s</strong></div>"
+  },
+  {
+   "id": "cs-026",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "blocos",
+   "enunciado": "<p>O equivalente de G com realimentação negativa H é:</p>",
+   "alternativas": [
+    "G/(1 + GH)",
+    "G/(1 − GH)",
+    "G + H",
+    "GH/(1 + G)"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Eliminando E = R − HY em Y = GE.</p>"
+  },
+  {
+   "id": "cs-027",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "blocos",
+   "enunciado": "<p>Dois blocos em série, G₁ e G₂, equivalem a:</p>",
+   "alternativas": [
+    "G₁ + G₂",
+    "G₁/G₂",
+    "G₁/(1 + G₂)",
+    "G₁·G₂"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Os ganhos se multiplicam.</p>"
+  },
+  {
+   "id": "cs-028",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "blocos",
+   "enunciado": "<p>A equação característica de uma malha com G e H é:</p>",
+   "alternativas": [
+    "G = 0",
+    "G + H = 0",
+    "1 + G/H = 0",
+    "1 + GH = 0"
+   ],
+   "correta": 3,
+   "explicacao": "<p>As raízes são os polos de malha fechada.</p>"
+  },
+  {
+   "id": "cs-029",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "blocos",
+   "enunciado": "<p>A planta G = 4/(s + 1), com H = 1, tem polo de malha fechada em:</p>",
+   "alternativas": [
+    "−1",
+    "−4",
+    "−5",
+    "−0,8"
+   ],
+   "correta": 2,
+   "formulas": [
+    "T = G/(1 + G)"
+   ],
+   "explicacao": "<div class=\"passo\">T = 4/(s + 1 + 4) = 4/(s + 5)</div><div class=\"passo\">Polo em <strong>−5</strong></div>"
+  },
+  {
+   "id": "cs-030",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "blocos",
+   "enunciado": "<p>Em um servomecanismo, o laço interno de realimentação de velocidade:</p>",
+   "alternativas": [
+    "aumenta a frequência natural sem alterar o amortecimento",
+    "aumenta o amortecimento sem alterar a frequência natural",
+    "elimina o erro à rampa",
+    "reduz o tipo do sistema a zero"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O termo 10kₜ soma-se ao coeficiente de s.</p>"
+  },
+  {
+   "id": "cs-031",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "blocos",
+   "enunciado": "<p>Para G = 25/[s(s + 1)], com ganho k₁ = 1 em série e realimentação de velocidade k₂s interna, deseja-se ζ = 0,5. O valor de k₂ é:</p>",
+   "alternativas": [
+    "0,16",
+    "0,20",
+    "0,04",
+    "0,50"
+   ],
+   "correta": 0,
+   "formulas": [
+    "G/(1 + G·k₂s)",
+    "2ζωn = coeficiente de s"
+   ],
+   "explicacao": "<div class=\"passo\">T = 25/[s² + (1 + 25k₂)s + 25]</div><div class=\"passo\">ωn = 5 e 2ζωn = 5</div><div class=\"passo\">1 + 25k₂ = 5 → k₂ = <strong>0,16</strong></div>"
+  },
+  {
+   "id": "cs-032",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "blocos",
+   "enunciado": "<p>Em uma malha com G = 25/[s(s + 1)], k₁ = 1 e k₂ = 0,16, a saída final para um degrau de amplitude 3 é:</p>",
+   "alternativas": [
+    "3",
+    "25",
+    "0,12",
+    "75"
+   ],
+   "correta": 0,
+   "formulas": [
+    "y(∞) = A·T(0)"
+   ],
+   "explicacao": "<div class=\"passo\">T(0) = 25/25 = 1</div><div class=\"passo\">y(∞) = 3·1 = <strong>3</strong></div>"
+  },
+  {
+   "id": "cs-033",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "primeira",
+   "enunciado": "<p>Em um sistema de primeira ordem, ao final de uma constante de tempo a resposta ao degrau atinge:</p>",
+   "alternativas": [
+    "50 % do valor final",
+    "86,5 % do valor final",
+    "98 % do valor final",
+    "63,2 % do valor final"
+   ],
+   "correta": 3,
+   "explicacao": "<p>1 − e⁻¹ = 0,632.</p>"
+  },
+  {
+   "id": "cs-034",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "primeira",
+   "enunciado": "<p>Um sistema de primeira ordem chega a 98 % do valor final em cerca de:</p>",
+   "alternativas": [
+    "τ",
+    "2τ",
+    "4τ",
+    "10τ"
+   ],
+   "correta": 2,
+   "explicacao": "<p>1 − e⁻⁴ = 0,982.</p>"
+  },
+  {
+   "id": "cs-035",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "primeira",
+   "enunciado": "<p>Um tanque de primeira ordem atinge 98 % da resposta em 140 s. A constante de tempo é, usando o critério de 4τ:</p>",
+   "alternativas": [
+    "140 s",
+    "35 s",
+    "70 s",
+    "28 s"
+   ],
+   "correta": 1,
+   "formulas": [
+    "t(98 %) ≈ 4τ"
+   ],
+   "explicacao": "<div class=\"passo\">τ = 140/4 = <strong>35 s</strong></div>"
+  },
+  {
+   "id": "cs-036",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "primeira",
+   "enunciado": "<p>Para G = 5/(8s + 1) e degrau de amplitude 2, o valor final é:</p>",
+   "alternativas": [
+    "5",
+    "10",
+    "2,5",
+    "16"
+   ],
+   "correta": 1,
+   "formulas": [
+    "y(∞) = KA"
+   ],
+   "explicacao": "<div class=\"passo\">y(∞) = KA = 5·2 = <strong>10</strong></div>"
+  },
+  {
+   "id": "cs-037",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "primeira",
+   "enunciado": "<p>A planta 2/(30s + 1), com retroalimentação unitária e ganho 1, tem constante de tempo em malha fechada de:</p>",
+   "alternativas": [
+    "10 s",
+    "30 s",
+    "15 s",
+    "60 s"
+   ],
+   "correta": 0,
+   "formulas": [
+    "τc = τ/(1 + K·Kp)"
+   ],
+   "explicacao": "<div class=\"passo\">τc = τ/(1 + K·Kp) = 30/3 = <strong>10 s</strong></div>"
+  },
+  {
+   "id": "cs-038",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "primeira",
+   "enunciado": "<p>A planta 2/(30s + 1), com retroalimentação unitária e ganho 1, tem erro em regime ao degrau unitário de:</p>",
+   "alternativas": [
+    "0",
+    "0,5",
+    "0,667",
+    "0,333"
+   ],
+   "correta": 3,
+   "formulas": [
+    "e = 1/(1 + K·Kp)"
+   ],
+   "explicacao": "<div class=\"passo\">e = 1/(1 + 2) = <strong>0,333</strong></div>"
+  },
+  {
+   "id": "cs-039",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "primeira",
+   "enunciado": "<p>Para uma rampa unitária, um sistema 1/(τs + 1) apresenta, em regime:</p>",
+   "alternativas": [
+    "erro nulo",
+    "erro crescente",
+    "erro constante igual a τ",
+    "erro igual a 1/τ"
+   ],
+   "correta": 2,
+   "explicacao": "<p>y = t − τ + τ e<sup>−t/τ</sup>.</p>"
+  },
+  {
+   "id": "cs-040",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "primeira",
+   "enunciado": "<p>Um sistema 1/(5s + 1) recebe um degrau unitário. O tempo de subida, de 10 % a 90 %, é:</p>",
+   "alternativas": [
+    "5,0 s",
+    "20,0 s",
+    "11,0 s",
+    "3,5 s"
+   ],
+   "correta": 2,
+   "formulas": [
+    "tr = τ ln 9"
+   ],
+   "explicacao": "<div class=\"passo\">tr = τ·ln 9 = 2,197·5 = <strong>11,0 s</strong></div>"
+  },
+  {
+   "id": "cs-041",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "primeira",
+   "enunciado": "<p>Para a planta 4/(10s + 1), qual ganho proporcional, com retroalimentação unitária, reduz o erro ao degrau para 5 %?</p>",
+   "alternativas": [
+    "19",
+    "4,75",
+    "5",
+    "0,95"
+   ],
+   "correta": 1,
+   "formulas": [
+    "e = 1/(1 + K·Kp)"
+   ],
+   "explicacao": "<div class=\"passo\">1/(1 + 4Kp) = 0,05</div><div class=\"passo\">1 + 4Kp = 20 → Kp = <strong>4,75</strong></div>"
+  },
+  {
+   "id": "cs-042",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "segunda",
+   "enunciado": "<p>Um sistema de segunda ordem é subamortecido quando:</p>",
+   "alternativas": [
+    "0 &lt; ζ &lt; 1, com polos complexos conjugados",
+    "ζ = 1, com polos reais iguais",
+    "ζ &gt; 1, com polos reais distintos",
+    "ζ = 0, com polos na origem"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Os polos valem −ζωn ± jωd.</p>"
+  },
+  {
+   "id": "cs-043",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "segunda",
+   "enunciado": "<p>O sobressinal de um sistema de segunda ordem padrão depende:</p>",
+   "alternativas": [
+    "apenas da frequência natural",
+    "do produto ζωn",
+    "da amplitude do degrau",
+    "apenas do fator de amortecimento"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Mp = exp(−πζ/√(1 − ζ²)).</p>"
+  },
+  {
+   "id": "cs-044",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "segunda",
+   "enunciado": "<p>Para G = 256/(s² + 12,8s + 256), o fator de amortecimento é:</p>",
+   "alternativas": [
+    "0,8",
+    "0,05",
+    "12,8",
+    "0,4"
+   ],
+   "correta": 3,
+   "formulas": [
+    "2ζωn = coeficiente de s",
+    "ωn² = termo independente"
+   ],
+   "explicacao": "<div class=\"passo\">ωn = 16</div><div class=\"passo\">ζ = 12,8/(2·16) = <strong>0,4</strong></div>"
+  },
+  {
+   "id": "cs-045",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "segunda",
+   "enunciado": "<p>Para G = 256/(s² + 12,8s + 256), o tempo de pico é:</p>",
+   "alternativas": [
+    "0,196 s",
+    "0,469 s",
+    "0,214 s",
+    "0,625 s"
+   ],
+   "correta": 2,
+   "formulas": [
+    "tp = π/ωd"
+   ],
+   "explicacao": "<div class=\"passo\">ωd = 16√(1 − 0,16) = 14,66</div><div class=\"passo\">tp = π/14,66 = <strong>0,214 s</strong></div>"
+  },
+  {
+   "id": "cs-046",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "segunda",
+   "enunciado": "<p>Com ζ = 0,5, o sobressinal é de:</p>",
+   "alternativas": [
+    "25,4 %",
+    "16,3 %",
+    "4,3 %",
+    "50 %"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Mp = exp(−πζ/√(1 − ζ²))"
+   ],
+   "explicacao": "<div class=\"passo\">exp(−π·0,5/0,866) = 0,163 = <strong>16,3 %</strong></div>"
+  },
+  {
+   "id": "cs-047",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "segunda",
+   "enunciado": "<p>Com ζ = 0,5 e ωn = 8 rad/s, a acomodação estimada pelo critério de 2 % é:</p>",
+   "alternativas": [
+    "1 s",
+    "0,75 s",
+    "0,5 s",
+    "4 s"
+   ],
+   "correta": 0,
+   "formulas": [
+    "ts ≈ 4/(ζωn)"
+   ],
+   "explicacao": "<div class=\"passo\">ts = 4/(0,5·8) = <strong>1 s</strong></div>"
+  },
+  {
+   "id": "cs-048",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "segunda",
+   "enunciado": "<p>Um sobressinal medido de 25,4 % corresponde a ζ igual a:</p>",
+   "alternativas": [
+    "0,40",
+    "0,25",
+    "0,50",
+    "0,70"
+   ],
+   "correta": 0,
+   "formulas": [
+    "ζ = −ln Mp/√(π² + ln²Mp)"
+   ],
+   "explicacao": "<div class=\"passo\">ζ = −ln(0,254)/√(π² + ln²0,254) = <strong>0,40</strong></div>"
+  },
+  {
+   "id": "cs-049",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "segunda",
+   "enunciado": "<p>Se ωn dobra e ζ é mantido, então:</p>",
+   "alternativas": [
+    "o sobressinal dobra, e tp não muda",
+    "o sobressinal cai à metade, e ts dobra",
+    "tudo permanece igual",
+    "o sobressinal não muda, e tp e ts caem à metade"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A curva é apenas comprimida no tempo.</p>"
+  },
+  {
+   "id": "cs-050",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "segunda",
+   "enunciado": "<p>Polos em −3 ± j4 têm ζ igual a:</p>",
+   "alternativas": [
+    "0,75",
+    "0,8",
+    "0,6",
+    "0,33"
+   ],
+   "correta": 2,
+   "formulas": [
+    "ζ = σ/ωn",
+    "ωn = |s|"
+   ],
+   "explicacao": "<div class=\"passo\">ωn = √(9 + 16) = 5</div><div class=\"passo\">ζ = 3/5 = <strong>0,6</strong></div>"
+  },
+  {
+   "id": "cs-051",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "segunda",
+   "enunciado": "<p>Um sistema de segunda ordem deve ter sobressinal de 10 % e tempo de pico de 1 s. A frequência natural necessária é de:</p>",
+   "alternativas": [
+    "3,14 rad/s",
+    "3,9 rad/s",
+    "2,5 rad/s",
+    "5,3 rad/s"
+   ],
+   "correta": 1,
+   "formulas": [
+    "ζ = −ln Mp/√(π² + ln²Mp)",
+    "ωd = π/tp",
+    "ωd = ωn√(1 − ζ²)"
+   ],
+   "explicacao": "<div class=\"passo\">ζ = 0,591</div><div class=\"passo\">ωd = π/1 = 3,14</div><div class=\"passo\">ωn = 3,14/√(1 − 0,591²) = <strong>3,9 rad/s</strong></div>"
+  },
+  {
+   "id": "cs-052",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "segunda",
+   "enunciado": "<p>Um polo real em −50 é adicionado a um par dominante em −2 ± j3. O efeito sobre a resposta é:</p>",
+   "alternativas": [
+    "grande, pois todo polo domina a resposta",
+    "pequeno, pois o polo real está 25 vezes mais distante do eixo imaginário",
+    "instabilizar o sistema",
+    "tornar o sistema de primeira ordem"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A regra usual considera dominante o par quando os demais estão ao menos cinco vezes mais longe.</p>"
+  },
+  {
+   "id": "cs-053",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "segunda",
+   "enunciado": "<p>Um zero no semiplano direito faz com que a resposta ao degrau:</p>",
+   "alternativas": [
+    "parta no sentido oposto ao valor final",
+    "oscile com amplitude constante",
+    "não tenha valor final definido",
+    "perca o sobressinal por completo"
+   ],
+   "correta": 0,
+   "explicacao": "<p>É o comportamento de fase não mínima.</p>"
+  },
+  {
+   "id": "cs-054",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "estabilidade",
+   "enunciado": "<p>Um sistema linear é estável quando:</p>",
+   "alternativas": [
+    "todos os zeros têm parte real negativa",
+    "existe ao menos um polo na origem",
+    "todos os coeficientes são positivos, sem exceção",
+    "todos os polos de malha fechada têm parte real negativa"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Coeficientes positivos são apenas condição necessária em ordem maior que 2.</p>"
+  },
+  {
+   "id": "cs-055",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "estabilidade",
+   "enunciado": "<p>No critério de Routh, o número de polos no semiplano direito é igual:</p>",
+   "alternativas": [
+    "ao número de termos da última linha",
+    "ao grau do polinômio",
+    "ao número de trocas de sinal na primeira coluna",
+    "ao número de elementos nulos"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Enunciado do critério.</p>"
+  },
+  {
+   "id": "cs-056",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "estabilidade",
+   "enunciado": "<p>O polinômio s³ + 2s² + 5 não pode ser estável porque:</p>",
+   "alternativas": [
+    "o termo independente é positivo",
+    "o grau é ímpar",
+    "falta o termo em s",
+    "o coeficiente de s² é par"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Todos os coeficientes devem existir e ter o mesmo sinal.</p>"
+  },
+  {
+   "id": "cs-057",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "estabilidade",
+   "enunciado": "<p>Uma linha inteira nula no arranjo de Routh indica:</p>",
+   "alternativas": [
+    "que o sistema é sempre estável",
+    "raízes simétricas em relação à origem, frequentemente no eixo imaginário",
+    "erro no cálculo, pois ela não pode ocorrer",
+    "um polo na origem, necessariamente"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Usa-se a derivada do polinômio auxiliar.</p>"
+  },
+  {
+   "id": "cs-058",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "estabilidade",
+   "enunciado": "<p>O polinômio s⁴ + 2s³ + 3s² + 4s + 5 tem, no semiplano direito:</p>",
+   "alternativas": [
+    "2 polos",
+    "0 polos",
+    "1 polo",
+    "4 polos"
+   ],
+   "correta": 0,
+   "formulas": [
+    "b₁ = (a₁a₂ − a₀a₃)/a₁"
+   ],
+   "explicacao": "<div class=\"passo\">Primeira coluna: 1, 2, 1, −6, 5</div><div class=\"passo\">Duas trocas: <strong>2</strong> polos</div>"
+  },
+  {
+   "id": "cs-059",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "estabilidade",
+   "enunciado": "<p>A malha K/[s(s + 1)(s + 2)], com retroalimentação unitária, é estável até K igual a:</p>",
+   "alternativas": [
+    "2",
+    "3",
+    "12",
+    "6"
+   ],
+   "correta": 3,
+   "formulas": [
+    "Linha s¹ = (a₁a₂ − a₀a₃)/a₁"
+   ],
+   "explicacao": "<div class=\"passo\">s³ + 3s² + 2s + K</div><div class=\"passo\">3·2 &gt; K → K &lt; <strong>6</strong></div>"
+  },
+  {
+   "id": "cs-060",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "estabilidade",
+   "enunciado": "<p>Na malha K/[s(s + 1)(s + 2)], a frequência da oscilação no limite de estabilidade é:</p>",
+   "alternativas": [
+    "1 rad/s",
+    "2 rad/s",
+    "6 rad/s",
+    "1,414 rad/s"
+   ],
+   "correta": 3,
+   "formulas": [
+    "a₁s² + a₃ = 0"
+   ],
+   "explicacao": "<div class=\"passo\">Polinômio auxiliar: 3s² + 6 = 0</div><div class=\"passo\">s = ±j<strong>1,414</strong></div>"
+  },
+  {
+   "id": "cs-061",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "estabilidade",
+   "enunciado": "<p>A malha K/[(s + 1)³], com retroalimentação unitária, fica no limite de estabilidade em K igual a:</p>",
+   "alternativas": [
+    "1",
+    "3",
+    "8",
+    "27"
+   ],
+   "correta": 2,
+   "formulas": [
+    "a₁a₂ = a₀a₃"
+   ],
+   "explicacao": "<div class=\"passo\">s³ + 3s² + 3s + 1 + K</div><div class=\"passo\">9 = 1 + K → K = <strong>8</strong></div>"
+  },
+  {
+   "id": "cs-062",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "estabilidade",
+   "enunciado": "<p>A malha com polinômio s³ + 9s² + 30s + K fica estável para:</p>",
+   "alternativas": [
+    "K positivo e menor que 30",
+    "K positivo e menor que 270",
+    "K maior que 270",
+    "qualquer K positivo"
+   ],
+   "correta": 1,
+   "formulas": [
+    "a₁a₂ &gt; a₀a₃"
+   ],
+   "explicacao": "<div class=\"passo\">9·30 &gt; K</div><div class=\"passo\">0 &lt; K &lt; <strong>270</strong></div>"
+  },
+  {
+   "id": "cs-063",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "erro",
+   "enunciado": "<p>O tipo de um sistema é o número de:</p>",
+   "alternativas": [
+    "integradores puros na função de malha aberta",
+    "polos no semiplano direito",
+    "zeros na origem da malha fechada",
+    "blocos do diagrama"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Polos em s = 0 de G(s)H(s).</p>"
+  },
+  {
+   "id": "cs-064",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "erro",
+   "enunciado": "<p>Um sistema de tipo 1, estável, tem ao degrau erro em regime:</p>",
+   "alternativas": [
+    "nulo",
+    "igual a 1/Kv",
+    "infinito",
+    "igual a 1/(1 + Kp), com Kp finito"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O integrador faz Kp infinito.</p>"
+  },
+  {
+   "id": "cs-065",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "erro",
+   "enunciado": "<p>Em retroalimentação unitária, G = 3/[(s + 1)(s + 2)] tem erro ao degrau unitário igual a:</p>",
+   "alternativas": [
+    "0,6",
+    "0",
+    "1,5",
+    "0,4"
+   ],
+   "correta": 3,
+   "formulas": [
+    "e = 1/(1 + Kp)",
+    "Kp = lim G(s)"
+   ],
+   "explicacao": "<div class=\"passo\">Kp = 3/2 = 1,5</div><div class=\"passo\">e = 1/(1 + 1,5) = <strong>0,4</strong></div>"
+  },
+  {
+   "id": "cs-066",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "erro",
+   "enunciado": "<p>Para G = 10(s + 2)/[s(s + 4)(s + 5)], o erro à rampa unitária é de:</p>",
+   "alternativas": [
+    "0",
+    "0,5",
+    "1",
+    "2"
+   ],
+   "correta": 2,
+   "formulas": [
+    "Kv = lim s·G(s)",
+    "e = 1/Kv"
+   ],
+   "explicacao": "<div class=\"passo\">Kv = 10·2/(4·5) = 1</div><div class=\"passo\">e = 1/1 = <strong>1</strong></div>"
+  },
+  {
+   "id": "cs-067",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "erro",
+   "enunciado": "<p>Um sistema de tipo 1 com Kv = 5 segue uma rampa de inclinação 2 com erro de:</p>",
+   "alternativas": [
+    "2,5",
+    "0,4",
+    "0,2",
+    "10"
+   ],
+   "correta": 1,
+   "formulas": [
+    "e = A/Kv"
+   ],
+   "explicacao": "<div class=\"passo\">e = A/Kv = 2/5 = <strong>0,4</strong></div>"
+  },
+  {
+   "id": "cs-068",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "erro",
+   "enunciado": "<p>Um sistema de tipo 0 submetido a uma rampa apresenta erro:</p>",
+   "alternativas": [
+    "nulo",
+    "crescente sem limite",
+    "constante e igual a 1/Kv",
+    "igual a 1/(1 + Kp)"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Kv = 0.</p>"
+  },
+  {
+   "id": "cs-069",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "erro",
+   "enunciado": "<p>Para rejeitar por completo uma perturbação constante, o integrador deve estar:</p>",
+   "alternativas": [
+    "antes do ponto de entrada da perturbação",
+    "depois do ponto de entrada da perturbação",
+    "no sensor",
+    "em qualquer lugar da malha"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Um integrador posterior à perturbação não a elimina.</p>"
+  },
+  {
+   "id": "cs-070",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "erro",
+   "enunciado": "<p>Um sistema de tipo 2 com Ka = 8 recebe a entrada parabólica r = t²/2. O erro em regime é de:</p>",
+   "alternativas": [
+    "0",
+    "8",
+    "0,5",
+    "0,125"
+   ],
+   "correta": 3,
+   "formulas": [
+    "e = 1/Ka"
+   ],
+   "explicacao": "<div class=\"passo\">e = 1/Ka = 1/8 = <strong>0,125</strong></div>"
+  },
+  {
+   "id": "cs-071",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "lgr",
+   "enunciado": "<p>O lugar das raízes mostra:</p>",
+   "alternativas": [
+    "a posição dos polos de malha aberta em função do tempo",
+    "o módulo da resposta em frequência",
+    "a posição dos polos de malha fechada em função do ganho",
+    "o erro em regime em função do tempo"
+   ],
+   "correta": 2,
+   "explicacao": "<p>As raízes de 1 + KG = 0.</p>"
+  },
+  {
+   "id": "cs-072",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "lgr",
+   "enunciado": "<p>Quando K tende a zero, os ramos partem:</p>",
+   "alternativas": [
+    "dos zeros de malha aberta",
+    "da origem, sempre",
+    "dos polos de malha aberta",
+    "do infinito"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Eles terminam nos zeros ou no infinito.</p>"
+  },
+  {
+   "id": "cs-073",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "lgr",
+   "enunciado": "<p>Para G = 1/[s(s + 1)(s + 2)], o centroide das assíntotas fica em:</p>",
+   "alternativas": [
+    "0",
+    "−1",
+    "−3",
+    "−1,5"
+   ],
+   "correta": 1,
+   "formulas": [
+    "σ = (Σp − Σz)/(n − m)"
+   ],
+   "explicacao": "<div class=\"passo\">σ = (0 − 1 − 2)/3 = <strong>−1</strong></div>"
+  },
+  {
+   "id": "cs-074",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "lgr",
+   "enunciado": "<p>Com n − m = 2, as assíntotas formam ângulos de:</p>",
+   "alternativas": [
+    "±90°",
+    "±60° e 180°",
+    "±45°",
+    "0°"
+   ],
+   "correta": 0,
+   "explicacao": "<p>θ = ±180°/(n − m).</p>"
+  },
+  {
+   "id": "cs-075",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "lgr",
+   "enunciado": "<p>Um ponto do eixo real pertence ao lugar quando à sua direita há:</p>",
+   "alternativas": [
+    "um número par de polos e zeros reais",
+    "apenas zeros",
+    "nenhum polo",
+    "um número ímpar de polos e zeros reais"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Regra do eixo real, para K positivo.</p>"
+  },
+  {
+   "id": "cs-076",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "lgr",
+   "enunciado": "<p>Acrescentar um zero no semiplano esquerdo tende a:</p>",
+   "alternativas": [
+    "empurrar os ramos para a direita",
+    "aumentar o tipo do sistema",
+    "não ter efeito sobre o lugar",
+    "atrair os ramos para a esquerda e favorecer a estabilidade"
+   ],
+   "correta": 3,
+   "explicacao": "<p>É o princípio do compensador em avanço.</p>"
+  },
+  {
+   "id": "cs-077",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "lgr",
+   "enunciado": "<p>Em G = 1/[s(s + 1)(s + 2)], o ponto de saída da reta real está em:</p>",
+   "alternativas": [
+    "−1",
+    "−1,577",
+    "−0,423",
+    "−0,5"
+   ],
+   "correta": 2,
+   "formulas": [
+    "dK/ds = 0"
+   ],
+   "explicacao": "<div class=\"passo\">3s² + 6s + 2 = 0</div><div class=\"passo\">A raiz entre 0 e −1 é <strong>−0,423</strong></div>"
+  },
+  {
+   "id": "cs-078",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "lgr",
+   "enunciado": "<p>Para G = 1/[s(s + 1)(s + 2)], o ganho que leva um polo a s = −3 é:</p>",
+   "alternativas": [
+    "3",
+    "6",
+    "2",
+    "12"
+   ],
+   "correta": 1,
+   "formulas": [
+    "K = |s||s + 1||s + 2|"
+   ],
+   "explicacao": "<div class=\"passo\">K = 1/|G(−3)| = 3·2·1 = <strong>6</strong></div>"
+  },
+  {
+   "id": "cs-079",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "pid",
+   "enunciado": "<p>A ação integral de um controlador tem como principal efeito:</p>",
+   "alternativas": [
+    "eliminar o erro em regime ao degrau",
+    "reduzir a ordem da planta",
+    "amplificar o ruído de alta frequência",
+    "dispensar o atuador"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Enquanto houver erro, a integral acumula.</p>"
+  },
+  {
+   "id": "cs-080",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "pid",
+   "enunciado": "<p>A ação derivativa é sensível a:</p>",
+   "alternativas": [
+    "ruído de medição",
+    "erro constante",
+    "ganho estático da planta",
+    "desvios lentos"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Sua função de transferência cresce com a frequência.</p>"
+  },
+  {
+   "id": "cs-081",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "pid",
+   "enunciado": "<p>Windup é o fenômeno em que:</p>",
+   "alternativas": [
+    "o termo derivativo se anula em regime",
+    "o ganho proporcional reduz o erro",
+    "o sensor perde a calibração",
+    "o integrador continua acumulando com o atuador saturado"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Corrige-se com anti-windup.</p>"
+  },
+  {
+   "id": "cs-082",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "pid",
+   "enunciado": "<p>Aplicando controle puramente derivativo à planta K/(τs + 1), a saída em regime ao degrau é:</p>",
+   "alternativas": [
+    "igual à referência",
+    "infinita",
+    "zero, pois a derivada do erro constante é nula",
+    "igual a K"
+   ],
+   "correta": 2,
+   "explicacao": "<p>T = KKd s/[(τ + KKd)s + 1], e T(0) = 0.</p>"
+  },
+  {
+   "id": "cs-083",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "pid",
+   "enunciado": "<p>Com controlador PI na planta K/(τs + 1), a malha fechada passa a ser:</p>",
+   "alternativas": [
+    "de primeira ordem, com erro 1/(1 + KKp)",
+    "de segunda ordem, com erro nulo ao degrau",
+    "de terceira ordem, sem erro",
+    "de ordem zero"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O integrador acrescenta um polo.</p>"
+  },
+  {
+   "id": "cs-084",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "pid",
+   "enunciado": "<p>Na forma Kp(1 + 1/(Ti s) + Td s), com Kp = 4 e Ti = 2 s, o ganho integral Ki vale:</p>",
+   "alternativas": [
+    "8 s⁻¹",
+    "2 s⁻¹",
+    "0,5 s⁻¹",
+    "6 s⁻¹"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Ki = Kp/Ti"
+   ],
+   "explicacao": "<div class=\"passo\">Ki = Kp/Ti = 4/2 = <strong>2 s⁻¹</strong></div>"
+  },
+  {
+   "id": "cs-085",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "pid",
+   "enunciado": "<p>Ao derivar apenas a medida, em vez do erro, evita-se:</p>",
+   "alternativas": [
+    "o pico do sinal de controle em degraus de referência",
+    "o erro em regime",
+    "o windup",
+    "a necessidade de sensor"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A medida é contínua, ao contrário do degrau de referência.</p>"
+  },
+  {
+   "id": "cs-086",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "pid",
+   "enunciado": "<p>Pelo método do ganho último de Ziegler-Nichols, com Ku = 10, um controlador PID tem Kp de:</p>",
+   "alternativas": [
+    "5",
+    "4,5",
+    "10",
+    "6"
+   ],
+   "correta": 3,
+   "formulas": [
+    "PID: Kp = 0,6 Ku"
+   ],
+   "explicacao": "<div class=\"passo\">Kp = 0,6·Ku = <strong>6</strong></div>"
+  },
+  {
+   "id": "cs-087",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "pid",
+   "enunciado": "<p>Para Tu = 8 s, o PID de Ziegler-Nichols tem Ti e Td iguais a:</p>",
+   "alternativas": [
+    "8 s e 2 s",
+    "2 s e 0,5 s",
+    "4 s e 1 s",
+    "6,7 s e 1 s"
+   ],
+   "correta": 2,
+   "formulas": [
+    "Ti = Tu/2",
+    "Td = Tu/8"
+   ],
+   "explicacao": "<div class=\"passo\">Ti = Tu/2 = <strong>4 s</strong></div><div class=\"passo\">Td = Tu/8 = 1 s</div>"
+  },
+  {
+   "id": "cs-088",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "pid",
+   "enunciado": "<p>Na planta 1/(10s + 1), com PI, para ζ = 0,7 e ωn = 1 rad/s, o ganho Kp é:</p>",
+   "alternativas": [
+    "10",
+    "14",
+    "13",
+    "1,4"
+   ],
+   "correta": 2,
+   "formulas": [
+    "s² + [(1 + Kp)/τ]s + Ki/τ"
+   ],
+   "explicacao": "<div class=\"passo\">(1 + Kp)/10 = 2·0,7·1</div><div class=\"passo\">Kp = <strong>13</strong></div>"
+  },
+  {
+   "id": "cs-089",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "pid",
+   "enunciado": "<p>Com controle puramente integral Ki na planta 1/(4s + 1), o amortecimento é 0,5 quando Ki vale:</p>",
+   "alternativas": [
+    "1",
+    "0,25",
+    "4",
+    "0,5"
+   ],
+   "correta": 1,
+   "formulas": [
+    "τs² + s + K·Ki = 0"
+   ],
+   "explicacao": "<div class=\"passo\">s² + s/4 + Ki/4</div><div class=\"passo\">ωn = √Ki/2 e 2ζωn = 1/4</div><div class=\"passo\">√Ki/2 = 1/4 → Ki = <strong>0,25</strong></div>"
+  },
+  {
+   "id": "cs-090",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "frequencia",
+   "enunciado": "<p>Em um sistema linear estável, a resposta em regime a uma senoide é:</p>",
+   "alternativas": [
+    "uma senoide de mesma frequência, com amplitude e fase alteradas",
+    "uma senoide com o dobro da frequência",
+    "um degrau",
+    "uma exponencial crescente"
+   ],
+   "correta": 0,
+   "explicacao": "<p>y = A|G(jω)| sen(ωt + ∠G).</p>"
+  },
+  {
+   "id": "cs-091",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "frequencia",
+   "enunciado": "<p>Depois da frequência de quina, o fator 1/(τs + 1) decai a:</p>",
+   "alternativas": [
+    "−40 dB/década",
+    "−3 dB/década",
+    "+20 dB/década",
+    "−20 dB/década"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Um polo, uma inclinação de 20 dB/década.</p>"
+  },
+  {
+   "id": "cs-092",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "frequencia",
+   "enunciado": "<p>Na frequência de quina de 1/(τs + 1), o módulo e a fase valem:</p>",
+   "alternativas": [
+    "0 dB e 0°",
+    "−20 dB e −90°",
+    "−6 dB e −180°",
+    "−3 dB e −45°"
+   ],
+   "correta": 3,
+   "explicacao": "<p>1/(1 + j): módulo 0,707.</p>"
+  },
+  {
+   "id": "cs-093",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "frequencia",
+   "enunciado": "<p>Para G = 1/(2s + 1) e entrada sen(0,5t), a amplitude em regime é de:</p>",
+   "alternativas": [
+    "1",
+    "0,5",
+    "0,707",
+    "0,894"
+   ],
+   "correta": 2,
+   "formulas": [
+    "|G| = 1/√(1 + (ωτ)²)"
+   ],
+   "explicacao": "<div class=\"passo\">|G| = 1/√(1 + 1) = <strong>0,707</strong></div>"
+  },
+  {
+   "id": "cs-094",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "frequencia",
+   "enunciado": "<p>A margem de ganho de 6 dB indica que o ganho pode aumentar por um fator de cerca de:</p>",
+   "alternativas": [
+    "6",
+    "2",
+    "1,2",
+    "10"
+   ],
+   "correta": 1,
+   "formulas": [
+    "fator = 10^(MG/20)"
+   ],
+   "explicacao": "<div class=\"passo\">10^(6/20) = <strong>2</strong></div>"
+  },
+  {
+   "id": "cs-095",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "frequencia",
+   "enunciado": "<p>A margem de fase é medida na frequência em que:</p>",
+   "alternativas": [
+    "o módulo da malha aberta vale 0 dB",
+    "a fase vale −180°",
+    "o módulo é máximo",
+    "a frequência é a natural"
+   ],
+   "correta": 0,
+   "explicacao": "<p>MF = 180° + ∠G(jω<sub>c</sub>).</p>"
+  },
+  {
+   "id": "cs-096",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "frequencia",
+   "enunciado": "<p>Para G = 2/[s(s + 1)(s + 2)], a margem de ganho é de:</p>",
+   "alternativas": [
+    "9,54 dB",
+    "6,02 dB",
+    "3,0 dB",
+    "20 dB"
+   ],
+   "correta": 0,
+   "formulas": [
+    "MG = −20 log|G(jω₁₈₀)|"
+   ],
+   "explicacao": "<div class=\"passo\">Em ω = √2, |G| = 2/6 = 1/3</div><div class=\"passo\">MG = 20 log 3 = <strong>9,54 dB</strong></div>"
+  },
+  {
+   "id": "cs-097",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "frequencia",
+   "enunciado": "<p>Para G = 2/[s(s + 1)(s + 2)], a margem de fase é de cerca de:</p>",
+   "alternativas": [
+    "45,0°",
+    "60,0°",
+    "9,5°",
+    "32,6°"
+   ],
+   "correta": 3,
+   "formulas": [
+    "MF = 180° + ∠G(jω_c)"
+   ],
+   "explicacao": "<div class=\"passo\">|G| = 1 em ω = 0,749 rad/s</div><div class=\"passo\">Fase = −147,4°</div><div class=\"passo\">MF = <strong>32,6°</strong></div>"
+  }
+ ]
+}

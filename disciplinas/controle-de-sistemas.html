@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelagem e Controle de Sistemas — Engenharia Mecânica</title>
+<meta name="description" content="Modelagem e controle de sistemas para engenharia mecânica: Laplace, função de transferência, resposta no tempo, Routh, erro em regime, lugar das raízes, PID e Bode.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎛️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">7º período · Engenharia Mecânica</p>
+    <h1>Modelagem e Controle de Sistemas</h1>
+    <p class="lead">Do sistema físico ao controlador. Este texto está organizado como um livro: doze capítulos em sequência, da equação diferencial ao ajuste do PID, com simuladores e figuras que respondem aos parâmetros.</p>
+    <div class="btn-row">
+      <span class="tag accent">12 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">97 questões</span>
+      <span class="tag info">3 simuladores animados</span>
+      <span class="tag info">14 figuras interativas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai do sistema físico ao controlador: primeiro as equações e a função de transferência, depois a leitura da resposta no tempo e, por fim, as ferramentas de projeto, como o lugar das raízes, o PID e a resposta em frequência.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: fazer a máquina obedecer</h2>
+        <p>Um tanque que mantém o nível, um forno que segura a temperatura, um braço que para no ponto certo: em todos eles, uma medida é comparada com o valor desejado e a diferença comanda o atuador. A disciplina responde a duas perguntas. Como este sistema se comporta? E como fazê-lo se comportar como se deseja?</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>O que é malha fechada e para que serve?</td><td>Vocabulário e diagrama básico</td><td>1</td></tr>
+            <tr><td>Como resolver a equação diferencial?</td><td>Laplace e frações parciais</td><td>2</td></tr>
+            <tr><td>Qual é o modelo do sistema físico?</td><td>Função de transferência e linearização</td><td>3 e 4</td></tr>
+            <tr><td>Como juntar vários blocos?</td><td>Álgebra de diagramas</td><td>5</td></tr>
+            <tr><td>Quanto tempo leva, e quanto ultrapassa?</td><td>Primeira e segunda ordem</td><td>6 e 7</td></tr>
+            <tr><td>A malha é estável? Até que ganho?</td><td>Routh-Hurwitz</td><td>8</td></tr>
+            <tr><td>Sobra erro em regime?</td><td>Tipo do sistema e constantes de erro</td><td>9</td></tr>
+            <tr><td>Como os polos andam com o ganho?</td><td>Lugar das raízes</td><td>10</td></tr>
+            <tr><td>Como ajustar o controlador?</td><td>PID e Ziegler-Nichols</td><td>11</td></tr>
+            <tr><td>Qual é a folga de estabilidade?</td><td>Bode e margens</td><td>12</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Três fórmulas resolvem boa parte das provas: a constante de tempo de primeira ordem, a forma padrão de segunda ordem e o teorema do valor final. Domine essas três antes de seguir para o projeto.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Modelagem" data-topicos="fundamentos">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Sistemas de controle</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir malha aberta de malha fechada;</li>
+            <li>nomear os sinais e blocos do diagrama básico;</li>
+            <li>entender o que a realimentação melhora e o que ela custa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Equações diferenciais lineares e números complexos.</p></div>
+        </div>
+        <h3 id="s1-1"><span class="num">1.1</span>Malha aberta e malha fechada</h3>
+        <p>Em <strong>malha aberta</strong>, a ação de controle não depende da saída: uma torneira aberta um certo ângulo, ou um forno ligado por um tempo fixo. É simples e barato, mas depende de um modelo exato e não corrige perturbações. Em <strong>malha fechada</strong>, um sensor mede a saída e o controlador age sobre o erro entre a referência e a medida.</p>
+        <div class="fig-host" id="fig-1-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Sinal ou bloco</th><th>Símbolo</th><th>Significado</th></tr></thead>
+          <tbody>
+            <tr><td>Referência</td><td>r</td><td>Valor desejado (setpoint)</td></tr>
+            <tr><td>Erro</td><td>e</td><td>Diferença entre referência e medida</td></tr>
+            <tr><td>Sinal de controle</td><td>u</td><td>Comando enviado ao atuador</td></tr>
+            <tr><td>Perturbação</td><td>d</td><td>Entrada que não se controla</td></tr>
+            <tr><td>Saída</td><td>y</td><td>Variável controlada</td></tr>
+            <tr><td>Planta</td><td>G</td><td>Sistema a controlar, com o atuador</td></tr>
+            <tr><td>Sensor</td><td>H</td><td>Medição; quando vale 1, a retroalimentação é unitária</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s1-2"><span class="num">1.2</span>O que a realimentação faz</h3>
+        <p>Para a planta G e o controlador proporcional de ganho <span data-tex-inline="K_c"></span>, com sensor unitário, a saída é:</p>
+        <div class="formula"><span data-tex="Y = \frac{K_c G}{1 + K_c G}\,R + \frac{G}{1 + K_c G}\,D"></span></div>
+        <p>Com ganho elevado, a primeira fração tende a 1 e a segunda a zero: a saída segue a referência e rejeita a perturbação, mesmo que G varie um pouco. O preço é a necessidade de um sensor, o risco de instabilidade e um maior esforço do atuador.</p>
+        <div class="callout warn">
+          <strong>Realimentar não garante estabilidade</strong>
+          Uma planta estável pode se tornar instável em malha fechada se o ganho for alto demais. Os capítulos 8, 10 e 12 calculam esse limite.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Malha aberta não corrige perturbações; malha fechada age sobre o erro.</li>
+          <li>Ganho alto reduz o erro e a sensibilidade à planta, mas ameaça a estabilidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma máquina de lavar com programa temporizado é malha aberta ou fechada?</summary><p>Aberta, porque o tempo de lavagem não depende da limpeza da roupa, que não é medida. Se um sensor de turbidez ajustasse o tempo, seria malha fechada.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Modelagem" data-topicos="laplace">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Transformada de Laplace</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>trocar a equação diferencial por uma equação algébrica;</li>
+            <li>expandir em frações parciais;</li>
+            <li>obter o valor final sem resolver a inversa.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Integrais e números complexos.</p></div>
+        </div>
+        <h3 id="s2-1"><span class="num">2.1</span>Definição e tabela</h3>
+        <div class="formula"><span data-tex="F(s) = \mathcal{L}\{f(t)\} = \int_0^{\infty} f(t)\,e^{-st}\,dt"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>f(t), para t ≥ 0</th><th>F(s)</th></tr></thead>
+          <tbody>
+            <tr><td>Impulso <span data-tex-inline="\delta(t)"></span></td><td><span data-tex-inline="1"></span></td></tr>
+            <tr><td>Degrau unitário</td><td><span data-tex-inline="1/s"></span></td></tr>
+            <tr><td>Rampa <span data-tex-inline="t"></span></td><td><span data-tex-inline="1/s^2"></span></td></tr>
+            <tr><td><span data-tex-inline="t^n"></span></td><td><span data-tex-inline="n!/s^{n+1}"></span></td></tr>
+            <tr><td><span data-tex-inline="e^{-at}"></span></td><td><span data-tex-inline="1/(s+a)"></span></td></tr>
+            <tr><td><span data-tex-inline="t\,e^{-at}"></span></td><td><span data-tex-inline="1/(s+a)^2"></span></td></tr>
+            <tr><td><span data-tex-inline="\sin\omega t"></span></td><td><span data-tex-inline="\omega/(s^2+\omega^2)"></span></td></tr>
+            <tr><td><span data-tex-inline="\cos\omega t"></span></td><td><span data-tex-inline="s/(s^2+\omega^2)"></span></td></tr>
+            <tr><td><span data-tex-inline="e^{-at}\sin\omega t"></span></td><td><span data-tex-inline="\omega/[(s+a)^2+\omega^2]"></span></td></tr>
+            <tr><td><span data-tex-inline="e^{-at}\cos\omega t"></span></td><td><span data-tex-inline="(s+a)/[(s+a)^2+\omega^2]"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s2-2"><span class="num">2.2</span>Propriedades</h3>
+        <div class="formula"><span data-tex="\mathcal{L}\{\dot f\} = sF(s) - f(0) \qquad \mathcal{L}\{\ddot f\} = s^2F(s) - s f(0) - \dot f(0)"></span></div>
+        <div class="formula"><span data-tex="\mathcal{L}\left\{\int_0^t f\,d\tau\right\} = \frac{F(s)}{s} \qquad \mathcal{L}\{f(t-T)\,u(t-T)\} = e^{-sT}F(s)"></span></div>
+        <p>A derivada vira produto por s, e a integral vira divisão por s. Por isso uma equação diferencial linear se torna um problema de álgebra.</p>
+        <h3 id="s2-3"><span class="num">2.3</span>Polos e forma da resposta</h3>
+        <p>As raízes do denominador são os <strong>polos</strong>, e as do numerador, os <strong>zeros</strong>. Cada polo gera um termo exponencial na resposta: a parte real define o crescimento ou o decaimento, e a parte imaginária, a oscilação.</p>
+        <div class="fig-host" id="fig-2-1"></div>
+        <h3 id="s2-4"><span class="num">2.4</span>Frações parciais</h3>
+        <p>Para polos simples, cada resíduo é obtido multiplicando F(s) pelo fator e fazendo s igual ao polo:</p>
+        <div class="formula"><span data-tex="F(s) = \sum_i \frac{A_i}{s + p_i} \qquad A_i = \left[(s + p_i)\,F(s)\right]_{s=-p_i}"></span></div>
+        <p>Com um polo repetido, cada potência recebe o seu próprio termo, e pares complexos costumam ser agrupados em forma de quadrado completo, para usar as linhas de seno e cosseno da tabela.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Polos simples</div>
+          <p>Obtenha f(t) para <span data-tex-inline="F(s) = \dfrac{s+5}{(s+1)(s+2)}"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="A_1 = \left.\frac{s+5}{s+2}\right|_{s=-1} = 4"></span>.</li>
+              <li><span data-tex-inline="A_2 = \left.\frac{s+5}{s+1}\right|_{s=-2} = -3"></span>.</li>
+            </ol>
+            <p class="resposta">f(t) = 4e<sup>−t</sup> − 3e<sup>−2t</sup>. Conferência: f(0) = 1, igual a lim sF(s) quando s tende a infinito.</p>
+          </details>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.2</span>Equação com condição inicial</div>
+          <p>Resolva <span data-tex-inline="0{,}5\,\dot y + 2y = 4"></span>, para t &gt; 0, com y(0) = 1.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Transformando: <span data-tex-inline="0{,}5\,[sY - 1] + 2Y = 4/s"></span>.</li>
+              <li>Isolando: <span data-tex-inline="Y = \dfrac{s+8}{s(s+4)}"></span>.</li>
+              <li>Resíduos: em s = 0 vale 2 e, em s = −4, vale −1.</li>
+            </ol>
+            <p class="resposta">y(t) = 2 − e<sup>−4t</sup>. Em t = 0 dá 1, e o valor final é 2, como esperado de 2y = 4.</p>
+          </details>
+        </div>
+        <h3 id="s2-5"><span class="num">2.5</span>Teoremas do valor inicial e final</h3>
+        <div class="formula"><span data-tex="f(0^+) = \lim_{s\to\infty} sF(s) \qquad f(\infty) = \lim_{s\to 0} sF(s)"></span></div>
+        <div class="callout warn">
+          <strong>Condição do valor final</strong>
+          O teorema só vale se todos os polos de sF(s) estiverem no semiplano esquerdo. Para <span data-tex-inline="F = \omega/(s^2+\omega^2)"></span>, a conta daria zero, mas o seno nunca para de oscilar. Confira a estabilidade antes.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Derivar é multiplicar por s, descontando as condições iniciais.</li>
+          <li>Cada polo gera um modo da resposta.</li>
+          <li>O valor final só pode ser calculado se a resposta convergir.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Quanto vale o valor final de F(s) = 3/[s(s + 2)]?</summary><p>sF(s) = 3/(s + 2), com polo em −2, no semiplano esquerdo. Com s tendendo a zero, o valor final é 1,5.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Modelagem" data-topicos="modelagem">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Modelagem de sistemas físicos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>escrever a equação de sistemas mecânicos, elétricos, térmicos e de nível;</li>
+            <li>obter a função de transferência;</li>
+            <li>reconhecer as analogias entre domínios.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2 e os balanços de massa, de energia e de forças.</p></div>
+        </div>
+        <h3 id="s3-1"><span class="num">3.1</span>Função de transferência</h3>
+        <p>É a razão entre as transformadas da saída e da entrada, com <strong>condições iniciais nulas</strong>. Só existe para sistemas lineares e invariantes no tempo, e descreve o sistema independentemente da entrada aplicada.</p>
+        <div class="formula"><span data-tex="G(s) = \frac{Y(s)}{U(s)}"></span></div>
+        <h3 id="s3-2"><span class="num">3.2</span>Sistemas mecânicos</h3>
+        <p>A segunda lei de Newton aplicada à massa, com mola e amortecedor viscoso, fornece:</p>
+        <div class="formula"><span data-tex="m\ddot x + b\dot x + kx = f(t) \quad\Rightarrow\quad G(s) = \frac{X(s)}{F(s)} = \frac{1}{ms^2 + bs + k}"></span></div>
+        <div class="fig-host" id="fig-3-1"></div>
+        <p>Se a variável de interesse é a velocidade de uma massa sujeita apenas a atrito viscoso, a equação cai para <span data-tex-inline="m\dot v + bv = f"></span>, de primeira ordem, com constante de tempo <span data-tex-inline="m/b"></span>.</p>
+        <h3 id="s3-3"><span class="num">3.3</span>Circuitos elétricos</h3>
+        <p>No circuito RLC em série, tomando a tensão no capacitor como saída:</p>
+        <div class="formula"><span data-tex="\frac{V_C(s)}{V(s)} = \frac{1}{LCs^2 + RCs + 1}"></span></div>
+        <h3 id="s3-4"><span class="num">3.4</span>Nível de líquido</h3>
+        <p>O balanço de volume em um tanque de área A, com descarga proporcional à altura, <span data-tex-inline="q_s = h/R"></span>, resulta em:</p>
+        <div class="formula"><span data-tex="A\,\dot h + \frac{h}{R} = q_e \quad\Rightarrow\quad \frac{H(s)}{Q_e(s)} = \frac{R}{RAs + 1}"></span></div>
+        <div class="fig-host" id="fig-3-2"></div>
+        <h3 id="s3-5"><span class="num">3.5</span>Tanque aquecido</h3>
+        <p>Considere um tanque de volume V, perfeitamente misturado e adiabático, com vazão mássica <span data-tex-inline="\dot m"></span> igual na entrada e na saída, temperatura de entrada <span data-tex-inline="T_e"></span> e resistência que libera a potência q. O balanço de energia é:</p>
+        <div class="formula"><span data-tex="\rho V c\,\dot T = \dot m\,c\,(T_e - T) + q"></span></div>
+        <p>Dividindo por <span data-tex-inline="\dot m c"></span> e tomando <span data-tex-inline="T_e"></span> constante, em variáveis de desvio:</p>
+        <div class="formula"><span data-tex="\frac{T(s)}{Q(s)} = \frac{1/(\dot m c)}{\tau s + 1} \qquad \tau = \frac{\rho V}{\dot m}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Tanque aquecido</div>
+          <p>Água com ρ = 1000 kg/m³ e c = 4180 J/(kg·°C) passa a 0,5 kg/s por um tanque de 1 m³. A potência aumenta 20 kW em degrau. Determine a constante de tempo e a variação final de temperatura.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\tau = 1000 \cdot 1 / 0{,}5 = 2000\ \text{s}"></span>.</li>
+              <li><span data-tex-inline="K = 1/(0{,}5 \cdot 4180) = 4{,}78 \cdot 10^{-4}\ ^\circ\text{C/W}"></span>.</li>
+              <li><span data-tex-inline="\Delta T = K \cdot 20\,000 = 9{,}57\ ^\circ\text{C}"></span>.</li>
+            </ol>
+            <p class="resposta">τ = 2000 s, cerca de 33 min, e ΔT = 9,57 °C. A temperatura leva cerca de 4τ, ou 2,2 h, para chegar a 98 % da variação.</p>
+          </details>
+        </div>
+        <h3 id="s3-6"><span class="num">3.6</span>Analogias</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Domínio</th><th>Esforço</th><th>Fluxo</th><th>Resistência</th><th>Capacitância</th></tr></thead>
+          <tbody>
+            <tr><td>Elétrico</td><td>Tensão</td><td>Corrente</td><td>R</td><td>C</td></tr>
+            <tr><td>Nível</td><td>Altura</td><td>Vazão</td><td>Válvula, R</td><td>Área, A</td></tr>
+            <tr><td>Térmico</td><td>Temperatura</td><td>Calor</td><td>Resistência térmica</td><td>Capacidade térmica</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Nos três domínios, a constante de tempo é o produto da resistência pela capacitância.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A função de transferência supõe condições iniciais nulas e sistema linear.</li>
+          <li>Massa, mola e amortecedor dão segunda ordem; tanque e circuito RC dão primeira ordem.</li>
+          <li>Constante de tempo é sempre resistência vezes capacitância.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dobrar a vazão no tanque aquecido altera o quê?</summary><p>A constante de tempo e o ganho caem à metade: a temperatura responde duas vezes mais depressa e varia a metade para a mesma potência.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — Modelagem" data-topicos="linearizacao">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Linearização</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>substituir uma função não linear pela tangente no ponto de operação;</li>
+            <li>trabalhar com variáveis de desvio;</li>
+            <li>calcular a resistência linearizada de um tanque.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Derivadas parciais e série de Taylor.</p></div>
+        </div>
+        <h3 id="s4-1"><span class="num">4.1</span>A ideia</h3>
+        <p>Quase todo sistema real é não linear, mas opera perto de um ponto de equilíbrio. Truncando a série de Taylor no termo de primeira ordem:</p>
+        <div class="formula"><span data-tex="y - y_0 \approx \left.\frac{df}{dx}\right|_{x_0}(x - x_0)"></span></div>
+        <div class="formula"><span data-tex="z - z_0 \approx \left.\frac{\partial f}{\partial x}\right|_{0}(x - x_0) + \left.\frac{\partial f}{\partial y}\right|_{0}(y - y_0)"></span></div>
+        <div class="fig-host" id="fig-4-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Função de duas variáveis</div>
+          <p>Linearize <span data-tex-inline="z = x^2 + 2xy + 3y^2"></span> em torno de x = 4 e y = 2, e compare com o valor real em x = 4,2 e y = 2,1.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="z_0 = 16 + 16 + 12 = 44"></span>.</li>
+              <li><span data-tex-inline="\partial z/\partial x = 2x + 2y = 12"></span> e <span data-tex-inline="\partial z/\partial y = 2x + 6y = 20"></span>.</li>
+              <li><span data-tex-inline="z \approx 44 + 12(x-4) + 20(y-2)"></span>, que dá 48,4 no ponto pedido.</li>
+              <li>Valor real: <span data-tex-inline="17{,}64 + 17{,}64 + 13{,}23 = 48{,}51"></span>.</li>
+            </ol>
+            <p class="resposta">O erro é de 0,23 %, para desvios de 5 % em cada variável.</p>
+          </details>
+        </div>
+        <h3 id="s4-2"><span class="num">4.2</span>Tanque com descarga por orifício</h3>
+        <p>Em descarga livre, a vazão segue <span data-tex-inline="q = k\sqrt h"></span>. No ponto de operação, ela é substituída por uma resistência equivalente, e a equação linear passa a valer para os desvios:</p>
+        <div class="formula"><span data-tex="R_{lin} = \left(\frac{dq}{dh}\right)^{-1}_0 = \frac{2\sqrt{h_0}}{k} \qquad A\,\Delta\dot h + \frac{\Delta h}{R_{lin}} = \Delta q_e"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.2</span>Constante de tempo no ponto de operação</div>
+          <p>Um tanque de área 2 m² opera em <span data-tex-inline="h_0 = 4"></span> m, com <span data-tex-inline="k = 0{,}1"></span> m<sup>2,5</sup>/s. Encontre a constante de tempo.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="R_{lin} = 2\sqrt 4 / 0{,}1 = 40\ \text{s/m}^2"></span>.</li>
+              <li><span data-tex-inline="\tau = R_{lin} A = 80\ \text{s}"></span>.</li>
+            </ol>
+            <p class="resposta">τ = 80 s. Em outro nível, o valor muda: a constante de tempo cresce com a raiz da altura.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Variáveis de desvio</strong>
+          A função de transferência linearizada relaciona desvios em torno do ponto de operação, e não os valores absolutos. Para obter a altura real, some <span data-tex-inline="h_0"></span> ao resultado.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Linearizar é trocar a curva pela tangente no ponto de operação.</li>
+          <li>O modelo linear vale para pequenos desvios.</li>
+          <li>O ganho e a constante de tempo mudam conforme o ponto de operação.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um pêndulo pode ser linearizado perto de que ângulo?</summary><p>Perto de qualquer ponto de equilíbrio. Perto de zero, sen θ ≈ θ. Perto de 180°, a linearização dá um polo positivo, que descreve o equilíbrio instável do pêndulo invertido.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte I — Modelagem" data-topicos="blocos">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Diagramas de blocos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reduzir blocos em série, em paralelo e em realimentação;</li>
+            <li>resolver laços internos antes dos externos;</li>
+            <li>obter a função de transferência de malha fechada.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 3.</p></div>
+        </div>
+        <h3 id="s5-1"><span class="num">5.1</span>Regras de redução</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ligação</th><th>Equivalente</th></tr></thead>
+          <tbody>
+            <tr><td>Série</td><td><span data-tex-inline="G_1 G_2"></span></td></tr>
+            <tr><td>Paralelo</td><td><span data-tex-inline="G_1 + G_2"></span></td></tr>
+            <tr><td>Realimentação negativa</td><td><span data-tex-inline="\dfrac{G}{1 + GH}"></span></td></tr>
+            <tr><td>Realimentação positiva</td><td><span data-tex-inline="\dfrac{G}{1 - GH}"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A equação <span data-tex-inline="1 + G(s)H(s) = 0"></span> é a <strong>equação característica</strong>: as suas raízes são os polos de malha fechada, e todo o estudo de estabilidade parte dela. O produto <span data-tex-inline="GH"></span> é a função de transferência de malha aberta.</p>
+        <h3 id="s5-2"><span class="num">5.2</span>Laço interno de velocidade</h3>
+        <p>Em servomecanismos é comum medir também a velocidade. O laço interno soma amortecimento ao sistema sem alterar a frequência natural:</p>
+        <div class="fig-host" id="fig-5-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Redução em duas etapas</div>
+          <p>Para <span data-tex-inline="G = 10/[s(s+2)]"></span>, com <span data-tex-inline="k_1 = 5"></span> e realimentação de velocidade <span data-tex-inline="k_t\,s"></span>, com <span data-tex-inline="k_t = 0{,}2"></span>, obtenha Y/R e o valor final para o degrau de amplitude R.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Laço interno: <span data-tex-inline="\dfrac{G}{1 + G\,k_t s} = \dfrac{10}{s^2 + (2 + 10k_t)s} = \dfrac{10}{s(s+4)}"></span>.</li>
+              <li>Laço externo, com <span data-tex-inline="k_1"></span> em série: <span data-tex-inline="\dfrac{Y}{R} = \dfrac{50}{s^2 + 4s + 50}"></span>.</li>
+              <li>Teorema do valor final: <span data-tex-inline="y(\infty) = R \cdot 50/50 = R"></span>.</li>
+            </ol>
+            <p class="resposta">Y/R = 50/(s² + 4s + 50), com ωn = 7,07 rad/s e ζ = 0,283. Sem o laço interno, ζ seria 0,141, e o sobressinal passaria de 39,6 % para 63,9 %.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Sinal da realimentação</strong>
+          O erro mais comum é trocar o sinal no denominador. Com sinal negativo no comparador, a fórmula tem <span data-tex-inline="1 + GH"></span>.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Reduza sempre de dentro para fora.</li>
+          <li>Os polos de malha fechada são as raízes de 1 + GH = 0.</li>
+          <li>A realimentação de velocidade aumenta o amortecimento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>G = 4/(s + 1) com H = 1: qual é a malha fechada?</summary><p>4/(s + 1 + 4) = 4/(s + 5). O polo vai de −1 para −5, e o ganho estático cai de 4 para 0,8.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Análise no tempo" data-topicos="primeira">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Sistemas de primeira ordem</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>ler a constante de tempo na curva;</li>
+            <li>calcular as respostas ao degrau, à rampa e ao impulso;</li>
+            <li>ver o que muda ao fechar a malha.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 3.</p></div>
+        </div>
+        <h3 id="s6-1"><span class="num">6.1</span>Resposta ao degrau</h3>
+        <div class="formula"><span data-tex="G(s) = \frac{K}{\tau s + 1} \qquad y(t) = K A\,\left(1 - e^{-t/\tau}\right)"></span></div>
+        <div class="fig-host" id="fig-6-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Grandeza</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>Polo</td><td class="num"><span data-tex-inline="-1/\tau"></span></td></tr>
+            <tr><td>Resposta em <span data-tex-inline="t = \tau"></span></td><td class="num">63,2 %</td></tr>
+            <tr><td>Tempo de subida, de 10 a 90 %</td><td class="num"><span data-tex-inline="2{,}2\,\tau"></span></td></tr>
+            <tr><td>Acomodação, critério de 2 %</td><td class="num"><span data-tex-inline="4\,\tau"></span></td></tr>
+            <tr><td>Acomodação, critério de 5 %</td><td class="num"><span data-tex-inline="3\,\tau"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s6-2"><span class="num">6.2</span>Rampa e impulso</h3>
+        <p>Para a rampa unitária em um sistema com K = 1, a saída é <span data-tex-inline="y = t - \tau + \tau e^{-t/\tau}"></span>: ela segue a entrada com atraso <span data-tex-inline="\tau"></span>, e o erro em regime vale <span data-tex-inline="\tau"></span>. Para o impulso unitário, <span data-tex-inline="y = (1/\tau)\,e^{-t/\tau}"></span>. Cada resposta é a derivada da seguinte, o que reflete a relação entre as entradas.</p>
+        <h3 id="s6-3"><span class="num">6.3</span>Fechando a malha</h3>
+        <p>Com ganho proporcional e retroalimentação unitária:</p>
+        <div class="formula"><span data-tex="T(s) = \frac{K K_p}{\tau s + 1 + K K_p} \qquad \tau_c = \frac{\tau}{1 + K K_p} \qquad e_{ss} = \frac{1}{1 + K K_p}"></span></div>
+        <div class="fig-host" id="fig-6-2"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Tanque identificado em ensaio</div>
+          <p>Um tanque de primeira ordem chega a 98 % do valor final 120 s após um degrau de vazão, com K = 2 unidades de altura por unidade de vazão. Ele é posto em malha fechada com retroalimentação unitária e controlador de ganho 1. Determine τ, τc e o erro em regime ao degrau unitário.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="4\tau = 120 \Rightarrow \tau = 30\ \text{s}"></span>.</li>
+              <li><span data-tex-inline="T = \dfrac{2}{30s + 3} = \dfrac{0{,}667}{10s + 1}"></span>, portanto <span data-tex-inline="\tau_c = 10\ \text{s}"></span>.</li>
+              <li><span data-tex-inline="e_{ss} = 1 - 0{,}667 = 0{,}333"></span>.</li>
+            </ol>
+            <p class="resposta">τ = 30 s, τc = 10 s e erro de 0,333. Em malha aberta, a saída iria a 2, com erro de −1 e sem qualquer correção de perturbações.</p>
+          </details>
+        </div>
+        <div class="callout note">
+          <strong>Valor exato de 98 %</strong>
+          O tempo exato para 98 % é <span data-tex-inline="-\tau\ln 0{,}02 = 3{,}91\,\tau"></span>. O valor 4τ é o usual em provas e projeto.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>τ é o tempo para 63,2 %, e 4τ para 98 %.</li>
+          <li>Com ganho proporcional, a malha fica 1 + KKp vezes mais rápida.</li>
+          <li>Sem integrador, sobra erro ao degrau.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A saída de um sistema de primeira ordem pode ultrapassar o valor final?</summary><p>Não, se o sistema for a forma padrão, sem zero. A exponencial se aproxima do valor final monotonicamente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Análise no tempo" data-topicos="segunda">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Sistemas de segunda ordem</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>extrair ζ e ωn da função de transferência;</li>
+            <li>calcular tempo de pico, sobressinal e acomodação;</li>
+            <li>traduzir especificações em posições de polos.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 6.</p></div>
+        </div>
+        <h3 id="s7-1"><span class="num">7.1</span>Forma padrão</h3>
+        <div class="formula"><span data-tex="G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2} \qquad s_{1,2} = -\zeta\omega_n \pm \omega_n\sqrt{\zeta^2 - 1}"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>ζ</th><th>Natureza</th><th>Polos</th><th>Resposta ao degrau</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>Sem amortecimento</td><td>Imaginários</td><td>Oscila para sempre</td></tr>
+            <tr><td>0 &lt; ζ &lt; 1</td><td>Subamortecido</td><td>Complexos</td><td>Oscila e acomoda</td></tr>
+            <tr><td>1</td><td>Crítico</td><td>Reais iguais</td><td>Mais rápida sem ultrapassar</td></tr>
+            <tr><td>ζ &gt; 1</td><td>Superamortecido</td><td>Reais distintos</td><td>Lenta, sem ultrapassar</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-7-1"></div>
+        <h3 id="s7-2"><span class="num">7.2</span>Resposta subamortecida</h3>
+        <div class="formula"><span data-tex="y(t) = 1 - e^{-\zeta\omega_n t}\left(\cos\omega_d t + \frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\right) \qquad \omega_d = \omega_n\sqrt{1-\zeta^2}"></span></div>
+        <p>Para o impulso unitário: <span data-tex-inline="y = \dfrac{\omega_n}{\sqrt{1-\zeta^2}}\,e^{-\zeta\omega_n t}\sin\omega_d t"></span>.</p>
+        <h3 id="s7-3"><span class="num">7.3</span>Especificações</h3>
+        <p>Derivando y(t) e igualando a zero, o primeiro máximo ocorre em <span data-tex-inline="\omega_d t = \pi"></span>. Substituindo em y(t), obtém-se o sobressinal:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Grandeza</th><th>Fórmula</th></tr></thead>
+          <tbody>
+            <tr><td>Tempo de pico</td><td><span data-tex-inline="t_p = \pi/\omega_d"></span></td></tr>
+            <tr><td>Sobressinal</td><td><span data-tex-inline="M_p = e^{-\pi\zeta/\sqrt{1-\zeta^2}}"></span></td></tr>
+            <tr><td>Amortecimento a partir do sobressinal</td><td><span data-tex-inline="\zeta = \dfrac{-\ln M_p}{\sqrt{\pi^2 + \ln^2 M_p}}"></span></td></tr>
+            <tr><td>Acomodação, 2 %</td><td><span data-tex-inline="t_s \approx 4/(\zeta\omega_n)"></span></td></tr>
+            <tr><td>Acomodação, 5 %</td><td><span data-tex-inline="t_s \approx 3/(\zeta\omega_n)"></span></td></tr>
+            <tr><td>Subida, de 0 a 100 %</td><td><span data-tex-inline="t_r = (\pi - \arccos\zeta)/\omega_d"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Lendo a função de transferência</div>
+          <p>Para <span data-tex-inline="G(s) = \dfrac{256}{s^2 + 12{,}8\,s + 256}"></span>, determine o tempo de pico, o sobressinal e a acomodação pelo critério de 5 %.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\omega_n = \sqrt{256} = 16\ \text{rad/s}"></span>.</li>
+              <li><span data-tex-inline="2\zeta\omega_n = 12{,}8 \Rightarrow \zeta = 0{,}4"></span>.</li>
+              <li><span data-tex-inline="\omega_d = 16\sqrt{1 - 0{,}16} = 14{,}66\ \text{rad/s}"></span>.</li>
+              <li><span data-tex-inline="t_p = \pi/14{,}66 = 0{,}214\ \text{s}"></span>.</li>
+              <li><span data-tex-inline="M_p = e^{-\pi \cdot 0{,}4/0{,}9165} = 0{,}254"></span>.</li>
+              <li><span data-tex-inline="t_s \approx 3/(0{,}4 \cdot 16) = 0{,}469\ \text{s}"></span>.</li>
+            </ol>
+            <p class="resposta">tp = 0,214 s, sobressinal de 25,4 % e ts de 0,469 s.</p>
+          </details>
+        </div>
+        <div id="sim-segunda" class="sim"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.2</span>Das especificações aos polos</div>
+          <p>Deseja-se sobressinal de até 10 % e acomodação de até 2 s (critério de 2 %). Onde devem ficar os polos?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\zeta \ge \dfrac{-\ln 0{,}10}{\sqrt{\pi^2 + \ln^2 0{,}10}} = 0{,}591"></span>.</li>
+              <li><span data-tex-inline="\zeta\omega_n \ge 4/2 = 2"></span>.</li>
+              <li>O ângulo com o semieixo real negativo deve ser menor que <span data-tex-inline="\arccos 0{,}591 = 53{,}8^\circ"></span>.</li>
+            </ol>
+            <p class="resposta">Parte real menor ou igual a −2, dentro do setor de ±53,8°. Um par adequado é −2 ± j2.</p>
+          </details>
+        </div>
+        <h3 id="s7-4"><span class="num">7.4</span>Polos adicionais e zeros</h3>
+        <p>Um polo real muito mais distante do eixo imaginário que o par complexo, em geral cinco vezes ou mais, decai rápido e pouco influi: o par é <strong>dominante</strong>. Um zero no semiplano esquerdo acelera a resposta e aumenta o sobressinal. Um zero no semiplano direito faz a resposta partir no sentido oposto ao do valor final.</p>
+        <div class="callout warn">
+          <strong>Quando a forma não é a padrão</strong>
+          Se o numerador difere de <span data-tex-inline="\omega_n^2"></span>, o valor final muda, mas ζ e ωn continuam vindo do denominador. O sobressinal é sempre medido em relação ao valor final.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O sobressinal depende apenas de ζ.</li>
+          <li>O tempo de pico depende de ωd, e a acomodação, de ζωn.</li>
+          <li>Polos muito afastados podem ser desprezados diante do par dominante.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dobrar ωn mantendo ζ muda o sobressinal?</summary><p>Não. O sobressinal permanece o mesmo, e a curva é apenas comprimida no tempo: tp e ts caem à metade.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte II — Análise no tempo" data-topicos="estabilidade">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Estabilidade</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar estabilidade e posição dos polos;</li>
+            <li>montar o arranjo de Routh;</li>
+            <li>calcular a faixa de ganho estável.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 5.</p></div>
+        </div>
+        <h3 id="s8-1"><span class="num">8.1</span>Condição de estabilidade</h3>
+        <p>Um sistema linear é estável se todos os polos de malha fechada têm parte real negativa. Polos simples sobre o eixo imaginário dão oscilação mantida, ou estabilidade marginal, e qualquer polo no semiplano direito torna o sistema instável.</p>
+        <h3 id="s8-2"><span class="num">8.2</span>Critério de Routh-Hurwitz</h3>
+        <p>Dispensa o cálculo das raízes. Como condição necessária, todos os coeficientes do polinômio característico devem existir e ter o mesmo sinal. Em seguida, monta-se o arranjo com as duas primeiras linhas formadas pelos coeficientes alternados, e cada elemento novo é:</p>
+        <div class="formula"><span data-tex="b_1 = \frac{a_{1}\,a_{2} - a_{0}\,a_{3}}{a_{1}}"></span></div>
+        <p>O número de trocas de sinal na primeira coluna é igual ao número de polos no semiplano direito.</p>
+        <div class="fig-host" id="fig-8-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Faixa de ganho</div>
+          <p>Para <span data-tex-inline="G = K/[s(s+1)(s+2)]"></span>, com retroalimentação unitária, encontre a faixa de K e a frequência da oscilação no limite.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Polinômio: <span data-tex-inline="s^3 + 3s^2 + 2s + K = 0"></span>.</li>
+              <li>Linha s¹: <span data-tex-inline="(6 - K)/3"></span> e linha s⁰: <span data-tex-inline="K"></span>.</li>
+              <li>Exige-se <span data-tex-inline="0 \lt K \lt 6"></span>.</li>
+              <li>Em K = 6, a linha s² dá o polinômio auxiliar <span data-tex-inline="3s^2 + 6 = 0"></span>, ou seja, <span data-tex-inline="s = \pm j1{,}414"></span>.</li>
+            </ol>
+            <p class="resposta">Estável para 0 &lt; K &lt; 6, com oscilação no limite em 1,414 rad/s.</p>
+          </details>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.2</span>Contando polos instáveis</div>
+          <p>Analise <span data-tex-inline="s^4 + 2s^3 + 3s^2 + 4s + 5 = 0"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Linhas s⁴: 1, 3, 5 e s³: 2, 4.</li>
+              <li>Linha s²: <span data-tex-inline="(2\cdot 3 - 1\cdot 4)/2 = 1"></span> e <span data-tex-inline="5"></span>.</li>
+              <li>Linha s¹: <span data-tex-inline="(1\cdot 4 - 2\cdot 5)/1 = -6"></span>.</li>
+              <li>Linha s⁰: 5.</li>
+            </ol>
+            <p class="resposta">Primeira coluna 1, 2, 1, −6, 5: duas trocas de sinal e, portanto, dois polos no semiplano direito.</p>
+          </details>
+        </div>
+        <h3 id="s8-3"><span class="num">8.3</span>Casos especiais</h3>
+        <ul>
+          <li><strong>Zero só na primeira coluna:</strong> troque o zero por um número positivo pequeno, ε, e prossiga.</li>
+          <li><strong>Linha inteira nula:</strong> indica raízes simétricas em relação à origem, muitas vezes sobre o eixo imaginário. Substitua a linha pela derivada do polinômio auxiliar, formado com a linha de cima.</li>
+        </ul>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Estável significa todos os polos no semiplano esquerdo.</li>
+          <li>Trocas de sinal na primeira coluna contam os polos instáveis.</li>
+          <li>Linha nula aponta o ganho crítico e a frequência de oscilação.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>s³ + 2s² + 5 pode ser estável?</summary><p>Não. Falta o termo em s, e a condição necessária exige todos os coeficientes presentes e com o mesmo sinal.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte II — Análise no tempo" data-topicos="erro">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Erro em regime permanente</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>classificar o sistema por tipo;</li>
+            <li>calcular as constantes de erro;</li>
+            <li>prever o erro para degrau, rampa e parábola.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Teorema do valor final e capítulo 8.</p></div>
+        </div>
+        <h3 id="s9-1"><span class="num">9.1</span>Erro e tipo do sistema</h3>
+        <p>Com retroalimentação unitária, <span data-tex-inline="E(s) = R(s)/[1 + G(s)]"></span>. Se a malha for estável, o teorema do valor final dá o erro. O <strong>tipo</strong> é o número de integradores puros de G(s), isto é, de polos na origem.</p>
+        <div class="formula"><span data-tex="K_p = \lim_{s\to 0} G(s) \qquad K_v = \lim_{s\to 0} s\,G(s) \qquad K_a = \lim_{s\to 0} s^2 G(s)"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Degrau</th><th>Rampa</th><th>Parábola</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td class="num"><span data-tex-inline="1/(1+K_p)"></span></td><td class="num">∞</td><td class="num">∞</td></tr>
+            <tr><td>1</td><td class="num">0</td><td class="num"><span data-tex-inline="1/K_v"></span></td><td class="num">∞</td></tr>
+            <tr><td>2</td><td class="num">0</td><td class="num">0</td><td class="num"><span data-tex-inline="1/K_a"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-9-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Constantes de erro</div>
+          <p>Para <span data-tex-inline="G = \dfrac{10(s+2)}{s(s+4)(s+5)}"></span>, com retroalimentação unitária, determine o erro ao degrau, à rampa e à parábola unitários.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Polinômio: <span data-tex-inline="s^3 + 9s^2 + 30s + 20"></span>, estável porque <span data-tex-inline="9\cdot 30 \gt 20"></span>.</li>
+              <li>Tipo 1, portanto <span data-tex-inline="K_p = \infty"></span> e erro nulo ao degrau.</li>
+              <li><span data-tex-inline="K_v = 10\cdot 2/(4\cdot 5) = 1"></span>, logo o erro à rampa vale 1.</li>
+              <li><span data-tex-inline="K_a = 0"></span>, logo o erro à parábola é infinito.</li>
+            </ol>
+            <p class="resposta">Erros: 0, 1 e infinito.</p>
+          </details>
+        </div>
+        <h3 id="s9-2"><span class="num">9.2</span>Perturbações</h3>
+        <p>Para rejeitar uma perturbação constante com erro nulo, o integrador precisa estar <strong>antes do ponto em que a perturbação entra</strong>, ou seja, no controlador. Um integrador apenas na planta, depois da perturbação, não a elimina.</p>
+        <div class="callout warn">
+          <strong>Estabilidade primeiro</strong>
+          As constantes de erro só têm sentido em malha estável. Um sistema instável não tem erro em regime, por maior que seja Kv.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O tipo é o número de integradores em malha aberta.</li>
+          <li>Cada integrador zera o erro para uma classe a mais de entrada.</li>
+          <li>Verifique a estabilidade antes de aplicar as fórmulas.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um sistema de tipo 1 com Kv = 5 segue uma rampa de inclinação 2 com que erro?</summary><p>O erro é a inclinação dividida por Kv: 2/5 = 0,4.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Projeto" data-topicos="lgr">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Lugar das raízes</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>traçar como os polos se movem com o ganho;</li>
+            <li>aplicar as regras de construção;</li>
+            <li>escolher o ganho para um dado amortecimento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 7 e 8.</p></div>
+        </div>
+        <h3 id="s10-1"><span class="num">10.1</span>Condições de módulo e de ângulo</h3>
+        <p>A equação característica <span data-tex-inline="1 + K\,G(s) = 0"></span> equivale a duas condições. Todo ponto do lugar satisfaz a de ângulo, e a de módulo informa o ganho que coloca um polo naquele ponto:</p>
+        <div class="formula"><span data-tex="\angle G(s) = \pm 180^\circ(2q+1) \qquad K = \frac{1}{|G(s)|}"></span></div>
+        <h3 id="s10-2"><span class="num">10.2</span>Regras de construção</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Regra</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Número de ramos</td><td>Igual ao número n de polos de malha aberta</td></tr>
+            <tr><td>Início e fim</td><td>Saem dos polos (K = 0) e vão para os m zeros, ou para o infinito</td></tr>
+            <tr><td>Eixo real</td><td>Pertence ao lugar à esquerda de um número ímpar de polos e zeros reais</td></tr>
+            <tr><td>Assíntotas</td><td><span data-tex-inline="\theta = \pm 180^\circ(2q+1)/(n-m)"></span></td></tr>
+            <tr><td>Centroide</td><td><span data-tex-inline="\sigma_a = (\sum p_i - \sum z_i)/(n-m)"></span></td></tr>
+            <tr><td>Saída ou chegada no eixo real</td><td><span data-tex-inline="dK/ds = 0"></span></td></tr>
+            <tr><td>Cruzamento do eixo imaginário</td><td>Critério de Routh</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-10-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Regras em uma planta de três polos</div>
+          <p>Aplique as regras a <span data-tex-inline="G = 1/[s(s+1)(s+2)]"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Sem zeros, n − m = 3, e as assíntotas ficam em ±60° e 180°.</li>
+              <li>Centroide: <span data-tex-inline="(0 - 1 - 2)/3 = -1"></span>.</li>
+              <li>No eixo real: <span data-tex-inline="K = -s^3 - 3s^2 - 2s"></span>, e <span data-tex-inline="dK/ds = 0"></span> dá <span data-tex-inline="3s^2 + 6s + 2 = 0"></span>.</li>
+              <li>Raízes: −0,423 e −1,577. Só a primeira está no lugar, com K = 0,385.</li>
+              <li>Pelo critério de Routh, cruza o eixo imaginário em ±j1,414, com K = 6.</li>
+            </ol>
+            <p class="resposta">O par complexo aparece a partir de K = 0,385, e a malha fica instável acima de K = 6.</p>
+          </details>
+        </div>
+        <div id="sim-lgr" class="sim"></div>
+        <h3 id="s10-3"><span class="num">10.3</span>Escolhendo o ganho</h3>
+        <p>Traça-se a reta de amortecimento desejado, de ângulo <span data-tex-inline="\arccos\zeta"></span>, e o ponto em que ela corta o lugar dá o par dominante. Para a planta do exemplo com ζ = 0,5, o par fica em −0,334 ± j0,578, e a condição de módulo dá K = 1,04.</p>
+        <h3 id="s10-4"><span class="num">10.4</span>Compensadores</h3>
+        <p>Acrescentar um zero puxa o lugar para a esquerda e tende a estabilizar. Acrescentar um polo o empurra para a direita. Por isso, o compensador em <strong>avanço</strong>, com zero mais próximo da origem que o polo, melhora o transitório, enquanto o de <strong>atraso</strong>, com polo mais próximo da origem que o zero, aumenta o ganho em baixa frequência e reduz o erro em regime, com pouca mudança no transitório.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>O lugar mostra todos os polos de malha fechada em função de K.</li>
+          <li>Polos de malha aberta são os pontos de partida.</li>
+          <li>Zeros atraem os ramos e favorecem a estabilidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>G = 1/[s(s + 2)] fica instável com ganho alto?</summary><p>Não. Com dois polos e sem zeros, as assíntotas são verticais, em σ = −1, e os polos não saem do semiplano esquerdo. Na prática, atrasos não modelados acabam limitando o ganho.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte III — Projeto" data-topicos="pid">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Controlador PID</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>entender o papel de cada ação;</li>
+            <li>calcular a malha fechada com cada tipo de controlador;</li>
+            <li>sintonizar por alocação de polos e por Ziegler-Nichols.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 6 a 9.</p></div>
+        </div>
+        <h3 id="s11-1"><span class="num">11.1</span>Lei de controle</h3>
+        <div class="formula"><span data-tex="u(t) = K_p\,e + K_i\int_0^t e\,d\tau + K_d\,\dot e \qquad C(s) = K_p + \frac{K_i}{s} + K_d\,s"></span></div>
+        <p>Na forma industrial, <span data-tex-inline="C = K_p\left(1 + \dfrac{1}{T_i s} + T_d s\right)"></span>, com <span data-tex-inline="K_i = K_p/T_i"></span> e <span data-tex-inline="K_d = K_p T_d"></span>.</p>
+        <div class="fig-host" id="fig-11-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ação</th><th>Efeito principal</th><th>Risco ao aumentar</th></tr></thead>
+          <tbody>
+            <tr><td>Proporcional</td><td>Resposta mais rápida e erro menor</td><td>Sobressinal e instabilidade</td></tr>
+            <tr><td>Integral</td><td>Elimina o erro ao degrau</td><td>Oscilação e windup</td></tr>
+            <tr><td>Derivativa</td><td>Antecipa, aumenta o amortecimento</td><td>Amplifica ruído de medição</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s11-2"><span class="num">11.2</span>Malha fechada sobre uma planta de primeira ordem</h3>
+        <p>Para <span data-tex-inline="G = K/(\tau s + 1)"></span>, com retroalimentação unitária e degrau unitário, cada controlador leva a:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Controlador</th><th>T(s)</th><th>Saída final</th></tr></thead>
+          <tbody>
+            <tr><td>P</td><td><span data-tex-inline="\dfrac{KK_p}{\tau s + 1 + KK_p}"></span></td><td><span data-tex-inline="\dfrac{KK_p}{1+KK_p}"></span></td></tr>
+            <tr><td>I</td><td><span data-tex-inline="\dfrac{KK_i}{\tau s^2 + s + KK_i}"></span></td><td>1</td></tr>
+            <tr><td>D</td><td><span data-tex-inline="\dfrac{KK_d\,s}{(\tau + KK_d)s + 1}"></span></td><td>0</td></tr>
+            <tr><td>PI</td><td><span data-tex-inline="\dfrac{K(K_p s + K_i)}{\tau s^2 + (1+KK_p)s + KK_i}"></span></td><td>1</td></tr>
+            <tr><td>PD</td><td><span data-tex-inline="\dfrac{K(K_d s + K_p)}{(\tau+KK_d)s + 1 + KK_p}"></span></td><td><span data-tex-inline="\dfrac{KK_p}{1+KK_p}"></span></td></tr>
+            <tr><td>PID</td><td><span data-tex-inline="\dfrac{K(K_d s^2 + K_p s + K_i)}{(\tau+KK_d)s^2 + (1+KK_p)s + KK_i}"></span></td><td>1</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Observe que a ação derivativa sozinha leva a saída a zero: em regime, a derivada do erro constante é nula, e o controlador não comanda nada. Note também que o controlador I faz o sistema passar a segunda ordem.</p>
+        <div id="sim-pid" class="sim"></div>
+        <h3 id="s11-3"><span class="num">11.3</span>Alocação de polos</h3>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Sintonia de um PI</div>
+          <p>Para a planta <span data-tex-inline="1/(10s+1)"></span>, ajuste um PI para que a malha fechada tenha ζ = 0,7 e ωn = 1 rad/s.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Polinômio: <span data-tex-inline="s^2 + \dfrac{1+K_p}{10}\,s + \dfrac{K_i}{10}"></span>.</li>
+              <li>Comparando com <span data-tex-inline="s^2 + 1{,}4\,s + 1"></span>: <span data-tex-inline="K_i = 10"></span>.</li>
+              <li><span data-tex-inline="1 + K_p = 14 \Rightarrow K_p = 13"></span>.</li>
+            </ol>
+            <p class="resposta">Kp = 13 e Ki = 10 s⁻¹. O zero do PI, em −10/13, aumenta o sobressinal em relação à forma padrão.</p>
+          </details>
+        </div>
+        <h3 id="s11-4"><span class="num">11.4</span>Ziegler-Nichols</h3>
+        <p>Quando não há modelo, o método do ganho último parte de um ensaio: com o controlador apenas proporcional, aumenta-se o ganho até a oscilação sustentada, e registram-se o ganho <span data-tex-inline="K_u"></span> e o período <span data-tex-inline="T_u"></span>.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Controlador</th><th>Kp</th><th>Ti</th><th>Td</th></tr></thead>
+          <tbody>
+            <tr><td>P</td><td class="num"><span data-tex-inline="0{,}5\,K_u"></span></td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td>PI</td><td class="num"><span data-tex-inline="0{,}45\,K_u"></span></td><td class="num"><span data-tex-inline="T_u/1{,}2"></span></td><td class="num">—</td></tr>
+            <tr><td>PID</td><td class="num"><span data-tex-inline="0{,}6\,K_u"></span></td><td class="num"><span data-tex-inline="T_u/2"></span></td><td class="num"><span data-tex-inline="T_u/8"></span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.2</span>Ganho último obtido por Routh</div>
+          <p>Determine o PID de Ziegler-Nichols para <span data-tex-inline="G = 1/[(10s+1)(3s+1)(s+1)]"></span>.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Polinômio: <span data-tex-inline="30s^3 + 43s^2 + 14s + 1 + K = 0"></span>.</li>
+              <li>Linha s¹ nula: <span data-tex-inline="43 \cdot 14 = 30(1 + K_u) \Rightarrow K_u = 19{,}07"></span>.</li>
+              <li>Frequência: <span data-tex-inline="\omega^2 = 14/30 \Rightarrow \omega = 0{,}683"></span> rad/s, e <span data-tex-inline="T_u = 9{,}20"></span> s.</li>
+              <li><span data-tex-inline="K_p = 11{,}44"></span>, <span data-tex-inline="T_i = 4{,}60"></span> s e <span data-tex-inline="T_d = 1{,}15"></span> s.</li>
+              <li><span data-tex-inline="K_i = 2{,}49"></span> s⁻¹ e <span data-tex-inline="K_d = 13{,}2"></span> s.</li>
+            </ol>
+            <p class="resposta">O resultado é o exemplo 3 do simulador: sobressinal perto de 50 %, típico do método. A sintonia é um ponto de partida para o ajuste fino.</p>
+          </details>
+        </div>
+        <h3 id="s11-5"><span class="num">11.5</span>Problemas práticos</h3>
+        <ul>
+          <li><strong>Windup:</strong> com o atuador saturado, o integrador continua acumulando e a saída passa muito do alvo. Solução: anti-windup, que suspende a integração durante a saturação.</li>
+          <li><strong>Pico de derivada:</strong> um degrau na referência tem derivada infinita. Solução: derivar apenas a medida.</li>
+          <li><strong>Ruído:</strong> a ação derivativa amplifica altas frequências. Solução: filtrar a derivada.</li>
+        </ul>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>P dá rapidez, I elimina o erro ao degrau, e D dá amortecimento.</li>
+          <li>Em regime, com erro nulo, o sinal de controle é sustentado pela integral.</li>
+          <li>Ziegler-Nichols é ponto de partida, com sobressinal elevado.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que controladores de temperatura lentos costumam ser só PI?</summary><p>A ação derivativa pouco acrescenta em processos lentos e dominados por um único polo, e ela amplifica o ruído do sensor. O PI elimina o erro e é mais simples de sintonizar.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 12 -->
+      <section class="section capitulo" id="cap-12" data-parte="Parte III — Projeto" data-topicos="frequencia">
+        <p class="cap-kicker">Capítulo 12</p>
+        <h2>12. Resposta em frequência</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a resposta em regime a uma senoide;</li>
+            <li>esboçar o diagrama de Bode;</li>
+            <li>ler as margens de ganho e de fase.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 7 e 8, e logaritmos.</p></div>
+        </div>
+        <h3 id="s12-1"><span class="num">12.1</span>Regime senoidal</h3>
+        <p>Em um sistema estável, a entrada <span data-tex-inline="A\sin\omega t"></span> produz em regime uma senoide de mesma frequência:</p>
+        <div class="formula"><span data-tex="y_{ss}(t) = A\,|G(j\omega)|\,\sin\!\left(\omega t + \angle G(j\omega)\right)"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 12.1</span>Filtro de primeira ordem</div>
+          <p>Para <span data-tex-inline="G = 1/(2s+1)"></span> e entrada <span data-tex-inline="\sin(0{,}5\,t)"></span>, determine a saída em regime.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="G(j0{,}5) = 1/(1 + j)"></span>.</li>
+              <li>Módulo: <span data-tex-inline="1/\sqrt 2 = 0{,}707"></span>. Fase: <span data-tex-inline="-45^\circ"></span>.</li>
+            </ol>
+            <p class="resposta">y(t) = 0,707 sen(0,5t − 45°).</p>
+          </details>
+        </div>
+        <h3 id="s12-2"><span class="num">12.2</span>Diagrama de Bode</h3>
+        <p>O módulo em decibéis é <span data-tex-inline="20\log_{10}|G|"></span>. Como os fatores se somam em escala logarítmica, a curva é montada por partes:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Fator</th><th>Módulo</th><th>Fase</th></tr></thead>
+          <tbody>
+            <tr><td>Ganho K</td><td><span data-tex-inline="20\log K"></span>, constante</td><td>0°</td></tr>
+            <tr><td>Integrador <span data-tex-inline="1/s"></span></td><td>−20 dB/década</td><td>−90°</td></tr>
+            <tr><td><span data-tex-inline="1/(\tau s + 1)"></span></td><td>0 até <span data-tex-inline="1/\tau"></span>; depois, −20 dB/década; −3 dB na quina</td><td>0° a −90°; −45° na quina</td></tr>
+            <tr><td><span data-tex-inline="\tau s + 1"></span></td><td>0 até <span data-tex-inline="1/\tau"></span>; depois, +20 dB/década</td><td>0° a +90°</td></tr>
+            <tr><td>Par complexo</td><td>0 até <span data-tex-inline="\omega_n"></span>; depois, −40 dB/década; pico se ζ for pequeno</td><td>0° a −180°</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s12-3"><span class="num">12.3</span>Margens de estabilidade</h3>
+        <p>As margens são lidas na função de malha aberta e dizem quanto falta para a instabilidade, supondo um sistema de fase mínima.</p>
+        <div class="formula"><span data-tex="MF = 180^\circ + \angle G(j\omega_{c}) \qquad MG = -20\log_{10}|G(j\omega_{180})|"></span></div>
+        <div class="fig-host" id="fig-12-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 12.2</span>Lendo as margens</div>
+          <p>Para <span data-tex-inline="G = 2/[s(s+1)(s+2)]"></span>, determine as margens.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Fase de −180° em <span data-tex-inline="\omega = \sqrt 2"></span> rad/s, igual à frequência do capítulo 8.</li>
+              <li>Ali, <span data-tex-inline="|G| = 2/6 = 1/3"></span>, e MG = 9,54 dB: o ganho pode triplicar, chegando a K = 6.</li>
+              <li>O módulo vale 1 em <span data-tex-inline="\omega_c = 0{,}749"></span> rad/s, onde a fase é −147,4°.</li>
+            </ol>
+            <p class="resposta">MG = 9,54 dB e MF = 32,6°.</p>
+          </details>
+        </div>
+        <div class="callout tip">
+          <strong>Regra prática</strong>
+          Para ζ até cerca de 0,6, a margem de fase em graus é próxima de 100 ζ. Margem de 45° corresponde a ζ perto de 0,45.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Um sistema linear responde a senoides com senoides de mesma frequência.</li>
+          <li>Na quina de primeira ordem, o módulo cai 3 dB e a fase vale −45°.</li>
+          <li>MG e MF medem a folga em relação à instabilidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Margem de ganho de 6 dB significa o quê?</summary><p>Que o ganho da malha pode dobrar antes de a malha fechada atingir o limite de estabilidade, pois 6 dB equivalem a um fator de cerca de 2.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os três simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-segunda"><small>Capítulo 7 · Segunda ordem</small>Resposta ao degrau e polos no plano s</a></li>
+          <li><a href="#sim-lgr"><small>Capítulo 10 · Lugar das raízes</small>Polos em função do ganho</a></li>
+          <li><a href="#sim-pid"><small>Capítulo 11 · PID</small>Malha com saturação e perturbação</a></li>
+        </ul>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Laplace e blocos</h4>
+            <div class="formula"><span data-tex="f(\infty) = \lim_{s\to 0} sF(s)"></span></div>
+            <div class="formula"><span data-tex="T = \dfrac{G}{1 + GH}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Primeira ordem</h4>
+            <div class="formula"><span data-tex="y = KA(1 - e^{-t/\tau})"></span></div>
+            <div class="formula"><span data-tex="t_{98\%} \approx 4\tau"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Segunda ordem</h4>
+            <div class="formula"><span data-tex="t_p = \pi/\omega_d"></span></div>
+            <div class="formula"><span data-tex="M_p = e^{-\pi\zeta/\sqrt{1-\zeta^2}}"></span></div>
+            <div class="formula"><span data-tex="t_s \approx 4/(\zeta\omega_n)"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Erro em regime</h4>
+            <div class="formula"><span data-tex="e_{degrau} = 1/(1+K_p)"></span></div>
+            <div class="formula"><span data-tex="e_{rampa} = 1/K_v"></span></div>
+            <div class="formula"><span data-tex="e_{parábola} = 1/K_a"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Lugar das raízes</h4>
+            <div class="formula"><span data-tex="\sigma_a = (\sum p - \sum z)/(n - m)"></span></div>
+            <div class="formula"><span data-tex="\theta = \pm 180^\circ(2q+1)/(n-m)"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Margens</h4>
+            <div class="formula"><span data-tex="MF = 180^\circ + \angle G(j\omega_c)"></span></div>
+            <div class="formula"><span data-tex="MG = -20\log_{10}|G(j\omega_{180})|"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice B — Simulado</h2>
+        <p>97 questões objetivas sobre modelagem, Laplace, resposta no tempo, estabilidade, erro, lugar das raízes, PID e resposta em frequência. As questões de cálculo trazem espaço para contas e resolução passo a passo.</p>
+        <div id="quiz" data-quiz="controle-de-sistemas"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice C — Referências</h2>
+        <ul>
+          <li>OGATA, K. <em>Engenharia de Controle Moderno</em>. Pearson.</li>
+          <li>NISE, N. S. <em>Engenharia de Sistemas de Controle</em>. LTC.</li>
+          <li>DORF, R. C.; BISHOP, R. H. <em>Sistemas de Controle Modernos</em>. LTC.</li>
+          <li>ZIEGLER, J. G.; NICHOLS, N. B. Optimum settings for automatic controllers. <em>Transactions of the ASME</em>, 1942.</li>
+          <li>Listas de exercícios e prova da disciplina.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/controle-de-sistemas.js"></script>
+<script src="../js/fig/controle-de-sistemas.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+ "\\tau": [
+  "Constante de tempo",
+  "s"
+ ],
+ "\\zeta": [
+  "Fator de amortecimento",
+  "—"
+ ],
+ "\\omega_n": [
+  "Frequência natural",
+  "rad/s"
+ ],
+ "\\omega_d": [
+  "Frequência natural amortecida",
+  "rad/s"
+ ],
+ "t_p": [
+  "Tempo de pico",
+  "s"
+ ],
+ "t_s": [
+  "Tempo de acomodação",
+  "s"
+ ],
+ "M_p": [
+  "Sobressinal máximo",
+  "—"
+ ],
+ "K_p": [
+  "Ganho proporcional, ou constante de erro de posição",
+  "—"
+ ],
+ "K_v": [
+  "Constante de erro de velocidade",
+  "1/s"
+ ],
+ "K_a": [
+  "Constante de erro de aceleração",
+  "1/s²"
+ ],
+ "K_u": [
+  "Ganho último",
+  "—"
+ ],
+ "T_u": [
+  "Período último",
+  "s"
+ ]
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

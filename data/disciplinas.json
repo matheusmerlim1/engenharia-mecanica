@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "controle-de-sistemas",
     "seguranca-do-trabalho",
     "eletrotecnica",
     "usinagem",
@@ -528,7 +529,7 @@
       ],
       "simuladores": true,
       "normas": false,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "processos-de-fabricacao-2",

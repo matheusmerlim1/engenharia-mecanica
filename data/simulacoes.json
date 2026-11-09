@@ -961,6 +961,36 @@
       "ordem": 4
     },
     {
+      "id": "sim-segunda",
+      "slug": "controle-de-sistemas",
+      "disciplina": "Modelagem e Controle de Sistemas",
+      "periodo": "7",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "1. Resposta de segunda ordem e polos no plano s",
+      "resumo": "Mova o amortecimento e a frequência natural: os polos andam no plano s, e a massa e a curva mostram o resultado.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-lgr",
+      "slug": "controle-de-sistemas",
+      "disciplina": "Modelagem e Controle de Sistemas",
+      "periodo": "7",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "3. Lugar das raízes",
+      "resumo": "Escolha a planta e o ganho. Os quadrados são os polos em malha fechada no ganho escolhido; os círculos varrem o lugar das raízes de K pequeno a K grande.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-pid",
+      "slug": "controle-de-sistemas",
+      "disciplina": "Modelagem e Controle de Sistemas",
+      "periodo": "7",
+      "materia": "Sistemas, Controle e Eletricidade",
+      "titulo": "2. Malha de controle PID",
+      "resumo": "Ajuste os três ganhos, limite o atuador e aplique uma perturbação no instante 40 s.",
+      "ordem": 2
+    },
+    {
       "id": "sim-reologia",
       "slug": "processos-de-fabricacao-2",
       "disciplina": "Processos de Fabricação II",
