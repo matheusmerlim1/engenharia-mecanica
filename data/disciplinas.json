@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "seguranca-do-trabalho",
     "eletrotecnica",
     "usinagem",
     "probabilidade-e-estatistica",
@@ -811,6 +812,24 @@
         "transformadores",
         "motor de indução",
         "partida e inversor"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
+    },
+    {
+      "slug": "seguranca-do-trabalho",
+      "nome": "Segurança do Trabalho",
+      "periodo": "0",
+      "materia": "Gestão e Formação Geral",
+      "pasta": "",
+      "resumo": "Gerenciamento de riscos, ruído, calor e as NRs de máquinas, eletricidade, vasos de pressão, altura, espaços confinados e inflamáveis.",
+      "temas": [
+        "riscos",
+        "NRs",
+        "ruído",
+        "NR-13",
+        "inflamáveis"
       ],
       "simuladores": true,
       "normas": true,

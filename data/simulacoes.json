@@ -1411,6 +1411,36 @@
       "ordem": 2
     },
     {
+      "id": "sim-ruido",
+      "slug": "seguranca-do-trabalho",
+      "disciplina": "Segurança do Trabalho",
+      "periodo": "0",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "1. Dose de ruído na jornada",
+      "resumo": "A dose soma, período a período, o tempo exposto dividido pelo tempo permitido.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-queda",
+      "slug": "seguranca-do-trabalho",
+      "disciplina": "Segurança do Trabalho",
+      "periodo": "0",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "2. Queda com talabarte e absorvedor de energia",
+      "resumo": "Mude a altura da ancoragem e veja o fator de queda, o quanto o absorvedor abre e se o trabalhador para antes do obstáculo.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-purga",
+      "slug": "seguranca-do-trabalho",
+      "disciplina": "Segurança do Trabalho",
+      "periodo": "0",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "3. Atmosfera inflamável e purga por ventilação",
+      "resumo": "A regra de Le Chatelier dá o limite da mistura.",
+      "ordem": 2
+    },
+    {
       "id": "sim-motor",
       "slug": "motores-de-combustao-interna",
       "disciplina": "Motores de Combustão Interna",

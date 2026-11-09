@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segurança do Trabalho — Engenharia Mecânica</title>
+<meta name="description" content="Segurança do trabalho para engenharia mecânica: gerenciamento de riscos, ruído, calor, NR-10, NR-12, NR-13, NR-20, NR-33 e NR-35, com os cálculos de cada norma.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦺</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">Optativa · Engenharia Mecânica</p>
+    <h1>Segurança do Trabalho</h1>
+    <p class="lead">Da gestão ao chão de fábrica. Este texto está organizado como um livro: onze capítulos em sequência, das definições de risco às atividades críticas, sempre com as contas que o engenheiro precisa fazer.</p>
+    <div class="btn-row">
+      <span class="tag accent">11 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">79 questões</span>
+      <span class="tag info">3 simuladores animados</span>
+      <span class="tag info">12 figuras interativas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai da gestão ao chão de fábrica: primeiro o que é risco e como ele é gerenciado, depois os agentes ambientais e, por fim, as atividades em que um erro costuma ser fatal, como máquinas, eletricidade, pressão, altura, espaço confinado e inflamáveis.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: segurança também é cálculo</h2>
+        <p>Boa parte das Normas Regulamentadoras parece apenas lista de obrigações, mas o engenheiro mecânico decide com números: a dose de ruído da jornada, a categoria de um vaso de pressão, a distância de uma cortina de luz, a zona livre de queda de um talabarte, o tempo de purga de um tanque. Este texto reúne as regras e mostra as contas por trás delas.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>O que é acidente e como medir?</td><td>Conceitos, CAT e taxas</td><td>1</td></tr>
+            <tr><td>Como gerenciar os riscos?</td><td>NR-1, PGR e técnicas de análise</td><td>2</td></tr>
+            <tr><td>Quem faz o quê na empresa?</td><td>SESMT, CIPA, EPI e PCMSO</td><td>3</td></tr>
+            <tr><td>O ruído está dentro do limite?</td><td>Dose, NR-15 e NHO 01</td><td>4</td></tr>
+            <tr><td>Há adicional a pagar?</td><td>Calor, químicos, insalubridade e periculosidade</td><td>5</td></tr>
+            <tr><td>A máquina está protegida?</td><td>NR-12 e distância de segurança</td><td>6</td></tr>
+            <tr><td>Como trabalhar perto de eletricidade?</td><td>NR-10 e zonas</td><td>7</td></tr>
+            <tr><td>Qual a categoria e o prazo de inspeção?</td><td>NR-13</td><td>8</td></tr>
+            <tr><td>O talabarte segura a queda a tempo?</td><td>NR-35 e zona livre</td><td>9</td></tr>
+            <tr><td>Posso entrar no tanque?</td><td>NR-33 e permissão de entrada</td><td>10</td></tr>
+            <tr><td>Essa atmosfera pode explodir?</td><td>NR-20, limites de inflamabilidade e purga</td><td>11</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Normas mudam</strong>
+          Os valores deste texto foram conferidos nas versões publicadas pelo Ministério do Trabalho e Emprego em novembro de 2026. As NRs são alteradas com frequência: em decisão real, consulte a versão vigente.
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Fixe primeiro a ordem de prioridade das medidas de prevenção, do capítulo 2. Ela aparece em quase toda norma, e responde a muitas questões: eliminar, proteger coletivamente, organizar o trabalho e, por último, usar o EPI.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Gestão" data-topicos="fundamentos">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Acidente, perigo e risco</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir perigo de risco;</li>
+            <li>reconhecer o acidente de trabalho na lei;</li>
+            <li>calcular as taxas de frequência e de gravidade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Nenhum pré-requisito.</p></div>
+        </div>
+        <h3 id="s1-1"><span class="num">1.1</span>Perigo e risco</h3>
+        <p><strong>Perigo</strong> é a fonte com potencial de causar dano: um vaso pressurizado, uma polia em movimento, um produto tóxico. <strong>Risco</strong> combina a chance de o dano ocorrer com a severidade dele. O mesmo perigo pode representar risco alto ou baixo, conforme as barreiras existentes. Um quase-acidente, ou incidente, é o evento que poderia ter causado dano e não causou.</p>
+        <h3 id="s1-2"><span class="num">1.2</span>Definição legal</h3>
+        <p>Pela Lei 8.213/1991, art. 19, acidente do trabalho é o que ocorre pelo exercício do trabalho a serviço da empresa e provoca lesão corporal ou perturbação funcional que cause a morte, ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho. Equiparam-se a ele a doença profissional, a doença do trabalho e o acidente de trajeto entre a residência e o local de trabalho.</p>
+        <p>A empresa deve emitir a <strong>CAT</strong>, Comunicação de Acidente do Trabalho, até o primeiro dia útil seguinte ao da ocorrência e, em caso de morte, de imediato.</p>
+        <div class="fig-host" id="fig-1-1"></div>
+        <h3 id="s1-3"><span class="num">1.3</span>Taxas de frequência e de gravidade</h3>
+        <p>A ABNT NBR 14280 normaliza os indicadores por milhão de horas-homem de exposição ao risco, H, o que permite comparar empresas de tamanhos diferentes:</p>
+        <div class="formula"><span data-tex="TF = \frac{N \cdot 10^6}{H} \qquad TG = \frac{T \cdot 10^6}{H}"></span></div>
+        <p>N é o número de acidentes e T, o tempo computado: os dias perdidos somados aos dias debitados, que convertem morte e incapacidade permanente em dias conforme a tabela da norma.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Comparando o ano</div>
+          <p>Uma unidade com 600 trabalhadores, a 2000 h por ano cada um, teve 6 acidentes com afastamento e 150 dias computados.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="H = 600 \cdot 2000 = 1{,}2 \cdot 10^6"></span> horas-homem.</li>
+              <li><span data-tex-inline="TF = 6 \cdot 10^6 / 1{,}2 \cdot 10^6 = 5{,}0"></span>.</li>
+              <li><span data-tex-inline="TG = 150 \cdot 10^6 / 1{,}2 \cdot 10^6 = 125"></span>.</li>
+            </ol>
+            <p class="resposta">TF = 5,0 acidentes por milhão de horas e TG = 125 dias por milhão de horas.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Perigo é a fonte; risco combina probabilidade e severidade.</li>
+          <li>CAT: até o primeiro dia útil seguinte; em caso de morte, de imediato.</li>
+          <li>TF e TG são calculadas por milhão de horas-homem.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>TF baixa garante que a empresa é segura?</summary><p>Não. Ela conta acidentes já ocorridos, e pode estar baixa em plantas sujeitas a acidentes raros e catastróficos. Por isso a segurança de processo usa também indicadores de barreiras e de quase-acidentes.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Gestão" data-topicos="gro">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Gerenciamento de riscos: NR-1</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>descrever o GRO e o PGR;</li>
+            <li>aplicar a ordem de prioridade das medidas;</li>
+            <li>escolher a técnica de análise de riscos.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+        <h3 id="s2-1"><span class="num">2.1</span>GRO e PGR</h3>
+        <p>A NR-1 obriga a organização a manter o Gerenciamento de Riscos Ocupacionais, GRO, materializado no <strong>Programa de Gerenciamento de Riscos, PGR</strong>. O PGR tem dois documentos-base: o <strong>inventário de riscos</strong> e o <strong>plano de ação</strong>. A avaliação de riscos é um processo contínuo, e deve ser revista a cada dois anos ou quando houver mudança relevante, como acidente, nova tecnologia ou medidas implantadas.</p>
+        <p>O PGR substituiu o antigo PPRA, que tratava só de agentes físicos, químicos e biológicos. Ele abrange todos os riscos ocupacionais, e desde maio de 2026 inclui expressamente os fatores de risco psicossociais relacionados ao trabalho.</p>
+        <h3 id="s2-2"><span class="num">2.2</span>Ordem de prioridade</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ordem</th><th>Medida</th><th>Exemplo com ruído</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Eliminação do fator de risco</td><td>Trocar o processo por outro silencioso</td></tr>
+            <tr><td>2</td><td>Proteção coletiva</td><td>Enclausurar a máquina</td></tr>
+            <tr><td>3</td><td>Medidas administrativas ou de organização do trabalho</td><td>Reduzir o tempo de exposição</td></tr>
+            <tr><td>4</td><td>Proteção individual</td><td>Protetor auditivo</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-2-1"></div>
+        <h3 id="s2-3"><span class="num">2.3</span>Técnicas de análise</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Técnica</th><th>Como funciona</th><th>Quando usar</th></tr></thead>
+          <tbody>
+            <tr><td>APR / APP</td><td>Lista perigos, causas, consequências, severidade e frequência</td><td>Início de projeto ou tarefa</td></tr>
+            <tr><td>HAZOP</td><td>Palavras-guia aplicadas aos parâmetros de cada nó: mais, menos, nenhum, reverso</td><td>Processo contínuo, com P&amp;ID detalhado</td></tr>
+            <tr><td>What-if</td><td>Perguntas “e se…?” de uma equipe experiente</td><td>Revisões e mudanças</td></tr>
+            <tr><td>FMEA</td><td>Modos de falha de cada componente e seus efeitos</td><td>Equipamentos e sistemas mecânicos</td></tr>
+            <tr><td>Árvore de falhas</td><td>Dedução do evento topo até as causas básicas, com portas lógicas</td><td>Quantificar a probabilidade de um evento</td></tr>
+            <tr><td>Bow-tie</td><td>Causas, barreiras preventivas, evento, barreiras mitigadoras e consequências</td><td>Comunicar e gerir barreiras</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Árvore de falhas simples</div>
+          <p>O sobrepressionamento de um vaso exige falha no controle, com probabilidade 0,1 por ano, e falha da válvula de segurança, com probabilidade 0,01 sob demanda, independentes entre si.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>As duas falhas precisam ocorrer: porta E, as probabilidades se multiplicam.</li>
+              <li><span data-tex-inline="P = 0{,}1 \cdot 0{,}01 = 10^{-3}"></span> por ano.</li>
+            </ol>
+            <p class="resposta">Uma ocorrência a cada mil anos, em média. Uma barreira independente reduz a frequência em cem vezes neste caso.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>PGR: inventário de riscos e plano de ação.</li>
+          <li>Prioridade: eliminar, coletiva, administrativa, individual.</li>
+          <li>HAZOP usa palavras-guia; FMEA parte dos modos de falha.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o EPI é a última opção?</summary><p>Porque não reduz o perigo, depende do uso correto de cada pessoa e, se falhar, não há barreira restante.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Gestão" data-topicos="organizacao">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Organização da segurança na empresa</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>diferenciar SESMT e CIPA;</li>
+            <li>conhecer as obrigações sobre o EPI;</li>
+            <li>listar os exames do PCMSO.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+        <h3 id="s3-1"><span class="num">3.1</span>SESMT e CIPA</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th></th><th>SESMT (NR-4)</th><th>CIPA (NR-5)</th></tr></thead>
+          <tbody>
+            <tr><td>O que é</td><td>Serviço técnico especializado</td><td>Comissão Interna de Prevenção de Acidentes e de Assédio</td></tr>
+            <tr><td>Composição</td><td>Engenheiro e técnico de segurança, médico e enfermeiro do trabalho, auxiliar</td><td>Representantes do empregador, indicados, e dos empregados, eleitos</td></tr>
+            <tr><td>Dimensionamento</td><td>Grau de risco e número de empregados</td><td>Grau de risco e número de empregados</td></tr>
+            <tr><td>Particularidade</td><td>Profissionais qualificados</td><td>Mandato de 1 ano, permitida uma reeleição</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s3-2"><span class="num">3.2</span>EPI: NR-6</h3>
+        <p>O equipamento de proteção individual, nacional ou importado, só pode ser vendido ou usado com a indicação do <strong>Certificado de Aprovação, CA</strong>. O empregador deve fornecê-lo gratuitamente, adequado ao risco e em perfeito estado, além de exigir o uso, orientar e treinar o trabalhador, substituir o equipamento danificado e registrar o fornecimento. Ao trabalhador cabe usar, guardar, conservar e comunicar alterações.</p>
+        <h3 id="s3-3"><span class="num">3.3</span>PCMSO: NR-7</h3>
+        <p>O Programa de Controle Médico de Saúde Ocupacional prevê os exames <strong>admissional, periódico, de retorno ao trabalho, de mudança de riscos ocupacionais e demissional</strong>. O exame clínico periódico é anual, ou em intervalo menor a critério do médico, para quem está exposto a riscos identificados no PGR ou tem doença crônica que aumente a suscetibilidade; para os demais empregados, é a cada dois anos.</p>
+        <div class="callout note">
+          <strong>Hierarquia dos programas</strong>
+          O PGR identifica os riscos, e o PCMSO se apoia nele para definir os exames. Um PCMSO sem PGR atualizado perde a base técnica.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>SESMT é técnico; CIPA é paritária, com mandato de 1 ano.</li>
+          <li>EPI: CA obrigatório, fornecimento gratuito.</li>
+          <li>PCMSO: cinco tipos de exame.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O empregado pode ser cobrado pelo EPI fornecido?</summary><p>Não. A NR-6 determina o fornecimento gratuito. Recusar o uso sem justificativa, por outro lado, é falta do trabalhador.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Agentes ambientais" data-topicos="ruido">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Ruído</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a dose de uma jornada;</li>
+            <li>comparar a NR-15 com a NHO 01;</li>
+            <li>somar níveis em decibéis.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Logaritmos.</p></div>
+        </div>
+        <h3 id="s4-1"><span class="num">4.1</span>Limites de tolerância</h3>
+        <p>O Anexo 1 da NR-15 fixa, para ruído contínuo ou intermitente, medido em dB(A) com resposta lenta, a máxima exposição diária. O limite é de <strong>85 dB(A) para 8 horas</strong>. Exposição acima de 115 dB(A) sem proteção adequada é proibida e representa risco grave e iminente. Para nível intermediário, vale o tempo do nível imediatamente mais elevado.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>dB(A)</th><th>85</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th><th>115</th></tr></thead>
+          <tbody><tr><td>Exposição máxima</td><td>8 h</td><td>4 h</td><td>2 h</td><td>1 h</td><td>30 min</td><td>15 min</td><td>7 min</td></tr></tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-4-1"></div>
+        <h3 id="s4-2"><span class="num">4.2</span>Dose</h3>
+        <p>Com vários níveis na jornada, somam-se as frações. Passar de 100 % significa estar acima do limite:</p>
+        <div class="formula"><span data-tex="D = 100\,\left(\frac{C_1}{T_1} + \frac{C_2}{T_2} + \dots + \frac{C_n}{T_n}\right)"></span></div>
+        <p>Pela NR-9, enquanto não houver anexo próprio, o <strong>nível de ação para ruído é a metade da dose</strong>, 50 %. Acima dele, são obrigatórias ações de controle sistemático, para evitar que o limite seja ultrapassado.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Jornada com três níveis</div>
+          <p>Trabalhador exposto a 90 dB(A) por 3 h, a 95 dB(A) por 2 h e a 85 dB(A) por 3 h.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Tempos permitidos: 4 h, 2 h e 8 h.</li>
+              <li><span data-tex-inline="D = 100\,(3/4 + 2/2 + 3/8) = 212{,}5\ \%"></span>.</li>
+              <li><span data-tex-inline="L_{eq} = 85 + 16{,}61\log_{10}(2{,}125) = 90{,}4"></span> dB(A).</li>
+            </ol>
+            <p class="resposta">A dose é de 212,5 %: a exposição está acima do limite, e o período a 95 dB(A), sozinho, já consome 100 %.</p>
+          </details>
+        </div>
+        <div id="sim-ruido" class="sim"></div>
+        <h3 id="s4-3"><span class="num">4.3</span>NR-15 e NHO 01</h3>
+        <p>A NR-15 usa fator de troca q = 5 dB, e define o direito ao adicional. A NHO 01, da Fundacentro, usa q = 3 dB, fisicamente coerente com a energia sonora, e é a referência técnica para prevenção. O mesmo exemplo, pela NHO 01, resulta em dose de 409 %.</p>
+        <h3 id="s4-4"><span class="num">4.4</span>Somando decibéis</h3>
+        <div class="formula"><span data-tex="L_{total} = 10\log_{10}\sum_i 10^{L_i/10}"></span></div>
+        <div class="fig-host" id="fig-4-2"></div>
+        <div class="callout warn">
+          <strong>O protetor não anula o risco</strong>
+          O NRRsf é obtido em ensaio com usuários sem treinamento, e a atenuação real depende da colocação. Mesmo com protetor, a medida no PGR continua sendo atacar a fonte.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>85 dB(A) por 8 h; acima de 115 dB(A) sem proteção é proibido.</li>
+          <li>Dose = 100 Σ C/T. Nível de ação: 50 %.</li>
+          <li>Duas fontes iguais somam 3 dB.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A 88 dB(A), por quanto tempo pode-se ficar sem proteção, pela NR-15?</summary><p>Cinco horas, conforme o Quadro do Anexo 1.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Agentes ambientais" data-topicos="higiene">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Calor, agentes químicos e adicionais</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular o IBUTG e compará-lo ao limite;</li>
+            <li>interpretar limites de tolerância químicos;</li>
+            <li>distinguir insalubridade de periculosidade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 4.</p></div>
+        </div>
+        <h3 id="s5-1"><span class="num">5.1</span>Agentes ambientais</h3>
+        <p>A NR-9 trata da avaliação e do controle das exposições a agentes <strong>físicos, químicos e biológicos</strong>, integrando o PGR. Físicos: ruído, calor, frio, vibração, radiações, pressões anormais e umidade. Químicos: gases, vapores, névoas, neblinas, fumos e poeiras.</p>
+        <h3 id="s5-2"><span class="num">5.2</span>Calor</h3>
+        <p>O Anexo 3 da NR-15, reformulado em 2019, avalia ambientes fechados ou com fonte artificial de calor pelo <strong>IBUTG</strong>, no período de 60 minutos mais crítico, conforme a NHO 06:</p>
+        <div class="formula"><span data-tex="\text{IBUTG} = 0{,}7\,t_{bn} + 0{,}3\,t_g \quad \text{(sem carga solar)} \qquad \text{IBUTG} = 0{,}7\,t_{bn} + 0{,}2\,t_g + 0{,}1\,t_{bs} \quad \text{(com carga solar)}"></span></div>
+        <p>O limite é dado em função da taxa metabólica, no Quadro 1, e a insalubridade, quando caracterizada, é de grau médio.</p>
+        <div class="fig-host" id="fig-5-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Forno em ambiente fechado</div>
+          <p>Bulbo úmido natural de 25 °C, globo de 40 °C e taxa metabólica de 300 W.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\text{IBUTG} = 0{,}7 \cdot 25 + 0{,}3 \cdot 40 = 29{,}5"></span> °C.</li>
+              <li>O Quadro 1 dá, para 300 W, o limite de 28,2 °C.</li>
+              <li>Como 29,5 &gt; 28,2, o limite foi ultrapassado.</li>
+            </ol>
+            <p class="resposta">A atividade é insalubre em grau médio, com adicional de 20 %. Proteger o trabalhador da radiação do forno reduz o termo do globo.</p>
+          </details>
+        </div>
+        <h3 id="s5-3"><span class="num">5.3</span>Agentes químicos</h3>
+        <p>O Anexo 11 da NR-15 lista limites de tolerância para jornadas de até 48 horas semanais, como 8 ppm para o gás sulfídrico e 39 ppm para o monóxido de carbono. Pela NR-9, o nível de ação para químicos é a metade do limite. Na ausência de limite na NR-15, usa-se como referência o da ACGIH.</p>
+        <h3 id="s5-4"><span class="num">5.4</span>Insalubridade e periculosidade</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th></th><th>Insalubridade (NR-15)</th><th>Periculosidade (NR-16)</th></tr></thead>
+          <tbody>
+            <tr><td>Causa</td><td>Agente acima do limite ou atividade listada</td><td>Explosivos, inflamáveis, energia elétrica, segurança patrimonial e outras listadas</td></tr>
+            <tr><td>Efeito</td><td>Dano progressivo à saúde</td><td>Risco de evento súbito e grave</td></tr>
+            <tr><td>Adicional</td><td>10 %, 20 % ou 40 %, conforme o grau</td><td>30 % sobre o salário, sem gratificações, prêmios ou participação nos lucros</td></tr>
+            <tr><td>Vários fatores</td><td>Vale só o de grau mais elevado</td><td>O empregado pode optar pelo adicional de insalubridade</td></tr>
+            <tr><td>Fim do pagamento</td><td>Eliminação ou neutralização do agente</td><td>Descaracterização por laudo</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O transporte de inflamáveis é perigoso, salvo em pequenas quantidades: até 200 litros para líquidos e 135 quilos para gases liquefeitos. O laudo cabe a médico do trabalho ou engenheiro de segurança do trabalho.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>IBUTG sem sol: 0,7 t<sub>bn</sub> + 0,3 t<sub>g</sub>.</li>
+          <li>Insalubridade: 10, 20 ou 40 %. Periculosidade: 30 %.</li>
+          <li>Os dois adicionais não se acumulam.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O uso de EPI elimina o direito ao adicional de insalubridade?</summary><p>Sim, se o EPI neutralizar o agente, conforme a NR-15. Fornecer o equipamento sem garantir a neutralização não basta.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte III — Máquinas e energia" data-topicos="nr12">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Segurança em máquinas: NR-12</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>classificar as proteções;</li>
+            <li>aplicar os requisitos do intertravamento e da parada de emergência;</li>
+            <li>calcular a distância de uma cortina de luz.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Cinemática elementar.</p></div>
+        </div>
+        <h3 id="s6-1"><span class="num">6.1</span>Proteções</h3>
+        <p>Proteções fixas só são retiradas com ferramenta. Quando o acesso é frequente, usa-se proteção móvel associada a <strong>dispositivo de intertravamento</strong>, que deve:</p>
+        <ul>
+          <li>permitir a operação somente com a proteção fechada;</li>
+          <li>paralisar as funções perigosas quando a proteção for aberta;</li>
+          <li>garantir que o fechamento, por si só, não dê início às funções perigosas.</li>
+        </ul>
+        <p>Se a máquina tiver inércia, como um volante, usa-se intertravamento com bloqueio, que só libera a abertura após a parada do movimento perigoso.</p>
+        <h3 id="s6-2"><span class="num">6.2</span>Parada de emergência</h3>
+        <p>Pela NR-12, os dispositivos de parada de emergência:</p>
+        <ul>
+          <li>são medida auxiliar, e não substituem proteções ou sistemas automáticos de segurança;</li>
+          <li>prevalecem sobre todos os outros comandos;</li>
+          <li>não podem ser usados como dispositivo de partida ou de acionamento;</li>
+          <li>ficam retidos ao serem acionados, e só voltam por ação manual intencional.</li>
+        </ul>
+        <h3 id="s6-3"><span class="num">6.3</span>Distância da cortina de luz</h3>
+        <p>O Anexo I da NR-12 adota o cálculo da ISO 13855:</p>
+        <div class="formula"><span data-tex="S = K\,T + C"></span></div>
+        <p>T é o tempo total de parada, em segundos, e C é o adicional de intrusão, em milímetros, dado pela capacidade de detecção da cortina. Em cortina vertical, usa-se K = 2000 mm/s se S resultar em até 500 mm. Se passar disso, pode-se usar K = 1600 mm/s, mantendo S de pelo menos 500 mm.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Detecção (mm)</th><th>até 14</th><th>até 20</th><th>até 30</th><th>até 40</th><th>acima de 40</th></tr></thead>
+          <tbody><tr><td>C (mm)</td><td>0</td><td>80</td><td>130</td><td>240</td><td>850</td></tr></tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-6-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Prensa com cortina de 14 mm</div>
+          <p>Determine S para tempo total de 0,20 s e, depois, de 0,30 s.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>C = 0 para 14 mm.</li>
+              <li>Com 0,20 s: <span data-tex-inline="S = 2000 \cdot 0{,}20 = 400"></span> mm, que é menor que 500 mm.</li>
+              <li>Com 0,30 s: 2000 · 0,30 = 600 mm, maior que 500 mm. Refazendo com K = 1600: 480 mm.</li>
+              <li>Como não pode ser menor que 500 mm, adota-se S = 500 mm.</li>
+            </ol>
+            <p class="resposta">S = 400 mm no primeiro caso e 500 mm no segundo. Medir o tempo de parada real é tão importante quanto a conta.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Fechar a proteção não pode, sozinho, dar a partida.</li>
+          <li>Parada de emergência é medida auxiliar e prevalece sobre os outros comandos.</li>
+          <li>S = K·T + C.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que uma cortina mais grossa, com detecção de 50 mm, fica muito mais longe?</summary><p>Porque ela não detecta dedos nem a mão: C = 850 mm considera o alcance de um braço que passa antes de ser detectado.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte III — Máquinas e energia" data-topicos="nr10">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Eletricidade: NR-10</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>explicar por que a corrente é o que causa o dano;</li>
+            <li>seguir a sequência de desenergização;</li>
+            <li>delimitar as zonas de risco e controlada.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Lei de Ohm.</p></div>
+        </div>
+        <div class="callout warn">
+          <strong>Duas versões da NR-10</strong>
+          O texto novo, da Portaria MTE 737/2026, entra em vigor em 1º de junho de 2027. Até lá, vale a versão anterior. Este capítulo apresenta a regra vigente e aponta o que muda.
+        </div>
+        <h3 id="s7-1"><span class="num">7.1</span>Choque e arco</h3>
+        <div class="fig-host" id="fig-7-1"></div>
+        <p>Além do choque, há o <strong>arco elétrico</strong>, cujo efeito é térmico: exige estudo de energia incidente e vestimenta adequada. O dispositivo DR de alta sensibilidade, de 30 mA, é proteção adicional contra contato. Ele não protege contra sobrecarga.</p>
+        <h3 id="s7-2"><span class="num">7.2</span>Classes de tensão</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Classe</th><th>Corrente alternada</th><th>Corrente contínua</th></tr></thead>
+          <tbody>
+            <tr><td>Extrabaixa (EBT)</td><td>até 50 V</td><td>até 120 V</td></tr>
+            <tr><td>Baixa (BT)</td><td>acima de 50 V e até 1000 V</td><td>acima de 120 V e até 1500 V</td></tr>
+            <tr><td>Alta (AT), texto vigente</td><td>acima de 1000 V</td><td>acima de 1500 V</td></tr>
+            <tr><td>Média (MT), a partir de 2027</td><td>acima de 1000 V e até 36,2 kV</td><td>acima de 1500 V e até 3000 V</td></tr>
+            <tr><td>Alta (AT), a partir de 2027</td><td>acima de 36,2 kV</td><td>acima de 3000 V</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s7-3"><span class="num">7.3</span>Desenergização</h3>
+        <p>A desenergização é a medida prioritária. A instalação só é considerada desenergizada depois da sequência, nesta ordem:</p>
+        <ol>
+          <li>seccionamento;</li>
+          <li>impedimento de reenergização, com bloqueio;</li>
+          <li>constatação da ausência de tensão;</li>
+          <li>instalação de aterramento temporário, com equipotencialização dos condutores;</li>
+          <li>proteção dos elementos energizados existentes na zona controlada;</li>
+          <li>instalação da sinalização de impedimento de reenergização.</li>
+        </ol>
+        <h3 id="s7-4"><span class="num">7.4</span>Zonas</h3>
+        <div class="fig-host" id="fig-7-2"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Barramento de 13,8 kV</div>
+          <p>Determine os raios das zonas.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>13,8 kV está na faixa de 10 a 15 kV.</li>
+              <li>Pela tabela: Rr = 0,38 m e Rc = 1,38 m.</li>
+            </ol>
+            <p class="resposta">A aproximação a menos de 0,38 m só é permitida a autorizado, com técnicas, instrumentos e equipamentos para instalações energizadas.</p>
+          </details>
+        </div>
+        <h3 id="s7-5"><span class="num">7.5</span>Quem pode trabalhar</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Condição</th><th>Requisito, no texto vigente</th></tr></thead>
+          <tbody>
+            <tr><td>Qualificado</td><td>Curso específico na área elétrica, reconhecido pelo sistema oficial de ensino</td></tr>
+            <tr><td>Habilitado</td><td>Qualificado e com registro no conselho de classe</td></tr>
+            <tr><td>Capacitado</td><td>Treinado por habilitado e autorizado, trabalhando sob a responsabilidade de um</td></tr>
+            <tr><td>Autorizado</td><td>Qualificado, habilitado ou capacitado, com anuência formal da empresa</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O treinamento básico tem 40 horas, o complementar para o sistema elétrico de potência, mais 40 horas, e a reciclagem é bienal. Serviços em alta tensão energizada não podem ser feitos individualmente. O texto de 2027 mantém as 40 horas do básico e a periodicidade bienal, agora com carga mínima de 16 horas, e organiza a capacitação em módulos.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A corrente pelo corpo é que causa o dano.</li>
+          <li>Seis etapas de desenergização, começando por seccionar.</li>
+          <li>Reciclagem bienal.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que constatar a ausência de tensão antes de aterrar?</summary><p>Porque ligar à terra um circuito ainda energizado provoca curto-circuito e arco sobre quem executa a manobra.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Máquinas e energia" data-topicos="nr13">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Caldeiras e vasos de pressão: NR-13</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>verificar o enquadramento na norma;</li>
+            <li>categorizar caldeiras e vasos;</li>
+            <li>determinar os prazos de inspeção.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Pressão e volume.</p></div>
+        </div>
+        <h3 id="s8-1"><span class="num">8.1</span>Campo de aplicação</h3>
+        <p>A NR-13 se aplica a caldeiras com pressão de operação acima de 60 kPa, a vasos com produto P·V acima de 8, com P em kPa e V em m³, e a vasos com fluido classe A, seja qual for o produto P·V, entre outros equipamentos. Trata também de tubulações de interligação e de tanques metálicos de armazenamento.</p>
+        <p>A <strong>PMTA</strong>, Pressão Máxima de Trabalho Admissível, é o maior valor de pressão compatível com o código de projeto, a resistência dos materiais, as dimensões e os parâmetros operacionais. O <strong>Profissional Legalmente Habilitado, PLH</strong>, é quem tem competência legal para o exercício da engenharia na atividade, conforme o conselho de classe.</p>
+        <h3 id="s8-2"><span class="num">8.2</span>Caldeiras</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Categoria</th><th>Pressão de operação</th><th>Prática supervisionada do operador</th><th>Inspeção de segurança periódica</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>1960 kPa ou mais</td><td>80 h</td><td>12 meses, ou 24 se as válvulas forem testadas aos 12 meses</td></tr>
+            <tr><td>B</td><td>acima de 60 kPa e abaixo de 1960 kPa</td><td>60 h</td><td>12 meses, ou 30 com sistema de gerenciamento de combustão</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>O treinamento de segurança na operação tem carga mínima de 40 horas, e é complementado pela prática supervisionada na própria caldeira, indicada na tabela. Com Serviço Próprio de Inspeção de Equipamentos, SPIE, os prazos podem ser ampliados. Ao completar 25 anos, a caldeira passa por avaliação de integridade mais abrangente na inspeção seguinte. Material antigo cita categoria C, que não existe mais.</p>
+        <h3 id="s8-3"><span class="num">8.3</span>Vasos de pressão</h3>
+        <p>Os fluidos são agrupados em classes: <strong>A</strong> (inflamáveis, combustíveis a 200 °C ou mais, tóxicos com limite até 20 ppm, hidrogênio e acetileno), <strong>B</strong> (combustíveis abaixo de 200 °C e tóxicos com limite acima de 20 ppm), <strong>C</strong> (vapor de água, gases asfixiantes simples e ar comprimido) e <strong>D</strong> (outros). O grupo vem do produto P·V, agora com <strong>P em MPa</strong>.</p>
+        <div class="fig-host" id="fig-8-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Categoria</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th></tr></thead>
+          <tbody>
+            <tr><td>Exame externo</td><td>1 ano</td><td>2 anos</td><td>3 anos</td><td>4 anos</td><td>5 anos</td></tr>
+            <tr><td>Exame interno</td><td>3 anos</td><td>4 anos</td><td>6 anos</td><td>8 anos</td><td>10 anos</td></tr>
+            <tr><td>Com SPIE, externo</td><td>3 anos</td><td>4 anos</td><td>5 anos</td><td>6 anos</td><td>7 anos</td></tr>
+            <tr><td>Com SPIE, interno</td><td>6 anos</td><td>8 anos</td><td>10 anos</td><td>12 anos</td><td>a critério</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Vaso de hidrocarboneto</div>
+          <p>Vaso de 10 m³, com fluido inflamável, operando a 1,2 MPa, em estabelecimento sem SPIE.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Em kPa: 1200 · 10 = 12 000, muito acima de 8. Está no campo da norma.</li>
+              <li>Em MPa: <span data-tex-inline="P\cdot V = 1{,}2 \cdot 10 = 12"></span>, entre 2,5 e 30: grupo 3.</li>
+              <li>Fluido inflamável é classe A. Na tabela: categoria II.</li>
+              <li>Prazos: exame externo em 2 anos e interno em 4 anos.</li>
+            </ol>
+            <p class="resposta">Categoria II. Observe as duas unidades da norma: kPa para enquadrar e MPa para categorizar.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Risco grave e iminente</strong>
+          A NR-13 considera condição de risco grave e iminente, entre outras, a ausência ou o bloqueio de dispositivos de segurança sem justificativa técnica. A válvula de segurança deve estar ajustada a valor igual ou inferior à PMTA.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Caldeira A: a partir de 1960 kPa. B: de 60 kPa a 1960 kPa.</li>
+          <li>Vaso: classe do fluido e grupo P·V, com P em MPa.</li>
+          <li>Categoria I é a mais crítica.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Um compressor com reservatório de ar de 0,5 m³ a 1 MPa está na NR-13?</summary><p>Sim. P·V = 1000 · 0,5 = 500 kPa·m³, acima de 8. Com P em MPa, P·V = 0,5: grupo 5, classe C, categoria V.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte IV — Atividades críticas" data-topicos="nr35">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Trabalho em altura: NR-35</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>identificar quando a NR-35 se aplica;</li>
+            <li>calcular o fator de queda;</li>
+            <li>dimensionar a zona livre de queda.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Energia e queda livre.</p></div>
+        </div>
+        <h3 id="s9-1"><span class="num">9.1</span>Aplicação</h3>
+        <p>A NR-35 se aplica a toda atividade com diferença de nível <strong>acima de 2,0 m</strong> do nível inferior, onde haja risco de queda. O treinamento inicial tem no mínimo 8 horas, e o periódico, a cada dois anos, também tem 8 horas. A atividade exige análise de risco e, quando não rotineira, permissão de trabalho.</p>
+        <h3 id="s9-2"><span class="num">9.2</span>Sistema de proteção</h3>
+        <p>Na retenção de queda, usa-se cinturão tipo paraquedista. Se o elemento de ligação for um talabarte, ele deve ser integrado com absorvedor de energia, exigência reforçada em 2025. A força de impacto transmitida ao trabalhador deve ser de <strong>no máximo 6 kN</strong>.</p>
+        <p>O <strong>fator de queda</strong> é a razão entre a distância que o trabalhador percorreria na queda e o comprimento do elemento que irá detê-lo. Com ancoragem acima da cabeça, ele fica abaixo de 1; com ancoragem aos pés, chega a 2.</p>
+        <div class="formula"><span data-tex="FQ = \frac{h_{livre}}{L} \qquad d = \frac{m\,g\,h_{livre}}{F - m\,g}"></span></div>
+        <div class="fig-host" id="fig-9-1"></div>
+        <h3 id="s9-3"><span class="num">9.3</span>Zona livre de queda</h3>
+        <p>A zona livre é o espaço mínimo abaixo do ponto de ancoragem, no caso de talabarte, para evitar choque com a estrutura ou o solo. Em primeira aproximação:</p>
+        <div class="formula"><span data-tex="ZLQ = L + d + h_{engate} + \text{margem}"></span></div>
+        <p>Adotam-se valores dos fabricantes para a abertura do absorvedor e, em geral, 1,5 m do engate aos pés e 1 m de margem.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Ancoragem aos pés</div>
+          <p>Trabalhador com ferramentas, 100 kg, talabarte de 1,8 m e absorvedor de 4 kN, ancorado na altura dos pés.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Queda livre: <span data-tex-inline="2L = 3{,}6"></span> m; FQ = 2.</li>
+              <li>Velocidade: <span data-tex-inline="v = \sqrt{2 \cdot 9{,}81 \cdot 3{,}6} = 8{,}4"></span> m/s.</li>
+              <li><span data-tex-inline="d = 981 \cdot 3{,}6/(4000 - 981) = 1{,}17"></span> m.</li>
+              <li><span data-tex-inline="ZLQ = 1{,}8 + 1{,}17 + 1{,}5 + 1 = 5{,}47"></span> m.</li>
+            </ol>
+            <p class="resposta">São necessários cerca de 5,5 m abaixo da ancoragem. Ancorar acima da cabeça reduz muito essa distância.</p>
+          </details>
+        </div>
+        <div id="sim-queda" class="sim"></div>
+        <div class="callout note">
+          <strong>Resgate</strong>
+          A norma exige plano de emergência. Suspenso pelo cinturão, o trabalhador fica sujeito à síndrome da suspensão inerte, e o tempo de resgate é parte da análise de risco.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Acima de 2,0 m com risco de queda.</li>
+          <li>Treinamento de 8 h, com reciclagem a cada 2 anos.</li>
+          <li>Impacto máximo: 6 kN.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um talabarte mais curto reduz a zona livre, mas não necessariamente a força?</summary><p>Porque a força depende do fator de queda, e com absorvedor, do valor de projeto dele. O comprimento entra na distância total de queda.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte IV — Atividades críticas" data-topicos="nr33">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Espaços confinados: NR-33</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer um espaço confinado;</li>
+            <li>avaliar a atmosfera antes da entrada;</li>
+            <li>descrever funções e permissão de entrada.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+        <h3 id="s10-1"><span class="num">10.1</span>Definição</h3>
+        <p>Espaço confinado é qualquer área que atenda <strong>simultaneamente</strong> a três condições: não ser projetada para ocupação humana contínua, ter meios limitados de entrada e saída, e haver ou poder haver atmosfera perigosa. Tanques, vasos, silos, galerias e porões são casos típicos.</p>
+        <h3 id="s10-2"><span class="num">10.2</span>Atmosfera</h3>
+        <p>A avaliação inicial é feita <strong>com o supervisor de entrada fora do espaço</strong>, imediatamente antes da entrada, e o monitoramento é contínuo durante a permanência.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Parâmetro</th><th>Condição</th></tr></thead>
+          <tbody>
+            <tr><td>Oxigênio</td><td>Indicado 20,9 %. Aceitável de 19,5 % a 23 %, com a causa da alteração conhecida e controlada</td></tr>
+            <tr><td>Inflamáveis</td><td>Abaixo de 10 % do LIE, conforme o modelo de PET da norma</td></tr>
+            <tr><td>Tóxicos</td><td>Dentro dos limites aplicáveis</td></tr>
+            <tr><td>Ventilação</td><td>Oxigênio puro é proibido</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-10-1"></div>
+        <h3 id="s10-3"><span class="num">10.3</span>Funções e permissão</h3>
+        <p>A <strong>Permissão de Entrada e Trabalho, PET</strong>, é emitida pelo supervisor de entrada, e sua validade, incluindo prorrogações, não pode exceder 24 horas. O <strong>vigia</strong> fica fora do espaço, próximo à entrada, controla quem entra e aciona o resgate; não pode executar outras tarefas que prejudiquem essa função.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Função</th><th>Treinamento inicial</th><th>Periódico</th></tr></thead>
+          <tbody>
+            <tr><td>Supervisor de entrada</td><td>40 h</td><td>8 h, anual</td></tr>
+            <tr><td>Vigia e trabalhador autorizado</td><td>16 h</td><td>8 h, anual</td></tr>
+            <tr><td>Equipe de emergência e salvamento</td><td>24 h ou 32 h, conforme o nível do resgatista</td><td>24 h ou 32 h, a cada dois anos</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A carga prática é de pelo menos 50 % do total. Devem ser realizados exercícios simulados anuais de salvamento.</p>
+        <div class="callout warn">
+          <strong>Quem entra para salvar também morre</strong>
+          Nos acidentes em espaço confinado, parte das vítimas costuma ser de quem tenta socorrer sem equipamento. O resgate é planejado com antecedência, e o vigia não entra.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Três condições simultâneas definem o espaço confinado.</li>
+          <li>O₂ de 19,5 % a 23 %; inflamáveis abaixo de 10 % do LIE.</li>
+          <li>PET: no máximo 24 horas.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Medição aceitável autoriza a entrada?</summary><p>Não sozinha. É preciso também PET emitida, isolamento e bloqueio de energias, vigia, trabalhadores capacitados e plano de resgate.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte IV — Atividades críticas" data-topicos="inflamaveis">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Inflamáveis, fogo e explosão</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>classificar líquidos e instalações pela NR-20;</li>
+            <li>calcular o LIE de uma mistura;</li>
+            <li>estimar o tempo de purga.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 10.</p></div>
+        </div>
+        <h3 id="s11-1"><span class="num">11.1</span>NR-20</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Critério</th></tr></thead>
+          <tbody>
+            <tr><td>Líquido inflamável</td><td>Ponto de fulgor até 60 °C</td></tr>
+            <tr><td>Líquido combustível</td><td>Ponto de fulgor acima de 60 °C e até 93 °C</td></tr>
+            <tr><td>Gás inflamável</td><td>Inflama com o ar a 20 °C e à pressão padrão</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>As instalações são Classe I, II ou III, conforme a atividade e a capacidade: para líquidos, acima de 10 m³ até 5 000 m³, acima de 5 000 m³ até 50 000 m³, e acima de 50 000 m³; para gases, acima de 2 t até 60 t, acima de 60 t até 600 t, e acima de 600 t. Instalações Classe I exigem pelo menos Análise Preliminar de Perigos.</p>
+        <p>O <strong>ponto de fulgor</strong> é a menor temperatura em que o líquido libera vapor capaz de inflamar com uma fonte de ignição. O <strong>ponto de autoignição</strong>, bem mais alto, é a temperatura em que a mistura queima sem fonte externa.</p>
+        <h3 id="s11-2"><span class="num">11.2</span>Tetraedro do fogo</h3>
+        <p>O fogo precisa de combustível, comburente, calor e reação em cadeia. Cada método de extinção remove um deles.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Classe</th><th>Material</th><th>Agente típico</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>Sólidos comuns, que deixam brasa</td><td>Água</td></tr>
+            <tr><td>B</td><td>Líquidos e gases inflamáveis</td><td>Espuma, pó, CO₂</td></tr>
+            <tr><td>C</td><td>Equipamentos elétricos energizados</td><td>CO₂ e pó</td></tr>
+            <tr><td>D</td><td>Metais combustíveis</td><td>Pós especiais</td></tr>
+            <tr><td>K</td><td>Óleos e gorduras de cozinha</td><td>Agentes saponificantes</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s11-3"><span class="num">11.3</span>Limites de inflamabilidade</h3>
+        <p>O vapor só queima entre o <strong>Limite Inferior de Explosividade, LIE</strong>, e o <strong>Limite Superior, LSE</strong>. Mistura de combustíveis segue a regra de Le Chatelier:</p>
+        <div class="formula"><span data-tex="LIE_m = \frac{100}{\sum_i y_i/LIE_i}"></span></div>
+        <div class="fig-host" id="fig-11-1"></div>
+        <h3 id="s11-4"><span class="num">11.4</span>Purga por ventilação</h3>
+        <p>Admitindo mistura perfeita, com vazão Q de ar limpo em volume V, a concentração decai exponencialmente:</p>
+        <div class="formula"><span data-tex="C(t) = C_0\,e^{-Qt/V} \qquad t = \frac{V}{Q}\,\ln\frac{C_0}{C_f}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 11.1</span>Tanque com gás natural</div>
+          <p>Mistura combustível com 80 % de metano, 15 % de etano e 5 % de propano, cujos limites inferiores são 5,0 %, 3,0 % e 2,1 %. O tanque de 200 m³ tem 3 % em volume e recebe 1000 m³/h de ar.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="LIE_m = 100/(80/5 + 15/3 + 5/2{,}1) = 4{,}28\ \%"></span>.</li>
+              <li>Alvo: 10 % do LIE, ou 0,428 %.</li>
+              <li><span data-tex-inline="t = (200/1000)\ln(3/0{,}428) = 0{,}39"></span> h, ou 23,4 min.</li>
+            </ol>
+            <p class="resposta">Cerca de 23 minutos, ou 1,95 renovações do volume. Regiões mal ventiladas exigem mais tempo e medição em vários pontos.</p>
+          </details>
+        </div>
+        <div id="sim-purga" class="sim"></div>
+        <div class="callout note">
+          <strong>Áreas classificadas</strong>
+          Equipamento elétrico em atmosfera explosiva precisa de certificação para a zona: 0, presença contínua; 1, provável em operação normal; 2, improvável e por curto período. A série ABNT NBR IEC 60079 trata do assunto. Tema já visto em Eletrotécnica.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Inflamável: fulgor até 60 °C. Combustível: de 60 °C a 93 °C.</li>
+          <li>Le Chatelier dá o LIE da mistura.</li>
+          <li>Tempo de purga: (V/Q)·ln(C₀/C<sub>f</sub>).</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um tanque com vapor acima do LSE não é seguro?</summary><p>Porque, ao entrar ar na limpeza ou por vazamento, a mistura atravessa a faixa explosiva. A prática é inertizar antes de admitir ar.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os três simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-ruido"><small>Capítulo 4 · Ruído</small>Dose de ruído na jornada</a></li>
+          <li><a href="#sim-queda"><small>Capítulo 9 · Altura</small>Queda com talabarte e absorvedor</a></li>
+          <li><a href="#sim-purga"><small>Capítulo 11 · Inflamáveis</small>Atmosfera inflamável e purga</a></li>
+        </ul>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Indicadores</h4>
+            <div class="formula"><span data-tex="TF = N \cdot 10^6/H"></span></div>
+            <div class="formula"><span data-tex="TG = T \cdot 10^6/H"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Ruído</h4>
+            <div class="formula"><span data-tex="D = 100\sum C_i/T_i"></span></div>
+            <div class="formula"><span data-tex="L_{total} = 10\log_{10}\sum 10^{L_i/10}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Calor e máquinas</h4>
+            <div class="formula"><span data-tex="\text{IBUTG} = 0{,}7\,t_{bn} + 0{,}3\,t_g"></span></div>
+            <div class="formula"><span data-tex="S = K\,T + C"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Altura e inflamáveis</h4>
+            <div class="formula"><span data-tex="ZLQ = L + d + h_{engate} + \text{margem}"></span></div>
+            <div class="formula"><span data-tex="t = (V/Q)\ln(C_0/C_f)"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Apêndice B — Normas</h2>
+        <p>As NRs são publicadas pelo Ministério do Trabalho e Emprego. As normas ABNT e ISO são citadas por designação e escopo, pois seus textos integrais são obras protegidas.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>O que trata</th><th>Capítulo</th></tr></thead>
+          <tbody>
+            <tr><td>NR-1</td><td>Disposições gerais e GRO</td><td>2</td></tr>
+            <tr><td>NR-4, NR-5, NR-6, NR-7</td><td>SESMT, CIPA, EPI e PCMSO</td><td>3</td></tr>
+            <tr><td>NR-9, NR-15, NR-16</td><td>Agentes ambientais, insalubridade e periculosidade</td><td>4 e 5</td></tr>
+            <tr><td>NR-10</td><td>Eletricidade</td><td>7</td></tr>
+            <tr><td>NR-12</td><td>Máquinas e equipamentos</td><td>6</td></tr>
+            <tr><td>NR-13</td><td>Caldeiras, vasos, tubulações e tanques</td><td>8</td></tr>
+            <tr><td>NR-20</td><td>Inflamáveis e combustíveis</td><td>11</td></tr>
+            <tr><td>NR-33 e NR-35</td><td>Espaços confinados e trabalho em altura</td><td>10 e 9</td></tr>
+            <tr><td>NHO 01 e NHO 06</td><td>Ruído e calor, da Fundacentro</td><td>4 e 5</td></tr>
+            <tr><td>ABNT NBR 14280</td><td>Cadastro de acidentes do trabalho</td><td>1</td></tr>
+            <tr><td>ISO 13855</td><td>Posicionamento de proteções</td><td>6</td></tr>
+            <tr><td>IEC 60479-1</td><td>Efeitos da corrente sobre o corpo humano</td><td>7</td></tr>
+            <tr><td>ABNT NBR IEC 60079</td><td>Atmosferas explosivas</td><td>11</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>79 questões objetivas sobre gestão de riscos, agentes ambientais, máquinas, eletricidade, vasos de pressão, altura, espaços confinados e inflamáveis. As questões de cálculo trazem espaço para contas e resolução passo a passo.</p>
+        <div id="quiz" data-quiz="seguranca-do-trabalho"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>BRASIL. Ministério do Trabalho e Emprego. <em>Normas Regulamentadoras</em>, versões consolidadas consultadas em novembro de 2026.</li>
+          <li>BRASIL. Lei nº 8.213, de 24 de julho de 1991.</li>
+          <li>FUNDACENTRO. <em>NHO 01: avaliação da exposição ocupacional ao ruído</em> e <em>NHO 06: calor</em>.</li>
+          <li>BARBOSA FILHO, A. N. <em>Segurança do Trabalho &amp; Gestão Ambiental</em>. Atlas.</li>
+          <li>CROWL, D. A.; LOUVAR, J. F. <em>Chemical Process Safety</em>. Pearson.</li>
+          <li>BIRD, F. E.; GERMAIN, G. L. <em>Practical Loss Control Leadership</em>. ILCI.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/seguranca-do-trabalho.js"></script>
+<script src="../js/fig/seguranca-do-trabalho.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+ "TF": [
+  "Taxa de frequência",
+  "acidentes/10⁶ h"
+ ],
+ "TG": [
+  "Taxa de gravidade",
+  "dias/10⁶ h"
+ ],
+ "D": [
+  "Dose de ruído",
+  "%"
+ ],
+ "C_i": [
+  "Tempo de exposição no período i",
+  "min"
+ ],
+ "T_i": [
+  "Tempo permitido no nível do período i",
+  "min"
+ ],
+ "t_{bn}": [
+  "Temperatura de bulbo úmido natural",
+  "°C"
+ ],
+ "t_g": [
+  "Temperatura de globo",
+  "°C"
+ ],
+ "S": [
+  "Distância mínima de segurança",
+  "mm"
+ ],
+ "K": [
+  "Velocidade de aproximação",
+  "mm/s"
+ ],
+ "FQ": [
+  "Fator de queda",
+  "—"
+ ],
+ "ZLQ": [
+  "Zona livre de queda",
+  "m"
+ ],
+ "LIE": [
+  "Limite inferior de explosividade",
+  "% vol"
+ ]
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

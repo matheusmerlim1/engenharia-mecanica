@@ -1,0 +1,1300 @@
+{
+ "disciplina": "Segurança do Trabalho",
+ "slug": "seguranca-do-trabalho",
+ "topicos": [
+  {
+   "id": "fundamentos",
+   "nome": "Acidente, perigo e risco"
+  },
+  {
+   "id": "gro",
+   "nome": "GRO e análise de riscos"
+  },
+  {
+   "id": "organizacao",
+   "nome": "SESMT, CIPA, EPI e PCMSO"
+  },
+  {
+   "id": "ruido",
+   "nome": "Ruído"
+  },
+  {
+   "id": "higiene",
+   "nome": "Calor, químicos e adicionais"
+  },
+  {
+   "id": "nr12",
+   "nome": "Máquinas (NR-12)"
+  },
+  {
+   "id": "nr10",
+   "nome": "Eletricidade (NR-10)"
+  },
+  {
+   "id": "nr13",
+   "nome": "Caldeiras e vasos (NR-13)"
+  },
+  {
+   "id": "nr35",
+   "nome": "Trabalho em altura (NR-35)"
+  },
+  {
+   "id": "nr33",
+   "nome": "Espaços confinados (NR-33)"
+  },
+  {
+   "id": "inflamaveis",
+   "nome": "Inflamáveis e explosão"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "st-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "fundamentos",
+   "enunciado": "<p>Em segurança do trabalho, o perigo se distingue do risco porque o perigo é:</p>",
+   "alternativas": [
+    "a probabilidade do dano, e o risco é a fonte",
+    "sempre maior que o risco",
+    "o custo do acidente, e o risco é a indenização",
+    "a fonte com potencial de causar dano, e o risco combina probabilidade e severidade"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O mesmo perigo pode gerar riscos diferentes, conforme as barreiras.</p>"
+  },
+  {
+   "id": "st-002",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "fundamentos",
+   "enunciado": "<p>A Comunicação de Acidente do Trabalho deve ser emitida, quando não há morte, até:</p>",
+   "alternativas": [
+    "cinco dias úteis após a ocorrência",
+    "o fim do mês da ocorrência",
+    "o primeiro dia útil seguinte ao da ocorrência",
+    "trinta dias após a alta médica"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Em caso de morte, de imediato (Lei 8.213/1991, art. 22).</p>"
+  },
+  {
+   "id": "st-003",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "fundamentos",
+   "enunciado": "<p>Pela Lei 8.213/1991, equipara-se a acidente do trabalho:</p>",
+   "alternativas": [
+    "qualquer doença comum adquirida durante o contrato",
+    "o acidente de trajeto entre a residência e o local de trabalho",
+    "qualquer acidente ocorrido em período de férias",
+    "somente a lesão com afastamento superior a 15 dias"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A doença profissional e a doença do trabalho também se equiparam.</p>"
+  },
+  {
+   "id": "st-004",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "fundamentos",
+   "enunciado": "<p>Uma empresa com 1,5 milhão de horas-homem teve 9 acidentes com afastamento. A taxa de frequência é:</p>",
+   "alternativas": [
+    "0,6",
+    "6,0",
+    "13,5",
+    "60"
+   ],
+   "correta": 1,
+   "formulas": [
+    "TF = N·10⁶/H"
+   ],
+   "explicacao": "<div class=\"passo\">9·10⁶/1,5·10⁶ = <strong>6,0</strong></div>"
+  },
+  {
+   "id": "st-005",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "fundamentos",
+   "enunciado": "<p>Com 200 dias computados em 800 mil horas-homem, a taxa de gravidade é:</p>",
+   "alternativas": [
+    "250",
+    "25",
+    "160",
+    "2,5"
+   ],
+   "correta": 0,
+   "formulas": [
+    "TG = T·10⁶/H"
+   ],
+   "explicacao": "<div class=\"passo\">200·10⁶/8·10⁵ = <strong>250</strong></div>"
+  },
+  {
+   "id": "st-006",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "fundamentos",
+   "enunciado": "<p>Um setor de 50 pessoas, a 2000 h por ano cada, teve 2 acidentes com afastamento em um ano. A taxa de frequência é:</p>",
+   "alternativas": [
+    "2",
+    "200",
+    "40",
+    "20"
+   ],
+   "correta": 3,
+   "formulas": [
+    "TF = N·10⁶/H"
+   ],
+   "explicacao": "<div class=\"passo\">H = 50·2000 = 10⁵</div><div class=\"passo\">2·10⁶/10⁵ = <strong>20</strong></div>"
+  },
+  {
+   "id": "st-007",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "gro",
+   "enunciado": "<p>Os documentos-base do Programa de Gerenciamento de Riscos são:</p>",
+   "alternativas": [
+    "o PCMSO e o mapa de riscos",
+    "o laudo de insalubridade e a CAT",
+    "o inventário de riscos e o plano de ação",
+    "a ordem de serviço e a ficha de EPI"
+   ],
+   "correta": 2,
+   "explicacao": "<p>NR-1, item 1.5.7.</p>"
+  },
+  {
+   "id": "st-008",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "gro",
+   "enunciado": "<p>Pela NR-1, a primeira medida na ordem de prioridade é:</p>",
+   "alternativas": [
+    "o fornecimento de EPI",
+    "a redução da jornada",
+    "a eliminação dos fatores de risco",
+    "a sinalização da área"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Depois vêm a proteção coletiva, as medidas administrativas e a proteção individual.</p>"
+  },
+  {
+   "id": "st-009",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gro",
+   "enunciado": "<p>Enclausurar uma máquina ruidosa é, na ordem de prioridade da NR-1, uma medida de:</p>",
+   "alternativas": [
+    "proteção individual",
+    "proteção coletiva",
+    "organização do trabalho",
+    "eliminação do fator de risco"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Ela atua sobre o ambiente, sem depender do trabalhador.</p>"
+  },
+  {
+   "id": "st-010",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gro",
+   "enunciado": "<p>A avaliação de riscos do PGR deve ser revista, como regra, a cada:</p>",
+   "alternativas": [
+    "dois anos, ou quando houver mudança relevante",
+    "cinco anos, sem exceção",
+    "seis meses, sem exceção",
+    "dez anos, com a renovação do alvará"
+   ],
+   "correta": 0,
+   "explicacao": "<p>NR-1, item 1.5.4.4.6.</p>"
+  },
+  {
+   "id": "st-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gro",
+   "enunciado": "<p>A técnica que aplica palavras-guia, como “mais”, “menos” e “reverso”, a parâmetros de processo é:</p>",
+   "alternativas": [
+    "o FMEA",
+    "a árvore de falhas",
+    "a APR",
+    "o HAZOP"
+   ],
+   "correta": 3,
+   "explicacao": "<p>É feita por nós, a partir do P&amp;ID.</p>"
+  },
+  {
+   "id": "st-012",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gro",
+   "enunciado": "<p>O antigo PPRA, previsto na NR-9, tratava dos riscos ambientais, entendidos como os agentes:</p>",
+   "alternativas": [
+    "ergonômicos e mecânicos",
+    "físicos, ergonômicos e de acidentes",
+    "somente químicos",
+    "físicos, químicos e biológicos"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O PGR, que o substituiu, abrange todos os riscos ocupacionais.</p>"
+  },
+  {
+   "id": "st-013",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "gro",
+   "enunciado": "<p>Um evento exige a falha simultânea de duas barreiras independentes, com probabilidades 0,05 e 0,02. A probabilidade do evento é:</p>",
+   "alternativas": [
+    "0,07",
+    "0,03",
+    "0,001",
+    "0,01"
+   ],
+   "correta": 2,
+   "formulas": [
+    "P = P₁·P₂"
+   ],
+   "explicacao": "<div class=\"passo\">Porta E: 0,05·0,02 = <strong>0,001</strong></div>"
+  },
+  {
+   "id": "st-014",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "organizacao",
+   "enunciado": "<p>Um EPI, nacional ou importado, só pode ser vendido ou utilizado com:</p>",
+   "alternativas": [
+    "a anuência da CIPA",
+    "o Certificado de Aprovação",
+    "o registro no conselho de classe",
+    "o laudo de insalubridade"
+   ],
+   "correta": 1,
+   "explicacao": "<p>NR-6.</p>"
+  },
+  {
+   "id": "st-015",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "organizacao",
+   "enunciado": "<p>Pela NR-6, o fornecimento do EPI ao empregado deve ser:</p>",
+   "alternativas": [
+    "gratuito, adequado ao risco e em perfeito estado",
+    "pago em parcelas pelo empregado",
+    "feito somente após o primeiro acidente",
+    "restrito aos empregados da CIPA"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O empregador deve ainda exigir o uso e treinar.</p>"
+  },
+  {
+   "id": "st-016",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "organizacao",
+   "enunciado": "<p>O mandato dos membros eleitos da CIPA é de:</p>",
+   "alternativas": [
+    "1 ano, permitida uma reeleição",
+    "2 anos, sem reeleição",
+    "3 anos, permitidas duas reeleições",
+    "6 meses, sem reeleição"
+   ],
+   "correta": 0,
+   "explicacao": "<p>NR-5.</p>"
+  },
+  {
+   "id": "st-017",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "organizacao",
+   "enunciado": "<p>O dimensionamento do SESMT depende:</p>",
+   "alternativas": [
+    "somente do faturamento da empresa",
+    "somente da área construída",
+    "do número de acidentes do ano anterior",
+    "do grau de risco da atividade e do número de empregados"
+   ],
+   "correta": 3,
+   "explicacao": "<p>NR-4.</p>"
+  },
+  {
+   "id": "st-018",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "organizacao",
+   "enunciado": "<p>Para empregados expostos a riscos identificados no PGR, o exame clínico periódico do PCMSO é, em regra:</p>",
+   "alternativas": [
+    "a cada cinco anos",
+    "somente na demissão",
+    "anual, ou em intervalo menor a critério do médico",
+    "a cada três anos"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Para os demais empregados, é a cada dois anos (NR-7).</p>"
+  },
+  {
+   "id": "st-019",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ruido",
+   "enunciado": "<p>De acordo com o Anexo 1 da NR-15, o limite de tolerância para ruído contínuo em 8 horas é de:</p>",
+   "alternativas": [
+    "80 dB(A)",
+    "85 dB(A)",
+    "90 dB(A)",
+    "115 dB(A)"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Acima de 115 dB(A), sem proteção, a exposição não é permitida.</p>"
+  },
+  {
+   "id": "st-020",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ruido",
+   "enunciado": "<p>A 95 dB(A), o tempo máximo diário pela NR-15 é de:</p>",
+   "alternativas": [
+    "4 horas",
+    "2 horas",
+    "1 hora",
+    "8 horas"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Quadro do Anexo 1.</p>"
+  },
+  {
+   "id": "st-021",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ruido",
+   "enunciado": "<p>Um trabalhador fica 2 h a 90 dB(A) e 1 h a 100 dB(A). A dose, pela NR-15, é de:</p>",
+   "alternativas": [
+    "150 %",
+    "100 %",
+    "75 %",
+    "300 %"
+   ],
+   "correta": 0,
+   "formulas": [
+    "D = 100 Σ C/T"
+   ],
+   "explicacao": "<div class=\"passo\">100·(120/240 + 60/60) = <strong>150 %</strong></div>"
+  },
+  {
+   "id": "st-022",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ruido",
+   "enunciado": "<p>Pela NR-9, o nível de ação para o ruído é:</p>",
+   "alternativas": [
+    "o dobro da dose",
+    "115 dB(A)",
+    "10 % da dose",
+    "a metade da dose"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Item 9.6.1 da NR-9.</p>"
+  },
+  {
+   "id": "st-023",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ruido",
+   "enunciado": "<p>Duas máquinas iguais, de 90 dB cada uma, em conjunto produzem:</p>",
+   "alternativas": [
+    "180 dB",
+    "90 dB",
+    "93 dB",
+    "100 dB"
+   ],
+   "correta": 2,
+   "formulas": [
+    "L = 10 log Σ 10^(L/10)"
+   ],
+   "explicacao": "<div class=\"passo\">10 log(2·10⁹) = <strong>93 dB</strong></div>"
+  },
+  {
+   "id": "st-024",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ruido",
+   "enunciado": "<p>Pela NHO 01, a 88 dB(A), o tempo permitido é de:</p>",
+   "alternativas": [
+    "480 min",
+    "300 min",
+    "240 min",
+    "120 min"
+   ],
+   "correta": 2,
+   "formulas": [
+    "T = 480/2^((L−85)/3)"
+   ],
+   "explicacao": "<div class=\"passo\">480/2^((88−85)/3) = <strong>240 min</strong></div>"
+  },
+  {
+   "id": "st-025",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ruido",
+   "enunciado": "<p>Um nível medido de 97 dB(A) deve ser avaliado, pela NR-15, com o tempo de:</p>",
+   "alternativas": [
+    "105 minutos, valor de 96 dB(A)",
+    "75 minutos, valor de 98 dB(A)",
+    "90 minutos, por interpolação",
+    "120 minutos, valor de 95 dB(A)"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Item 4 do Anexo 1: vale o nível imediatamente mais elevado.</p>"
+  },
+  {
+   "id": "st-026",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "ruido",
+   "enunciado": "<p>Uma dose de 200 %, pela NR-15, corresponde ao nível equivalente em 8 h de:</p>",
+   "alternativas": [
+    "90 dB(A)",
+    "88 dB(A)",
+    "100 dB(A)",
+    "95 dB(A)"
+   ],
+   "correta": 0,
+   "formulas": [
+    "L = 85 + 16,61 log(D/100)"
+   ],
+   "explicacao": "<div class=\"passo\">85 + 16,61·log(2) = <strong>90 dB(A)</strong></div>"
+  },
+  {
+   "id": "st-027",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "higiene",
+   "enunciado": "<p>O adicional de periculosidade, pela NR-16, é de:</p>",
+   "alternativas": [
+    "40 % sobre o salário mínimo",
+    "20 % sobre o salário e todos os prêmios",
+    "10 % sobre a remuneração total",
+    "30 % sobre o salário, sem gratificações, prêmios ou participação nos lucros"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Item 16.2.</p>"
+  },
+  {
+   "id": "st-028",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "higiene",
+   "enunciado": "<p>A insalubridade de grau máximo dá direito a adicional de:</p>",
+   "alternativas": [
+    "30 %",
+    "20 %",
+    "10 %",
+    "40 %"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Médio: 20 %. Mínimo: 10 %.</p>"
+  },
+  {
+   "id": "st-029",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "higiene",
+   "enunciado": "<p>Havendo mais de um fator de insalubridade, o adicional será:</p>",
+   "alternativas": [
+    "a soma de todos os graus",
+    "a média dos graus",
+    "apenas o de grau mais elevado, sem acumular",
+    "o de menor grau"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Item 15.3 da NR-15.</p>"
+  },
+  {
+   "id": "st-030",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "higiene",
+   "enunciado": "<p>Em ambiente fechado, com t<sub>bn</sub> = 28 °C e t<sub>g</sub> = 38 °C, o IBUTG é:</p>",
+   "alternativas": [
+    "33,0 °C",
+    "31,0 °C",
+    "30,0 °C",
+    "38,0 °C"
+   ],
+   "correta": 1,
+   "formulas": [
+    "IBUTG = 0,7 tbn + 0,3 tg"
+   ],
+   "explicacao": "<div class=\"passo\">0,7·28 + 0,3·38 = <strong>31,0 °C</strong></div>"
+  },
+  {
+   "id": "st-031",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "higiene",
+   "enunciado": "<p>Com carga solar direta, t<sub>bn</sub> = 25 °C, t<sub>g</sub> = 40 °C e t<sub>bs</sub> = 30 °C, o IBUTG é:</p>",
+   "alternativas": [
+    "28,5 °C",
+    "29,5 °C",
+    "31,5 °C",
+    "27,0 °C"
+   ],
+   "correta": 0,
+   "formulas": [
+    "IBUTG = 0,7 tbn + 0,2 tg + 0,1 tbs"
+   ],
+   "explicacao": "<div class=\"passo\">17,5 + 8 + 3 = <strong>28,5 °C</strong></div>"
+  },
+  {
+   "id": "st-032",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "higiene",
+   "enunciado": "<p>A atividade caracterizada como insalubre por calor, pelo Anexo 3 da NR-15, é de grau:</p>",
+   "alternativas": [
+    "médio",
+    "máximo",
+    "mínimo",
+    "variável com a estação do ano"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Item 2.6 do Anexo 3.</p>"
+  },
+  {
+   "id": "st-033",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "higiene",
+   "enunciado": "<p>Pela NR-16, o transporte de líquidos inflamáveis não caracteriza periculosidade em pequenas quantidades, até:</p>",
+   "alternativas": [
+    "20 litros",
+    "1000 litros",
+    "5000 litros",
+    "200 litros"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Para gases liquefeitos, 135 kg.</p>"
+  },
+  {
+   "id": "st-034",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "higiene",
+   "enunciado": "<p>A caracterização da periculosidade é feita por laudo de:</p>",
+   "alternativas": [
+    "qualquer membro da CIPA",
+    "técnico em eletrotécnica",
+    "médico do trabalho ou engenheiro de segurança do trabalho",
+    "advogado da empresa"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Item 16.3 da NR-16.</p>"
+  },
+  {
+   "id": "st-035",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "higiene",
+   "enunciado": "<p>O limite de tolerância da NR-15 para o gás sulfídrico é 8 ppm. Pela NR-9, o nível de ação é:</p>",
+   "alternativas": [
+    "8 ppm",
+    "4 ppm",
+    "16 ppm",
+    "2 ppm"
+   ],
+   "correta": 1,
+   "formulas": [
+    "nível de ação = LT/2"
+   ],
+   "explicacao": "<div class=\"passo\">Metade do limite: <strong>4 ppm</strong></div>"
+  },
+  {
+   "id": "st-036",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr12",
+   "enunciado": "<p>Os dispositivos de intertravamento, pela NR-12, devem:</p>",
+   "alternativas": [
+    "dar a partida ao fechar a proteção",
+    "impedir que o simples fechamento da proteção dê início às funções perigosas",
+    "funcionar só com a proteção aberta",
+    "manter o movimento quando a proteção for aberta"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Item 12.5.7.</p>"
+  },
+  {
+   "id": "st-037",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr12",
+   "enunciado": "<p>Os dispositivos de parada de emergência:</p>",
+   "alternativas": [
+    "não podem ser usados como dispositivos de partida ou de acionamento",
+    "substituem as proteções da máquina",
+    "devem rearmar sozinhos ao soltar o botão",
+    "são subordinados aos demais comandos"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Eles são medida auxiliar e prevalecem sobre os outros comandos.</p>"
+  },
+  {
+   "id": "st-038",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr12",
+   "enunciado": "<p>Ao acionar a parada de emergência, o acionador deve:</p>",
+   "alternativas": [
+    "retornar sozinho em 5 segundos",
+    "desligar apenas a iluminação",
+    "religar a máquina ao ser solto",
+    "ficar retido, e só voltar por ação manual intencional"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Item 12.6.5.</p>"
+  },
+  {
+   "id": "st-039",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "nr12",
+   "enunciado": "<p>Uma cortina de 14 mm tem tempo total de parada de 0,15 s. A distância mínima é:</p>",
+   "alternativas": [
+    "240 mm",
+    "150 mm",
+    "300 mm",
+    "500 mm"
+   ],
+   "correta": 2,
+   "formulas": [
+    "S = K T + C"
+   ],
+   "explicacao": "<div class=\"passo\">C = 0</div><div class=\"passo\">2000·0,15 = <strong>300 mm</strong></div>"
+  },
+  {
+   "id": "st-040",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "nr12",
+   "enunciado": "<p>Uma cortina vertical de 30 mm tem tempo total de 0,10 s. A distância mínima é:</p>",
+   "alternativas": [
+    "200 mm",
+    "160 mm",
+    "330 mm",
+    "500 mm"
+   ],
+   "correta": 2,
+   "formulas": [
+    "S = K T + C"
+   ],
+   "explicacao": "<div class=\"passo\">C = 130 mm</div><div class=\"passo\">2000·0,10 + 130 = <strong>330 mm</strong></div>"
+  },
+  {
+   "id": "st-041",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "nr12",
+   "enunciado": "<p>Uma cortina vertical de 14 mm tem tempo total de 0,35 s. A distância mínima é:</p>",
+   "alternativas": [
+    "700 mm",
+    "560 mm",
+    "500 mm",
+    "350 mm"
+   ],
+   "correta": 1,
+   "formulas": [
+    "S = K T + C"
+   ],
+   "explicacao": "<div class=\"passo\">2000·0,35 = 700 &gt; 500</div><div class=\"passo\">Com K = 1600: <strong>560 mm</strong></div>"
+  },
+  {
+   "id": "st-042",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr10",
+   "enunciado": "<p>A medida de proteção prioritária em trabalhos com eletricidade é:</p>",
+   "alternativas": [
+    "a desenergização",
+    "o uso de luvas isolantes",
+    "o trabalho em dupla",
+    "a sinalização da área"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Na impossibilidade, adotam-se outras medidas coletivas.</p>"
+  },
+  {
+   "id": "st-043",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr10",
+   "enunciado": "<p>A primeira etapa da sequência de desenergização é:</p>",
+   "alternativas": [
+    "o aterramento temporário",
+    "a constatação da ausência de tensão",
+    "a sinalização de impedimento",
+    "o seccionamento"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Seguem-se impedimento, constatação, aterramento, proteção e sinalização.</p>"
+  },
+  {
+   "id": "st-044",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr10",
+   "enunciado": "<p>A reciclagem do treinamento da NR-10 tem periodicidade:</p>",
+   "alternativas": [
+    "anual",
+    "trienal",
+    "quinquenal",
+    "bienal"
+   ],
+   "correta": 3,
+   "explicacao": "<p>E sempre que houver mudança relevante.</p>"
+  },
+  {
+   "id": "st-045",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr10",
+   "enunciado": "<p>Para 13,8 kV, os raios das zonas de risco e controlada são:</p>",
+   "alternativas": [
+    "0,20 m e 0,70 m",
+    "0,56 m e 1,56 m",
+    "0,38 m e 1,38 m",
+    "1,20 m e 3,20 m"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Faixa de 10 a 15 kV.</p>"
+  },
+  {
+   "id": "st-046",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "nr10",
+   "enunciado": "<p>Um contato a 220 V, com resistência de 2000 Ω, resulta em corrente de:</p>",
+   "alternativas": [
+    "11 mA",
+    "110 mA",
+    "440 mA",
+    "2,2 mA"
+   ],
+   "correta": 1,
+   "formulas": [
+    "I = V/R"
+   ],
+   "explicacao": "<div class=\"passo\">220/2000 = <strong>110 mA</strong></div>"
+  },
+  {
+   "id": "st-047",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr10",
+   "enunciado": "<p>Pela nova NR-10, que entra em vigor em junho de 2027, tensão de 13,8 kV passa a ser:</p>",
+   "alternativas": [
+    "média tensão",
+    "extrabaixa tensão",
+    "baixa tensão",
+    "alta tensão"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Média tensão vai de 1000 V a 36,2 kV em corrente alternada.</p>"
+  },
+  {
+   "id": "st-048",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "nr10",
+   "enunciado": "<p>No texto vigente da NR-10, o trabalhador é considerado autorizado quando:</p>",
+   "alternativas": [
+    "é qualificado, habilitado ou capacitado e tem anuência formal da empresa",
+    "tem mais de dois anos de empresa",
+    "é membro da CIPA",
+    "usa todos os EPIs"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A anuência é registrada no sistema de cadastro da empresa.</p>"
+  },
+  {
+   "id": "st-049",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr13",
+   "enunciado": "<p>Uma caldeira operando a 2,5 MPa é de categoria:</p>",
+   "alternativas": [
+    "B",
+    "C",
+    "I",
+    "A"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A partir de 1960 kPa é categoria A. Categoria C não existe mais.</p>"
+  },
+  {
+   "id": "st-050",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr13",
+   "enunciado": "<p>Na NR-13, o vaso de pressão de categoria mais crítica é o de categoria:</p>",
+   "alternativas": [
+    "III",
+    "V",
+    "I",
+    "A"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A categoria V é a de menor potencial.</p>"
+  },
+  {
+   "id": "st-051",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr13",
+   "enunciado": "<p>Um vaso com fluido classe A, 8 m³ e 5 MPa tem produto P·V e categoria:</p>",
+   "alternativas": [
+    "P·V = 40 e categoria III",
+    "P·V = 40 e categoria I",
+    "P·V = 13 e categoria II",
+    "P·V = 40 000 e categoria IV"
+   ],
+   "correta": 1,
+   "formulas": [
+    "P em MPa"
+   ],
+   "explicacao": "<div class=\"passo\">5·8 = 40: grupo 2</div><div class=\"passo\">Classe A, grupo 2: <strong>categoria I</strong></div>"
+  },
+  {
+   "id": "st-052",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr13",
+   "enunciado": "<p>Sem SPIE, um vaso de categoria III tem exames externo e interno a cada:</p>",
+   "alternativas": [
+    "1 ano e 3 anos",
+    "3 anos e 6 anos",
+    "5 anos e 10 anos",
+    "2 anos e 4 anos"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Tabela 2 da NR-13.</p>"
+  },
+  {
+   "id": "st-053",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr13",
+   "enunciado": "<p>O campo de aplicação da NR-13 para vasos usa o produto P·V acima de 8, com:</p>",
+   "alternativas": [
+    "P em kPa e V em m³",
+    "P em MPa e V em litros",
+    "P em bar e V em m³",
+    "P em Pa e V em cm³"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Para categorizar, P é em MPa.</p>"
+  },
+  {
+   "id": "st-054",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr13",
+   "enunciado": "<p>A válvula de segurança de um vaso deve estar ajustada a valor:</p>",
+   "alternativas": [
+    "sempre 50 % acima da PMTA",
+    "igual à pressão atmosférica",
+    "superior à pressão de teste",
+    "igual ou inferior à PMTA"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Item 13.5.1.2.</p>"
+  },
+  {
+   "id": "st-055",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "nr13",
+   "enunciado": "<p>Um vaso de ar comprimido, de 2 m³ a 0,8 MPa, é de grupo e categoria:</p>",
+   "alternativas": [
+    "grupo 3 e categoria III",
+    "grupo 5 e categoria V",
+    "grupo 4 e categoria IV",
+    "grupo 4 e categoria III"
+   ],
+   "correta": 2,
+   "explicacao": "<div class=\"passo\">0,8·2 = 1,6: grupo 4</div><div class=\"passo\">Classe C: <strong>categoria IV</strong></div>"
+  },
+  {
+   "id": "st-056",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "nr13",
+   "enunciado": "<p>A prática profissional supervisionada do operador de caldeira de categoria A tem duração mínima de:</p>",
+   "alternativas": [
+    "60 horas",
+    "40 horas",
+    "80 horas",
+    "16 horas"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Categoria B: 60 horas. O treinamento de segurança tem no mínimo 40 horas.</p>"
+  },
+  {
+   "id": "st-057",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr13",
+   "enunciado": "<p>A NR-13 considera o Profissional Legalmente Habilitado aquele que:</p>",
+   "alternativas": [
+    "tem curso técnico de operador",
+    "tem competência legal para exercer a engenharia na atividade, conforme o conselho de classe",
+    "trabalha há dez anos com caldeiras",
+    "é indicado pela CIPA"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Ele responde pelas inspeções e pela PMTA.</p>"
+  },
+  {
+   "id": "st-058",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr35",
+   "enunciado": "<p>A NR-35 se aplica a atividades com diferença de nível acima de:</p>",
+   "alternativas": [
+    "2,0 m, onde haja risco de queda",
+    "1,0 m",
+    "3,0 m",
+    "5,0 m"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Item 35.2.1.</p>"
+  },
+  {
+   "id": "st-059",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr35",
+   "enunciado": "<p>O treinamento periódico da NR-35 tem periodicidade e carga de:</p>",
+   "alternativas": [
+    "anual e 40 horas",
+    "a cada cinco anos e 4 horas",
+    "a cada três anos e 16 horas",
+    "a cada dois anos e 8 horas"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O inicial também tem no mínimo 8 horas.</p>"
+  },
+  {
+   "id": "st-060",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr35",
+   "enunciado": "<p>A força de impacto máxima transmitida ao trabalhador, na retenção de queda, é de:</p>",
+   "alternativas": [
+    "1 kN",
+    "12 kN",
+    "22 kN",
+    "6 kN"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Item 35.6.7.</p>"
+  },
+  {
+   "id": "st-061",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "nr35",
+   "enunciado": "<p>Um talabarte de 2 m, com queda livre de 3 m, tem fator de queda de:</p>",
+   "alternativas": [
+    "0,67",
+    "2,0",
+    "1,5",
+    "6,0"
+   ],
+   "correta": 2,
+   "formulas": [
+    "FQ = h/L"
+   ],
+   "explicacao": "<div class=\"passo\">3/2 = <strong>1,5</strong></div>"
+  },
+  {
+   "id": "st-062",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr35",
+   "enunciado": "<p>Na retenção de quedas, o cinturão exigido é do tipo:</p>",
+   "alternativas": [
+    "abdominal",
+    "paraquedista",
+    "de posicionamento",
+    "de restrição simples"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Item 35.6.9.</p>"
+  },
+  {
+   "id": "st-063",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "nr35",
+   "enunciado": "<p>Pessoa de 100 kg cai 2 m em queda livre, e o absorvedor freia a 4 kN. A abertura é de aproximadamente:</p>",
+   "alternativas": [
+    "0,65 m",
+    "2,0 m",
+    "0,25 m",
+    "1,3 m"
+   ],
+   "correta": 0,
+   "formulas": [
+    "d = m g h/(F − m g)"
+   ],
+   "explicacao": "<div class=\"passo\">981·2/(4000 − 981) = <strong>0,65 m</strong></div>"
+  },
+  {
+   "id": "st-064",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "nr35",
+   "enunciado": "<p>Com talabarte de 1,5 m, abertura de 1 m, engate a 1,5 m dos pés e margem de 1 m, a zona livre abaixo da ancoragem é:</p>",
+   "alternativas": [
+    "5,0 m",
+    "3,5 m",
+    "4,0 m",
+    "2,5 m"
+   ],
+   "correta": 0,
+   "formulas": [
+    "ZLQ = L + d + h + margem"
+   ],
+   "explicacao": "<div class=\"passo\">1,5 + 1 + 1,5 + 1 = <strong>5,0 m</strong></div>"
+  },
+  {
+   "id": "st-065",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr33",
+   "enunciado": "<p>Para ser espaço confinado, a área deve:</p>",
+   "alternativas": [
+    "ter menos de 10 m³",
+    "ser sempre subterrânea",
+    "ter apenas uma entrada",
+    "atender simultaneamente às três condições da norma, incluindo atmosfera perigosa existente ou possível"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Item 33.2.2.</p>"
+  },
+  {
+   "id": "st-066",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr33",
+   "enunciado": "<p>Quem emite a Permissão de Entrada e Trabalho é:</p>",
+   "alternativas": [
+    "o vigia",
+    "o trabalhador autorizado",
+    "o supervisor de entrada",
+    "o presidente da CIPA"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Item 33.3.3.</p>"
+  },
+  {
+   "id": "st-067",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "nr33",
+   "enunciado": "<p>A faixa aceitável de oxigênio para entrada é de:</p>",
+   "alternativas": [
+    "15 % a 19,5 %",
+    "19,5 % a 23 %",
+    "20,9 % a 30 %",
+    "10 % a 19,5 %"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Com a causa da alteração conhecida e controlada.</p>"
+  },
+  {
+   "id": "st-068",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr33",
+   "enunciado": "<p>A validade da PET, incluindo prorrogações, não pode exceder:</p>",
+   "alternativas": [
+    "8 horas",
+    "24 horas",
+    "72 horas",
+    "30 dias"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Item 33.5.12.1.1.</p>"
+  },
+  {
+   "id": "st-069",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr33",
+   "enunciado": "<p>Sobre a avaliação atmosférica inicial, é correto afirmar que ela deve ser feita:</p>",
+   "alternativas": [
+    "com o supervisor de entrada fora do espaço, imediatamente antes da entrada",
+    "pelo trabalhador, já dentro do espaço",
+    "uma vez por mês",
+    "só se houver cheiro perceptível"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O monitoramento é contínuo durante a permanência.</p>"
+  },
+  {
+   "id": "st-070",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr33",
+   "enunciado": "<p>A ventilação de um espaço confinado com oxigênio puro é:</p>",
+   "alternativas": [
+    "recomendada para atmosferas pobres",
+    "obrigatória",
+    "permitida acima de 19,5 %",
+    "proibida"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Item 33.5.16.3.</p>"
+  },
+  {
+   "id": "st-071",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "nr33",
+   "enunciado": "<p>O treinamento inicial do supervisor de entrada e o do vigia têm, respectivamente:</p>",
+   "alternativas": [
+    "16 horas e 8 horas",
+    "8 horas e 40 horas",
+    "40 horas e 16 horas",
+    "24 horas e 24 horas"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Anexo da NR-33.</p>"
+  },
+  {
+   "id": "st-072",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "inflamaveis",
+   "enunciado": "<p>Pela NR-20, líquido inflamável tem ponto de fulgor:</p>",
+   "alternativas": [
+    "acima de 93 °C",
+    "entre 60 °C e 93 °C",
+    "de até 60 °C",
+    "acima de 200 °C"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Combustível: acima de 60 °C e até 93 °C.</p>"
+  },
+  {
+   "id": "st-073",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "inflamaveis",
+   "enunciado": "<p>O fogo em equipamento elétrico energizado é de classe:</p>",
+   "alternativas": [
+    "A",
+    "C",
+    "B",
+    "D"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Usa-se CO₂ ou pó, e não água.</p>"
+  },
+  {
+   "id": "st-074",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "inflamaveis",
+   "enunciado": "<p>Abaixo do limite inferior de explosividade, a mistura:</p>",
+   "alternativas": [
+    "é pobre e não sustenta a chama",
+    "é rica demais para queimar",
+    "explode com qualquer fonte",
+    "é sempre tóxica"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Acima do LSE a mistura é rica.</p>"
+  },
+  {
+   "id": "st-075",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "inflamaveis",
+   "enunciado": "<p>Uma mistura com 50 % de metano e 50 % de propano, com LIE 5,0 % e 2,1 %, tem LIE de:</p>",
+   "alternativas": [
+    "3,55 %",
+    "7,1 %",
+    "2,10 %",
+    "2,96 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "LIE = 100/Σ(y/LIE)"
+   ],
+   "explicacao": "<div class=\"passo\">100/(50/5 + 50/2,1) = <strong>2,96 %</strong></div>"
+  },
+  {
+   "id": "st-076",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "inflamaveis",
+   "enunciado": "<p>Uma instalação com 8 000 m³ de líquidos inflamáveis é, pela NR-20, de Classe:</p>",
+   "alternativas": [
+    "I",
+    "III",
+    "IV",
+    "II"
+   ],
+   "correta": 3,
+   "explicacao": "<p>De 5 000 m³ a 50 000 m³, em líquidos.</p>"
+  },
+  {
+   "id": "st-077",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "inflamaveis",
+   "enunciado": "<p>Ponto de fulgor é a menor temperatura em que:</p>",
+   "alternativas": [
+    "o líquido queima sem fonte externa",
+    "o líquido entra em ebulição",
+    "o líquido libera vapor capaz de inflamar na presença de fonte de ignição",
+    "o vapor se condensa"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Sem fonte externa é o ponto de autoignição.</p>"
+  },
+  {
+   "id": "st-078",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "inflamaveis",
+   "enunciado": "<p>Um espaço de 100 m³, com 2 % de gás, recebe 500 m³/h de ar. O tempo até 0,5 % é:</p>",
+   "alternativas": [
+    "12,0 min",
+    "16,6 min",
+    "24,0 min",
+    "8,3 min"
+   ],
+   "correta": 1,
+   "formulas": [
+    "t = (V/Q) ln(C₀/C)"
+   ],
+   "explicacao": "<div class=\"passo\">(100/500)·ln(4)·60 = <strong>16,6 min</strong></div>"
+  },
+  {
+   "id": "st-079",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "inflamaveis",
+   "enunciado": "<p>Purgar com ar um tanque acima do LSE é perigoso porque:</p>",
+   "alternativas": [
+    "a mistura atravessa a faixa explosiva durante a diluição",
+    "o ar reduz a temperatura de autoignição a zero",
+    "o LSE aumenta com a ventilação",
+    "a mistura se torna sólida"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A prática é inertizar antes de admitir ar.</p>"
+  }
+ ]
+}
