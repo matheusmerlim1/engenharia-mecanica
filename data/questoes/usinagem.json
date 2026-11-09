@@ -1,0 +1,879 @@
+{
+ "disciplina": "Usinagem",
+ "slug": "usinagem",
+ "topicos": [
+  {
+   "id": "parametros",
+   "nome": "Parâmetros de corte"
+  },
+  {
+   "id": "cavaco",
+   "nome": "Formação do cavaco"
+  },
+  {
+   "id": "forcas",
+   "nome": "Forças e potência"
+  },
+  {
+   "id": "ferramentas",
+   "nome": "Ferramentas e fluidos"
+  },
+  {
+   "id": "taylor",
+   "nome": "Desgaste e Taylor"
+  },
+  {
+   "id": "torneamento",
+   "nome": "Torneamento"
+  },
+  {
+   "id": "furacao",
+   "nome": "Furação"
+  },
+  {
+   "id": "fresamento",
+   "nome": "Fresamento"
+  },
+  {
+   "id": "economia",
+   "nome": "Condições econômicas"
+  },
+  {
+   "id": "retificacao",
+   "nome": "Retificação e CNC"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "us-001",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "parametros",
+   "enunciado": "<p>Uma peça de 100 mm de diâmetro é torneada a 500 rpm. A velocidade de corte é:</p>",
+   "alternativas": [
+    "50 m/min",
+    "314 m/min",
+    "15,7 m/min",
+    "157 m/min"
+   ],
+   "correta": 3,
+   "formulas": [
+    "v = πDn/1000"
+   ],
+   "explicacao": "<div class=\"passo\">π·100·500/1000 = <strong>157 m/min</strong></div>"
+  },
+  {
+   "id": "us-002",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "parametros",
+   "enunciado": "<p>Para usinar uma peça de 60 mm com 120 m/min, a rotação deve ser:</p>",
+   "alternativas": [
+    "200 rpm",
+    "1273 rpm",
+    "637 rpm",
+    "2000 rpm"
+   ],
+   "correta": 2,
+   "formulas": [
+    "n = 1000v/(πD)"
+   ],
+   "explicacao": "<div class=\"passo\">1000·120/(π·60) = <strong>637 rpm</strong></div>"
+  },
+  {
+   "id": "us-003",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "parametros",
+   "enunciado": "<p>Um passe de 200 mm, com avanço de 0,20 mm/rot e 600 rpm, leva:</p>",
+   "alternativas": [
+    "0,17 min",
+    "1,67 min",
+    "6,0 min",
+    "120 min"
+   ],
+   "correta": 1,
+   "formulas": [
+    "t = L/(f n)"
+   ],
+   "explicacao": "<div class=\"passo\">200/(0,2·600) = <strong>1,67 min</strong></div>"
+  },
+  {
+   "id": "us-004",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "parametros",
+   "enunciado": "<p>Com 120 m/min, avanço de 0,2 mm/rot e profundidade de 2 mm, a taxa de remoção é:</p>",
+   "alternativas": [
+    "24 cm³/min",
+    "48 cm³/min",
+    "480 cm³/min",
+    "12 cm³/min"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Q = v f a_p"
+   ],
+   "explicacao": "<div class=\"passo\">120·0,2·2 = <strong>48 cm³/min</strong></div>"
+  },
+  {
+   "id": "us-005",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "parametros",
+   "enunciado": "<p>Dobrando o diâmetro da peça, para manter a velocidade de corte, a rotação deve:</p>",
+   "alternativas": [
+    "cair à metade",
+    "dobrar",
+    "permanecer igual",
+    "aumentar quatro vezes"
+   ],
+   "correta": 0,
+   "explicacao": "<p>n = 1000v/(πD).</p>"
+  },
+  {
+   "id": "us-006",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "parametros",
+   "enunciado": "<p>No faceamento a rotação constante, a velocidade de corte:</p>",
+   "alternativas": [
+    "permanece constante",
+    "aumenta em direção ao centro",
+    "só depende do avanço",
+    "diminui à medida que a ferramenta se aproxima do centro"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O diâmetro cai. Por isso o CNC usa G96.</p>"
+  },
+  {
+   "id": "us-007",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "cavaco",
+   "enunciado": "<p>A razão de corte h/h<sub>c</sub> é:</p>",
+   "alternativas": [
+    "sempre maior que 1",
+    "igual a 1 no corte contínuo",
+    "menor que 1, porque o cavaco é mais espesso que a camada removida",
+    "igual ao ângulo de saída"
+   ],
+   "correta": 2,
+   "explicacao": "<p>O cavaco sai mais grosso.</p>"
+  },
+  {
+   "id": "us-008",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "cavaco",
+   "enunciado": "<p>Com h = 0,25 mm, h<sub>c</sub> = 0,75 mm e ângulo de saída de 10°, o ângulo de cisalhamento é:</p>",
+   "alternativas": [
+    "18,4°",
+    "26,6°",
+    "19,2°",
+    "45,0°"
+   ],
+   "correta": 2,
+   "formulas": [
+    "tan φ = r cos γ/(1 − r sen γ)"
+   ],
+   "explicacao": "<div class=\"passo\">r = 1/3</div><div class=\"passo\">tan φ = 0,3283/0,9421 = 0,348</div><div class=\"passo\">φ = <strong>19,2°</strong></div>"
+  },
+  {
+   "id": "us-009",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "cavaco",
+   "enunciado": "<p>A aresta postiça de corte ocorre principalmente:</p>",
+   "alternativas": [
+    "em ferros fundidos com velocidade alta",
+    "em aços dúcteis com velocidades baixas de corte",
+    "somente com ferramentas de diamante",
+    "em velocidades de corte muito altas"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O material encrua e se solda à ferramenta. Aumentar a velocidade reduz o fenômeno.</p>"
+  },
+  {
+   "id": "us-010",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "cavaco",
+   "enunciado": "<p>O cavaco descontínuo é típico de:</p>",
+   "alternativas": [
+    "ferro fundido e materiais frágeis",
+    "alumínio puro",
+    "aço dúctil em alta velocidade",
+    "cobre recozido"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O material rompe logo após pequena deformação.</p>"
+  },
+  {
+   "id": "us-011",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "cavaco",
+   "enunciado": "<p>Pela relação de Merchant, com γ = 10° e φ = 19,2°, o ângulo de atrito é aproximadamente:</p>",
+   "alternativas": [
+    "30,8°",
+    "25,8°",
+    "50,0°",
+    "61,6°"
+   ],
+   "correta": 3,
+   "formulas": [
+    "φ = 45° + γ/2 − β/2"
+   ],
+   "explicacao": "<div class=\"passo\">β = 2(45° + γ/2 − φ) = 2(50° − 19,2°) = <strong>61,6°</strong></div>"
+  },
+  {
+   "id": "us-012",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "cavaco",
+   "enunciado": "<p>Um ângulo de saída negativo é preferido para:</p>",
+   "alternativas": [
+    "diminuir a força de corte em materiais moles",
+    "aumentar a folga da ferramenta",
+    "evitar o uso de fluido",
+    "ferramentas frágeis e materiais duros, pois coloca a aresta em compressão"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Aresta mais robusta, com força maior.</p>"
+  },
+  {
+   "id": "us-013",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "forcas",
+   "enunciado": "<p>Com k<sub>s</sub> = 2000 MPa, f = 0,25 mm/rot e a<sub>p</sub> = 3 mm, a força de corte é:</p>",
+   "alternativas": [
+    "150 N",
+    "6000 N",
+    "1500 N",
+    "750 N"
+   ],
+   "correta": 2,
+   "formulas": [
+    "F = k_s f a_p"
+   ],
+   "explicacao": "<div class=\"passo\">2000·0,75 = <strong>1500 N</strong></div>"
+  },
+  {
+   "id": "us-014",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "forcas",
+   "enunciado": "<p>Com 1500 N e 150 m/min, a potência de corte é:</p>",
+   "alternativas": [
+    "225 kW",
+    "3,75 kW",
+    "0,625 kW",
+    "37,5 kW"
+   ],
+   "correta": 1,
+   "formulas": [
+    "P = F v"
+   ],
+   "explicacao": "<div class=\"passo\">v = 2,5 m/s</div><div class=\"passo\">1500·2,5 = <strong>3750 W</strong></div><p>225 kW esquece de converter m/min.</p>"
+  },
+  {
+   "id": "us-015",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "forcas",
+   "enunciado": "<p>A potência no motor, com potência de corte de 3,75 kW e rendimento de 80 %, é:</p>",
+   "alternativas": [
+    "4,69 kW",
+    "3,00 kW",
+    "3,75 kW",
+    "6,00 kW"
+   ],
+   "correta": 0,
+   "formulas": [
+    "P_m = P_c/η"
+   ],
+   "explicacao": "<div class=\"passo\">3,75/0,8 = <strong>4,69 kW</strong></div>"
+  },
+  {
+   "id": "us-016",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "forcas",
+   "enunciado": "<p>A força específica de corte, quando a espessura do cavaco diminui:</p>",
+   "alternativas": [
+    "aumenta, pelo efeito de escala",
+    "diminui proporcionalmente",
+    "não muda",
+    "cai a zero"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Modelo de Kienzle: k<sub>s</sub> = k<sub>s1</sub> h<sup>−mc</sup>.</p>"
+  },
+  {
+   "id": "us-017",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "forcas",
+   "enunciado": "<p>Com k<sub>s1</sub> = 1700 MPa, m<sub>c</sub> = 0,25 e h = 0,25 mm, a força específica é:</p>",
+   "alternativas": [
+    "1202 MPa",
+    "1700 MPa",
+    "425 MPa",
+    "2404 MPa"
+   ],
+   "correta": 3,
+   "formulas": [
+    "k_s = k_{s1} h^{−m_c}"
+   ],
+   "explicacao": "<div class=\"passo\">1700·0,25<sup>−0,25</sup> = 1700·1,414 = <strong>2404 MPa</strong></div>"
+  },
+  {
+   "id": "us-018",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ferramentas",
+   "enunciado": "<p>A ordem crescente de velocidade de corte admissível entre as ferramentas abaixo é:</p>",
+   "alternativas": [
+    "cerâmica, metal duro, aço rápido",
+    "metal duro, aço rápido, cerâmica",
+    "aço rápido, metal duro, cerâmica",
+    "aço rápido, cerâmica, metal duro"
+   ],
+   "correta": 2,
+   "explicacao": "<p>A dureza a quente cresce nessa ordem, e a tenacidade cai.</p>"
+  },
+  {
+   "id": "us-019",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ferramentas",
+   "enunciado": "<p>O diamante policristalino não é usado em aços porque:</p>",
+   "alternativas": [
+    "é pouco duro",
+    "o carbono do diamante reage com o ferro em alta temperatura",
+    "tem baixo ponto de fusão",
+    "é muito tenaz"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O desgaste químico é severo. CBN é a opção para aço endurecido.</p>"
+  },
+  {
+   "id": "us-020",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ferramentas",
+   "enunciado": "<p>As funções principais do fluido de corte são:</p>",
+   "alternativas": [
+    "aumentar a temperatura da peça",
+    "refrigerar, lubrificar e auxiliar a remoção de cavacos",
+    "aumentar o atrito e a força",
+    "substituir a ferramenta de corte"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Também protege contra corrosão.</p>"
+  },
+  {
+   "id": "us-021",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ferramentas",
+   "enunciado": "<p>Na classificação ISO 513, o grupo K é indicado para:</p>",
+   "alternativas": [
+    "ferros fundidos",
+    "aços",
+    "aços inoxidáveis",
+    "ligas de alumínio"
+   ],
+   "correta": 0,
+   "explicacao": "<p>P aços; M inoxidáveis; K fundidos; N não ferrosos; S superligas; H endurecidos.</p>"
+  },
+  {
+   "id": "us-022",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ferramentas",
+   "enunciado": "<p>Em fresamento com metal duro, aplicar fluido em abundância pode:</p>",
+   "alternativas": [
+    "eliminar o desgaste",
+    "aumentar a dureza da ferramenta",
+    "dispensar o controle de velocidade",
+    "provocar trincas térmicas, por causa dos ciclos de aquecimento e resfriamento"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O corte é interrompido, e a aresta sofre choque térmico.</p>"
+  },
+  {
+   "id": "us-023",
+   "tipo": "calculo",
+   "dificuldade": "facil",
+   "topico": "taylor",
+   "enunciado": "<p>Na equação v T<sup>n</sup> = C, com n = 0,25, C = 200 e v = 100 m/min, a vida é:</p>",
+   "alternativas": [
+    "2 min",
+    "4 min",
+    "16 min",
+    "400 min"
+   ],
+   "correta": 2,
+   "formulas": [
+    "v T^n = C"
+   ],
+   "explicacao": "<div class=\"passo\">T = (200/100)<sup>4</sup> = <strong>16 min</strong></div>"
+  },
+  {
+   "id": "us-024",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "taylor",
+   "enunciado": "<p>Com n = 0,25, ao dobrar a velocidade de corte, a vida fica dividida por:</p>",
+   "alternativas": [
+    "2",
+    "4",
+    "16",
+    "8"
+   ],
+   "correta": 2,
+   "formulas": [
+    "T = (C/v)^{1/n}"
+   ],
+   "explicacao": "<div class=\"passo\">2<sup>1/0,25</sup> = <strong>16</strong></div>"
+  },
+  {
+   "id": "us-025",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "taylor",
+   "enunciado": "<p>Ensaios deram 10 min a 200 m/min e 40 min a 150 m/min. O expoente de Taylor é:</p>",
+   "alternativas": [
+    "0,250",
+    "0,208",
+    "0,125",
+    "0,750"
+   ],
+   "correta": 1,
+   "formulas": [
+    "n = ln(v₁/v₂)/ln(T₂/T₁)"
+   ],
+   "explicacao": "<div class=\"passo\">n = ln(200/150)/ln(40/10) = <strong>0,208</strong></div>"
+  },
+  {
+   "id": "us-026",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "taylor",
+   "enunciado": "<p>O desgaste de flanco é causado principalmente por:</p>",
+   "alternativas": [
+    "abrasão entre a peça e a face de folga",
+    "fusão do cavaco",
+    "corrosão do fluido",
+    "difusão na face de saída"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A difusão provoca a cratera.</p>"
+  },
+  {
+   "id": "us-027",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "taylor",
+   "enunciado": "<p>O valor típico do expoente n de Taylor é maior para:</p>",
+   "alternativas": [
+    "aço rápido que para cerâmica",
+    "aço rápido que para metal duro",
+    "qualquer material igualmente",
+    "cerâmica que para metal duro e aço rápido"
+   ],
+   "correta": 3,
+   "explicacao": "<p>n ≈ 0,125 no aço rápido, 0,25 no metal duro e 0,6 na cerâmica.</p>"
+  },
+  {
+   "id": "us-028",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "taylor",
+   "enunciado": "<p>Para n = 0,2075 e C = 322,5, a velocidade para 20 min de vida é:</p>",
+   "alternativas": [
+    "150 m/min",
+    "200 m/min",
+    "250 m/min",
+    "173 m/min"
+   ],
+   "correta": 3,
+   "formulas": [
+    "v = C/T^n"
+   ],
+   "explicacao": "<div class=\"passo\">322,5/20<sup>0,2075</sup> = <strong>173 m/min</strong></div>"
+  },
+  {
+   "id": "us-029",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "torneamento",
+   "enunciado": "<p>Com f = 0,2 mm/rot e raio de ponta de 0,8 mm, a R<sub>a</sub> teórica é:</p>",
+   "alternativas": [
+    "6,25 µm",
+    "0,16 µm",
+    "1,56 µm",
+    "15,6 µm"
+   ],
+   "correta": 2,
+   "formulas": [
+    "R_a ≈ f²/(32 r)"
+   ],
+   "explicacao": "<div class=\"passo\">0,04/(32·0,8) = 1,56×10⁻³ mm = <strong>1,56 µm</strong></div><p>6,25 µm é R<sub>t</sub>.</p>"
+  },
+  {
+   "id": "us-030",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "torneamento",
+   "enunciado": "<p>Para melhorar a rugosidade no torneamento, a medida mais eficaz é:</p>",
+   "alternativas": [
+    "aumentar a profundidade de corte",
+    "reduzir o avanço",
+    "reduzir o raio de ponta",
+    "reduzir a rigidez"
+   ],
+   "correta": 1,
+   "explicacao": "<p>R<sub>a</sub> depende de f².</p>"
+  },
+  {
+   "id": "us-031",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "torneamento",
+   "enunciado": "<p>No desbaste, em comparação ao acabamento, usam-se:</p>",
+   "alternativas": [
+    "maior profundidade e maior avanço",
+    "menor profundidade e menor avanço",
+    "a mesma profundidade e menor avanço",
+    "maior velocidade e menor avanço"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Desbaste busca taxa de remoção.</p>"
+  },
+  {
+   "id": "us-032",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "torneamento",
+   "enunciado": "<p>Em um eixo esbelto, para reduzir a flexão, recomenda-se:</p>",
+   "alternativas": [
+    "usar contraponto ou luneta e ângulo de posição próximo de 90°",
+    "diminuir o raio do apoio e aumentar a força radial",
+    "trabalhar sem fixação no contraponto",
+    "adotar ângulo de posição bem pequeno"
+   ],
+   "correta": 0,
+   "explicacao": "<p>O ângulo próximo de 90° dirige a força para a direção axial.</p>"
+  },
+  {
+   "id": "us-033",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "furacao",
+   "enunciado": "<p>Na broca helicoidal, a velocidade de corte:</p>",
+   "alternativas": [
+    "é igual em toda a aresta",
+    "é máxima no centro",
+    "é nula na periferia",
+    "é máxima na periferia e nula no centro"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Depende do raio.</p>"
+  },
+  {
+   "id": "us-034",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "furacao",
+   "enunciado": "<p>Com broca de 20 mm a 800 rpm, a velocidade periférica é:</p>",
+   "alternativas": [
+    "25,1 m/min",
+    "16 m/min",
+    "50,3 m/min",
+    "100,5 m/min"
+   ],
+   "correta": 2,
+   "formulas": [
+    "v = πDn/1000"
+   ],
+   "explicacao": "<div class=\"passo\">π·20·800/1000 = <strong>50,3 m/min</strong></div>"
+  },
+  {
+   "id": "us-035",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "furacao",
+   "enunciado": "<p>Furo de 40 mm com broca de 20 mm, f = 0,2 e n = 800. Com aproximação de 0,3D, o tempo é:</p>",
+   "alternativas": [
+    "0,25 min",
+    "0,29 min",
+    "0,20 min",
+    "0,50 min"
+   ],
+   "correta": 1,
+   "formulas": [
+    "t = (L + 0,3D)/(f n)"
+   ],
+   "explicacao": "<div class=\"passo\">(40 + 6)/(160) = <strong>0,29 min</strong></div>"
+  },
+  {
+   "id": "us-036",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "furacao",
+   "enunciado": "<p>A maior parte da força de avanço na furação vem:</p>",
+   "alternativas": [
+    "das guias da broca",
+    "da aresta transversal, que extruda o material no centro",
+    "da extremidade da haste",
+    "somente do fluido"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Afiação cruzada e pré-furo reduzem esse esforço.</p>"
+  },
+  {
+   "id": "us-037",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "fresamento",
+   "enunciado": "<p>A velocidade de avanço da mesa é dada por:</p>",
+   "alternativas": [
+    "f<sub>z</sub> · z · n",
+    "f<sub>z</sub> / (z · n)",
+    "π D n",
+    "a<sub>e</sub> · a<sub>p</sub>"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Avanço por dente, vezes dentes, vezes rotação.</p>"
+  },
+  {
+   "id": "us-038",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "fresamento",
+   "enunciado": "<p>Fresa de 6 dentes a 477 rpm, com 0,15 mm/dente, tem avanço da mesa de:</p>",
+   "alternativas": [
+    "71,6 mm/min",
+    "477 mm/min",
+    "2862 mm/min",
+    "429 mm/min"
+   ],
+   "correta": 3,
+   "formulas": [
+    "v_f = f_z z n"
+   ],
+   "explicacao": "<div class=\"passo\">0,15·6·477 = <strong>429 mm/min</strong></div>"
+  },
+  {
+   "id": "us-039",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "fresamento",
+   "enunciado": "<p>No fresamento concordante, em relação ao discordante:</p>",
+   "alternativas": [
+    "o cavaco começa com espessura nula",
+    "há mais atrito na entrada do dente",
+    "o cavaco começa com espessura máxima e a vida da ferramenta costuma ser maior",
+    "a folga no fuso não influencia"
+   ],
+   "correta": 2,
+   "explicacao": "<p>É o ponto cobrado com mais frequência.</p>"
+  },
+  {
+   "id": "us-040",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "fresamento",
+   "enunciado": "<p>Em uma fresadora convencional com folga no fuso, prefere-se:</p>",
+   "alternativas": [
+    "o fresamento concordante",
+    "qualquer um, sem diferença",
+    "o fresamento discordante",
+    "o torneamento"
+   ],
+   "correta": 2,
+   "explicacao": "<p>No concordante, o dente puxa a mesa.</p>"
+  },
+  {
+   "id": "us-041",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "fresamento",
+   "enunciado": "<p>Com a<sub>e</sub> = 40 mm, a<sub>p</sub> = 3 mm e v<sub>f</sub> = 430 mm/min, a taxa de remoção é:</p>",
+   "alternativas": [
+    "120 cm³/min",
+    "51,6 cm³/min",
+    "12,9 cm³/min",
+    "5,16 cm³/min"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Q = a_e a_p v_f/1000"
+   ],
+   "explicacao": "<div class=\"passo\">40·3·430/1000 = <strong>51,6 cm³/min</strong></div>"
+  },
+  {
+   "id": "us-042",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "economia",
+   "enunciado": "<p>A velocidade de mínimo custo, comparada à de máxima produção, é:</p>",
+   "alternativas": [
+    "menor",
+    "maior",
+    "igual",
+    "sempre zero"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Ela considera também o custo da ferramenta.</p>"
+  },
+  {
+   "id": "us-043",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "economia",
+   "enunciado": "<p>Com n = 0,25 e tempo de troca de 2 min, a vida de máxima produção é:</p>",
+   "alternativas": [
+    "2 min",
+    "8 min",
+    "0,5 min",
+    "6 min"
+   ],
+   "correta": 3,
+   "formulas": [
+    "T = (1/n − 1) t_t"
+   ],
+   "explicacao": "<div class=\"passo\">(1/0,25 − 1)·2 = <strong>6 min</strong></div>"
+  },
+  {
+   "id": "us-044",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "economia",
+   "enunciado": "<p>Com n = 0,25, t<sub>t</sub> = 2 min, C<sub>f</sub> = 10 e C<sub>o</sub> = 2, a vida de mínimo custo é:</p>",
+   "alternativas": [
+    "6 min",
+    "7 min",
+    "15 min",
+    "21 min"
+   ],
+   "correta": 3,
+   "formulas": [
+    "T = (1/n − 1)(t_t + C_f/C_o)"
+   ],
+   "explicacao": "<div class=\"passo\">3·(2 + 5) = <strong>21 min</strong></div>"
+  },
+  {
+   "id": "us-045",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "economia",
+   "enunciado": "<p>Com C = 300 e T = 21 min, com n = 0,25, a velocidade de mínimo custo é:</p>",
+   "alternativas": [
+    "192 m/min",
+    "100 m/min",
+    "140 m/min",
+    "300 m/min"
+   ],
+   "correta": 2,
+   "formulas": [
+    "v = C/T^n"
+   ],
+   "explicacao": "<div class=\"passo\">300/21<sup>0,25</sup> = <strong>140 m/min</strong></div>"
+  },
+  {
+   "id": "us-046",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "economia",
+   "enunciado": "<p>Quando a pastilha fica mais barata, a velocidade de mínimo custo:</p>",
+   "alternativas": [
+    "diminui",
+    "aumenta, pois o gasto extra com ferramenta pesa menos",
+    "não muda",
+    "cai a zero"
+   ],
+   "correta": 1,
+   "explicacao": "<p>C<sub>f</sub> menor reduz T<sub>mc</sub>.</p>"
+  },
+  {
+   "id": "us-047",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "retificacao",
+   "enunciado": "<p>A retificação é empregada principalmente para:</p>",
+   "alternativas": [
+    "obter tolerâncias estreitas e baixa rugosidade, inclusive em materiais endurecidos",
+    "remover grandes volumes de material com rapidez",
+    "abrir furos profundos",
+    "cortar chapas grossas"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A taxa de remoção é baixa.</p>"
+  },
+  {
+   "id": "us-048",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "retificacao",
+   "enunciado": "<p>A energia específica da retificação é alta porque:</p>",
+   "alternativas": [
+    "os grãos têm ângulo de saída muito negativo e muitos só riscam a peça",
+    "o rebolo gira devagar",
+    "o material sempre está aquecido",
+    "não há atrito"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Quase tudo vira calor, e por isso o fluido é indispensável.</p>"
+  },
+  {
+   "id": "us-049",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "retificacao",
+   "enunciado": "<p>A eletroerosão pode ser aplicada:</p>",
+   "alternativas": [
+    "somente a polímeros",
+    "somente a materiais moles",
+    "a qualquer isolante cerâmico",
+    "somente a materiais condutores, independentemente da dureza"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O processo depende de descargas elétricas.</p>"
+  },
+  {
+   "id": "us-050",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "retificacao",
+   "enunciado": "<p>Em programação CNC, o comando G01 significa:</p>",
+   "alternativas": [
+    "movimento rápido sem corte",
+    "interpolação circular",
+    "interpolação linear com avanço programado",
+    "ligar o fluido"
+   ],
+   "correta": 2,
+   "explicacao": "<p>G00 é o movimento rápido.</p>"
+  },
+  {
+   "id": "us-051",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "retificacao",
+   "enunciado": "<p>O comando G96 no torno CNC programa:</p>",
+   "alternativas": [
+    "rotação constante",
+    "velocidade de corte constante",
+    "parada do programa",
+    "troca de ferramenta"
+   ],
+   "correta": 1,
+   "explicacao": "<p>G97 mantém rotação constante.</p>"
+  }
+ ]
+}

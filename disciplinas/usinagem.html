@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Usinagem — Engenharia Mecânica</title>
+<meta name="description" content="Usinagem: parâmetros de corte, formação do cavaco, forças e potência, ferramentas, vida de Taylor, torneamento, furação, fresamento, condições econômicas, retificação e CNC.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">Optativa · Engenharia Mecânica</p>
+    <h1>Usinagem</h1>
+    <p class="lead">O que acontece na ponta da ferramenta e como decidir em que condições cortar. Este texto está organizado como um livro: dez capítulos em sequência, dos parâmetros básicos às condições econômicas e ao CNC.</p>
+    <div class="btn-row">
+      <span class="tag accent">10 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">51 questões</span>
+      <span class="tag info">3 simuladores animados</span>
+      <span class="tag info">8 figuras interativas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho vai dos parâmetros de corte às decisões de custo: primeiro o que acontece na ponta da ferramenta, depois os processos e, por fim, como escolher as condições que dão o menor custo.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: fabricar tirando material</h2>
+        <p>Usinagem é remover material na forma de cavaco para chegar a uma forma e a um acabamento que fundição, forjamento e soldagem não alcançam sozinhos. Eixos, sedes de rolamento, roscas e superfícies de vedação quase sempre passam por uma máquina-ferramenta. O engenheiro precisa saber calcular rotação, potência e tempo, escolher a ferramenta e decidir em que velocidade cortar.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Que rotação e avanço usar? Quanto tempo leva?</td><td>Parâmetros de corte</td><td>1</td></tr>
+            <tr><td>Como o cavaco se forma?</td><td>Corte ortogonal e Merchant</td><td>2</td></tr>
+            <tr><td>Que potência a máquina precisa ter?</td><td>Força específica de corte</td><td>3</td></tr>
+            <tr><td>Que ferramenta e que fluido usar?</td><td>Materiais de ferramenta</td><td>4</td></tr>
+            <tr><td>Quanto a ferramenta dura?</td><td>Desgaste e equação de Taylor</td><td>5</td></tr>
+            <tr><td>Como fica o acabamento?</td><td>Torneamento</td><td>6</td></tr>
+            <tr><td>Furos e superfícies planas</td><td>Furação e fresamento</td><td>7 e 8</td></tr>
+            <tr><td>Qual a velocidade mais econômica?</td><td>Custo e produção</td><td>9</td></tr>
+            <tr><td>E a tolerância apertada?</td><td>Retificação, processos especiais e CNC</td><td>10</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Como estudar com este texto</strong>
+          Confira sempre as unidades: o diâmetro costuma vir em milímetros, a velocidade de corte em metros por minuto e a força específica em megapascal. É nessa conversão que a maior parte das contas erra.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — O corte" data-topicos="parametros">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. Parâmetros de corte</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir movimento de corte e de avanço;</li>
+            <li>calcular velocidade de corte e rotação;</li>
+            <li>calcular a taxa de remoção e o tempo de corte.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Apenas noções de mecânica.</p></div>
+        </div>
+        <h3 id="s1-1"><span class="num">1.1</span>Os movimentos</h3>
+        <p>Todo processo combina um <strong>movimento de corte</strong>, que retira o material, e um <strong>movimento de avanço</strong>, que leva a ferramenta à região ainda não cortada. No torneamento, a peça gira e a ferramenta avança. No fresamento e na furação, gira a ferramenta.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Grandeza</th><th>Símbolo</th><th>Unidade usual</th></tr></thead>
+          <tbody>
+            <tr><td>Velocidade de corte</td><td><span data-tex-inline="v_c"></span></td><td>m/min</td></tr>
+            <tr><td>Avanço</td><td><span data-tex-inline="f"></span></td><td>mm/rot</td></tr>
+            <tr><td>Profundidade de corte</td><td><span data-tex-inline="a_p"></span></td><td>mm</td></tr>
+            <tr><td>Rotação</td><td><span data-tex-inline="n"></span></td><td>rpm</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="formula"><span data-tex="v_c = \frac{\pi\,D\,n}{1000} \qquad n = \frac{1000\,v_c}{\pi\,D}"></span><span class="where">D em mm, n em rpm e v_c em m/min</span></div>
+        <div class="fig-host" id="fig-1-1"></div>
+        <h3 id="s1-2"><span class="num">1.2</span>Remoção e tempo</h3>
+        <div class="formula"><span data-tex="Q = v_c\,f\,a_p \quad [\text{cm}^3/\text{min}] \qquad t_c = \frac{L}{f\,n} \quad [\text{min}]"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>As contas básicas</div>
+          <p>(a) Peça de 100 mm a 500 rpm. (b) Rotação para 120 m/min em 60 mm. (c) Tempo de um passe de 200 mm com f = 0,20 mm/rot e 600 rpm. (d) Taxa de remoção com 120 m/min, f = 0,2 e ap = 2 mm.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) <span data-tex-inline="v_c = \pi \cdot 100 \cdot 500/1000 = 157"></span> m/min.</li>
+              <li>(b) <span data-tex-inline="n = 1000 \cdot 120/(\pi \cdot 60) = 637"></span> rpm.</li>
+              <li>(c) <span data-tex-inline="t_c = 200/(0{,}2 \cdot 600) = 1{,}67"></span> min.</li>
+              <li>(d) <span data-tex-inline="Q = 120 \cdot 0{,}2 \cdot 2 = 48"></span> cm³/min.</li>
+            </ol>
+            <p class="resposta">Quando o passe tem aproximação e saída, elas se somam a L.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Facear muda a velocidade</strong>
+          Ao facear, o diâmetro diminui em direção ao centro. Com rotação constante, a velocidade de corte cai. Tornos CNC usam velocidade de corte constante, aumentando a rotação até o limite da máquina.
+        </div>
+        <div id="sim-torno" class="sim"></div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>v<sub>c</sub> = πDn/1000.</li>
+          <li>Q = v<sub>c</sub>·f·a<sub>p</sub> e t = L/(f·n).</li>
+          <li>Facear com rotação constante altera a velocidade de corte.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Dobrando o diâmetro, com a mesma v<sub>c</sub>, o que acontece com n?</summary><p>A rotação cai à metade.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — O corte" data-topicos="cavaco">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Formação do cavaco</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer os ângulos da ferramenta;</li>
+            <li>calcular o plano de cisalhamento;</li>
+            <li>identificar os tipos de cavaco e a aresta postiça.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Tensão de cisalhamento e plasticidade.</p></div>
+        </div>
+        <h3 id="s2-1"><span class="num">2.1</span>Geometria da ferramenta</h3>
+        <p>O <strong>ângulo de saída</strong> <span data-tex-inline="\gamma"></span> controla a saída do cavaco: positivo corta mais leve, negativo dá uma aresta mais robusta, usada em materiais duros. O <strong>ângulo de folga</strong> <span data-tex-inline="\alpha"></span> evita que a face de folga atrite com a peça.</p>
+        <h3 id="s2-2"><span class="num">2.2</span>Corte ortogonal</h3>
+        <p>O material sofre cisalhamento intenso ao longo de um plano inclinado de <span data-tex-inline="\phi"></span>, e sai mais espesso do que entrou. A <strong>razão de corte</strong> e o ângulo de cisalhamento são:</p>
+        <div class="formula"><span data-tex="r = \frac{h}{h_c} \lt 1 \qquad \tan\phi = \frac{r\cos\gamma}{1 - r\,\text{sen}\,\gamma}"></span></div>
+        <p>A <strong>relação de Merchant</strong>, de minimização da energia, liga <span data-tex-inline="\phi"></span> ao ângulo de atrito <span data-tex-inline="\beta"></span>:</p>
+        <div class="formula"><span data-tex="\phi = 45° + \frac{\gamma}{2} - \frac{\beta}{2}"></span></div>
+        <div class="fig-host" id="fig-2-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 2.1</span>Ângulo de cisalhamento</div>
+          <p>Com <span data-tex-inline="h = 0{,}25"></span> mm, cavaco de <span data-tex-inline="0{,}75"></span> mm e ângulo de saída de 10°.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="r = 0{,}25/0{,}75 = 0{,}333"></span>.</li>
+              <li><span data-tex-inline="\tan\phi = \dfrac{0{,}333 \cdot 0{,}985}{1 - 0{,}333 \cdot 0{,}174} = 0{,}348"></span>, logo <span data-tex-inline="\phi = 19{,}2°"></span>.</li>
+              <li>Por Merchant: <span data-tex-inline="\beta = 2(45° + 5° - 19{,}2°) = 61{,}6°"></span>.</li>
+            </ol>
+            <p class="resposta">Quanto maior o atrito, menor φ e mais espesso o cavaco: o corte consome mais energia.</p>
+          </details>
+        </div>
+        <h3 id="s2-3"><span class="num">2.3</span>Tipos de cavaco e aresta postiça</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Cavaco</th><th>Quando aparece</th><th>Consequência</th></tr></thead>
+          <tbody>
+            <tr><td>Contínuo</td><td>Materiais dúcteis, velocidade alta</td><td>Bom acabamento; exige quebra-cavaco</td></tr>
+            <tr><td>Contínuo com aresta postiça</td><td>Aços dúcteis em baixa velocidade</td><td>Acabamento ruim e dimensão instável</td></tr>
+            <tr><td>Descontínuo</td><td>Ferro fundido e materiais frágeis</td><td>Evacuação fácil</td></tr>
+            <tr><td>Serrilhado</td><td>Titânio e aços endurecidos</td><td>Variação cíclica da força</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A <strong>aresta postiça de corte</strong> é material que encrua e se solda à ferramenta em baixa velocidade. Ela se quebra periodicamente, piorando o acabamento. Aumentar a velocidade de corte, ou usar fluido e ferramenta adequados, faz com que ela desapareça.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>r = h/h<sub>c</sub> é sempre menor que 1.</li>
+          <li>Merchant: φ = 45° + γ/2 − β/2.</li>
+          <li>A aresta postiça é típica de aço dúctil em baixa velocidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que um ângulo de saída negativo é usado em cerâmica?</summary><p>Porque o material é frágil: o ângulo negativo coloca a aresta em compressão, que ele suporta bem.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — O corte" data-topicos="forcas">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Forças e potência</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a força de corte;</li>
+            <li>aplicar o modelo de Kienzle;</li>
+            <li>dimensionar a potência da máquina.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Parâmetros de corte.</p></div>
+        </div>
+        <h3 id="s3-1"><span class="num">3.1</span>Força específica de corte</h3>
+        <div class="formula"><span data-tex="F_c = k_s\,A = k_s\,f\,a_p \qquad P_c = F_c\,v_c \qquad P_m = P_c/\eta"></span></div>
+        <p>A <strong>força específica de corte</strong> <span data-tex-inline="k_s"></span> é numericamente igual à energia para remover uma unidade de volume. Cresce quando a seção do cavaco diminui, pelo efeito de escala. O modelo de <strong>Kienzle</strong> descreve isso:</p>
+        <div class="formula"><span data-tex="k_s = k_{s1}\,h^{-m_c}, \qquad h = f\,\text{sen}\,\chi_r"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Material</th><th class="num">k<sub>s1</sub> (MPa, ordem de grandeza)</th><th class="num">m<sub>c</sub></th></tr></thead>
+          <tbody>
+            <tr><td>Aço carbono de baixa resistência</td><td class="num">1500 a 1800</td><td class="num">0,2 a 0,3</td></tr>
+            <tr><td>Aço-liga beneficiado</td><td class="num">2000 a 2500</td><td class="num">0,2 a 0,3</td></tr>
+            <tr><td>Ferro fundido cinzento</td><td class="num">1000 a 1200</td><td class="num">0,2 a 0,3</td></tr>
+            <tr><td>Ligas de alumínio</td><td class="num">600 a 900</td><td class="num">0,2 a 0,3</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-3-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 3.1</span>Potência de um torneamento</div>
+          <p>Aço com <span data-tex-inline="k_s = 2000"></span> MPa, <span data-tex-inline="f = 0{,}25"></span> mm/rot, <span data-tex-inline="a_p = 3"></span> mm, <span data-tex-inline="v_c = 150"></span> m/min e rendimento de 80 %.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="A = 0{,}25 \cdot 3 = 0{,}75"></span> mm².</li>
+              <li><span data-tex-inline="F_c = 2000 \cdot 0{,}75 = 1500"></span> N.</li>
+              <li><span data-tex-inline="v_c = 150/60 = 2{,}5"></span> m/s, logo <span data-tex-inline="P_c = 3{,}75"></span> kW.</li>
+              <li><span data-tex-inline="P_m = 3{,}75/0{,}8 = 4{,}69"></span> kW.</li>
+            </ol>
+            <p class="resposta">A energia específica é 3750 W / 1875 mm³/s = 2 J/mm³, igual a k<sub>s</sub> em MPa, como previsto.</p>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Conversão clássica</strong>
+          k<sub>s</sub> em MPa e A em mm² dão força em N. Para potência em W, a velocidade precisa estar em m/s, e não em m/min.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>F<sub>c</sub> = k<sub>s</sub>·f·a<sub>p</sub> e P = F<sub>c</sub>·v<sub>c</sub>.</li>
+          <li>k<sub>s</sub> cresce quando a espessura do cavaco diminui.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A potência de corte depende mais de f ou de v<sub>c</sub>?</summary><p>É proporcional a v<sub>c</sub>; em f, cresce um pouco menos que o proporcional, porque k<sub>s</sub> diminui com h.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte I — O corte" data-topicos="ferramentas">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Materiais de ferramenta e fluidos de corte</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>ordenar os materiais de ferramenta;</li>
+            <li>escolher a classe ISO adequada;</li>
+            <li>definir a função do fluido de corte.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Dureza e tenacidade.</p></div>
+        </div>
+        <h3 id="s4-1"><span class="num">4.1</span>Dureza a quente contra tenacidade</h3>
+        <p>O material ideal seria duro em alta temperatura e tenaz. As duas propriedades se opõem, e a escolha é sempre um compromisso.</p>
+        <div class="fig-host" id="fig-4-1"></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Material</th><th>Velocidade típica em aço</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Aço rápido (HSS)</td><td>20 a 50 m/min</td><td>Mais tenaz; brocas e machos</td></tr>
+            <tr><td>Metal duro (WC-Co)</td><td>100 a 300 m/min</td><td>O mais usado; costuma ter revestimento</td></tr>
+            <tr><td>Cermet</td><td>150 a 400 m/min</td><td>Acabamento</td></tr>
+            <tr><td>Cerâmica</td><td>300 a 800 m/min</td><td>Frágil; cortes contínuos</td></tr>
+            <tr><td>CBN</td><td>100 a 300 m/min em aço endurecido</td><td>Substitui a retificação em peças temperadas</td></tr>
+            <tr><td>Diamante (PCD)</td><td>Só não ferrosos</td><td>Reage com o ferro em alta temperatura</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Em ordem crescente de dureza a quente e de velocidade admissível: aço rápido, metal duro, cerâmica, CBN e diamante. A <strong>ISO 513</strong> classifica o metal duro pelo material a usinar: P (aços), M (inoxidáveis), K (ferros fundidos), N (não ferrosos), S (superligas) e H (materiais endurecidos).</p>
+        <h3 id="s4-2"><span class="num">4.2</span>Fluidos de corte</h3>
+        <p>As funções principais são <strong>refrigerar</strong>, <strong>lubrificar</strong>, auxiliar a <strong>remoção de cavacos</strong> e proteger contra corrosão. Em alta velocidade prevalece a refrigeração, e em baixa velocidade, a lubrificação.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Tipo</th><th>Ponto forte</th></tr></thead>
+          <tbody>
+            <tr><td>Óleo integral</td><td>Lubrificação; roscas e brochamento</td></tr>
+            <tr><td>Emulsão</td><td>Equilíbrio; o mais comum</td></tr>
+            <tr><td>Sintético</td><td>Refrigeração e limpeza</td></tr>
+            <tr><td>MQL (quantidade mínima)</td><td>Pouco fluido, menor impacto ambiental</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Choque térmico</strong>
+          Em fresamento, com corte interrompido, aplicar fluido em ferramenta de metal duro pode causar trincas térmicas. Muitas vezes é melhor cortar a seco.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Ordem de velocidade: HSS, metal duro, cerâmica, CBN e diamante.</li>
+          <li>Diamante não corta materiais ferrosos.</li>
+          <li>Fluido: refrigerar, lubrificar e remover cavacos.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que brocas pequenas ainda são de aço rápido?</summary><p>A rotação limitada mantém v<sub>c</sub> baixa, e os esforços exigem tenacidade.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte I — O corte" data-topicos="taylor">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Desgaste e vida da ferramenta</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>identificar os mecanismos de desgaste;</li>
+            <li>aplicar a equação de Taylor;</li>
+            <li>determinar os coeficientes experimentalmente.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Logaritmos.</p></div>
+        </div>
+        <h3 id="s5-1"><span class="num">5.1</span>Desgaste</h3>
+        <p>O <strong>desgaste de flanco</strong>, medido por <span data-tex-inline="VB"></span>, vem da abrasão, e o <strong>de cratera</strong> ocorre na face de saída, por difusão em alta temperatura. A curva típica tem três fases: desgaste inicial rápido, trecho linear e aceleração final. Um critério comum é <span data-tex-inline="VB = 0{,}3"></span> mm (ISO 3685).</p>
+        <div class="fig-host" id="fig-5-1"></div>
+        <h3 id="s5-2"><span class="num">5.2</span>Equação de Taylor</h3>
+        <div class="formula"><span data-tex="v_c\,T^{\,n} = C"></span></div>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ferramenta</th><td class="num">Aço rápido</td><td class="num">Metal duro</td><td class="num">Cerâmica</td></tr></thead>
+          <tbody><tr><th>n típico</th><td class="num">≈ 0,125</td><td class="num">≈ 0,25</td><td class="num">≈ 0,6</td></tr></tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Vida e coeficientes</div>
+          <p>(a) Com <span data-tex-inline="n = 0{,}25"></span>, <span data-tex-inline="C = 200"></span>, qual a vida a 100 m/min? (b) Um ensaio deu 10 min a 200 m/min e 40 min a 150 m/min. Determine n e C.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>(a) <span data-tex-inline="T = (200/100)^{1/0{,}25} = 2^4 = 16"></span> min.</li>
+              <li>(b) <span data-tex-inline="n = \dfrac{\ln(200/150)}{\ln(40/10)} = 0{,}2075"></span>.</li>
+              <li><span data-tex-inline="C = 200 \cdot 10^{0{,}2075} = 322{,}5"></span>.</li>
+            </ol>
+            <p class="resposta">Com n = 0,25, dobrar a velocidade divide a vida por 16.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Flanco: abrasão. Cratera: difusão.</li>
+          <li>v<sub>c</sub>T<sup>n</sup> = C; a velocidade é o que mais pesa.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O que é C na equação de Taylor?</summary><p>A velocidade que daria uma vida de 1 minuto, nas unidades usuais.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Os processos" data-topicos="torneamento">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Torneamento e acabamento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>prever a rugosidade pelo avanço;</li>
+            <li>planejar desbaste e acabamento;</li>
+            <li>evitar vibração em peças esbeltas.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Parâmetros de corte.</p></div>
+        </div>
+        <h3 id="s6-1"><span class="num">6.1</span>Rugosidade teórica</h3>
+        <p>A ponta da ferramenta, de raio <span data-tex-inline="r_\varepsilon"></span>, deixa na peça uma sequência de arcos:</p>
+        <div class="formula"><span data-tex="R_t \approx \frac{f^2}{8\,r_\varepsilon} \qquad R_a \approx \frac{f^2}{32\,r_\varepsilon}"></span></div>
+        <div class="fig-host" id="fig-6-1"></div>
+        <p>Com <span data-tex-inline="f = 0{,}2"></span> mm/rot e <span data-tex-inline="r_\varepsilon = 0{,}8"></span> mm: <span data-tex-inline="R_t = 6{,}25"></span> µm e <span data-tex-inline="R_a = 1{,}56"></span> µm. O avanço pesa ao quadrado, e por isso é o primeiro parâmetro a reduzir no acabamento. A rugosidade real é maior, pela vibração e pelo material arrancado.</p>
+        <h3 id="s6-2"><span class="num">6.2</span>Desbaste e acabamento</h3>
+        <p>No <strong>desbaste</strong>, o objetivo é remover material: profundidade grande, avanço alto e velocidade moderada. No <strong>acabamento</strong>, o objetivo é dimensão e rugosidade: profundidade pequena, avanço baixo e velocidade alta.</p>
+        <div class="callout note">
+          <strong>Peças esbeltas</strong>
+          Eixos com relação comprimento/diâmetro alta fletem e vibram. Usa-se contraponto, luneta e ferramenta com ângulo de posição perto de 90°, que reduz a força radial.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>R<sub>a</sub> ≈ f²/(32 r<sub>ε</sub>).</li>
+          <li>Desbaste: remover. Acabamento: tolerância e rugosidade.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Reduzir o avanço à metade muda R<sub>a</sub> quanto?</summary><p>R<sub>a</sub> fica dividida por quatro.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Os processos" data-topicos="furacao">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Furação</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular velocidade, tempo e remoção em furação;</li>
+            <li>explicar por que a broca sofre no centro.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Parâmetros de corte.</p></div>
+        </div>
+        <h3 id="s7-1"><span class="num">7.1</span>A velocidade varia ao longo da aresta</h3>
+        <p>Na broca helicoidal, a velocidade de corte é máxima na periferia e <strong>nula no centro</strong>. Ali, a aresta transversal não corta: extruda o material, o que gera a maior parte da força de avanço. Pontas com afiação cruzada e pré-furo reduzem esse esforço.</p>
+        <div class="fig-host" id="fig-7-1"></div>
+        <div class="formula"><span data-tex="Q = \frac{\pi D^2}{4}\,f\,n \qquad t_c = \frac{L + 0{,}3D}{f\,n}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Broca de 20 mm</div>
+          <p>Com <span data-tex-inline="n = 800"></span> rpm, <span data-tex-inline="f = 0{,}2"></span> mm/rot e furo de 40 mm.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Periferia: <span data-tex-inline="v_c = \pi \cdot 20 \cdot 800/1000 = 50{,}3"></span> m/min.</li>
+              <li><span data-tex-inline="t_c = (40 + 6)/(0{,}2 \cdot 800) = 0{,}29"></span> min.</li>
+              <li><span data-tex-inline="Q = 50{,}3"></span> cm³/min.</li>
+            </ol>
+          </details>
+        </div>
+        <div class="callout warn">
+          <strong>Evacuação</strong>
+          Furos profundos, acima de cerca de três diâmetros, pedem ciclo de retirada ou fluido interno. Cavaco preso é a causa mais comum de quebra de broca.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>v<sub>c</sub> máxima na periferia, zero no centro.</li>
+          <li>A aresta transversal responde pela maior parte da força de avanço.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Onde a broca desgasta primeiro?</summary><p>Na periferia, onde a velocidade é maior.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte II — Os processos" data-topicos="fresamento">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Fresamento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a velocidade de avanço e a remoção;</li>
+            <li>comparar fresamento concordante e discordante.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Parâmetros de corte.</p></div>
+        </div>
+        <h3 id="s8-1"><span class="num">8.1</span>Corte interrompido</h3>
+        <p>A fresa tem vários dentes, e cada um entra e sai do material a cada volta, sofrendo impacto e ciclos térmicos.</p>
+        <div class="formula"><span data-tex="v_f = f_z\,z\,n \qquad Q = \frac{a_e\,a_p\,v_f}{1000}\ [\text{cm}^3/\text{min}]"></span></div>
+        <div class="fig-host" id="fig-8-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Fresa de 80 mm</div>
+          <p><span data-tex-inline="z = 6"></span>, <span data-tex-inline="v_c = 120"></span> m/min, <span data-tex-inline="f_z = 0{,}15"></span> mm, <span data-tex-inline="a_e = 40"></span> mm, <span data-tex-inline="a_p = 3"></span> mm e curso de 300 mm.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="n = 1000 \cdot 120/(\pi \cdot 80) = 477"></span> rpm.</li>
+              <li><span data-tex-inline="v_f = 0{,}15 \cdot 6 \cdot 477 = 430"></span> mm/min.</li>
+              <li><span data-tex-inline="Q = 40 \cdot 3 \cdot 430/1000 = 51{,}6"></span> cm³/min.</li>
+              <li>Com aproximação de um diâmetro: <span data-tex-inline="t = (300 + 80)/430 = 0{,}88"></span> min.</li>
+            </ol>
+          </details>
+        </div>
+        <h3 id="s8-2"><span class="num">8.2</span>Concordante e discordante</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th></th><th>Concordante (a favor)</th><th>Discordante (contra)</th></tr></thead>
+          <tbody>
+            <tr><td>Sentido do corte e do avanço</td><td>Mesmo sentido</td><td>Sentidos opostos</td></tr>
+            <tr><td>Espessura do cavaco</td><td>Começa máxima e termina nula</td><td>Começa nula e termina máxima</td></tr>
+            <tr><td>Atrito na entrada</td><td>Pequeno</td><td>Grande, a aresta desliza antes de cortar</td></tr>
+            <tr><td>Vida e acabamento</td><td>Melhores</td><td>Piores</td></tr>
+            <tr><td>Exigência da máquina</td><td>Sem folga no fuso</td><td>Tolera folga</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div id="sim-fresa" class="sim"></div>
+        <div class="callout warn">
+          <strong>Folga na máquina</strong>
+          No concordante, o dente puxa a mesa no sentido do avanço. Com folga, a mesa salta, e a fresa pode quebrar. Em máquina convencional sem eliminador de folga, usa-se o discordante.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>v<sub>f</sub> = f<sub>z</sub> z n.</li>
+          <li>Concordante é melhor em vida e em acabamento, mas exige máquina sem folga.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o discordante desgasta mais?</summary><p>O dente entra com espessura nula, desliza e encrua a superfície antes de começar a cortar.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Decisões" data-topicos="economia">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Condições econômicas de corte</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>decompor o custo de uma peça;</li>
+            <li>calcular as velocidades de máxima produção e de mínimo custo.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Equação de Taylor.</p></div>
+        </div>
+        <h3 id="s9-1"><span class="num">9.1</span>O compromisso</h3>
+        <p>Cortar rápido reduz o tempo de máquina e aumenta o gasto com ferramenta e com trocas. Da combinação com a equação de Taylor saem as vidas ótimas:</p>
+        <div class="formula"><span data-tex="T_{mp} = \Big(\frac{1}{n} - 1\Big)\,t_t \qquad T_{mc} = \Big(\frac{1}{n} - 1\Big)\Big(t_t + \frac{C_f}{C_o}\Big)"></span><span class="where">t_t = tempo de troca, C_f = custo por aresta, C_o = custo do minuto de máquina</span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Duas velocidades ótimas</div>
+          <p>Com <span data-tex-inline="n = 0{,}25"></span>, <span data-tex-inline="C = 300"></span>, <span data-tex-inline="t_t = 2"></span> min, <span data-tex-inline="C_f = 10"></span> reais e <span data-tex-inline="C_o = 2"></span> reais/min.</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Máxima produção: <span data-tex-inline="T = 3 \cdot 2 = 6"></span> min, logo <span data-tex-inline="v = 300/6^{0{,}25} = 192"></span> m/min.</li>
+              <li>Mínimo custo: <span data-tex-inline="T = 3(2 + 5) = 21"></span> min, logo <span data-tex-inline="v = 300/21^{0{,}25} = 140"></span> m/min.</li>
+            </ol>
+            <p class="resposta">Entre 140 e 192 m/min fica o intervalo de máxima eficiência. Abaixo de 140, custo e tempo pioram juntos.</p>
+          </details>
+        </div>
+        <div id="sim-taylor" class="sim"></div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Máxima produção: depende só do tempo de troca.</li>
+          <li>Mínimo custo: também pesa o custo da ferramenta.</li>
+          <li>A velocidade de mínimo custo é sempre a menor das duas.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Com uma pastilha mais barata, a velocidade de mínimo custo aumenta?</summary><p>Sim: se C<sub>f</sub> cai, T<sub>mc</sub> diminui e v sobe.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Decisões" data-topicos="retificacao">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Retificação, processos especiais e CNC</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>justificar o uso da retificação;</li>
+            <li>escolher um processo não convencional;</li>
+            <li>ler um programa CNC simples.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Processos de corte.</p></div>
+        </div>
+        <h3 id="s10-1"><span class="num">10.1</span>Retificação</h3>
+        <p>A retificação é usada principalmente para obter <strong>tolerâncias estreitas e baixa rugosidade</strong>, e para usinar materiais endurecidos. O rebolo é formado por grãos abrasivos com ângulo de saída muito negativo. Por isso, a energia específica é muito alta e quase tudo vira calor, o que exige fluido abundante para evitar a queima da superfície. A <strong>razão G</strong> compara o volume removido da peça com o volume perdido pelo rebolo.</p>
+        <h3 id="s10-2"><span class="num">10.2</span>Processos não convencionais</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Processo</th><th>Princípio</th><th>Quando usar</th></tr></thead>
+          <tbody>
+            <tr><td>Eletroerosão (EDM)</td><td>Descargas elétricas</td><td>Moldes em aço temperado; só condutores</td></tr>
+            <tr><td>Eletroquímica (ECM)</td><td>Dissolução anódica</td><td>Superligas, sem desgaste de ferramenta</td></tr>
+            <tr><td>Laser</td><td>Fusão e vaporização</td><td>Corte de chapas e micro furos</td></tr>
+            <tr><td>Jato d'água abrasivo</td><td>Erosão a frio</td><td>Materiais sensíveis ao calor</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s10-3"><span class="num">10.3</span>CNC</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Código</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td>G00</td><td>Movimento rápido, sem cortar</td></tr>
+            <tr><td>G01</td><td>Interpolação linear com avanço</td></tr>
+            <tr><td>G02 / G03</td><td>Interpolação circular horária / anti-horária</td></tr>
+            <tr><td>G96 / G97</td><td>Velocidade de corte constante / rotação constante</td></tr>
+            <tr><td>M03 / M05</td><td>Liga o eixo-árvore no sentido horário / desliga</td></tr>
+            <tr><td>M08 / M09</td><td>Liga / desliga o fluido</td></tr>
+          </tbody>
+        </table>
+        </div>
+<pre><code>G96 S150      ; velocidade de corte de 150 m/min
+M03           ; liga o eixo
+G00 X40 Z2    ; aproximação rápida
+G01 Z-50 F0.2 ; torneia 50 mm com avanço de 0,2 mm/rot
+G00 X60       ; afasta
+M05           ; desliga</code></pre>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Retificação: tolerância, rugosidade e materiais duros.</li>
+          <li>EDM exige material condutor.</li>
+          <li>G00 não corta; G01 corta com avanço programado.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a retificação gasta tanta energia?</summary><p>Os grãos têm ângulo muito negativo e muitos apenas riscam a peça. Quase toda a energia vira calor.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os três simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-torno"><small>Capítulo 1 · Torneamento</small>Rotação, potência, rugosidade e tempo</a></li>
+          <li><a href="#sim-fresa"><small>Capítulo 8 · Fresamento</small>Concordante e discordante</a></li>
+          <li><a href="#sim-taylor"><small>Capítulo 9 · Economia</small>Vida, custo e velocidade ótima</a></li>
+        </ul>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">Parâmetros</h4>
+            <div class="formula"><span data-tex="v_c = \pi D n/1000"></span></div>
+            <div class="formula"><span data-tex="Q = v_c f a_p"></span></div>
+            <div class="formula"><span data-tex="t = L/(f n)"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Esforços</h4>
+            <div class="formula"><span data-tex="F_c = k_s f a_p"></span></div>
+            <div class="formula"><span data-tex="k_s = k_{s1} h^{-m_c}"></span></div>
+            <div class="formula"><span data-tex="P_c = F_c v_c"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Vida e custo</h4>
+            <div class="formula"><span data-tex="v_c T^n = C"></span></div>
+            <div class="formula"><span data-tex="T_{mp} = (1/n - 1)\,t_t"></span></div>
+            <div class="formula"><span data-tex="T_{mc} = (1/n - 1)(t_t + C_f/C_o)"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Processos</h4>
+            <div class="formula"><span data-tex="R_a \approx f^2/(32 r_\varepsilon)"></span></div>
+            <div class="formula"><span data-tex="v_f = f_z z n"></span></div>
+            <div class="formula"><span data-tex="\tan\phi = \frac{r\cos\gamma}{1 - r\,\text{sen}\,\gamma}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Apêndice B — Normas</h2>
+        <p>As normas são citadas por designação e escopo. Os textos integrais são obras protegidas.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>O que trata</th><th>Onde entra</th></tr></thead>
+          <tbody>
+            <tr><td>ISO 3002</td><td>Grandezas e geometria do corte</td><td>Definição dos ângulos e dos movimentos</td></tr>
+            <tr><td>ISO 513</td><td>Classificação dos materiais de corte duros</td><td>Grupos P, M, K, N, S e H</td></tr>
+            <tr><td>ISO 3685</td><td>Ensaio de vida de ferramenta em torneamento</td><td>Critério de fim de vida, como VB = 0,3 mm</td></tr>
+            <tr><td>ISO 8688</td><td>Ensaio de vida em fresamento</td><td>Critérios equivalentes para corte interrompido</td></tr>
+            <tr><td>ISO 21920 (antiga ISO 4287)</td><td>Parâmetros de textura de superfície</td><td>Definição de R<sub>a</sub> e R<sub>t</sub></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>51 questões objetivas sobre parâmetros de corte, cavaco, forças, ferramentas, vida, processos e condições econômicas. As questões de cálculo trazem espaço para contas e resolução passo a passo.</p>
+        <div id="quiz" data-quiz="usinagem"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>DINIZ, A. E.; MARCONDES, F. C.; COPPINI, N. L. <em>Tecnologia da Usinagem dos Materiais</em>. Artliber.</li>
+          <li>FERRARESI, D. <em>Fundamentos da Usinagem dos Metais</em>. Blucher.</li>
+          <li>MACHADO, A. R. et al. <em>Teoria da Usinagem dos Materiais</em>. Blucher.</li>
+          <li>GROOVER, M. P. <em>Fundamentos da Moderna Manufatura</em>. LTC.</li>
+          <li>KALPAKJIAN, S.; SCHMID, S. R. <em>Manufacturing Engineering and Technology</em>. Pearson.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/usinagem.js"></script>
+<script src="../js/fig/usinagem.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+ "v_c": [
+  "Velocidade de corte",
+  "m/min"
+ ],
+ "f": [
+  "Avanço",
+  "mm/rot"
+ ],
+ "a_p": [
+  "Profundidade de corte",
+  "mm"
+ ],
+ "n": [
+  "Rotação",
+  "rpm"
+ ],
+ "k_s": [
+  "Força específica de corte",
+  "MPa",
+  "numericamente igual à energia específica"
+ ],
+ "F_c": [
+  "Força de corte",
+  "N"
+ ],
+ "T": [
+  "Vida da ferramenta",
+  "min"
+ ],
+ "C": [
+  "Constante de Taylor",
+  "—"
+ ],
+ "R_a": [
+  "Rugosidade média",
+  "µm"
+ ],
+ "f_z": [
+  "Avanço por dente",
+  "mm"
+ ],
+ "v_f": [
+  "Velocidade de avanço da mesa",
+  "mm/min"
+ ]
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

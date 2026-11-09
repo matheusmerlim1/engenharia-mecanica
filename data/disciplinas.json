@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "usinagem",
     "probabilidade-e-estatistica",
     "metodos-numericos",
     "calculo-numerico",
@@ -777,6 +778,24 @@
       "simuladores": true,
       "normas": false,
       "pronta": false
+    },
+    {
+      "slug": "usinagem",
+      "nome": "Usinagem",
+      "periodo": "0",
+      "materia": "Fabricação",
+      "pasta": "",
+      "resumo": "Parâmetros de corte, formação do cavaco, ferramentas, vida de Taylor, torneamento, furação, fresamento e CNC.",
+      "temas": [
+        "parâmetros de corte",
+        "equação de Taylor",
+        "ferramentas e fluidos",
+        "fresamento",
+        "condições econômicas"
+      ],
+      "simuladores": true,
+      "normas": true,
+      "pronta": true
     },
     {
       "slug": "motores-de-combustao-interna",

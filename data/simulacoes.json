@@ -1351,6 +1351,36 @@
       "ordem": 4
     },
     {
+      "id": "sim-torno",
+      "slug": "usinagem",
+      "disciplina": "Usinagem",
+      "periodo": "0",
+      "materia": "Fabricação",
+      "titulo": "1. Torneamento — rotação, potência, rugosidade e tempo",
+      "resumo": "Ajuste os parâmetros e veja o que limita o corte: a potência da máquina, a rotação máxima ou o acabamento exigido.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-fresa",
+      "slug": "usinagem",
+      "disciplina": "Usinagem",
+      "periodo": "0",
+      "materia": "Fabricação",
+      "titulo": "2. Fresamento — concordante e discordante",
+      "resumo": "A espessura do cavaco varia ao longo do corte.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-taylor",
+      "slug": "usinagem",
+      "disciplina": "Usinagem",
+      "periodo": "0",
+      "materia": "Fabricação",
+      "titulo": "3. Vida de ferramenta, custo e velocidade ótima",
+      "resumo": "Velocidades altas reduzem o custo de máquina e aumentam o de ferramenta.",
+      "ordem": 2
+    },
+    {
       "id": "sim-motor",
       "slug": "motores-de-combustao-interna",
       "disciplina": "Motores de Combustão Interna",
