@@ -5,7 +5,7 @@
   'use strict';
   if (!window.Figura || !window.CS) return;
   var F = window.Figura.criar, CS = window.CS, VISTA = [-0.6, 13.4, -0.9, 7.8], ALTURA = 500, XR = 9.0, XV = 13.2;
-  function fx(v, n) { return isFinite(v) ? (+v).toLocaleString('pt-BR', { maximumFractionDigits: n == null ? 3 : n }) : '∞'; }
+  function fx(v, n) { if (!isFinite(v)) return '∞'; var d = n == null ? 3 : n, k = Math.pow(10, d); return (Math.round(+v * k) / k + 0).toLocaleString('pt-BR', { maximumFractionDigits: d }); }
   function notas(g, x, y, xMax, itens) {
     var ctx = g.ctx, larg = g.X(xMax) - g.X(x), passo = 15 / g.e;
     itens.forEach(function (it) {
