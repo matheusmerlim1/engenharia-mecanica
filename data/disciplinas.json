@@ -1,5 +1,6 @@
 {
   "novidades": [
+    "ciencia-do-ambiente",
     "controle-de-sistemas",
     "seguranca-do-trabalho",
     "eletrotecnica",
@@ -118,7 +119,7 @@
       ],
       "simuladores": true,
       "normas": true,
-      "pronta": false
+      "pronta": true
     },
     {
       "slug": "desenho-tecnico-2",

@@ -51,6 +51,36 @@
       "ordem": 4
     },
     {
+      "id": "sim-rio",
+      "slug": "ciencia-do-ambiente",
+      "disciplina": "Ciência do Ambiente",
+      "periodo": "2",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "1. Autodepuração de um rio",
+      "resumo": "Um efluente é lançado no rio. Ajuste a carga, o tratamento e as características do rio, e acompanhe o oxigênio dissolvido rio abaixo.",
+      "ordem": 0
+    },
+    {
+      "id": "sim-pluma",
+      "slug": "ciencia-do-ambiente",
+      "disciplina": "Ciência do Ambiente",
+      "periodo": "2",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "2. Dispersão da pluma de uma chaminé",
+      "resumo": "Concentração ao nível do solo pelo modelo gaussiano.",
+      "ordem": 1
+    },
+    {
+      "id": "sim-aterro",
+      "slug": "ciencia-do-ambiente",
+      "disciplina": "Ciência do Ambiente",
+      "periodo": "2",
+      "materia": "Gestão e Formação Geral",
+      "titulo": "3. Aterro sanitário e geração de metano",
+      "resumo": "Dimensione o aterro de uma cidade e veja quanto metano ele gera, inclusive décadas depois de encerrado.",
+      "ordem": 2
+    },
+    {
       "id": "sim-equilibrio",
       "slug": "estatica",
       "disciplina": "Estática",

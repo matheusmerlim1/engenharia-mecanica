@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ciência do Ambiente — Engenharia Mecânica</title>
+<meta name="description" content="Ciência do ambiente para engenharia: crise ambiental, ecologia, poluição da água, do ar e do solo, autodepuração de rios, resíduos sólidos, legislação, licenciamento e ISO 14001.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/viz.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="../index.html">
+      <span class="logo">EM</span>
+      <span>Engenharia Mecânica<small>conteúdo e simulados</small></span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="../index.html" class="always">Disciplinas</a>
+      <a href="#sumario">Sumário</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="../simulacoes.html">Todas as simulações</a>
+      <a href="#simulado">Simulado</a>
+    </nav>
+    <button class="icon-btn" id="btn-tema" aria-label="Alternar tema">☽</button>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+  <div class="hero" style="padding-bottom:18px">
+    <p class="kicker">2º período · Engenharia Mecânica</p>
+    <h1>Ciência do Ambiente</h1>
+    <p class="lead">Da ecologia ao licenciamento. Este texto está organizado como um livro: doze capítulos em sequência, das causas da crise ambiental às contas que mostram se um efluente, uma chaminé ou um aterro atendem à lei.</p>
+    <div class="btn-row">
+      <span class="tag accent">12 capítulos</span>
+      <span class="tag" id="livro-tempo">leitura</span>
+      <span class="tag ok">104 questões</span>
+      <span class="tag info">3 simuladores animados</span>
+      <span class="tag info">12 figuras interativas</span>
+    </div>
+  </div>
+
+  <div class="page-layout">
+    <aside class="toc"></aside>
+    <div>
+
+      <section class="section" id="sumario" data-pagina="inicio">
+        <h2>Sumário</h2>
+        <p>O caminho começa pelas causas da crise ambiental e pelos ciclos naturais, passa pela poluição da água, do ar e do solo, chega aos resíduos sólidos e termina na legislação e na gestão ambiental das empresas.</p>
+        <div id="sumario-lista"></div>
+      </section>
+
+      <section class="section" id="introducao" data-pagina="inicio">
+        <h2>Introdução: o engenheiro e o ambiente</h2>
+        <p>Toda fábrica consome água, energia e matéria-prima e devolve efluentes, emissões e resíduos. O engenheiro mecânico projeta caldeiras, motores, linhas de produção e sistemas de tratamento, e responde por eles diante da lei. Este texto reúne os conceitos de ecologia, as contas que mostram se um lançamento ou uma emissão é aceitável e as regras que regem o licenciamento.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Se a pergunta é</th><th>O caminho</th><th>Capítulos</th></tr></thead>
+          <tbody>
+            <tr><td>Por que existe uma crise ambiental?</td><td>População, recursos e poluição</td><td>1</td></tr>
+            <tr><td>Como a natureza recicla a matéria?</td><td>Ecossistemas e ciclos</td><td>2</td></tr>
+            <tr><td>O que é desenvolvimento sustentável?</td><td>Conferências e acordos</td><td>3</td></tr>
+            <tr><td>Esse efluente pode ir para o rio?</td><td>DBO, classes e autodepuração</td><td>4 e 5</td></tr>
+            <tr><td>Quanto essa chaminé polui?</td><td>Emissões e dispersão</td><td>6</td></tr>
+            <tr><td>E o solo e os agrotóxicos?</td><td>Contaminação e persistência</td><td>7</td></tr>
+            <tr><td>Para onde vai o lixo?</td><td>PNRS, aterro, reciclagem e compostagem</td><td>8 a 10</td></tr>
+            <tr><td>Que licença a obra precisa?</td><td>Legislação e licenciamento</td><td>11</td></tr>
+            <tr><td>Como a empresa se organiza?</td><td>ISO 14001, ACV e pegada de carbono</td><td>12</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Leis e normas mudam</strong>
+          A legislação ambiental brasileira mudou bastante desde as notas de aula da disciplina: há nova lei de agrotóxicos (2023), nova resolução de qualidade do ar (2024), nova edição da NBR 10004 (2024) e uma lei geral do licenciamento (2025). Os valores deste texto foram conferidos em novembro de 2026; em decisão real, consulte a versão vigente.
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 1 -->
+      <section class="section capitulo" id="cap-1" data-parte="Parte I — Fundamentos" data-topicos="crise">
+        <p class="cap-kicker">Capítulo 1</p>
+        <h2>1. A crise ambiental</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>relacionar população, recursos naturais e poluição;</li>
+            <li>calcular o tempo de duplicação de uma população;</li>
+            <li>classificar recursos e fontes de poluição.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Funções exponenciais.</p></div>
+        </div>
+        <h3 id="s1-1"><span class="num">1.1</span>População</h3>
+        <p>A população mundial passou de 2,5 bilhões de pessoas em 1950 para 7 bilhões em 2011. Com crescimento à taxa constante r, ela segue uma exponencial, e o tempo de duplicação depende apenas da taxa:</p>
+        <div class="formula"><span data-tex="N(t) = N_0\,e^{rt} \qquad t_d = \frac{\ln 2}{r} \approx \frac{70}{r\,[\%/\text{ano}]}"></span></div>
+        <p>Nenhum ambiente sustenta crescimento exponencial indefinidamente. O modelo <strong>logístico</strong> introduz a capacidade de suporte K, e o crescimento desacelera conforme a população se aproxima dela:</p>
+        <div class="formula"><span data-tex="N(t) = \frac{K}{1 + \dfrac{K - N_0}{N_0}\,e^{-rt}}"></span></div>
+        <div class="fig-host" id="fig-1-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 1.1</span>Tempo de duplicação</div>
+          <p>Com 7 bilhões de habitantes e crescimento de 1,13 % ao ano, quantas pessoas são acrescentadas por ano, e em quanto tempo a população dobraria?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="7 \cdot 10^9 \cdot 0{,}0113 = 79 \cdot 10^6"></span> pessoas por ano.</li>
+              <li><span data-tex-inline="t_d = \ln 2 / 0{,}0113 = 61{,}3"></span> anos, ou cerca de 70/1,13 = 62 anos.</li>
+            </ol>
+            <p class="resposta">Cerca de 79 milhões de pessoas por ano, com duplicação em pouco mais de 60 anos, se a taxa se mantivesse.</p>
+          </details>
+        </div>
+        <h3 id="s1-2"><span class="num">1.2</span>Recursos naturais</h3>
+        <p>Recurso natural é qualquer insumo de que os organismos, as populações e os ecossistemas precisam para se manter. Os <strong>renováveis</strong>, como água, ar, biomassa, vento e radiação solar, se recompõem em escala humana, desde que o uso não supere a reposição. Os <strong>não renováveis</strong>, como combustíveis fósseis, urânio e minerais, existem em estoque finito.</p>
+        <h3 id="s1-3"><span class="num">1.3</span>Poluição</h3>
+        <p>Poluição é a alteração indesejável das características físicas, químicas ou biológicas do ar, da água ou do solo, que cause ou possa causar dano à saúde, à sobrevivência ou às atividades humanas e de outras espécies, ou deteriorar materiais.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Fonte</th><th>Exemplos</th><th>Controle</th></tr></thead>
+          <tbody>
+            <tr><td>Pontual</td><td>Chaminé, emissário de esgoto, efluente industrial</td><td>Mais fácil: há um ponto para medir e tratar</td></tr>
+            <tr><td>Difusa</td><td>Agrotóxicos lavados pela chuva, escapamento de veículos, escoamento urbano</td><td>Mais difícil: a origem está espalhada</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Os efeitos podem ser locais (um rio sem oxigênio), regionais (chuva ácida) ou globais (mudança do clima e destruição da camada de ozônio).</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>População, uso de recursos e poluição formam a crise ambiental.</li>
+          <li>Tempo de duplicação: cerca de 70 dividido pela taxa em % ao ano.</li>
+          <li>Fontes pontuais são mais fáceis de controlar que as difusas.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A água é um recurso renovável em qualquer situação?</summary><p>Não. Ela é renovável pelo ciclo hidrológico, mas um aquífero bombeado mais depressa do que se recarrega, ou um rio poluído, deixa de estar disponível na prática.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 2 -->
+      <section class="section capitulo" id="cap-2" data-parte="Parte I — Fundamentos" data-topicos="ecologia">
+        <p class="cap-kicker">Capítulo 2</p>
+        <h2>2. Ecossistemas e ciclos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>descrever a estrutura de um ecossistema;</li>
+            <li>calcular o fluxo de energia entre níveis tróficos;</li>
+            <li>entender os ciclos do carbono e do nitrogênio.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+        <h3 id="s2-1"><span class="num">2.1</span>Ecossistema</h3>
+        <p>Um ecossistema reúne os seres vivos de uma área, a comunidade biótica, e o meio físico, o componente abiótico. Os <strong>produtores</strong> fazem fotossíntese; os <strong>consumidores</strong> se alimentam deles ou de outros consumidores; os <strong>decompositores</strong> devolvem a matéria ao meio. A energia atravessa o sistema em um só sentido, mas a matéria circula.</p>
+        <h3 id="s2-2"><span class="num">2.2</span>Fluxo de energia</h3>
+        <p>Em cada transferência entre níveis tróficos, a maior parte da energia é gasta na respiração e perdida como calor. Como referência, cerca de 10 % passa ao nível seguinte, o que limita as cadeias a poucos níveis.</p>
+        <div class="fig-host" id="fig-2-1"></div>
+        <p>Um poluente persistente e lipossolúvel, como o DDT ou o metilmercúrio, não é eliminado pelo organismo. Ele se acumula nos tecidos, na <strong>bioacumulação</strong>, e se concentra mais a cada nível da cadeia, na <strong>biomagnificação</strong>.</p>
+        <h3 id="s2-3"><span class="num">2.3</span>Ciclos biogeoquímicos</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ciclo</th><th>Etapas principais</th><th>Interferência humana</th></tr></thead>
+          <tbody>
+            <tr><td>Carbono</td><td>Fotossíntese fixa CO₂; respiração e decomposição o devolvem; parte fica estocada em rochas e combustíveis fósseis</td><td>Queima de combustíveis fósseis e desmatamento aumentam o CO₂ do ar</td></tr>
+            <tr><td>Nitrogênio</td><td>Fixação do N₂ por bactérias e descargas elétricas, nitrificação, assimilação, desnitrificação</td><td>Fertilizantes e combustão produzem nitrogênio reativo: eutrofização, NOx e chuva ácida</td></tr>
+            <tr><td>Fósforo</td><td>Sem fase gasosa; vem das rochas e circula no solo e na água</td><td>Detergentes e esgoto causam eutrofização</td></tr>
+            <tr><td>Água</td><td>Evaporação, condensação, precipitação, infiltração e escoamento</td><td>Impermeabilização do solo aumenta enchentes</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout tip">
+          <strong>Por que o biocombustível emite menos?</strong>
+          O CO₂ liberado na queima do etanol foi retirado do ar pela cana poucos meses antes. O carbono do petróleo estava estocado havia milhões de anos e entra como acréscimo. A conta completa, porém, inclui fertilizantes, máquinas e mudança no uso do solo.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A energia flui em um só sentido; a matéria circula.</li>
+          <li>Cerca de 10 % da energia passa a cada nível trófico.</li>
+          <li>Poluentes persistentes se concentram ao subir na cadeia.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>O ozônio é poluente?</summary><p>Depende do lugar. Na estratosfera, entre cerca de 15 e 50 km, ele filtra a radiação ultravioleta e é essencial. Na troposfera, junto ao solo, é um poluente secundário que irrita as vias respiratórias. Poluente é a substância no lugar errado.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 3 -->
+      <section class="section capitulo" id="cap-3" data-parte="Parte I — Fundamentos" data-topicos="sustentabilidade">
+        <p class="cap-kicker">Capítulo 3</p>
+        <h2>3. Desenvolvimento sustentável</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>definir desenvolvimento sustentável;</li>
+            <li>ordenar as conferências e acordos internacionais;</li>
+            <li>reconhecer as dimensões da sustentabilidade.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 1 e 2.</p></div>
+        </div>
+        <h3 id="s3-1"><span class="num">3.1</span>Definição</h3>
+        <p>Pelo Relatório Brundtland, <em>Nosso Futuro Comum</em>, de 1987, desenvolvimento sustentável é o que atende às necessidades do presente sem comprometer a possibilidade de as gerações futuras atenderem às suas. Ele busca, ao mesmo tempo, eficiência econômica, justiça social e equilíbrio ambiental, o chamado tripé da sustentabilidade.</p>
+        <h3 id="s3-2"><span class="num">3.2</span>Linha do tempo</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Ano</th><th>Evento</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>1968</td><td>Clube de Roma</td><td><em>Os Limites do Crescimento</em> (1972): crescimento ilimitado é incompatível com recursos finitos</td></tr>
+            <tr><td>1972</td><td>Conferência de Estocolmo</td><td>Primeira conferência mundial sobre ambiente; cria o PNUMA</td></tr>
+            <tr><td>1987</td><td>Relatório Brundtland</td><td>Define desenvolvimento sustentável</td></tr>
+            <tr><td>1987</td><td>Protocolo de Montreal</td><td>Elimina os CFCs, que destroem a camada de ozônio</td></tr>
+            <tr><td>1992</td><td>Rio-92, ou Eco-92</td><td>Agenda 21 e as convenções do clima e da biodiversidade</td></tr>
+            <tr><td>1997</td><td>Protocolo de Kyoto</td><td>Metas de redução de gases de efeito estufa para países desenvolvidos</td></tr>
+            <tr><td>2012</td><td>Rio+20</td><td>Inicia a construção dos Objetivos de Desenvolvimento Sustentável</td></tr>
+            <tr><td>2015</td><td>Agenda 2030 e Acordo de Paris</td><td>17 ODS; limitar o aquecimento a bem menos de 2 °C, buscando 1,5 °C</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s3-3"><span class="num">3.3</span>Na prática da engenharia</h3>
+        <p>Para a empresa, a sustentabilidade se traduz em reduzir consumo de matéria-prima, água e energia por unidade produzida, substituir insumos perigosos, projetar para desmontagem e reciclagem e medir o impacto ao longo do ciclo de vida do produto, assunto do capítulo 12.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Brundtland (1987) definiu o conceito; a Rio-92 o consagrou.</li>
+          <li>Montreal tratou do ozônio; Kyoto e Paris, do clima.</li>
+          <li>A Agenda 2030 tem 17 Objetivos de Desenvolvimento Sustentável.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que o Protocolo de Montreal é considerado um sucesso?</summary><p>A produção de CFCs foi praticamente eliminada, e a camada de ozônio está em lenta recuperação. Ajudou o fato de haver substitutos viáveis e de o problema envolver poucos fabricantes.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 4 -->
+      <section class="section capitulo" id="cap-4" data-parte="Parte II — Poluição" data-topicos="agua">
+        <p class="cap-kicker">Capítulo 4</p>
+        <h2>4. Poluição da água</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>interpretar OD, DBO e coliformes;</li>
+            <li>calcular carga orgânica e equivalente populacional;</li>
+            <li>aplicar as classes de enquadramento e os padrões de lançamento.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2.</p></div>
+        </div>
+        <h3 id="s4-1"><span class="num">4.1</span>A água disponível</h3>
+        <p>Cerca de 97,5 % da água do planeta é salgada, e a maior parte da doce está em geleiras e aquíferos profundos. O Brasil tem cerca de 13 % da água doce superficial do mundo, mas mal distribuída: a bacia amazônica concentra perto de 73 % dela e cerca de 5 % da população.</p>
+        <h3 id="s4-2"><span class="num">4.2</span>Parâmetros de qualidade</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Parâmetro</th><th>O que indica</th></tr></thead>
+          <tbody>
+            <tr><td>Oxigênio dissolvido, OD</td><td>Condição para a vida aquática; cai quando há matéria orgânica em decomposição</td></tr>
+            <tr><td>Demanda bioquímica de oxigênio, DBO</td><td>Oxigênio que as bactérias consomem para degradar a matéria orgânica</td></tr>
+            <tr><td>Demanda química de oxigênio, DQO</td><td>Oxigênio para oxidar quimicamente toda a matéria oxidável; DQO ≥ DBO</td></tr>
+            <tr><td>Coliformes termotolerantes, E. coli</td><td>Contaminação fecal e risco de doenças</td></tr>
+            <tr><td>Nitrogênio e fósforo</td><td>Nutrientes que causam eutrofização</td></tr>
+            <tr><td>pH, turbidez, sólidos, metais</td><td>Condições físico-químicas e toxicidade</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s4-3"><span class="num">4.3</span>Cinética da DBO</h3>
+        <p>A matéria orgânica é consumida em primeira ordem. Sendo <span data-tex-inline="L_0"></span> a DBO última e <span data-tex-inline="K_1"></span> o coeficiente de desoxigenação, a DBO exercida até o tempo t é:</p>
+        <div class="formula"><span data-tex="DBO_t = L_0\left(1 - e^{-K_1 t}\right)"></span></div>
+        <p>O ensaio padrão mede a <strong>DBO₅</strong>, em 5 dias a 20 °C. Para esgoto doméstico, com <span data-tex-inline="K_1 \approx 0{,}23"></span> por dia, ela vale cerca de 68 % da DBO última.</p>
+        <div class="fig-host" id="fig-4-1"></div>
+        <h3 id="s4-4"><span class="num">4.4</span>Carga e equivalente populacional</h3>
+        <p>Carga é vazão vezes concentração. O equivalente populacional compara a carga de uma indústria com a contribuição de uma pessoa, adotada em 54 g de DBO por habitante por dia:</p>
+        <div class="formula"><span data-tex="\text{Carga} = Q \cdot C \qquad EP = \frac{\text{carga (kg DBO/d)}}{0{,}054\ \text{kg DBO/hab·d}}"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 4.1</span>Equivalente populacional de um laticínio</div>
+          <p>Um laticínio lança 2000 m³/d de efluente com DBO₅ de 1500 mg/L. Qual é a carga e a população equivalente?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>1500 mg/L = 1,5 kg/m³.</li>
+              <li>Carga: <span data-tex-inline="2000 \cdot 1{,}5 = 3000"></span> kg DBO/d.</li>
+              <li><span data-tex-inline="EP = 3000/0{,}054 = 55\,600"></span> habitantes.</li>
+            </ol>
+            <p class="resposta">3 t de DBO por dia, o mesmo que o esgoto de uma cidade de cerca de 56 mil habitantes.</p>
+          </details>
+        </div>
+        <h3 id="s4-5"><span class="num">4.5</span>Classes de enquadramento</h3>
+        <p>A Resolução CONAMA 357/2005 classifica os corpos d'água segundo os usos pretendidos. Para águas doces:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Classe</th><th>Usos principais</th><th>OD mínimo</th><th>DBO₅ máxima</th></tr></thead>
+          <tbody>
+            <tr><td>Especial</td><td>Abastecimento com desinfecção; preservação</td><td colspan="2">Condições naturais</td></tr>
+            <tr><td>1</td><td>Abastecimento após tratamento simplificado; recreação de contato primário</td><td class="num">6 mg/L</td><td class="num">3 mg/L</td></tr>
+            <tr><td>2</td><td>Abastecimento após tratamento convencional; irrigação de hortaliças; aquicultura</td><td class="num">5 mg/L</td><td class="num">5 mg/L</td></tr>
+            <tr><td>3</td><td>Abastecimento após tratamento avançado; dessedentação de animais</td><td class="num">4 mg/L</td><td class="num">10 mg/L</td></tr>
+            <tr><td>4</td><td>Navegação e harmonia paisagística</td><td class="num">acima de 2 mg/L</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Na classe 2, os coliformes termotolerantes não devem passar de 1000 por 100 mL em 80 % de pelo menos seis amostras anuais. Os padrões de <strong>lançamento</strong> de efluentes estão na Resolução CONAMA 430/2011: entre outros, pH entre 5 e 9, temperatura abaixo de 40 °C e remoção mínima de 60 % da DBO. O lançamento também não pode fazer o rio desrespeitar a sua classe.</p>
+        <h3 id="s4-6"><span class="num">4.6</span>Tratamento de esgoto</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Nível</th><th>Remove</th><th>Exemplos</th></tr></thead>
+          <tbody>
+            <tr><td>Preliminar</td><td>Sólidos grosseiros e areia</td><td>Grade e caixa de areia</td></tr>
+            <tr><td>Primário</td><td>Sólidos sedimentáveis e parte da DBO, cerca de 30 %</td><td>Decantador primário</td></tr>
+            <tr><td>Secundário</td><td>Matéria orgânica dissolvida, de 60 a 95 % da DBO</td><td>Lodos ativados, filtro biológico, lagoas, reator anaeróbio</td></tr>
+            <tr><td>Terciário</td><td>Nutrientes, patógenos e compostos específicos</td><td>Remoção de N e P, desinfecção, filtração</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="callout warn">
+          <strong>Eutrofização</strong>
+          Nitrogênio e fósforo em excesso fazem as algas proliferarem. Quando elas morrem, a decomposição consome o oxigênio do fundo, e peixes morrem mesmo sem lançamento direto de matéria orgânica.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A DBO mede a matéria orgânica pelo oxigênio que ela consome.</li>
+          <li>Carga é vazão vezes concentração; uma pessoa gera cerca de 54 g de DBO por dia.</li>
+          <li>A classe do rio limita o OD mínimo e a DBO máxima.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a DQO é sempre maior ou igual à DBO?</summary><p>A DQO oxida quimicamente toda a matéria oxidável, inclusive a que as bactérias não conseguem degradar. A razão DQO/DBO indica a biodegradabilidade do efluente.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 5 -->
+      <section class="section capitulo" id="cap-5" data-parte="Parte II — Poluição" data-topicos="autodepuracao">
+        <p class="cap-kicker">Capítulo 5</p>
+        <h2>5. Autodepuração dos rios</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>calcular a concentração após a mistura;</li>
+            <li>aplicar o modelo de Streeter-Phelps;</li>
+            <li>dimensionar a eficiência de tratamento necessária.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 4.</p></div>
+        </div>
+        <h3 id="s5-1"><span class="num">5.1</span>Mistura no lançamento</h3>
+        <p>Admitindo mistura completa, a concentração logo a jusante é a média ponderada pelas vazões. Ela vale para DBO, OD, temperatura e qualquer substância conservativa:</p>
+        <div class="formula"><span data-tex="C_0 = \frac{Q_r C_r + Q_e C_e}{Q_r + Q_e}"></span></div>
+        <div class="fig-host" id="fig-5-1"></div>
+        <h3 id="s5-2"><span class="num">5.2</span>Zonas de autodepuração</h3>
+        <p>Rio abaixo do lançamento, o rio passa por zonas sucessivas: a de <strong>degradação</strong>, logo após o lançamento; a de <strong>decomposição ativa</strong>, em que o OD atinge o mínimo e pode chegar a zero; a de <strong>recuperação</strong>, em que a reaeração supera o consumo; e a de <strong>águas limpas</strong>.</p>
+        <h3 id="s5-3"><span class="num">5.3</span>Modelo de Streeter-Phelps</h3>
+        <p>O déficit D é a diferença entre o OD de saturação e o OD do rio. Ele aumenta pelo consumo de oxigênio e diminui pela reaeração através da superfície:</p>
+        <div class="formula"><span data-tex="\frac{dD}{dt} = K_1 L - K_2 D \quad\Rightarrow\quad D(t) = \frac{K_1 L_0}{K_2 - K_1}\left(e^{-K_1 t} - e^{-K_2 t}\right) + D_0\,e^{-K_2 t}"></span></div>
+        <div class="formula"><span data-tex="t_c = \frac{1}{K_2 - K_1}\ln\left[\frac{K_2}{K_1}\left(1 - \frac{D_0\,(K_2 - K_1)}{K_1 L_0}\right)\right] \qquad x_c = v\,t_c"></span></div>
+        <p>A reaeração cresce com a velocidade e diminui com a profundidade. A fórmula de O'Connor e Dobbins dá <span data-tex-inline="K_2 = 3{,}73\,v^{0{,}5}H^{-1{,}5}"></span> por dia a 20 °C, com v em m/s e H em m. Os coeficientes se corrigem pela temperatura com <span data-tex-inline="K_T = K_{20}\,\theta^{T-20}"></span>, com θ de cerca de 1,047 para K₁ e 1,024 para K₂. O OD de saturação cai com a temperatura: 9,09 mg/L a 20 °C e 8,26 mg/L a 25 °C.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 5.1</span>Esgoto bruto em um rio de classe 2</div>
+          <p>Um rio com 5 m³/s, DBO₅ de 2 mg/L e OD de 7,5 mg/L recebe 0,5 m³/s de esgoto bruto, com DBO₅ de 300 mg/L e sem oxigênio. A água está a 25 °C, a velocidade é 0,3 m/s e a profundidade, 1,5 m. Adote K₁ = 0,35 por dia a 20 °C. Onde ocorre o OD mínimo, e quanto ele vale?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Mistura: <span data-tex-inline="DBO_5 = (5\cdot 2 + 0{,}5\cdot 300)/5{,}5 = 29{,}1"></span> mg/L e <span data-tex-inline="OD = 5\cdot 7{,}5/5{,}5 = 6{,}82"></span> mg/L.</li>
+              <li><span data-tex-inline="L_0 = 29{,}1/(1 - e^{-5\cdot 0{,}35}) = 35{,}2"></span> mg/L.</li>
+              <li>A 25 °C: <span data-tex-inline="K_1 = 0{,}35\cdot 1{,}047^5 = 0{,}440"></span> e <span data-tex-inline="K_2 = 3{,}73\sqrt{0{,}3}/1{,}5^{1{,}5}\cdot 1{,}024^5 = 1{,}25"></span> por dia.</li>
+              <li><span data-tex-inline="D_0 = 8{,}26 - 6{,}82 = 1{,}44"></span> mg/L.</li>
+              <li><span data-tex-inline="t_c = 1{,}19"></span> d, ou seja, <span data-tex-inline="x_c = 0{,}3\cdot 86\,400\cdot 1{,}19 = 30{,}9"></span> km.</li>
+              <li><span data-tex-inline="D_c = 7{,}33"></span> mg/L e OD mínimo de 0,93 mg/L.</li>
+            </ol>
+            <p class="resposta">O OD cai a 0,93 mg/L a cerca de 31 km do lançamento, muito abaixo dos 5 mg/L da classe 2. O simulador mostra que é preciso remover pelo menos 62 % da DBO para manter o OD.</p>
+          </details>
+        </div>
+        <div id="sim-rio" class="sim"></div>
+        <div class="callout warn">
+          <strong>Atender ao OD não basta</strong>
+          No exemplo, com 62 % de remoção o OD mínimo chega a 5 mg/L, mas a DBO logo após a mistura ainda passa de 12 mg/L, acima do limite da classe. Pela Resolução CONAMA 357/2005, esse limite só pode ser elevado se um estudo de autodepuração comprovar que o OD é respeitado na vazão de referência, normalmente a de estiagem. A Resolução CONAMA 430/2011 exige ainda remoção de pelo menos 60 % da DBO.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Logo após o lançamento vale a média ponderada pelas vazões.</li>
+          <li>O OD cai até o ponto crítico e depois se recupera pela reaeração.</li>
+          <li>Rios rasos e rápidos se recuperam mais depressa; o calor piora tudo.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que a análise é feita na vazão de estiagem?</summary><p>Com menos água, a diluição é menor e a velocidade costuma cair: é a condição mais desfavorável. Se o rio atende à classe nela, atende nas demais.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 6 -->
+      <section class="section capitulo" id="cap-6" data-parte="Parte II — Poluição" data-topicos="ar">
+        <p class="cap-kicker">Capítulo 6</p>
+        <h2>6. Poluição do ar</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer os principais poluentes e efeitos;</li>
+            <li>calcular emissões de CO₂ e SO₂ pela combustão;</li>
+            <li>estimar a concentração no solo pela pluma gaussiana.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 2 e estequiometria básica.</p></div>
+        </div>
+        <h3 id="s6-1"><span class="num">6.1</span>Poluentes</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Poluente</th><th>Origem típica</th><th>Efeito</th></tr></thead>
+          <tbody>
+            <tr><td>Material particulado, MP₁₀ e MP₂,₅</td><td>Combustão, indústria, poeira</td><td>Doenças respiratórias e cardiovasculares</td></tr>
+            <tr><td>SO₂</td><td>Queima de combustíveis com enxofre</td><td>Irritação respiratória, chuva ácida</td></tr>
+            <tr><td>NOx</td><td>Combustão em alta temperatura</td><td>Chuva ácida e formação de ozônio</td></tr>
+            <tr><td>CO</td><td>Combustão incompleta</td><td>Reduz o transporte de oxigênio no sangue</td></tr>
+            <tr><td>O₃ troposférico</td><td>Secundário: NOx e compostos orgânicos voláteis sob luz solar</td><td>Irritação, danos à vegetação</td></tr>
+            <tr><td>CO₂, CH₄, N₂O</td><td>Combustão, aterros, agropecuária</td><td>Efeito estufa</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Os poluentes <strong>primários</strong> saem da fonte, e os <strong>secundários</strong> se formam na atmosfera. Os padrões nacionais de qualidade do ar estão na Resolução CONAMA 506/2024, que os adota em etapas: os intermediários PI-2 valem desde 2025, os PI-3 a partir de 2033, e os finais serão fixados depois, tendo como referência as diretrizes da Organização Mundial da Saúde.</p>
+        <h3 id="s6-2"><span class="num">6.2</span>Emissões da combustão</h3>
+        <p>Todo carbono queimado vira CO₂, e todo enxofre vira SO₂. Pelas massas molares:</p>
+        <div class="formula"><span data-tex="m_{CO_2} = \frac{44}{12}\,m_C \qquad m_{SO_2} = \frac{64}{32}\,m_S"></span></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 6.1</span>Caldeira a carvão</div>
+          <p>Uma caldeira queima 1 t de carvão com 70 % de carbono e 2 % de enxofre, em massa. Quanto CO₂ e SO₂ ela emite, e quanto SO₂ sai se um lavador remover 90 % dele?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="CO_2 = 700 \cdot 44/12 = 2567"></span> kg.</li>
+              <li><span data-tex-inline="SO_2 = 20 \cdot 64/32 = 40"></span> kg.</li>
+              <li>Com o lavador: <span data-tex-inline="40 \cdot 0{,}1 = 4"></span> kg.</li>
+            </ol>
+            <p class="resposta">2,57 t de CO₂, mais pesado que o próprio carvão por causa do oxigênio incorporado, e 40 kg de SO₂, que caem para 4 kg com o lavador.</p>
+          </details>
+        </div>
+        <h3 id="s6-3"><span class="num">6.3</span>Efeitos globais e regionais</h3>
+        <p>O <strong>efeito estufa</strong> é natural: gases como vapor d'água, CO₂ e CH₄ absorvem parte do infravermelho emitido pela superfície e devolvem energia para baixo. O problema é a intensificação desse efeito pelas emissões humanas.</p>
+        <div class="fig-host" id="fig-6-1"></div>
+        <ul>
+          <li><strong>Camada de ozônio:</strong> os CFCs liberam cloro na estratosfera, que destrói o ozônio.</li>
+          <li><strong>Chuva ácida:</strong> SO₂ e NOx formam ácidos sulfúrico e nítrico; considera-se ácida a chuva com pH abaixo de 5,6, o valor da água em equilíbrio com o CO₂ do ar.</li>
+          <li><strong>Inversão térmica:</strong> uma camada de ar quente sobre o ar frio impede a subida dos poluentes, comum em manhãs frias de inverno.</li>
+        </ul>
+        <h3 id="s6-4"><span class="num">6.4</span>Dispersão de uma pluma</h3>
+        <p>O modelo gaussiano supõe que a pluma se espalha em torno da linha central com distribuição normal, nas direções lateral e vertical. Ao nível do solo, com reflexão no solo:</p>
+        <div class="formula"><span data-tex="C(x, y, 0) = \frac{Q}{\pi\,u\,\sigma_y\,\sigma_z}\exp\left(-\frac{y^2}{2\sigma_y^2}\right)\exp\left(-\frac{H^2}{2\sigma_z^2}\right)"></span></div>
+        <p>As dispersões σy e σz crescem com a distância e dependem da <strong>estabilidade atmosférica</strong>, de A, muito instável, em dias ensolarados e de vento fraco, até F, estável, em noites claras. A altura efetiva H soma à altura física a elevação da pluma por empuxo e quantidade de movimento.</p>
+        <div class="fig-host" id="fig-6-2"></div>
+        <div id="sim-pluma" class="sim"></div>
+        <div class="callout tip">
+          <strong>Por que chaminés altas?</strong>
+          A concentração máxima no solo cai aproximadamente com o quadrado da altura efetiva. Dobrar H reduz o pico a cerca de um quarto, mas não diminui a massa emitida: chaminé alta dilui, não trata.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Cada kg de carbono queimado gera 3,67 kg de CO₂.</li>
+          <li>Os padrões nacionais de qualidade do ar estão na Resolução CONAMA 506/2024.</li>
+          <li>A concentração no solo cai com o vento e com o quadrado da altura efetiva.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Em que condição a pluma pode atingir o solo perto da chaminé com concentração alta?</summary><p>Em atmosfera muito instável, quando grandes turbilhões trazem a pluma ao solo cedo, ou quando há inversão térmica logo acima da chaminé, que prende os poluentes em uma camada baixa.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 7 -->
+      <section class="section capitulo" id="cap-7" data-parte="Parte II — Poluição" data-topicos="solo">
+        <p class="cap-kicker">Capítulo 7</p>
+        <h2>7. Solo e agrotóxicos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>reconhecer as vias de contaminação do solo e da água subterrânea;</li>
+            <li>calcular a persistência de um contaminante;</li>
+            <li>conhecer a legislação de agrotóxicos.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 2 e 4.</p></div>
+        </div>
+        <h3 id="s7-1"><span class="num">7.1</span>Contaminação do solo</h3>
+        <p>O solo recebe resíduos dispostos sem controle, vazamentos de tanques de combustível, efluentes, chorume e agrotóxicos. Daí os contaminantes chegam à água subterrânea por lixiviação e aos rios pelo escoamento superficial. A Resolução CONAMA 420/2009 fixa os valores orientadores: o de referência de qualidade, o de prevenção e o de investigação, acima do qual há risco à saúde e a área deve ser investigada.</p>
+        <h3 id="s7-2"><span class="num">7.2</span>Agrotóxicos</h3>
+        <p>O Brasil é um dos maiores consumidores de agrotóxicos do mundo. Na região serrana do Rio de Janeiro, as notas de aula registram consumo de até 56,5 kg por trabalhador por ano. A exposição atinge o trabalhador que aplica, a família que mora junto à lavoura, o consumidor e o ambiente.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Categoria toxicológica</th><th>Faixa no rótulo</th></tr></thead>
+          <tbody>
+            <tr><td>1 — extremamente tóxico</td><td>Vermelha</td></tr>
+            <tr><td>2 — altamente tóxico</td><td>Vermelha</td></tr>
+            <tr><td>3 — moderadamente tóxico</td><td>Amarela</td></tr>
+            <tr><td>4 — pouco tóxico</td><td>Azul</td></tr>
+            <tr><td>5 — improvável de causar dano agudo</td><td>Azul</td></tr>
+            <tr><td>Não classificado</td><td>Verde</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A classificação é a da ANVISA, RDC 294/2019, alinhada ao sistema harmonizado internacional, o GHS. Desde dezembro de 2023, o registro, a produção, o uso e o descarte de agrotóxicos seguem a Lei 14.785/2023, que revogou a Lei 7.802/1989. As embalagens vazias devem passar por tríplice lavagem, quando laváveis, e ser devolvidas ao ponto indicado na nota fiscal, como parte da logística reversa.</p>
+        <h3 id="s7-3"><span class="num">7.3</span>Persistência</h3>
+        <p>Muitos contaminantes se degradam em primeira ordem. A meia-vida é o tempo para a concentração cair à metade:</p>
+        <div class="formula"><span data-tex="C(t) = C_0\,e^{-kt} \qquad t_{1/2} = \frac{\ln 2}{k}"></span></div>
+        <div class="fig-host" id="fig-7-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 7.1</span>Resíduo após a colheita</div>
+          <p>Um produto com meia-vida de 30 dias no solo é aplicado uma vez. Que fração resta após 90 dias?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>90 dias são três meias-vidas.</li>
+              <li><span data-tex-inline="(1/2)^3 = 0{,}125"></span>.</li>
+            </ol>
+            <p class="resposta">Restam 12,5 % da dose aplicada.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Contaminantes do solo chegam à água por lixiviação e escoamento.</li>
+          <li>Agrotóxicos: Lei 14.785/2023 e classificação da RDC 294/2019.</li>
+          <li>Aplicações mais frequentes que a meia-vida acumulam resíduo.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Faixa azul no rótulo significa produto seguro?</summary><p>Não. A faixa indica apenas a toxicidade aguda. Efeitos crônicos, como câncer e distúrbios hormonais, e o impacto ambiental são avaliados à parte, e o uso de EPI continua obrigatório.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 8 -->
+      <section class="section capitulo" id="cap-8" data-parte="Parte III — Resíduos sólidos" data-topicos="residuos">
+        <p class="cap-kicker">Capítulo 8</p>
+        <h2>8. Resíduos sólidos</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir resíduo de rejeito;</li>
+            <li>classificar resíduos pela NBR 10004;</li>
+            <li>aplicar a hierarquia e a logística reversa da PNRS.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 1.</p></div>
+        </div>
+        <h3 id="s8-1"><span class="num">8.1</span>Definições</h3>
+        <p>A Política Nacional de Resíduos Sólidos, Lei 12.305/2010, define <strong>resíduo sólido</strong> como o material, substância, objeto ou bem descartado resultante de atividades humanas, nos estados sólido ou semissólido, e inclui gases em recipientes e líquidos que não possam ir para a rede de esgoto. <strong>Rejeito</strong> é o resíduo que, esgotadas as possibilidades de tratamento e recuperação, só pode ter disposição final ambientalmente adequada.</p>
+        <h3 id="s8-2"><span class="num">8.2</span>Classificação</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>NBR 10004:2004</th><th>NBR 10004:2024</th><th>Exemplos</th></tr></thead>
+          <tbody>
+            <tr><td>Classe I — perigosos</td><td>Classe 1 — perigosos</td><td>Óleo usado, borra de tinta, lâmpadas com mercúrio, baterias</td></tr>
+            <tr><td>Classe II A — não inertes</td><td rowspan="2">Classe 2 — não perigosos</td><td>Restos de alimentos, papel, lodo biológico</td></tr>
+            <tr><td>Classe II B — inertes</td><td>Entulho limpo, vidro, alguns plásticos</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A periculosidade decorre de inflamabilidade, corrosividade, reatividade, toxicidade ou patogenicidade. A edição de 2024 dividiu a norma em duas partes e eliminou a subdivisão II A e II B. Os órgãos ambientais estão em transição: a CETESB, em São Paulo, aceita a edição de 2004 até 31/12/2026.</p>
+        <h3 id="s8-3"><span class="num">8.3</span>Geração e composição</h3>
+        <p>A média brasileira recente é de cerca de 1 kg de resíduo sólido urbano por habitante por dia, maior nas cidades grandes e no Sudeste. Quase metade da massa é matéria orgânica.</p>
+        <div class="fig-host" id="fig-8-1"></div>
+        <h3 id="s8-4"><span class="num">8.4</span>Hierarquia e responsabilidades</h3>
+        <p>O art. 9º da PNRS fixa a ordem de prioridade: <strong>não geração, redução, reutilização, reciclagem, tratamento e disposição final ambientalmente adequada dos rejeitos</strong>. A lei institui a responsabilidade compartilhada pelo ciclo de vida do produto, que envolve fabricantes, importadores, distribuidores, comerciantes, consumidores e o poder público.</p>
+        <p>A <strong>logística reversa</strong> é obrigatória, entre outros, para embalagens de agrotóxicos, pilhas e baterias, pneus, óleos lubrificantes e suas embalagens, lâmpadas fluorescentes e produtos eletroeletrônicos. O prazo original de 2014 para acabar com os lixões não foi cumprido; a Lei 14.026/2020, novo marco do saneamento, o estendeu até 2024 conforme o porte do município.</p>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 8.1</span>Quanto uma cidade gera</div>
+          <p>Uma cidade de 300 mil habitantes gera 1,04 kg/hab·dia. Quanto ela produz por dia, e quanto é matéria orgânica, adotando 45 %?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="300\,000 \cdot 1{,}04 = 312\,000"></span> kg/dia = 312 t/dia.</li>
+              <li><span data-tex-inline="312 \cdot 0{,}45 = 140"></span> t/dia de matéria orgânica.</li>
+            </ol>
+            <p class="resposta">312 t por dia, das quais cerca de 140 t poderiam ir para compostagem.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Rejeito é o que não tem mais recuperação possível.</li>
+          <li>NBR 10004:2024: classe 1, perigosos, e classe 2, não perigosos.</li>
+          <li>Ordem da PNRS: não gerar, reduzir, reutilizar, reciclar, tratar e dispor.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A incineração vem antes ou depois da reciclagem na hierarquia?</summary><p>Depois. O tratamento, que inclui a recuperação energética, só vem após esgotadas as opções de reutilização e reciclagem.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 9 -->
+      <section class="section capitulo" id="cap-9" data-parte="Parte III — Resíduos sólidos" data-topicos="aterro">
+        <p class="cap-kicker">Capítulo 9</p>
+        <h2>9. Tratamento e disposição final</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>distinguir lixão, aterro controlado e aterro sanitário;</li>
+            <li>dimensionar o volume de um aterro;</li>
+            <li>estimar a geração de biogás.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulo 8.</p></div>
+        </div>
+        <h3 id="s9-1"><span class="num">9.1</span>Formas de disposição</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Forma</th><th>Características</th><th>Situação legal</th></tr></thead>
+          <tbody>
+            <tr><td>Lixão</td><td>Descarga a céu aberto, sem controle</td><td>Proibido</td></tr>
+            <tr><td>Aterro controlado</td><td>Cobertura com solo, mas sem impermeabilização da base nem tratamento de chorume e gás</td><td>Inadequado</td></tr>
+            <tr><td>Aterro sanitário</td><td>Base impermeabilizada, drenagem e tratamento de chorume e gás, cobertura diária e monitoramento</td><td>Disposição adequada dos rejeitos</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="fig-host" id="fig-9-1"></div>
+        <h3 id="s9-2"><span class="num">9.2</span>Chorume e biogás</h3>
+        <p>O <strong>chorume</strong> é o líquido escuro formado pela decomposição e pela água da chuva que atravessa o resíduo, com DBO e DQO muito altas e metais. O <strong>biogás</strong>, gerado na decomposição anaeróbia, tem de 50 a 60 % de metano. Cada tonelada de metano equivale a cerca de 28 t de CO₂ em potencial de aquecimento em 100 anos, por isso o gás deve ser queimado ou aproveitado.</p>
+        <div class="formula"><span data-tex="V = \frac{M}{\rho_c}\,(1 + f_{cob}) \qquad Q_{CH_4}(t) = \sum_i k\,L_0\,M_i\,e^{-k(t - t_i)}"></span></div>
+        <p>M é a massa aterrada, <span data-tex-inline="\rho_c"></span> a massa específica compactada, de 0,7 a 1,0 t/m³, e <span data-tex-inline="f_{cob}"></span> a fração de solo de cobertura. Na geração de metano, k é a constante de decaimento, maior em climas úmidos, e <span data-tex-inline="L_0"></span> o potencial de metano por tonelada de resíduo.</p>
+        <div id="sim-aterro" class="sim"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 9.1</span>Volume de um ano</div>
+          <p>Uma cidade aterra 65 700 t no ano, compactadas a 0,8 t/m³, com 20 % de solo de cobertura. Qual o volume ocupado e a área, com 20 m de altura?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="V = 65\,700/0{,}8 \cdot 1{,}2 = 98\,550"></span> m³.</li>
+              <li><span data-tex-inline="A = 98\,550/20 = 4930"></span> m², cerca de 0,5 ha por ano.</li>
+            </ol>
+            <p class="resposta">Cerca de 98,6 mil m³ por ano. Em 20 anos, com a população crescendo 1 % ao ano, o simulador dá perto de 11 ha.</p>
+          </details>
+        </div>
+        <h3 id="s9-3"><span class="num">9.3</span>Incineração</h3>
+        <p>A incineração reduz o volume em cerca de 90 % e pode recuperar energia, mas exige controle rigoroso da combustão e da limpeza dos gases, para evitar dioxinas, furanos, metais e gases ácidos. As cinzas ainda precisam de destinação, e a queima compete com a reciclagem pelos materiais de maior poder calorífico, como os plásticos.</p>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Só o aterro sanitário é disposição adequada de rejeitos.</li>
+          <li>Volume = massa dividida pela massa específica compactada, mais a cobertura.</li>
+          <li>O metano continua saindo por décadas depois do fechamento.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que desviar matéria orgânica do aterro reduz o metano?</summary><p>O metano vem da decomposição anaeróbia da fração orgânica. Compostada de forma aeróbia, ela vira CO₂ biogênico e composto, sem gerar metano.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 10 -->
+      <section class="section capitulo" id="cap-10" data-parte="Parte III — Resíduos sólidos" data-topicos="reciclagem">
+        <p class="cap-kicker">Capítulo 10</p>
+        <h2>10. Reciclagem e compostagem</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>conhecer a reciclagem de cada material;</li>
+            <li>identificar os plásticos pela simbologia;</li>
+            <li>calcular a relação C/N de uma mistura para compostagem.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 8 e 9.</p></div>
+        </div>
+        <h3 id="s10-1"><span class="num">10.1</span>Materiais</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Material</th><th>Particularidade</th></tr></thead>
+          <tbody>
+            <tr><td>Alumínio</td><td>Refundir economiza cerca de 95 % da energia da produção a partir da bauxita</td></tr>
+            <tr><td>Aço</td><td>Sucata entra no forno elétrico ou no conversor; separa-se por ímã</td></tr>
+            <tr><td>Vidro</td><td>Pode ser refundido indefinidamente; o caco reduz a temperatura de fusão</td></tr>
+            <tr><td>Papel</td><td>As fibras de celulose encurtam a cada ciclo, o que limita o número de reciclagens</td></tr>
+            <tr><td>Plásticos</td><td>Exigem separação por tipo; termoplásticos podem ser refundidos, termofixos não</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>A ABNT NBR 13230 identifica os plásticos pelo número no triângulo: 1 PET, 2 PEAD, 3 PVC, 4 PEBD, 5 PP, 6 PS e 7 outros.</p>
+        <h3 id="s10-2"><span class="num">10.2</span>Compostagem</h3>
+        <p>A compostagem é a decomposição biológica aeróbia da matéria orgânica, que produz um composto útil como adubo. A fase termofílica, entre cerca de 45 e 65 °C, elimina patógenos e sementes. No método natural, em pilhas revolvidas, leva de 3 a 4 meses; no acelerado, com aeração forçada, de 2 a 3 meses.</p>
+        <p>Os microrganismos precisam de carbono como fonte de energia e de nitrogênio para formar proteínas. A relação C/N inicial ideal fica perto de 30:</p>
+        <div class="formula"><span data-tex="\frac{C}{N} = \frac{\sum m_i C_i}{\sum m_i N_i}"></span></div>
+        <div class="fig-host" id="fig-10-1"></div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 10.1</span>Ajustando a mistura</div>
+          <p>Restos de comida têm 45 % de C e 3 % de N, e folhas secas, 50 % de C e 0,8 % de N, em base seca. Quantos kg de folhas misturar a cada kg de restos para C/N = 30?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li><span data-tex-inline="\dfrac{0{,}45 + 0{,}50\,x}{0{,}03 + 0{,}008\,x} = 30"></span>.</li>
+              <li><span data-tex-inline="0{,}45 + 0{,}50\,x = 0{,}90 + 0{,}24\,x"></span>.</li>
+              <li><span data-tex-inline="x = 0{,}45/0{,}26 = 1{,}73"></span>.</li>
+            </ol>
+            <p class="resposta">Cerca de 1,7 kg de folhas secas por kg de restos de comida.</p>
+          </details>
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>Reciclar alumínio economiza cerca de 95 % da energia.</li>
+          <li>Plásticos: códigos de 1 a 7 da NBR 13230.</li>
+          <li>Compostagem é aeróbia e funciona melhor com C/N perto de 30.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Por que uma pilha de compostagem com cheiro de amônia indica erro?</summary><p>Há nitrogênio em excesso, ou seja, C/N baixa. O nitrogênio que sobra escapa como amônia. A correção é acrescentar material rico em carbono, como folhas secas ou serragem.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 11 -->
+      <section class="section capitulo" id="cap-11" data-parte="Parte IV — Gestão" data-topicos="legislacao">
+        <p class="cap-kicker">Capítulo 11</p>
+        <h2>11. Legislação e licenciamento</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>situar as principais leis ambientais;</li>
+            <li>seguir as fases do licenciamento;</li>
+            <li>saber quando cabe o EIA/RIMA.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 4 a 9.</p></div>
+        </div>
+        <h3 id="s11-1"><span class="num">11.1</span>Marco legal</h3>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>Conteúdo</th></tr></thead>
+          <tbody>
+            <tr><td>Constituição Federal, art. 225</td><td>Direito de todos ao meio ambiente ecologicamente equilibrado; exige estudo prévio de impacto para obra potencialmente degradante</td></tr>
+            <tr><td>Lei 6.938/1981</td><td>Política Nacional do Meio Ambiente: cria o SISNAMA e o CONAMA; instrumentos como padrões, avaliação de impacto e licenciamento; responsabilidade do poluidor independente de culpa</td></tr>
+            <tr><td>Lei 9.433/1997</td><td>Política Nacional de Recursos Hídricos: bacia como unidade de gestão, outorga e cobrança pelo uso da água, enquadramento</td></tr>
+            <tr><td>Lei 9.605/1998</td><td>Crimes e infrações ambientais, inclusive de pessoas jurídicas</td></tr>
+            <tr><td>Lei 12.305/2010</td><td>Política Nacional de Resíduos Sólidos</td></tr>
+            <tr><td>LC 140/2011</td><td>Divide entre União, estados e municípios a competência para licenciar</td></tr>
+            <tr><td>Lei 15.190/2025</td><td>Lei Geral do Licenciamento Ambiental</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s11-2"><span class="num">11.2</span>Licenciamento</h3>
+        <p>Atividades efetiva ou potencialmente poluidoras precisam de licença do órgão ambiental competente. O rito ordinário tem três licenças, definidas na Resolução CONAMA 237/1997:</p>
+        <div class="fig-host" id="fig-11-1"></div>
+        <p>A Lei 15.190/2025 consolidou as regras gerais. Ela mantém as licenças prévia, de instalação e de operação e cria outras modalidades, como a licença ambiental única e a licença por adesão e compromisso, concedida por autodeclaração a empreendimentos de menor potencial poluidor. Parte dessas regras foi vetada na sanção e restabelecida pelo Congresso em novembro de 2025, o que mostra como o tema ainda está em ajuste.</p>
+        <h3 id="s11-3"><span class="num">11.3</span>EIA e RIMA</h3>
+        <p>O Estudo de Impacto Ambiental é exigido para atividades capazes de causar impacto significativo. A Resolução CONAMA 001/1986 lista exemplos, como estradas, portos, aeroportos, oleodutos, linhas de transmissão de alta tensão, usinas de energia, aterros sanitários e distritos industriais. O EIA é o estudo técnico completo; o RIMA, o Relatório de Impacto Ambiental, apresenta as conclusões em linguagem acessível e é discutido em audiência pública.</p>
+        <div class="callout warn">
+          <strong>Responsabilidade do engenheiro</strong>
+          A responsabilidade civil por dano ambiental é objetiva: não depende de culpa. Além disso, operar sem licença ou em desacordo com ela é crime pela Lei 9.605/1998, e pode atingir a empresa e as pessoas que decidiram.
+        </div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>A PNMA de 1981 é a base: SISNAMA, CONAMA e licenciamento.</li>
+          <li>Licenças prévia, de instalação e de operação, em sequência.</li>
+          <li>Impacto significativo exige EIA/RIMA e audiência pública.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>Uma fábrica pronta pode operar com a licença de instalação?</summary><p>Não. A licença de instalação autoriza só a obra. Para funcionar é preciso a de operação, emitida depois que o órgão verifica o cumprimento das condicionantes anteriores.</p></details>
+        </div>
+      </section>
+
+      <!-- ===================================================== CAPÍTULO 12 -->
+      <section class="section capitulo" id="cap-12" data-parte="Parte IV — Gestão" data-topicos="gestao">
+        <p class="cap-kicker">Capítulo 12</p>
+        <h2>12. Gestão ambiental e construção sustentável</h2>
+        <div class="cap-abertura">
+          <div><h4>Neste capítulo você vai</h4><ul>
+            <li>estruturar um sistema de gestão pela ISO 14001;</li>
+            <li>calcular emissões por escopo;</li>
+            <li>avaliar o efeito de um telhado verde.</li>
+          </ul></div>
+          <div><h4>Antes de começar</h4><p>Capítulos 3 e 11.</p></div>
+        </div>
+        <h3 id="s12-1"><span class="num">12.1</span>ISO 14001</h3>
+        <p>A ABNT NBR ISO 14001:2015 especifica os requisitos de um sistema de gestão ambiental, organizado pelo ciclo PDCA: planejar, fazer, checar e agir. A empresa identifica os <strong>aspectos ambientais</strong> de suas atividades, como o consumo de energia ou a emissão de um solvente, e os <strong>impactos</strong> que eles causam, como o aquecimento global ou a formação de ozônio. Ela também mapeia os requisitos legais, define objetivos, controla a operação, se prepara para emergências, monitora e audita.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Seção da norma</th><th>Conteúdo</th><th>PDCA</th></tr></thead>
+          <tbody>
+            <tr><td>4 e 5</td><td>Contexto da organização e liderança</td><td>—</td></tr>
+            <tr><td>6</td><td>Planejamento: aspectos, requisitos legais, riscos e objetivos</td><td>Planejar</td></tr>
+            <tr><td>7 e 8</td><td>Apoio e operação</td><td>Fazer</td></tr>
+            <tr><td>9</td><td>Avaliação de desempenho e auditoria</td><td>Checar</td></tr>
+            <tr><td>10</td><td>Melhoria contínua e ação corretiva</td><td>Agir</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h3 id="s12-2"><span class="num">12.2</span>Ciclo de vida e pegada de carbono</h3>
+        <p>A avaliação do ciclo de vida, pelas normas ISO 14040 e 14044, mede os impactos de um produto do berço ao túmulo, em quatro fases: objetivo e escopo, inventário, avaliação de impacto e interpretação. O inventário de gases de efeito estufa, pelo GHG Protocol, separa as emissões em três escopos:</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Escopo</th><th>Emissões</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Diretas, de fontes da empresa</td><td>Caldeira, frota própria</td></tr>
+            <tr><td>2</td><td>Indiretas, da energia comprada</td><td>Eletricidade da rede</td></tr>
+            <tr><td>3</td><td>Outras indiretas da cadeia de valor</td><td>Matérias-primas, transporte terceirizado, uso do produto</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="exemplo">
+          <div class="exemplo-cab"><span class="num">Exemplo 12.1</span>Inventário simplificado</div>
+          <p>Uma fábrica queima 50 000 L de diesel por ano e compra 1200 MWh de eletricidade. Adote 2,65 kg de CO₂ por litro de diesel e um fator da rede de 0,05 t CO₂/MWh. Quais as emissões dos escopos 1 e 2?</p>
+          <details><summary>Ver solução</summary>
+            <ol class="passos">
+              <li>Escopo 1: <span data-tex-inline="50\,000 \cdot 2{,}65 = 132\,500"></span> kg = 132,5 t de CO₂.</li>
+              <li>Escopo 2: <span data-tex-inline="1200 \cdot 0{,}05 = 60"></span> t de CO₂.</li>
+            </ol>
+            <p class="resposta">192,5 t de CO₂ por ano nos dois escopos. O fator da rede brasileira varia a cada ano com a participação das térmicas; use o valor oficial do ano inventariado.</p>
+          </details>
+        </div>
+        <h3 id="s12-3"><span class="num">12.3</span>Construção sustentável</h3>
+        <p>Edifícios consomem energia, água e materiais por décadas. Entre as soluções estão a eficiência energética, o aproveitamento de água da chuva, materiais de menor impacto e o telhado verde, que retém parte da chuva, reduz o pico de vazão nas galerias e melhora o conforto térmico. Certificações como LEED e AQUA-HQE avaliam o desempenho do edifício.</p>
+        <div class="fig-host" id="fig-12-1"></div>
+        <div class="cap-resumo"><h4>Resumo do capítulo</h4><ul>
+          <li>ISO 14001: aspectos, impactos, requisitos legais e melhoria contínua pelo PDCA.</li>
+          <li>Escopo 1 é direto, escopo 2 é energia comprada, escopo 3 é a cadeia.</li>
+          <li>Telhado verde retém quase toda a chuva pequena e pouco da grande.</li>
+        </ul></div>
+        <div class="teste-se"><h4>Teste-se</h4>
+          <details><summary>A certificação ISO 14001 garante que a empresa não polui?</summary><p>Não. Ela atesta que existe um sistema para identificar, controlar e melhorar o desempenho ambiental e cumprir a legislação. Os resultados dependem das metas que a própria empresa define.</p></details>
+        </div>
+      </section>
+
+      <section class="section" id="simuladores">
+        <h2>Laboratório de simuladores</h2>
+        <p>Os três simuladores estão dentro dos capítulos, no ponto em que o conceito é apresentado.</p>
+        <ul class="lab-lista">
+          <li><a href="#sim-rio"><small>Capítulo 5 · Autodepuração</small>Oxigênio dissolvido rio abaixo</a></li>
+          <li><a href="#sim-pluma"><small>Capítulo 6 · Ar</small>Pluma de uma chaminé</a></li>
+          <li><a href="#sim-aterro"><small>Capítulo 9 · Resíduos</small>Aterro sanitário e metano</a></li>
+        </ul>
+      </section>
+
+      <section class="section" id="formulario">
+        <h2>Apêndice A — Formulário</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h4 style="margin-top:0">População e decaimento</h4>
+            <div class="formula"><span data-tex="t_d = \ln 2 / r"></span></div>
+            <div class="formula"><span data-tex="t_{1/2} = \ln 2 / k"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Água</h4>
+            <div class="formula"><span data-tex="DBO_t = L_0(1 - e^{-K_1 t})"></span></div>
+            <div class="formula"><span data-tex="C_0 = \dfrac{Q_r C_r + Q_e C_e}{Q_r + Q_e}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Streeter-Phelps</h4>
+            <div class="formula"><span data-tex="D = \dfrac{K_1 L_0}{K_2 - K_1}(e^{-K_1 t} - e^{-K_2 t}) + D_0 e^{-K_2 t}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Ar</h4>
+            <div class="formula"><span data-tex="m_{CO_2} = (44/12)\,m_C"></span></div>
+            <div class="formula"><span data-tex="C = \dfrac{Q}{\pi u \sigma_y \sigma_z} e^{-H^2/2\sigma_z^2}"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Resíduos</h4>
+            <div class="formula"><span data-tex="V = (M/\rho_c)(1 + f_{cob})"></span></div>
+            <div class="formula"><span data-tex="C/N = \sum m C / \sum m N"></span></div>
+          </div>
+          <div class="card">
+            <h4 style="margin-top:0">Carga</h4>
+            <div class="formula"><span data-tex="\text{carga} = Q\,C"></span></div>
+            <div class="formula"><span data-tex="EP = \text{carga}/54\ \text{g DBO/hab·d}"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="normas">
+        <h2>Apêndice B — Legislação e normas</h2>
+        <p>Leis e resoluções são públicas e estão nos sites do Planalto e do CONAMA. As normas ABNT e ISO são citadas por designação e escopo, pois seus textos integrais são obras protegidas.</p>
+        <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th>Norma</th><th>O que trata</th><th>Capítulo</th></tr></thead>
+          <tbody>
+            <tr><td>Resolução CONAMA 357/2005</td><td>Classes dos corpos d'água</td><td>4 e 5</td></tr>
+            <tr><td>Resolução CONAMA 430/2011</td><td>Lançamento de efluentes</td><td>4 e 5</td></tr>
+            <tr><td>Resolução CONAMA 506/2024</td><td>Padrões de qualidade do ar</td><td>6</td></tr>
+            <tr><td>Resolução CONAMA 420/2009</td><td>Qualidade do solo e áreas contaminadas</td><td>7</td></tr>
+            <tr><td>Lei 14.785/2023 e RDC ANVISA 294/2019</td><td>Agrotóxicos e classificação toxicológica</td><td>7</td></tr>
+            <tr><td>Lei 12.305/2010 e Lei 14.026/2020</td><td>Resíduos sólidos e prazos dos lixões</td><td>8</td></tr>
+            <tr><td>ABNT NBR 10004</td><td>Classificação de resíduos</td><td>8</td></tr>
+            <tr><td>ABNT NBR 13230</td><td>Simbologia dos plásticos recicláveis</td><td>10</td></tr>
+            <tr><td>Resoluções CONAMA 001/1986 e 237/1997</td><td>EIA/RIMA e licenciamento</td><td>11</td></tr>
+            <tr><td>Leis 6.938/1981, 9.433/1997, 9.605/1998, LC 140/2011 e Lei 15.190/2025</td><td>Política ambiental, água, crimes, competências e licenciamento</td><td>11</td></tr>
+            <tr><td>ABNT NBR ISO 14001 e ISO 14040/14044</td><td>Gestão ambiental e ciclo de vida</td><td>12</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="section" id="simulado">
+        <h2>Apêndice C — Simulado</h2>
+        <p>104 questões objetivas sobre crise ambiental, ecologia, sustentabilidade, água, ar, solo, resíduos, legislação e gestão. As questões de cálculo trazem espaço para contas e resolução passo a passo.</p>
+        <div id="quiz" data-quiz="ciencia-do-ambiente"></div>
+      </section>
+
+      <section class="section" id="referencias">
+        <h2>Apêndice D — Referências</h2>
+        <ul>
+          <li>BRAGA, B. et al. <em>Introdução à Engenharia Ambiental</em>. Pearson Prentice Hall.</li>
+          <li>VON SPERLING, M. <em>Introdução à Qualidade das Águas e ao Tratamento de Esgotos</em> e <em>Estudos e Modelagem da Qualidade da Água de Rios</em>. UFMG.</li>
+          <li>DAVIS, M. L.; CORNWELL, D. A. <em>Introduction to Environmental Engineering</em>. McGraw-Hill.</li>
+          <li>MILLER, G. T. <em>Ciência Ambiental</em>. Cengage.</li>
+          <li>BALDESSAR, S. M. N. <em>Telhado verde e sua contribuição na redução da vazão da água pluvial escoada</em>. Dissertação de mestrado, 2012.</li>
+          <li>ABREMA. <em>Panorama dos Resíduos Sólidos no Brasil</em>.</li>
+          <li>Notas de aula da disciplina (crise ambiental, resíduos sólidos, legislação, desenvolvimento sustentável, agrotóxicos, poluição da água e reciclagem) e artigos dos trabalhos.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">← Todas as disciplinas</a>
+    <span class="spacer"></span>
+    <span>Material de estudo — confira sempre a bibliografia da disciplina.</span>
+  </div>
+</footer>
+
+<script src="../js/core/app.js"></script>
+<script src="../js/core/busca.js"></script>
+<script src="../js/core/formula.js"></script>
+<script src="../js/core/glossario.js"></script>
+<script src="../js/core/plot.js"></script>
+<script src="../js/core/sim.js"></script>
+<script src="../js/core/figura.js"></script>
+<script src="../js/sim/ciencia-do-ambiente.js"></script>
+<script src="../js/fig/ciencia-do-ambiente.js"></script>
+<script>
+/* glossário específico desta disciplina */
+if (window.Glossario) Glossario.definir({
+ "DBO": [
+  "Demanda bioquímica de oxigênio",
+  "mg/L"
+ ],
+ "OD": [
+  "Oxigênio dissolvido",
+  "mg/L"
+ ],
+ "L_0": [
+  "DBO última",
+  "mg/L"
+ ],
+ "K_1": [
+  "Coeficiente de desoxigenação",
+  "1/d"
+ ],
+ "K_2": [
+  "Coeficiente de reaeração",
+  "1/d"
+ ],
+ "D": [
+  "Déficit de oxigênio dissolvido",
+  "mg/L"
+ ],
+ "t_c": [
+  "Tempo crítico",
+  "d"
+ ],
+ "\\sigma_z": [
+  "Dispersão vertical da pluma",
+  "m"
+ ],
+ "\\sigma_y": [
+  "Dispersão lateral da pluma",
+  "m"
+ ],
+ "H": [
+  "Altura efetiva da emissão",
+  "m"
+ ],
+ "t_{1/2}": [
+  "Meia-vida",
+  "d"
+ ],
+ "EP": [
+  "Equivalente populacional",
+  "hab"
+ ]
+});
+</script>
+<script src="../js/core/quiz.js"></script>
+<script>Quiz.montar('#quiz');</script>
+<script src="../js/core/livro.js"></script>
+<!-- === Botao de volta ao portfolio - cole antes de </body> === -->
+<a id="mr-portfolio-btn" href="https://matheusmerlim1.github.io/" target="_blank" rel="noopener"
+   aria-label="Abrir o portf&oacute;lio de Matheus Raposo" title="Ver todos os meus projetos">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>
+  </svg>
+  <span>Portf&oacute;lio</span>
+</a>
+<style>
+#mr-portfolio-btn {
+  position: fixed; top: 12px; right: 12px; z-index: 2147483000;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .42rem .8rem; border-radius: 999px;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e8edf5; text-decoration: none; white-space: nowrap;
+  background: rgba(18,24,38,.92);
+  border: 1px solid rgba(88,166,255,.45);
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+#mr-portfolio-btn:hover {
+  transform: translateY(-1px); color: #fff; text-decoration: none;
+  background: rgba(24,32,50,.96); border-color: #58a6ff;
+}
+#mr-portfolio-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+@media (max-width: 520px) {
+  #mr-portfolio-btn { padding: .45rem; }
+  #mr-portfolio-btn span { display: none; }
+}
+@media print { #mr-portfolio-btn { display: none; } }
+</style>
+<script>
+/* Abre espaco para o botao em vez de cobrir o que ja existia no canto.
+   1) empurra para a esquerda o conteudo da barra que ocupa aquele espaco;
+   2) se ainda sobrar sobreposicao, desloca o proprio item. */
+(function () {
+  var btn = document.getElementById('mr-portfolio-btn');
+  if (!btn) return;
+
+  var desfazer = [];
+
+  function limpar() {
+    for (var i = 0; i < desfazer.length; i++) desfazer[i]();
+    desfazer = [];
+  }
+
+  function guardar(el, prop) {
+    var antes = el.style[prop];
+    desfazer.push(function () { el.style[prop] = antes; });
+  }
+
+  /* item discreto = nao ocupa quase toda a largura; e um controle, rotulo ou icone */
+  function ehItem(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    return el.getBoundingClientRect().width < innerWidth * 0.7;
+  }
+
+  /* sobe ate a barra que contem o item (algo largo o bastante para ter padding) */
+  function barra(el) {
+    for (var n = 0; el && n < 8; n++, el = el.parentElement) {
+      if (el === document.body || el === document.documentElement) return null;
+      if (el.getBoundingClientRect().width >= innerWidth * 0.6) return el;
+    }
+    return null;
+  }
+
+  function encosta(a, b) {
+    return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+  }
+
+  function varrer() {
+    var r = btn.getBoundingClientRect();
+    var y = Math.round(r.top + r.height / 2);
+    var achados = [];
+    btn.style.visibility = 'hidden';
+    for (var x = Math.floor(r.right); x > r.left - 10; x -= 8) {
+      if (x < 1 || x > innerWidth - 1) continue;
+      var sob = document.elementFromPoint(x, y);
+      if (ehItem(sob) && achados.indexOf(sob) < 0) achados.push(sob);
+    }
+    btn.style.visibility = '';
+    return achados;
+  }
+
+  function ajustar() {
+    limpar();
+    var r = btn.getBoundingClientRect();
+    if (!r.width) return;
+    var reserva = Math.ceil(r.width + 20);
+
+    /* 1) padding na barra: desloca o conteudo dela para a esquerda */
+    var barras = [];
+    varrer().forEach(function (item) {
+      var b = barra(item);
+      if (b && barras.indexOf(b) < 0) barras.push(b);
+    });
+    barras.forEach(function (b) {
+      if ((parseFloat(getComputedStyle(b).paddingRight) || 0) >= reserva) return;
+      guardar(b, 'paddingRight');
+      b.style.paddingRight = reserva + 'px';
+    });
+
+    /* 2) o que continuar embaixo do botao (tipicamente position:absolute,
+          que nao anda com padding) e deslocado individualmente */
+    r = btn.getBoundingClientRect();
+    varrer().forEach(function (item) {
+      if (!encosta(item.getBoundingClientRect(), r)) return;
+      var cs = getComputedStyle(item);
+      if (cs.position === 'absolute' || cs.position === 'fixed') {
+        var atual = parseFloat(cs.right);
+        guardar(item, 'right');
+        item.style.right = (isNaN(atual) ? reserva : atual + reserva) + 'px';
+      } else {
+        guardar(item, 'marginRight');
+        item.style.marginRight =
+          ((parseFloat(cs.marginRight) || 0) + reserva) + 'px';
+      }
+    });
+
+    /* 3) rede de seguranca: o que insistir em ficar embaixo do botao e
+          deslocado no proprio elemento. transform sempre move, seja qual
+          for o position, o display ou o container. */
+    for (var tent = 0; tent < 3; tent++) {
+      r = btn.getBoundingClientRect();
+      var teimosos = varrer().filter(function (item) {
+        return encosta(item.getBoundingClientRect(), r);
+      });
+      if (!teimosos.length) break;
+      teimosos.forEach(function (item) {
+        var caixa = item.getBoundingClientRect();
+        var passo = Math.ceil(caixa.right - r.left + 10);
+        if (passo <= 0) return;
+        guardar(item, 'transform');
+        item.style.transform = 'translateX(-' + passo + 'px)';
+      });
+    }
+
+    btn.setAttribute('data-mr-ok', '1');   /* marca que o ajuste ja rodou */
+  }
+
+  var pendente = 0;
+  function agendar() {
+    /* sem requestAnimationFrame de proposito: ele nao dispara quando a pagina
+       esta em aba oculta ou em iframe fora da tela, e as leituras de layout
+       abaixo ja forcam o recalculo sozinhas */
+    clearTimeout(pendente);
+    pendente = setTimeout(ajustar, 60);
+  }
+
+  agendar();
+  addEventListener('DOMContentLoaded', agendar);
+  addEventListener('load', agendar);
+  addEventListener('resize', agendar);
+
+  /* muita pagina monta o cabecalho por JS depois do load; refaz o calculo
+     quando o DOM mudar e em algumas passadas tardias, por seguranca */
+  if (window.MutationObserver) {
+    new MutationObserver(agendar).observe(document.documentElement,
+      { childList: true, subtree: true });
+  }
+  [400, 1200, 3000].forEach(function (t) { setTimeout(agendar, t); });
+})();
+</script>
+<!-- === fim do botao === -->
+</body>
+</html>

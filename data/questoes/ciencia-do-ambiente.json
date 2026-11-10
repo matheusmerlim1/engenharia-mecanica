@@ -1,0 +1,1717 @@
+{
+ "disciplina": "Ciência do Ambiente",
+ "slug": "ciencia-do-ambiente",
+ "topicos": [
+  {
+   "id": "crise",
+   "nome": "Crise ambiental"
+  },
+  {
+   "id": "ecologia",
+   "nome": "Ecossistemas e ciclos"
+  },
+  {
+   "id": "sustentabilidade",
+   "nome": "Desenvolvimento sustentável"
+  },
+  {
+   "id": "agua",
+   "nome": "Poluição da água"
+  },
+  {
+   "id": "autodepuracao",
+   "nome": "Autodepuração"
+  },
+  {
+   "id": "ar",
+   "nome": "Poluição do ar"
+  },
+  {
+   "id": "solo",
+   "nome": "Solo e agrotóxicos"
+  },
+  {
+   "id": "residuos",
+   "nome": "Resíduos sólidos"
+  },
+  {
+   "id": "aterro",
+   "nome": "Tratamento e disposição"
+  },
+  {
+   "id": "reciclagem",
+   "nome": "Reciclagem e compostagem"
+  },
+  {
+   "id": "legislacao",
+   "nome": "Legislação e licenciamento"
+  },
+  {
+   "id": "gestao",
+   "nome": "Gestão ambiental"
+  }
+ ],
+ "questoes": [
+  {
+   "id": "ca-001",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "crise",
+   "enunciado": "<p>Os três componentes centrais da crise ambiental, segundo o modelo clássico, são:</p>",
+   "alternativas": [
+    "clima, solo e vegetação",
+    "indústria, comércio e serviços",
+    "água, ar e fogo",
+    "população, recursos naturais e poluição"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Mais gente consome mais recursos e gera mais resíduos.</p>"
+  },
+  {
+   "id": "ca-002",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "crise",
+   "enunciado": "<p>São recursos naturais não renováveis:</p>",
+   "alternativas": [
+    "vento e radiação solar",
+    "água e biomassa",
+    "combustíveis fósseis e urânio",
+    "ar e marés"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Existem em estoque finito, que não se recompõe em escala humana.</p>"
+  },
+  {
+   "id": "ca-003",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "crise",
+   "enunciado": "<p>Uma fonte de poluição difusa é:</p>",
+   "alternativas": [
+    "a chaminé de uma caldeira",
+    "o escoamento de agrotóxicos pela chuva em áreas agrícolas",
+    "o emissário de uma estação de esgoto",
+    "o efluente de um curtume"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A origem está espalhada pela área.</p>"
+  },
+  {
+   "id": "ca-004",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "crise",
+   "enunciado": "<p>Uma população cresce 2 % ao ano. O tempo de duplicação é de aproximadamente:</p>",
+   "alternativas": [
+    "50 anos",
+    "35 anos",
+    "20 anos",
+    "70 anos"
+   ],
+   "correta": 1,
+   "formulas": [
+    "td = ln 2/r ≈ 70/r(%)"
+   ],
+   "explicacao": "<div class=\"passo\">td = ln 2/0,02 = <strong>34,7 anos</strong></div>"
+  },
+  {
+   "id": "ca-005",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "crise",
+   "enunciado": "<p>Com 7 bilhões de habitantes e crescimento de 1,13 % ao ano, o acréscimo anual é de cerca de:</p>",
+   "alternativas": [
+    "79 milhões",
+    "7,9 milhões",
+    "113 milhões",
+    "790 milhões"
+   ],
+   "correta": 0,
+   "formulas": [
+    "ΔN = r·N"
+   ],
+   "explicacao": "<div class=\"passo\">7·10⁹·0,0113 = <strong>79·10⁶</strong></div>"
+  },
+  {
+   "id": "ca-006",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "crise",
+   "enunciado": "<p>No modelo logístico, o crescimento é mais rápido quando a população vale:</p>",
+   "alternativas": [
+    "zero",
+    "a capacidade de suporte",
+    "o dobro da capacidade de suporte",
+    "metade da capacidade de suporte"
+   ],
+   "correta": 3,
+   "explicacao": "<p>dN/dt = rN(1 − N/K) é máximo em N = K/2.</p>"
+  },
+  {
+   "id": "ca-007",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "crise",
+   "enunciado": "<p>Uma população de 2,5 bilhões cresce a 1,8 % ao ano, de forma exponencial. Após 60 anos, ela será de cerca de:</p>",
+   "alternativas": [
+    "5,2 bilhões",
+    "4,4 bilhões",
+    "7,4 bilhões",
+    "9,8 bilhões"
+   ],
+   "correta": 2,
+   "formulas": [
+    "N = N₀ e^(rt)"
+   ],
+   "explicacao": "<div class=\"passo\">N = 2,5·e<sup>0,018·60</sup> = 2,5·2,945 = <strong>7,4 bilhões</strong></div>"
+  },
+  {
+   "id": "ca-008",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ecologia",
+   "enunciado": "<p>Em um ecossistema, os organismos que fazem fotossíntese são os:</p>",
+   "alternativas": [
+    "consumidores primários",
+    "decompositores",
+    "produtores",
+    "consumidores de topo"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Eles convertem energia luminosa em energia química.</p>"
+  },
+  {
+   "id": "ca-009",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ecologia",
+   "enunciado": "<p>Sobre energia e matéria nos ecossistemas, é correto afirmar que:</p>",
+   "alternativas": [
+    "ambas circulam indefinidamente",
+    "a energia flui em um só sentido, e a matéria circula",
+    "a matéria flui em um só sentido, e a energia circula",
+    "nenhuma delas se conserva"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A energia sai como calor; a matéria volta pelos decompositores.</p>"
+  },
+  {
+   "id": "ca-010",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ecologia",
+   "enunciado": "<p>Com eficiência de 10 % entre níveis, de 10 000 kcal nos produtores chegam aos consumidores terciários:</p>",
+   "alternativas": [
+    "10 kcal",
+    "1000 kcal",
+    "100 kcal",
+    "1 kcal"
+   ],
+   "correta": 0,
+   "formulas": [
+    "Eₙ = E₀·eⁿ"
+   ],
+   "explicacao": "<div class=\"passo\">10 000·0,1³ = <strong>10 kcal</strong></div>"
+  },
+  {
+   "id": "ca-011",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ecologia",
+   "enunciado": "<p>O aumento da concentração de um poluente persistente a cada nível da cadeia alimentar chama-se:</p>",
+   "alternativas": [
+    "eutrofização",
+    "lixiviação",
+    "nitrificação",
+    "biomagnificação"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Bioacumulação é o acúmulo em um organismo; biomagnificação, ao longo da cadeia.</p>"
+  },
+  {
+   "id": "ca-012",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ecologia",
+   "enunciado": "<p>O ozônio é poluente:</p>",
+   "alternativas": [
+    "na estratosfera, onde filtra o ultravioleta",
+    "em qualquer altitude",
+    "em nenhuma altitude",
+    "na troposfera, junto ao solo"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Poluente é a substância no lugar errado.</p>"
+  },
+  {
+   "id": "ca-013",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ecologia",
+   "enunciado": "<p>O ciclo biogeoquímico sem fase gasosa importante é o do:</p>",
+   "alternativas": [
+    "carbono",
+    "nitrogênio",
+    "fósforo",
+    "oxigênio"
+   ],
+   "correta": 2,
+   "explicacao": "<p>O fósforo vem das rochas e circula no solo e na água.</p>"
+  },
+  {
+   "id": "ca-014",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ecologia",
+   "enunciado": "<p>A conversão do N₂ atmosférico em formas utilizáveis pelos seres vivos, feita por bactérias e descargas elétricas, é a:</p>",
+   "alternativas": [
+    "desnitrificação",
+    "fixação de nitrogênio",
+    "amonificação",
+    "nitrificação"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A desnitrificação faz o caminho oposto, devolvendo N₂ ao ar.</p>"
+  },
+  {
+   "id": "ca-015",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "ecologia",
+   "enunciado": "<p>Com fator de concentração 10 por nível, partindo de 0,001 ppm na água, um poluente persistente atinge no quarto nível acima da água:</p>",
+   "alternativas": [
+    "10 ppm",
+    "0,1 ppm",
+    "1 ppm",
+    "0,004 ppm"
+   ],
+   "correta": 0,
+   "formulas": [
+    "C = C₀·fⁿ"
+   ],
+   "explicacao": "<div class=\"passo\">0,001·10⁴ = <strong>10 ppm</strong></div>"
+  },
+  {
+   "id": "ca-016",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "sustentabilidade",
+   "enunciado": "<p>A definição de desenvolvimento sustentável como o que atende ao presente sem comprometer as gerações futuras vem:</p>",
+   "alternativas": [
+    "do Relatório Brundtland, de 1987",
+    "do Clube de Roma, de 1968",
+    "do Protocolo de Kyoto, de 1997",
+    "da Conferência de Estocolmo, de 1972"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Relatório Nosso Futuro Comum.</p>"
+  },
+  {
+   "id": "ca-017",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "sustentabilidade",
+   "enunciado": "<p>O acordo internacional que eliminou os CFCs para proteger a camada de ozônio é:</p>",
+   "alternativas": [
+    "o Protocolo de Kyoto",
+    "o Acordo de Paris",
+    "a Agenda 21",
+    "o Protocolo de Montreal"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Assinado em 1987.</p>"
+  },
+  {
+   "id": "ca-018",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sustentabilidade",
+   "enunciado": "<p>A Agenda 21 foi aprovada na:</p>",
+   "alternativas": [
+    "Conferência de Estocolmo",
+    "Rio+20",
+    "Rio-92",
+    "COP de Paris"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Conferência das Nações Unidas sobre Meio Ambiente e Desenvolvimento, no Rio de Janeiro, em 1992.</p>"
+  },
+  {
+   "id": "ca-019",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sustentabilidade",
+   "enunciado": "<p>O Acordo de Paris, de 2015, tem como meta:</p>",
+   "alternativas": [
+    "eliminar os CFCs até 2000",
+    "limitar o aquecimento global a bem menos de 2 °C, buscando 1,5 °C",
+    "zerar o uso de agrotóxicos",
+    "fixar metas apenas para países em desenvolvimento"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Cada país apresenta sua contribuição nacional.</p>"
+  },
+  {
+   "id": "ca-020",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "sustentabilidade",
+   "enunciado": "<p>A Agenda 2030 da ONU reúne:</p>",
+   "alternativas": [
+    "8 Objetivos de Desenvolvimento do Milênio",
+    "17 Objetivos de Desenvolvimento Sustentável",
+    "21 capítulos de ações locais",
+    "3 convenções ambientais"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Aprovada em 2015.</p>"
+  },
+  {
+   "id": "ca-021",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "sustentabilidade",
+   "enunciado": "<p>O tripé da sustentabilidade combina:</p>",
+   "alternativas": [
+    "eficiência econômica, justiça social e equilíbrio ambiental",
+    "produção, consumo e descarte",
+    "água, ar e solo",
+    "reduzir, reutilizar e reciclar"
+   ],
+   "correta": 0,
+   "explicacao": "<p>As três dimensões devem ser buscadas ao mesmo tempo.</p>"
+  },
+  {
+   "id": "ca-022",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "agua",
+   "enunciado": "<p>Em análises de qualidade da água, a demanda bioquímica de oxigênio, DBO, mede:</p>",
+   "alternativas": [
+    "a quantidade de bactérias fecais",
+    "o oxigênio dissolvido na água",
+    "a turbidez da água",
+    "o oxigênio consumido por bactérias para degradar a matéria orgânica"
+   ],
+   "correta": 3,
+   "explicacao": "<p>É medida em 5 dias a 20 °C, a DBO₅.</p>"
+  },
+  {
+   "id": "ca-023",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "agua",
+   "enunciado": "<p>O indicador de contaminação fecal da água é:</p>",
+   "alternativas": [
+    "oxigênio dissolvido",
+    "DQO",
+    "coliformes termotolerantes ou E. coli",
+    "condutividade"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Indicam risco de doenças de veiculação hídrica.</p>"
+  },
+  {
+   "id": "ca-024",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "agua",
+   "enunciado": "<p>Pela Resolução CONAMA 357/2005, um rio de classe 2 deve ter OD mínimo de:</p>",
+   "alternativas": [
+    "6 mg/L",
+    "4 mg/L",
+    "5 mg/L",
+    "2 mg/L"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Classe 1: 6 mg/L; classe 3: 4 mg/L; classe 4: acima de 2 mg/L.</p>"
+  },
+  {
+   "id": "ca-025",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "agua",
+   "enunciado": "<p>A DBO₅ máxima de um rio de água doce de classe 2 é de:</p>",
+   "alternativas": [
+    "3 mg/L",
+    "5 mg/L",
+    "10 mg/L",
+    "20 mg/L"
+   ],
+   "correta": 1,
+   "explicacao": "<p>CONAMA 357/2005, art. 15.</p>"
+  },
+  {
+   "id": "ca-026",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "agua",
+   "enunciado": "<p>A eutrofização é causada principalmente por excesso de:</p>",
+   "alternativas": [
+    "nitrogênio e fósforo",
+    "oxigênio dissolvido",
+    "metais pesados",
+    "cloro"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Os nutrientes provocam crescimento excessivo de algas.</p>"
+  },
+  {
+   "id": "ca-027",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "agua",
+   "enunciado": "<p>Uma indústria lança 2000 m³/d com DBO₅ de 1500 mg/L. O equivalente populacional, com 54 g DBO/hab·d, é de cerca de:</p>",
+   "alternativas": [
+    "5560 habitantes",
+    "27 800 habitantes",
+    "111 000 habitantes",
+    "55 600 habitantes"
+   ],
+   "correta": 3,
+   "formulas": [
+    "carga = Q·C",
+    "EP = carga/0,054"
+   ],
+   "explicacao": "<div class=\"passo\">Carga = 2000·1,5 = 3000 kg/d</div><div class=\"passo\">EP = 3000/0,054 = <strong>55 600</strong></div>"
+  },
+  {
+   "id": "ca-028",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "agua",
+   "enunciado": "<p>Com K₁ = 0,23 por dia, a DBO₅ representa da DBO última:</p>",
+   "alternativas": [
+    "23 %",
+    "50 %",
+    "95 %",
+    "68 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "DBOₜ = L₀(1 − e^(−K₁t))"
+   ],
+   "explicacao": "<div class=\"passo\">1 − e<sup>−0,23·5</sup> = <strong>0,683</strong></div>"
+  },
+  {
+   "id": "ca-029",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "agua",
+   "enunciado": "<p>Um esgoto tem DBO₅ de 300 mg/L e K₁ = 0,23 por dia. A DBO última é de cerca de:</p>",
+   "alternativas": [
+    "300 mg/L",
+    "205 mg/L",
+    "439 mg/L",
+    "1304 mg/L"
+   ],
+   "correta": 2,
+   "formulas": [
+    "L₀ = DBO₅/(1 − e^(−5K₁))"
+   ],
+   "explicacao": "<div class=\"passo\">L₀ = 300/(1 − e<sup>−1,15</sup>) = 300/0,683 = <strong>439 mg/L</strong></div>"
+  },
+  {
+   "id": "ca-030",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "agua",
+   "enunciado": "<p>A Resolução CONAMA 430/2011 exige, entre outros, para o lançamento de efluentes:</p>",
+   "alternativas": [
+    "pH entre 7 e 8, temperatura abaixo de 25 °C e DBO zero",
+    "pH entre 5 e 9, temperatura abaixo de 40 °C e remoção mínima de 60 % da DBO",
+    "apenas a ausência de coliformes",
+    "remoção de 100 % do fósforo"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O lançamento também não pode alterar a classe do corpo receptor.</p>"
+  },
+  {
+   "id": "ca-031",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "agua",
+   "enunciado": "<p>O tratamento secundário de esgoto remove principalmente:</p>",
+   "alternativas": [
+    "a matéria orgânica dissolvida, por processo biológico",
+    "sólidos grosseiros e areia",
+    "nutrientes e patógenos, por desinfecção",
+    "metais pesados por precipitação"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Exemplos: lodos ativados, lagoas e reatores anaeróbios.</p>"
+  },
+  {
+   "id": "ca-032",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "agua",
+   "enunciado": "<p>A razão DQO/DBO alta indica que o efluente:</p>",
+   "alternativas": [
+    "tem muita matéria pouco biodegradável",
+    "é facilmente tratado por processo biológico",
+    "não tem matéria orgânica",
+    "tem excesso de oxigênio dissolvido"
+   ],
+   "correta": 0,
+   "explicacao": "<p>A DQO inclui o que as bactérias não degradam.</p>"
+  },
+  {
+   "id": "ca-033",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "autodepuracao",
+   "enunciado": "<p>Na zona de decomposição ativa de um rio que recebe esgoto:</p>",
+   "alternativas": [
+    "o OD está saturado",
+    "não há bactérias",
+    "a DBO é nula",
+    "o OD atinge o valor mínimo e pode chegar a zero"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Depois vem a zona de recuperação.</p>"
+  },
+  {
+   "id": "ca-034",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "autodepuracao",
+   "enunciado": "<p>Um rio com 8 m³/s e DBO₅ de 2 mg/L recebe 2 m³/s com DBO₅ de 100 mg/L. A DBO₅ da mistura é:</p>",
+   "alternativas": [
+    "51 mg/L",
+    "10,8 mg/L",
+    "21,6 mg/L",
+    "26,7 mg/L"
+   ],
+   "correta": 2,
+   "formulas": [
+    "C = (QrCr + QeCe)/(Qr + Qe)"
+   ],
+   "explicacao": "<div class=\"passo\">(8·2 + 2·100)/10 = <strong>21,6 mg/L</strong></div>"
+  },
+  {
+   "id": "ca-035",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "autodepuracao",
+   "enunciado": "<p>Um rio de 5 m³/s com OD de 7,5 mg/L recebe 0,5 m³/s de esgoto sem oxigênio. O OD após a mistura é:</p>",
+   "alternativas": [
+    "7,5 mg/L",
+    "6,82 mg/L",
+    "3,75 mg/L",
+    "6,0 mg/L"
+   ],
+   "correta": 1,
+   "formulas": [
+    "C = (QrCr + QeCe)/(Qr + Qe)"
+   ],
+   "explicacao": "<div class=\"passo\">5·7,5/5,5 = <strong>6,82 mg/L</strong></div>"
+  },
+  {
+   "id": "ca-036",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "autodepuracao",
+   "enunciado": "<p>Pela fórmula de O'Connor e Dobbins, para v = 0,5 m/s e H = 2 m, K₂ a 20 °C vale:</p>",
+   "alternativas": [
+    "1,86 por dia",
+    "0,93 por dia",
+    "2,64 por dia",
+    "0,47 por dia"
+   ],
+   "correta": 1,
+   "formulas": [
+    "K₂ = 3,73 v^0,5 H^−1,5"
+   ],
+   "explicacao": "<div class=\"passo\">K₂ = 3,73·√0,5/2<sup>1,5</sup> = 3,73·0,707/2,83 = <strong>0,93/d</strong></div>"
+  },
+  {
+   "id": "ca-037",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "autodepuracao",
+   "enunciado": "<p>Rios rasos e rápidos se recuperam mais depressa porque:</p>",
+   "alternativas": [
+    "têm coeficiente de reaeração maior",
+    "têm menos bactérias",
+    "têm temperatura mais alta",
+    "não recebem matéria orgânica"
+   ],
+   "correta": 0,
+   "explicacao": "<p>K₂ cresce com a velocidade e diminui com a profundidade.</p>"
+  },
+  {
+   "id": "ca-038",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "autodepuracao",
+   "enunciado": "<p>O aumento da temperatura da água piora a autodepuração porque:</p>",
+   "alternativas": [
+    "aumenta o OD de saturação",
+    "mata todas as bactérias",
+    "reduz a DBO a zero",
+    "reduz o OD de saturação e acelera o consumo de oxigênio"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A 20 °C a saturação é 9,09 mg/L; a 25 °C, 8,26 mg/L.</p>"
+  },
+  {
+   "id": "ca-039",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "autodepuracao",
+   "enunciado": "<p>No modelo de Streeter-Phelps, com L₀ = 20 mg/L, D₀ = 1 mg/L, K₁ = 0,4 e K₂ = 0,9 por dia, o tempo crítico é de cerca de:</p>",
+   "alternativas": [
+    "0,8 dia",
+    "2,5 dias",
+    "1,5 dia",
+    "3,1 dias"
+   ],
+   "correta": 2,
+   "formulas": [
+    "tc = ln{(K₂/K₁)[1 − D₀(K₂ − K₁)/(K₁L₀)]}/(K₂ − K₁)"
+   ],
+   "explicacao": "<div class=\"passo\">tc = [1/(K₂ − K₁)]·ln{(K₂/K₁)[1 − D₀(K₂ − K₁)/(K₁L₀)]}</div><div class=\"passo\">= 2·ln(2,25·0,9375) = 2·ln 2,109 = <strong>1,49 d</strong></div>"
+  },
+  {
+   "id": "ca-040",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "autodepuracao",
+   "enunciado": "<p>No modelo de Streeter-Phelps, com L₀ = 20 mg/L, D₀ = 1 mg/L, K₁ = 0,4 e K₂ = 0,9 por dia, o déficit crítico é de cerca de:</p>",
+   "alternativas": [
+    "7,3 mg/L",
+    "2,5 mg/L",
+    "4,9 mg/L",
+    "20 mg/L"
+   ],
+   "correta": 2,
+   "formulas": [
+    "D = K₁L₀(e^(−K₁t) − e^(−K₂t))/(K₂ − K₁) + D₀e^(−K₂t)"
+   ],
+   "explicacao": "<div class=\"passo\">tc = 1,49 d</div><div class=\"passo\">e<sup>−K₁tc</sup> = e<sup>−0,597</sup> = 0,550 e e<sup>−K₂tc</sup> = e<sup>−1,343</sup> = 0,261</div><div class=\"passo\">D = 16·(0,550 − 0,261) + 0,261 = <strong>4,9 mg/L</strong></div>"
+  },
+  {
+   "id": "ca-041",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "autodepuracao",
+   "enunciado": "<p>Se o tempo crítico é de 1,2 dia e a velocidade média do rio é de 0,3 m/s, o ponto crítico fica a cerca de:</p>",
+   "alternativas": [
+    "3,1 km do lançamento",
+    "31 km do lançamento",
+    "0,36 km do lançamento",
+    "86 km do lançamento"
+   ],
+   "correta": 1,
+   "formulas": [
+    "x = v·t"
+   ],
+   "explicacao": "<div class=\"passo\">x = 0,3·86 400·1,2 = 31 104 m = <strong>31 km</strong></div>"
+  },
+  {
+   "id": "ca-042",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "autodepuracao",
+   "enunciado": "<p>Os limites de DBO das classes 2 e 3 podem ser elevados quando:</p>",
+   "alternativas": [
+    "um estudo de autodepuração mostra que o OD mínimo é respeitado na vazão de referência",
+    "a empresa paga a outorga",
+    "o efluente é tratado em nível primário",
+    "o rio está em período de cheia"
+   ],
+   "correta": 0,
+   "explicacao": "<p>CONAMA 357/2005, art. 10, § 1º.</p>"
+  },
+  {
+   "id": "ca-043",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ar",
+   "enunciado": "<p>É um poluente secundário:</p>",
+   "alternativas": [
+    "o monóxido de carbono",
+    "o dióxido de enxofre",
+    "o material particulado da construção civil",
+    "o ozônio troposférico"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Forma-se de NOx e compostos orgânicos voláteis sob luz solar.</p>"
+  },
+  {
+   "id": "ca-044",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "ar",
+   "enunciado": "<p>A chuva é considerada ácida quando o pH fica abaixo de:</p>",
+   "alternativas": [
+    "7,0",
+    "4,0",
+    "6,5",
+    "5,6"
+   ],
+   "correta": 3,
+   "explicacao": "<p>5,6 é o pH da água em equilíbrio com o CO₂ do ar.</p>"
+  },
+  {
+   "id": "ca-045",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ar",
+   "enunciado": "<p>Os padrões nacionais de qualidade do ar em vigor estão na:</p>",
+   "alternativas": [
+    "Resolução CONAMA 357/2005",
+    "Lei 12.305/2010",
+    "Resolução CONAMA 506/2024",
+    "Resolução CONAMA 001/1986"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Ela adota padrões intermediários em etapas, com referência nas diretrizes da OMS.</p>"
+  },
+  {
+   "id": "ca-046",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ar",
+   "enunciado": "<p>A queima de 1 kg de carbono produz de CO₂:</p>",
+   "alternativas": [
+    "1 kg",
+    "3,67 kg",
+    "2,67 kg",
+    "0,27 kg"
+   ],
+   "correta": 1,
+   "formulas": [
+    "m(CO₂) = (44/12) m(C)"
+   ],
+   "explicacao": "<div class=\"passo\">44/12 = <strong>3,67</strong></div>"
+  },
+  {
+   "id": "ca-047",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ar",
+   "enunciado": "<p>Um carvão com 70 % de carbono emite, por tonelada queimada:</p>",
+   "alternativas": [
+    "2,57 t de CO₂",
+    "0,70 t de CO₂",
+    "1,87 t de CO₂",
+    "3,67 t de CO₂"
+   ],
+   "correta": 0,
+   "formulas": [
+    "m(CO₂) = (44/12) m(C)"
+   ],
+   "explicacao": "<div class=\"passo\">0,7·44/12 = <strong>2,57 t</strong></div>"
+  },
+  {
+   "id": "ca-048",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "ar",
+   "enunciado": "<p>Um óleo combustível com 3 % de enxofre, queimado sem controle, emite por tonelada:</p>",
+   "alternativas": [
+    "60 kg de SO₂",
+    "30 kg de SO₂",
+    "90 kg de SO₂",
+    "15 kg de SO₂"
+   ],
+   "correta": 0,
+   "formulas": [
+    "m(SO₂) = 2 m(S)"
+   ],
+   "explicacao": "<div class=\"passo\">30 kg de S·64/32 = <strong>60 kg</strong></div>"
+  },
+  {
+   "id": "ca-049",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ar",
+   "enunciado": "<p>A inversão térmica agrava a poluição porque:</p>",
+   "alternativas": [
+    "aumenta a velocidade do vento",
+    "faz chover sobre a cidade",
+    "destrói a camada de ozônio",
+    "uma camada de ar quente sobre ar frio impede a dispersão vertical"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Comum nas manhãs frias de inverno.</p>"
+  },
+  {
+   "id": "ca-050",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "ar",
+   "enunciado": "<p>No modelo gaussiano, dobrar a velocidade do vento faz a concentração em um ponto fixo do eixo da pluma:</p>",
+   "alternativas": [
+    "dobrar",
+    "não mudar",
+    "cair à metade",
+    "cair a um quarto"
+   ],
+   "correta": 2,
+   "explicacao": "<p>C é inversamente proporcional a u.</p>"
+  },
+  {
+   "id": "ca-051",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "ar",
+   "enunciado": "<p>Pelo modelo de uma camada, com albedo 0,3 e constante solar 1361 W/m², a temperatura de equilíbrio da Terra sem atmosfera é de cerca de:</p>",
+   "alternativas": [
+    "288 K",
+    "255 K",
+    "273 K",
+    "300 K"
+   ],
+   "correta": 1,
+   "formulas": [
+    "Te = [S(1 − a)/(4σ)]^(1/4)"
+   ],
+   "explicacao": "<div class=\"passo\">Te = [1361·0,7/(4·5,67·10⁻⁸)]<sup>1/4</sup> = <strong>255 K</strong></div>"
+  },
+  {
+   "id": "ca-052",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ar",
+   "enunciado": "<p>Na estabilidade atmosférica de Pasquill, a classe F corresponde a:</p>",
+   "alternativas": [
+    "atmosfera muito instável, de dias ensolarados",
+    "atmosfera estável, típica de noites claras com vento fraco",
+    "atmosfera neutra, de dias nublados",
+    "tempestade com chuva forte"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A classe A é a mais instável.</p>"
+  },
+  {
+   "id": "ca-053",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "ar",
+   "enunciado": "<p>Uma emissão de 100 g/s, com vento de 5 m/s, σy = 150 m e σz = 70 m no ponto, e altura efetiva de 100 m, dá no solo, no eixo da pluma:</p>",
+   "alternativas": [
+    "218 µg/m³",
+    "606 µg/m³",
+    "76 µg/m³",
+    "1090 µg/m³"
+   ],
+   "correta": 0,
+   "formulas": [
+    "C = Q/(π u σy σz)·e^(−H²/2σz²)"
+   ],
+   "explicacao": "<div class=\"passo\">Q/(π u σy σz) = 100/(π·5·150·70) = 6,06·10⁻⁴ g/m³</div><div class=\"passo\">e<sup>−100²/(2·70²)</sup> = 0,360</div><div class=\"passo\">C = 2,18·10⁻⁴ g/m³ = <strong>218 µg/m³</strong></div>"
+  },
+  {
+   "id": "ca-054",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "ar",
+   "enunciado": "<p>Aumentar a altura efetiva de uma chaminé:</p>",
+   "alternativas": [
+    "reduz a massa de poluente emitida",
+    "aumenta a concentração máxima no solo",
+    "elimina a necessidade de controle",
+    "reduz a concentração máxima no solo, mas não a massa emitida"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Chaminé alta dilui, não trata.</p>"
+  },
+  {
+   "id": "ca-055",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "solo",
+   "enunciado": "<p>Desde 2023, os agrotóxicos são regidos pela:</p>",
+   "alternativas": [
+    "Lei 7.802/1989",
+    "Lei 12.305/2010",
+    "Lei 14.785/2023",
+    "Lei 9.605/1998"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Ela revogou a Lei 7.802/1989.</p>"
+  },
+  {
+   "id": "ca-056",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "solo",
+   "enunciado": "<p>No rótulo de agrotóxicos, a faixa vermelha indica produto:</p>",
+   "alternativas": [
+    "pouco tóxico",
+    "não classificado",
+    "extremamente ou altamente tóxico",
+    "moderadamente tóxico"
+   ],
+   "correta": 2,
+   "explicacao": "<p>RDC ANVISA 294/2019.</p>"
+  },
+  {
+   "id": "ca-057",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "solo",
+   "enunciado": "<p>Embalagens laváveis de agrotóxicos, antes da devolução, devem passar por:</p>",
+   "alternativas": [
+    "incineração na propriedade",
+    "tríplice lavagem",
+    "enterramento no campo",
+    "reutilização para água"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Faz parte da logística reversa.</p>"
+  },
+  {
+   "id": "ca-058",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "solo",
+   "enunciado": "<p>Os valores orientadores para qualidade do solo e áreas contaminadas estão na:</p>",
+   "alternativas": [
+    "Resolução CONAMA 420/2009",
+    "Resolução CONAMA 357/2005",
+    "Resolução CONAMA 237/1997",
+    "ABNT NBR 13230"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Valores de referência de qualidade, de prevenção e de investigação.</p>"
+  },
+  {
+   "id": "ca-059",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "solo",
+   "enunciado": "<p>Um produto com meia-vida de 30 dias, aplicado uma vez, terá após 90 dias:</p>",
+   "alternativas": [
+    "33 %",
+    "25 %",
+    "6,25 %",
+    "12,5 %"
+   ],
+   "correta": 3,
+   "formulas": [
+    "C/C₀ = (1/2)^(t/t½)"
+   ],
+   "explicacao": "<div class=\"passo\">(1/2)³ = <strong>0,125</strong></div>"
+  },
+  {
+   "id": "ca-060",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "solo",
+   "enunciado": "<p>Uma substância com meia-vida de 20 dias tem constante de degradação de:</p>",
+   "alternativas": [
+    "0,05 por dia",
+    "0,0693 por dia",
+    "13,9 por dia",
+    "0,0347 por dia"
+   ],
+   "correta": 3,
+   "formulas": [
+    "k = ln 2/t½"
+   ],
+   "explicacao": "<div class=\"passo\">k = ln 2/20 = <strong>0,0347/d</strong></div>"
+  },
+  {
+   "id": "ca-061",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "solo",
+   "enunciado": "<p>Um produto com meia-vida de 60 dias é aplicado a cada 30 dias. O resíduo logo após cada aplicação tende a um patamar de:</p>",
+   "alternativas": [
+    "2,00 doses",
+    "1,71 dose",
+    "3,41 doses",
+    "1,41 dose"
+   ],
+   "correta": 2,
+   "formulas": [
+    "patamar = 1/(1 − e^(−kT))"
+   ],
+   "explicacao": "<div class=\"passo\">k = ln 2/60</div><div class=\"passo\">e<sup>−30k</sup> = 0,707</div><div class=\"passo\">1/(1 − 0,707) = <strong>3,41</strong></div>"
+  },
+  {
+   "id": "ca-062",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "solo",
+   "enunciado": "<p>A faixa azul em um rótulo de agrotóxico significa que:</p>",
+   "alternativas": [
+    "o produto é inofensivo à saúde e ao ambiente",
+    "a toxicidade aguda é baixa, o que não dispensa EPI nem elimina efeitos crônicos",
+    "o produto é orgânico",
+    "o produto pode ser aplicado sem receituário"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A classificação toxicológica trata apenas do efeito agudo.</p>"
+  },
+  {
+   "id": "ca-063",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "residuos",
+   "enunciado": "<p>Pela PNRS, rejeito é:</p>",
+   "alternativas": [
+    "o resíduo que não tem mais possibilidade de tratamento ou recuperação",
+    "qualquer resíduo urbano",
+    "o resíduo reciclável",
+    "o resíduo de origem industrial"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Só ele deve ter disposição final em aterro.</p>"
+  },
+  {
+   "id": "ca-064",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "residuos",
+   "enunciado": "<p>A primeira prioridade na gestão de resíduos, pelo art. 9º da PNRS, é:</p>",
+   "alternativas": [
+    "a não geração",
+    "a reciclagem",
+    "a incineração",
+    "a disposição em aterro"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Ordem: não geração, redução, reutilização, reciclagem, tratamento e disposição final.</p>"
+  },
+  {
+   "id": "ca-065",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "residuos",
+   "enunciado": "<p>Na NBR 10004:2024, os resíduos passaram a ser classificados em:</p>",
+   "alternativas": [
+    "classes I, II A e II B",
+    "classes A, B, C e D",
+    "inertes e não inertes apenas",
+    "classe 1, perigosos, e classe 2, não perigosos"
+   ],
+   "correta": 3,
+   "explicacao": "<p>A subdivisão II A e II B da edição de 2004 deixou de existir.</p>"
+  },
+  {
+   "id": "ca-066",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "residuos",
+   "enunciado": "<p>A logística reversa obrigatória pela PNRS inclui:</p>",
+   "alternativas": [
+    "restos de alimentos domésticos",
+    "entulho de pequenas reformas",
+    "pilhas e baterias, pneus e lâmpadas fluorescentes",
+    "papel de escritório"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Também agrotóxicos, óleos lubrificantes e eletroeletrônicos.</p>"
+  },
+  {
+   "id": "ca-067",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "residuos",
+   "enunciado": "<p>Uma cidade de 300 mil habitantes, com 1,04 kg/hab·dia, gera por dia:</p>",
+   "alternativas": [
+    "31,2 t",
+    "312 t",
+    "3120 t",
+    "104 t"
+   ],
+   "correta": 1,
+   "formulas": [
+    "massa = população·per capita"
+   ],
+   "explicacao": "<div class=\"passo\">300 000·1,04 = 312 000 kg = <strong>312 t</strong></div>"
+  },
+  {
+   "id": "ca-068",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "residuos",
+   "enunciado": "<p>Óleo lubrificante usado e lâmpadas com mercúrio são, pela NBR 10004, resíduos:</p>",
+   "alternativas": [
+    "inertes",
+    "perigosos",
+    "não perigosos não inertes",
+    "domiciliares comuns"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Toxicidade é uma das características de periculosidade.</p>"
+  },
+  {
+   "id": "ca-069",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "residuos",
+   "enunciado": "<p>Uma cidade gera 200 t/d de resíduo, com 45 % de matéria orgânica. Se 60 % dessa fração for compostada, deixam de ir ao aterro por ano:</p>",
+   "alternativas": [
+    "19 710 t",
+    "32 850 t",
+    "54 t",
+    "43 800 t"
+   ],
+   "correta": 0,
+   "formulas": [
+    "massa = geração·fração·eficiência"
+   ],
+   "explicacao": "<div class=\"passo\">200·0,45·0,6 = 54 t/d</div><div class=\"passo\">54·365 = <strong>19 710 t</strong></div>"
+  },
+  {
+   "id": "ca-070",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "residuos",
+   "enunciado": "<p>O prazo para o fim dos lixões, previsto originalmente para 2014, foi estendido pela:</p>",
+   "alternativas": [
+    "Lei 6.938/1981",
+    "Resolução CONAMA 237/1997",
+    "Lei 9.433/1997",
+    "Lei 14.026/2020, com prazos até 2024 conforme o porte do município"
+   ],
+   "correta": 3,
+   "explicacao": "<p>O novo marco do saneamento.</p>"
+  },
+  {
+   "id": "ca-071",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "aterro",
+   "enunciado": "<p>A disposição ambientalmente adequada de rejeitos é feita em:</p>",
+   "alternativas": [
+    "lixão",
+    "aterro controlado",
+    "aterro sanitário",
+    "terreno baldio cercado"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Tem base impermeabilizada e tratamento de chorume e gás.</p>"
+  },
+  {
+   "id": "ca-072",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "aterro",
+   "enunciado": "<p>O biogás de aterro é composto principalmente por:</p>",
+   "alternativas": [
+    "oxigênio e nitrogênio",
+    "hidrogênio e ozônio",
+    "metano e dióxido de carbono",
+    "monóxido de carbono e argônio"
+   ],
+   "correta": 2,
+   "explicacao": "<p>De 50 a 60 % de metano.</p>"
+  },
+  {
+   "id": "ca-073",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "aterro",
+   "enunciado": "<p>O aterro controlado difere do sanitário porque:</p>",
+   "alternativas": [
+    "não recebe cobertura de solo",
+    "não tem impermeabilização da base nem tratamento de chorume e gás",
+    "é permitido para resíduos perigosos",
+    "dispensa licenciamento"
+   ],
+   "correta": 1,
+   "explicacao": "<p>É considerado inadequado.</p>"
+  },
+  {
+   "id": "ca-074",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "aterro",
+   "enunciado": "<p>Um aterro recebe 65 700 t por ano, compactadas a 0,8 t/m³, com 20 % de solo de cobertura. O volume anual é de:</p>",
+   "alternativas": [
+    "98 550 m³",
+    "82 125 m³",
+    "52 560 m³",
+    "65 700 m³"
+   ],
+   "correta": 0,
+   "formulas": [
+    "V = (M/ρ)(1 + f_cob)"
+   ],
+   "explicacao": "<div class=\"passo\">65 700/0,8 = 82 125 m³</div><div class=\"passo\">×1,2 = <strong>98 550 m³</strong></div>"
+  },
+  {
+   "id": "ca-075",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "aterro",
+   "enunciado": "<p>Um volume de 2 milhões de m³, em aterro de 20 m de altura útil, exige uma área de:</p>",
+   "alternativas": [
+    "1 ha",
+    "40 ha",
+    "100 ha",
+    "10 ha"
+   ],
+   "correta": 3,
+   "formulas": [
+    "A = V/h",
+    "1 ha = 10⁴ m²"
+   ],
+   "explicacao": "<div class=\"passo\">2·10⁶/20 = 10⁵ m² = <strong>10 ha</strong></div>"
+  },
+  {
+   "id": "ca-076",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "aterro",
+   "enunciado": "<p>O metano precisa ser queimado ou aproveitado, e não liberado, porque:</p>",
+   "alternativas": [
+    "é tóxico em qualquer concentração",
+    "destrói a camada de ozônio",
+    "causa chuva ácida",
+    "seu potencial de aquecimento é cerca de 28 vezes o do CO₂ em 100 anos"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Queimado, vira CO₂, de efeito muito menor.</p>"
+  },
+  {
+   "id": "ca-077",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "aterro",
+   "enunciado": "<p>Pelo decaimento de primeira ordem com k = 0,05 por ano, que fração do metano potencial de um lote de resíduo já foi gerada após 20 anos?</p>",
+   "alternativas": [
+    "37 %",
+    "100 %",
+    "63 %",
+    "5 %"
+   ],
+   "correta": 2,
+   "formulas": [
+    "fração = 1 − e^(−kt)"
+   ],
+   "explicacao": "<div class=\"passo\">1 − e<sup>−0,05·20</sup> = 1 − e<sup>−1</sup> = <strong>0,632</strong></div>"
+  },
+  {
+   "id": "ca-078",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "aterro",
+   "enunciado": "<p>A incineração de resíduos urbanos:</p>",
+   "alternativas": [
+    "elimina toda a massa sem gerar cinzas",
+    "reduz o volume em cerca de 90 %, mas exige controle de dioxinas, furanos e metais",
+    "está acima da reciclagem na hierarquia da PNRS",
+    "dispensa tratamento dos gases"
+   ],
+   "correta": 1,
+   "explicacao": "<p>As cinzas ainda precisam de destinação.</p>"
+  },
+  {
+   "id": "ca-079",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "reciclagem",
+   "enunciado": "<p>Na simbologia da NBR 13230, o número 1 identifica o:</p>",
+   "alternativas": [
+    "PET",
+    "PVC",
+    "PEAD",
+    "PP"
+   ],
+   "correta": 0,
+   "explicacao": "<p>1 PET, 2 PEAD, 3 PVC, 4 PEBD, 5 PP, 6 PS, 7 outros.</p>"
+  },
+  {
+   "id": "ca-080",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "reciclagem",
+   "enunciado": "<p>A reciclagem do alumínio economiza, em relação à produção primária, cerca de:</p>",
+   "alternativas": [
+    "95 % da energia",
+    "10 % da energia",
+    "50 % da energia",
+    "5 % da energia"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Por isso a reciclagem de latas é tão difundida.</p>"
+  },
+  {
+   "id": "ca-081",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "reciclagem",
+   "enunciado": "<p>A compostagem é um processo:</p>",
+   "alternativas": [
+    "químico anaeróbio, que gera metano",
+    "térmico, que queima a matéria orgânica",
+    "físico, de compactação",
+    "biológico aeróbio, que transforma matéria orgânica em composto"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Por ser aeróbia, não gera metano.</p>"
+  },
+  {
+   "id": "ca-082",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "reciclagem",
+   "enunciado": "<p>A relação C/N inicial considerada ideal para a compostagem fica perto de:</p>",
+   "alternativas": [
+    "5",
+    "100",
+    "30",
+    "1"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Faixa usual de 25 a 35.</p>"
+  },
+  {
+   "id": "ca-083",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "reciclagem",
+   "enunciado": "<p>O papel não pode ser reciclado indefinidamente porque:</p>",
+   "alternativas": [
+    "a tinta impede qualquer reciclagem",
+    "as fibras de celulose encurtam a cada ciclo",
+    "ele vira plástico após o primeiro ciclo",
+    "perde o carbono na reciclagem"
+   ],
+   "correta": 1,
+   "explicacao": "<p>O vidro, ao contrário, pode ser refundido indefinidamente.</p>"
+  },
+  {
+   "id": "ca-084",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "reciclagem",
+   "enunciado": "<p>A fase termofílica da compostagem é importante porque:</p>",
+   "alternativas": [
+    "gera metano para energia",
+    "a temperatura de 45 a 65 °C elimina patógenos e sementes",
+    "aumenta a umidade do composto",
+    "impede a ação dos microrganismos"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Exige aeração e umidade adequadas.</p>"
+  },
+  {
+   "id": "ca-085",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "reciclagem",
+   "enunciado": "<p>Restos de comida com 45 % de C e 3 % de N são misturados, em massa igual, com folhas secas de 50 % de C e 0,8 % de N. A relação C/N da mistura é de cerca de:</p>",
+   "alternativas": [
+    "25",
+    "30",
+    "15",
+    "62"
+   ],
+   "correta": 0,
+   "formulas": [
+    "C/N = Σ(mC)/Σ(mN)"
+   ],
+   "explicacao": "<div class=\"passo\">C/N = (0,45 + 0,50)/(0,03 + 0,008) = 0,95/0,038 = <strong>25</strong></div>"
+  },
+  {
+   "id": "ca-086",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "reciclagem",
+   "enunciado": "<p>Para obter C/N = 30 com os restos de comida e as folhas secas do exemplo do capítulo, a massa de folhas por kg de restos é:</p>",
+   "alternativas": [
+    "1,00 kg",
+    "0,58 kg",
+    "3,46 kg",
+    "1,73 kg"
+   ],
+   "correta": 3,
+   "formulas": [
+    "C/N = Σ(mC)/Σ(mN)"
+   ],
+   "explicacao": "<div class=\"passo\">(0,45 + 0,5x)/(0,03 + 0,008x) = 30</div><div class=\"passo\">0,26x = 0,45 → x = <strong>1,73</strong></div>"
+  },
+  {
+   "id": "ca-087",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "legislacao",
+   "enunciado": "<p>O direito de todos ao meio ambiente ecologicamente equilibrado está na Constituição Federal, art.:</p>",
+   "alternativas": [
+    "5º",
+    "170",
+    "225",
+    "196"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Exige estudo prévio de impacto para obras potencialmente degradantes.</p>"
+  },
+  {
+   "id": "ca-088",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "legislacao",
+   "enunciado": "<p>A sequência das licenças no licenciamento ordinário é:</p>",
+   "alternativas": [
+    "de operação, de instalação e prévia",
+    "de instalação, prévia e de operação",
+    "prévia, de instalação e de operação",
+    "única, para todas as fases"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Resolução CONAMA 237/1997, art. 8º.</p>"
+  },
+  {
+   "id": "ca-089",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "legislacao",
+   "enunciado": "<p>A Política Nacional do Meio Ambiente, que criou o SISNAMA e o CONAMA, é a:</p>",
+   "alternativas": [
+    "Lei 9.605/1998",
+    "Lei 6.938/1981",
+    "Lei 9.433/1997",
+    "Lei 12.305/2010"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Também prevê o licenciamento e a avaliação de impacto.</p>"
+  },
+  {
+   "id": "ca-090",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "legislacao",
+   "enunciado": "<p>A licença que aprova a localização e a concepção do empreendimento é a:</p>",
+   "alternativas": [
+    "licença prévia",
+    "licença de instalação",
+    "licença de operação",
+    "outorga de uso da água"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Ela atesta a viabilidade ambiental.</p>"
+  },
+  {
+   "id": "ca-091",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "legislacao",
+   "enunciado": "<p>O relatório que apresenta as conclusões do EIA em linguagem acessível ao público é o:</p>",
+   "alternativas": [
+    "PGR",
+    "PCA",
+    "CAT",
+    "RIMA"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Relatório de Impacto Ambiental, discutido em audiência pública.</p>"
+  },
+  {
+   "id": "ca-092",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "legislacao",
+   "enunciado": "<p>A outorga e a cobrança pelo uso da água são instrumentos da:</p>",
+   "alternativas": [
+    "Lei 6.938/1981",
+    "Lei 12.305/2010",
+    "Lei 9.605/1998",
+    "Lei 9.433/1997"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Política Nacional de Recursos Hídricos.</p>"
+  },
+  {
+   "id": "ca-093",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "legislacao",
+   "enunciado": "<p>A responsabilidade civil por dano ambiental no Brasil é:</p>",
+   "alternativas": [
+    "subjetiva, exigindo prova de dolo",
+    "restrita ao órgão licenciador",
+    "objetiva, independente de culpa",
+    "afastada quando há licença"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Lei 6.938/1981, art. 14, § 1º.</p>"
+  },
+  {
+   "id": "ca-094",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "legislacao",
+   "enunciado": "<p>A Lei Geral do Licenciamento Ambiental, de 2025, é a:</p>",
+   "alternativas": [
+    "Lei 14.785/2023",
+    "Lei 15.190/2025",
+    "Lei 14.026/2020",
+    "Lei Complementar 140/2011"
+   ],
+   "correta": 1,
+   "explicacao": "<p>Teve vetos derrubados pelo Congresso em novembro de 2025.</p>"
+  },
+  {
+   "id": "ca-095",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "legislacao",
+   "enunciado": "<p>A divisão da competência para licenciar entre União, estados e municípios está na:</p>",
+   "alternativas": [
+    "Lei Complementar 140/2011",
+    "Resolução CONAMA 001/1986",
+    "Lei 9.605/1998",
+    "Lei 12.305/2010"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Define a esfera conforme a localização e o porte do impacto.</p>"
+  },
+  {
+   "id": "ca-096",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "gestao",
+   "enunciado": "<p>A ISO 14001 é a norma de:</p>",
+   "alternativas": [
+    "sistema de gestão ambiental",
+    "qualidade de produto",
+    "segurança e saúde ocupacional",
+    "avaliação do ciclo de vida"
+   ],
+   "correta": 0,
+   "explicacao": "<p>Baseada no ciclo PDCA.</p>"
+  },
+  {
+   "id": "ca-097",
+   "tipo": "multipla",
+   "dificuldade": "facil",
+   "topico": "gestao",
+   "enunciado": "<p>No GHG Protocol, as emissões da eletricidade comprada da rede são de escopo:</p>",
+   "alternativas": [
+    "1",
+    "3",
+    "0",
+    "2"
+   ],
+   "correta": 3,
+   "explicacao": "<p>Escopo 1 é direto; escopo 3 é a cadeia de valor.</p>"
+  },
+  {
+   "id": "ca-098",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gestao",
+   "enunciado": "<p>Na ISO 14001, o consumo de energia de um forno é um exemplo de:</p>",
+   "alternativas": [
+    "impacto ambiental",
+    "requisito legal",
+    "aspecto ambiental",
+    "não conformidade"
+   ],
+   "correta": 2,
+   "explicacao": "<p>O impacto seria, por exemplo, a emissão de gases de efeito estufa associada.</p>"
+  },
+  {
+   "id": "ca-099",
+   "tipo": "multipla",
+   "dificuldade": "medio",
+   "topico": "gestao",
+   "enunciado": "<p>As quatro fases da avaliação do ciclo de vida pela ISO 14040 são:</p>",
+   "alternativas": [
+    "planejar, fazer, checar e agir",
+    "objetivo e escopo, inventário, avaliação de impacto e interpretação",
+    "extração, produção, uso e descarte",
+    "licença prévia, instalação, operação e encerramento"
+   ],
+   "correta": 1,
+   "explicacao": "<p>A ACV vai do berço ao túmulo.</p>"
+  },
+  {
+   "id": "ca-100",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "gestao",
+   "enunciado": "<p>Uma frota queima 50 000 L de diesel por ano, com 2,65 kg de CO₂ por litro. As emissões de escopo 1 são:</p>",
+   "alternativas": [
+    "13,25 t de CO₂",
+    "132,5 t de CO₂",
+    "1325 t de CO₂",
+    "18,9 t de CO₂"
+   ],
+   "correta": 1,
+   "formulas": [
+    "E = consumo·fator"
+   ],
+   "explicacao": "<div class=\"passo\">50 000·2,65 = 132 500 kg = <strong>132,5 t</strong></div>"
+  },
+  {
+   "id": "ca-101",
+   "tipo": "calculo",
+   "dificuldade": "medio",
+   "topico": "gestao",
+   "enunciado": "<p>Uma fábrica consome 1200 MWh por ano, com fator da rede de 0,05 t CO₂/MWh. As emissões de escopo 2 são:</p>",
+   "alternativas": [
+    "60 t de CO₂",
+    "6 t de CO₂",
+    "600 t de CO₂",
+    "24 t de CO₂"
+   ],
+   "correta": 0,
+   "formulas": [
+    "E = energia·fator da rede"
+   ],
+   "explicacao": "<div class=\"passo\">1200·0,05 = <strong>60 t</strong></div>"
+  },
+  {
+   "id": "ca-102",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "gestao",
+   "enunciado": "<p>Com armazenamento de 15 mm no substrato e 90 % de escoamento após a saturação, um telhado verde, em chuva de 25 mm, escoa:</p>",
+   "alternativas": [
+    "23,8 mm",
+    "15 mm",
+    "0 mm",
+    "9 mm"
+   ],
+   "correta": 3,
+   "formulas": [
+    "escoamento = 0,9·(P − S), se P &gt; S"
+   ],
+   "explicacao": "<div class=\"passo\">0,9·(25 − 15) = <strong>9 mm</strong></div>"
+  },
+  {
+   "id": "ca-103",
+   "tipo": "calculo",
+   "dificuldade": "dificil",
+   "topico": "gestao",
+   "enunciado": "<p>Em 1000 m² de telhado, uma chuva de 25 mm gera escoamento de 0,95·25 mm no telhado comum e de 9 mm no telhado verde. A diferença de volume escoado é de:</p>",
+   "alternativas": [
+    "1,475 m³",
+    "147,5 m³",
+    "14,75 m³",
+    "23,75 m³"
+   ],
+   "correta": 2,
+   "formulas": [
+    "V = lâmina·área"
+   ],
+   "explicacao": "<div class=\"passo\">(23,75 − 9) mm = 14,75 mm = 0,01475 m</div><div class=\"passo\">×1000 m² = <strong>14,75 m³</strong></div>"
+  },
+  {
+   "id": "ca-104",
+   "tipo": "multipla",
+   "dificuldade": "dificil",
+   "topico": "gestao",
+   "enunciado": "<p>A certificação ISO 14001 atesta que a empresa:</p>",
+   "alternativas": [
+    "não causa nenhum impacto ambiental",
+    "está dispensada do licenciamento",
+    "mantém um sistema para controlar e melhorar o desempenho ambiental e cumprir a lei",
+    "tem emissões de carbono nulas"
+   ],
+   "correta": 2,
+   "explicacao": "<p>Os resultados dependem das metas que a empresa define.</p>"
+  }
+ ]
+}
